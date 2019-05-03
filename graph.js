@@ -22,9 +22,9 @@ var x = d3.scaleLog()
     .domain([20,20000])
     .range([pad.l,pad.l+W]);
 
-var y = d3.scaleLinear()
-    .domain([30,85]) // Decibels
-    .range([pad.t+H-5,pad.t+15]);
+var yD = [28,86], // Decibels
+    yR = [pad.t+H,pad.t+10];
+var y = d3.scaleLinear().domain(yD).range(yR);
 
 
 // y axis
@@ -32,24 +32,26 @@ defs.append("filter").attr("id","blur").attr("filterUnits","userSpaceOnUse")
     .attrs({x:-W-4,y:-2,width:W+4,height:4})
     .append("feGaussianBlur").attr("in","SourceGraphic")
     .attr("stdDeviation", 0.8);
-gr.append("g")
+var yAxis = d3.axisLeft(y).tickSize(W+3).tickPadding(1);
+function fmtY(ya) {
+    yAxis(ya);
+    ya.select(".domain").remove();
+    ya.selectAll(".tick line")
+      .attr("stroke-linecap", "round")
+      .attr("stroke-width", 0.3)
+      .attr("filter", "url(#blur)");
+//  ya.selectAll(".tick text")
+//    .attr("text-anchor","start")
+//    .attr("x",-W+3)
+//    .attr("dy",-2);
+}
+var yAxisObj = gr.append("g")
     .attr("transform", "translate("+(pad.l+W)+",0)")
-    .call(d3.axisLeft(y).tickSize(W+3).tickPadding(1))
-    .call(function (ya) {
-        ya.select(".domain").remove();
-        ya.selectAll(".tick line")
-          .attr("stroke-linecap", "round")
-          .attr("stroke-width", 0.3)
-          .attr("filter", "url(#blur)");
-//      ya.selectAll(".tick text")
-//        .attr("text-anchor","start")
-//        .attr("x",-W+3)
-//        .attr("dy",-2);
-        ya.insert("text")
-          .attr("fill","currentColor")
-          .attr("x",-W-4).attr("y",pad.t).attr("dy","0.32em")
-          .text("dB");
-    });
+    .call(fmtY);
+yAxisObj.insert("text")
+    .attr("fill","currentColor")
+    .attr("x",-W-4).attr("y",pad.t).attr("dy","0.32em")
+    .text("dB");
 
 
 // x axis
@@ -147,4 +149,54 @@ function clickRangeButton(_,i) {
     var e = edgeWs[s];
     fadeEdge.transition().duration(dur).attrs(i=>({x:i?W-e[i]:0, width:e[i]}));
     xAxisObj.transition().duration(dur).call(fmtX);
+}
+
+
+// y-axis scaler
+var dB = {
+    y: y(62.5),
+    h: 15,
+    H: 55,
+    min: pad.t,
+    max: pad.t+H,
+    tr: _ => "translate("+(pad.l-16)+","+dB.y+")"
+};
+dB.all = gr.append("g").attr("class","dBScaler"),
+dB.trans = dB.all.append("g").attr("transform", dB.tr()),
+dB.scale = dB.trans.append("g").attr("transform", "scale(1,1)");
+dB.scale.append("line").attrs({x1:5,y1:-dB.H,x2:5,y2:dB.H});
+dB.scale.selectAll().data([-dB.H,dB.H]).enter()
+    .append("line").attrs({x1:1,x2:9,y1:y=>y,y2:y=>y});
+function getDrag(fn) {
+    return d3.drag()
+        .on("drag",fn)
+        .on("start",function(){dB.all.classed("active",true );})
+        .on("end"  ,function(){dB.all.classed("active",false);});
+}
+dB.Mid = dB.all.append("rect")
+    .attrs({x:(pad.l-16),y:dB.y-dB.h,width:10,height:2*dB.h,fill:"white"})
+    .call(getDrag(function () {
+        dB.y = d3.event.y;
+        dB.y = Math.min(dB.y, dB.max-dB.h*(dB.H/15));
+        dB.y = Math.max(dB.y, dB.min+dB.h*(dB.H/15));
+        d3.select(this).attr("y",dB.y-dB.h);
+        dB.trans.attr("transform", dB.tr());
+        dB.updatey();
+    }));
+dB.circ = dB.trans.selectAll().data([-1,1]).enter().append("circle")
+    .attrs({cx:5,cy:s=>dB.H*s,r:7,opacity:0})
+    .call(getDrag(function () {
+        var h  = Math.max(30, Math.abs(d3.event.y));
+        h = Math.min(h, Math.min(dB.max-dB.y, dB.y-dB.min));
+        var sc = h/dB.H;
+        dB.circ.attr("cy",s=>h*s);
+        dB.scale.attr("transform", "scale(1,"+sc+")");
+        dB.h = 15*sc;
+        dB.Mid.attrs({y:dB.y-dB.h,height:2*dB.h});
+        dB.updatey();
+    }));
+dB.updatey = function (dom) {
+    y.domain(yR.map(y=>62.5+(dB.y-y)*(15/dB.h)*(30-85)/(yR[1]-yR[0])));
+    yAxisObj.call(fmtY);
+    path.attr("d",line(fr));
 }

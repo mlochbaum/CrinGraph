@@ -124,8 +124,6 @@ var rsH = 14,
 var rangeSel = gr.selectAll().data(["bass","mids","treble"]).enter()
     .append("g").attr("class","rangeButton")
     .attr("transform", (_,i)=>"translate("+(pad.l+i*(W/3))+","+(pad.t+H+pad.b-rsH)+")")
-    .on("mouseover", function () { d3.select(this).classed("active",true ); })
-    .on("mouseout" , function () { d3.select(this).classed("active",false); })
     .on("click", clickRangeButton);
 rangeSel.append("rect")
     .attrs({x:rsp, y:-2, width:W/3-2*rsp, height:rsH,

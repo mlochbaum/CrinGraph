@@ -32,7 +32,7 @@ defs.append("filter").attr("id","blur").attr("filterUnits","userSpaceOnUse")
     .attrs({x:-W-4,y:-2,width:W+4,height:4})
     .append("feGaussianBlur").attr("in","SourceGraphic")
     .attr("stdDeviation", 0.8);
-var yAxis = d3.axisLeft(y).tickSize(W+3).tickPadding(1);
+var yAxis = d3.axisLeft(y).tickSize(W+3).tickSizeOuter(0).tickPadding(1);
 function fmtY(ya) {
     yAxis(ya);
     ya.select(".domain").remove();
@@ -57,6 +57,7 @@ yAxisObj.insert("text")
 // x axis
 var xvals = [2,3,4,5,6,8,10,15];
 var xAxis = d3.axisBottom(x)
+    .tickSize(H+3).tickSizeOuter(0)
     .tickValues([].concat.apply([],[1,2,3].map(e=>xvals.map(m=>m*Math.pow(10,e)))).concat([20000]))
     .tickFormat(f => f>=1000 ? (f/1000)+"k" : f);
 
@@ -68,9 +69,9 @@ function xThick(_,i) {
 }
 
 function fmtX(xa) {
-    xAxis.tickSize(H+3)(xa);
+    xAxis(xa);
     xa.attr("shape-rendering", "crispEdges");
-    xa.select(".domain").remove();
+    (xa.selection ? xa.selection() : xa).select(".domain").remove();
     xa.selectAll(".tick line")
       .attr("stroke", "#333")
       .attr("stroke-width", xThick);

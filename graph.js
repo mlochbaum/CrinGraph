@@ -109,9 +109,9 @@ var fadeEdge = fade.selectAll().data([0,1]).enter()
     .append("rect")
     .attrs(i=>({ x:i?W-fW:0, width:fW, y:0,height:H, fill:"url(#grad"+i+")" }));
 var line = d3.line()
-    .x((f,i)=>x(20*Math.pow(1000,i/120)))
+    .x((f,i)=>x(i===479?20000:19.4806*Math.pow(2,i/48)))
     .y(f=>y(f))
-    .curve(d3.curveCardinal);
+    .curve(d3.curveCardinal.tension(0.5));
 var path = null;
 d3.json("data/fr.json").then(fr =>
     path = gr.selectAll().data(fr).enter()

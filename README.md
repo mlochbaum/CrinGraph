@@ -18,6 +18,8 @@ The current industry standard is a "V-shaped" response which applies
 both indignities at once. Using an FR graph you may easily see which
 headphones conform to this standard and which are insufficiently "fun".
 
+[View some sample graphs.](https://mlochbaum.github.io/CrinGraph/graph.html)
+
 Because Crinacle's frequency response measurements are not public, the
 sample response curves shown here are synthesized. They are not real
 headphones and you can't listen to them. To reduce potential

@@ -118,18 +118,40 @@ function tsvParse(fr) {
     return d3.tsvParseRows(fr).slice(2,482);
 }
 function loadFR(name) {
-    return ["L","R"].map(s=>d3.text(name+" "+s+".txt"));
+    return ["L","R"].map(s=>d3.text("data/"+name+" "+s+".txt"));
 }
-var path = null;
-Promise.all(loadFR("data/fr")).then(frs =>
-    path = gr.selectAll().data(frs.map(tsvParse)).enter()
-        .append("path")
-        .attr("fill","none")
-        .attr("stroke-width",3)
-        .attr("stroke",(_,i)=>["SteelBlue","FireBrick"][i])
-        .attr("d",line)
-        .attr("mask","url(#graphFade)")
-);
+var brands = null,
+    path = null;
+d3.json("data/phone_book.json").then(function (br) {
+    brands = br;
+    var phones = [].concat.apply([],
+      brands.map(b => b.phones.map(p => ({ brand: b.name, phone: p })))
+    );
+    var sel = d3.select("#phones");
+    sel.selectAll().data(phones).enter()
+        .append("option")
+        .attr("value", p=>p.phone)
+        .text(p=>p.brand+" "+p.phone);
+    showPhone(phones[0].phone);
+    sel.on("change", function () {
+        showPhone(phones[sel.property("selectedIndex")].phone);
+    });
+});
+function showPhone(ph) {
+    Promise.all(loadFR(ph)).then(function (frs) {
+        var dat = frs.map(tsvParse);
+        if (!path)
+            path = gr.selectAll().data(dat).enter()
+                .append("path")
+                .attr("fill","none")
+                .attr("stroke-width",3)
+                .attr("stroke",(_,i)=>["SteelBlue","FireBrick"][i])
+                .attr("mask","url(#graphFade)");
+        else
+            path.data(dat);
+        path.attr("d",line);
+    });
+}
 
 
 // Range buttons

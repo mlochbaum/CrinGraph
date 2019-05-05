@@ -14,10 +14,12 @@
     .dBScaler circle,rect { cursor:move; }
     .dBScaler line,rect { vector-effect:non-scaling-stroke; }
     .dBScaler:hover,.dBScaler.active { opacity:0.8; }
+    select { width:40%; margin-left:30%; font-size:large; }
   </style>
 </head>
 <body>
   <svg id="fr-graph" viewBox="0 0 800 360"></svg>
+  <select id="phones"></select>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
   <script src="graph.js"></script>

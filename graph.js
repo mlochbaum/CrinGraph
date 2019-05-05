@@ -109,12 +109,20 @@ var fadeEdge = fade.selectAll().data([0,1]).enter()
     .append("rect")
     .attrs(i=>({ x:i?W-fW:0, width:fW, y:0,height:H, fill:"url(#grad"+i+")" }));
 var line = d3.line()
-    .x((f,i)=>x(i===479?20000:19.4806*Math.pow(2,i/48)))
-    .y(f=>y(f))
+    .x(d=>x(d[0]))
+    .y(d=>y(d[1]))
     .curve(d3.curveCardinal.tension(0.5));
+
+// Format of FR files is kind of weird
+function tsvParse(fr) {
+    return d3.tsvParseRows(fr).slice(2,482);
+}
+function loadFR(name) {
+    return ["L","R"].map(s=>d3.text(name+" "+s+".txt"));
+}
 var path = null;
-d3.json("data/fr.json").then(fr =>
-    path = gr.selectAll().data(fr).enter()
+Promise.all(loadFR("data/fr")).then(frs =>
+    path = gr.selectAll().data(frs.map(tsvParse)).enter()
         .append("path")
         .attr("fill","none")
         .attr("stroke-width",3)

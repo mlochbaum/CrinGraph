@@ -27,5 +27,25 @@ fmtfr =: TEMPLATE rplc 'DATA';LF,@:,.db ([,TAB,])&":"0 ]
 writefr =: ('LR'(],' ',[,'.txt'"_)&.><@[) (1!:2~ fmtfr)"_1 (0.5<.@:+])&.(10&*)@]
 
 
-'fr' writefr gen 2#?1 2$0
+randsel =: ] {~ (0?@$~[) I.~ +/\@:(%+/)@:(2%@:+i.@#)@]
+getbrand =: 3 : 0
+  br =. randsel&'KQZGCDRBM' (2+?3)
+  br ;< ,&.>/ (1 0+(2,1+?9)?@$3) randsel&.> ({.@":"0 i.10) ;~ 'HETF',,~br
+)
+
+BRANDS =: (~.@[,.</.)/|:(#~[:~:{:"1);<@(,.>)/"1 getbrand"0 i.6
+
+fmt_brands =: 3 : 0
+  surr =. {.@[ , ] , {:@[
+  q =. '"'&surr
+  ind =. '  '&,"1
+  fmtList =. ('['(<0 0)}>) @: (}:,,&' ]'&.>@{:) @: (', '&,&.>)
+  fmtBP =. ;@:(,&','&.>@}:,fmtList&.>@{:)@]
+  b =. ('name';'phones') <@(,&': '@>@[ (],"1~#@]{.[) fmtBP)"1 &: (q L: 0) y
+  ;<@(LF,~dtb)"1 (,.'[]') surr ind (,.'{}') surr }. ; ('}, {',ind)&.> b
+)
+
+'phone_book.json' (1!:2<)~ fmt_brands BRANDS
+((>@[writefr])"_1 [: gen 0?@$~2 2,~#) ;{:"1 BRANDS
+
 exit ''

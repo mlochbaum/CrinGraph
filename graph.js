@@ -122,7 +122,8 @@ function tsvParse(fr) {
 function loadFR(name) {
     return ["L","R"].map(s=>d3.text("data/"+name+" "+s+".txt"));
 }
-var brands = null,
+var gpath = gr.append("g"),
+    brands = null,
     path = null;
 d3.json("data/phone_book.json").then(function (br) {
     brands = br;
@@ -143,7 +144,7 @@ function showPhone(ph) {
     Promise.all(loadFR(ph)).then(function (frs) {
         var dat = frs.map(tsvParse);
         if (!path)
-            path = gr.selectAll().data(dat).enter()
+            path = gpath.selectAll().data(dat).enter()
                 .append("path")
                 .attr("fill","none")
                 .attr("stroke-width",3)

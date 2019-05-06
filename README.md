@@ -15,7 +15,7 @@ loud the headphone will render sounds at different pitches. The higher
 the left portion of the graph, the more your brain will rattle; the
 higher the right portion of the graph, the more your ears will bleed.
 The current industry standard is a "V-shaped" response which applies
-both indignities at once. Using an FR graph you may easily see which
+both conditions at once. Using an FR graph you may easily see which
 headphones conform to this standard and which are insufficiently "fun".
 
 [View some sample graphs.](https://mlochbaum.github.io/CrinGraph/graph.html)

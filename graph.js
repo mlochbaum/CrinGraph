@@ -120,9 +120,19 @@ var fileNames = name => ["L","R"].map(s=>name+" "+s+".txt");
 // Format of FR files is kind of weird
 var tsvParse = fr => d3.tsvParseRows(fr).slice(2,482);
 var curves = [],
-    gpath = gr.append("g"),
+    gpath = gr.append("g")
+        .attr("fill","none")
+        .attr("stroke-width",3)
+        .attr("mask","url(#graphFade)"),
     brands = null,
     path = null;
+function updatePaths(dat) {
+    var p = gpath.selectAll("path").data(dat, d=>d.id);
+    p.exit().remove();
+    path = p.enter().append("path")
+        .attr("stroke",(_,i)=>["SteelBlue","FireBrick"][i])
+        .attr("d",d=>line(d.l));
+}
 d3.json("data/phone_book.json").then(function (br) {
     brands = br;
     var phones = [].concat.apply([],
@@ -143,19 +153,9 @@ function showPhone(ph) {
     var l = ph.files.length;
     curves = [ph];
     updatePhoneTable(l);
-    Promise.all(ph.files.map(f=>d3.text(DIR+f))).then(function (frs) {
-        var dat = frs.map(tsvParse);
-        if (!path)
-            path = gpath.selectAll().data(dat).enter()
-                .append("path")
-                .attr("fill","none")
-                .attr("stroke-width",3)
-                .attr("stroke",(_,i)=>["SteelBlue","FireBrick"][i])
-                .attr("mask","url(#graphFade)");
-        else
-            path.data(dat);
-        path.attr("d",line);
-    });
+    Promise.all(ph.files.map(f=>d3.text(DIR+f))).then(frs =>
+        updatePaths(frs.map((t,i)=>({id:ph.files[i],l:tsvParse(t),p:ph})))
+    );
 }
 function updatePhoneTable(l) {
     var c = d3.select("#curves").selectAll("tr").data(curves,p=>p.brand+" "+p.phone);
@@ -203,7 +203,7 @@ function clickRangeButton(_,i) {
     x.domain(ranges[s]);
     // More time to go between bass and treble
     var dur = Math.min(r,s)===0 && Math.max(r,s)===2 ? 1100 : 700;
-    if (path) path.transition().duration(dur).attr("d",line);
+    if (path) path.transition().duration(dur).attr("d",d=>line(d.l));
     var e = edgeWs[s];
     fadeEdge.transition().duration(dur).attrs(i=>({x:i?W-e[i]:0, width:e[i]}));
     xAxisObj.transition().duration(dur).call(fmtX);
@@ -276,5 +276,5 @@ dB.circ = dB.trans.selectAll().data([-1,1]).enter().append("circle")
 dB.updatey = function (dom) {
     y.domain(yR.map(y=>60+(dB.y-y)*(15/dB.h)*(28-86)/(yR[1]-yR[0])));
     yAxisObj.call(fmtY);
-    if (path) path.attr("d",line);
+    if (path) path.attr("d",d=>line(d.l));
 }

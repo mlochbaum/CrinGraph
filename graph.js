@@ -142,12 +142,7 @@ function showPhone(ph) {
     if (!ph.files) ph.files = fileNames(ph.phone);
     var l = ph.files.length;
     curves = [ph];
-    var c = d3.select("#curves").selectAll("tr").data(curves,p=>p.brand+" "+p.phone),
-        fs= c.enter().selectAll().data(p=>p.files).enter().append("tr"),
-        f0= fs.filter((_,i)=>i===0);
-    f0.append("td").attr("rowspan",l).text(ph.brand+" "+ph.phone);
-    fs.append("td").text((_,i)=>["L","R"][i]);
-    c.exit().remove();
+    updatePhoneTable();
     Promise.all(ph.files.map(f=>d3.text(DIR+f))).then(function (frs) {
         var dat = frs.map(tsvParse);
         if (!path)
@@ -161,6 +156,18 @@ function showPhone(ph) {
             path.data(dat);
         path.attr("d",line);
     });
+}
+function updatePhoneTable() {
+    var c = d3.select("#curves").selectAll("tr").data(curves,p=>p.brand+" "+p.phone);
+    c.exit().remove();
+    var f = c.enter().selectAll().data(p=>p.files.map(f=>[p,f])).enter().append("tr"),
+        f0= f.filter((_,i)=>i===0),
+        one = () => f0.append("td").attr("rowspan",pf=>pf[0].files.length),
+        all = () => f.append("td");
+    one().text(pf=>pf[0].brand+" "+pf[0].phone);
+    all().text((_,i)=>["L","R"][i]);
+//  all().append("button").style("font-size","70%").text("hide");
+//  one().append("button").text("combine");
 }
 
 

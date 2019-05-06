@@ -124,12 +124,11 @@ var curves = [],
         .attr("fill","none")
         .attr("stroke-width",3)
         .attr("mask","url(#graphFade)"),
-    brands = null,
-    path = null;
+    brands = null;
 function updatePaths(dat) {
     var p = gpath.selectAll("path").data(dat, d=>d.id);
     p.exit().remove();
-    path = p.enter().append("path")
+    p.enter().append("path")
         .attr("stroke",(_,i)=>["SteelBlue","FireBrick"][i])
         .attr("d",d=>line(d.l));
 }
@@ -203,7 +202,7 @@ function clickRangeButton(_,i) {
     x.domain(ranges[s]);
     // More time to go between bass and treble
     var dur = Math.min(r,s)===0 && Math.max(r,s)===2 ? 1100 : 700;
-    if (path) path.transition().duration(dur).attr("d",d=>line(d.l));
+    gpath.selectAll("path").transition().duration(dur).attr("d",d=>line(d.l));
     var e = edgeWs[s];
     fadeEdge.transition().duration(dur).attrs(i=>({x:i?W-e[i]:0, width:e[i]}));
     xAxisObj.transition().duration(dur).call(fmtX);
@@ -276,5 +275,5 @@ dB.circ = dB.trans.selectAll().data([-1,1]).enter().append("circle")
 dB.updatey = function (dom) {
     y.domain(yR.map(y=>60+(dB.y-y)*(15/dB.h)*(28-86)/(yR[1]-yR[0])));
     yAxisObj.call(fmtY);
-    if (path) path.attr("d",d=>line(d.l));
+    gpath.selectAll("path").attr("d",d=>line(d.l));
 }

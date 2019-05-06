@@ -1,4 +1,4 @@
-var pad = { l:30, r:14, t:10, b:36 };
+var pad = { l:14, r:14, t:10, b:36 };
 var W = 800 - pad.l - pad.r,
     H = 360 - pad.t - pad.b;
 
@@ -29,10 +29,10 @@ var y = d3.scaleLinear().domain(yD).range(yR);
 
 // y axis
 defs.append("filter").attr("id","blur").attr("filterUnits","userSpaceOnUse")
-    .attrs({x:-W-4,y:-2,width:W+4,height:4})
+    .attrs({x:-W-4,y:-2,width:W+8,height:4})
     .append("feGaussianBlur").attr("in","SourceGraphic")
     .attr("stdDeviation", 0.8);
-var yAxis = d3.axisLeft(y).tickSize(W+3).tickSizeOuter(0).tickPadding(1);
+var yAxis = d3.axisLeft(y).tickSize(W).tickSizeOuter(0).tickPadding(1);
 function fmtY(ya) {
     yAxis(ya);
     ya.select(".domain").remove();
@@ -40,17 +40,19 @@ function fmtY(ya) {
       .attr("stroke-linecap", "round")
       .attr("stroke-width", 0.3)
       .attr("filter", "url(#blur)");
-//  ya.selectAll(".tick text")
-//    .attr("text-anchor","start")
-//    .attr("x",-W+3)
-//    .attr("dy",-2);
+    ya.selectAll(".tick text")
+      .attr("text-anchor","start")
+      .attr("x",-W+3)
+      .attr("dy",-2);
 }
 var yAxisObj = gr.append("g")
     .attr("transform", "translate("+(pad.l+W)+",0)")
     .call(fmtY);
 yAxisObj.insert("text")
+    .attr("transform","rotate(-90)")
     .attr("fill","currentColor")
-    .attr("x",-W-4).attr("y",pad.t).attr("dy","0.32em")
+    .attr("text-anchor","end")
+    .attr("y",-W-2).attr("x",-pad.t)
     .text("dB");
 
 
@@ -188,27 +190,47 @@ function clickRangeButton(_,i) {
 
 // y-axis scaler
 var dB = {
-    y: y(62.5),
+    y: y(60),
     h: 15,
-    H: 55,
+    H: y(60)-y(70),
     min: pad.t,
     max: pad.t+H,
-    tr: _ => "translate("+(pad.l-16)+","+dB.y+")"
+    tr: _ => "translate("+(pad.l-9)+","+dB.y+")"
 };
 dB.all = gr.append("g").attr("class","dBScaler"),
 dB.trans = dB.all.append("g").attr("transform", dB.tr()),
 dB.scale = dB.trans.append("g").attr("transform", "scale(1,1)");
-dB.scale.append("line").attrs({x1:5,y1:-dB.H,x2:5,y2:dB.H});
-dB.scale.selectAll().data([-dB.H,dB.H]).enter()
-    .append("line").attrs({x1:1,x2:9,y1:y=>y,y2:y=>y});
+dB.scale.selectAll().data([-1,1]).enter()
+    .append("path").attr("fill","#474344").attr("stroke","none")
+    .attr("d", function (s) {
+        function getPathPart(l) {
+            var v=l[0].toLowerCase()==="v";
+            for (var i=2-v; i<l.length; i+=2)
+                l[i] *= s;
+            return l[0]+l.slice(1).join(" ");
+        }
+        return [ ["M", 9.9,-1   ],
+                 ["V",      dB.H],
+                 ["h",-1        ],
+                 ["l",-1  ,-1.5 ],
+                 ["l",-2.1, 2   ],
+                 ["h",-5.6      ],
+                 ["v",     -1.5 ],
+                 ["q",7,2,8,-7  ],
+                 ["V",     29   ],
+                 ["c",1,-16,-10,-15,-10,-14],
+                 ["V",     -1   ] ].map(getPathPart).join("");
+    });
+dB.scale.selectAll().data([10,7,13]).enter()
+    .append("rect").attrs((d,i)=>({x:i*2.8,y:-d,width:0.8,height:2*d,fill:"#bbb"}));
 function getDrag(fn) {
     return d3.drag()
         .on("drag",fn)
         .on("start",function(){dB.all.classed("active",true );})
         .on("end"  ,function(){dB.all.classed("active",false);});
 }
-dB.Mid = dB.all.append("rect")
-    .attrs({x:(pad.l-16),y:dB.y-dB.h,width:10,height:2*dB.h,fill:"white"})
+dB.mid = dB.all.append("rect")
+    .attrs({x:(pad.l-11),y:dB.y-dB.h,width:12,height:2*dB.h,opacity:0})
     .call(getDrag(function () {
         dB.y = d3.event.y;
         dB.y = Math.min(dB.y, dB.max-dB.h*(dB.H/15));
@@ -226,11 +248,11 @@ dB.circ = dB.trans.selectAll().data([-1,1]).enter().append("circle")
         dB.circ.attr("cy",s=>h*s);
         dB.scale.attr("transform", "scale(1,"+sc+")");
         dB.h = 15*sc;
-        dB.Mid.attrs({y:dB.y-dB.h,height:2*dB.h});
+        dB.mid.attrs({y:dB.y-dB.h,height:2*dB.h});
         dB.updatey();
     }));
 dB.updatey = function (dom) {
-    y.domain(yR.map(y=>62.5+(dB.y-y)*(15/dB.h)*(30-85)/(yR[1]-yR[0])));
+    y.domain(yR.map(y=>60+(dB.y-y)*(15/dB.h)*(28-86)/(yR[1]-yR[0])));
     yAxisObj.call(fmtY);
     if (path) path.attr("d",line);
 }

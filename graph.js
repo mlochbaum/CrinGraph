@@ -129,7 +129,7 @@ function updatePaths(dat) {
     var p = gpath.selectAll("path").data(dat, d=>d.id);
     p.exit().remove();
     p.enter().append("path")
-        .attr("stroke",(_,i)=>["SteelBlue","FireBrick"][i])
+        .attr("stroke",(_,i)=>d3.schemeCategory10[i])
         .attr("d",d=>line(d.l));
 }
 d3.json("data/phone_book.json").then(function (br) {

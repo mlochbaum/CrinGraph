@@ -115,14 +115,12 @@ var line = d3.line()
     .y(d=>y(d[1]))
     .curve(d3.curveCardinal.tension(0.5));
 
+let DIR = "data/";
+var fileNames = name => ["L","R"].map(s=>name+" "+s+".txt");
 // Format of FR files is kind of weird
-function tsvParse(fr) {
-    return d3.tsvParseRows(fr).slice(2,482);
-}
-function loadFR(name) {
-    return ["L","R"].map(s=>d3.text("data/"+name+" "+s+".txt"));
-}
-var gpath = gr.append("g"),
+var tsvParse = fr => d3.tsvParseRows(fr).slice(2,482);
+var curves = [],
+    gpath = gr.append("g"),
     brands = null,
     path = null;
 d3.json("data/phone_book.json").then(function (br) {
@@ -135,13 +133,22 @@ d3.json("data/phone_book.json").then(function (br) {
         .append("option")
         .attr("value", p=>p.phone)
         .text(p=>p.brand+" "+p.phone);
-    showPhone(phones[0].phone);
+    showPhone(phones[0]);
     sel.on("change", function () {
-        showPhone(phones[sel.property("selectedIndex")].phone);
+        showPhone(phones[sel.property("selectedIndex")]);
     });
 });
 function showPhone(ph) {
-    Promise.all(loadFR(ph)).then(function (frs) {
+    if (!ph.files) ph.files = fileNames(ph.phone);
+    var l = ph.files.length;
+    curves = [ph];
+    var c = d3.select("#curves").selectAll("tr").data(curves,p=>p.brand+" "+p.phone),
+        fs= c.enter().selectAll().data(p=>p.files).enter().append("tr"),
+        f0= fs.filter((_,i)=>i===0);
+    f0.append("td").attr("rowspan",l).text(ph.brand+" "+ph.phone);
+    fs.append("td").text((_,i)=>["L","R"][i]);
+    c.exit().remove();
+    Promise.all(ph.files.map(f=>d3.text(DIR+f))).then(function (frs) {
         var dat = frs.map(tsvParse);
         if (!path)
             path = gpath.selectAll().data(dat).enter()

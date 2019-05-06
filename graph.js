@@ -63,7 +63,7 @@ var xAxis = d3.axisBottom(x)
     .tickValues([].concat.apply([],[1,2,3].map(e=>xvals.map(m=>m*Math.pow(10,e)))).concat([20000]))
     .tickFormat(f => f>=1000 ? (f/1000)+"k" : f);
 
-function isMin(i) { return [0,1,1,0,1,1,0,1,0][i%8]; }
+function isMin(i) { return [0,1,1,0,1,1,0,1][i%8]; }
 function xThick(_,i) {
     var l = xvals.length;
     return i%l==0 ? (i==0 || i==3*l  ?  1.5 : 0.9)

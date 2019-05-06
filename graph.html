@@ -15,13 +15,18 @@
     .dBScaler circle,.dBScaler rect { cursor:move; }
     .dBScaler:hover,.dBScaler.active { opacity:1; }
     table,th,td { border: 1px solid black; }
+    .scroll { height:150px; overflow:auto; }
     select { width:40%; margin-left:30%; font-size:large; }
   </style>
 </head>
 <body>
   <svg id="fr-graph" viewBox="0 0 800 360"></svg>
   <table id="curves"></table>
-  <select id="phones"></select>
+  <table><tr>
+    <td><div class="scroll"><table id="brands"></table></div></td>
+    <td><div class="scroll"><table id="phones"></table></div></td>
+  </tr></table>
+
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
   <script src="graph.js"></script>

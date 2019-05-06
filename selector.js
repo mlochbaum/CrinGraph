@@ -2,6 +2,7 @@ let DIR = "data/";
 var fileNames = name => ["L","R"].map(s=>name+" "+s+".txt");
 // Format of FR files is kind of weird
 var tsvParse = fr => d3.tsvParseRows(fr).slice(2,482);
+
 var curves = [],
     gpath = gr.append("g")
         .attr("fill","none")
@@ -15,21 +16,6 @@ function updatePaths(dat) {
         .attr("stroke",(_,i)=>d3.schemeCategory10[i])
         .attr("d",d=>line(d.l));
 }
-d3.json("data/phone_book.json").then(function (br) {
-    brands = br;
-    var phones = [].concat.apply([],
-      brands.map(b => b.phones.map(p => ({ brand: b.name, phone: p })))
-    );
-    var sel = d3.select("#phones");
-    sel.selectAll().data(phones).enter()
-        .append("option")
-        .attr("value", p=>p.phone)
-        .text(p=>p.brand+" "+p.phone);
-    showPhone(phones[0]);
-    sel.on("change", function () {
-        showPhone(phones[sel.property("selectedIndex")]);
-    });
-});
 function showPhone(ph) {
     if (!ph.files) ph.files = fileNames(ph.phone);
     var l = ph.files.length;
@@ -46,7 +32,7 @@ function updatePhoneTable(l) {
         f0= f.filter((_,i)=>i===0),
         one = () => f0.append("td").attr("rowspan",l).attr("class","combined"),
         all = () => f.append("td");
-    one().text(pf=>pf[0].brand+" "+pf[0].phone);
+    one().text(pf=>pf[0].brand.name+" "+pf[0].phone);
     all().text((_,i)=>["L","R"][i]);
 //  all().append("button").style("font-size","70%").text("hide");
     one().append("button").text("combine")
@@ -58,3 +44,48 @@ function updatePhoneTable(l) {
             this.combined=!c;
         });
 }
+
+d3.json("data/phone_book.json").then(function (br) {
+    var brands = br;
+    brands.forEach(function (b) {
+        b.phoneObjs = b.phones.map(p => ({
+            brand: b,
+            phone: p
+        }));
+    });
+    var phoneFullName = p => p.brand.name+" "+p.phone;
+
+    var allPhones = [].concat.apply([],brands.map(b=>b.phoneObjs)),
+        currentBrands = [],
+        currentPhones = allPhones;
+    showPhone(allPhones[0]);
+
+    d3.select("#brands").selectAll()
+        .data(brands).enter()
+        .append("tr").on('click', setBrand)
+        .append("td").text(b => b.name + (b.suffix?" "+b.suffix:""));
+
+    var phoneSel = d3.select("#phones").selectAll("tr")
+        .data(allPhones).enter()
+        .append("tr");
+    phoneSel.append("td").text(phoneFullName)
+        .on("click", showPhone);
+
+    function setBrand(d,i) {
+        var b = brands[i];
+        if (d3.event.ctrlKey && currentBrands.length) {
+            if (currentBrands.indexOf(b) !== -1) return;
+            if (currentBrands.length === 1) {
+                phoneSel.select("td").text(phoneFullName);
+            }
+            currentBrands.push(b);
+            currentPhones = currentPhones.concat(b.phoneObjs);
+            phoneSel.filter(p => p.brand===b).style("visibility", "visible");
+        } else {
+            currentBrands = [b];
+            currentPhones = b.phoneObjs;
+            phoneSel.style("visibility", p => p.brand===b?"visible":"collapse");
+            phoneSel.filter(p => p.brand===b).select("td").text(p=>p.phone);
+        }
+    }
+});

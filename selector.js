@@ -3,30 +3,33 @@ var fileNames = name => ["L","R"].map(s=>name+" "+s+".txt");
 // Format of FR files is kind of weird
 var tsvParse = fr => d3.tsvParseRows(fr).slice(2,482);
 
-var curves = [],
-    gpath = gr.insert("g",".rangeButton")
-        .attr("fill","none")
-        .attr("stroke-width",3)
-        .attr("mask","url(#graphFade)"),
-    brands = null;
-function updatePaths(dat) {
-    var p = gpath.selectAll("path").data(dat, d=>d.id);
+function flatten(l) { return [].concat.apply([],l); }
+function avgCurves(curves) {
+    return curves
+        .map(c=>c.map(d=>Math.exp(d[1])))
+        .reduce((as,bs) => as.map((a,i) => a+bs[i]))
+        .map((x,i) => [curves[0][i][0], Math.log(x/curves.length)]);
+}
+
+var activePhones = []; // Everything with data read in so far
+
+var gpath = gr.insert("g",".rangeButton")
+    .attr("fill","none")
+    .attr("stroke-width",3)
+    .attr("mask","url(#graphFade)");
+var table = d3.select("#curves");
+
+function updatePaths() {
+    var c = flatten(activePhones.map(p => p.activeCurves)),
+        p = gpath.selectAll("path").data(c, d=>d.id);
     p.exit().remove();
     p.enter().append("path")
         .attr("stroke",(_,i)=>d3.schemeCategory10[i])
         .attr("d",d=>line(d.l));
 }
-function showPhone(ph) {
-    if (!ph.files) ph.files = fileNames(ph.phone);
-    var l = ph.files.length;
-    curves = [ph];
-    updatePhoneTable(l);
-    Promise.all(ph.files.map(f=>d3.text(DIR+f))).then(frs =>
-        updatePaths(frs.map((t,i)=>({id:ph.files[i],l:tsvParse(t),p:ph})))
-    );
-}
 function updatePhoneTable(l) {
-    var c = d3.select("#curves").selectAll("tr").data(curves,p=>p.brand+" "+p.phone);
+    var p = activePhones.filter(p => p.activeCurves.length!==0),
+        c = table.selectAll("tr").data(p, p=>p.brand+" "+p.phone);
     c.exit().remove();
     var f = c.enter().selectAll().data(p=>p.files.map(f=>[p,f])).enter().append("tr"),
         f0= f.filter((_,i)=>i===0),
@@ -36,13 +39,34 @@ function updatePhoneTable(l) {
     all().text((_,i)=>["L","R"][i]);
 //  all().append("button").style("font-size","70%").text("hide");
     one().append("button").text("combine")
-        .on("click",function(){
+        .on("click",function(pf){
+            var p = pf[0];
             var c = this.combined;
             f0.selectAll(".combined").attr("rowspan",c?l:null);
             f.filter((_,i)=>i!==0).style("visibility",c?null:"collapse");
             d3.select(this).text(c?"combine":"separate");
+            p.activeCurves = c ? p.channels.map((l,i) => ({id:p.files[i], l:l, p:p}))
+                               : [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p}];
+            updatePaths();
             this.combined=!c;
         });
+}
+
+function showPhone(p) {
+    if (!p.channels) {
+        if (!p.files) p.files = fileNames(p.phone);
+        Promise.all(p.files.map(f=>d3.text(DIR+f))).then(function (frs) {
+            if (p.channels) return;
+            p.channels = frs.map(tsvParse);
+            activePhones.push(p);
+            showPhone(p);
+        });
+        return;
+    }
+    var l = p.files.length;
+    p.activeCurves = p.channels.map((l,i) => ({id:p.files[i], l:l, p:p}));
+    updatePaths();
+    updatePhoneTable(l);
 }
 
 d3.json("data/phone_book.json").then(function (br) {
@@ -55,7 +79,7 @@ d3.json("data/phone_book.json").then(function (br) {
     });
     var phoneFullName = p => p.brand.name+" "+p.phone;
 
-    var allPhones = [].concat.apply([],brands.map(b=>b.phoneObjs)),
+    var allPhones = flatten(brands.map(b=>b.phoneObjs)),
         currentBrands = [],
         currentPhones = allPhones;
     showPhone(allPhones[0]);

@@ -4,7 +4,7 @@ var fileNames = name => ["L","R"].map(s=>name+" "+s+".txt");
 var tsvParse = fr => d3.tsvParseRows(fr).slice(2,482);
 
 var curves = [],
-    gpath = gr.append("g")
+    gpath = gr.insert("g",".rangeButton")
         .attr("fill","none")
         .attr("stroke-width",3)
         .attr("mask","url(#graphFade)"),

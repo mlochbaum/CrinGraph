@@ -93,12 +93,10 @@ var xAxisObj = gr.append("g")
 
 
 // Plot line
-defs.selectAll().data([0,1]).enter()
-    .append("linearGradient")
+defs.selectAll().data([0,1]).join("linearGradient")
     .attrs({x1:0,y1:0, x2:1,y2:0})
     .attr("id", i=>"grad"+i)
-    .selectAll().data(i=>[i,1-i]).enter()
-    .append("stop")
+    .selectAll().data(i=>[i,1-i]).join("stop")
     .attr("offset",(_,i)=>i)
     .attr("stop-color",j=>["black","white"][j]);
 var fW = 7,  // Fade width
@@ -107,8 +105,7 @@ var fade = defs.append("mask")
     .attr("id", "graphFade")
     .append("g").attr("transform", "translate("+pad.l+","+pad.t+")");
 fade.append("rect").attrs({ x:0, y:0, width:W, height:H, fill:"white" });
-var fadeEdge = fade.selectAll().data([0,1]).enter()
-    .append("rect")
+var fadeEdge = fade.selectAll().data([0,1]).join("rect")
     .attrs(i=>({ x:i?W-fW:0, width:fW, y:0,height:H, fill:"url(#grad"+i+")" }));
 var line = d3.line()
     .x(d=>x(d[0]))
@@ -119,8 +116,8 @@ var line = d3.line()
 // Range buttons
 var rsH = 14,
     rsp = 8;  // x-axis padding
-var rangeSel = gr.selectAll().data(["bass","mids","treble"]).enter()
-    .append("g").attr("class","rangeButton")
+var rangeSel = gr.selectAll().data(["bass","mids","treble"])
+    .join("g").attr("class","rangeButton")
     .attr("transform", (_,i)=>"translate("+(pad.l+i*(W/3))+","+(pad.t+H+pad.b-rsH)+")")
     .on("click", clickRangeButton);
 rangeSel.append("rect")
@@ -160,8 +157,8 @@ var dB = {
 dB.all = gr.append("g").attr("class","dBScaler"),
 dB.trans = dB.all.append("g").attr("transform", dB.tr()),
 dB.scale = dB.trans.append("g").attr("transform", "scale(1,1)");
-dB.scale.selectAll().data([-1,1]).enter()
-    .append("path").attr("fill","#474344").attr("stroke","none")
+dB.scale.selectAll().data([-1,1])
+    .join("path").attr("fill","#474344").attr("stroke","none")
     .attr("d", function (s) {
         function getPathPart(l) {
             var v=l[0].toLowerCase()==="v";
@@ -181,8 +178,8 @@ dB.scale.selectAll().data([-1,1]).enter()
                  ["c",1,-16,-10,-15,-10,-14],
                  ["V",     -1   ] ].map(getPathPart).join("");
     });
-dB.scale.selectAll().data([10,7,13]).enter()
-    .append("rect").attrs((d,i)=>({x:i*2.8,y:-d,width:0.8,height:2*d,fill:"#bbb"}));
+dB.scale.selectAll().data([10,7,13])
+    .join("rect").attrs((d,i)=>({x:i*2.8,y:-d,width:0.8,height:2*d,fill:"#bbb"}));
 function getDrag(fn) {
     return d3.drag()
         .on("drag",fn)
@@ -199,7 +196,7 @@ dB.mid = dB.all.append("rect")
         dB.trans.attr("transform", dB.tr());
         dB.updatey();
     }));
-dB.circ = dB.trans.selectAll().data([-1,1]).enter().append("circle")
+dB.circ = dB.trans.selectAll().data([-1,1]).join("circle")
     .attrs({cx:5,cy:s=>dB.H*s,r:7,opacity:0})
     .call(getDrag(function () {
         var h  = Math.max(30, Math.abs(d3.event.y));

@@ -22,8 +22,7 @@ var table = d3.select("#curves");
 function updatePaths() {
     var c = flatten(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
-    p.exit().remove();
-    p.enter().append("path")
+    p.join("path")
         .attr("stroke",(_,i)=>d3.schemeCategory10[i])
         .attr("d",d=>line(d.l));
 }
@@ -85,13 +84,11 @@ d3.json("data/phone_book.json").then(function (br) {
     showPhone(allPhones[0]);
 
     d3.select("#brands").selectAll()
-        .data(brands).enter()
-        .append("tr").on('click', setBrand)
+        .data(brands).join("tr").on('click', setBrand)
         .append("td").text(b => b.name + (b.suffix?" "+b.suffix:""));
 
     var phoneSel = d3.select("#phones").selectAll("tr")
-        .data(allPhones).enter()
-        .append("tr");
+        .data(allPhones).join("tr");
     phoneSel.append("td").text(phoneFullName)
         .on("click", showPhone);
 

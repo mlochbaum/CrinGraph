@@ -49,6 +49,12 @@ function updatePhoneTable(l) {
             updatePaths();
             this.combined=!c;
         });
+    one().append("button").text("remove")
+        .on("click",function(pf){
+            pf[0].activeCurves = [];
+            updatePaths();
+            updatePhoneTable(0);
+        });
 }
 
 function showPhone(p) {

@@ -1,0 +1,20 @@
+svg { width:96%; display:block; margin:4px auto; }
+svg text { cursor:default; user-select:none; }
+
+.rangeButton rect { fill: #ddd; stroke: #666; }
+.rangeButton text { fill: #222; }
+.rangeButton:hover rect { stroke: #679; }
+.rangeButton:hover text { fill: #236; }
+.rangeButton.selected rect { fill: #ee6; }
+
+.dBScaler { opacity:0.15; }
+.dBScaler circle,.dBScaler rect { cursor:move; }
+.dBScaler:hover,.dBScaler.active { opacity:1; }
+
+body { margin:0px; }
+body>table { width:60%; margin:12px 20% 0px; font-size:large; }
+
+tr { background-color:#eee; }
+.scroll { height:150px; overflow:auto; }
+.scroll table { width:100%; border-collapse: collapse; }
+.scroll tr:hover { background-color:#bbb; cursor:pointer; }

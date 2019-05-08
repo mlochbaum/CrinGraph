@@ -21,13 +21,13 @@ var gpath = gr.insert("g",".rangeButton")
 var table = d3.select("#curves");
 
 function getColor(c) {
-    var p1 = 1.6180339887498949,
-        p2 = 1.2207440846057595,
-        p3 = 1.1673039782614187;
+    var p1 = 1.1673039782614187,
+        p2 = p1*p1,
+        p3 = p2*p1;
     var id = c.p.id, t = c.o/20;
-    var i=(1.18-id)/p1, j=(id+0.2)/p2, k=(id+0.4)/p3;
+    var i=(1.18-id)/p3, j=(id+0.2)/p2, k=(id+0.4)/p1;
     return d3.hcl(360*((i+t/p2)%1),
-                  80+20*((j%1)-t/p1),
+                  80+20*((j%1)-t/p3),
                   40+20*(k%1));
 }
 

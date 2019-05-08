@@ -11,7 +11,7 @@ function avgCurves(curves) {
         .map((x,i) => [curves[0][i][0], Math.log(x/curves.length)]);
 }
 
-var activePhones = []; // Everything with data read in so far
+var activePhones = [];
 
 var gpath = gr.insert("g",".rangeButton")
     .attr("fill","none")
@@ -27,8 +27,7 @@ function updatePaths() {
         .attr("d",d=>line(d.l));
 }
 function updatePhoneTable(l) {
-    var p = activePhones.filter(p => p.activeCurves.length!==0),
-        c = table.selectAll("tr").data(p, p=>p.brand+" "+p.phone);
+    var c = table.selectAll("tr").data(activePhones, p=>p.brand+" "+p.phone);
     c.exit().remove();
     var f = c.enter().selectAll().data(p=>p.files.map(f=>[p,f])).enter().append("tr"),
         f0= f.filter((_,i)=>i===0),
@@ -41,8 +40,8 @@ function updatePhoneTable(l) {
         .on("click",function(pf){
             var p = pf[0];
             var c = this.combined;
-            f0.selectAll(".combined").attr("rowspan",c?l:null);
-            f.filter((_,i)=>i!==0).style("visibility",c?null:"collapse");
+//          f0.selectAll(".combined").attr("rowspan",c?l:null);
+//          f.filter((_,i)=>i!==0).style("visibility",c?null:"collapse");
             d3.select(this).text(c?"combine":"separate");
             p.activeCurves = c ? p.channels.map((l,i) => ({id:p.files[i], l:l, p:p}))
                                : [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p}];
@@ -51,25 +50,29 @@ function updatePhoneTable(l) {
         });
     one().append("button").text("remove")
         .on("click",function(pf){
-            pf[0].activeCurves = [];
+            activePhones = activePhones.filter(p => p !== pf[0]);
             updatePaths();
             updatePhoneTable(0);
         });
 }
 
-function showPhone(p) {
+function showPhone(p, exclusive) {
     if (!p.channels) {
         if (!p.files) p.files = fileNames(p.phone);
         Promise.all(p.files.map(f=>d3.text(DIR+f))).then(function (frs) {
             if (p.channels) return;
             p.channels = frs.map(tsvParse);
-            activePhones.push(p);
-            showPhone(p);
+            showPhone(p, exclusive);
         });
         return;
     }
     var l = p.files.length;
     p.activeCurves = p.channels.map((l,i) => ({id:p.files[i], l:l, p:p}));
+    if (exclusive || activePhones.length===0) {
+        activePhones = [p];
+    } else if (activePhones.indexOf(p) === -1) {
+        activePhones.push(p);
+    }
     updatePaths();
     updatePhoneTable(l);
 }
@@ -87,7 +90,7 @@ d3.json("data/phone_book.json").then(function (br) {
     var allPhones = flatten(brands.map(b=>b.phoneObjs)),
         currentBrands = [],
         currentPhones = allPhones;
-    showPhone(allPhones[0]);
+    showPhone(allPhones[0],1);
 
     d3.select("#brands").selectAll()
         .data(brands).join("tr").on('click', setBrand)
@@ -96,7 +99,7 @@ d3.json("data/phone_book.json").then(function (br) {
     var phoneSel = d3.select("#phones").selectAll("tr")
         .data(allPhones).join("tr");
     phoneSel.append("td").text(phoneFullName)
-        .on("click", showPhone);
+        .on("click", p => showPhone(p,!d3.event.ctrlKey));
 
     function setBrand(d,i) {
         var b = brands[i];

@@ -12,6 +12,7 @@ function avgCurves(curves) {
 }
 
 var activePhones = [];
+var phoneNumber = 0; // I'm so sorry it just happened
 
 var gpath = gr.insert("g",".rangeButton")
     .attr("fill","none")
@@ -19,15 +20,26 @@ var gpath = gr.insert("g",".rangeButton")
     .attr("mask","url(#graphFade)");
 var table = d3.select("#curves");
 
+function getColor(c) {
+    var p1 = 1.6180339887498949,
+        p2 = 1.2207440846057595,
+        p3 = 1.1673039782614187;
+    var id = c.p.id, t = c.o/20;
+    var i=(1.18-id)/p1, j=(id+0.2)/p2, k=(id+0.4)/p3;
+    return d3.hcl(360*((i+t/p2)%1),
+                  80+20*((j%1)-t/p1),
+                  40+20*(k%1));
+}
+
 function updatePaths() {
     var c = flatten(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
     p.join("path")
-        .attr("stroke",(_,i)=>d3.schemeCategory10[i])
+        .attr("stroke",getColor)
         .attr("d",d=>line(d.l));
 }
 function updatePhoneTable(l) {
-    var c = table.selectAll("tr").data(activePhones, p=>p.brand+" "+p.phone);
+    var c = table.selectAll("tr").data(activePhones, p=>p.id);
     c.exit().remove();
     var f = c.enter().selectAll().data(p=>p.files.map(f=>[p,f])).enter().append("tr"),
         f0= f.filter((_,i)=>i===0),
@@ -43,8 +55,8 @@ function updatePhoneTable(l) {
 //          f0.selectAll(".combined").attr("rowspan",c?l:null);
 //          f.filter((_,i)=>i!==0).style("visibility",c?null:"collapse");
             d3.select(this).text(c?"combine":"separate");
-            p.activeCurves = c ? p.channels.map((l,i) => ({id:p.files[i], l:l, p:p}))
-                               : [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p}];
+            p.activeCurves = c ? p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}))
+                               : [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p, o:0}];
             updatePaths();
             this.combined=!c;
         });
@@ -61,13 +73,14 @@ function showPhone(p, exclusive) {
         if (!p.files) p.files = fileNames(p.phone);
         Promise.all(p.files.map(f=>d3.text(DIR+f))).then(function (frs) {
             if (p.channels) return;
+            p.id = phoneNumber++;
             p.channels = frs.map(tsvParse);
             showPhone(p, exclusive);
         });
         return;
     }
     var l = p.files.length;
-    p.activeCurves = p.channels.map((l,i) => ({id:p.files[i], l:l, p:p}));
+    p.activeCurves = p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
     if (exclusive || activePhones.length===0) {
         activePhones = [p];
     } else if (activePhones.indexOf(p) === -1) {

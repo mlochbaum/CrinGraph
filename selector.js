@@ -124,7 +124,10 @@ d3.json("data/phone_book.json").then(function (br) {
 
     var phoneSel = d3.select("#phones").selectAll("tr")
         .data(allPhones).join("tr");
+    var bg = fn => function (p) { d3.select(this).style("background-color", fn(p)) }
     phoneSel.append("td").text(phoneFullName)
+        .on("mouseover", bg(p => getDivColor(p.id===undefined?phoneNumber:p.id)))
+        .on("mouseout" , bg(p => p.id!==undefined?getDivColor(p.id):null))
         .on("click", p => showPhone(p,!d3.event.ctrlKey));
 
     function setBrand(d,i) {

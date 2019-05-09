@@ -20,22 +20,30 @@ var gpath = gr.insert("g",".rangeButton")
     .attr("mask","url(#graphFade)");
 var table = d3.select("#curves");
 
-function getColor(c) {
+function getCurveColor(id, o) {
     var p1 = 1.1673039782614187,
         p2 = p1*p1,
         p3 = p2*p1;
-    var id = c.p.id, t = c.o/20;
+    var t = o/20;
     var i=(1.18-id)/p3, j=(id+0.2)/p2, k=(id+0.4)/p1;
     return d3.hcl(360*((i+t/p2)%1),
                   80+20*((j%1)-t/p3),
                   40+20*(k%1));
+}
+var getColor_AC = c => getCurveColor(c.p.id, c.o);
+var getColor_ph = (p,i) => getCurveColor(p.id, p.activeCurves[i].o);
+function getDivColor(id) {
+    var c = getCurveColor(id,0);
+    c.l = 100-(80-c.l)/2;
+    c.c = (c.c-20)/3;
+    return c;
 }
 
 function updatePaths() {
     var c = flatten(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
     p.join("path")
-        .attr("stroke",getColor)
+        .attr("stroke",getColor_AC)
         .attr("d",d=>line(d.l));
 }
 function updatePhoneTable() {
@@ -54,7 +62,7 @@ function updatePhoneTable() {
     one().text(pf=>pf[0].brand.name+" ")
         .append("span").attr("class","phonename").text(pf=>pf[0].phone);
     all().call(l => {
-        l.append("div").attr("class","keyLine").style("background",(pf,i)=>getColor(pf[0].activeCurves[i]));
+        l.append("div").attr("class","keyLine").style("background",(pf,i)=>getColor_ph(pf[0],i));
         l.append("span").text((_,i)=>["L","R"][i])
     });
 //  all().append("button").style("font-size","70%").text("hide");
@@ -76,6 +84,9 @@ function showPhone(p, exclusive) {
         Promise.all(p.files.map(f=>d3.text(DIR+f))).then(function (frs) {
             if (p.channels) return;
             p.id = phoneNumber++;
+            d3.select("#phones").selectAll("tr")
+                .filter(p=>p.id!==undefined)
+                .style("background-color",p=>getDivColor(p.id));
             p.channels = frs.map(tsvParse);
             showPhone(p, exclusive);
         });

@@ -53,7 +53,10 @@ function updatePhoneTable() {
         });
     one().text(pf=>pf[0].brand.name+" ")
         .append("span").attr("class","phonename").text(pf=>pf[0].phone);
-    all().text((_,i)=>["L","R"][i]);
+    all().call(l => {
+        l.append("div").attr("class","keyLine").style("background",(pf,i)=>getColor(pf[0].activeCurves[i]));
+        l.append("span").text((_,i)=>["L","R"][i])
+    });
 //  all().append("button").style("font-size","70%").text("hide");
     one().append("button").text("combine")
         .on("click",function(pf){

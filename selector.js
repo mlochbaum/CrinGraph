@@ -38,18 +38,18 @@ function updatePaths() {
         .attr("stroke",getColor)
         .attr("d",d=>line(d.l));
 }
-function updatePhoneTable(l) {
+function updatePhoneTable() {
     var c = table.selectAll("tbody").data(activePhones, p=>p.id);
     c.exit().remove();
-    var f = c.enter().append("tbody").selectAll().data(p=>p.files.map(f=>[p,f])).enter().append("tr"),
+    var f = c.enter().append("tbody").selectAll().data(p=>p.activeCurves.map(a=>[p,a.id])).enter().append("tr"),
         f0= f.filter((_,i)=>i===0),
-        one = () => f0.append("td").attr("rowspan",l).attr("class","combined"),
+        one = () => f0.append("td").attr("rowspan",0),
         all = () => f.append("td");
     one().attr("class","remove").text("⊗")
         .on("click",function(pf){
             activePhones = activePhones.filter(p => p !== pf[0]);
             updatePaths();
-            updatePhoneTable(0);
+            updatePhoneTable();
         });
     one().text(pf=>pf[0].brand.name+" ")
         .append("span").attr("class","phonename").text(pf=>pf[0].phone);
@@ -58,14 +58,12 @@ function updatePhoneTable(l) {
     one().append("button").text("combine")
         .on("click",function(pf){
             var p = pf[0];
-            var c = this.combined;
-//          f0.selectAll(".combined").attr("rowspan",c?l:null);
+            var c = p.activeCurves.length === 1;
 //          f.filter((_,i)=>i!==0).style("visibility",c?null:"collapse");
             d3.select(this).text(c?"combine":"separate");
             p.activeCurves = c ? p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}))
                                : [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p, o:0}];
             updatePaths();
-            this.combined=!c;
         });
 }
 
@@ -88,7 +86,7 @@ function showPhone(p, exclusive) {
         activePhones.push(p);
     }
     updatePaths();
-    updatePhoneTable(l);
+    updatePhoneTable();
 }
 
 d3.json("data/phone_book.json").then(function (br) {

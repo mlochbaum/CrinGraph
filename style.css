@@ -17,6 +17,9 @@ body>table { width:60%; margin:12px 20% 0px; font-size:large; }
 .remove { width:1.4em; cursor:pointer; font-size:120%; text-align:center; }
 .remove:hover { color:#713; }
 
+/* For headphone as opposed to brand in current headphone table */
+.phonename { font-weight:bold; }
+
 tr { background-color:#eee; }
 .scroll { height:150px; overflow:auto; }
 .scroll table { width:100%; border-collapse: collapse; }

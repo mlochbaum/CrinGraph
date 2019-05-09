@@ -51,7 +51,8 @@ function updatePhoneTable(l) {
             updatePaths();
             updatePhoneTable(0);
         });
-    one().text(pf=>pf[0].brand.name+" "+pf[0].phone);
+    one().text(pf=>pf[0].brand.name+" ")
+        .append("span").attr("class","phonename").text(pf=>pf[0].phone);
     all().text((_,i)=>["L","R"][i]);
 //  all().append("button").style("font-size","70%").text("hide");
     one().append("button").text("combine")

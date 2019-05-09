@@ -45,6 +45,12 @@ function updatePhoneTable(l) {
         f0= f.filter((_,i)=>i===0),
         one = () => f0.append("td").attr("rowspan",l).attr("class","combined"),
         all = () => f.append("td");
+    one().attr("class","remove").text("⊗")
+        .on("click",function(pf){
+            activePhones = activePhones.filter(p => p !== pf[0]);
+            updatePaths();
+            updatePhoneTable(0);
+        });
     one().text(pf=>pf[0].brand.name+" "+pf[0].phone);
     all().text((_,i)=>["L","R"][i]);
 //  all().append("button").style("font-size","70%").text("hide");
@@ -59,12 +65,6 @@ function updatePhoneTable(l) {
                                : [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p, o:0}];
             updatePaths();
             this.combined=!c;
-        });
-    one().append("button").text("remove")
-        .on("click",function(pf){
-            activePhones = activePhones.filter(p => p !== pf[0]);
-            updatePaths();
-            updatePhoneTable(0);
         });
 }
 

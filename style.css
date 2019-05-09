@@ -12,7 +12,9 @@ svg text { cursor:default; user-select:none; }
 .dBScaler:hover,.dBScaler.active { opacity:1; }
 
 body { margin:0px; }
-body>table { width:60%; margin:12px 20% 0px; font-size:large; }
+body>table { width:60%; margin:9px 20% 0px; font-size:large; }
+table { border-collapse: collapse; }
+tbody { border-top: 3px solid white; }
 
 .remove { width:1.4em; cursor:pointer; font-size:120%; text-align:center; }
 .remove:hover { color:#713; }
@@ -27,5 +29,5 @@ body>table { width:60%; margin:12px 20% 0px; font-size:large; }
 
 tr { background-color:#eee; }
 .scroll { height:7.6em; overflow:auto; }
-.scroll table { width:100%; border-collapse: collapse; }
+.scroll table { width:100%; }
 .scroll tr:hover { background-color:#bbb; cursor:pointer; }

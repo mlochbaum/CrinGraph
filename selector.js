@@ -39,9 +39,9 @@ function updatePaths() {
         .attr("d",d=>line(d.l));
 }
 function updatePhoneTable(l) {
-    var c = table.selectAll("tr").data(activePhones, p=>p.id);
+    var c = table.selectAll("tbody").data(activePhones, p=>p.id);
     c.exit().remove();
-    var f = c.enter().selectAll().data(p=>p.files.map(f=>[p,f])).enter().append("tr"),
+    var f = c.enter().append("tbody").selectAll().data(p=>p.files.map(f=>[p,f])).enter().append("tr"),
         f0= f.filter((_,i)=>i===0),
         one = () => f0.append("td").attr("rowspan",l).attr("class","combined"),
         all = () => f.append("td");

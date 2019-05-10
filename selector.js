@@ -118,8 +118,14 @@ d3.json(DIR+"phone_book.json").then(function (br) {
         currentPhones = allPhones;
     showPhone(allPhones[0],1);
 
+    function setClicks(fn) { return function (elt) {
+        elt .on("click", p => fn(p,!d3.event.ctrlKey))
+            .on("auxclick", p => d3.event.button===1 ? fn(p,0) : 0);
+    }; }
+
     d3.select("#brands").selectAll()
-        .data(brands).join("tr").on('click', setBrand)
+        .data(brands).join("tr")
+        .call(setClicks(setBrand))
         .append("td").text(b => b.name + (b.suffix?" "+b.suffix:""));
 
     var phoneSel = d3.select("#phones").selectAll("tr")
@@ -128,11 +134,15 @@ d3.json(DIR+"phone_book.json").then(function (br) {
     phoneSel.append("td").text(phoneFullName)
         .on("mouseover", bg(p => getDivColor(p.id===undefined?phoneNumber:p.id)))
         .on("mouseout" , bg(p => p.id!==undefined?getDivColor(p.id):null))
-        .on("click", p => showPhone(p,!d3.event.ctrlKey));
+        .call(setClicks(showPhone));
 
-    function setBrand(d,i) {
-        var b = brands[i];
-        if (d3.event.ctrlKey && currentBrands.length) {
+    function setBrand(b, exclusive) {
+        if (exclusive || currentBrands.length===0) {
+            currentBrands = [b];
+            currentPhones = b.phoneObjs;
+            phoneSel.style("visibility", p => p.brand===b?"visible":"collapse");
+            phoneSel.filter(p => p.brand===b).select("td").text(p=>p.phone);
+        } else {
             if (currentBrands.indexOf(b) !== -1) return;
             if (currentBrands.length === 1) {
                 phoneSel.select("td").text(phoneFullName);
@@ -140,11 +150,6 @@ d3.json(DIR+"phone_book.json").then(function (br) {
             currentBrands.push(b);
             currentPhones = currentPhones.concat(b.phoneObjs);
             phoneSel.filter(p => p.brand===b).style("visibility", "visible");
-        } else {
-            currentBrands = [b];
-            currentPhones = b.phoneObjs;
-            phoneSel.style("visibility", p => p.brand===b?"visible":"collapse");
-            phoneSel.filter(p => p.brand===b).select("td").text(p=>p.phone);
         }
     }
 });

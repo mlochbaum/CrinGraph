@@ -18,7 +18,7 @@ var gpath = gr.insert("g",".rangeButton")
     .attr("fill","none")
     .attr("stroke-width",3)
     .attr("mask","url(#graphFade)");
-var table = d3.select("#curves");
+var table = d3.select(".curves");
 
 function getCurveColor(id, o) {
     var p1 = 1.1673039782614187,
@@ -103,7 +103,7 @@ function showPhone(p, exclusive) {
     updatePhoneTable();
 }
 
-d3.json("data/phone_book.json").then(function (br) {
+d3.json(DIR+"phone_book.json").then(function (br) {
     var brands = br;
     brands.forEach(function (b) {
         b.phoneObjs = b.phones.map(p => ({

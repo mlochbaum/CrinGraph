@@ -72,7 +72,6 @@ function xThick(_,i) {
 
 function fmtX(xa) {
     xAxis(xa);
-    xa.attr("shape-rendering", "crispEdges");
     (xa.selection ? xa.selection() : xa).select(".domain").remove();
     xa.selectAll(".tick line")
       .attr("stroke", "#333")

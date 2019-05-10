@@ -32,6 +32,7 @@ The following features are planned for the crinacle.com graphing tool:
 ### Graph window
 
 * An aesthetically pleasing and intuitive display
+* Colors are persistent and algorithmically generated to ensure contrast
 * Range controls to zoom in on bass, mids, or treble
 * Ability to rescale and adjust the y axis (SPL in decibels)
 * Ability to drag graphs up and down?
@@ -40,13 +41,20 @@ The following features are planned for the crinacle.com graphing tool:
 
 * Choose to see both left and right channels or average them together
 * Set one response as the "baseline", adjusting all curves so that it is flat
-* Select ordering and color of headphones
+* Select ordering and color of headphones or reset/regenerate colors
+* Temporarily hide a headphone (or channel?)
 * Change a dB offset to move graphs up and down?
 * Links to reviews or ratings?
 
 ### Headphone selector
 
 * Headphones grouped by brand
+* Click to select one headphone or brand and unselect others; middle or ctrl-click for non-exclusive select
 * Search all headphones by name
 * Search by driver configuration?
 * Filter by some algorithmically determined FR descriptors (bassy, bright, etc.)?
+
+### Entire page
+
+* Headphones in the selector, manager, and graph are linked so that hovering over one highlights the others
+* Multiple layouts to give more or less space to the graph versus selection tools?

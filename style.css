@@ -1,4 +1,4 @@
-svg { width:96%; display:block; margin:4px auto; }
+svg { width:96%; display:block; margin:0.25em auto 1em; }
 svg text { cursor:default; user-select:none; }
 
 .rangeButton rect { fill: #ddd; stroke: #666; }
@@ -12,9 +12,10 @@ svg text { cursor:default; user-select:none; }
 .dBScaler:hover,.dBScaler.active { opacity:1; }
 
 body { margin:0px; }
-body>table { width:60%; margin:9px 20% 0px; font-size:large; }
 table { border-collapse: collapse; }
-tbody { border-top: 3px solid white; }
+.select { float:left; }
+.select,.curves { width:48%; margin:0 1%; font-size:large; }
+.curves tbody { border-bottom: 3px solid white; }
 
 .remove { width:1.4em; cursor:pointer; font-size:120%; text-align:center; }
 .remove:hover { color:#713; }
@@ -28,6 +29,6 @@ tbody { border-top: 3px solid white; }
 }
 
 tr { background-color:#eee; }
-.scroll { height:7.6em; overflow:auto; }
-.scroll table { width:100%; }
+.scroll { height:7.6em; overflow:auto; overflow-x:hidden; }
+.scroll table { width:24vw; }
 .scroll tr:hover { background-color:#bbb; cursor:pointer; }

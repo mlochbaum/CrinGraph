@@ -1,6 +1,6 @@
 svg { width:96%; display:block; margin:0.25em auto 1em; }
 svg text { cursor:default; user-select:none; }
-.controls { display:flex; flex-wrap:wrap; }
+.controls { display:flex; flex-flow:row-reverse wrap; }
 .select { display:flex; }
 
 .highlight { stroke-width:4px; }

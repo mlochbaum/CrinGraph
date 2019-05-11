@@ -1,6 +1,8 @@
 svg { width:96%; display:block; margin:0.25em auto 1em; }
 svg text { cursor:default; user-select:none; }
 
+.highlight { stroke-width:4px; }
+
 .rangeButton rect { fill: #ddd; stroke: #666; }
 .rangeButton text { fill: #222; }
 .rangeButton:hover rect { stroke: #679; }

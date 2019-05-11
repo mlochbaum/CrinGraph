@@ -140,10 +140,13 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
 
     var phoneSel = d3.select("#phones").selectAll("tr")
         .data(allPhones).join("tr");
-    var bg = fn => function (p) { d3.select(this).style("background", fn(p)) }
+    var bg = (h,fn) => function (p) {
+        d3.select(this).style("background", fn(p));
+        gpath.selectAll("path").filter(c=>c.p===p).classed("highlight",h);
+    }
     phoneSel.append("td").text(phoneFullName)
-        .on("mouseover", bg(p => getDivColor(p.id===undefined?phoneNumber:p.id, true)))
-        .on("mouseout" , bg(p => p.id!==undefined?getDivColor(p.id,p.active):null))
+        .on("mouseover", bg(true, p => getDivColor(p.id===undefined?phoneNumber:p.id, true)))
+        .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
         .call(setClicks(showPhone));
 
     function setBrand(b, exclusive) {

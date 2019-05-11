@@ -43,7 +43,7 @@ function getDivColor(id, active) {
 
 function setPhoneTr(phtr) {
     phtr.style("background",p=>getDivColor(p.id,p.active))
-        .style("border-left",p=>p.active?"0.3em solid "+getDivColor(p.id,1):null);
+        .style("border-color",p=>p.active?getDivColor(p.id,1):null);
 }
 
 var drawLine = d => line(baseline.fn(d.l));

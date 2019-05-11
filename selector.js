@@ -76,7 +76,6 @@ function updatePhoneTable() {
         l.append("div").attr("class","keyLine").style("background",(pf,i)=>getColor_ph(pf[0],i));
         l.append("span").text((_,i)=>["L","R"][i])
     });
-//  all().append("button").style("font-size","70%").text("hide");
     one().append("button").text("combine")
         .on("click",function(pf){
             var p = pf[0];
@@ -101,6 +100,15 @@ function updatePhoneTable() {
             gpath.selectAll("path")
                 .transition().duration(500).ease(d3.easeQuad)
                 .attr("d",d=>line(baseline.fn(d.l)));
+        });
+    one().append("button").text("hide")
+        .on("click",function(pf){
+            var p = pf[0],
+                h = p.hide;
+            d3.select(this).text(h?"hide":"show");
+            gpath.selectAll("path").filter(c=>c.p===p)
+                .attr("opacity", h?null:0);
+            p.hide = !h;
         });
 }
 

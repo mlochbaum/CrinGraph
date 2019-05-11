@@ -86,7 +86,7 @@ function showPhone(p, exclusive) {
             p.id = phoneNumber++;
             d3.select("#phones").selectAll("tr")
                 .filter(p=>p.id!==undefined)
-                .style("background-color",p=>getDivColor(p.id));
+                .style("background",p=>getDivColor(p.id));
             p.channels = frs.map(tsvParse);
             showPhone(p, exclusive);
         });
@@ -103,9 +103,9 @@ function showPhone(p, exclusive) {
     updatePhoneTable();
 }
 
-d3.json(DIR+"phone_book.json").then(function (br) {
-    var brands = br;
+d3.json(DIR+"phone_book.json").then(function (brands) {
     brands.forEach(function (b) {
+        b.active = false;
         b.phoneObjs = b.phones.map(p => ({
             brand: b,
             phone: p
@@ -114,8 +114,7 @@ d3.json(DIR+"phone_book.json").then(function (br) {
     var phoneFullName = p => p.brand.name+" "+p.phone;
 
     var allPhones = flatten(brands.map(b=>b.phoneObjs)),
-        currentBrands = [],
-        currentPhones = allPhones;
+        currentBrands = [];
     showPhone(allPhones[0],1);
 
     function setClicks(fn) { return function (elt) {
@@ -123,33 +122,41 @@ d3.json(DIR+"phone_book.json").then(function (br) {
             .on("auxclick", p => d3.event.button===1 ? fn(p,0) : 0);
     }; }
 
-    d3.select("#brands").selectAll()
+    var brandSel = d3.select("#brands").selectAll()
         .data(brands).join("tr")
-        .call(setClicks(setBrand))
-        .append("td").text(b => b.name + (b.suffix?" "+b.suffix:""));
+        .call(setClicks(setBrand));
+    brandSel.append("td").text(b => b.name + (b.suffix?" "+b.suffix:""));
 
     var phoneSel = d3.select("#phones").selectAll("tr")
         .data(allPhones).join("tr");
-    var bg = fn => function (p) { d3.select(this).style("background-color", fn(p)) }
+    var bg = fn => function (p) { d3.select(this).style("background", fn(p)) }
     phoneSel.append("td").text(phoneFullName)
         .on("mouseover", bg(p => getDivColor(p.id===undefined?phoneNumber:p.id)))
         .on("mouseout" , bg(p => p.id!==undefined?getDivColor(p.id):null))
         .call(setClicks(showPhone));
 
     function setBrand(b, exclusive) {
+        var incl = currentBrands.indexOf(b) !== -1;
         if (exclusive || currentBrands.length===0) {
-            currentBrands = [b];
-            currentPhones = b.phoneObjs;
-            phoneSel.style("visibility", p => p.brand===b?"visible":"collapse");
-            phoneSel.filter(p => p.brand===b).select("td").text(p=>p.phone);
+            currentBrands.forEach(br => br.active = false);
+            if (incl) {
+                currentBrands = [];
+                phoneSel.style("visibility", "visible");
+                phoneSel.select("td").text(phoneFullName);
+            } else {
+                currentBrands = [b];
+                phoneSel.style("visibility", p => p.brand===b?"visible":"collapse");
+                phoneSel.filter(p => p.brand===b).select("td").text(p=>p.phone);
+            }
         } else {
-            if (currentBrands.indexOf(b) !== -1) return;
+            if (incl) return;
             if (currentBrands.length === 1) {
                 phoneSel.select("td").text(phoneFullName);
             }
             currentBrands.push(b);
-            currentPhones = currentPhones.concat(b.phoneObjs);
             phoneSel.filter(p => p.brand===b).style("visibility", "visible");
         }
+        if (!incl) b.active = true;
+        brandSel.classed("active", br => br.active);
     }
 });

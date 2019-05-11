@@ -31,4 +31,5 @@ table { border-collapse: collapse; }
 tr { background-color:#eee; }
 .scroll { height:7.6em; overflow:auto; overflow-x:hidden; }
 .scroll table { width:24vw; }
-.scroll tr:hover { background-color:#bbb; cursor:pointer; }
+.scroll tr { cursor:pointer; }
+.scroll tr:hover,.scroll tr.active { background-color:#bbb; }

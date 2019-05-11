@@ -58,4 +58,5 @@ The following features are planned for the crinacle.com graphing tool:
 ### Entire page
 
 * Headphones in the selector, manager, and graph are linked so that hovering over one highlights the others …
+* Effective resizing and mobile friendliness
 * Multiple layouts to give more or less space to the graph versus selection tools?

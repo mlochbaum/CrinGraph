@@ -32,11 +32,16 @@ function getCurveColor(id, o) {
 }
 var getColor_AC = c => getCurveColor(c.p.id, c.o);
 var getColor_ph = (p,i) => getCurveColor(p.id, p.activeCurves[i].o);
-function getDivColor(id) {
+function getDivColor(id, active) {
     var c = getCurveColor(id,0);
-    c.l = 100-(80-c.l)/2;
-    c.c = (c.c-20)/3;
+    c.l = 100-(80-c.l)/(active?1.5:3);
+    c.c = (c.c-20)/(active?3:4);
     return c;
+}
+
+function setPhoneTr(phtr) {
+    phtr.style("background",p=>getDivColor(p.id,p.active))
+        .style("border-left",p=>p.active?"0.3em solid "+getDivColor(p.id,1):null);
 }
 
 function updatePaths() {
@@ -55,9 +60,13 @@ function updatePhoneTable() {
         all = () => f.append("td");
     one().attr("class","remove").text("⊗")
         .on("click",function(pf){
-            activePhones = activePhones.filter(p => p !== pf[0]);
+            activePhones.forEach(p => p.active = p!==pf[0]);
+            activePhones = activePhones.filter(p => p.active);
             updatePaths();
             updatePhoneTable();
+            d3.select("#phones").selectAll("tr")
+                .filter(p=>p===pf[0])
+                .call(setPhoneTr);
         });
     one().text(pf=>pf[0].brand.name+" ")
         .append("span").attr("class","phonename").text(pf=>pf[0].phone);
@@ -84,9 +93,6 @@ function showPhone(p, exclusive) {
         Promise.all(p.files.map(f=>d3.text(DIR+f))).then(function (frs) {
             if (p.channels) return;
             p.id = phoneNumber++;
-            d3.select("#phones").selectAll("tr")
-                .filter(p=>p.id!==undefined)
-                .style("background",p=>getDivColor(p.id));
             p.channels = frs.map(tsvParse);
             showPhone(p, exclusive);
         });
@@ -95,12 +101,17 @@ function showPhone(p, exclusive) {
     var l = p.files.length;
     p.activeCurves = p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
     if (exclusive || activePhones.length===0) {
+        activePhones.map(q => q.active=0);
         activePhones = [p];
     } else if (activePhones.indexOf(p) === -1) {
         activePhones.push(p);
     }
+    p.active = 1;
     updatePaths();
     updatePhoneTable();
+    d3.select("#phones").selectAll("tr")
+        .filter(p=>p.id!==undefined)
+        .call(setPhoneTr);
 }
 
 d3.json(DIR+"phone_book.json").then(function (brands) {
@@ -131,8 +142,8 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         .data(allPhones).join("tr");
     var bg = fn => function (p) { d3.select(this).style("background", fn(p)) }
     phoneSel.append("td").text(phoneFullName)
-        .on("mouseover", bg(p => getDivColor(p.id===undefined?phoneNumber:p.id)))
-        .on("mouseout" , bg(p => p.id!==undefined?getDivColor(p.id):null))
+        .on("mouseover", bg(p => getDivColor(p.id===undefined?phoneNumber:p.id, true)))
+        .on("mouseout" , bg(p => p.id!==undefined?getDivColor(p.id,p.active):null))
         .call(setClicks(showPhone));
 
     function setBrand(b, exclusive) {

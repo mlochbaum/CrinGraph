@@ -13,6 +13,7 @@ svg text { cursor:default; user-select:none; }
 
 body { margin:0px; }
 table { border-collapse: collapse; }
+tr,td { padding:0px; }
 .select { float:left; }
 .select,.curves { width:48%; margin:0 1%; font-size:large; }
 .curves tbody { border-bottom: 3px solid white; }
@@ -28,8 +29,11 @@ table { border-collapse: collapse; }
     display:inline-block; margin:0.25em;
 }
 
-tr { background-color:#eee; }
+tr { background:#eee; }
 .scroll { height:7.6em; overflow:auto; overflow-x:hidden; }
 .scroll table { width:24vw; }
-.scroll tr { cursor:pointer; }
-.scroll tr:hover,.scroll tr.active { background-color:#bbb; }
+.scroll tr { cursor:pointer; border-left:0.3em solid #223; }
+.scroll tr:hover,.scroll tr.active { background:#bbb; }
+.scroll tr.active { border-left:0.3em solid #5ce; }
+.scroll tr:hover  { border-left:0.3em solid #fd0; }
+.scroll tr td { padding-left:0.2em; }

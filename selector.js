@@ -13,6 +13,8 @@ function avgCurves(curves) {
 
 var activePhones = [];
 var phoneNumber = 0; // I'm so sorry it just happened
+var baseline0 = { p:null, l:null, fn:l=>l },
+    baseline = baseline0;
 
 var gpath = gr.insert("g",".rangeButton")
     .attr("fill","none")
@@ -49,7 +51,7 @@ function updatePaths() {
         p = gpath.selectAll("path").data(c, d=>d.id);
     p.join("path")
         .attr("stroke",getColor_AC)
-        .attr("d",d=>line(d.l));
+        .attr("d",d=>line(baseline.fn(d.l)));
 }
 function updatePhoneTable() {
     var c = table.selectAll("tbody").data(activePhones, p=>p.id);
@@ -84,6 +86,21 @@ function updatePhoneTable() {
             p.activeCurves = c ? p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}))
                                : [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p, o:0}];
             updatePaths();
+        });
+    one().append("button").text("baseline")
+        .on("click",function(pf){
+            var p = pf[0];
+            if (baseline.p === p) {
+                baseline = baseline0;
+            } else {
+                var l = p.activeCurves.length===1 ? p.activeCurves[0].l
+                                                  : avgCurves(p.channels),
+                    b = l.map(d => d[1]-60);
+                baseline = { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
+            }
+            gpath.selectAll("path")
+                .transition().duration(500).ease(d3.easeQuad)
+                .attr("d",d=>line(baseline.fn(d.l)));
         });
 }
 

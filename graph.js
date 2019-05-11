@@ -137,7 +137,7 @@ function clickRangeButton(_,i) {
     x.domain(ranges[s]);
     // More time to go between bass and treble
     var dur = Math.min(r,s)===0 && Math.max(r,s)===2 ? 1100 : 700;
-    gpath.selectAll("path").transition().duration(dur).attr("d",d=>line(d.l));
+    gpath.selectAll("path").transition().duration(dur).attr("d", drawLine);
     var e = edgeWs[s];
     fadeEdge.transition().duration(dur).attrs(i=>({x:i?W-e[i]:0, width:e[i]}));
     xAxisObj.transition().duration(dur).call(fmtX);
@@ -210,5 +210,5 @@ dB.circ = dB.trans.selectAll().data([-1,1]).join("circle")
 dB.updatey = function (dom) {
     y.domain(yR.map(y=>60+(dB.y-y)*(15/dB.h)*(28-86)/(yR[1]-yR[0])));
     yAxisObj.call(fmtY);
-    gpath.selectAll("path").attr("d",d=>line(d.l));
+    gpath.selectAll("path").attr("d", drawLine);
 }

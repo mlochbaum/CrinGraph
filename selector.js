@@ -46,12 +46,13 @@ function setPhoneTr(phtr) {
         .style("border-left",p=>p.active?"0.3em solid "+getDivColor(p.id,1):null);
 }
 
+var drawLine = d => line(baseline.fn(d.l));
 function updatePaths() {
     var c = flatten(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
     p.join("path")
-        .attr("stroke",getColor_AC)
-        .attr("d",d=>line(baseline.fn(d.l)));
+        .attr("stroke", getColor_AC)
+        .attr("d", drawLine);
 }
 function updatePhoneTable() {
     var c = table.selectAll("tbody").data(activePhones, p=>p.id);
@@ -99,7 +100,7 @@ function updatePhoneTable() {
             }
             gpath.selectAll("path")
                 .transition().duration(500).ease(d3.easeQuad)
-                .attr("d",d=>line(baseline.fn(d.l)));
+                .attr("d", drawLine);
         });
     one().append("button").text("hide")
         .on("click",function(pf){

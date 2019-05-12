@@ -69,12 +69,23 @@ function updatePhoneTable() {
         .on("click", removePhone);
     td().text(p=>p.brand.name+" ")
         .append("span").attr("class","phonename").text(p=>p.phone);
-    td().style("display","flex").style("flex-flow","column wrap")
-        .selectAll().data(p=>[[p,-1],[p,1]]).join("div")
-        .call(l => {
-            l.append("div").attr("class","keyLine").style("background",pi=>getCurveColor(pi[0].id,pi[1]));
-            l.append("span").text((_,i)=>["L","R"][i])
-        });
+    td().append("svg").attr("class","keyLine").attr("viewBox","-19 -12 50 24").call(function (s) {
+        s.append("defs").append("linearGradient")
+            .attrs({x1:0,y1:0, x2:0,y2:1})
+            .attr("id", p=>"chgrad"+p.id)
+            .selectAll().data(p=>[0.1,0.4,0.6,0.9].map(o =>
+                [o, getCurveColor(p.id, o<0.3?-1:o<0.7?0:1)]
+            )).join("stop")
+            .attr("offset",i=>i[0])
+            .attr("stop-color",i=>i[1]);
+        s.append("path")
+            .attr("stroke", p=>"url(#chgrad"+p.id+")")
+            .attr("d","M15 6H9C0 6,0 0,-9 0H-17H-9C0 0,0 -6,9 -6H15");
+        s.selectAll().data(["L","R"])
+            .join("text")
+            .attrs({x:17, y:(_,i)=>[-6,6][i], dy:"0.32em", "text-anchor":"start", "font-size":10.5})
+            .text(t=>t);
+    });
     td().append("button").text("combine")
         .on("click",function(p){
             var c = p.activeCurves.length === 1;

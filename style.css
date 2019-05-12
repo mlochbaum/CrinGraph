@@ -1,4 +1,4 @@
-svg { width:96%; display:block; margin:0.25em auto 1em; }
+body>svg { width:96%; display:block; margin:0.25em auto 1em; }
 svg text { cursor:default; user-select:none; }
 .controls { display:flex; flex-flow:row-reverse wrap; }
 .select { display:flex; }
@@ -32,10 +32,8 @@ tr,td { padding:0px; }
 /* For headphone as opposed to brand in current headphone table */
 .phonename { font-weight:bold; }
 
-.keyLine {
-    height:3.5px; border-radius:1.75px; width:1.5em;
-    display:inline-block; margin:0.25em;
-}
+.keyLine { width:6vw; display:block; vertical-align:center; }
+.keyLine path { stroke-width:2.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
 
 tr { background:#eee; }
 .scroll { flex:1; height:7.6em; overflow:auto; overflow-x:hidden; }

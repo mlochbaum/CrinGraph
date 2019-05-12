@@ -7,6 +7,10 @@ function avgCurves(curves) {
         .reduce((as,bs) => as.map((a,i) => a+bs[i]))
         .map((x,i) => [curves[0][i][0], 20*Math.log10(x/curves.length)]);
 }
+function hasImbalance(curves) {
+    var as = curves[0], bs = curves[1];
+    return as.some((a,i) => Math.abs(a[1]-bs[i][1]) > max_channel_imbalance);
+}
 
 var activePhones = [];
 var phoneNumber = 0; // I'm so sorry it just happened
@@ -111,6 +115,12 @@ function updatePhoneTable() {
             })
             .selectAll().data([0,80]).join("rect")
             .attrs({x:d=>d, y:-12, width:40, height:24, fill:"url(#blgrad)"});
+        s.filter(p=>p.imbalance)
+            .append("text")
+            .attrs({x:8,y:0,dy:"0.35em",fill:"#e11",
+                    "font-size":10.5,"font-weight":"bold"})
+            .style("pointer-events","none")
+            .text("!");
     });
     td().append("button").text("baseline")
         .on("click",function(p){
@@ -141,6 +151,7 @@ function showPhone(p, exclusive) {
             if (p.channels) return;
             p.id = phoneNumber++;
             p.channels = frs.map(tsvParse);
+            p.imbalance = hasImbalance(p.channels);
             showPhone(p, exclusive);
         });
         return;

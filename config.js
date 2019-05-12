@@ -13,3 +13,5 @@ function watermark(svg) {
         .attrs({x:0, y:100, "font-size":36, "text-anchor":"middle"})
         .text("crinacle.com/graphs");
 }
+
+let max_channel_imbalance = 15;

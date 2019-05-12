@@ -46,10 +46,13 @@ function setPhoneTr(phtr) {
         .style("border-color",p=>p.active?getDivColor(p.id,1):null);
 }
 
+var channelbox_x = c => c?-6:-36;
 function setCurves(p, avg) {
     p.activeCurves = avg
         ? [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p, o:0}]
         : p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
+    d3.selectAll(".keyLine").filter(q=>q===p)
+        .select("rect").attr("x", channelbox_x(avg));
 }
 
 var drawLine = d => line(baseline.fn(d.l));
@@ -70,14 +73,21 @@ function updatePhoneTable() {
     td().text(p=>p.brand.name+" ")
         .append("span").attr("class","phonename").text(p=>p.phone);
     td().append("svg").attr("class","keyLine").attr("viewBox","-19 -12 50 24").call(function (s) {
-        s.append("defs").append("linearGradient")
+        var defs = s.append("defs");
+        defs.append("linearGradient").attr("id", p=>"chgrad"+p.id)
             .attrs({x1:0,y1:0, x2:0,y2:1})
-            .attr("id", p=>"chgrad"+p.id)
             .selectAll().data(p=>[0.1,0.4,0.6,0.9].map(o =>
                 [o, getCurveColor(p.id, o<0.3?-1:o<0.7?0:1)]
             )).join("stop")
             .attr("offset",i=>i[0])
             .attr("stop-color",i=>i[1]);
+        defs.append("linearGradient").attr("id","blgrad")
+            .selectAll().data([0,0.25,0.75,1].map(o =>
+                [o, o==0||o==1?0:0.75]
+            )).join("stop")
+            .attr("offset",i=>i[0])
+            .attr("stop-color","#eee")
+            .attr("stop-opacity",i=>i[1]);
         s.append("path")
             .attr("stroke", p=>"url(#chgrad"+p.id+")")
             .attr("d","M15 6H9C0 6,0 0,-9 0H-17H-9C0 0,0 -6,9 -6H15");
@@ -85,15 +95,15 @@ function updatePhoneTable() {
             .join("text")
             .attrs({x:17, y:(_,i)=>[-6,6][i], dy:"0.32em", "text-anchor":"start", "font-size":10.5})
             .text(t=>t);
+        s.append("rect")
+            .attrs({x:p=>channelbox_x(p.activeCurves.length===1), y:-12,
+                    width:40, height:24, fill:"url(#blgrad)"})
+            .on("click",function(p){
+                var c = p.activeCurves.length !== 1;
+                setCurves(p, c);
+                updatePaths();
+            });
     });
-    td().append("button").text("combine")
-        .on("click",function(p){
-            var c = p.activeCurves.length === 1;
-//          f.filter((_,i)=>i!==0).style("visibility",c?null:"collapse");
-            d3.select(this).text(c?"combine":"separate");
-            setCurves(p, !c);
-            updatePaths();
-        });
     td().append("button").text("baseline")
         .on("click",function(p){
             if (baseline.p === p) {

@@ -23,9 +23,8 @@ tr,td { padding:0px; }
 
 .remove { width:1.4em; cursor:pointer; font-size:120%; text-align:center; }
 .remove:hover { color:#713; }
-.phoneId        { width:40%; }
-/*.key*/
-.combineButton  { width:15%; }
+/*.phoneId*/
+.key            { width:6vw; }
 .baselineButton { width:15%; }
 .hideButton     { width:15%; }
 
@@ -34,6 +33,7 @@ tr,td { padding:0px; }
 
 .keyLine { width:6vw; display:block; vertical-align:center; }
 .keyLine path { stroke-width:2.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.keyLine rect { cursor:pointer; }
 
 tr { background:#eee; }
 .scroll { flex:1; height:7.6em; overflow:auto; overflow-x:hidden; }

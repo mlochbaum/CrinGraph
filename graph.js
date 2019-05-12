@@ -84,7 +84,7 @@ function fmtX(xa) {
       .text("20kHz");
     xa.select(".tick:first-of-type text")
       .attr("dx",4)
-      .text("2Hz");
+      .text("20Hz");
 }
 var xAxisObj = gr.append("g")
     .attr("transform", "translate(0,"+pad.t+")")

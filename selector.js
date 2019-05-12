@@ -1,7 +1,4 @@
-let DIR = "data/";
 var fileNames = name => ["L","R"].map(s=>name+" "+s+".txt");
-// Format of FR files is kind of weird
-var tsvParse = fr => d3.tsvParseRows(fr).slice(2,482);
 
 function flatten(l) { return [].concat.apply([],l); }
 function avgCurves(curves) {

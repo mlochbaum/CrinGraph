@@ -57,6 +57,13 @@ function setCurves(p, avg) {
 }
 
 var drawLine = d => line(baseline.fn(d.l));
+function updateBaseline() {
+    gpath.selectAll("path")
+        .transition().duration(500).ease(d3.easeQuad)
+        .attr("d", drawLine);
+}
+function setBaseline(b) { baseline=b; updateBaseline(); }
+
 function updatePaths() {
     var c = flatten(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
@@ -115,9 +122,7 @@ function updatePhoneTable() {
                     b = l.map(d => d[1]-60);
                 baseline = { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
             }
-            gpath.selectAll("path")
-                .transition().duration(500).ease(d3.easeQuad)
-                .attr("d", drawLine);
+            updateBaseline();
         });
     td().append("button").text("hide")
         .on("click",function(p){
@@ -144,6 +149,7 @@ function showPhone(p, exclusive) {
     if (exclusive || activePhones.length===0) {
         activePhones.map(q => q.active=0);
         activePhones = [p];
+        baseline = baseline0;
     } else if (activePhones.indexOf(p) === -1) {
         if (activePhones.length === 1) {
             setCurves(activePhones[0], true);
@@ -166,6 +172,7 @@ function removePhone(p) {
         setCurves(activePhones[0], false);
     }
     updatePaths();
+    if (baseline.p === p) { setBaseline(baseline0); }
     updatePhoneTable();
     d3.select("#phones").selectAll("tr")
         .filter(q=>q===p)

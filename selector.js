@@ -46,13 +46,14 @@ function setPhoneTr(phtr) {
         .style("border-color",p=>p.active?getDivColor(p.id,1):null);
 }
 
-var channelbox_x = c => c?-6:-36;
+var channelbox_tr = c => "translate("+(c?-86:-36)+",0)";
 function setCurves(p, avg) {
     p.activeCurves = avg
         ? [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p, o:0}]
         : p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
     d3.selectAll(".keyLine").filter(q=>q===p)
-        .select("rect").attr("x", channelbox_x(avg));
+        .select("g").transition().duration(400)
+        .attr("transform", channelbox_tr(avg));
 }
 
 var drawLine = d => line(baseline.fn(d.l));
@@ -95,14 +96,14 @@ function updatePhoneTable() {
             .join("text")
             .attrs({x:17, y:(_,i)=>[-6,6][i], dy:"0.32em", "text-anchor":"start", "font-size":10.5})
             .text(t=>t);
-        s.append("rect")
-            .attrs({x:p=>channelbox_x(p.activeCurves.length===1), y:-12,
-                    width:40, height:24, fill:"url(#blgrad)"})
+        s.append("g").attr("transform",p=>channelbox_tr(p.activeCurves.length===1))
             .on("click",function(p){
                 var c = p.activeCurves.length !== 1;
                 setCurves(p, c);
                 updatePaths();
-            });
+            })
+            .selectAll().data([0,80]).join("rect")
+            .attrs({x:d=>d, y:-12, width:40, height:24, fill:"url(#blgrad)"});
     });
     td().append("button").text("baseline")
         .on("click",function(p){

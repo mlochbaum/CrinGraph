@@ -21,8 +21,11 @@ tr,td { padding:0px; }
 .select,.curves { flex:1 32em; margin:0 0.8em; font-size:large; }
 .curves tr { border-bottom: 3px solid white; }
 
-.remove { width:1.4em; cursor:pointer; font-size:120%; text-align:center; }
+.remove { cursor:pointer; text-align:center; }
 .remove:hover { color:#713; }
+div.remove { float:right; font-size:95%; width:1em; }
+
+td.remove       { width:1.4em; font-size:120%; }
 /*.phoneId*/
 .key            { width:6vw; }
 .baselineButton { width:15%; }

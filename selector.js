@@ -41,6 +41,9 @@ function getDivColor(id, active) {
 function setPhoneTr(phtr) {
     phtr.style("background",p=>getDivColor(p.id,p.active))
         .style("border-color",p=>p.active?getDivColor(p.id,1):null);
+    phtr.select("td").selectAll("div").data(p=>p.active?[p]:[])
+        .join("div").attr("class","remove").text("⊗")
+        .on("click", p => { d3.event.stopPropagation(); removePhone(p); });
 }
 
 var channelbox_tr = c => "translate("+(c?-86:-36)+",0)";

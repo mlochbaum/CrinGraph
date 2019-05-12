@@ -46,6 +46,12 @@ function setPhoneTr(phtr) {
         .style("border-color",p=>p.active?getDivColor(p.id,1):null);
 }
 
+function setCurves(p, avg) {
+    p.activeCurves = avg
+        ? [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p, o:0}]
+        : p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
+}
+
 var drawLine = d => line(baseline.fn(d.l));
 function updatePaths() {
     var c = flatten(activePhones.map(p => p.activeCurves)),
@@ -55,41 +61,30 @@ function updatePaths() {
         .attr("d", drawLine);
 }
 function updatePhoneTable() {
-    var c = table.selectAll("tbody").data(activePhones, p=>p.id);
+    var c = table.selectAll("tr").data(activePhones, p=>p.id);
     c.exit().remove();
-    var f = c.enter().append("tbody").selectAll().data(p=>p.activeCurves.map(a=>[p,a.id])).enter().append("tr"),
-        f0= f.filter((_,i)=>i===0),
-        one = () => f0.append("td").attr("rowspan",0),
-        all = () => f.append("td");
-    one().attr("class","remove").text("⊗")
-        .on("click",function(pf){
-            activePhones.forEach(p => p.active = p!==pf[0]);
-            activePhones = activePhones.filter(p => p.active);
-            updatePaths();
-            updatePhoneTable();
-            d3.select("#phones").selectAll("tr")
-                .filter(p=>p===pf[0])
-                .call(setPhoneTr);
+    var f = c.enter().append("tr"),
+        td = () => f.append("td");
+    td().attr("class","remove").text("⊗")
+        .on("click", removePhone);
+    td().text(p=>p.brand.name+" ")
+        .append("span").attr("class","phonename").text(p=>p.phone);
+    td().style("display","flex").style("flex-flow","column wrap")
+        .selectAll().data(p=>[[p,-1],[p,1]]).join("div")
+        .call(l => {
+            l.append("div").attr("class","keyLine").style("background",pi=>getCurveColor(pi[0].id,pi[1]));
+            l.append("span").text((_,i)=>["L","R"][i])
         });
-    one().text(pf=>pf[0].brand.name+" ")
-        .append("span").attr("class","phonename").text(pf=>pf[0].phone);
-    all().call(l => {
-        l.append("div").attr("class","keyLine").style("background",(pf,i)=>getColor_ph(pf[0],i));
-        l.append("span").text((_,i)=>["L","R"][i])
-    });
-    one().append("button").text("combine")
-        .on("click",function(pf){
-            var p = pf[0];
+    td().append("button").text("combine")
+        .on("click",function(p){
             var c = p.activeCurves.length === 1;
 //          f.filter((_,i)=>i!==0).style("visibility",c?null:"collapse");
             d3.select(this).text(c?"combine":"separate");
-            p.activeCurves = c ? p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}))
-                               : [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p, o:0}];
+            setCurves(p, !c);
             updatePaths();
         });
-    one().append("button").text("baseline")
-        .on("click",function(pf){
-            var p = pf[0];
+    td().append("button").text("baseline")
+        .on("click",function(p){
             if (baseline.p === p) {
                 baseline = baseline0;
             } else {
@@ -102,10 +97,9 @@ function updatePhoneTable() {
                 .transition().duration(500).ease(d3.easeQuad)
                 .attr("d", drawLine);
         });
-    one().append("button").text("hide")
-        .on("click",function(pf){
-            var p = pf[0],
-                h = p.hide;
+    td().append("button").text("hide")
+        .on("click",function(p){
+            var h = p.hide;
             d3.select(this).text(h?"hide":"show");
             gpath.selectAll("path").filter(c=>c.p===p)
                 .attr("opacity", h?null:0);
@@ -125,18 +119,34 @@ function showPhone(p, exclusive) {
         return;
     }
     var l = p.files.length;
-    p.activeCurves = p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
     if (exclusive || activePhones.length===0) {
         activePhones.map(q => q.active=0);
         activePhones = [p];
     } else if (activePhones.indexOf(p) === -1) {
+        if (activePhones.length === 1) {
+            setCurves(activePhones[0], true);
+        }
         activePhones.push(p);
     }
-    p.active = 1;
+    p.active = true;
+    setCurves(p, activePhones.length > 1);
     updatePaths();
     updatePhoneTable();
     d3.select("#phones").selectAll("tr")
         .filter(p=>p.id!==undefined)
+        .call(setPhoneTr);
+}
+
+function removePhone(p) {
+    activePhones.forEach(q => q.active = q!==p);
+    activePhones = activePhones.filter(q => q.active);
+    if (activePhones.length === 1) {
+        setCurves(activePhones[0], false);
+    }
+    updatePaths();
+    updatePhoneTable();
+    d3.select("#phones").selectAll("tr")
+        .filter(q=>q===p)
         .call(setPhoneTr);
 }
 

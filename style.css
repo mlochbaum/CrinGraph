@@ -19,7 +19,7 @@ body { margin:0px; }
 table { border-collapse: collapse; }
 tr,td { padding:0px; }
 .select,.curves { flex:1 32em; margin:0 0.8em; font-size:large; }
-.curves tbody { border-bottom: 3px solid white; }
+.curves tr { border-bottom: 3px solid white; }
 
 .remove { width:1.4em; cursor:pointer; font-size:120%; text-align:center; }
 .remove:hover { color:#713; }

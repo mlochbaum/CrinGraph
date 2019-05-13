@@ -45,8 +45,8 @@ function getDivColor(id, active) {
 function setPhoneTr(phtr) {
     phtr.style("background",p=>getDivColor(p.id,p.active))
         .style("border-color",p=>p.active?getDivColor(p.id,1):null);
-    phtr.select("td").selectAll("div").data(p=>p.active?[p]:[])
-        .join("div").attr("class","remove").text("⊗")
+    phtr.selectAll(".remove").data(p=>p.active?[p]:[])
+        .join("span").attr("class","remove").text("⊗")
         .on("click", p => { d3.event.stopPropagation(); removePhone(p); });
 }
 
@@ -171,7 +171,7 @@ function showPhone(p, exclusive) {
     setCurves(p, activePhones.length > 1);
     updatePaths();
     updatePhoneTable();
-    d3.select("#phones").selectAll("tr")
+    d3.select("#phones").selectAll("div")
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
 }
@@ -185,7 +185,7 @@ function removePhone(p) {
     updatePaths();
     if (baseline.p === p) { setBaseline(baseline0); }
     updatePhoneTable();
-    d3.select("#phones").selectAll("tr")
+    d3.select("#phones").selectAll("div")
         .filter(q=>q===p)
         .call(setPhoneTr);
 }
@@ -210,20 +210,20 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
     }; }
 
     var brandSel = d3.select("#brands").selectAll()
-        .data(brands).join("tr")
+        .data(brands).join("div")
+        .text(b => b.name + (b.suffix?" "+b.suffix:""))
         .call(setClicks(setBrand));
-    brandSel.append("td").text(b => b.name + (b.suffix?" "+b.suffix:""));
 
-    var phoneSel = d3.select("#phones").selectAll("tr")
-        .data(allPhones).join("tr");
     var bg = (h,fn) => function (p) {
         d3.select(this).style("background", fn(p));
         gpath.selectAll("path").filter(c=>c.p===p).classed("highlight",h);
     }
-    phoneSel.append("td").text(phoneFullName)
+    var phoneSel = d3.select("#phones").selectAll()
+        .data(allPhones).join("div")
         .on("mouseover", bg(true, p => getDivColor(p.id===undefined?phoneNumber:p.id, true)))
         .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
         .call(setClicks(showPhone));
+    phoneSel.append("span").text(phoneFullName);
 
     function setBrand(b, exclusive) {
         var incl = currentBrands.indexOf(b) !== -1;
@@ -231,20 +231,20 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             currentBrands.forEach(br => br.active = false);
             if (incl) {
                 currentBrands = [];
-                phoneSel.style("visibility", "visible");
-                phoneSel.select("td").text(phoneFullName);
+                phoneSel.style("display", null);
+                phoneSel.select("span").text(phoneFullName);
             } else {
                 currentBrands = [b];
-                phoneSel.style("visibility", p => p.brand===b?"visible":"collapse");
-                phoneSel.filter(p => p.brand===b).select("td").text(p=>p.phone);
+                phoneSel.style("display", p => p.brand===b?null:"none");
+                phoneSel.filter(p => p.brand===b).select("span").text(p=>p.phone);
             }
         } else {
             if (incl) return;
             if (currentBrands.length === 1) {
-                phoneSel.select("td").text(phoneFullName);
+                phoneSel.select("span").text(phoneFullName);
             }
             currentBrands.push(b);
-            phoneSel.filter(p => p.brand===b).style("visibility", "visible");
+            phoneSel.filter(p => p.brand===b).style("display", null);
         }
         if (!incl) b.active = true;
         brandSel.classed("active", br => br.active);

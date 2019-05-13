@@ -29,7 +29,7 @@ td.remove       { width:1.4em; font-size:120%; }
 /*.phoneId*/
 .key            { width:6vw; }
 .baselineButton { width:15%; }
-.hideButton     { width:15%; }
+.hideButton     { width:10%; }
 
 /* For headphone as opposed to brand in current headphone table */
 .phonename { font-weight:bold; }
@@ -47,3 +47,8 @@ tr { background:#eee; }
 .scroll div:hover,.scroll div.active { background:#bbb; }
 .scroll div.active { border-left:0.3em solid #5ce; }
 .scroll div:hover  { border-left:0.3em solid #fd0; }
+
+button { border:groove 2px; font-size:smaller; }
+.curves button { height:80%; width:90%; margin-left:auto; margin-right:auto; }
+button:hover { border-color: #9ac; color: #124; }
+button.selected { background-color: #dd9; }

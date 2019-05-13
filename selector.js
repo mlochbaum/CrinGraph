@@ -65,6 +65,8 @@ function updateBaseline() {
     gpath.selectAll("path")
         .transition().duration(500).ease(d3.easeQuad)
         .attr("d", drawLine);
+    table.selectAll("tr").select("button")
+        .classed("selected", p=>p===baseline.p);
 }
 function setBaseline(b) { baseline=b; updateBaseline(); }
 

@@ -251,4 +251,35 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         if (!incl) b.active = true;
         brandSel.classed("active", br => br.active);
     }
+
+    var fuse = new Fuse(
+        allPhones,
+        {
+            shouldSort: false,
+            threshold: 0.4,
+            location: 0,
+            distance: 100,
+            maxPatternLength: 32,
+            minMatchCharLength: 2,
+            keys: [
+                {weight:0.3, name:"brand.name"},
+                {weight:0.1, name:"brand.suffix"},
+                {weight:0.6, name:"phone"}
+            ]
+        }
+    );
+    d3.select(".search").on("input", function () {
+        var fn;
+        var c = currentBrands;
+        if (this.value.length) {
+            var s = fuse.search(this.value),
+                t = c.length ? s.filter(p=>c.indexOf(p.brand)!==-1) : s;
+            if (t.length) s = t;
+            fn = p => s.indexOf(p)!==-1;
+        } else {
+            fn = c.length ? (p => c.indexOf(p.brand)!==-1)
+                          : (p => true);
+        }
+        phoneSel.style("display", p => fn(p)?null:"none");
+    });
 });

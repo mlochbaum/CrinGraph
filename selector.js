@@ -207,7 +207,8 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
     showPhone(allPhones[0],1);
 
     function setClicks(fn) { return function (elt) {
-        elt .on("click", p => fn(p,!d3.event.ctrlKey))
+        elt .on("mousedown", () => d3.event.preventDefault())
+            .on("click", p => fn(p,!d3.event.ctrlKey))
             .on("auxclick", p => d3.event.button===1 ? fn(p,0) : 0);
     }; }
 
@@ -252,14 +253,11 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         brandSel.classed("active", br => br.active);
     }
 
-    var fuse = new Fuse(
+    var phoneSearch = new Fuse(
         allPhones,
         {
             shouldSort: false,
             threshold: 0.4,
-            location: 0,
-            distance: 100,
-            maxPatternLength: 32,
             minMatchCharLength: 2,
             keys: [
                 {weight:0.3, name:"brand.name"},
@@ -268,18 +266,33 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             ]
         }
     );
+    var brandSearch = new Fuse(
+        brands,
+        {
+            shouldSort: false,
+            threshold: 0.05,
+            minMatchCharLength: 3,
+            keys: [
+                {weight:0.9, name:"name"},
+                {weight:0.1, name:"suffix"},
+            ]
+        }
+    );
     d3.select(".search").on("input", function () {
-        var fn;
+        var fn, bl = brands;
         var c = currentBrands;
-        if (this.value.length) {
-            var s = fuse.search(this.value),
+        if (this.value.length > 1) {
+            var s = phoneSearch.search(this.value),
                 t = c.length ? s.filter(p=>c.indexOf(p.brand)!==-1) : s;
             if (t.length) s = t;
             fn = p => s.indexOf(p)!==-1;
+            var b = brandSearch.search(this.value);
+            if (b.length) bl = b;
         } else {
             fn = c.length ? (p => c.indexOf(p.brand)!==-1)
                           : (p => true);
         }
         phoneSel.style("display", p => fn(p)?null:"none");
+        brandSel.style("display", b => bl.indexOf(b)!==-1?null:"none");
     });
 });

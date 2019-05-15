@@ -51,7 +51,7 @@ The following features are planned for the crinacle.com graphing tool:
 
 * Headphones grouped by brand ✔
 * Click to select one headphone or brand and unselect others; middle or ctrl-click for non-exclusive select ✔
-* Search all brands or headphones by name …
+* Search all brands or headphones by name ✔
 * Search by driver configuration?
 * Filter by some algorithmically determined FR descriptors (bassy, bright, etc.)?
 

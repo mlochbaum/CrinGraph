@@ -257,7 +257,8 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         allPhones,
         {
             shouldSort: false,
-            threshold: 0.4,
+            tokenize: true,
+            threshold: 0.2,
             minMatchCharLength: 2,
             keys: [
                 {weight:0.3, name:"brand.name"},
@@ -270,6 +271,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         brands,
         {
             shouldSort: false,
+            tokenize: true,
             threshold: 0.05,
             minMatchCharLength: 3,
             keys: [

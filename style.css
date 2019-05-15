@@ -49,7 +49,10 @@ tr { background:#eee; }
 .scroll div.active { border-left:0.3em solid #5ce; }
 .scroll div:hover  { border-left:0.3em solid #fd0; }
 
-.search { padding-left:1.2em; height:1.3em; }
+.search {
+    padding:2px; padding-left:1.2em; height:1.3em; line-height:1.3em;
+    box-shadow:inset 0 0.1em 0.3em #fec; border:1px solid #bbb;
+}
 .chevron { height:1.3em; width:0.9em; position:absolute; top:-1.3em; fill:#223; }
 
 button { border:groove 2px; font-size:smaller; }

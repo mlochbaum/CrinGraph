@@ -1,6 +1,7 @@
 body>svg { width:96%; display:block; margin:0.25em auto 1em; }
 svg text { cursor:default; user-select:none; }
 .controls { display:flex; flex-flow:row-reverse wrap; }
+.controls>div { flex:1 32em; margin:0 0.8em; font-size:large; }
 .select { display:flex; flex-direction:column; }
 .select>div { display:flex; position:relative; }
 
@@ -19,7 +20,7 @@ svg text { cursor:default; user-select:none; }
 body { margin:0px; }
 table { border-collapse: collapse; }
 tr,td { padding:0px; }
-.select,.curves { flex:1 32em; margin:0 0.8em; font-size:large; }
+.curves { width:100%; }
 .curves tr { border-bottom: 3px solid white; }
 
 .remove { cursor:pointer; text-align:center; }

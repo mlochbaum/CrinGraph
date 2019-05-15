@@ -53,7 +53,7 @@ function setPhoneTr(phtr) {
 var channelbox_tr = c => "translate("+(c?-86:-36)+",0)";
 function setCurves(p, avg) {
     p.activeCurves = avg
-        ? [{id:p.phone+" AVG", l:avgCurves(p.channels), p:p, o:0}]
+        ? [{id:p.fileName+" AVG", l:avgCurves(p.channels), p:p, o:0}]
         : p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
     d3.selectAll(".keyLine").filter(q=>q===p)
         .select("g").transition().duration(400)
@@ -148,7 +148,7 @@ function updatePhoneTable() {
 
 function showPhone(p, exclusive) {
     if (!p.channels) {
-        if (!p.files) p.files = fileNames(p.phone);
+        if (!p.files) p.files = fileNames(p.fileName);
         Promise.all(p.files.map(f=>d3.text(DIR+f))).then(function (frs) {
             if (p.channels) return;
             p.id = phoneNumber++;
@@ -195,10 +195,22 @@ function removePhone(p) {
 d3.json(DIR+"phone_book.json").then(function (brands) {
     brands.forEach(function (b) {
         b.active = false;
-        b.phoneObjs = b.phones.map(p => ({
-            brand: b,
-            phone: p
-        }));
+        b.phoneObjs = b.phones.map(function (p) {
+            var r = { brand:b };
+            if (typeof p === "string") {
+                r.phone = r.fileName = p;
+            } else {
+                r.phone = p.name;
+                var f = p.file;
+                if (typeof f === "string") {
+                    r.fileName = f;
+                } else {
+                    r.fileNames = f;
+                    r.fileName = f[0];
+                }
+            }
+            return r;
+        });
     });
     var phoneFullName = p => p.brand.name+" "+p.phone;
 

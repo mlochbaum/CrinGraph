@@ -62,6 +62,10 @@ function setCurves(p, avg) {
 
 var drawLine = d => line(baseline.fn(d.l));
 function updateBaseline() {
+    var c = yCenter;
+    yCenter = baseline.p ? 0 : 60;
+    y.domain(y.domain().map(d=>d+(yCenter-c)));
+    yAxisObj.call(fmtY);
     gpath.selectAll("path")
         .transition().duration(500).ease(d3.easeQuad)
         .attr("d", drawLine);
@@ -131,7 +135,7 @@ function updatePhoneTable() {
             } else {
                 var l = p.activeCurves.length===1 ? p.activeCurves[0].l
                                                   : avgCurves(p.channels),
-                    b = l.map(d => d[1]-60);
+                    b = l.map(d => d[1]);
                 baseline = { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
             }
             updateBaseline();

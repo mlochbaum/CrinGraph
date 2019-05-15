@@ -94,6 +94,7 @@ var fW = 7,  // Fade width
     fWm= 30; // Width at an interior edge
 var fade = defs.append("mask")
     .attr("id", "graphFade")
+    .attr("maskUnits", "userSpaceOnUse")
     .append("g").attr("transform", "translate("+pad.l+","+pad.t+")");
 fade.append("rect").attrs({ x:0, y:0, width:W, height:H, fill:"white" });
 var fadeEdge = fade.selectAll().data([0,1]).join("rect")

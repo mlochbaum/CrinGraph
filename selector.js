@@ -9,7 +9,10 @@ function avgCurves(curves) {
 }
 function hasImbalance(curves) {
     var as = curves[0], bs = curves[1];
-    return as.some((a,i) => Math.abs(a[1]-bs[i][1]) > max_channel_imbalance);
+    return as.some((a,i) =>
+        a[0] <= 15e3 &&
+        Math.abs(a[1]-bs[i][1]) > max_channel_imbalance
+    );
 }
 
 var activePhones = [];

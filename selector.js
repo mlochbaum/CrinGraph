@@ -151,6 +151,11 @@ function updatePhoneTable() {
                 .attr("opacity", h?null:0);
             p.hide = !h;
         });
+    td().append("button").text("pin")
+        .on("click",function(p){
+            p.pin = true;
+            d3.select(this).remove();
+        });
 }
 
 function showPhone(p, exclusive) {
@@ -166,18 +171,18 @@ function showPhone(p, exclusive) {
         return;
     }
     var l = p.files.length;
-    if (exclusive || activePhones.length===0) {
-        activePhones.map(q => q.active=0);
-        activePhones = [p];
-        baseline = baseline0;
-    } else if (activePhones.indexOf(p) === -1) {
+    if (exclusive) {
+        activePhones = activePhones.filter(q=>q.active=q.pin);
+        if (baseline.p && !baseline.p.pin) baseline = baseline0;
+    }
+    if (activePhones.indexOf(p) === -1) {
         if (activePhones.length === 1) {
             setCurves(activePhones[0], true);
         }
         activePhones.push(p);
+        p.active = true;
+        setCurves(p, activePhones.length > 1);
     }
-    p.active = true;
-    setCurves(p, activePhones.length > 1);
     updatePaths();
     updatePhoneTable();
     d3.select("#phones").selectAll("div")
@@ -186,7 +191,7 @@ function showPhone(p, exclusive) {
 }
 
 function removePhone(p) {
-    activePhones.forEach(q => q.active = q!==p);
+    p.active = p.pin = false;
     activePhones = activePhones.filter(q => q.active);
     if (activePhones.length === 1) {
         setCurves(activePhones[0], false);

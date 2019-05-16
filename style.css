@@ -32,7 +32,7 @@ td.remove       { width:1.4em; font-size:120%; }
 .key            { width:6vw; }
 .baselineButton { width:14%; }
 .hideButton     { width: 8%; }
-.pinButton      { width: 8%; }
+.pinButton      { width: 6%; }
 
 /* For headphone as opposed to brand in current headphone table */
 .phonename { font-weight:bold; }
@@ -40,6 +40,8 @@ td.remove       { width:1.4em; font-size:120%; }
 .keyLine { width:6vw; display:block; vertical-align:center; }
 .keyLine path { stroke-width:2.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
 .keyLine rect { cursor:pointer; }
+
+.pinMark { float:right; height:2.88vw; }
 
 tr { background:#eee; }
 .scroll {

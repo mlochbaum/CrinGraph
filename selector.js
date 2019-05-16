@@ -154,7 +154,11 @@ function updatePhoneTable() {
     td().append("button").text("pin")
         .on("click",function(p){
             p.pin = true;
+            var par = d3.select(this.parentElement);
             d3.select(this).remove();
+            par.insert("svg").attr("class","pinMark")
+                .attr("viewBox","0 0 10.5 13")
+                .insert("path").attrs({fill:"#334",d:"M4 6.5c0.5 0.5 4.32 2.92 0.64 4.84q-1.84 0.96 -4.64 0.16v1.5 h5.6 l2.1 -2 l1 1.5 h1.8c0 -4.5 -3 -4.5 -3 -6s3 -1.5 3 -6h-1.8l-1 1.5 l-2.1 -2 h-5.6 v1.5 q2.8 -0.8 4.64 0.16c3.68 1.92 -0.14 4.34 -0.64 4.84"});
         });
 }
 

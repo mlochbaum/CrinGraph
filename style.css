@@ -41,7 +41,7 @@ td.remove       { width:1.4em; font-size:120%; }
 .keyLine path { stroke-width:2.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
 .keyLine rect { cursor:pointer; }
 
-.pinMark { float:right; height:2.88vw; }
+.pinMark { float:right; width:80%; margin-right:-8.6%; margin-bottom:0.6em; }
 
 tr { background:#eee; }
 .scroll {

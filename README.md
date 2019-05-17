@@ -32,7 +32,7 @@ The following features are planned for the crinacle.com graphing tool:
 ### Graph window
 
 * An aesthetically pleasing and intuitive display ✔
-* Colors are persistent and algorithmically generated to ensure contrast ✔…
+* Colors are persistent and algorithmically generated to ensure contrast ✔
 * Range controls to zoom in on bass, mids, or treble ✔
 * Ability to rescale and adjust the y axis (SPL in decibels) ✔
 * Allow the user to select a smoothing function

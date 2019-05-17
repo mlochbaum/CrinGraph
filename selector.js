@@ -16,7 +16,6 @@ function hasImbalance(curves) {
 }
 
 var activePhones = [];
-var phoneNumber = 0; // I'm so sorry it just happened
 var baseline0 = { p:null, l:null, fn:l=>l },
     baseline = baseline0;
 
@@ -44,6 +43,32 @@ function getDivColor(id, active) {
     c.l = 100-(80-c.l)/(active?1.5:3);
     c.c = (c.c-20)/(active?3:4);
     return c;
+}
+
+var phoneNumber = 0; // I'm so sorry it just happened
+// Find a phone id which doesn't have a color conflict with pins
+var nextPN = 0; // Cached value; invalidated when pinned headphones change
+function nextPhoneNumber() {
+    if (nextPN === null) {
+        nextPN = phoneNumber;
+        var pin = activePhones.filter(p => p.pin).map(p=>p.id);
+        if (pin.length) {
+            var p3 = ld_p1*ld_p1*ld_p1,
+                l = a => b => Math.abs(((a-b)/p3 + 0.5) % 1 - 0.5),
+                d = id => pin.map(l(id)).reduce((a,b)=>Math.min(a,b));
+            for (var i=nextPN, max=d(i); max<0.12 && ++i<phoneNumber+3; ) {
+                var m = d(i);
+                if (m > max) { max=m; nextPN=i; }
+            }
+        }
+    }
+    return nextPN;
+}
+function getPhoneNumber() {
+    var pn = nextPhoneNumber();
+    phoneNumber = pn + 1;
+    nextPN = null;
+    return pn;
 }
 
 function setPhoneTr(phtr) {
@@ -154,7 +179,7 @@ function updatePhoneTable() {
         });
     td().append("button").text("pin")
         .on("click",function(p){
-            p.pin = true;
+            p.pin = true; nextPN = null;
             var par = d3.select(this.parentElement);
             d3.select(this).remove();
             par.insert("svg").attr("class","pinMark")
@@ -174,7 +199,7 @@ function showPhone(p, exclusive) {
         if (!p.files) p.files = fileNames(p.fileName);
         Promise.all(p.files.map(f=>d3.text(DIR+f))).then(function (frs) {
             if (p.channels) return;
-            p.id = phoneNumber++;
+            p.id = getPhoneNumber();
             p.channels = frs.map(tsvParse);
             p.imbalance = hasImbalance(p.channels);
             showPhone(p, exclusive);
@@ -202,7 +227,7 @@ function showPhone(p, exclusive) {
 }
 
 function removePhone(p) {
-    p.active = p.pin = false;
+    p.active = p.pin = false; nextPN = null;
     activePhones = activePhones.filter(q => q.active);
     if (activePhones.length === 1) {
         setCurves(activePhones[0], false);
@@ -258,7 +283,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
     }
     var phoneSel = d3.select("#phones").selectAll()
         .data(allPhones).join("div")
-        .on("mouseover", bg(true, p => getDivColor(p.id===undefined?phoneNumber:p.id, true)))
+        .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
         .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
         .call(setClicks(showPhone));
     phoneSel.append("span").text(phoneFullName);

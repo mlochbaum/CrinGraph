@@ -106,20 +106,26 @@ function updateBaseline() {
 }
 function setBaseline(b) { baseline=b; updateBaseline(); }
 
+function setHover(elt, h) {
+    elt.on("mouseover", h(true)).on("mouseout", h(false));
+}
+
 function updatePaths() {
     var c = flatten(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
     p.join("path")
         .attr("stroke", getColor_AC)
-        .attr("d", drawLine);
+        .attr("d", drawLine)
+        .call(setHover, h => c =>
+            table.selectAll("tr").filter(p=>p===c.p).classed("highlight",h)
+        );
 }
 function updatePhoneTable() {
     var c = table.selectAll("tr").data(activePhones, p=>p.id);
     c.exit().remove();
     var f = c.enter().append("tr"),
         td = () => f.append("td");
-    f   .on("mouseover", p => hl(p,true))
-        .on("mouseout" , p => hl(p,false));
+    f   .call(setHover, h => p => hl(p,h));
     td().attr("class","remove").text("⊗")
         .on("click", removePhone);
     td().text(p=>p.brand.name+" ")

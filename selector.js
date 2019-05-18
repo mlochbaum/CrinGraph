@@ -23,6 +23,9 @@ var gpath = gr.insert("g",".rangeButton")
     .attr("fill","none")
     .attr("stroke-width",3)
     .attr("mask","url(#graphFade)");
+function hl(p, h) {
+    gpath.selectAll("path").filter(c=>c.p===p).classed("highlight",h);
+}
 var table = d3.select(".curves");
 
 var ld_p1 = 1.1673039782614187;
@@ -115,6 +118,8 @@ function updatePhoneTable() {
     c.exit().remove();
     var f = c.enter().append("tr"),
         td = () => f.append("td");
+    f   .on("mouseover", p => hl(p,true))
+        .on("mouseout" , p => hl(p,false));
     td().attr("class","remove").text("⊗")
         .on("click", removePhone);
     td().text(p=>p.brand.name+" ")
@@ -146,7 +151,7 @@ function updatePhoneTable() {
             .on("click",function(p){
                 var c = p.activeCurves.length !== 1;
                 setCurves(p, c);
-                updatePaths();
+                updatePaths(); hl(p,true);
             })
             .selectAll().data([0,80]).join("rect")
             .attrs({x:d=>d, y:-12, width:40, height:24, fill:"url(#blgrad)"});
@@ -279,7 +284,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
 
     var bg = (h,fn) => function (p) {
         d3.select(this).style("background", fn(p));
-        gpath.selectAll("path").filter(c=>c.p===p).classed("highlight",h);
+        hl(p,h);
     }
     var phoneSel = d3.select("#phones").selectAll()
         .data(allPhones).join("div")

@@ -82,14 +82,16 @@ function setPhoneTr(phtr) {
         .on("click", p => { d3.event.stopPropagation(); removePhone(p); });
 }
 
-var channelbox_tr = c => "translate("+(c?-86:-36)+",0)";
+var channelbox_x = c => c?-86:-36,
+    channelbox_tr = c => "translate("+channelbox_x(c)+",0)";
 function setCurves(p, avg) {
     p.activeCurves = avg
         ? [{id:p.fileName+" AVG", l:avgCurves(p.channels), p:p, o:0}]
         : p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
-    d3.selectAll(".keyLine").filter(q=>q===p)
-        .select("g").transition().duration(400)
-        .attr("transform", channelbox_tr(avg));
+    var k = d3.selectAll(".keyLine").filter(q=>q===p);
+    k.select("mask").select("rect").transition().duration(400)
+        .attr("x", channelbox_x(avg))
+    k.select(".keySel").attr("transform", channelbox_tr(avg));
 }
 
 var drawLine = d => line(baseline.fn(d.l));
@@ -140,27 +142,28 @@ function updatePhoneTable() {
             .attr("offset",i=>i[0])
             .attr("stop-color",i=>i[1]);
         defs.append("linearGradient").attr("id","blgrad")
-            .selectAll().data([0,0.25,0.75,1].map(o =>
-                [o, o==0||o==1?0:0.75]
-            )).join("stop")
-            .attr("offset",i=>i[0])
-            .attr("stop-color","#eee")
-            .attr("stop-opacity",i=>i[1]);
-        s.append("path")
+            .selectAll().data([0,0.25,0.31,0.69,0.75,1]).join("stop")
+            .attr("offset",o=>o)
+            .attr("stop-color",(o,i) => i==2||i==3?"white":"#333");
+        defs.append("mask").attr("id",p=>"chmask"+p.id)
+            .append("rect").attrs({x:p=>channelbox_x(p.activeCurves.length===1), y:-12, width:120, height:24, fill:"url(#blgrad)"});
+        var t = s.append("g").attr("mask",p=>"url(#chmask"+p.id+")")
+        t.append("path")
             .attr("stroke", p=>"url(#chgrad"+p.id+")")
             .attr("d","M15 6H9C0 6,0 0,-9 0H-17H-9C0 0,0 -6,9 -6H15");
-        s.selectAll().data(["L","R"])
+        t.selectAll().data(["L","R"])
             .join("text")
             .attrs({x:17, y:(_,i)=>[-6,6][i], dy:"0.32em", "text-anchor":"start", "font-size":10.5})
             .text(t=>t);
-        s.append("g").attr("transform",p=>channelbox_tr(p.activeCurves.length===1))
+        s.append("g").attr("class","keySel")
+            .attr("transform",p=>channelbox_tr(p.activeCurves.length===1))
             .on("click",function(p){
                 var c = p.activeCurves.length !== 1;
                 setCurves(p, c);
                 updatePaths(); hl(p,true);
             })
             .selectAll().data([0,80]).join("rect")
-            .attrs({x:d=>d, y:-12, width:40, height:24, fill:"url(#blgrad)"});
+            .attrs({x:d=>d, y:-12, width:40, height:24, opacity:0});
         s.filter(p=>p.imbalance)
             .append("text")
             .attrs({x:8,y:0,dy:"0.35em",fill:"#e11",

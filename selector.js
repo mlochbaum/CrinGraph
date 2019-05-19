@@ -127,7 +127,8 @@ function updatePhoneTable() {
     c.exit().remove();
     var f = c.enter().append("tr"),
         td = () => f.append("td");
-    f   .call(setHover, h => p => hl(p,h));
+    f   .call(setHover, h => p => hl(p,h))
+        .style("color", p => getDivColor(p.id,true));
     td().attr("class","remove").text("⊗")
         .on("click", removePhone);
     td().text(p=>p.brand.name+" ")

@@ -61,7 +61,16 @@ tr { background:#eee; }
 }
 .chevron { height:1.3em; width:0.9em; position:absolute; top:-1.3em; fill:#223; }
 
-button { border:groove 2px; font-size:smaller; }
-.curves button { height:80%; width:90%; margin-left:auto; margin-right:auto; }
-button:hover { border-color: #9ac; color: #124; }
+button {
+    border:none; background:#dbd8dd; position:relative; font-size:smaller;
+    height:1.5em; width:90%; margin-left:auto; margin-right:auto;
+}
+button:hover { color: #124; }
+button:hover:before,button:hover:after { border-color: #9ac; color: #124; }
+button:before,button:after {
+  border:2px groove #ddd; content:'';
+  position:absolute; top:0; bottom:0; width:0.3em;
+}
+button:before { border-right:0; left:0; }
+button:after { border-left:0; right:0; }
 button.selected { background-color: #dd9; }

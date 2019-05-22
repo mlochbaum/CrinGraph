@@ -1,4 +1,5 @@
-var fileNames = name => ["L","R"].map(s=>name+" "+s+".txt");
+const LR = ["L","R"];
+var fileNames = name => LR.map(s=>name+" "+s+".txt");
 
 function flatten(l) { return [].concat.apply([],l); }
 function avgCurves(curves) {
@@ -84,13 +85,20 @@ function setPhoneTr(phtr) {
 
 var channelbox_x = c => c?-86:-36,
     channelbox_tr = c => "translate("+channelbox_x(c)+",0)";
-function setCurves(p, avg) {
+function setCurves(p, avg, lr) {
+    p.avg = avg;
     p.activeCurves = avg
         ? [{id:p.fileName+" AVG", l:avgCurves(p.channels), p:p, o:0}]
         : p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
+    var y = -12;
+    if (lr!==undefined) {
+        p.activeCurves = [p.activeCurves[lr]];
+        y += [-12,12][lr];
+    }
     var k = d3.selectAll(".keyLine").filter(q=>q===p);
-    k.select("mask").select("rect").transition().duration(400)
+    k.select(".keyMask").transition().duration(400)
         .attr("x", channelbox_x(avg))
+        .attr("y", y);
     k.select(".keySel").attr("transform", channelbox_tr(avg));
 }
 
@@ -133,7 +141,7 @@ function updatePhoneTable() {
         .on("click", removePhone);
     td().text(p=>p.brand.name+" ")
         .append("span").attr("class","phonename").text(p=>p.phone);
-    td().append("svg").attr("class","keyLine").attr("viewBox","-19 -12 50 24").call(function (s) {
+    td().append("svg").attr("class","keyLine").attr("viewBox","-19 -12 65 24").call(function (s) {
         var defs = s.append("defs");
         defs.append("linearGradient").attr("id", p=>"chgrad"+p.id)
             .attrs({x1:0,y1:0, x2:0,y2:1})
@@ -146,25 +154,41 @@ function updatePhoneTable() {
             .selectAll().data([0,0.25,0.31,0.69,0.75,1]).join("stop")
             .attr("offset",o=>o)
             .attr("stop-color",(o,i) => i==2||i==3?"white":"#333");
-        defs.append("mask").attr("id",p=>"chmask"+p.id)
-            .append("rect").attrs({x:p=>channelbox_x(p.activeCurves.length===1), y:-12, width:120, height:24, fill:"url(#blgrad)"});
+        var m = defs.append("mask").attr("id",p=>"chmask"+p.id);
+        m.append("rect").attrs({x:-19, y:-12, width:65, height:24, fill:"#333"});
+        m.append("rect").attrs({"class":"keyMask", x:p=>channelbox_x(p.avg), y:-12, width:120, height:24, fill:"url(#blgrad)"});
         var t = s.append("g").attr("mask",p=>"url(#chmask"+p.id+")")
         t.append("path")
             .attr("stroke", p=>"url(#chgrad"+p.id+")")
             .attr("d","M15 6H9C0 6,0 0,-9 0H-17H-9C0 0,0 -6,9 -6H15");
-        t.selectAll().data(["L","R"])
+        t.selectAll().data(LR)
             .join("text")
             .attrs({x:17, y:(_,i)=>[-6,6][i], dy:"0.32em", "text-anchor":"start", "font-size":10.5})
             .text(t=>t);
         s.append("g").attr("class","keySel")
-            .attr("transform",p=>channelbox_tr(p.activeCurves.length===1))
+            .attr("transform",p=>channelbox_tr(p.avg))
             .on("click",function(p){
-                var c = p.activeCurves.length !== 1;
-                setCurves(p, c);
+                setCurves(p, !p.avg);
                 updatePaths(); hl(p,true);
             })
             .selectAll().data([0,80]).join("rect")
             .attrs({x:d=>d, y:-12, width:40, height:24, opacity:0});
+        var o = s.selectAll().data(p=>[[p,0],[p,1]])
+            .join("g").attr("class","keyOnly")
+            .attr("transform",pi=>"translate(25,"+[-6,6][pi[1]]+")")
+            .call(setHover, h => function (pi) {
+                var p = pi[0], cs = p.activeCurves;
+                if (cs.length === 2) {
+                    d3.event.stopPropagation();
+                    hl(p, h ? (c=>c===cs[pi[1]]) : true);
+                    gpath.selectAll("path").filter(c=>c.p===p).attr("opacity",h ? (c=>c!==cs[pi[1]]?0.7:null) : null);
+                }
+            })
+            .on("click", pi => { setCurves(pi[0], false, pi[1]); updatePaths(); });
+        o.append("rect").attrs({x:0,y:-6,width:30,height:12,opacity:0});
+        o.append("text").attrs({x:0, y:0, dy:"0.28em", "text-anchor":"start",
+                                "font-size":7.5 })
+            .text("only");
         s.filter(p=>p.imbalance)
             .append("text")
             .attrs({x:8,y:0,dy:"0.35em",fill:"#e11",
@@ -177,8 +201,8 @@ function updatePhoneTable() {
             if (baseline.p === p) {
                 baseline = baseline0;
             } else {
-                var l = p.activeCurves.length===1 ? p.activeCurves[0].l
-                                                  : avgCurves(p.channels),
+                var l = p.avg ? p.activeCurves[0].l
+                              : avgCurves(p.channels),
                     b = l.map(d => d[1]);
                 baseline = { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
             }
@@ -227,7 +251,7 @@ function showPhone(p, exclusive) {
         if (baseline.p && !baseline.p.pin) baseline = baseline0;
     }
     if (activePhones.indexOf(p) === -1) {
-        if (activePhones.length === 1) {
+        if (activePhones.length===1 && activePhones[0].activeCurves.length!==1) {
             setCurves(activePhones[0], true);
         }
         activePhones.push(p);

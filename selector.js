@@ -141,61 +141,7 @@ function updatePhoneTable() {
         .on("click", removePhone);
     td().text(p=>p.brand.name+" ")
         .append("span").attr("class","phonename").text(p=>p.phone);
-    td().append("svg").attr("class","keyLine").attr("viewBox","-19 -12 65 24").call(function (s) {
-        var defs = s.append("defs");
-        defs.append("linearGradient").attr("id", p=>"chgrad"+p.id)
-            .attrs({x1:0,y1:0, x2:0,y2:1})
-            .selectAll().data(p=>[0.1,0.4,0.6,0.9].map(o =>
-                [o, getCurveColor(p.id, o<0.3?-1:o<0.7?0:1)]
-            )).join("stop")
-            .attr("offset",i=>i[0])
-            .attr("stop-color",i=>i[1]);
-        defs.append("linearGradient").attr("id","blgrad")
-            .selectAll().data([0,0.25,0.31,0.69,0.75,1]).join("stop")
-            .attr("offset",o=>o)
-            .attr("stop-color",(o,i) => i==2||i==3?"white":"#333");
-        var m = defs.append("mask").attr("id",p=>"chmask"+p.id);
-        m.append("rect").attrs({x:-19, y:-12, width:65, height:24, fill:"#333"});
-        m.append("rect").attrs({"class":"keyMask", x:p=>channelbox_x(p.avg), y:-12, width:120, height:24, fill:"url(#blgrad)"});
-        var t = s.append("g").attr("mask",p=>"url(#chmask"+p.id+")")
-        t.append("path")
-            .attr("stroke", p=>"url(#chgrad"+p.id+")")
-            .attr("d","M15 6H9C0 6,0 0,-9 0H-17H-9C0 0,0 -6,9 -6H15");
-        t.selectAll().data(LR)
-            .join("text")
-            .attrs({x:17, y:(_,i)=>[-6,6][i], dy:"0.32em", "text-anchor":"start", "font-size":10.5})
-            .text(t=>t);
-        s.append("g").attr("class","keySel")
-            .attr("transform",p=>channelbox_tr(p.avg))
-            .on("click",function(p){
-                setCurves(p, !p.avg);
-                updatePaths(); hl(p,true);
-            })
-            .selectAll().data([0,80]).join("rect")
-            .attrs({x:d=>d, y:-12, width:40, height:24, opacity:0});
-        var o = s.selectAll().data(p=>[[p,0],[p,1]])
-            .join("g").attr("class","keyOnly")
-            .attr("transform",pi=>"translate(25,"+[-6,6][pi[1]]+")")
-            .call(setHover, h => function (pi) {
-                var p = pi[0], cs = p.activeCurves;
-                if (cs.length === 2) {
-                    d3.event.stopPropagation();
-                    hl(p, h ? (c=>c===cs[pi[1]]) : true);
-                    gpath.selectAll("path").filter(c=>c.p===p).attr("opacity",h ? (c=>c!==cs[pi[1]]?0.7:null) : null);
-                }
-            })
-            .on("click", pi => { setCurves(pi[0], false, pi[1]); updatePaths(); });
-        o.append("rect").attrs({x:0,y:-6,width:30,height:12,opacity:0});
-        o.append("text").attrs({x:0, y:0, dy:"0.28em", "text-anchor":"start",
-                                "font-size":7.5 })
-            .text("only");
-        s.filter(p=>p.imbalance)
-            .append("text")
-            .attrs({x:8,y:0,dy:"0.35em",fill:"#e11",
-                    "font-size":10.5,"font-weight":"bold"})
-            .style("pointer-events","none")
-            .text("!");
-    });
+    td().append("svg").call(addKey);
     td().append("button").text("baseline")
         .on("click",function(p){
             if (baseline.p === p) {
@@ -231,6 +177,63 @@ function updatePhoneTable() {
                     d:"M265 110V25q0 -10 -10 -10H105q-24 0 -48 20l-24 20q-24 20 -2 40l18 15q24 20 42 20h100"
                 });
         });
+}
+
+function addKey(s) {
+    s.attr("class","keyLine").attr("viewBox","-19 -12 65 24");
+    var defs = s.append("defs");
+    defs.append("linearGradient").attr("id", p=>"chgrad"+p.id)
+        .attrs({x1:0,y1:0, x2:0,y2:1})
+        .selectAll().data(p=>[0.1,0.4,0.6,0.9].map(o =>
+            [o, getCurveColor(p.id, o<0.3?-1:o<0.7?0:1)]
+        )).join("stop")
+        .attr("offset",i=>i[0])
+        .attr("stop-color",i=>i[1]);
+    defs.append("linearGradient").attr("id","blgrad")
+        .selectAll().data([0,0.25,0.31,0.69,0.75,1]).join("stop")
+        .attr("offset",o=>o)
+        .attr("stop-color",(o,i) => i==2||i==3?"white":"#333");
+    var m = defs.append("mask").attr("id",p=>"chmask"+p.id);
+    m.append("rect").attrs({x:-19, y:-12, width:65, height:24, fill:"#333"});
+    m.append("rect").attrs({"class":"keyMask", x:p=>channelbox_x(p.avg), y:-12, width:120, height:24, fill:"url(#blgrad)"});
+    var t = s.append("g").attr("mask",p=>"url(#chmask"+p.id+")")
+    t.append("path")
+        .attr("stroke", p=>"url(#chgrad"+p.id+")")
+        .attr("d","M15 6H9C0 6,0 0,-9 0H-17H-9C0 0,0 -6,9 -6H15");
+    t.selectAll().data(LR)
+        .join("text")
+        .attrs({x:17, y:(_,i)=>[-6,6][i], dy:"0.32em", "text-anchor":"start", "font-size":10.5})
+        .text(t=>t);
+    s.append("g").attr("class","keySel")
+        .attr("transform",p=>channelbox_tr(p.avg))
+        .on("click",function(p){
+            setCurves(p, !p.avg);
+            updatePaths(); hl(p,true);
+        })
+        .selectAll().data([0,80]).join("rect")
+        .attrs({x:d=>d, y:-12, width:40, height:24, opacity:0});
+    var o = s.selectAll().data(p=>[[p,0],[p,1]])
+        .join("g").attr("class","keyOnly")
+        .attr("transform",pi=>"translate(25,"+[-6,6][pi[1]]+")")
+        .call(setHover, h => function (pi) {
+            var p = pi[0], cs = p.activeCurves;
+            if (cs.length === 2) {
+                d3.event.stopPropagation();
+                hl(p, h ? (c=>c===cs[pi[1]]) : true);
+                gpath.selectAll("path").filter(c=>c.p===p).attr("opacity",h ? (c=>c!==cs[pi[1]]?0.7:null) : null);
+            }
+        })
+        .on("click", pi => { setCurves(pi[0], false, pi[1]); updatePaths(); });
+    o.append("rect").attrs({x:0,y:-6,width:30,height:12,opacity:0});
+    o.append("text").attrs({x:0, y:0, dy:"0.28em", "text-anchor":"start",
+                            "font-size":7.5 })
+        .text("only");
+    s.filter(p=>p.imbalance)
+        .append("text")
+        .attrs({x:8,y:0,dy:"0.35em",fill:"#e11",
+                "font-size":10.5,"font-weight":"bold"})
+        .style("pointer-events","none")
+        .text("!");
 }
 
 function showPhone(p, exclusive) {

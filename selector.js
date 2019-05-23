@@ -86,19 +86,28 @@ function setPhoneTr(phtr) {
 var channelbox_x = c => c?-86:-36,
     channelbox_tr = c => "translate("+channelbox_x(c)+",0)";
 function setCurves(p, avg, lr) {
+    var dx = +avg - +p.avg;
     p.avg = avg;
     p.activeCurves = avg
         ? [{id:p.fileName+" AVG", l:avgCurves(p.channels), p:p, o:0}]
         : p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
-    var y = -12;
+    var y = 0;
     if (lr!==undefined) {
         p.activeCurves = [p.activeCurves[lr]];
-        y += [-12,12][lr];
+        y = [-1,1][lr];
     }
     var k = d3.selectAll(".keyLine").filter(q=>q===p);
-    k.select(".keyMask").transition().duration(400)
+    k.select(".keyMask")
+        .transition().duration(400)
         .attr("x", channelbox_x(avg))
-        .attr("y", y);
+        .attrTween("y", function () {
+            var y0 = +this.getAttribute("y"),
+                y1 = 12*(-1+y);
+            if (!dx) { return d3.interpolateNumber(y0,y1); }
+            var ym = y0 + (y1-y0)*(3-2*dx)/6;
+            y0-=ym; y1-=ym;
+            return t => { t-=1/2; return ym+(t<0?y0:y1)*Math.pow(2,20*(Math.abs(t)-1/2)); };
+        });
     k.select(".keySel").attr("transform", channelbox_tr(avg));
 }
 

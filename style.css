@@ -11,8 +11,6 @@ svg text { cursor:default; user-select:none; }
     .controls>div.manage { flex:0; }
 }
 
-.manage { overflow:auto; }
-
 path.highlight { stroke-width:4px; }
 tr.highlight { box-shadow:inset 0 0 1.5em 0.2em; }
 .curves tr td { color:initial; }

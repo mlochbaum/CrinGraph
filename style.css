@@ -74,6 +74,8 @@ tr { background:#eee; }
     box-shadow:inset 0 0.1em 0.3em #fec; border:1px solid #bbb;
 }
 .chevron { height:1.3em; width:0.9em; position:absolute; top:-1.3em; fill:#223; }
+.stop { height:0.35em; position:absolute; right:0; bottom:0; fill:#223; }
+.scroll div { background:white; }
 
 button {
     border:none; background:#dbd8dd; position:relative; font-size:smaller;

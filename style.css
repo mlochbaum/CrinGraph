@@ -80,3 +80,5 @@ button.selected { background-color: #dd9; }
 
 .keyOnly { fill:#555; }
 .keyOnly:hover { fill:#124; }
+
+.tooltip { pointer-events:none; }

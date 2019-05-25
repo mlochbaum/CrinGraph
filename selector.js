@@ -48,6 +48,12 @@ function getDivColor(id, active) {
     c.c = (c.c-20)/(active?3:4);
     return c;
 }
+function getTooltipColor(curve) {
+    var c = getColor_AC(curve);
+    c.l = c.l/5 + 10;
+    c.c /= 3;
+    return c;
+}
 
 var phoneNumber = 0; // I'm so sorry it just happened
 // Find a phone id which doesn't have a color conflict with pins
@@ -88,9 +94,10 @@ var channelbox_x = c => c?-86:-36,
 function setCurves(p, avg, lr) {
     var dx = +avg - +p.avg;
     p.avg = avg;
+    var id = n => p.fullName + " ("+n+")";
     p.activeCurves = avg
-        ? [{id:p.fileName+" AVG", l:avgCurves(p.channels), p:p, o:0}]
-        : p.channels.map((l,i) => ({id:p.files[i], l:l, p:p, o:-1+2*i}));
+        ? [{id:id("AVG"), l:avgCurves(p.channels), p:p, o:0}]
+        : p.channels.map((l,i) => ({id:id(LR[i]), l:l, p:p, o:-1+2*i}));
     var y = 0;
     if (lr!==undefined) {
         p.activeCurves = [p.activeCurves[lr]];
@@ -307,10 +314,10 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                     r.fileName = f[0];
                 }
             }
+            r.fullName = b.name + " " + r.phone;
             return r;
         });
     });
-    var phoneFullName = p => p.brand.name+" "+p.phone;
 
     var allPhones = flatten(brands.map(b=>b.phoneObjs)),
         currentBrands = [];
@@ -336,7 +343,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
         .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
         .call(setClicks(showPhone));
-    phoneSel.append("span").text(phoneFullName);
+    phoneSel.append("span").text(p=>p.fullName);
 
     function setBrand(b, exclusive) {
         var incl = currentBrands.indexOf(b) !== -1;
@@ -345,7 +352,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             if (incl) {
                 currentBrands = [];
                 phoneSel.style("display", null);
-                phoneSel.select("span").text(phoneFullName);
+                phoneSel.select("span").text(p=>p.fullName);
             } else {
                 currentBrands = [b];
                 phoneSel.style("display", p => p.brand===b?null:"none");
@@ -354,7 +361,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         } else {
             if (incl) return;
             if (currentBrands.length === 1) {
-                phoneSel.select("span").text(phoneFullName);
+                phoneSel.select("span").text(p=>p.fullName);
             }
             currentBrands.push(b);
             phoneSel.filter(p => p.brand===b).style("display", null);
@@ -409,9 +416,24 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
     });
 });
 
-function pathHL(c) {
+var pathHoverTimeout;
+function pathHL(c, m) {
     gpath.selectAll("path").classed("highlight", c ? d=>d===c   : false);
     table.selectAll("tr")  .classed("highlight", c ? p=>p===c.p : false);
+    if (pathHoverTimeout) { clearTimeout(pathHoverTimeout); }
+    gr.selectAll(".tooltip").remove();
+    pathHoverTimeout =
+        c ? setTimeout(pathTooltip, 400, c, m)
+          : undefined;
+}
+function pathTooltip(c, m) {
+    var t = gr.selectAll(".tooltip").data([c.id])
+        .join("text").attr("class","tooltip")
+        .attrs({x:m[0], y:m[1]-3, fill:getTooltipColor(c)})
+        .text(t=>t);
+    var b = t.node().getBBox(),
+        o = pad.l+W - b.width;
+    if (o < b.x) { t.attr("x",o); }
 }
 gr.append("rect")
     .attrs({x:pad.l,y:pad.t,width:W,height:H,opacity:0})
@@ -428,6 +450,6 @@ gr.append("rect")
                     .reduce((a,b)=>Math.min(a,b), d)
             )
             .reduce((a,b,i) => b<a[1] ? [i,b] : a, [-1,d])[0];
-        pathHL(ind===-1 ? false : cs[ind]);
+        pathHL(ind===-1 ? false : cs[ind], m);
     })
     .on("mouseout", ()=>pathHL(false));

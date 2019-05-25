@@ -1,9 +1,17 @@
-body>svg { width:96%; display:block; margin:0.25em auto 1em; }
+body>div { height:100vh; display:flex; flex-direction:column; }
+#fr-graph { flex:none; max-height:calc(100vh - 12em); margin:0.25em auto 1em; }
 svg text { cursor:default; user-select:none; }
-.controls { display:flex; flex-flow:row-reverse wrap; }
-.controls>div { flex:1 32em; margin:0 0.8em; font-size:large; }
-.select { display:flex; flex-direction:column; }
-.select>div { display:flex; position:relative; }
+.controls { flex:auto; display:flex; flex-flow:row-reverse wrap; }
+.controls>div { flex:1 30em; margin:0 0.8em; font-size:large; }
+.select { display:flex; flex-direction:column; border-bottom:2px solid #223; }
+.select>div { flex:auto; display:flex; position:relative; }
+@media only screen and (max-width:70em) {
+    .controls { flex-flow:column; }
+    .controls>div { flex:1; }
+    .controls>div.manage { flex:0; }
+}
+
+.manage { overflow:auto; }
 
 path.highlight { stroke-width:4px; }
 tr.highlight { box-shadow:inset 0 0 1.5em 0.2em; }
@@ -49,8 +57,10 @@ td.remove       { width:1.4em; font-size:120%; }
 .pinMark { float:right; width:80%; margin-right:-8.6%; margin-bottom:0.6em; }
 
 tr { background:#eee; }
+.scrollOuter { flex:1; position:relative; }
 .scroll {
-    flex:1; height:7.6em; overflow:auto;
+    position:absolute; left:0; right:0; top:0; bottom:0;
+    overflow:auto;
     display:flex; flex-direction:column;
 }
 .scroll div { border-left:0.3em solid #223; padding-left:0.2em; cursor:pointer; }
@@ -59,6 +69,7 @@ tr { background:#eee; }
 .scroll div:hover  { border-left:0.3em solid #fd0; }
 
 .search {
+    flex:none;
     padding:2px; padding-left:1.2em; height:1.3em; line-height:1.3em;
     box-shadow:inset 0 0.1em 0.3em #fec; border:1px solid #bbb;
 }

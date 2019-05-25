@@ -6,28 +6,30 @@
   <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-  <svg id="fr-graph" viewBox="0 0 800 360"></svg>
-  <div class="controls">
-    <div>
-      <table class="curves">
-        <colgroup>
-          <col class="remove">
-          <col class="phoneId">
-          <col class="key">
-          <col class="baselineButton">
-          <col class="hideButton">
-          <col class="pinButton">
-        </colgroup>
-      </table>
-    </div>
-    <div class="select">
-      <input class="search" type="text" onClick="this.select();"/>
-      <div>
-        <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
-          <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4">
-        </svg>
-        <div class="scroll" id="brands"></div>
-        <div class="scroll" id="phones"></div>
+  <div>
+    <svg id="fr-graph" viewBox="0 0 800 360"></svg>
+    <div class="controls">
+      <div class="manage">
+        <table class="curves">
+          <colgroup>
+            <col class="remove">
+            <col class="phoneId">
+            <col class="key">
+            <col class="baselineButton">
+            <col class="hideButton">
+            <col class="pinButton">
+          </colgroup>
+        </table>
+      </div>
+      <div class="select">
+        <input class="search" type="text" onClick="this.select();"/>
+        <div>
+          <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
+            <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4">
+          </svg>
+          <div class="scrollOuter"><div class="scroll" id="brands"></div></div>
+          <div class="scrollOuter"><div class="scroll" id="phones"></div></div>
+        </div>
       </div>
     </div>
   </div>

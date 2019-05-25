@@ -134,10 +134,7 @@ function updatePaths() {
         p = gpath.selectAll("path").data(c, d=>d.id);
     p.join("path")
         .attr("stroke", getColor_AC)
-        .attr("d", drawLine)
-        .call(setHover, h => c =>
-            table.selectAll("tr").filter(p=>p===c.p).classed("highlight",h)
-        );
+        .attr("d", drawLine);
 }
 function updatePhoneTable() {
     var c = table.selectAll("tr").data(activePhones, p=>p.id);
@@ -245,6 +242,7 @@ function addKey(s) {
         .text("!");
 }
 
+var f_values; // Assumed to be the same for all headphones
 function showPhone(p, exclusive) {
     if (!p.channels) {
         if (!p.files) p.files = fileNames(p.fileName);
@@ -252,6 +250,7 @@ function showPhone(p, exclusive) {
             if (p.channels) return;
             p.id = getPhoneNumber();
             p.channels = frs.map(tsvParse);
+            if (!f_values) { f_values = p.channels[0].map(d=>d[0]); }
             p.imbalance = hasImbalance(p.channels);
             showPhone(p, exclusive);
         });
@@ -409,3 +408,26 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         brandSel.style("display", b => bl.indexOf(b)!==-1?null:"none");
     });
 });
+
+function pathHL(c) {
+    gpath.selectAll("path").classed("highlight", c ? d=>d===c   : false);
+    table.selectAll("tr")  .classed("highlight", c ? p=>p===c.p : false);
+}
+gr.append("rect")
+    .attrs({x:pad.l,y:pad.t,width:W,height:H,opacity:0})
+    .on("mousemove", function () {
+        var cs = flatten(activePhones.map(p => p.activeCurves));
+        if (!cs.length) return;
+        var m = d3.mouse(this),
+            d = 30 * 800 / gr.node().getBoundingClientRect().width,
+            r = [-1,1].map(s => d3.bisectLeft(f_values, x.invert(m[0]+d*s)));
+        var ind = cs
+            .map(c =>
+                c.l.slice(Math.max(r[0],0), r[1]+1)
+                    .map(p => Math.hypot(x(p[0])-m[0], y(p[1])-m[1]))
+                    .reduce((a,b)=>Math.min(a,b), d)
+            )
+            .reduce((a,b,i) => b<a[1] ? [i,b] : a, [-1,d])[0];
+        pathHL(ind===-1 ? false : cs[ind]);
+    })
+    .on("mouseout", ()=>pathHL(false));

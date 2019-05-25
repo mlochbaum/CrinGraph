@@ -427,13 +427,17 @@ function pathHL(c, m) {
           : undefined;
 }
 function pathTooltip(c, m) {
-    var t = gr.selectAll(".tooltip").data([c.id])
-        .join("text").attr("class","tooltip")
-        .attrs({x:m[0], y:m[1]-3, fill:getTooltipColor(c)})
+    var g = gr.selectAll(".tooltip").data([c.id])
+        .join("g").attr("class","tooltip");
+    var t = g.append("text")
+        .attrs({x:m[0], y:m[1]-6, fill:getTooltipColor(c)})
         .text(t=>t);
     var b = t.node().getBBox(),
         o = pad.l+W - b.width;
-    if (o < b.x) { t.attr("x",o); }
+    if (o < b.x) { t.attr("x",o); b.x=o; }
+    // Background
+    g.insert("rect", "text")
+        .attrs({x:b.x-1, y:b.y-1, width:b.width+2, height:b.height+2});
 }
 gr.append("rect")
     .attrs({x:pad.l,y:pad.t,width:W,height:H,opacity:0})

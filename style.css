@@ -82,3 +82,4 @@ button.selected { background-color: #dd9; }
 .keyOnly:hover { fill:#124; }
 
 .tooltip { pointer-events:none; }
+.tooltip rect { fill:rgba(255,255,255,0.6); }

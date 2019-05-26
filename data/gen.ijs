@@ -38,7 +38,7 @@ getbrand =: 3 : 0
 
 scatter =: #@[ (?~@[{{.) ]
 MOD =: (,~{.) <;._1'|Reference|Performance|Light|Pro|Pro Edition|Universal|Enhanced Bass|Deluxe|Extreme'
-mod =: ,&.> scatter&(' ',&.>MOD)
+mod =: [`;@.(*@#@])&.> scatter&MOD
 BRANDS =: ((~.@[,.</.) mod)/|:(#~[:~:{:"1);<@(,.>)/"1 getbrand"0 i.8
 SUFFIXES =: 'Hi-fi';'(Not an acronym)';'Sound';'Ears'
 BRANDS =: 0 2 1 {"1 (,. scatter&SUFFIXES) BRANDS
@@ -46,14 +46,16 @@ BRANDS =: 0 2 1 {"1 (,. scatter&SUFFIXES) BRANDS
 fmt_brands =: 3 : 0
   surr =. {.@[ , ] , {:@[
   ind =. '  '&,"1
+  fmtF =. ('{"name":"',[,' ',],'","file":"',[,'"}'"_)&>/
+  y =. (}: , fmtF^:(0<L.)L:_2@{:)"1 y
   fmtList =. ('['(<0 0)}>) @: (}:,,&' ]'&.>@{:) @: (', '&,&.>)
   fmtBP =. ,&': '@>@[ (],"1~#@]{.[) ;@:(,&','&.>@}:,fmtList&.>@{:)@]
   fields =. ;:'name suffix phones'
-  b =. fmtBP/@|:&.>  '"'&surr L: 0  fields <@(,.#~a:~:])"1 y
+  b =. fmtBP/@|:&.>  '"'&(surr^:(-.@e.)) L: 0  fields <@(,.#~a:~:])"1 y
   ;<@(LF,~dtb)"1 (,.'[]') surr ind (,.'{}') surr }. ; ('}, {',ind)&.> b
 )
 
 'phone_book.json' (1!:2<)~ fmt_brands BRANDS
-((>@[writefr])"_1 [: gen 2(#"_1)0?@$~1 2,~#) ;{:"1 BRANDS
+((0&{::^:L.@>@[writefr])"_1 [: gen 2(#"_1)0?@$~1 2,~#) ;{:"1 BRANDS
 
 exit ''

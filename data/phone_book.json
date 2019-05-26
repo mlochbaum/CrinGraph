@@ -1,42 +1,73 @@
 [
   {
-    "name":   "DD",
-    "phones": [ "H0" ]
+    "name":   "QBK",
+    "phones": [ "FQQ"
+              , "Q53"
+              , "KT"
+              , "B27"
+              , "BKF"
+              , "H2"
+              , "HH"
+              , "E05"
+              , "QK9" ]
   }, {
-    "name":   "QZR",
-    "phones": [ "ETH31"
-              , "HTQ09"
-              , "RHH"
-              , "H12"
+    "name":   "ZKZ",
+    "suffix": "Sound",
+    "phones": [ "H4"
+              , "HHH"
+              , "KTK"
+              , {"name":"E10 Universal","file":"E10"}
+              , "EFZ9"
+              , {"name":"THT02 Extreme","file":"THT02"}
+              , "ZK"
+              , "E40" ]
+  }, {
+    "name":   "RBG",
+    "suffix": "(Not an acronym)",
+    "phones": [ "B9"
+              , "BE0" ]
+  }, {
+    "name":   "KQQ",
+    "phones": [ "QE"
+              , "K"
+              , "H"
+              , "QH19"
+              , {"name":"T4 Reference","file":"T4"} ]
+  }, {
+    "name":   "KRKG",
+    "suffix": "Ears",
+    "phones": [ "E5"
+              , "KK16"
+              , {"name":"RG Pro Edition","file":"RG"}
+              , "T0"
+              , "KH"
+              , "K5" ]
+  }, {
+    "name":   "CQ",
+    "phones": [ "TC4"
+              , "Q2"
+              , {"name":"CE Reference","file":"CE"}
+              , {"name":"E04 Enhanced Bass","file":"E04"}
               , "T"
-              , "R39"
-              , "ETT07"
-              , "HFQ43" ]
+              , {"name":"TE66 Deluxe","file":"TE66"}
+              , "QHC" ]
   }, {
-    "name":   "KQ",
-    "phones": [ "QK2"
-              , "HK0"
-              , "HH7"
-              , "HE03"
-              , "FH"
-              , "K28"
-              , "TFF00"
-              , "EE02"
-              , "H22" ]
+    "name":   "GG",
+    "suffix": "Hi-fi",
+    "phones": [ "T92"
+              , {"name":"H0 Pro","file":"H0"}
+              , "TG"
+              , "GGE"
+              , "HG7" ]
   }, {
-    "name":   "ZZGQ",
-    "phones": [ "H31"
-              , "EEH1" ]
-  }, {
-    "name":   "ZK",
-    "phones": [ "ZKE0"
-              , "ETH13"
-              , "KHH"
-              , "FKE33"
-              , "FKF50"
-              , "Z" ]
-  }, {
-    "name":   "MZBB",
-    "phones": [ "TZ1" ]
+    "name":   "GZR",
+    "phones": [ {"name":"GRR Light","file":"GRR"}
+              , "F0"
+              , "HR"
+              , "HRH"
+              , {"name":"HTH Performance","file":"HTH"}
+              , "Z"
+              , "HTH67"
+              , "HT5" ]
   }
 ]

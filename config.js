@@ -14,4 +14,4 @@ function watermark(svg) {
         .text("crinacle.com/graphs");
 }
 
-let max_channel_imbalance = 15;
+let max_channel_imbalance = 5;

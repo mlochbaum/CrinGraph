@@ -34,15 +34,20 @@ getbrand =: 3 : 0
   br ;< ,&.>/ (1 0+(2,1+?9)?@$3) randsel&.> ({.@":"0 i.10) ;~ 'HETF',,~br
 )
 
-BRANDS =: (~.@[,.</.)/|:(#~[:~:{:"1);<@(,.>)/"1 getbrand"0 i.6
+scatter =: #@[ (?~@[{{.) ]
+MOD =: (,~{.) <;._1'|Reference|Performance|Light|Pro|Pro Edition|Universal|Enhanced Bass|Deluxe|Extreme'
+mod =: ,&.> scatter&(' ',&.>MOD)
+BRANDS =: ((~.@[,.</.) mod)/|:(#~[:~:{:"1);<@(,.>)/"1 getbrand"0 i.8
+SUFFIXES =: 'Hi-fi';'(Not an acronym)';'Sound';'Ears'
+BRANDS =: 0 2 1 {"1 (,. scatter&SUFFIXES) BRANDS
 
 fmt_brands =: 3 : 0
   surr =. {.@[ , ] , {:@[
-  q =. '"'&surr
   ind =. '  '&,"1
   fmtList =. ('['(<0 0)}>) @: (}:,,&' ]'&.>@{:) @: (', '&,&.>)
-  fmtBP =. ;@:(,&','&.>@}:,fmtList&.>@{:)@]
-  b =. ('name';'phones') <@(,&': '@>@[ (],"1~#@]{.[) fmtBP)"1 &: (q L: 0) y
+  fmtBP =. ,&': '@>@[ (],"1~#@]{.[) ;@:(,&','&.>@}:,fmtList&.>@{:)@]
+  fields =. ;:'name suffix phones'
+  b =. fmtBP/@|:&.>  '"'&surr L: 0  fields <@(,.#~a:~:])"1 y
   ;<@(LF,~dtb)"1 (,.'[]') surr ind (,.'{}') surr }. ; ('}, {',ind)&.> b
 )
 

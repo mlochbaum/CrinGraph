@@ -1,6 +1,6 @@
 var pad = { l:14, r:14, t:10, b:36 };
-var W = 800 - pad.l - pad.r,
-    H = 360 - pad.t - pad.b;
+var W0 = 800, W = W0 - pad.l - pad.r,
+    H0 = 360, H = H0 - pad.t - pad.b;
 
 var gr = d3.select("#fr-graph"),
     defs = gr.append("defs");
@@ -79,8 +79,7 @@ function fmtX(xa) {
       .text("20Hz");
 }
 defs.append("clipPath").attr("id","x-clip")
-    .append("rect")
-    .attrs({x:0,y:0,width:pad.l+W+pad.r,height:pad.t+H+pad.b});
+    .append("rect").attrs({x:0, y:0, width:W0, height:H0});
 var xAxisObj = gr.append("g")
     .attr("clip-path", "url(#x-clip)")
     .attr("transform", "translate(0,"+pad.t+")")
@@ -114,7 +113,7 @@ var rsH = 14,
     rsp = 8;  // x-axis padding
 var rangeSel = gr.selectAll().data(["bass","mids","treble"])
     .join("g").attr("class","rangeButton")
-    .attr("transform", (_,i)=>"translate("+(pad.l+i*(W/3))+","+(pad.t+H+pad.b-rsH)+")")
+    .attr("transform", (_,i)=>"translate("+(pad.l+i*(W/3))+","+(H0-rsH)+")")
     .on("click", clickRangeButton);
 rangeSel.append("rect")
     .attrs({x:rsp, y:-2, width:W/3-2*rsp, height:rsH,

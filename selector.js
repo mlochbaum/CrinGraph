@@ -445,7 +445,7 @@ gr.append("rect")
         var cs = flatten(activePhones.map(p => p.activeCurves));
         if (!cs.length) return;
         var m = d3.mouse(this),
-            d = 30 * 800 / gr.node().getBoundingClientRect().width,
+            d = 30 * W0 / gr.node().getBoundingClientRect().width,
             r = [-1,1].map(s => d3.bisectLeft(f_values, x.invert(m[0]+d*s)));
         var ind = cs
             .map(c =>

@@ -2,14 +2,16 @@ body>div { height:100vh; display:flex; flex-direction:column; }
 #fr-graph { flex:none; max-height:calc(100vh - 12em); margin:0.25em auto 1em; }
 svg text { cursor:default; user-select:none; }
 .controls { flex:auto; display:flex; flex-flow:row-reverse wrap; }
-.controls>div { flex:1; margin:0 0.8em; font-size:large; }
+.controls>div { margin:0 0.8em; font-size:large; }
+.manage,.select { flex:1; }
 .select { display:flex; flex-direction:column; border-bottom:2px solid #223; }
 .select>div { flex:auto; display:flex; position:relative; }
+.tools { position:absolute; bottom:0; right:0; width:10em; padding:3px; }
 @media only screen and (max-width:70em) {
     @media (max-aspect-ratio:5/3) {
         .controls { flex-flow:column; }
-        .controls>div { flex:1; }
-        .controls>div.manage { flex:0; }
+        .manage { flex:0; }
+        .tools { display:none; }
     }
     @media not (max-aspect-ratio:5/3) , (max-width:40em) {
         #fr-graph { margin:0 auto; }
@@ -20,8 +22,9 @@ svg text { cursor:default; user-select:none; }
     body>div { flex-direction:row; }
     #fr-graph { max-height:100vh; height:100vh; max-width:calc(100vw - 30em); margin:0; }
     .controls { flex-flow:column; }
-    .controls>div { flex:1; margin:0; }
-    .controls>div.manage { flex:0; }
+    .manage { flex:0; }
+    .controls>div { margin:0; }
+    .tools { position:static; width:auto; }
 }
 
 path.highlight { stroke-width:4px; }
@@ -107,3 +110,5 @@ button.selected { background-color: #dd9; }
 
 .tooltip { pointer-events:none; }
 .tooltip rect { fill:rgba(255,255,255,0.6); }
+
+.tools { background:#ced; border:1px solid #234; }

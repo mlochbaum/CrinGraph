@@ -255,7 +255,6 @@ function showPhone(p, exclusive) {
         if (!p.files) p.files = fileNames(p.fileName);
         Promise.all(p.files.map(f=>d3.text(DIR+f))).then(function (frs) {
             if (p.channels) return;
-            p.id = getPhoneNumber();
             p.channels = frs.map(tsvParse);
             if (!f_values) { f_values = p.channels[0].map(d=>d[0]); }
             p.imbalance = hasImbalance(p.channels);
@@ -263,6 +262,7 @@ function showPhone(p, exclusive) {
         });
         return;
     }
+    if (!p.id) { p.id = getPhoneNumber(); }
     var l = p.files.length;
     if (exclusive) {
         activePhones = activePhones.filter(q=>q.active=q.pin);
@@ -413,6 +413,20 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         }
         phoneSel.style("display", p => fn(p)?null:"none");
         brandSel.style("display", b => bl.indexOf(b)!==-1?null:"none");
+    });
+
+    d3.select("#recolor").on("click", function () {
+        allPhones.forEach(p => delete p.id);
+        phoneNumber = 0;
+        activePhones.forEach(p => p.id = getPhoneNumber());
+        updatePaths();
+        var c = p=>p.active?getDivColor(p.id,true):null;
+        d3.select("#phones").selectAll("div")
+            .style("background",c).style("border-color",c);
+        var t = table.selectAll("tr").style("color", c)
+            .select("td:nth-child(3)"); // Key line
+        t.select("svg").remove();
+        t.append("svg").call(addKey);
     });
 });
 

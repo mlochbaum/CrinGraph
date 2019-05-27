@@ -10,6 +10,13 @@ svg text { cursor:default; user-select:none; }
     .controls>div { flex:1; }
     .controls>div.manage { flex:0; }
 }
+@media only screen and (min-aspect-ratio:9/4) {
+    body>div { flex-direction:row; }
+    #fr-graph { max-height:100vh; height:100vh; max-width:calc(100vw - 30em); margin:0; }
+    .controls { flex-flow:column; }
+    .controls>div { flex:1; margin:0; }
+    .controls>div.manage { flex:0; }
+}
 
 path.highlight { stroke-width:4px; }
 tr.highlight { box-shadow:inset 0 0 1.5em 0.2em; }

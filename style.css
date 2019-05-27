@@ -11,8 +11,8 @@ svg text { cursor:default; user-select:none; }
         .controls>div { flex:1; }
         .controls>div.manage { flex:0; }
     }
-    @media not (max-aspect-ratio:5/3), screen and (max-width:40em) {
-        #fr-graph { margin:0; }
+    @media not (max-aspect-ratio:5/3) , (max-width:40em) {
+        #fr-graph { margin:0 auto; }
         .controls>div { margin:0; }
     }
 }

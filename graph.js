@@ -78,7 +78,11 @@ function fmtX(xa) {
       .attr("dx",4)
       .text("20Hz");
 }
+defs.append("clipPath").attr("id","x-clip")
+    .append("rect")
+    .attrs({x:0,y:0,width:pad.l+W+pad.r,height:pad.t+H+pad.b});
 var xAxisObj = gr.append("g")
+    .attr("clip-path", "url(#x-clip)")
     .attr("transform", "translate(0,"+pad.t+")")
     .call(fmtX);
 

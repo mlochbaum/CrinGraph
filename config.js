@@ -1,6 +1,7 @@
 let DIR = "data/";
 // Get data (as a list of [x,y] pairs) from an FR file
-let tsvParse = fr => d3.tsvParseRows(fr).slice(2,482);
+let tsvParse = fr => d3.tsvParseRows(fr).slice(2,482)
+                       .map(r=>r.map(d=>+d));
 
 // Add a watermark to the graph.
 function watermark(svg) {

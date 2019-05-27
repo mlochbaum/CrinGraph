@@ -2,13 +2,19 @@ body>div { height:100vh; display:flex; flex-direction:column; }
 #fr-graph { flex:none; max-height:calc(100vh - 12em); margin:0.25em auto 1em; }
 svg text { cursor:default; user-select:none; }
 .controls { flex:auto; display:flex; flex-flow:row-reverse wrap; }
-.controls>div { flex:1 30em; margin:0 0.8em; font-size:large; }
+.controls>div { flex:1; margin:0 0.8em; font-size:large; }
 .select { display:flex; flex-direction:column; border-bottom:2px solid #223; }
 .select>div { flex:auto; display:flex; position:relative; }
 @media only screen and (max-width:70em) {
-    .controls { flex-flow:column; }
-    .controls>div { flex:1; }
-    .controls>div.manage { flex:0; }
+    @media (max-aspect-ratio:5/3) {
+        .controls { flex-flow:column; }
+        .controls>div { flex:1; }
+        .controls>div.manage { flex:0; }
+    }
+    @media not (max-aspect-ratio:5/3), screen and (max-width:40em) {
+        #fr-graph { margin:0; }
+        .controls>div { margin:0; }
+    }
 }
 @media only screen and (min-aspect-ratio:9/4) {
     body>div { flex-direction:row; }

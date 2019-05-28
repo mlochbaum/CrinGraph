@@ -54,6 +54,7 @@ span.remove { float:right; font-size:95%; width:1em; }
 td.remove       { width:1.4em; font-size:120%; }
 /*.phoneId*/
 .key            { width:16%; }
+.calibrate      { width:2.3em; }
 .baselineButton { width:14%; }
 .hideButton     { width: 8%; }
 .pinButton      { width: 6%; }
@@ -107,6 +108,10 @@ button.selected { background-color: #dd9; }
 
 .keyOnly { fill:#555; }
 .keyOnly:hover { fill:#124; }
+
+input[type=number] {
+    width:2.3em; border:2px groove #ddd; height:1.25em;
+}
 
 .tooltip { pointer-events:none; }
 .tooltip rect { fill:rgba(255,255,255,0.6); }

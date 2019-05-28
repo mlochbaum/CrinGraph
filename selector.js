@@ -119,7 +119,8 @@ function setCurves(p, avg, lr) {
 }
 
 var drawLine = d => line(baseline.fn(d.l));
-function updateBaseline() {
+function setBaseline(b) {
+    baseline = b;
     var c = yCenter;
     yCenter = baseline.p ? 0 : 60;
     y.domain(y.domain().map(d=>d+(yCenter-c)));
@@ -130,7 +131,18 @@ function updateBaseline() {
     table.selectAll("tr").select("button")
         .classed("selected", p=>p===baseline.p);
 }
-function setBaseline(b) { baseline=b; updateBaseline(); }
+function getBaseline(p) {
+    var l = p.avg ? p.activeCurves[0].l
+                  : avgCurves(p.channels),
+        b = l.map(d => d[1]+(p.offset||0));
+    return { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
+}
+
+function setOffset(p, o) {
+    p.offset = +o;
+    if (baseline.p === p) { baseline = getBaseline(p); }
+    updatePaths();
+}
 
 function setHover(elt, h) {
     elt.on("mouseover", h(true)).on("mouseout", h(false));
@@ -139,7 +151,9 @@ function setHover(elt, h) {
 function updatePaths() {
     var c = flatten(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
+    var getTr = o => o ? "translate(0,"+(y(o)-y(0))+")" : null;
     p.join("path")
+        .attr("transform", c => getTr(c.p.offset))
         .attr("stroke", getColor_AC)
         .attr("d", drawLine);
 }
@@ -155,18 +169,11 @@ function updatePhoneTable() {
     td().text(p=>p.brand.name+" ")
         .append("span").attr("class","phonename").text(p=>p.phone);
     td().append("svg").call(addKey);
+    td().append("input").attrs({type:"number",step:1,value:0})
+        .on("change",function(p){ setOffset(p, +this.value); });
     td().append("button").text("baseline")
-        .on("click",function(p){
-            if (baseline.p === p) {
-                baseline = baseline0;
-            } else {
-                var l = p.avg ? p.activeCurves[0].l
-                              : avgCurves(p.channels),
-                    b = l.map(d => d[1]);
-                baseline = { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
-            }
-            updateBaseline();
-        });
+        .on("click", p => setBaseline(p===baseline.p ? baseline0
+                                                     : getBaseline(p)));
     td().append("button").text("hide")
         .on("click",function(p){
             var h = p.hide;
@@ -284,7 +291,7 @@ function showPhone(p, exclusive) {
 }
 
 function removePhone(p) {
-    p.active = p.pin = false; nextPN = null;
+    p.active = p.pin = false; nextPN = null; p.offset = 0;
     activePhones = activePhones.filter(q => q.active);
     if (activePhones.length === 1) {
         setCurves(activePhones[0], false);

@@ -6,7 +6,7 @@ svg text { cursor:default; user-select:none; }
 .manage,.select { flex:1; }
 .select { display:flex; flex-direction:column; border-bottom:2px solid #223; }
 .select>div { flex:auto; display:flex; position:relative; }
-.tools { position:absolute; bottom:0; right:0; width:10em; padding:3px; }
+.tools { position:absolute; bottom:0; right:0; padding:3px 0.6em; }
 @media only screen and (max-width:70em) {
     @media (max-aspect-ratio:5/3) {
         .controls { flex-flow:column; }
@@ -117,3 +117,9 @@ input[type=number] {
 .tooltip rect { fill:rgba(255,255,255,0.6); }
 
 .tools { background:#ced; border:1px solid #234; }
+.tools button { width:auto; }
+.tools * { display:inline-block; }
+.tools span { font-size: smaller; }
+.normalize { background:#bbd; padding:0px 3px; }
+#norm-fr { width:2.7em; }
+#norm-fr:invalid { background:#fbb; }

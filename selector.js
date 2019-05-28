@@ -435,6 +435,24 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         t.select("svg").remove();
         t.append("svg").call(addKey);
     });
+    function normalize() {
+        var fr = +document.getElementById("norm-fr").value;
+        if (!(fr>=20 && fr<=20000)) return;
+        var i = d3.bisect(f_values, fr, 0, f_values.length-1);
+        var avg = l => {
+            var v = l.map(d=>Math.pow(10,d/20));
+            return 20*Math.log10((v[0]+v[1])/2);
+        };
+        activePhones.forEach(p => p.offset = 60 - avg(p.channels.map(l=>l[i][1])))
+        if (baseline.p) { baseline = getBaseline(baseline.p); }
+        updatePaths();
+        table.selectAll("tr").select("input[type=number]")
+            .attr("value", p=>p.offset);
+    }
+    d3.select("#normalize").on("click", normalize);
+    d3.select("#norm-fr").on("keypress", function () {
+        if (d3.event.key === "Enter") { normalize(); }
+    });
 });
 
 var pathHoverTimeout;

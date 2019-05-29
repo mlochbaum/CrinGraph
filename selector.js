@@ -266,6 +266,8 @@ function showPhone(p, exclusive) {
             if (!f_values) { f_values = p.channels[0].map(d=>d[0]); }
             p.imbalance = hasImbalance(p.channels);
             showPhone(p, exclusive);
+        }, function (err) {
+            alert("Missing a channel: unsupported for now!");
         });
         return;
     }

@@ -171,7 +171,7 @@ function updatePhoneTable() {
     td().append("svg").call(addKey);
     td().append("input").attrs({type:"number",step:1,value:0})
         .property("value", p=>p.offset||0)
-        .on("change",function(p){ setOffset(p, +this.value); });
+        .on("change input",function(p){ setOffset(p, +this.value); });
     td().append("button").text("baseline")
         .on("click", p => setBaseline(p===baseline.p ? baseline0
                                                      : getBaseline(p)));

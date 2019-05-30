@@ -169,7 +169,8 @@ function updatePhoneTable() {
     td().text(p=>p.brand.name+" ")
         .append("span").attr("class","phonename").text(p=>p.phone);
     td().append("svg").call(addKey);
-    td().append("input").attrs({type:"number",step:1,value:0})
+    td().append("input")
+        .attrs({type:"number",step:1,value:0,form:"novalidate"})
         .property("value", p=>p.offset||0)
         .on("change input",function(p){ setOffset(p, +this.value); });
     td().append("button").text("baseline")

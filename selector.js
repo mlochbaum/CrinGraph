@@ -283,7 +283,7 @@ function showPhone(p, exclusive) {
         });
         return;
     }
-    if (!p.id) { p.id = getPhoneNumber(); }
+    if (p.id === undefined) { p.id = getPhoneNumber(); }
     if (norm_fr === undefined) {
         p.offset = 0;
     } else {

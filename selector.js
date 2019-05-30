@@ -134,7 +134,7 @@ function setBaseline(b) {
 function getBaseline(p) {
     var l = p.avg ? p.activeCurves[0].l
                   : avgCurves(p.channels),
-        b = l.map(d => d[1]+(p.offset||0));
+        b = l.map(d => d[1]+p.offset);
     return { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
 }
 
@@ -171,7 +171,7 @@ function updatePhoneTable() {
     td().append("svg").call(addKey);
     td().append("input")
         .attrs({type:"number",step:1,value:0,form:"novalidate"})
-        .property("value", p=>p.offset||0)
+        .property("value", p=>p.offset)
         .on("change input",function(p){ setOffset(p, +this.value); });
     td().append("button").text("baseline")
         .on("click", p => setBaseline(p===baseline.p ? baseline0
@@ -284,7 +284,11 @@ function showPhone(p, exclusive) {
         return;
     }
     if (!p.id) { p.id = getPhoneNumber(); }
-    if (norm_fr !== undefined) { normalizePhone(p, fr_to_ind(norm_fr)); }
+    if (norm_fr === undefined) {
+        p.offset = 0;
+    } else {
+        normalizePhone(p, fr_to_ind(norm_fr));
+    }
     var l = p.files.length;
     if (exclusive) {
         activePhones = activePhones.filter(q=>q.active=q.pin);

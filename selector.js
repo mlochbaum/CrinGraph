@@ -515,8 +515,8 @@ gr.append("rect")
             r = [-1,1].map(s => d3.bisectLeft(f_values, x.invert(m[0]+d*s)));
         var ind = cs
             .map(c =>
-                c.l.slice(Math.max(r[0],0), r[1]+1)
-                    .map(p => Math.hypot(x(p[0])-m[0], y(p[1])-m[1]))
+                baseline.fn(c.l).slice(Math.max(r[0],0), r[1]+1)
+                    .map(p => Math.hypot(x(p[0])-m[0], y(p[1]+c.p.offset)-m[1]))
                     .reduce((a,b)=>Math.min(a,b), d)
             )
             .reduce((a,b,i) => b<a[1] ? [i,b] : a, [-1,d])[0];

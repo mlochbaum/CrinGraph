@@ -169,7 +169,7 @@ function updatePhoneTable() {
     td().text(p=>p.brand.name+" ")
         .append("span").attr("class","phonename").text(p=>p.phone);
     td().append("svg").call(addKey);
-    td().append("input").attrs({type:"number",step:1,value:0})
+    td().append("input").attrs({type:"number",step:1,value:p=>p.offset||0})
         .on("change",function(p){ setOffset(p, +this.value); });
     td().append("button").text("baseline")
         .on("click", p => setBaseline(p===baseline.p ? baseline0
@@ -257,6 +257,16 @@ function addKey(s) {
 }
 
 var f_values; // Assumed to be the same for all headphones
+var fr_to_ind = fr => d3.bisect(f_values, fr, 0, f_values.length-1);
+var norm_fr = undefined;
+function normalizePhone(p, i) {
+    var avg = l => {
+        var v = l.map(d=>Math.pow(10,d/20));
+        return 20*Math.log10((v[0]+v[1])/2);
+    };
+    p.offset = 60 - avg(p.channels.map(l=>l[i][1]));
+}
+
 function showPhone(p, exclusive) {
     if (!p.channels) {
         if (!p.files) p.files = fileNames(p.fileName);
@@ -272,6 +282,7 @@ function showPhone(p, exclusive) {
         return;
     }
     if (!p.id) { p.id = getPhoneNumber(); }
+    if (norm_fr !== undefined) { normalizePhone(p, fr_to_ind(norm_fr)); }
     var l = p.files.length;
     if (exclusive) {
         activePhones = activePhones.filter(q=>q.active=q.pin);
@@ -437,23 +448,23 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         t.select("svg").remove();
         t.append("svg").call(addKey);
     });
-    function normalize() {
+    function normalize(toggle) {
         var fr = +document.getElementById("norm-fr").value;
         if (!(fr>=20 && fr<=20000)) return;
-        var i = d3.bisect(f_values, fr, 0, f_values.length-1);
-        var avg = l => {
-            var v = l.map(d=>Math.pow(10,d/20));
-            return 20*Math.log10((v[0]+v[1])/2);
-        };
-        activePhones.forEach(p => p.offset = 60 - avg(p.channels.map(l=>l[i][1])))
+        var off = toggle && fr===norm_fr;
+        d3.select("#normalize").classed("selected", !off);
+        if (off) { norm_fr = undefined; return; }
+        norm_fr = fr;
+        var i = fr_to_ind(fr);
+        activePhones.forEach(p => normalizePhone(p, i));
         if (baseline.p) { baseline = getBaseline(baseline.p); }
         updatePaths();
         table.selectAll("tr").select("input[type=number]")
             .attr("value", p=>p.offset);
     }
-    d3.select("#normalize").on("click", normalize);
+    d3.select("#normalize").on("click", ()=>normalize(true));
     d3.select("#norm-fr").on("keypress", function () {
-        if (d3.event.key === "Enter") { normalize(); }
+        if (d3.event.key === "Enter") { normalize(false); }
     });
 });
 

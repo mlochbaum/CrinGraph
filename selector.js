@@ -166,8 +166,7 @@ function updatePhoneTable() {
         .style("color", p => getDivColor(p.id,true));
     td().attr("class","remove").text("⊗")
         .on("click", removePhone);
-    td().text(p=>p.brand.name+" ")
-        .append("span").attr("class","phonename").text(p=>p.phone);
+    td().html(p=>p.brand.name+"&nbsp;").call(addModel);
     td().append("svg").call(addKey);
     td().append("input")
         .attrs({type:"number",step:1,value:0,form:"novalidate"})
@@ -256,6 +255,51 @@ function addKey(s) {
                 "font-size":10.5,"font-weight":"bold"})
         .style("pointer-events","none")
         .text("!");
+}
+
+function addModel(t) {
+    t.each(function (p) { if (!p.vars) { p.vars = {}; } });
+    var n = t.append("div").attr("class","phonename").text(p=>p.phone);
+    t.filter(p=>p.fileNames)
+        .append("div").attr("class","variants").text("⌄")
+        .attr("tabindex",0) // Make focusable
+        .on("focus", function (p) {
+            if (!p.vars[p.fileName]) { p.vars[p.fileName] = p.channels; }
+            d3.select(this).text("⌃");
+            var n = d3.select(this.parentElement).select(".phonename");
+            n.text("");
+            var d = n.selectAll().data(p=>p.fileNames).join("div").text(f=>f),
+                w = d.nodes().map(d=>d.getBoundingClientRect().width)
+                     .reduce((a,b)=>Math.max(a,b));
+            d.attr("width",w).transition().style("top",(_,i)=>i*1.3+"em");
+            d.on("mousedown", f => p.fileName = f);
+        })
+        .on("blur", function (p) {
+            d3.select(this).text("⌄");
+            var n = d3.select(this.parentElement).select(".phonename");
+            n.selectAll("div").transition().style("top",0+"em").remove()
+                .end().then(()=>n.text(p=>p.fileName));
+            changeVariant(p);
+        });
+}
+
+function changeVariant(p) {
+    var fn = p.fileName,
+        ch = p.vars[fn];
+    function set(ch) {
+        p.channels = ch;
+    //  p.imbalance = hasImbalance(p.channels); TODO
+        setCurves(p, p.avg);
+        updatePaths();
+    }
+    if (ch) {
+        set(ch);
+    } else {
+        Promise.all(fileNames(fn).map(f=>d3.text(DIR+f))).then(
+            frs => set(frs.map(tsvParse)),
+            err => alert("Missing a channel: unsupported for now!")
+        );
+    }
 }
 
 var f_values; // Assumed to be the same for all headphones

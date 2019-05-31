@@ -60,7 +60,11 @@ td.remove       { width:1.4em; font-size:120%; }
 .pinButton      { width: 6%; }
 
 /* For headphone as opposed to brand in current headphone table */
-.phonename { font-weight:bold; }
+.phonename { font-weight:bold; display:inline; position:relative; }
+.phonename div {
+    position:absolute; left:0; top:0; white-space:nowrap;
+    cursor:pointer;
+}
 
 .keyLine { max-height:3em; display:block; vertical-align:center; }
 .keyLine path {
@@ -112,6 +116,13 @@ button.selected { background-color: #dd9; }
 input[type=number] {
     width:2.3em; border:2px groove #ddd; height:1.25em;
 }
+
+.variants {
+    float:right; margin-right:0.3em;
+    cursor:pointer;
+    font-size:160%; line-height:0.4em; color:#333;
+}
+.variants:hover { color:#124; }
 
 .tooltip { pointer-events:none; }
 .tooltip rect { fill:rgba(255,255,255,0.6); }

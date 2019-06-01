@@ -1,6 +1,13 @@
 const LR = ["L","R"];
 var fileNames = name => LR.map(s=>name+" "+s+".txt");
 
+function loadFiles(p, callback) {
+    Promise.all(fileNames(p.fileName).map(f=>d3.text(DIR+f))).then(
+        frs => callback(frs.map(tsvParse)),
+        err => alert("Missing a channel: unsupported for now!")
+    );
+}
+
 function flatten(l) { return [].concat.apply([],l); }
 function avgCurves(curves) {
     return curves
@@ -295,10 +302,7 @@ function changeVariant(p) {
     if (ch) {
         set(ch);
     } else {
-        Promise.all(fileNames(fn).map(f=>d3.text(DIR+f))).then(
-            frs => set(frs.map(tsvParse)),
-            err => alert("Missing a channel: unsupported for now!")
-        );
+        loadFiles(p, set);
     }
 }
 
@@ -315,15 +319,12 @@ function normalizePhone(p, i) {
 
 function showPhone(p, exclusive) {
     if (!p.channels) {
-        if (!p.files) p.files = fileNames(p.fileName);
-        Promise.all(p.files.map(f=>d3.text(DIR+f))).then(function (frs) {
+        loadFiles(p, function (ch) {
             if (p.channels) return;
-            p.channels = frs.map(tsvParse);
-            if (!f_values) { f_values = p.channels[0].map(d=>d[0]); }
-            p.imbalance = hasImbalance(p.channels);
+            p.channels = ch;
+            if (!f_values) { f_values = ch[0].map(d=>d[0]); }
+            p.imbalance = hasImbalance(ch);
             showPhone(p, exclusive);
-        }, function (err) {
-            alert("Missing a channel: unsupported for now!");
         });
         return;
     }
@@ -333,7 +334,7 @@ function showPhone(p, exclusive) {
     } else {
         normalizePhone(p, fr_to_ind(norm_fr));
     }
-    var l = p.files.length;
+    var l = p.channels.length;
     if (exclusive) {
         activePhones = activePhones.filter(q=>q.active=q.pin);
         if (baseline.p && !baseline.p.pin) baseline = baseline0;

@@ -1,12 +1,17 @@
 const LR = ["L","R"];
-var fileNames = name => LR.map(s=>name+" "+s+".txt");
 
 function loadFiles(p, callback) {
-    Promise.all(fileNames(p.fileName).map(f=>d3.text(DIR+f))).then(
-        frs => callback(frs.map(tsvParse)),
-        err => alert("Missing a channel: unsupported for now!")
-    );
+    var r = s => d3.text(DIR+p.fileName+" "+s+".txt").catch(()=>null);
+    Promise.all(LR.map(r)).then(function (frs) {
+        if (!frs.some(f=>f!==null)) {
+            alert("Headphone not found!");
+        } else {
+            callback(frs.map(f => f && tsvParse(f)));
+        }
+    });
 }
+var validChannels = p => p.channels.filter(c=>c!==null);
+var has1Channel = p => p.channels.some(c=>c===null);
 
 function flatten(l) { return [].concat.apply([],l); }
 function avgCurves(curves) {
@@ -15,8 +20,9 @@ function avgCurves(curves) {
         .reduce((as,bs) => as.map((a,i) => a+bs[i]))
         .map((x,i) => [curves[0][i][0], 20*Math.log10(x/curves.length)]);
 }
-function hasImbalance(curves) {
-    var as = curves[0], bs = curves[1];
+function hasImbalance(p) {
+    if (has1Channel(p)) return false;
+    var as = p.channels[0], bs = p.channels[1];
     return as.some((a,i) =>
         a[0] <= 15e3 &&
         Math.abs(a[1]-bs[i][1]) > max_channel_imbalance
@@ -102,9 +108,10 @@ function setCurves(p, avg, lr) {
     var dx = +avg - +p.avg;
     p.avg = avg;
     var id = n => p.fullName + " ("+n+")";
-    p.activeCurves = avg
+    p.activeCurves = avg && !has1Channel(p)
         ? [{id:id("AVG"), l:avgCurves(p.channels), p:p, o:0}]
-        : p.channels.map((l,i) => ({id:id(LR[i]), l:l, p:p, o:-1+2*i}));
+        : p.channels.map((l,i) => ({id:id(LR[i]), l:l, p:p, o:-1+2*i}))
+                    .filter(c => c.l);
     var y = 0;
     if (lr!==undefined) {
         p.activeCurves = [p.activeCurves[lr]];
@@ -139,8 +146,8 @@ function setBaseline(b) {
         .classed("selected", p=>p===baseline.p);
 }
 function getBaseline(p) {
-    var l = p.avg ? p.activeCurves[0].l
-                  : avgCurves(p.channels),
+    var l = p.avg || has1Channel(p) ? p.activeCurves[0].l
+                                    : avgCurves(p.channels),
         b = l.map(d => d[1]+p.offset);
     return { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
 }
@@ -224,10 +231,9 @@ function addKey(s) {
     var m = defs.append("mask").attr("id",p=>"chmask"+p.id);
     m.append("rect").attrs({x:-19, y:-12, width:65, height:24, fill:"#333"});
     m.append("rect").attrs({"class":"keyMask", x:p=>channelbox_x(p.avg), y:-12, width:120, height:24, fill:"url(#blgrad)"});
-    var t = s.append("g").attr("mask",p=>"url(#chmask"+p.id+")")
+    var t = s.append("g");
     t.append("path")
-        .attr("stroke", p=>"url(#chgrad"+p.id+")")
-        .attr("d","M15 6H9C0 6,0 0,-9 0H-17H-9C0 0,0 -6,9 -6H15");
+        .attr("stroke", p=>"url(#chgrad"+p.id+")");
     t.selectAll().data(LR)
         .join("text")
         .attrs({x:17, y:(_,i)=>[-6,6][i], dy:"0.32em", "text-anchor":"start", "font-size":10.5})
@@ -256,12 +262,25 @@ function addKey(s) {
     o.append("text").attrs({x:0, y:0, dy:"0.28em", "text-anchor":"start",
                             "font-size":7.5 })
         .text("only");
-    s.filter(p=>p.imbalance)
-        .append("text")
-        .attrs({x:8,y:0,dy:"0.35em",fill:"#e11",
-                "font-size":10.5,"font-weight":"bold"})
-        .style("pointer-events","none")
+    s.append("text").attr("class","imbalance")
+        .attrs({x:8,y:0,dy:"0.35em","font-size":10.5})
         .text("!");
+    updateKey(s);
+}
+
+function updateKey(s) {
+    var disp = fn => e => e.attr("display",p=>fn(p)?null:"none"),
+        dc = disp(p=>!has1Channel(p));
+    s.select(".imbalance").call(disp(hasImbalance));
+    s.selectAll(".keyOnly").call(disp(pi=>!has1Channel(pi[0])));
+    s.select(".keySel").call(dc);
+    s.selectAll("text").data(p=>p.channels).call(disp(c=>c));
+    s.select("g").attr("mask",p=>has1Channel(p)?null:"url(#chmask"+p.id+")");
+    s.select("path").attr("d", p=>
+        ["M15 -6H9C0 -6,0 0,-9 0H-17","M-17 0H-9C0 0,0 6,9 6H15"]
+            .filter((_,i) => p.channels[i])
+            .reduce((a,b) => a+b.slice(6))
+    );
 }
 
 function addModel(t) {
@@ -295,8 +314,8 @@ function changeVariant(p) {
         ch = p.vars[fn];
     function set(ch) {
         p.channels = ch;
-    //  p.imbalance = hasImbalance(p.channels); TODO
         setCurves(p, p.avg);
+        updateKey(table.selectAll("tr").filter(q=>q===p));
         updatePaths();
     }
     if (ch) {
@@ -310,11 +329,9 @@ var f_values; // Assumed to be the same for all headphones
 var fr_to_ind = fr => d3.bisect(f_values, fr, 0, f_values.length-1);
 var norm_fr = undefined;
 function normalizePhone(p, i) {
-    var avg = l => {
-        var v = l.map(d=>Math.pow(10,d/20));
-        return 20*Math.log10((v[0]+v[1])/2);
-    };
-    p.offset = 60 - avg(p.channels.map(l=>l[i][1]));
+    var avg = l => 20*Math.log10(l.map(d=>Math.pow(10,d/20))
+                                  .reduce((a,b)=>a+b) / l.length);
+    p.offset = 60 - avg(validChannels(p).map(l=>l[i][1]));
 }
 
 function showPhone(p, exclusive) {
@@ -323,7 +340,6 @@ function showPhone(p, exclusive) {
             if (p.channels) return;
             p.channels = ch;
             if (!f_values) { f_values = ch[0].map(d=>d[0]); }
-            p.imbalance = hasImbalance(ch);
             showPhone(p, exclusive);
         });
         return;
@@ -334,7 +350,6 @@ function showPhone(p, exclusive) {
     } else {
         normalizePhone(p, fr_to_ind(norm_fr));
     }
-    var l = p.channels.length;
     if (exclusive) {
         activePhones = activePhones.filter(q=>q.active=q.pin);
         if (baseline.p && !baseline.p.pin) baseline = baseline0;

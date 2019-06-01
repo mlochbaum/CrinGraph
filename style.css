@@ -112,6 +112,7 @@ button.selected { background-color: #dd9; }
 
 .keyOnly { fill:#555; }
 .keyOnly:hover { fill:#124; }
+.imbalance { fill:#e11; font-weight:bold; pointer-events:none; }
 
 input[type=number] {
     width:2.3em; border:2px groove #ddd; height:1.25em;

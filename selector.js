@@ -95,11 +95,22 @@ function getPhoneNumber() {
 }
 
 function setPhoneTr(phtr) {
-    phtr.style("background",p=>getDivColor(p.id,p.active))
-        .style("border-color",p=>p.active?getDivColor(p.id,1):null);
-    phtr.selectAll(".remove").data(p=>p.active?[p]:[])
+    phtr.each(function (p) {
+        p.highlight = p.active;
+        var o = p.objs; if (!o) return;
+        p.objs = o = o.filter(q=>q.active);
+        if (o.length === 0) {
+            delete p.objs;
+        } else if (!p.active) {
+            p.id = o[0].id;
+            p.highlight = true;
+        }
+    });
+    phtr.style("background",p=>getDivColor(p.id,p.highlight))
+        .style("border-color",p=>p.highlight?getDivColor(p.id,1):null);
+    phtr.selectAll(".remove").data(p=>p.highlight?[p]:[])
         .join("span").attr("class","remove").text("⊗")
-        .on("click", p => { d3.event.stopPropagation(); removePhone(p); });
+        .on("click", p => { d3.event.stopPropagation(); removeCopies(p); });
 }
 
 var channelbox_x = c => c?-86:-36,
@@ -303,7 +314,8 @@ function addModel(t) {
                 w = d.nodes().map(d=>d.getBoundingClientRect().width)
                      .reduce((a,b)=>Math.max(a,b));
             d.style("width",w+"px");
-            var active_fns = (p.objs || [p]).map(v=>v.fileName);
+            var q = p.copyOf || p;
+            var active_fns = (q.objs || [p]).map(v=>v.fileName);
             var c = n.selectAll().data(p=>p.fileNames).join("div")
                 .html("&nbsp;⇲&nbsp;").attr("class","variantPopout")
                 .style("left",(w+5)+"px")
@@ -311,11 +323,10 @@ function addModel(t) {
             [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1.3+"em"));
             d.on("mousedown", f => p.fileName = f);
             c.on("mousedown", function (f) {
-                if (!p.objs) { p.objs = [p]; }
-                var v = Object.assign({}, p);
-                delete v.id; v.phone=v.fileName=f; v.isCopy=true;
-                v.selectInProgress = false;
-                p.objs.push(v);
+                if (!q.objs) { q.objs = [q]; }
+                var v = {active:true, copyOf:q, fileName:f, phone:f};
+                ["brand","fileNames","fullName","vars"].map(k=>v[k]=q[k]);
+                q.objs.push(v);
                 changeVariant(v, showPhone);
             });
         })
@@ -376,10 +387,10 @@ function showPhone(p, exclusive) {
         normalizePhone(p, fr_to_ind(norm_fr));
     }
     if (exclusive) {
-        activePhones = activePhones.filter(q=>q.active=q.pin);
-        if (baseline.p && !baseline.p.pin) baseline = baseline0;
+        activePhones = activePhones.filter(q=>q.active=q.copyOf===p||q.pin);
+        if (baseline.p && !baseline.p.active) baseline = baseline0;
     }
-    if (activePhones.indexOf(p) === -1) {
+    if (activePhones.indexOf(p)===-1 && !p.objs) {
         if (activePhones.length===1 && activePhones[0].activeCurves.length!==1) {
             setCurves(activePhones[0], true);
         }
@@ -394,18 +405,24 @@ function showPhone(p, exclusive) {
         .call(setPhoneTr);
 }
 
+function removeCopies(p) {
+    if (p.objs) {
+        p.objs.forEach(q=>q.active=false);
+        delete p.objs;
+    }
+    removePhone(p);
+}
 function removePhone(p) {
-    if (p.objs) { p.objs = p.objs.filter(q => q !== p); }
-    p.active = p.pin = false; nextPN = null; p.offset = 0;
+    p.active = p.pin = false; nextPN = null;
     activePhones = activePhones.filter(q => q.active);
     if (activePhones.length === 1) {
         setCurves(activePhones[0], false);
     }
     updatePaths();
-    if (baseline.p === p) { setBaseline(baseline0); }
+    if (baseline.p && !baseline.p.active) { setBaseline(baseline0); }
     updatePhoneTable();
     d3.select("#phones").selectAll("div")
-        .filter(q=>q===p)
+        .filter(q=>q===(p.copyOf||p))
         .call(setPhoneTr);
 }
 
@@ -448,7 +465,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
 
     var bg = (h,fn) => function (p) {
         d3.select(this).style("background", fn(p));
-        hl(p,h);
+        (p.objs||[p]).forEach(q=>hl(q,h));
     }
     var phoneSel = d3.select("#phones").selectAll()
         .data(allPhones).join("div")

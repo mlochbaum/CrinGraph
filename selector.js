@@ -288,8 +288,14 @@ function addModel(t) {
         .append("div").attr("class","variants").text("⌄")
         .attr("tabindex",0) // Make focusable
         .on("focus", function (p) {
+            if (p.selectInProgress) return;
+            p.selectInProgress = true;
             if (!p.vars[p.fileName]) { p.vars[p.fileName] = p.channels; }
-            d3.select(this).text("⌃").style("margin-top","0.3em");
+            d3.select(this).text("⌃").style("margin-top","0.3em")
+                .on("mousedown", function () {
+                    d3.event.preventDefault();
+                    this.blur();
+                });
             var n = d3.select(this.parentElement).select(".phonename");
             n.text("");
             var d = n.selectAll().data(p=>p.fileNames).join("div").text(f=>f),
@@ -298,8 +304,11 @@ function addModel(t) {
             d.attr("width",w).transition().style("top",(_,i)=>i*1.3+"em");
             d.on("mousedown", f => p.fileName = f);
         })
-        .on("blur", function (p) {
-            d3.select(this).text("⌄").style("margin-top",null);
+        .on("blur", function endSelect(p) {
+            if (document.activeElement === this) return;
+            p.selectInProgress = false;
+            d3.select(this).text("⌄").style("margin-top",null)
+                .on("mousedown", null);
             var n = d3.select(this.parentElement).select(".phonename");
             n.selectAll("div").transition().style("top",0+"em").remove()
                 .end().then(()=>n.text(p=>p.fileName));

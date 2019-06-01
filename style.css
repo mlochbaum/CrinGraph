@@ -63,8 +63,10 @@ td.remove       { width:1.4em; font-size:120%; }
 .phonename { font-weight:bold; display:inline; position:relative; }
 .phonename div {
     position:absolute; left:0; top:0; white-space:nowrap;
-    cursor:pointer;
+    z-index:1; cursor:pointer; height:1.3em;
+    background:rgba(238,238,238,0.7);
 }
+.phonename div:hover { color:#a61; }
 
 .keyLine { max-height:3em; display:block; vertical-align:center; }
 .keyLine path {

@@ -301,7 +301,7 @@ function addModel(t) {
             var d = n.selectAll().data(p=>p.fileNames).join("div").text(f=>f),
                 w = d.nodes().map(d=>d.getBoundingClientRect().width)
                      .reduce((a,b)=>Math.max(a,b));
-            d.attr("width",w).transition().style("top",(_,i)=>i*1.3+"em");
+            d.style("width",w+"px").transition().style("top",(_,i)=>i*1.3+"em");
             d.on("mousedown", f => p.fileName = f);
         })
         .on("blur", function endSelect(p) {

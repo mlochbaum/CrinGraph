@@ -269,11 +269,9 @@ function addKey(s) {
 }
 
 function updateKey(s) {
-    var disp = fn => e => e.attr("display",p=>fn(p)?null:"none"),
-        dc = disp(p=>!has1Channel(p));
+    var disp = fn => e => e.attr("display",p=>fn(p)?null:"none");
     s.select(".imbalance").call(disp(hasImbalance));
-    s.selectAll(".keyOnly").call(disp(pi=>!has1Channel(pi[0])));
-    s.select(".keySel").call(dc);
+    s.classed("oneChannel", p=>has1Channel(p));
     s.selectAll("text").data(p=>p.channels).call(disp(c=>c));
     s.select("g").attr("mask",p=>has1Channel(p)?null:"url(#chmask"+p.id+")");
     s.select("path").attr("d", p=>

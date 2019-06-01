@@ -290,7 +290,7 @@ function addModel(t) {
         .on("focus", function (p) {
             if (p.selectInProgress) return;
             p.selectInProgress = true;
-            if (!p.vars[p.fileName]) { p.vars[p.fileName] = p.channels; }
+            p.vars[p.fileName] = p.channels;
             d3.select(this).text("⌃").style("margin-top","0.3em")
                 .on("mousedown", function () {
                     d3.event.preventDefault();
@@ -298,11 +298,26 @@ function addModel(t) {
                 });
             var n = d3.select(this.parentElement).select(".phonename");
             n.text("");
-            var d = n.selectAll().data(p=>p.fileNames).join("div").text(f=>f),
+            var d = n.selectAll().data(p=>p.fileNames).join("div")
+                     .attr("class","variantName").text(f=>f),
                 w = d.nodes().map(d=>d.getBoundingClientRect().width)
                      .reduce((a,b)=>Math.max(a,b));
-            d.style("width",w+"px").transition().style("top",(_,i)=>i*1.3+"em");
+            d.style("width",w+"px");
+            var active_fns = (p.objs || [p]).map(v=>v.fileName);
+            var c = n.selectAll().data(p=>p.fileNames).join("div")
+                .html("&nbsp;⇲&nbsp;").attr("class","variantPopout")
+                .style("left",(w+5)+"px")
+                .style("display",f=>active_fns.indexOf(f)===-1?null:"none");
+            [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1.3+"em"));
             d.on("mousedown", f => p.fileName = f);
+            c.on("mousedown", function (f) {
+                if (!p.objs) { p.objs = [p]; }
+                var v = Object.assign({}, p);
+                delete v.id; v.phone=v.fileName=f; v.isCopy=true;
+                v.selectInProgress = false;
+                p.objs.push(v);
+                changeVariant(v, showPhone);
+            });
         })
         .on("blur", function endSelect(p) {
             if (document.activeElement === this) return;
@@ -312,18 +327,21 @@ function addModel(t) {
             var n = d3.select(this.parentElement).select(".phonename");
             n.selectAll("div").transition().style("top",0+"em").remove()
                 .end().then(()=>n.text(p=>p.fileName));
-            changeVariant(p);
+            changeVariant(p, updateVariant);
         });
 }
 
-function changeVariant(p) {
+function updateVariant(p) {
+    updateKey(table.selectAll("tr").filter(q=>q===p));
+    updatePaths();
+}
+function changeVariant(p, update) {
     var fn = p.fileName,
         ch = p.vars[fn];
     function set(ch) {
         p.channels = ch;
         setCurves(p, p.avg);
-        updateKey(table.selectAll("tr").filter(q=>q===p));
-        updatePaths();
+        update(p);
     }
     if (ch) {
         set(ch);
@@ -377,6 +395,7 @@ function showPhone(p, exclusive) {
 }
 
 function removePhone(p) {
+    if (p.objs) { p.objs = p.objs.filter(q => q !== p); }
     p.active = p.pin = false; nextPN = null; p.offset = 0;
     activePhones = activePhones.filter(q => q.active);
     if (activePhones.length === 1) {

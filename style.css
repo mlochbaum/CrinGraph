@@ -121,6 +121,7 @@ input[type=number] {
     float:right; margin-right:0.3em;
     cursor:pointer;
     font-size:160%; line-height:0.4em; color:#333;
+    outline:none;
 }
 .variants:hover { color:#124; }
 

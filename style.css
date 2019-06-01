@@ -44,7 +44,7 @@ tr.highlight { box-shadow:inset 0 0 1.5em 0.2em; }
 body { margin:0px; }
 table { border-collapse: collapse; }
 tr,td { padding:0px; }
-.curves { width:100%; }
+.curves { width:100%; position:relative; z-index:1; }
 .curves tr { border-bottom: 3px solid white; }
 
 .remove { cursor:pointer; text-align:center; }
@@ -63,7 +63,7 @@ td.remove       { width:1.4em; font-size:120%; }
 .phonename { font-weight:bold; display:inline; position:relative; }
 .phonename div {
     position:absolute; top:0; white-space:nowrap;
-    z-index:1; cursor:pointer; height:1.3em;
+    z-index:2; cursor:pointer; height:1.3em;
     background:rgba(238,238,238,0.7);
 }
 .variantName { left:-3px; padding-left:1px; border-left:2px solid #a61; }

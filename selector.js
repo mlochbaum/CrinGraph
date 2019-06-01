@@ -488,7 +488,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
 
     d3.select("#recolor").on("click", function () {
         allPhones.forEach(p => delete p.id);
-        phoneNumber = 0;
+        phoneNumber = 0; nextPN = null;
         activePhones.forEach(p => p.id = getPhoneNumber());
         updatePaths();
         var c = p=>p.active?getDivColor(p.id,true):null;

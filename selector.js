@@ -119,7 +119,7 @@ var channelbox_x = c => c?-86:-36,
 function setCurves(p, avg, lr) {
     var dx = +avg - +p.avg;
     p.avg = avg;
-    var id = n => p.fullName + " ("+n+")";
+    var id = n => p.brand.name + " " + p.dispName + " ("+n+")";
     p.activeCurves = avg && !has1Channel(p)
         ? [{id:id("AVG"), l:avgCurves(p.channels), p:p, o:0}]
         : p.channels.map((l,i) => ({id:id(LR[i]), l:l, p:p, o:-1+2*i}))
@@ -295,7 +295,7 @@ function updateKey(s) {
 
 function addModel(t) {
     t.each(function (p) { if (!p.vars) { p.vars = {}; } });
-    var n = t.append("div").attr("class","phonename").text(p=>p.phone);
+    var n = t.append("div").attr("class","phonename").text(p=>p.dispName);
     t.filter(p=>p.fileNames)
         .append("div").attr("class","variants").text("⌄")
         .attr("tabindex",0) // Make focusable
@@ -313,32 +313,34 @@ function addModel(t) {
             var q = p.copyOf || p,
                 o = q.objs || [p],
                 active_fns = o.map(v=>v.fileName),
-                vars = p.fileNames.map(f => {
-                    var i = active_fns.indexOf(f);
-                    return i===-1 ? {fileName:f,unused:true} : o[i];
+                dns = q.dispNames || q.fileNames;
+                vars = p.fileNames.map((f,i) => {
+                    var j = active_fns.indexOf(f);
+                    return j!==-1 ? o[j] :
+                        {fileName:f, dispName:dns[i]};
                 });
             var d = n.selectAll().data(vars).join("div")
-                     .attr("class","variantName").text(v=>v.fileName),
+                     .attr("class","variantName").text(v=>v.dispName),
                 w = d.nodes().map(d=>d.getBoundingClientRect().width)
                      .reduce((a,b)=>Math.max(a,b));
             d.style("width",w+"px");
-            d.filter(v=>!v.unused)
+            d.filter(v=>v.active)
                 .style("cursor","initial")
                 .style("color", getTextColor)
                 .call(setHover, h => p =>
                     table.selectAll("tr").filter(q=>q===p)
                         .classed("highlight", h)
                 );
-            var c = n.selectAll().data(p.fileNames).join("div")
+            var c = n.selectAll().data(vars).join("div")
                 .html("&nbsp;⇲&nbsp;").attr("class","variantPopout")
                 .style("left",(w+5)+"px")
-                .style("display",(_,i)=>vars[i].unused?null:"none");
+                .style("display",v=>v.active?"none":null);
             [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1.3+"em"));
-            d.filter(v=>v.unused).on("mousedown", v => p.fileName = v.fileName);
-            c.on("mousedown", function (f) {
+            d.filter(v=>!v.active).on("mousedown", v => Object.assign(p,v));
+            c.on("mousedown", function (v,i) {
                 if (!q.objs) { q.objs = [q]; }
-                var v = {active:true, copyOf:q, fileName:f, phone:f};
-                ["brand","fileNames","fullName","vars"].map(k=>v[k]=q[k]);
+                v.active=true; v.copyOf=q;
+                ["brand","fileNames","vars"].map(k=>v[k]=q[k]);
                 q.objs.push(v);
                 changeVariant(v, showPhone);
             });
@@ -350,7 +352,7 @@ function addModel(t) {
                 .on("mousedown", null);
             var n = d3.select(this.parentElement).select(".phonename");
             n.selectAll("div").transition().style("top",0+"em").remove()
-                .end().then(()=>n.text(p=>p.fileName));
+                .end().then(()=>n.text(p=>p.dispName));
             changeVariant(p, updateVariant);
             table.selectAll("tr").classed("highlight", false); // Prevents some glitches
         });
@@ -458,8 +460,15 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                 } else {
                     r.fileNames = f;
                     r.fileName = f[0];
+                    if (p.suffix) {
+                        r.dispNames = p.suffix.map(
+                            s => p.name + (s ? " "+s : "")
+                        );
+                    }
+                    r.dispName = (r.dispNames||r.fileNames)[0];
                 }
             }
+            r.dispName = r.dispName || r.phone;
             r.fullName = b.name + " " + r.phone;
             return r;
         });

@@ -61,12 +61,13 @@ function getDivColor(id, active) {
     c.c = (c.c-20)/(active?3:4);
     return c;
 }
-function getTooltipColor(curve) {
-    var c = getColor_AC(curve);
+function color_curveToText(c) {
     c.l = c.l/5 + 10;
     c.c /= 3;
     return c;
 }
+var getTooltipColor = curve => color_curveToText(getColor_AC(curve));
+var getTextColor = p => color_curveToText(getCurveColor(p.id,0));
 
 var phoneNumber = 0; // I'm so sorry it just happened
 // Find a phone id which doesn't have a color conflict with pins
@@ -314,14 +315,19 @@ function addModel(t) {
                 w = d.nodes().map(d=>d.getBoundingClientRect().width)
                      .reduce((a,b)=>Math.max(a,b));
             d.style("width",w+"px");
-            var q = p.copyOf || p;
-            var active_fns = (q.objs || [p]).map(v=>v.fileName);
+            var q = p.copyOf || p,
+                o = q.objs || [p];
+                active_fns = o.map(v=>v.fileName),
+                fn_ind = f => active_fns.indexOf(f);
+            d.filter(f=>fn_ind(f)!==-1)
+                .style("cursor","initial")
+                .style("color", f => getTextColor(o[fn_ind(f)]));
             var c = n.selectAll().data(p=>p.fileNames).join("div")
                 .html("&nbsp;⇲&nbsp;").attr("class","variantPopout")
                 .style("left",(w+5)+"px")
-                .style("display",f=>active_fns.indexOf(f)===-1?null:"none");
+                .style("display",f=>fn_ind(f)===-1?null:"none");
             [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1.3+"em"));
-            d.on("mousedown", f => p.fileName = f);
+            d.filter(f=>fn_ind(f)===-1).on("mousedown", f => p.fileName = f);
             c.on("mousedown", function (f) {
                 if (!q.objs) { q.objs = [q]; }
                 var v = {active:true, copyOf:q, fileName:f, phone:f};

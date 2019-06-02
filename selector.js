@@ -310,24 +310,27 @@ function addModel(t) {
                 });
             var n = d3.select(this.parentElement).select(".phonename");
             n.text("");
-            var d = n.selectAll().data(p=>p.fileNames).join("div")
-                     .attr("class","variantName").text(f=>f),
+            var q = p.copyOf || p,
+                o = q.objs || [p],
+                active_fns = o.map(v=>v.fileName),
+                vars = p.fileNames.map(f => {
+                    var i = active_fns.indexOf(f);
+                    return i===-1 ? {fileName:f,unused:true} : o[i];
+                });
+            var d = n.selectAll().data(vars).join("div")
+                     .attr("class","variantName").text(v=>v.fileName),
                 w = d.nodes().map(d=>d.getBoundingClientRect().width)
                      .reduce((a,b)=>Math.max(a,b));
             d.style("width",w+"px");
-            var q = p.copyOf || p,
-                o = q.objs || [p];
-                active_fns = o.map(v=>v.fileName),
-                fn_ind = f => active_fns.indexOf(f);
-            d.filter(f=>fn_ind(f)!==-1)
+            d.filter(v=>!v.unused)
                 .style("cursor","initial")
-                .style("color", f => getTextColor(o[fn_ind(f)]));
-            var c = n.selectAll().data(p=>p.fileNames).join("div")
+                .style("color", getTextColor);
+            var c = n.selectAll().data(p.fileNames).join("div")
                 .html("&nbsp;⇲&nbsp;").attr("class","variantPopout")
                 .style("left",(w+5)+"px")
-                .style("display",f=>fn_ind(f)===-1?null:"none");
+                .style("display",(_,i)=>vars[i].unused?null:"none");
             [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1.3+"em"));
-            d.filter(f=>fn_ind(f)===-1).on("mousedown", f => p.fileName = f);
+            d.filter(v=>v.unused).on("mousedown", v => p.fileName = v.fileName);
             c.on("mousedown", function (f) {
                 if (!q.objs) { q.objs = [q]; }
                 var v = {active:true, copyOf:q, fileName:f, phone:f};

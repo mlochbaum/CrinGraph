@@ -553,6 +553,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         }
     );
     d3.select(".search").on("input", function () {
+        d3.select(this).attr("placeholder",null);
         var fn, bl = brands;
         var c = currentBrands;
         if (this.value.length > 1) {

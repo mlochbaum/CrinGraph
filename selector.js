@@ -324,7 +324,11 @@ function addModel(t) {
             d.style("width",w+"px");
             d.filter(v=>!v.unused)
                 .style("cursor","initial")
-                .style("color", getTextColor);
+                .style("color", getTextColor)
+                .call(setHover, h => p =>
+                    table.selectAll("tr").filter(q=>q===p)
+                        .classed("highlight", h)
+                );
             var c = n.selectAll().data(p.fileNames).join("div")
                 .html("&nbsp;⇲&nbsp;").attr("class","variantPopout")
                 .style("left",(w+5)+"px")

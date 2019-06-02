@@ -352,6 +352,7 @@ function addModel(t) {
             n.selectAll("div").transition().style("top",0+"em").remove()
                 .end().then(()=>n.text(p=>p.fileName));
             changeVariant(p, updateVariant);
+            table.selectAll("tr").classed("highlight", false); // Prevents some glitches
         });
 }
 

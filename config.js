@@ -1,6 +1,6 @@
-let DIR = "data/";
+const DIR = "data/";
 // Get data (as a list of [x,y] pairs) from an FR file
-let tsvParse = fr => d3.tsvParseRows(fr).slice(2,482)
+const tsvParse = fr => d3.tsvParseRows(fr).slice(2,482)
                        .map(r=>r.map(d=>+d));
 
 // Add a watermark to the graph.
@@ -15,4 +15,6 @@ function watermark(svg) {
         .text("crinacle.com/graphs");
 }
 
-let max_channel_imbalance = 5;
+const max_channel_imbalance = 5;
+
+const targets = ["Diffuse Field","Harman","Crinacle"];

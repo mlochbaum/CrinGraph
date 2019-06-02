@@ -1,8 +1,10 @@
 const LR = ["L","R"];
 
 function loadFiles(p, callback) {
-    var r = s => d3.text(DIR+p.fileName+" "+s+".txt").catch(()=>null);
-    Promise.all(LR.map(r)).then(function (frs) {
+    var l = f => d3.text(DIR+f+".txt").catch(()=>null);
+    var p = p.isTarget ? [l(p.fileName)]
+          : LR.map(s => l(p.fileName+" "+s));
+    Promise.all(p).then(function (frs) {
         if (!frs.some(f=>f!==null)) {
             alert("Headphone not found!");
         } else {
@@ -11,7 +13,7 @@ function loadFiles(p, callback) {
     });
 }
 var validChannels = p => p.channels.filter(c=>c!==null);
-var has1Channel = p => p.channels.some(c=>c===null);
+var has1Channel = p => p.isTarget || p.channels.some(c=>c===null);
 
 function flatten(l) { return [].concat.apply([],l); }
 function avgCurves(curves) {
@@ -49,6 +51,7 @@ function getCurveColor(id, o) {
         p3 = p2*p1;
     var t = o/20;
     var i=(id+0.14)/p3, j=(id+0.2)/p2, k=(id+0.4)/p1;
+    if (id < 0) { return d3.hcl(360*(1-(-i)%1),5,66); } // Target
     return d3.hcl(360*((i+t/p2)%1),
                   80+20*((j%1)-t/p3),
                   40+20*(k%1));
@@ -57,7 +60,7 @@ var getColor_AC = c => getCurveColor(c.p.id, c.o);
 var getColor_ph = (p,i) => getCurveColor(p.id, p.activeCurves[i].o);
 function getDivColor(id, active) {
     var c = getCurveColor(id,0);
-    c.l = 100-(80-c.l)/(active?1.5:3);
+    c.l = 100-(80-Math.min(c.l,60))/(active?1.5:3);
     c.c = (c.c-20)/(active?3:4);
     return c;
 }
@@ -119,11 +122,15 @@ var channelbox_x = c => c?-86:-36,
 function setCurves(p, avg, lr) {
     var dx = +avg - +p.avg;
     p.avg = avg;
-    var id = n => p.brand.name + " " + p.dispName + " ("+n+")";
-    p.activeCurves = avg && !has1Channel(p)
-        ? [{id:id("AVG"), l:avgCurves(p.channels), p:p, o:0}]
-        : p.channels.map((l,i) => ({id:id(LR[i]), l:l, p:p, o:-1+2*i}))
-                    .filter(c => c.l);
+    if (!p.isTarget) {
+        var id = n => p.brand.name + " " + p.dispName + " ("+n+")";
+        p.activeCurves = avg && !has1Channel(p)
+            ? [{id:id("AVG"), l:avgCurves(p.channels), p:p, o:0}]
+            : p.channels.map((l,i) => ({id:id(LR[i]), l:l, p:p, o:-1+2*i}))
+                        .filter(c => c.l);
+    } else {
+        p.activeCurves = [{id:p.fullName, l:p.channels[0], p:p, o:0}];
+    }
     var y = 0;
     if (lr!==undefined) {
         p.activeCurves = [p.activeCurves[lr]];
@@ -192,7 +199,7 @@ function updatePhoneTable() {
         .style("color", p => getDivColor(p.id,true));
     td().attr("class","remove").text("⊗")
         .on("click", removePhone);
-    td().html(p=>p.brand.name+"&nbsp;").call(addModel);
+    td().html(p=>p.isTarget?"":p.brand.name+"&nbsp;").call(addModel);
     td().append("svg").call(addKey);
     td().append("input")
         .attrs({type:"number",step:1,value:0,form:"novalidate"})
@@ -245,11 +252,16 @@ function addKey(s) {
     m.append("rect").attrs({"class":"keyMask", x:p=>channelbox_x(p.avg), y:-12, width:120, height:24, fill:"url(#blgrad)"});
     var t = s.append("g");
     t.append("path")
-        .attr("stroke", p=>"url(#chgrad"+p.id+")");
-    t.selectAll().data(LR)
+        .attr("stroke", p => p.isTarget ? getCurveColor(p.id,0)
+                                        : "url(#chgrad"+p.id+")");
+    t.selectAll().data(p=>p.isTarget?[]:LR)
         .join("text")
         .attrs({x:17, y:(_,i)=>[-6,6][i], dy:"0.32em", "text-anchor":"start", "font-size":10.5})
         .text(t=>t);
+    t.filter(p=>p.isTarget).append("text")
+        .attrs({x:17, y:0, dy:"0.32em", "text-anchor":"start",
+                "font-size":8, fill:p=>getCurveColor(p.id,0)})
+        .text("Target");
     s.append("g").attr("class","keySel")
         .attr("transform",p=>channelbox_tr(p.avg))
         .on("click",function(p){
@@ -286,7 +298,8 @@ function updateKey(s) {
     s.classed("oneChannel", p=>has1Channel(p));
     s.selectAll("text").data(p=>p.channels).call(disp(c=>c));
     s.select("g").attr("mask",p=>has1Channel(p)?null:"url(#chmask"+p.id+")");
-    s.select("path").attr("d", p=>
+    s.select("path").attr("d", p =>
+        p.isTarget ? "M15 0H-17" :
         ["M15 -6H9C0 -6,0 0,-9 0H-17","M-17 0H-9C0 0,0 6,9 6H15"]
             .filter((_,i) => p.channels[i])
             .reduce((a,b) => a+b.slice(6))
@@ -356,6 +369,7 @@ function addModel(t) {
             changeVariant(p, updateVariant);
             table.selectAll("tr").classed("highlight", false); // Prevents some glitches
         });
+    t.filter(p=>p.isTarget).append("span").text(" Target");
 }
 
 function updateVariant(p) {
@@ -410,7 +424,11 @@ function showPhone(p, exclusive) {
         if (activePhones.length===1 && activePhones[0].activeCurves.length!==1) {
             setCurves(activePhones[0], true);
         }
-        activePhones.push(p);
+        if (!p.isTarget) {
+            activePhones.push(p);
+        } else {
+            activePhones.unshift(p);
+        }
         p.active = true;
         setCurves(p, activePhones.length > 1);
     }
@@ -473,10 +491,18 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             return r;
         });
     });
+    if (targets) {
+        var b = { name:"Target", active:false };
+        b.phoneObjs = targets.map((t,i) => ({
+            isTarget:true, id:i-targets.length, brand:b,
+            dispName:t, fullName:t+" Target", fileName:t+" Target"
+        }));
+        brands.unshift(b);
+    }
 
     var allPhones = flatten(brands.map(b=>b.phoneObjs)),
         currentBrands = [];
-    showPhone(allPhones[0],1);
+    showPhone(allPhones[targets.length],1);
 
     function setClicks(fn) { return function (elt) {
         elt .on("mousedown", () => d3.event.preventDefault())

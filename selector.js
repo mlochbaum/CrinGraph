@@ -492,10 +492,10 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         });
     });
     if (targets) {
-        var b = { name:"Target", active:false };
+        var b = { name:"Targets", active:false };
         b.phoneObjs = targets.map((t,i) => ({
             isTarget:true, id:i-targets.length, brand:b,
-            dispName:t, fullName:t+" Target", fileName:t+" Target"
+            dispName:t, phone:t, fullName:t+" Target", fileName:t+" Target"
         }));
         brands.unshift(b);
     }

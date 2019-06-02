@@ -403,6 +403,9 @@ function showPhone(p, exclusive) {
     d3.select("#phones").selectAll("div")
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
+    if (p.fileNames && !p.copyOf) {
+        table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
+    }
 }
 
 function removeCopies(p) {

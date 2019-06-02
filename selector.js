@@ -598,14 +598,15 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
     });
 
     d3.select("#recolor").on("click", function () {
-        allPhones.forEach(p => delete p.id);
+        allPhones.forEach(p => { if (!p.isTarget) { delete p.id; } });
         phoneNumber = 0; nextPN = null;
-        activePhones.forEach(p => p.id = getPhoneNumber());
+        activePhones.forEach(p => { if (!p.isTarget) { p.id = getPhoneNumber(); } });
         updatePaths();
         var c = p=>p.active?getDivColor(p.id,true):null;
-        d3.select("#phones").selectAll("div")
+        d3.select("#phones").selectAll("div").filter(p=>!p.isTarget)
             .style("background",c).style("border-color",c);
-        var t = table.selectAll("tr").style("color", c)
+        var t = table.selectAll("tr").filter(p=>!p.isTarget)
+            .style("color", c)
             .select("td:nth-child(3)"); // Key line
         t.select("svg").remove();
         t.append("svg").call(addKey);

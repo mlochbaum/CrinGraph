@@ -37,7 +37,7 @@ var baseline0 = { p:null, l:null, fn:l=>l },
 
 var gpath = gr.insert("g",".rangeButton")
     .attr("fill","none")
-    .attr("stroke-width",3)
+    .attr("stroke-width",2.3)
     .attr("mask","url(#graphFade)");
 function hl(p, h) {
     gpath.selectAll("path").filter(c=>c.p===p).classed("highlight",h);

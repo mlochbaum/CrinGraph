@@ -27,7 +27,7 @@ svg text { cursor:default; user-select:none; }
     .tools { position:static; width:auto; }
 }
 
-path.highlight { stroke-width:4px; }
+path.highlight { stroke-width:3.3px; }
 tr.highlight { box-shadow:inset 0 0 1.5em 0.2em; }
 .curves tr td { color:initial; }
 
@@ -72,7 +72,7 @@ td.remove       { width:1.4em; font-size:120%; }
 
 .keyLine { max-height:3em; display:block; vertical-align:center; }
 .keyLine path {
-    stroke-width:0.34vw; vector-effect:non-scaling-stroke;
+    stroke-width:0.3vw; vector-effect:non-scaling-stroke;
     fill:none; stroke-linecap:round; stroke-linejoin:round;
 }
 .keySel rect { cursor:pointer; }

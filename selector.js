@@ -163,7 +163,7 @@ function setBaseline(b) {
     gpath.selectAll("path")
         .transition().duration(500).ease(d3.easeQuad)
         .attr("d", drawLine);
-    table.selectAll("tr").select("button")
+    table.selectAll("tr").select(".button")
         .classed("selected", p=>p===baseline.p);
 }
 function getBaseline(p) {
@@ -207,23 +207,23 @@ function updatePhoneTable() {
         .attrs({type:"number",step:1,value:0,form:"novalidate"})
         .property("value", p=>p.offset)
         .on("change input",function(p){ setOffset(p, +this.value); });
-    td().append("button").text("baseline")
+    td().attr("class","button").html("BASE<br>-LINE")
         .on("click", p => setBaseline(p===baseline.p ? baseline0
                                                      : getBaseline(p)));
-    td().append("button").text("hide")
+    td().attr("class","button").text("HIDE")
         .on("click",function(p){
             var h = p.hide;
-            d3.select(this).text(h?"hide":"show");
+            d3.select(this).text(h?"HIDE":"SHOW");
             gpath.selectAll("path").filter(c=>c.p===p)
                 .attr("opacity", h?null:0);
             p.hide = !h;
         });
-    td().append("button").text("pin")
+    td().attr("class","button").text("PIN")
         .on("click",function(p){
             p.pin = true; nextPN = null;
-            var par = d3.select(this.parentElement);
-            d3.select(this).remove();
-            par.insert("svg").attr("class","pinMark")
+            d3.select(this)
+                .text(null).classed("button",false)
+                .insert("svg").attr("class","pinMark")
                 .attr("viewBox","0 0 280 145")
                 .insert("path").attrs({
                     fill:"none",

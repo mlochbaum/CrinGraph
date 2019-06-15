@@ -55,9 +55,9 @@ td.remove       { width:1.4em; font-size:120%; }
 /*.phoneId*/
 .key            { width:16%; }
 .calibrate      { width:2.3em; }
-.baselineButton { width:14%; }
-.hideButton     { width: 8%; }
-.pinButton      { width: 6%; }
+.baselineButton { width:8%; }
+.hideButton     { width:8%; }
+.pinButton      { width:6%; }
 
 /* For headphone as opposed to brand in current headphone table */
 .phonename { font-weight:bold; display:inline; position:relative; }
@@ -114,6 +114,20 @@ button:before,button:after {
 button:before { border-right:0; left:0; }
 button:after { border-left:0; right:0; }
 button.selected { background-color: #dd9; }
+
+.button {
+    position:relative; cursor:default; background:#dbd8dd;
+    font-size:smaller; text-align:center; line-height:1.15;
+}
+.button:hover { color: #124; }
+.button:hover:before,.button:hover:after { border-color: #9ac; color: #124; }
+.button:before,.button:after {
+  border:2px groove #ddd; content:'';
+  position:absolute; top:0; bottom:0; width:0.3em;
+}
+.button:before { border-right:0; left:0; }
+.button:after { border-left:0; right:0; }
+.button.selected { background-color: #dd9; }
 
 .keyOnly { fill:#555; }
 .keyOnly:hover { fill:#124; }

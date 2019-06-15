@@ -94,8 +94,9 @@ tr { background:#eee; }
 .search {
     flex:none;
     padding:2px; padding-left:1.2em; height:1.3em; line-height:1.3em;
-    box-shadow:inset 0 0.1em 0.3em #fec; border:1px solid #bbb;
+    border:1px solid #bbb;
 }
+.search,input[type=number] { box-shadow:inset 0 0.1em 0.3em #fec; }
 .chevron { height:1.3em; width:0.9em; position:absolute; top:-1.3em; fill:#223; }
 .stop { height:0.35em; position:absolute; right:0; bottom:0; fill:#223; }
 .scroll div { background:white; }

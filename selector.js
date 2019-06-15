@@ -132,11 +132,13 @@ function setCurves(p, avg, lr) {
         p.activeCurves = [{id:p.fullName, l:p.channels[0], p:p, o:0}];
     }
     var y = 0;
+    var k = d3.selectAll(".keyLine").filter(q=>q===p);
+    var ksb = k.select(".keySelBoth").attr("display","none");
     if (lr!==undefined) {
         p.activeCurves = [p.activeCurves[lr]];
         y = [-1,1][lr];
+        ksb.attr("display",null).attr("y", [0,-12][lr]);
     }
-    var k = d3.selectAll(".keyLine").filter(q=>q===p);
     k.select(".keyMask")
         .transition().duration(400)
         .attr("x", channelbox_x(avg))
@@ -262,6 +264,10 @@ function addKey(s) {
         .attrs({x:17, y:0, dy:"0.32em", "text-anchor":"start",
                 "font-size":8, fill:p=>getCurveColor(p.id,0)})
         .text("Target");
+    s.append("rect").attr("class","keySelBoth")
+        .attrs({x:40+channelbox_x(0), width:40, height:12,
+                opacity:0, display:"none"})
+        .on("click",function(p){ setCurves(p, 0); updatePaths(); });
     s.append("g").attr("class","keySel")
         .attr("transform",p=>channelbox_tr(p.avg))
         .on("click",function(p){

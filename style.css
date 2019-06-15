@@ -75,7 +75,7 @@ td.remove       { width:1.4em; font-size:120%; }
     stroke-width:0.3vw; vector-effect:non-scaling-stroke;
     fill:none; stroke-linecap:round; stroke-linejoin:round;
 }
-.keySel rect { cursor:pointer; }
+.keySel rect,.keySelBoth { cursor:pointer; }
 
 .pinMark { float:right; width:80%; margin-right:-8.6%; margin-bottom:0.6em; }
 

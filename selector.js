@@ -264,16 +264,17 @@ function addKey(s) {
         .attrs({x:17, y:0, dy:"0.32em", "text-anchor":"start",
                 "font-size":8, fill:p=>getCurveColor(p.id,0)})
         .text("Target");
+    var scuh = f => function (p) {
+        setCurves(p, f(p));
+        updatePaths(); hl(p,true);
+    }
     s.append("rect").attr("class","keySelBoth")
         .attrs({x:40+channelbox_x(0), width:40, height:12,
                 opacity:0, display:"none"})
-        .on("click",function(p){ setCurves(p, 0); updatePaths(); });
+        .on("click", scuh(p=>0));
     s.append("g").attr("class","keySel")
         .attr("transform",p=>channelbox_tr(p.avg))
-        .on("click",function(p){
-            setCurves(p, !p.avg);
-            updatePaths(); hl(p,true);
-        })
+        .on("click", scuh(p=>!p.avg))
         .selectAll().data([0,80]).join("rect")
         .attrs({x:d=>d, y:-12, width:40, height:24, opacity:0});
     var o = s.selectAll().data(p=>[[p,0],[p,1]])

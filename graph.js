@@ -55,20 +55,17 @@ var xAxis = d3.axisBottom(x)
     .tickValues([].concat.apply([],[1,2,3].map(e=>xvals.map(m=>m*Math.pow(10,e)))).concat([20000]))
     .tickFormat(f => f>=1000 ? (f/1000)+"k" : f);
 
-function isMin(i) { return [0,1,1,0,1,1,0,1][i%8]; }
-function xThick(_,i) {
-    var l = xvals.length;
-    return i%l==0 ? (i==0 || i==3*l  ?  1.5 : 0.9)
-         : isMin(i) ? 0.2 : 0.4;
-}
+var tickPattern = [3,0,0,1,0,0,2,0],
+    getTickType = i => i===0 || i===3*8 ? 4 : tickPattern[i%8],
+    tickThickness = [2,4,4,9,15].map(t=>t/10);
 
 function fmtX(xa) {
     xAxis(xa);
     (xa.selection ? xa.selection() : xa).select(".domain").remove();
     xa.selectAll(".tick line")
       .attr("stroke", "#333")
-      .attr("stroke-width", xThick);
-    xa.selectAll(".tick text").filter((_,i)=>isMin(i))
+      .attr("stroke-width", (_,i) => tickThickness[getTickType(i)]);
+    xa.selectAll(".tick text").filter((_,i) => tickPattern[i%8] === 0)
       .attr("font-size","86%")
       .attr("font-weight","lighter");
     xa.select(".tick:last-of-type text")

@@ -372,7 +372,9 @@ function addModel(t) {
             d3.select(this).text("⌄").style("margin-top",null)
                 .on("mousedown", null);
             var n = d3.select(this.parentElement).select(".phonename");
-            n.selectAll("div").transition().style("top",0+"em").remove()
+            n.selectAll("div")
+                .call(setHover, h=>p=>null)
+                .transition().style("top",0+"em").remove()
                 .end().then(()=>n.text(p=>p.dispName));
             changeVariant(p, updateVariant);
             table.selectAll("tr").classed("highlight", false); // Prevents some glitches

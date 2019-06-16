@@ -214,6 +214,8 @@ function updatePhoneTable() {
         .html("<svg viewBox='0 0 14 12'><path d='M2 6Q7 0 12 6Q7 12 2 6Z' stroke-width='1' stroke='currentColor' fill='none'/><circle cx='7' cy='6' r='2' stroke='none' fill='currentColor'/><line stroke-width='1' x1='4.4' y1='10.3' x2='10.4' y2='2.3' stroke='white'/><line stroke-width='1' x1='3.6' y1= '9.7' x2= '9.6' y2='1.7' stroke='currentColor'/></svg>")
         .on("click",function(p){
             var h = p.hide;
+            table.selectAll("tr").filter(q=>q===p)
+                .select(".keyLine").select("path").attr("opacity", h?null:0.5);
             d3.select(this).classed("selected", !h);
             gpath.selectAll("path").filter(c=>c.p===p)
                 .attr("opacity", h?null:0);

@@ -116,17 +116,11 @@ button:after { border-left:0; right:0; }
 button.selected { background-color: #dd9; }
 
 .button {
-    position:relative; cursor:default; background:#dbd8dd;
+    cursor:default;
     font-size:smaller; text-align:center; line-height:1.15;
+    border-left:2px solid white;
 }
-.button:hover { color: #124; }
-.button:hover:before,.button:hover:after { border-color: #9ac; color: #124; }
-.button:before,.button:after {
-  border:2px groove #ddd; content:'';
-  position:absolute; top:0; bottom:0; width:0.3em;
-}
-.button:before { border-right:0; left:0; }
-.button:after { border-left:0; right:0; }
+.button:hover { color: #126; }
 .button.selected { background-color: #dd9; }
 
 .keyOnly { fill:#555; }

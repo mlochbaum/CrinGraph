@@ -283,7 +283,7 @@ function addKey(s) {
         .attr("transform",pi=>"translate(25,"+[-6,6][pi[1]]+")")
         .call(setHover, h => function (pi) {
             var p = pi[0], cs = p.activeCurves;
-            if (cs.length === 2) {
+            if (!p.hide && cs.length===2) {
                 d3.event.stopPropagation();
                 hl(p, h ? (c=>c===cs[pi[1]]) : true);
                 gpath.selectAll("path").filter(c=>c.p===p).attr("opacity",h ? (c=>c!==cs[pi[1]]?0.7:null) : null);

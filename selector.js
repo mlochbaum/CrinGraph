@@ -49,12 +49,13 @@ function getCurveColor(id, o) {
     var p1 = ld_p1,
         p2 = p1*p1,
         p3 = p2*p1;
-    var t = o/20;
+    var t = o/35;
     var i=(id+0.14)/p3, j=(id+0.2)/p2, k=(id+0.4)/p1;
     if (id < 0) { return d3.hcl(360*(1-(-i)%1),5,66); } // Target
+    var c = Math.cos(2*Math.PI*(i-0.27));
     return d3.hcl(360*((i+t/p2)%1),
-                  80+20*((j%1)-t/p3),
-                  40+20*(k%1));
+                  84+30*(j%1 + 1.2*c - t/p3),
+                  36+20*(k%1 + 1.2*c + 8*t*(1-c)));
 }
 var getColor_AC = c => getCurveColor(c.p.id, c.o);
 var getColor_ph = (p,i) => getCurveColor(p.id, p.activeCurves[i].o);

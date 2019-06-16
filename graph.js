@@ -202,7 +202,8 @@ dB.circ = dB.trans.selectAll().data([-1,1]).join("circle")
     }));
 var yCenter = 60;
 dB.updatey = function (dom) {
-    y.domain(yR.map(y=>yCenter+(dB.y-y)*(15/dB.h)*(28-86)/(yR[1]-yR[0])));
+    var d = l => l[1]-l[0];
+    y.domain(yR.map(y=>yCenter+(y-dB.y)*(15/dB.h)*d(yD)/d(yR)));
     yAxisObj.call(fmtY);
     gpath.selectAll("path").attr("d", drawLine);
 }

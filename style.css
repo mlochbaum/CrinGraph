@@ -120,6 +120,7 @@ button.selected { background-color: #dd9; }
     font-size:smaller; text-align:center; line-height:1.15;
     border-left:2px solid white;
 }
+.curves .button { color:#181818; }
 .button:hover { color: #126; }
 .button.selected { background-color: #dd9; }
 

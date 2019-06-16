@@ -128,7 +128,8 @@ button.selected { background-color: #dd9; }
 .imbalance { fill:#e11; font-weight:bold; pointer-events:none; }
 
 input[type=number] {
-    width:2.3em; border:2px groove #ddd; height:1.25em;
+    width:2.3em; border:1px solid #bbb; height:1.5em;
+    display:block; margin-left:auto; margin-right:auto;
 }
 
 .variants {

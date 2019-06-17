@@ -681,7 +681,7 @@ function pathTooltip(c, m) {
 gr.append("rect")
     .attrs({x:pad.l,y:pad.t,width:W,height:H,opacity:0})
     .on("mousemove", function () {
-        var cs = flatten(activePhones.map(p => p.activeCurves));
+        var cs = flatten(activePhones.map(p=>p.hide?[]:p.activeCurves));
         if (!cs.length) return;
         var m = d3.mouse(this),
             d = 30 * W0 / gr.node().getBoundingClientRect().width,

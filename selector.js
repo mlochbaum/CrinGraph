@@ -208,9 +208,10 @@ function updatePhoneTable() {
         .attrs({type:"number",step:1,value:0,form:"novalidate"})
         .property("value", p=>p.offset)
         .on("change input",function(p){ setOffset(p, +this.value); });
-    td().attr("class","button").html("BASE<br>-LINE")
+    td().attr("class","button")
         .on("click", p => setBaseline(p===baseline.p ? baseline0
-                                                     : getBaseline(p)));
+                                                     : getBaseline(p)))
+        .append("span").html("BASE<br>-LINE");
     function toggleHide(p) {
         var h = p.hide;
         var t = table.selectAll("tr").filter(q=>q===p);
@@ -224,7 +225,7 @@ function updatePhoneTable() {
     td().attr("class","button hideIcon")
         .html("<svg viewBox='0 0 14 12'><path d='M2 6Q7 0 12 6Q7 12 2 6Z' stroke-width='1' stroke='currentColor' fill='none'/><circle cx='7' cy='6' r='2' stroke='none' fill='currentColor'/><line stroke-width='1' x1='4.4' y1='10.3' x2='10.4' y2='2.3' stroke='white'/><line stroke-width='1' x1='3.6' y1= '9.7' x2= '9.6' y2='1.7' stroke='currentColor'/></svg>")
         .on("click", toggleHide);
-    td().attr("class","button").text("PIN")
+    td().attr("class","button")
         .on("click",function(p){
             p.pin = true; nextPN = null;
             d3.select(this)
@@ -238,7 +239,8 @@ function updatePhoneTable() {
                     "stroke-linecap":"round",
                     d:"M265 110V25q0 -10 -10 -10H105q-24 0 -48 20l-24 20q-24 20 -2 40l18 15q24 20 42 20h100"
                 });
-        });
+        })
+        .append("span").text("PIN");
 }
 
 function addKey(s) {

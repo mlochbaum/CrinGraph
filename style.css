@@ -117,13 +117,14 @@ button.selected { background-color: #dd9; }
 
 .button {
     cursor:default;
-    font-size:smaller; text-align:center; line-height:1.15;
+    font-size:0.75em; text-align:center; line-height:1.15;
     border-left:2px solid white;
 }
 .curves .button { color:#181818; }
 .button:hover { color: #126; }
 .button.selected { background-color: #dd9; }
 
+.button span { display:inline-block; padding-top:0.16em; }
 .button.hideIcon svg { display:block; margin:auto 0.2em; }
 .button.hideIcon { color: #999; }
 .button.hideIcon.selected { background:none; color: #b52; }

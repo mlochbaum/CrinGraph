@@ -135,8 +135,7 @@ button.selected { background-color: #dd9; }
 .button:hover { color: #126; }
 .button.selected { background-color: #dd9; }
 
-.button span { display:inline-block; padding-top:0.16em; }
-.button.hideIcon svg { display:block; margin:auto 0.2em; }
+.button svg { display:block; margin:auto 0.2em; }
 .button.hideIcon { color: #999; }
 .button.hideIcon.selected { background:none; color: #b52; }
 .button.hideIcon:hover { color: #359; }

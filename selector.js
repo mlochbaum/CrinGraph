@@ -209,9 +209,9 @@ function updatePhoneTable() {
         .property("value", p=>p.offset)
         .on("change input",function(p){ setOffset(p, +this.value); });
     td().attr("class","button")
+        .html("<svg viewBox='-170 -120 340 240'><use xlink:href='#baseline-icon'></use></svg>")
         .on("click", p => setBaseline(p===baseline.p ? baseline0
-                                                     : getBaseline(p)))
-        .append("span").html("BASE<br>-LINE");
+                                                     : getBaseline(p)));
     function toggleHide(p) {
         var h = p.hide;
         var t = table.selectAll("tr").filter(q=>q===p);
@@ -226,6 +226,7 @@ function updatePhoneTable() {
         .html("<svg viewBox='0 0 14 12'><use xlink:href='#hide-icon'></use></svg>")
         .on("click", toggleHide);
     td().attr("class","button")
+        .html("<svg viewBox='-125 -100 250 200'><use xlink:href='#pin-icon'></use></svg>")
         .on("click",function(p){
             p.pin = true; nextPN = null;
             d3.select(this)
@@ -239,8 +240,7 @@ function updatePhoneTable() {
                     "stroke-linecap":"round",
                     d:"M265 110V25q0 -10 -10 -10H105q-24 0 -48 20l-24 20q-24 20 -2 40l18 15q24 20 42 20h100"
                 });
-        })
-        .append("span").text("PIN");
+        });
 }
 
 function addKey(s) {

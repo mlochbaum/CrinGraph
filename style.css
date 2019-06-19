@@ -60,10 +60,15 @@ td.remove       { width:1.4em; font-size:120%; }
 .hideButton     { width:1.9em; }
 .pinButton      { width:6%; }
 
-.addPhone { background:none; outline:2px dashed #999; border-width:7px 0px; }
+.addPhone { background:none; height:1.95em; }
+.addPhone::after {
+  border:2px dashed #999; content:'';
+  position:absolute; left:0; right:0; bottom:0.2em; height:1.4em;
+  pointer-events:none;
+}
 .addButton { cursor:pointer; text-align:center; color:#444; }
 .addButton:hover { color:#371; }
-.helpText { color:#666; font-style:italic; font-size:0.7em; padding-left:0.3em; }
+.helpText { color:#666; font-style:italic; font-size:0.7em; padding:0.1em 0.3em 0 0; }
 .addPhone.selected { outline-color:#371; background:#dfe; }
 
 /* For headphone as opposed to brand in current headphone table */

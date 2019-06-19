@@ -42,7 +42,7 @@ var gpath = gr.insert("g",".rangeButton")
 function hl(p, h) {
     gpath.selectAll("path").filter(c=>c.p===p).classed("highlight",h);
 }
-var table = d3.select(".actualCurves");
+var table = d3.select(".curves");
 
 var ld_p1 = 1.1673039782614187;
 function getCurveColor(id, o) {

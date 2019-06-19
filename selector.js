@@ -42,7 +42,7 @@ var gpath = gr.insert("g",".rangeButton")
 function hl(p, h) {
     gpath.selectAll("path").filter(c=>c.p===p).classed("highlight",h);
 }
-var table = d3.select(".curves");
+var table = d3.select(".actualCurves");
 
 var ld_p1 = 1.1673039782614187;
 function getCurveColor(id, o) {
@@ -418,7 +418,19 @@ function normalizePhone(p, i) {
     p.offset = 60 - avg(validChannels(p).map(l=>l[i][1]));
 }
 
+var addPhoneSet = false; // Whether add phone button was clicked
+function setAddButton(a) {
+    if (addPhoneSet === a) return;
+    addPhoneSet = a;
+    d3.select(".addPhone").classed("selected", a);
+}
+d3.select(".addPhone").on("click", ()=>setAddButton(!addPhoneSet));
+
 function showPhone(p, exclusive) {
+    if (addPhoneSet) {
+        exclusive = false;
+        setAddButton(false);
+    }
     if (!p.channels) {
         loadFiles(p, function (ch) {
             if (p.channels) return;

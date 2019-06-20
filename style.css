@@ -56,9 +56,9 @@ td.remove       { width:1.4em; font-size:120%; }
 /*.phoneId*/
 .key            { width:16%; }
 .calibrate      { width:2.3em; }
-.baselineButton { width:8%; }
+.baselineButton { width:3em; }
 .hideButton     { width:1.9em; }
-.pinButton      { width:6%; }
+.pinButton      { width:2.2em; }
 
 .addPhone { background:none; height:1.95em; }
 .addPhone::after {
@@ -82,7 +82,7 @@ td.remove       { width:1.4em; font-size:120%; }
 .variantPopout { opacity:0.65; }
 .phonename div:hover { color:#a61; }
 
-.keyLine { max-height:3em; display:block; vertical-align:center; }
+.keyLine { max-height:2.3em; display:block; vertical-align:center; }
 .keyLine path {
     stroke-width:0.3vw; vector-effect:non-scaling-stroke;
     fill:none; stroke-linecap:round; stroke-linejoin:round;

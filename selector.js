@@ -223,10 +223,10 @@ function updatePhoneTable() {
         p.hide = !h;
     }
     td().attr("class","button hideIcon")
-        .html("<svg viewBox='0 0 14 12'><use xlink:href='#hide-icon'></use></svg>")
+        .html("<svg viewBox='-2.5 0 19 12'><use xlink:href='#hide-icon'></use></svg>")
         .on("click", toggleHide);
     td().attr("class","button")
-        .html("<svg viewBox='-125 -100 250 200'><use xlink:href='#pin-icon'></use></svg>")
+        .html("<svg viewBox='-135 -100 270 200'><use xlink:href='#pin-icon'></use></svg>")
         .on("click",function(p){
             p.pin = true; nextPN = null;
             d3.select(this)

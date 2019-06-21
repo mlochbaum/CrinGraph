@@ -55,9 +55,9 @@ span.remove { float:right; font-size:95%; width:1em; }
 td.remove       { width:1.4em; font-size:120%; }
 /*.phoneId*/
 .key            { width:16%; }
-.calibrate      { width:2.3em; }
-.baselineButton { width:3em; }
-.hideButton     { width:1.9em; }
+.calibrate      { width:2.5em; }
+.baselineButton { width:2.5em; }
+.hideButton     { width:2em; }
 .pinButton      { width:2.2em; }
 
 .addPhone { background:none; height:1.95em; }
@@ -135,7 +135,7 @@ button.selected { background-color: #dd9; }
 .button:hover { color: #126; }
 .button.selected { background-color: #dd9; }
 
-.button svg { display:block; margin:auto 0.2em; }
+.button svg { display:block; margin:auto 0em; }
 .button.hideIcon { color: #999; }
 .button.hideIcon.selected { background:none; color: #b52; }
 .button.hideIcon:hover { color: #359; }

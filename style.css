@@ -37,7 +37,7 @@ td { color:initial; }
 .rangeButton:hover text { fill: #236; }
 .rangeButton.selected rect { fill: #ee6; }
 
-.dBScaler { opacity:0.15; }
+.dBScaler { opacity:0.25; }
 .dBScaler circle,.dBScaler rect { cursor:move; }
 .dBScaler:hover,.dBScaler.active { opacity:1; }
 

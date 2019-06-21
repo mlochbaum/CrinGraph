@@ -150,7 +150,7 @@ dB.all = gr.append("g").attr("class","dBScaler"),
 dB.trans = dB.all.append("g").attr("transform", dB.tr()),
 dB.scale = dB.trans.append("g").attr("transform", "scale(1,1)");
 dB.scale.selectAll().data([-1,1])
-    .join("path").attr("fill","#474344").attr("stroke","none")
+    .join("path").attr("fill","#404050").attr("stroke","none")
     .attr("d", function (s) {
         function getPathPart(l) {
             var v=l[0].toLowerCase()==="v";

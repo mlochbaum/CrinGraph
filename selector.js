@@ -326,17 +326,23 @@ function addModel(t) {
     t.each(function (p) { if (!p.vars) { p.vars = {}; } });
     var n = t.append("div").attr("class","phonename").text(p=>p.dispName);
     t.filter(p=>p.fileNames)
-        .append("div").attr("class","variants").text("⌄")
+        .append("svg").attr("class","variants")
+        .call(function (s) {
+            s.attr("viewBox","0 -2 10 11");
+            s.append("path").attr("fill","currentColor")
+                .attr("d","M1 2L5 6L9 2L8 1L6 3Q5 4 4 3L2 1Z");
+        })
         .attr("tabindex",0) // Make focusable
         .on("focus", function (p) {
             if (p.selectInProgress) return;
             p.selectInProgress = true;
             p.vars[p.fileName] = p.channels;
-            d3.select(this).text("⌃").style("margin-top","0.3em")
+            d3.select(this)
                 .on("mousedown", function () {
                     d3.event.preventDefault();
                     this.blur();
-                });
+                })
+                .select("path").attr("transform","translate(0,7)scale(1,-1)");
             var n = d3.select(this.parentElement).select(".phonename");
             n.text("");
             var q = p.copyOf || p,
@@ -377,8 +383,9 @@ function addModel(t) {
         .on("blur", function endSelect(p) {
             if (document.activeElement === this) return;
             p.selectInProgress = false;
-            d3.select(this).text("⌄").style("margin-top",null)
-                .on("mousedown", null);
+            d3.select(this)
+                .on("mousedown", null)
+                .select("path").attr("transform", null);
             var n = d3.select(this.parentElement).select(".phonename");
             n.selectAll("div")
                 .call(setHover, h=>p=>null)
@@ -391,7 +398,7 @@ function addModel(t) {
 }
 
 function updateVariant(p) {
-    updateKey(table.selectAll("tr").filter(q=>q===p));
+    updateKey(table.selectAll("tr").filter(q=>q===p).select(".keyLine"));
     updatePaths();
 }
 function changeVariant(p, update) {

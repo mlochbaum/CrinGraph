@@ -150,10 +150,8 @@ input[type=number] {
 }
 
 .variants {
-    float:right; margin-right:0.3em;
-    cursor:pointer;
-    font-size:160%; line-height:0.4em; color:#333;
-    outline:none;
+    float:right; width:0.95em; margin-right:0.3em;
+    color:#333; cursor:pointer; outline:none;
 }
 .variants:hover { color:#124; }
 

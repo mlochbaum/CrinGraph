@@ -677,14 +677,15 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
 });
 
 var pathHoverTimeout;
-function pathHL(c, m) {
+function pathHL(c, m, imm) {
     gpath.selectAll("path").classed("highlight", c ? d=>d===c   : false);
     table.selectAll("tr")  .classed("highlight", c ? p=>p===c.p : false);
     if (pathHoverTimeout) { clearTimeout(pathHoverTimeout); }
     gr.selectAll(".tooltip").remove();
     pathHoverTimeout =
-        c ? setTimeout(pathTooltip, 400, c, m)
-          : undefined;
+        imm ? pathTooltip(c, m) :
+        c   ? setTimeout(pathTooltip, 400, c, m) :
+        undefined;
 }
 function pathTooltip(c, m) {
     var g = gr.selectAll(".tooltip").data([c.id])
@@ -699,21 +700,23 @@ function pathTooltip(c, m) {
     g.insert("rect", "text")
         .attrs({x:b.x-1, y:b.y-1, width:b.width+2, height:b.height+2});
 }
+var graphInteract = imm => function () {
+    var cs = flatten(activePhones.map(p=>p.hide?[]:p.activeCurves));
+    if (!cs.length) return;
+    var m = d3.mouse(this),
+        d = 30 * W0 / gr.node().getBoundingClientRect().width,
+        r = [-1,1].map(s => d3.bisectLeft(f_values, x.invert(m[0]+d*s)));
+    var ind = cs
+        .map(c =>
+            baseline.fn(c.l).slice(Math.max(r[0],0), r[1]+1)
+                .map(p => Math.hypot(x(p[0])-m[0], y(p[1]+c.p.offset)-m[1]))
+                .reduce((a,b)=>Math.min(a,b), d)
+        )
+        .reduce((a,b,i) => b<a[1] ? [i,b] : a, [-1,d])[0];
+    pathHL(ind===-1 ? false : cs[ind], m, imm);
+}
 gr.append("rect")
     .attrs({x:pad.l,y:pad.t,width:W,height:H,opacity:0})
-    .on("mousemove", function () {
-        var cs = flatten(activePhones.map(p=>p.hide?[]:p.activeCurves));
-        if (!cs.length) return;
-        var m = d3.mouse(this),
-            d = 30 * W0 / gr.node().getBoundingClientRect().width,
-            r = [-1,1].map(s => d3.bisectLeft(f_values, x.invert(m[0]+d*s)));
-        var ind = cs
-            .map(c =>
-                baseline.fn(c.l).slice(Math.max(r[0],0), r[1]+1)
-                    .map(p => Math.hypot(x(p[0])-m[0], y(p[1]+c.p.offset)-m[1]))
-                    .reduce((a,b)=>Math.min(a,b), d)
-            )
-            .reduce((a,b,i) => b<a[1] ? [i,b] : a, [-1,d])[0];
-        pathHL(ind===-1 ? false : cs[ind], m);
-    })
-    .on("mouseout", ()=>pathHL(false));
+    .on("mousemove", graphInteract())
+    .on("mouseout", ()=>pathHL(false))
+    .on("click", graphInteract(true));

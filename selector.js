@@ -53,7 +53,7 @@ function getCurveColor(id, o) {
     var i=id/p3+0.76, j=id/p2+0.79, k=id/p1+0.32;
     if (id < 0) { return d3.hcl(360*(1-(-i)%1),5,66); } // Target
     var th = 2*Math.PI*i, s = Math.sin(th);
-    return d3.hcl(360*((i+t/p2+Math.cos(th-0.3)/16)%1),
+    return d3.hcl(360*((i+t/p2+Math.cos(th-0.3)/24+Math.cos(6*th)/32)%1),
                   88+30*(j%1 + 1.3*s - t/p3),
                   36+22*(k%1 + 1.1*s + 6*t*(1-s)));
 }

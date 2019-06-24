@@ -218,7 +218,7 @@ function updatePhoneTable() {
         var h = p.hide;
         var t = table.selectAll("tr").filter(q=>q===p);
         t.select(".keyLine").on("click", h?null:toggleHide)
-            .select("path").attr("opacity", h?null:0.5);
+            .selectAll("path,.imbalance").attr("opacity", h?null:0.5);
         t.select(".hideIcon").classed("selected", !h);
         gpath.selectAll("path").filter(c=>c.p===p)
             .attr("opacity", h?null:0);

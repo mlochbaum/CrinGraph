@@ -118,13 +118,16 @@ rangeSel.append("text")
     .attrs({x:(_,i)=>(W/6)*(1+(i-1)*0.15), y:rsH-2.5, "text-anchor":"middle", "font-size":rsH-2,
             "letter-spacing":1.25, "font-weight":"bold"})
     .text(t=>t);
+var drawArrow = sel => function (x,i) {
+    var a = rsH*0.3,
+        s = [-1,1][i],
+        m = 1+s*0.9;
+    if (sel) { s = -s; m += s*x; }
+    return "M"+(W/6)*m+" "+(rsH/2)+"h"+(W/6)*(-s*x)+
+           "m"+s*a+" "+(-a)+"l"+(-s*a)+" "+a+"l"+s*a+" "+a;
+}
 rangeSel.selectAll().data((_,i)=>[[0.1,0.4],[0.2,0.2],[0.4,0.1]][i]).join("path")
-    .attr("d",(x,i)=>{
-        var a = rsH*0.3,
-            s = [-1,1][i];
-        return "M"+(W/6)*(1+s*0.9)+" "+(rsH/2)+"h"+(W/6)*(-s*x)+
-               "m"+s*a+" "+(-a)+"l"+(-s*a)+" "+a+"l"+s*a+" "+a;
-    });
+    .attr("d",drawArrow(false));
 
 var selectedRange = 3; // Full range
 var ranges = [[20,400],[100,4000],[1000,20000], [20,20000]],
@@ -132,7 +135,10 @@ var ranges = [[20,400],[100,4000],[1000,20000], [20,20000]],
 function clickRangeButton(_,i) {
     var r = selectedRange,
         s = selectedRange = r===i ? 3 : i;
-    rangeSel.classed("selected", (_,j)=>j===s);
+    rangeSel.classed("selected", (_,j)=>j===s)
+        .filter((_,j)=>j===s).selectAll("path")
+        .attr("d",drawArrow(true));
+    rangeSel.filter((_,j)=>j!==s).selectAll("path").attr("d",drawArrow(false));
     x.domain(ranges[s]);
     // More time to go between bass and treble
     var dur = Math.min(r,s)===0 && Math.max(r,s)===2 ? 1100 : 700;

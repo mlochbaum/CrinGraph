@@ -135,13 +135,15 @@ var ranges = [[20,400],[100,4000],[1000,20000], [20,20000]],
 function clickRangeButton(_,i) {
     var r = selectedRange,
         s = selectedRange = r===i ? 3 : i;
-    rangeSel.classed("selected", (_,j)=>j===s)
-        .filter((_,j)=>j===s).selectAll("path")
-        .attr("d",drawArrow(true));
-    rangeSel.filter((_,j)=>j!==s).selectAll("path").attr("d",drawArrow(false));
+    rangeSel.classed("selected", (_,j)=>j===s);
     x.domain(ranges[s]);
     // More time to go between bass and treble
     var dur = Math.min(r,s)===0 && Math.max(r,s)===2 ? 1100 : 700;
+    rangeSel.transition().duration(dur).attr("transform", (_,i)=>
+        s===3 ? "translate("+(pad.l+i*(W/3))+","+(H0-rsH-2)+")"
+              : "translate("+(pad.l+(i+(i>s))*(W/4))+","+(H0-rsH-2)+")"
+               +"scale("+(i===s?2:1)*(3/4)+",1)"
+    );
     gpath.selectAll("path").transition().duration(dur).attr("d", drawLine);
     var e = edgeWs[s];
     fadeEdge.transition().duration(dur).attrs(i=>({x:i?W-e[i]:0, width:e[i]}));

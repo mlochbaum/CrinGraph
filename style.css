@@ -65,7 +65,7 @@ td.remove       { width:1.4em; font-size:120%; }
 .hideButton     { width:2em; }
 .pinButton      { width:2.2em; }
 
-.addPhone { background:none; height:1.95em; }
+.addPhone { background:white; height:1.95em; }
 .addPhone:after {
   border:2px dashed #999; content:'';
   position:absolute; left:0; right:0; bottom:0.2em; height:1.4em;

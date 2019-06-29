@@ -157,6 +157,10 @@ function setCurves(p, avg, lr) {
 }
 
 var drawLine = d => line(baseline.fn(d.l));
+function redrawLine(p) {
+    var getTr = o => o ? "translate(0,"+(y(o)-y(0))+")" : null;
+    p.attr("transform", c => getTr(c.p.offset)).attr("d", drawLine);
+}
 function setBaseline(b) {
     baseline = b;
     var c = yCenter;
@@ -189,11 +193,7 @@ function setHover(elt, h) {
 function updatePaths() {
     var c = flatten(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
-    var getTr = o => o ? "translate(0,"+(y(o)-y(0))+")" : null;
-    p.join("path")
-        .attr("transform", c => getTr(c.p.offset))
-        .attr("stroke", getColor_AC)
-        .attr("d", drawLine);
+    p.join("path").attr("stroke", getColor_AC).call(redrawLine);
 }
 function updatePhoneTable() {
     var c = table.selectAll("tr").data(activePhones, p=>p.id);

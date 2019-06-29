@@ -205,5 +205,6 @@ dB.updatey = function (dom) {
     var d = l => l[1]-l[0];
     y.domain(yR.map(y=>yCenter+(y-dB.y)*(15/dB.h)*d(yD)/d(yR)));
     yAxisObj.call(fmtY);
-    gpath.selectAll("path").attr("d", drawLine);
+    var getTr = o => o ? "translate(0,"+(y(o)-y(0))+")" : null;
+    gpath.selectAll("path").call(redrawLine);
 }

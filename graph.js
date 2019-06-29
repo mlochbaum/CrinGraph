@@ -110,15 +110,21 @@ var rsH = 14,
     rsp = 8;  // x-axis padding
 var rangeSel = gr.selectAll().data(["bass","mids","treble"])
     .join("g").attr("class","rangeButton")
-    .attr("transform", (_,i)=>"translate("+(pad.l+i*(W/3))+","+(H0-rsH)+")")
+    .attr("transform", (_,i)=>"translate("+(pad.l+i*(W/3))+","+(H0-rsH-2)+")")
     .on("click", clickRangeButton);
 rangeSel.append("rect")
-    .attrs({x:rsp, y:-2, width:W/3-2*rsp, height:rsH,
-            rx:3, ry:3, "stroke-width":2});
+    .attrs({x:rsp, y:0, width:W/3-2*rsp, height:rsH, rx:3, ry:3});
 rangeSel.append("text")
-    .attrs({x:W/6, y:rsH-4.5, "text-anchor":"middle", "font-size":rsH-2,
+    .attrs({x:(_,i)=>(W/6)*(1+(i-1)*0.15), y:rsH-2.5, "text-anchor":"middle", "font-size":rsH-2,
             "letter-spacing":1.25, "font-weight":"bold"})
     .text(t=>t);
+rangeSel.selectAll().data((_,i)=>[[0.1,0.4],[0.2,0.2],[0.4,0.1]][i]).join("path")
+    .attr("d",(x,i)=>{
+        var a = rsH*0.3,
+            s = [-1,1][i];
+        return "M"+(W/6)*(1+s*0.9)+" "+(rsH/2)+"h"+(W/6)*(-s*x)+
+               "m"+s*a+" "+(-a)+"l"+(-s*a)+" "+a+"l"+s*a+" "+a;
+    });
 
 var selectedRange = 3; // Full range
 var ranges = [[20,400],[100,4000],[1000,20000], [20,20000]],
@@ -150,7 +156,7 @@ dB.all = gr.append("g").attr("class","dBScaler"),
 dB.trans = dB.all.append("g").attr("transform", dB.tr()),
 dB.scale = dB.trans.append("g").attr("transform", "scale(1,1)");
 dB.scale.selectAll().data([-1,1])
-    .join("path").attr("fill","#404050").attr("stroke","none")
+    .join("path").attr("stroke","none")
     .attr("d", function (s) {
         function getPathPart(l) {
             var v=l[0].toLowerCase()==="v";

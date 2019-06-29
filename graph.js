@@ -118,16 +118,13 @@ rangeSel.append("text")
     .attrs({x:(_,i)=>(W/6)*(1+(i-1)*0.15), y:rsH-2.5, "text-anchor":"middle", "font-size":rsH-2,
             "letter-spacing":1.25, "font-weight":"bold"})
     .text(t=>t);
-var drawArrow = sel => function (x,i) {
-    var a = rsH*0.3,
-        s = [-1,1][i],
-        m = 1+s*0.9;
-    if (sel) { s = -s; m += s*x; }
-    return "M"+(W/6)*m+" "+(rsH/2)+"h"+(W/6)*(-s*x)+
-           "m"+s*a+" "+(-a)+"l"+(-s*a)+" "+a+"l"+s*a+" "+a;
-}
 rangeSel.selectAll().data((_,i)=>[[0.1,0.4],[0.2,0.2],[0.4,0.1]][i]).join("path")
-    .attr("d",drawArrow(false));
+    .attr("d",(x,i)=>{
+        var a = rsH*0.3,
+            s = [-1,1][i];
+        return "M"+(W/6)*(1+s*0.9)+" "+(rsH/2)+"h"+(W/6)*(-s*x)+
+               "m"+s*a+" "+(-a)+"l"+(-s*a)+" "+a+"l"+s*a+" "+a;
+    });
 
 var selectedRange = 3; // Full range
 var ranges = [[20,400],[100,4000],[1000,20000], [20,20000]],
@@ -139,11 +136,6 @@ function clickRangeButton(_,i) {
     x.domain(ranges[s]);
     // More time to go between bass and treble
     var dur = Math.min(r,s)===0 && Math.max(r,s)===2 ? 1100 : 700;
-    rangeSel.transition().duration(dur).attr("transform", (_,i)=>
-        s===3 ? "translate("+(pad.l+i*(W/3))+","+(H0-rsH-2)+")"
-              : "translate("+(pad.l+(i+(i>s))*(W/4))+","+(H0-rsH-2)+")"
-               +"scale("+(i===s?2:1)*(3/4)+",1)"
-    );
     gpath.selectAll("path").transition().duration(dur).attr("d", drawLine);
     var e = edgeWs[s];
     fadeEdge.transition().duration(dur).attrs(i=>({x:i?W-e[i]:0, width:e[i]}));

@@ -170,3 +170,9 @@ input[type=number] {
 .normalize { background:#bbd; padding:0px 3px; }
 #norm-fr { width:2.7em; }
 #norm-fr:invalid { background:#fbb; }
+
+.cash {
+    position:fixed; left:0; top:calc(50vh - 0.6em);
+    width:100vw; text-align:center; font-size:30em;
+    pointer-events:none; z-index:10;
+}

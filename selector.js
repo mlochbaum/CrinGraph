@@ -75,6 +75,26 @@ function color_curveToText(c) {
 var getTooltipColor = curve => color_curveToText(getColor_AC(curve));
 var getTextColor = p => color_curveToText(getCurveColor(p.id,0));
 
+if (typeof max_compare !== "undefined") {
+    const currency = [
+        ["$", "#348542"],
+        ["¥", "#d11111"],
+        ["€", "#2961d4"],
+        ["฿", "#dcaf1d"]
+    ];
+    let currencyCounter = 0;
+    function cantCompare(m) {
+        if (m < max_compare) { return false; }
+        var c = currency[currencyCounter++ % currency.length];
+        d3.select("body").append("div").attr("class","cash")
+            .style("color",c[1]).text(c[0])
+            .transition().duration(120).remove();
+        return true;
+    }
+} else {
+    function cantCompare(m) { return false; }
+}
+
 var phoneNumber = 0; // I'm so sorry it just happened
 // Find a phone id which doesn't have a color conflict with pins
 var nextPN = 0; // Cached value; invalidated when pinned headphones change
@@ -230,6 +250,7 @@ function updatePhoneTable() {
     td().attr("class","button")
         .html("<svg viewBox='-135 -100 270 200'><use xlink:href='#pin-icon'></use></svg>")
         .on("click",function(p){
+            if (cantCompare(activePhones.filter(p=>p.pin).length+1)) return;
             p.pin = true; nextPN = null;
             d3.select(this)
                 .text(null).classed("button",false)
@@ -378,8 +399,8 @@ function addModel(t) {
                 if (!q.objs) { q.objs = [q]; }
                 v.active=true; v.copyOf=q;
                 ["brand","fileNames","vars"].map(k=>v[k]=q[k]);
-                q.objs.push(v);
                 changeVariant(v, showPhone);
+                if (v===activePhones[-1]) { q.objs.push(v); }
             });
         })
         .on("blur", function endSelect(p) {
@@ -429,6 +450,7 @@ function normalizePhone(p, i) {
 
 var addPhoneSet = false; // Whether add phone button was clicked
 function setAddButton(a) {
+    if (a && cantCompare(activePhones.length)) return;
     if (addPhoneSet === a) return;
     addPhoneSet = a;
     d3.select(".addPhone").classed("selected", a);
@@ -440,6 +462,7 @@ function showPhone(p, exclusive) {
         exclusive = false;
         setAddButton(false);
     }
+    if (!exclusive && cantCompare(activePhones.length)) return;
     if (!p.channels) {
         loadFiles(p, function (ch) {
             if (p.channels) return;

@@ -171,8 +171,8 @@ input[type=number] {
 #norm-fr { width:2.7em; }
 #norm-fr:invalid { background:#fbb; }
 
-.cash {
-    position:fixed; left:0; top:calc(50vh - 0.6em);
-    width:100vw; text-align:center; font-size:30em;
-    pointer-events:none; z-index:10;
+.cash,.cashMessage {
+    position:fixed; left:0; width:100vw; text-align:center; z-index:10;
 }
+.cashMessage { top:35vh; height:30vh; background:white; }
+.cash { font-size:30em; top:calc(50vh - 0.6em); pointer-events:none; }

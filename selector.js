@@ -82,13 +82,21 @@ if (typeof max_compare !== "undefined") {
         ["€", "#2961d4"],
         ["฿", "#dcaf1d"]
     ];
-    let currencyCounter = 0;
+    let currencyCounter = -1;
     function cantCompare(m) {
         if (m < max_compare) { return false; }
+        var div = d3.select("body").append("div");
         var c = currency[currencyCounter++ % currency.length];
-        d3.select("body").append("div").attr("class","cash")
-            .style("color",c[1]).text(c[0])
-            .transition().duration(120).remove();
+        if (!currencyCounter) {
+            div.attr("class","cashMessage")
+                .html(premium_html)
+                .append("button").text("Fine")
+                .on("click",()=>div.remove());
+        } else {
+            div.attr("class","cash")
+                .style("color",c[1]).text(c[0])
+                .transition().duration(120).remove();
+        }
         return true;
     }
 } else {

@@ -189,12 +189,15 @@ function redrawLine(p) {
     var getTr = o => o ? "translate(0,"+(y(o)-y(0))+")" : null;
     p.attr("transform", c => getTr(c.p.offset)).attr("d", drawLine);
 }
-function setBaseline(b) {
-    baseline = b;
+function updateYCenter(c) {
     var c = yCenter;
     yCenter = baseline.p ? 0 : norm_phon||60;
     y.domain(y.domain().map(d=>d+(yCenter-c)));
     yAxisObj.call(fmtY);
+}
+function setBaseline(b) {
+    baseline = b;
+    updateYCenter();
     gpath.selectAll("path")
         .transition().duration(500).ease(d3.easeQuad)
         .attr("d", drawLine);
@@ -689,6 +692,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
     function updateNorm(fn) {
         activePhones.forEach(fn);
         if (baseline.p) { baseline = getBaseline(baseline.p); }
+        updateYCenter();
         updatePaths();
         table.selectAll("tr").select("input[type=number]")
             .property("value", p=>p.offset);

@@ -192,7 +192,7 @@ function redrawLine(p) {
 function setBaseline(b) {
     baseline = b;
     var c = yCenter;
-    yCenter = baseline.p ? 0 : 60;
+    yCenter = baseline.p ? 0 : norm_phon||60;
     y.domain(y.domain().map(d=>d+(yCenter-c)));
     yAxisObj.call(fmtY);
     gpath.selectAll("path")
@@ -449,11 +449,19 @@ function changeVariant(p, update) {
 
 var f_values; // Assumed to be the same for all headphones
 var fr_to_ind = fr => d3.bisect(f_values, fr, 0, f_values.length-1);
-var norm_fr = undefined;
-function normalizePhone(p, i) {
-    var avg = l => 20*Math.log10(l.map(d=>Math.pow(10,d/20))
-                                  .reduce((a,b)=>a+b) / l.length);
-    p.offset = 60 - avg(validChannels(p).map(l=>l[i][1]));
+var norm_fr = undefined,
+    norm_phon = undefined;
+function normalizePhone(p) {
+    if (norm_fr) {
+        var i = fr_to_ind(norm_fr);
+        var avg = l => 20*Math.log10(l.map(d=>Math.pow(10,d/20))
+                                      .reduce((a,b)=>a+b) / l.length);
+        p.offset = 60 - avg(validChannels(p).map(l=>l[i][1]));
+    } else if (norm_phon) {
+        p.offset = find_offset(avgCurves(p.channels).map(v=>v[1]), norm_phon);
+    } else {
+        p.offset = 0;
+    }
 }
 
 var addPhoneSet = false; // Whether add phone button was clicked
@@ -481,11 +489,7 @@ function showPhone(p, exclusive) {
         return;
     }
     if (p.id === undefined) { p.id = getPhoneNumber(); }
-    if (norm_fr === undefined) {
-        p.offset = 0;
-    } else {
-        normalizePhone(p, fr_to_ind(norm_fr));
-    }
+    normalizePhone(p);
     if (exclusive) {
         activePhones = activePhones.filter(q=>q.active=q.copyOf===p||q.pin);
         if (baseline.p && !baseline.p.active) baseline = baseline0;
@@ -695,8 +699,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         d3.select("#normalize").classed("selected", !off);
         if (off) { norm_fr = undefined; return; }
         norm_fr = fr;
-        var i = fr_to_ind(fr);
-        updateNorm(p => normalizePhone(p, i));
+        updateNorm(p => normalizePhone(p));
     }
     d3.select("#normalize").on("click", ()=>normalize(true));
     d3.select("#norm-fr").on("keypress", function () {

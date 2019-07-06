@@ -407,11 +407,12 @@ function addModel(t) {
             [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1.3+"em"));
             d.filter(v=>!v.active).on("mousedown", v => Object.assign(p,v));
             c.on("mousedown", function (v,i) {
+                if (cantCompare(activePhones.length)) return;
                 if (!q.objs) { q.objs = [q]; }
                 v.active=true; v.copyOf=q;
                 ["brand","fileNames","vars"].map(k=>v[k]=q[k]);
+                q.objs.push(v);
                 changeVariant(v, showPhone);
-                if (v===activePhones[-1]) { q.objs.push(v); }
             });
         })
         .on("blur", function endSelect(p) {

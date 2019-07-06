@@ -450,7 +450,8 @@ function changeVariant(p, update) {
 var f_values; // Assumed to be the same for all headphones
 var fr_to_ind = fr => d3.bisect(f_values, fr, 0, f_values.length-1);
 var norm_fr = undefined,
-    norm_phon = undefined;
+    norm_phon = 60;
+d3.select("#normalize").classed("selected", true);
 function normalizePhone(p) {
     if (norm_fr) {
         var i = fr_to_ind(norm_fr);

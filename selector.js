@@ -693,12 +693,12 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             .property("value", p=>p.offset);
     }
     function normalize(toggle) {
-        var fr = +document.getElementById("norm-fr").value;
-        if (!(fr>=20 && fr<=20000)) return;
-        var off = toggle && fr===norm_fr;
+        var phon = +document.getElementById("norm-fr").value;
+        if (!(phon>=20 && phon<=100)) return;
+        var off = toggle && phon===norm_phon;
         d3.select("#normalize").classed("selected", !off);
-        if (off) { norm_fr = undefined; return; }
-        norm_fr = fr;
+        if (off) { norm_phon = undefined; return; }
+        norm_phon = phon;
         updateNorm(p => normalizePhone(p));
     }
     d3.select("#normalize").on("click", ()=>normalize(true));
@@ -707,7 +707,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
     });
     d3.select("#reset_normalize").on("click", function() {
         d3.select("#normalize").classed("selected", false);
-        norm_fr = undefined;
+        norm_phon = undefined;
         updateNorm(p => p.offset=0);
     });
 });

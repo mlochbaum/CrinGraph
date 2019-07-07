@@ -191,7 +191,7 @@ function redrawLine(p) {
 }
 function updateYCenter(c) {
     var c = yCenter;
-    yCenter = baseline.p ? 0 : norm_phon||60;
+    yCenter = baseline.p ? 0 : norm_sel ? 60 : norm_phon;
     y.domain(y.domain().map(d=>d+(yCenter-c)));
     yAxisObj.call(fmtY);
 }
@@ -453,21 +453,43 @@ function changeVariant(p, update) {
 
 var f_values; // Assumed to be the same for all headphones
 var fr_to_ind = fr => d3.bisect(f_values, fr, 0, f_values.length-1);
-var norm_fr = undefined,
+var norm_sel = 0,
+    norm_fr = 1000,
     norm_phon = 60;
-d3.select("#normalize").classed("selected", true);
 function normalizePhone(p) {
-    if (norm_fr) {
+    if (norm_sel) { // fr
         var i = fr_to_ind(norm_fr);
         var avg = l => 20*Math.log10(l.map(d=>Math.pow(10,d/20))
                                       .reduce((a,b)=>a+b) / l.length);
         p.offset = 60 - avg(validChannels(p).map(l=>l[i][1]));
-    } else if (norm_phon) {
+    } else { // phon
         p.offset = find_offset(avgCurves(p.channels).map(v=>v[1]), norm_phon);
-    } else {
-        p.offset = 0;
     }
 }
+
+function updateNorm() {
+    activePhones.forEach(normalizePhone);
+    if (baseline.p) { baseline = getBaseline(baseline.p); }
+    updateYCenter();
+    updatePaths();
+    table.selectAll("tr").select("input[type=number]")
+        .property("value", p=>p.offset);
+}
+var norms = d3.select(".normalize").selectAll("div");
+norms.classed("selected",(_,i)=>i===norm_sel);
+function setNorm(_,i) {
+    if (!this.checkValidity()) return;
+    norm_sel = i;
+    norms.classed("selected",(_,i)=>i===norm_sel);
+    var v = +this.value;
+    if (norm_sel) { norm_fr=v; } else { norm_phon=v; }
+    updateNorm();
+}
+norms.select("input")
+    .on("change input",setNorm)
+    .on("keypress", function(_, i) {
+        if (d3.event.key==="Enter") { setNorm.bind(this)(_,i); }
+    });
 
 var addPhoneSet = false; // Whether add phone button was clicked
 function setAddButton(a) {
@@ -689,32 +711,6 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             .select("td:nth-child(3)"); // Key line
         t.select("svg").remove();
         t.append("svg").call(addKey);
-    });
-    function updateNorm(fn) {
-        activePhones.forEach(fn);
-        if (baseline.p) { baseline = getBaseline(baseline.p); }
-        updateYCenter();
-        updatePaths();
-        table.selectAll("tr").select("input[type=number]")
-            .property("value", p=>p.offset);
-    }
-    function normalize(toggle) {
-        var phon = +document.getElementById("norm-fr").value;
-        if (!(phon>=20 && phon<=100)) return;
-        var off = toggle && phon===norm_phon;
-        d3.select("#normalize").classed("selected", !off);
-        if (off) { norm_phon = undefined; return; }
-        norm_phon = phon;
-        updateNorm(p => normalizePhone(p));
-    }
-    d3.select("#normalize").on("click", ()=>normalize(true));
-    d3.select("#norm-fr").on("keypress", function () {
-        if (d3.event.key === "Enter") { normalize(false); }
-    });
-    d3.select("#reset_normalize").on("click", function() {
-        d3.select("#normalize").classed("selected", false);
-        norm_phon = undefined;
-        updateNorm(p => p.offset=0);
     });
 });
 

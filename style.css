@@ -149,10 +149,8 @@ button.selected { background-color: #dd9; }
 .keyOnly:hover { fill:#124; }
 .imbalance { fill:#e11; font-weight:bold; pointer-events:none; }
 
-input[type=number] {
-    width:2.3em; border:1px solid #bbb; height:1.5em;
-    display:block; margin-left:auto; margin-right:auto;
-}
+input[type=number] { width:2.3em; border:1px solid #bbb; height:1.5em; }
+.curves input[type=number] { display:block; margin-left:auto; margin-right:auto; }
 
 .variants {
     float:right; width:0.95em; margin-right:0.3em;
@@ -167,9 +165,12 @@ input[type=number] {
 .tools button { width:auto; }
 .tools * { display:inline-block; }
 .tools span { font-size: smaller; }
-.normalize { background:#bbd; padding:0px 3px; }
-#norm-fr { width:2.7em; }
-#norm-fr:invalid { background:#fbb; }
+.normalize { background:white; border:1px solid #bbb; padding:0px 3px; }
+.normalize span { padding-right:0.3em; }
+#norm-phon { width:2.8em; }
+#norm-fr { width:4em; }
+.normalize input:invalid { background:#fbb; }
+.normalize div.selected { margin-bottom:-3px; border-bottom:3px solid #221; background:#eeb; }
 
 .cash,.cashMessage {
     position:fixed; left:0; width:100vw; text-align:center; z-index:10;

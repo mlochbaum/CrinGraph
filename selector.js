@@ -435,6 +435,7 @@ function addModel(t) {
 
 function updateVariant(p) {
     updateKey(table.selectAll("tr").filter(q=>q===p).select(".keyLine"));
+    normalizePhone(p);
     updatePaths();
 }
 function changeVariant(p, update) {

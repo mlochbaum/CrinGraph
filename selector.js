@@ -473,7 +473,7 @@ function setNorm(_, i, change) {
     if (change !== false) {
         if (!this.checkValidity()) return;
         var v = +this.value;
-        if (norm_sel) { norm_fr=v; } else { norm_phon=v; }
+        if (i) { norm_fr=v; } else { norm_phon=v; }
     }
     norm_sel = i;
     norms.classed("selected",(_,i)=>i===norm_sel);

@@ -467,7 +467,16 @@ function normalizePhone(p) {
     }
 }
 
-function updateNorm() {
+var norms = d3.select(".normalize").selectAll("div");
+norms.classed("selected",(_,i)=>i===norm_sel);
+function setNorm(_, i, change) {
+    if (change !== false) {
+        if (!this.checkValidity()) return;
+        var v = +this.value;
+        if (norm_sel) { norm_fr=v; } else { norm_phon=v; }
+    }
+    norm_sel = i;
+    norms.classed("selected",(_,i)=>i===norm_sel);
     activePhones.forEach(normalizePhone);
     if (baseline.p) { baseline = getBaseline(baseline.p); }
     updateYCenter();
@@ -475,21 +484,12 @@ function updateNorm() {
     table.selectAll("tr").select("input[type=number]")
         .property("value", p=>p.offset);
 }
-var norms = d3.select(".normalize").selectAll("div");
-norms.classed("selected",(_,i)=>i===norm_sel);
-function setNorm(_,i) {
-    if (!this.checkValidity()) return;
-    norm_sel = i;
-    norms.classed("selected",(_,i)=>i===norm_sel);
-    var v = +this.value;
-    if (norm_sel) { norm_fr=v; } else { norm_phon=v; }
-    updateNorm();
-}
 norms.select("input")
     .on("change input",setNorm)
     .on("keypress", function(_, i) {
         if (d3.event.key==="Enter") { setNorm.bind(this)(_,i); }
     });
+norms.select("span").on("click", (_,i)=>setNorm(_,i,false));
 
 var addPhoneSet = false; // Whether add phone button was clicked
 function setAddButton(a) {

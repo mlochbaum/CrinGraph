@@ -171,6 +171,7 @@ input[type=number] { width:2.3em; border:1px solid #bbb; height:1.5em; }
 #norm-fr { width:4em; }
 .normalize input:invalid { background:#fbb; }
 .normalize div.selected { margin-bottom:-3px; border-bottom:3px solid #221; background:#eeb; }
+.normalize div span { cursor:pointer; }
 
 .cash,.cashMessage {
     position:fixed; left:0; width:100vw; text-align:center; z-index:10;

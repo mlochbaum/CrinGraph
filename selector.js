@@ -22,6 +22,11 @@ function avgCurves(curves) {
         .reduce((as,bs) => as.map((a,i) => a+bs[i]))
         .map((x,i) => [curves[0][i][0], 20*Math.log10(x/curves.length)]);
 }
+function getAvg(p) {
+    return p.avg          ? p.activeCurves[0].l
+         : has1Channel(p) ? validChannels(p)[0]
+         :                  avgCurves(p.channels);
+}
 function hasImbalance(p) {
     if (has1Channel(p)) return false;
     var as = p.channels[0], bs = p.channels[1];
@@ -205,9 +210,7 @@ function setBaseline(b) {
         .classed("selected", p=>p===baseline.p);
 }
 function getBaseline(p) {
-    var l = p.avg || has1Channel(p) ? p.activeCurves[0].l
-                                    : avgCurves(p.channels),
-        b = l.map(d => d[1]+getOffset(p));
+    var b = getAvg(p).map(d => d[1]+getOffset(p));
     return { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
 }
 
@@ -465,7 +468,7 @@ function normalizePhone(p) {
                                       .reduce((a,b)=>a+b) / l.length);
         p.norm = 60 - avg(validChannels(p).map(l=>l[i][1]));
     } else { // phon
-        p.norm = find_offset(avgCurves(p.channels).map(v=>v[1]), norm_phon);
+        p.norm = find_offset(getAvg(p).map(v=>v[1]), norm_phon);
     }
 }
 

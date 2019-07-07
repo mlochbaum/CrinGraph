@@ -187,7 +187,7 @@ function setCurves(p, avg, lr) {
 var drawLine = d => line(baseline.fn(d.l));
 function redrawLine(p) {
     var getTr = o => o ? "translate(0,"+(y(o)-y(0))+")" : null;
-    p.attr("transform", c => getTr(c.p.offset)).attr("d", drawLine);
+    p.attr("transform", c => getTr(getOffset(c.p))).attr("d", drawLine);
 }
 function updateYCenter(c) {
     var c = yCenter;
@@ -207,7 +207,7 @@ function setBaseline(b) {
 function getBaseline(p) {
     var l = p.avg || has1Channel(p) ? p.activeCurves[0].l
                                     : avgCurves(p.channels),
-        b = l.map(d => d[1]+p.offset);
+        b = l.map(d => d[1]+getOffset(p));
     return { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
 }
 
@@ -216,6 +216,7 @@ function setOffset(p, o) {
     if (baseline.p === p) { baseline = getBaseline(p); }
     updatePaths();
 }
+var getOffset = p => p.offset + p.norm;
 
 function setHover(elt, h) {
     elt.on("mouseover", h(true)).on("mouseout", h(false));
@@ -461,9 +462,9 @@ function normalizePhone(p) {
         var i = fr_to_ind(norm_fr);
         var avg = l => 20*Math.log10(l.map(d=>Math.pow(10,d/20))
                                       .reduce((a,b)=>a+b) / l.length);
-        p.offset = 60 - avg(validChannels(p).map(l=>l[i][1]));
+        p.norm = 60 - avg(validChannels(p).map(l=>l[i][1]));
     } else { // phon
-        p.offset = find_offset(avgCurves(p.channels).map(v=>v[1]), norm_phon);
+        p.norm = find_offset(avgCurves(p.channels).map(v=>v[1]), norm_phon);
     }
 }
 
@@ -481,8 +482,6 @@ function setNorm(_, i, change) {
     if (baseline.p) { baseline = getBaseline(baseline.p); }
     updateYCenter();
     updatePaths();
-    table.selectAll("tr").select("input[type=number]")
-        .property("value", p=>p.offset);
 }
 norms.select("input")
     .on("change input",setNorm)
@@ -516,7 +515,7 @@ function showPhone(p, exclusive) {
         return;
     }
     if (p.id === undefined) { p.id = getPhoneNumber(); }
-    normalizePhone(p);
+    normalizePhone(p); p.offset=p.offset||0;
     if (exclusive) {
         activePhones = activePhones.filter(q=>q.active=q.copyOf===p||q.pin);
         if (baseline.p && !baseline.p.active) baseline = baseline0;
@@ -747,7 +746,7 @@ var graphInteract = imm => function () {
     var ind = cs
         .map(c =>
             baseline.fn(c.l).slice(Math.max(r[0],0), r[1]+1)
-                .map(p => Math.hypot(x(p[0])-m[0], y(p[1]+c.p.offset)-m[1]))
+                .map(p => Math.hypot(x(p[0])-m[0], y(p[1]+getOffset(c.p))-m[1]))
                 .reduce((a,b)=>Math.min(a,b), d)
         )
         .reduce((a,b,i) => b<a[1] ? [i,b] : a, [-1,d])[0];

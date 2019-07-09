@@ -15,7 +15,6 @@ function loadFiles(p, callback) {
 var validChannels = p => p.channels.filter(c=>c!==null);
 var has1Channel = p => p.isTarget || p.channels.some(c=>c===null);
 
-function flatten(l) { return [].concat.apply([],l); }
 function avgCurves(curves) {
     return curves
         .map(c=>c.map(d=>Math.pow(10,d[1]/20)))
@@ -118,7 +117,7 @@ function nextPhoneNumber() {
         if (pin.length) {
             var p3 = ld_p1*ld_p1*ld_p1,
                 l = a => b => Math.abs(((a-b)/p3 + 0.5) % 1 - 0.5),
-                d = id => pin.map(l(id)).reduce((a,b)=>Math.min(a,b));
+                d = id => d3.min(pin, l(id));
             for (var i=nextPN, max=d(i); max<0.12 && ++i<phoneNumber+3; ) {
                 var m = d(i);
                 if (m > max) { max=m; nextPN=i; }
@@ -226,7 +225,7 @@ function setHover(elt, h) {
 }
 
 function updatePaths() {
-    var c = flatten(activePhones.map(p => p.activeCurves)),
+    var c = d3.merge(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
     p.join("path").attr("stroke", getColor_AC).call(redrawLine);
 }
@@ -394,8 +393,7 @@ function addModel(t) {
                 });
             var d = n.selectAll().data(vars).join("div")
                      .attr("class","variantName").text(v=>v.dispName),
-                w = d.nodes().map(d=>d.getBoundingClientRect().width)
-                     .reduce((a,b)=>Math.max(a,b));
+                w = d3.max(d.nodes(), d=>d.getBoundingClientRect().width);
             d.style("width",w+"px");
             d.filter(v=>v.active)
                 .style("cursor","initial")
@@ -464,8 +462,7 @@ var norm_sel = 0,
 function normalizePhone(p) {
     if (norm_sel) { // fr
         var i = fr_to_ind(norm_fr);
-        var avg = l => 20*Math.log10(l.map(d=>Math.pow(10,d/20))
-                                      .reduce((a,b)=>a+b) / l.length);
+        var avg = l => 20*Math.log10(d3.mean(l, d=>Math.pow(10,d/20)));
         p.norm = 60 - avg(validChannels(p).map(l=>l[i][1]));
     } else { // phon
         p.norm = find_offset(getAvg(p).map(v=>v[1]), norm_phon);
@@ -604,7 +601,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         brands.unshift(b);
     }
 
-    var allPhones = flatten(brands.map(b=>b.phoneObjs)),
+    var allPhones = d3.merge(brands.map(b=>b.phoneObjs)),
         currentBrands = [];
     showPhone(allPhones[targets.length],1);
 
@@ -742,7 +739,7 @@ function pathTooltip(c, m) {
         .attrs({x:b.x-1, y:b.y-1, width:b.width+2, height:b.height+2});
 }
 var graphInteract = imm => function () {
-    var cs = flatten(activePhones.map(p=>p.hide?[]:p.activeCurves));
+    var cs = d3.merge(activePhones.map(p=>p.hide?[]:p.activeCurves));
     if (!cs.length) return;
     var m = d3.mouse(this),
         d = 30 * W0 / gr.node().getBoundingClientRect().width,

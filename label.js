@@ -27,7 +27,9 @@ d3.select("#label").on("click", function () {
             n = v.length,
             l = v[0].length;
         let invd = (sc,d) => sc.invert(d)-sc.invert(0),
-            wind = w => d3.bisectRight(f_values, invd(x,w)),
+            xr = x.range(),
+            yd = y.domain(),
+            wind = w => Math.ceil((w/(xr[1]-xr[0]))*f_values.length),
             mw = wind(d3.min(w));
         let winReduce = (l,w,d0,fn) => {
             l = l.slice();
@@ -66,7 +68,11 @@ d3.select("#label").on("click", function () {
             });
             let sep = 0, pos = null;
             ds.forEach((drow,k)=>drow.forEach((d,i)=>{
-                if (d>sep) { sep=d; pos=[i,range[j][k][i]+(k?he:0)]; }
+                if (d>sep) {
+                    let dy = range[j][k][i]+(k?he:0),
+                        yd = y.domain();
+                    if (yd[0]+he<=dy && dy<=yd[1]) { sep=d; pos=[i,dy]; }
+                }
             }));
             if (pos) {
                 tr[j] = "translate("+x(f_values[pos[0]])+","+y(pos[1])+")";

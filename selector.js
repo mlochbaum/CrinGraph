@@ -456,6 +456,10 @@ function changeVariant(p, update) {
 
 var f_values; // Assumed to be the same for all headphones
 var fr_to_ind = fr => d3.bisect(f_values, fr, 0, f_values.length-1);
+function range_to_slice(xs, fn) {
+    var r = xs.map(v => d3.bisectLeft(f_values, x.invert(fn(v))));
+    return a => a.slice(Math.max(r[0],0), r[1]+1);
+}
 var norm_sel = 0,
     norm_fr = 1000,
     norm_phon = 60;
@@ -743,10 +747,10 @@ var graphInteract = imm => function () {
     if (!cs.length) return;
     var m = d3.mouse(this),
         d = 30 * W0 / gr.node().getBoundingClientRect().width,
-        r = [-1,1].map(s => d3.bisectLeft(f_values, x.invert(m[0]+d*s)));
+        sl= range_to_slice([-1,1],s=>m[0]+d*s);
     var ind = cs
         .map(c =>
-            baseline.fn(c.l).slice(Math.max(r[0],0), r[1]+1)
+            sl(baseline.fn(c.l))
                 .map(p => Math.hypot(x(p[0])-m[0], y(p[1]+getOffset(c.p))-m[1]))
                 .reduce((a,b)=>Math.min(a,b), d)
         )

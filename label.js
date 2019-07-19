@@ -67,18 +67,29 @@ d3.select("#label").on("click", function () {
                 return d;
             });
             let sep = 0, pos = null;
-            ds.forEach((drow,k)=>drow.forEach((d,i)=>{
-                let dl = drow.length,
-                    r = i/dl;
-                d *= Math.sqrt((0.8+r)*Math.sqrt(1-r));
-                let clip = x => x/Math.sqrt(1+x*x);
-                d *= clip(0.2+Math.max(0,(i>=15?drow[i-15]:0)+(i<dl-15?drow[i+15]:0)));
-                if (d>sep) {
-                    let dy = range[j][k][i]+(k?he:0),
-                        yd = y.domain();
-                    if (yd[0]+he<=dy && dy<=yd[1]) { sep=d; pos=[i,dy]; }
+            ds.forEach(function (drow,k) {
+                for (let ii=0; ii<drow.length; ) {
+                    let i=ii, d=drow[i],
+                        rjk=range[j][k], m=rjk[i];
+                    while (ii++, ii<drow.length && rjk[ii]===m) {
+                        let di = drow[ii];
+                        if (di<d && di<1) break;
+                        d = Math.max(d,drow[ii]);
+                    }
+                    let clip = x => x/Math.sqrt(1+x*x);
+                    d += clip((ii-i)/3);
+                    i = Math.floor((i+ii)/2);
+                    let dl = drow.length,
+                        r = i/dl;
+                    d *= Math.sqrt((0.8+r)*Math.sqrt(1-r));
+                    d *= clip(0.2+Math.max(0,(i>=15?drow[i-15]:0)+(i<dl-15?drow[i+15]:0)));
+                    if (d>sep) {
+                        let dy = range[j][k][i]+(k?he:0),
+                            yd = y.domain();
+                        if (yd[0]+he<=dy && dy<=yd[1]) { sep=d; pos=[i,dy]; }
+                    }
                 }
-            }));
+            });
             if (pos) {
                 tr[j] = "translate("+x(f_values[pos[0]])+","+y(pos[1])+")";
             } else {

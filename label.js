@@ -68,8 +68,11 @@ d3.select("#label").on("click", function () {
             });
             let sep = 0, pos = null;
             ds.forEach((drow,k)=>drow.forEach((d,i)=>{
-                let r = i/drow.length;
+                let dl = drow.length,
+                    r = i/dl;
                 d *= Math.sqrt((0.8+r)*Math.sqrt(1-r));
+                let clip = x => x/Math.sqrt(1+x*x);
+                d *= clip(0.2+Math.max(0,(i>=15?drow[i-15]:0)+(i<dl-15?drow[i+15]:0)));
                 if (d>sep) {
                     let dy = range[j][k][i]+(k?he:0),
                         yd = y.domain();

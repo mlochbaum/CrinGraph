@@ -1,3 +1,7 @@
+function clearLabels() {
+    gr.selectAll(".tooltip").remove();
+}
+
 d3.select("#label").on("click", function () {
     let curves = d3.merge(activePhones.map(p => p.activeCurves));
     if (!curves.length) return;

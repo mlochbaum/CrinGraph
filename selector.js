@@ -202,6 +202,7 @@ function updateYCenter(c) {
 function setBaseline(b) {
     baseline = b;
     updateYCenter();
+    clearLabels();
     gpath.selectAll("path")
         .transition().duration(500).ease(d3.easeQuad)
         .attr("d", drawLine);
@@ -225,6 +226,7 @@ function setHover(elt, h) {
 }
 
 function updatePaths() {
+    clearLabels();
     var c = d3.merge(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
     p.join("path").attr("stroke", getColor_AC).call(redrawLine);
@@ -254,6 +256,7 @@ function updatePhoneTable() {
         t.select(".keyLine").on("click", h?null:toggleHide)
             .selectAll("path,.imbalance").attr("opacity", h?null:0.5);
         t.select(".hideIcon").classed("selected", !h);
+        clearLabels();
         gpath.selectAll("path").filter(c=>c.p===p)
             .attr("opacity", h?null:0);
         p.hide = !h;
@@ -330,6 +333,7 @@ function addKey(s) {
             if (!p.hide && cs.length===2) {
                 d3.event.stopPropagation();
                 hl(p, h ? (c=>c===cs[pi[1]]) : true);
+                clearLabels();
                 gpath.selectAll("path").filter(c=>c.p===p).attr("opacity",h ? (c=>c!==cs[pi[1]]?0.7:null) : null);
             }
         })
@@ -723,7 +727,7 @@ function pathHL(c, m, imm) {
     gpath.selectAll("path").classed("highlight", c ? d=>d===c   : false);
     table.selectAll("tr")  .classed("highlight", c ? p=>p===c.p : false);
     if (pathHoverTimeout) { clearTimeout(pathHoverTimeout); }
-    gr.selectAll(".tooltip").remove();
+    clearLabels();
     pathHoverTimeout =
         imm ? pathTooltip(c, m) :
         c   ? setTimeout(pathTooltip, 400, c, m) :

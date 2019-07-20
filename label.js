@@ -112,6 +112,6 @@ d3.select("#download").on("click", function () {
         [rangeSel,dB.all].map(e=>e.attr("visibility",s?null:"hidden"));
     drawLabels();
     showControls(false);
-    saveSvgAsPng(gr.node(), "graph.png", {backgroundColor:"white"})
+    saveSvgAsPng(gr.node(), "graph.png", {backgroundColor:"white", scale:2})
         .then(()=>showControls(true));
 });

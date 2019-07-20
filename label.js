@@ -18,18 +18,20 @@ function drawLabels() {
     let boxes = g.data(),
         w = boxes.map(b=>b.width +6),
         h = boxes.map(b=>b.height+6);
+    let getLine = c => {
+        var o=getOffset(c.p);
+        return baseline.fn(c.l).map(d=>d[1]+o);
+    }
 
     if (curves.length === 1) {
         let x0 = 50, y0 = 10,
             sl = range_to_slice([0,w[0]], o=>x0+o),
-            e = d3.extent(sl(curves[0].l).map(v=>v[1]))
-                  .map(d=>y(d+getOffset(curves[0].p)));
-        if (y0+h[0] >= e[1]) { y0 = Math.max(y0, e[0]); }
+            e = d3.extent(sl(getLine(curves[0])).map(y));
+        if (y0+h[0] >= e[0]) { y0 = Math.max(y0, e[1]); }
         g.attr("transform","translate("+x0+","+y0+")");
     } else {
-        let v = curves.map(c=>c.l.map(d=>d[1]+getOffset(c.p))),
-            n = v.length,
-            l = v[0].length;
+        let v = curves.map(getLine),
+            n = v.length;
         let invd = (sc,d) => sc.invert(d)-sc.invert(0),
             xr = x.range(),
             yd = y.domain(),

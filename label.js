@@ -1,5 +1,11 @@
+let labelButton = d3.select("#label"),
+    labelsShown = false;
+function setLabelButton(l) {
+    labelButton.classed("selected", labelsShown = l);
+}
 function clearLabels() {
     gr.selectAll(".tooltip").remove();
+    setLabelButton(false);
 }
 
 function drawLabels() {
@@ -105,9 +111,10 @@ function drawLabels() {
         g.attr("transform",(_,j)=>tr[j]);
     }
     g.attr("opacity",null);
+    setLabelButton(true);
 }
 
-d3.select("#label").on("click", drawLabels);
+labelButton.on("click", () => (labelsShown?clearLabels:drawLabels)());
 
 d3.select("#download").on("click", function () {
     let showControls = s => dB.all.attr("visibility",s?null:"hidden");

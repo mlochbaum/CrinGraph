@@ -791,7 +791,7 @@ var graphInteract = imm => function () {
             .join(enter => enter.insert("g","line").call(newTooltip));
         var start = tt.select("g").datum((_,i) => cy[i][1])
             .selectAll("text").data(d => {
-                var s=d<0?"-":""; d=Math.abs(d)+0.05;
+                var s=d<-0.05?"-":""; d=Math.abs(d)+0.05;
                 return [s+Math.floor(d)+".",Math.floor((d%1)*10)];
             })
             .text(t=>t)

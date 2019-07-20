@@ -2,7 +2,7 @@ function clearLabels() {
     gr.selectAll(".tooltip").remove();
 }
 
-d3.select("#label").on("click", function () {
+function drawLabels() {
     let curves = d3.merge(activePhones.map(p => p.activeCurves));
     if (!curves.length) return;
     gr.selectAll(".tooltip").remove();
@@ -103,4 +103,15 @@ d3.select("#label").on("click", function () {
         g.attr("transform",(_,j)=>tr[j]);
     }
     g.attr("opacity",null);
+}
+
+d3.select("#label").on("click", drawLabels);
+
+d3.select("#download").on("click", function () {
+    let showControls = s =>
+        [rangeSel,dB.all].map(e=>e.attr("visibility",s?null:"hidden"));
+    drawLabels();
+    showControls(false);
+    saveSvgAsPng(gr.node(), "graph.png", {backgroundColor:"white"})
+        .then(()=>showControls(true));
 });

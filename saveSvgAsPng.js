@@ -144,10 +144,8 @@ THE SOFTWARE.
   const inlineImages = el => Promise.all(
     Array.from(el.querySelectorAll('image')).map(image => {
       let href = image.getAttributeNS('http://www.w3.org/1999/xlink', 'href') || image.getAttribute('href');
-      if (!href) return Promise.resolve(null);
-      if (isExternal(href)) {
-        href += (href.indexOf('?') === -1 ? '?' : '&') + 't=' + new Date().valueOf();
-      }
+      // Removed external handling in CrinGraph since it will fail cross-origin stuff anyway
+      if (!href || isExternal(href)) return Promise.resolve(null);
       return new Promise((resolve, reject) => {
         const canvas = document.createElement('canvas');
         const img = new Image();

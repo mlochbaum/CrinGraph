@@ -163,8 +163,14 @@ input[type=number] { width:2.3em; border:1px solid #bbb; height:1.5em; }
 .normalize div.selected { margin-bottom:-3px; border-bottom:3px solid #221; background:#eeb; }
 .normalize div span { cursor:pointer; }
 
-.cash,.cashMessage {
-    position:fixed; left:0; width:100vw; text-align:center; z-index:10;
+.cash,.cashMessage,.fadeAll { position:fixed; text-align:center; z-index:10; }
+.cashMessage {
+    height:auto; top:calc(50vh - 7em); padding-top:0.5em; padding-bottom:2.5em;
+    width:40em; left:calc(50vw - 20em);
+    background:white;
+    box-shadow:0 0 20px 6px #444;
 }
-.cashMessage { top:35vh; height:30vh; background:white; }
+.fadeAll,.cash { left:0; right:0; }
+.fadeAll { z-index:9; top:0; bottom:0; background:rgba(255,255,255,0.3); }
+.cashMessage button { width:50%; margin:0px auto; }
 .cash { font-size:30em; top:calc(50vh - 0.6em); pointer-events:none; }

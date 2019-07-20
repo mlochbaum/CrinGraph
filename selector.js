@@ -92,10 +92,15 @@ if (typeof max_compare !== "undefined") {
         var div = d3.select("body").append("div");
         var c = currency[currencyCounter++ % currency.length];
         if (!currencyCounter) {
-            div.attr("class","cashMessage")
+            var button = div.attr("class","cashMessage")
                 .html(premium_html)
-                .append("button").text("Fine")
-                .on("click",()=>div.remove());
+                .append("button").text("Fine");
+            button.node().focus();
+            var back = d3.select("body").append("div")
+                .attr("class","fadeAll");
+            [button,back].forEach(e =>
+                e.on("click", ()=>[div,back].forEach(e=>e.remove()))
+            );
         } else {
             div.attr("class","cash")
                 .style("color",c[1]).text(c[0])

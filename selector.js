@@ -39,7 +39,7 @@ var activePhones = [];
 var baseline0 = { p:null, l:null, fn:l=>l },
     baseline = baseline0;
 
-var gpath = gr.insert("g",".rangeButton")
+var gpath = gr.insert("g",".dBScaler")
     .attr("fill","none")
     .attr("stroke-width",2.3)
     .attr("mask","url(#graphFade)");

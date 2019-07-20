@@ -31,17 +31,6 @@ path.highlight { stroke-width:3.3px; }
 tr.highlight { box-shadow:inset 0 0 1.5em 0.2em; }
 td { color:initial; }
 
-.rangeButton rect { fill: #eee; stroke: #555; stroke-width:0.8; }
-.rangeButton path { fill: none; stroke: #777; stroke-width:1.3; }
-.rangeButton text { fill: #222; }
-.rangeButton:hover rect { stroke: #568; }
-.rangeButton:hover path { stroke: #458; }
-.rangeButton:hover text { fill: #236; }
-.rangeButton.selected rect { fill: #ee9; }
-.rangeButton { opacity:0.65; }
-.rangeButton.selected { opacity:1; }
-.rangeButton:hover { opacity:0.9; }
-
 .dBScaler { opacity:0.22; fill:#404050; }
 .dBScaler circle,.dBScaler rect { cursor:move; }
 .dBScaler:hover,.dBScaler.active { opacity:1; }
@@ -165,7 +154,7 @@ input[type=number] { width:2.3em; border:1px solid #bbb; height:1.5em; }
 .tools button { width:auto; }
 .tools * { display:inline-block; }
 .tools span { font-size: smaller; }
-.normalize { background:white; border:1px solid #bbb; padding:0px 3px; }
+.normalize,.zoom { background:white; border:1px solid #bbb; padding:0px 3px; }
 .normalize span { padding-right:0.3em; }
 #norm-phon { width:2.8em; }
 #norm-fr { width:4em; }

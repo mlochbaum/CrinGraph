@@ -108,8 +108,7 @@ function drawLabels() {
 d3.select("#label").on("click", drawLabels);
 
 d3.select("#download").on("click", function () {
-    let showControls = s =>
-        [rangeSel,dB.all].map(e=>e.attr("visibility",s?null:"hidden"));
+    let showControls = s => dB.all.attr("visibility",s?null:"hidden");
     drawLabels();
     showControls(false);
     saveSvgAsPng(gr.node(), "graph.png", {backgroundColor:"white", scale:2})

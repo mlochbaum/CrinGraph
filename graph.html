@@ -26,7 +26,31 @@
     </defs>
   </svg>
   <div>
-    <svg id="fr-graph" viewBox="0 0 800 340"></svg>
+    <div class="graphBox">
+      <svg id="fr-graph" viewBox="0 0 800 346"></svg>
+      <div class="tools">
+        <div class="zoom">
+          <span>Zoom:</span>
+          <button>bass</button>
+          <button>mids</button>
+          <button>treble</button>
+        </div>
+        <div class="normalize">
+          <span>Normalize:</span>
+          <div>
+            <input type="number" id="norm-phon" required min="20" max="100" value="60" step="5"></input>
+            <span>dB</span>
+          </div>
+          <div>
+            <input type="number" id="norm-fr" required min="20" max="20000" value="1000" step="none"></input>
+            <span>Hz</span>
+          </div>
+        </div>
+        <button id="label">label</button>
+        <button id="download">download</button>
+        <button id="recolor">recolor</button>
+      </div>
+    </div>
     <div class="controls">
       <div class="manage">
         <table class="manageTable">
@@ -55,28 +79,6 @@
           <div class="scrollOuter"><div class="scroll" id="brands"></div></div>
           <div class="scrollOuter"><div class="scroll" id="phones"></div></div>
         </div>
-      </div>
-      <div class="tools">
-        <div class="zoom">
-          <span>Zoom:</span>
-          <button>bass</button>
-          <button>mids</button>
-          <button>treble</button>
-        </div>
-        <div class="normalize">
-          <span>Normalize:</span>
-          <div>
-            <input type="number" id="norm-phon" required min="20" max="100" value="60" step="5"></input>
-            <span>dB</span>
-          </div>
-          <div>
-            <input type="number" id="norm-fr" required min="20" max="20000" value="1000" step="none"></input>
-            <span>Hz</span>
-          </div>
-        </div>
-        <button id="label">label</button>
-        <button id="download">download</button>
-        <button id="recolor">recolor</button>
       </div>
     </div>
   </div>

@@ -1,17 +1,17 @@
 body>div { height:100vh; display:flex; flex-direction:column; }
-#fr-graph { flex:none; max-height:calc(100vh - 12em); margin:0.25em auto 1em; }
+.graphBox { flex:none; margin:0.25em auto 0.75em; position:relative; }
+#fr-graph { height:calc(100vw * 346 / 800); max-height:calc(100vh - 14em); max-width:100vw; }
 svg text { cursor:default; user-select:none; }
 .controls { flex:auto; display:flex; flex-flow:row-reverse wrap; }
 .controls>div { margin:0 0.8em; font-size:large; }
 .manage,.select { flex:1; }
 .select { display:flex; flex-direction:column; border-bottom:2px solid #223; }
 .select>div { flex:auto; display:flex; position:relative; }
-.tools { position:fixed; bottom:0; right:0; padding:3px 0.6em; }
+.tools { position:relative; left:0; right:0; bottom:0; padding:3px 0.6em; margin-top:-0.5em; }
 @media only screen and (max-width:70em) {
     @media (max-aspect-ratio:5/3) {
         .controls { flex-flow:column; }
         .manage { flex:0; }
-        .tools { position:static; width:auto; }
     }
     @media not (max-aspect-ratio:5/3) , (max-width:40em) {
         #fr-graph { margin:0 auto; }
@@ -20,11 +20,11 @@ svg text { cursor:default; user-select:none; }
 }
 @media only screen and (min-aspect-ratio:9/4) {
     body>div { flex-direction:row; }
-    #fr-graph { max-height:100vh; height:100vh; max-width:calc(100vw - 30em); margin:0; }
+    .graphBox { margin:auto; }
+    #fr-graph { height:auto; max-height:calc(100vh - 3em); width:calc(100vw - 30em); margin:0; }
     .controls { flex-flow:column; }
     .manage { flex:0; }
     .controls>div { margin:0; }
-    .tools { position:static; width:auto; }
 }
 
 path.highlight { stroke-width:3.3px; }

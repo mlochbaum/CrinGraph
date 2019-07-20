@@ -772,7 +772,7 @@ var graphInteract = imm => function () {
         var insp = gr.selectAll(".inspector").data([xv])
             .join(enter => enter.append("g").call(init))
             .attr("transform",xv=>"translate("+xv+",0)");
-        var dB = insp.select(".insp_dB").text(f_values[ind]+" dB");
+        var dB = insp.select(".insp_dB").text(f_values[ind]+" Hz");
         var cy = cs.map(c => [c, baseline.fn(c.l)[ind][1]+getOffset(c.p)]);
         cy.sort((d,e) => d[1]-e[1]);
         function newTooltip(t) {

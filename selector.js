@@ -752,23 +752,94 @@ function pathTooltip(c, m) {
     g.insert("rect", "text")
         .attrs({x:b.x-1, y:b.y-1, width:b.width+2, height:b.height+2});
 }
+var interactInspect = false;
 var graphInteract = imm => function () {
     var cs = d3.merge(activePhones.map(p=>p.hide?[]:p.activeCurves));
     if (!cs.length) return;
-    var m = d3.mouse(this),
-        d = 30 * W0 / gr.node().getBoundingClientRect().width,
-        sl= range_to_slice([-1,1],s=>m[0]+d*s);
-    var ind = cs
-        .map(c =>
-            sl(baseline.fn(c.l))
-                .map(p => Math.hypot(x(p[0])-m[0], y(p[1]+getOffset(c.p))-m[1]))
-                .reduce((a,b)=>Math.min(a,b), d)
-        )
-        .reduce((a,b,i) => b<a[1] ? [i,b] : a, [-1,d])[0];
-    pathHL(ind===-1 ? false : cs[ind], m, imm);
+    var m = d3.mouse(this);
+    if (interactInspect) {
+        var ind = fr_to_ind(x.invert(m[0])),
+            x1 = x(f_values[ind]),
+            x0 = ind>0 ? x(f_values[ind-1]) : x1,
+            sel= m[0]-x0 < x1-m[0],
+            xv = sel ? x0 : x1;
+        ind -= sel;
+        function init(e) {
+            e.attr("class","inspector");
+            e.append("line").attrs({x1:0,x2:0, y1:pad.t,y2:pad.t+H});
+            e.append("text").attr("class","insp_dB").attr("x",2);
+        }
+        var insp = gr.selectAll(".inspector").data([xv])
+            .join(enter => enter.append("g").call(init))
+            .attr("transform",xv=>"translate("+xv+",0)");
+        var dB = insp.select(".insp_dB").text(f_values[ind]+" dB");
+        var cy = cs.map(c => [c, baseline.fn(c.l)[ind][1]+getOffset(c.p)]);
+        cy.sort((d,e) => d[1]-e[1]);
+        function newTooltip(t) {
+            t.attr("class","tooltip")
+                .attr("fill",d=>getTooltipColor(d));
+            t.append("text").attr("x",2).text(d=>d.id);
+            t.append("g").selectAll().data([0,1])
+                .join("text")
+                .attr("x",-16)
+                .attr("text-anchor",i=>i?"start":"end");
+            t.datum(function(){return this.getBBox();});
+            t.insert("rect", "text")
+                .attrs(b=>({x:b.x-1, y:b.y-1, width:b.width+2, height:b.height+2}));
+        }
+        var tt = insp.selectAll(".tooltip").data(cy.map(d=>d[0]), d=>d.id)
+            .join(enter => enter.insert("g","line").call(newTooltip));
+        var start = tt.select("g").datum((_,i) => cy[i][1])
+            .selectAll("text").data(d => {
+                var s=d<0?"-":""; d=Math.abs(d)+0.05;
+                return [s+Math.floor(d)+".",Math.floor((d%1)*10)];
+            })
+            .text(t=>t)
+            .filter((_,i)=>i===0)
+            .nodes().map(n=>n.getBBox().x-2);
+        tt.select("rect")
+            .attrs((b,i)=>({x:b.x+start[i]-1, width:b.width-start[i]+2}));
+        // Now compute heights
+        var hm = d3.max(tt.data().map(b=>b.height)),
+            hh = (y.invert(0)-y.invert(hm-1))/2,
+            stack = [];
+        cy.map(d=>d[1]).forEach(function (h,i) {
+            var n = 1;
+            var overlap = s => h/n - s.h/s.n <= hh*(s.n+n);
+            var l = stack.length;
+            while (l && overlap(stack[--l])) {
+                var s = stack.pop();
+                h += s.h; n += s.n;
+            }
+            stack.push({h:h, n:n});
+        });
+        var ch = d3.merge(stack.map((s,i) => {
+            var h = s.h/s.n - (s.n-1)*hh;
+            return d3.range(s.n).map(k => h+k*2*hh);
+        }));
+        tt.attr("transform",(_,i) => "translate(0,"+(y(ch[i])+5)+")");
+        dB.attr("y", y(ch[ch.length-1]+2*hh)+1);
+    } else {
+        var d = 30 * W0 / gr.node().getBoundingClientRect().width,
+            sl= range_to_slice([-1,1],s=>m[0]+d*s);
+        var ind = cs
+            .map(c =>
+                sl(baseline.fn(c.l))
+                    .map(p => Math.hypot(x(p[0])-m[0], y(p[1]+getOffset(c.p))-m[1]))
+                    .reduce((a,b)=>Math.min(a,b), d)
+            )
+            .reduce((a,b,i) => b<a[1] ? [i,b] : a, [-1,d])[0];
+        pathHL(ind===-1 ? false : cs[ind], m, imm);
+    }
 }
+function stopInspect() { gr.selectAll(".inspector").remove(); }
 gr.append("rect")
     .attrs({x:pad.l,y:pad.t,width:W,height:H,opacity:0})
     .on("mousemove", graphInteract())
-    .on("mouseout", ()=>pathHL(false))
+    .on("mouseout", ()=>interactInspect?stopInspect():pathHL(false))
     .on("click", graphInteract(true));
+
+d3.select("#inspector").on("click", function () {
+    clearLabels(); stopInspect();
+    d3.select(this).classed("selected", interactInspect = !interactInspect);
+});

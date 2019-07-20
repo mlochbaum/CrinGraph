@@ -154,6 +154,9 @@ input[type=number] { width:2.3em; border:1px solid #bbb; height:1.5em; }
 .tooltip { pointer-events:none; }
 .tooltip rect { fill:rgba(255,255,255,0.6); }
 
+.inspector { pointer-events:none; }
+.inspector line { stroke-width:0.8px; stroke:#266149; }
+
 .tools * { display:inline-block; }
 .zoom button { min-width:4em; }
 .normalize span { padding-right:0.3em; }

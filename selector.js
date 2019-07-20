@@ -87,8 +87,9 @@ if (typeof max_compare !== "undefined") {
         ["฿", "#dcaf1d"]
     ];
     let currencyCounter = -1;
-    function cantCompare(m) {
-        if (m < max_compare) { return false; }
+    if (typeof disallow_target === "undefined") { disallow_target=false; }
+    function cantCompare(m, target) {
+        if (m<max_compare && !(target&&disallow_target)) { return false; }
         var div = d3.select("body").append("div");
         var c = currency[currencyCounter++ % currency.length];
         if (!currencyCounter) {
@@ -518,7 +519,7 @@ function showPhone(p, exclusive) {
         exclusive = false;
         setAddButton(false);
     }
-    if (!exclusive && cantCompare(activePhones.length)) return;
+    if (cantCompare(exclusive?0:activePhones.length, p.isTarget)) return;
     if (!p.channels) {
         loadFiles(p, function (ch) {
             if (p.channels) return;

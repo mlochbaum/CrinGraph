@@ -18,6 +18,7 @@ function watermark(svg) {
 const max_channel_imbalance = 5;
 
 const max_compare = 2;
-const premium_html = "<h2>You gonna pay for that?</h2><p>To use more than two graphs, upgrade to Patreon <a href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a>.<p>";
+const disallow_target = true;
+const premium_html = "<h2>You gonna pay for that?</h2><p>To use target curves, or more than two graphs, upgrade to Patreon <a href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a>.<p>";
 
 const targets = ["Diffuse Field","Harman","Crinacle"];

@@ -64,10 +64,13 @@ td.remove       { width:1.4em; font-size:120%; }
   position:absolute; left:0; right:0; bottom:0.2em; height:1.4em;
   pointer-events:none;
 }
-.addButton { cursor:pointer; text-align:center; color:#444; }
+.addButton,.addLock { cursor:pointer; text-align:center; color:#444; }
 .addButton:hover { color:#371; }
 .helpText { color:#666; font-style:italic; font-size:0.7em; padding:0.1em 0.3em 0 0; }
 .addPhone.selected { outline-color:#371; background:#dfe; }
+.addLock { font-size:0.8em; color:#111; padding-right:0.3em; }
+.addLock:hover,.addPhone.locked .addLock { color:#160; }
+.addPhone.locked:after { border-color:#371; }
 
 /* For headphone as opposed to brand in current headphone table */
 .phonename { font-weight:bold; display:inline; position:relative; }

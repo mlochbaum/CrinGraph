@@ -88,8 +88,9 @@ if (typeof max_compare !== "undefined") {
     ];
     let currencyCounter = -1;
     if (typeof disallow_target === "undefined") { disallow_target=false; }
-    function cantCompare(m, target) {
+    function cantCompare(m, target, noMessage) {
         if (m<max_compare && !(target&&disallow_target)) { return false; }
+        if (noMessage) { return true; }
         var div = d3.select("body").append("div");
         var c = currency[currencyCounter++ % currency.length];
         if (!currencyCounter) {
@@ -505,19 +506,34 @@ norms.select("input")
     });
 norms.select("span").on("click", (_,i)=>setNorm(_,i,false));
 
-var addPhoneSet = false; // Whether add phone button was clicked
+var addPhoneSet = false, // Whether add phone button was clicked
+    addPhoneLock= false;
 function setAddButton(a) {
-    if (a && cantCompare(activePhones.length)) return;
-    if (addPhoneSet === a) return;
-    addPhoneSet = a;
-    d3.select(".addPhone").classed("selected", a);
+    if (a && cantCompare(activePhones.length)) return false;
+    if (addPhoneSet !== a) {
+        addPhoneSet = a;
+        d3.select(".addPhone").classed("selected", a)
+            .classed("locked", addPhoneLock &= a);
+    }
+    return true;
 }
-d3.select(".addPhone").on("click", ()=>setAddButton(!addPhoneSet));
+d3.select(".addPhone").selectAll("td")
+    .on("click", ()=>setAddButton(!addPhoneSet));
+d3.select(".addLock").on("click", function () {
+    d3.event.preventDefault();
+    var on = !addPhoneLock;
+    if (!setAddButton(on)) return;
+    if (on) {
+        d3.select(".addPhone").classed("locked", addPhoneLock=true);
+    }
+});
 
 function showPhone(p, exclusive) {
     if (addPhoneSet) {
         exclusive = false;
-        setAddButton(false);
+        if (!addPhoneLock || cantCompare(activePhones.length+1,null,true)) {
+            setAddButton(false);
+        }
     }
     if (cantCompare(exclusive?0:activePhones.length, p.isTarget)) return;
     if (!p.channels) {

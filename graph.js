@@ -26,16 +26,28 @@ defs.append("filter").attr("id","blur").attr("filterUnits","userSpaceOnUse")
     .attr("stdDeviation", 0.8);
 var yAxis = d3.axisLeft(y).tickSize(W).tickSizeOuter(0).tickPadding(1);
 function fmtY(ya) {
-    yAxis(ya);
+    var d = y.domain(),
+        r = d[1] - d[0],
+        t = r<40 ? 1 : 5,
+        y0= Math.ceil (d[0]/t),
+        y1= Math.floor(d[1]/t),
+        isMinor = t===5 ? (()=>false) : ((_,i)=>(y0+i)%5!==0);
+    yAxis.tickValues(d3.range(y1-y0+1).map(i=>t*(y0+i)))(ya);
     ya.select(".domain").remove();
     ya.selectAll(".tick line")
       .attr("stroke-linecap", "round")
-      .attr("stroke-width", 0.3)
-      .attr("filter", "url(#blur)");
+      .attrs((_,i) => {
+          var m = isMinor(_,i);
+          return {
+              filter: m ? null : "url(#blur)",
+              "stroke-width": m ? 0.2*(1-r/45) : 0.15*(1+45/r)
+          };
+      });
     ya.selectAll(".tick text")
       .attr("text-anchor","start")
       .attr("x",-W+3)
-      .attr("dy",-2);
+      .attr("dy",-2)
+      .filter(isMinor).attr("display","none");
 }
 var yAxisObj = gr.append("g")
     .attr("transform", "translate("+(pad.l+W)+",0)")

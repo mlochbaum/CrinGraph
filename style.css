@@ -176,6 +176,9 @@ input[type=number] { width:2.3em; border:1px solid #bbb; height:1.5em; }
     padding:0.5em 5em 2.5em; line-height:1.5;
     background:white; box-shadow:0 0 20px 6px #444;
 }
+@media only screen and (max-width:40em) {
+    .cashMessage { width:calc(100vw - 10em); left:0; }
+}
 .fadeAll,.cash { left:0; right:0; }
 .fadeAll { z-index:9; top:0; bottom:0; background:rgba(255,255,255,0.3); }
 .cashMessage button { width:50%; margin:0px auto; }

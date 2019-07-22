@@ -57,6 +57,6 @@ function find_offset(fr, target) {
     do {
         dx = getStep(x);
         x -= dx;
-    } while (Math.abs(dx) > 0.1);
+    } while (Math.abs(dx) > 0.01);
     return x;
 }

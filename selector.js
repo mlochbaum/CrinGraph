@@ -245,7 +245,7 @@ function updatePhoneTable() {
         td = () => f.append("td");
     f   .call(setHover, h => p => hl(p,h))
         .style("color", p => getDivColor(p.id,true));
-    f.style("background-image",p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 8"><path d="M0 0H16C1 1,1 1,1 4S1 7,12 8H0Z" opacity="0.6" fill="'+getCurveColor(p.id,0)+'"/></svg>\')')
+    f.style("background-image",p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" opacity="0.85" fill="'+getCurveColor(p.id,0)+'"/></svg>\')')
         .style("background-size","contain").style("background-repeat","no-repeat");
 
     td().attr("class","remove").text("⊗")

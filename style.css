@@ -50,7 +50,7 @@ tr,td { padding:0px; }
 span.remove { float:right; font-size:95%; width:1em; }
 
 .addButton,
-td.remove       { width:1.4em; font-size:120%; }
+td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 /*.phoneId*/
 .key            { width:16%; }
 .calibrate      { width:2.5em; }

@@ -10,7 +10,8 @@ svg text { cursor:default; user-select:none; }
 .tools {
     display:flex; flex-wrap:wrap; justify-content:space-around;
     align-items:center; padding:0.2em 0; margin:-0.5em 1vw 0;
-    border-radius:8px; background:#eee; font-size: smaller;
+    border-radius:8px; background:#ebf0ed; font-size: smaller;
+    border:1px solid #aca;
 }
 @media only screen and (max-width:70em) {
     @media (max-aspect-ratio:5/3) {
@@ -92,7 +93,7 @@ td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 
 .pinMark { float:right; width:80%; margin-right:-8.6%; margin-bottom:0.6em; }
 
-tr { background:#eee; }
+tr { background:#eceeee; }
 .scrollOuter { flex:1; position:relative; }
 .scroll {
     position:absolute; left:0; right:0; top:0; bottom:0;
@@ -109,19 +110,20 @@ tr { background:#eee; }
     padding:2px; padding-left:1.2em; height:1.3em; line-height:1.3em;
     border:1px solid #bbb;
 }
-.search,input[type=number] { box-shadow:inset 0 0.1em 0.3em #fec; }
+.search,input[type=number] { box-shadow:inset 0 0.1em 0.3em #ccefff; }
 .chevron { height:1.3em; width:0.9em; position:absolute; top:-1.3em; fill:#223; }
 .stop { height:0.35em; position:absolute; right:0; bottom:0; fill:#223; }
 .scroll div { background:white; }
 
 button {
-    border:none; background:#dbd8dd; position:relative;
+    border:none; background:#dddbce; position:relative;
     height:1.5em;
+    color:#34170b;
 }
 button:hover { color: #124; }
 button:hover:before,button:hover:after { border-color: #9ac; color: #124; }
 button:before,button:after {
-  border:2px groove #ddd; content:'';
+  border:2px groove #dde4a0; content:'';
   position:absolute; top:0; bottom:0; width:0.3em;
 }
 button:before { border-right:0; left:0; }
@@ -145,7 +147,7 @@ button.selected { background-color: #dd9; }
 .keyOnly:hover { fill:#124; }
 .imbalance { fill:#e11; font-weight:bold; pointer-events:none; }
 
-input[type=number] { width:2.3em; border:1px solid #bbb; height:1.5em; }
+input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 .curves input[type=number] { display:block; margin-left:auto; margin-right:auto; }
 
 .variants {
@@ -166,7 +168,7 @@ input[type=number] { width:2.3em; border:1px solid #bbb; height:1.5em; }
 #norm-phon { width:2.8em; }
 #norm-fr { width:4em; }
 .normalize input:invalid { background:#fbb; }
-.normalize div.selected { margin-bottom:-3px; border-bottom:3px solid #221; background:#eeb; }
+.normalize div.selected { margin-bottom:-3px; border-bottom:3px solid #21150f; background:#cde4aa; }
 .normalize div span { cursor:pointer; }
 
 .cash,.cashMessage,.fadeAll { position:fixed; text-align:center; z-index:10; }

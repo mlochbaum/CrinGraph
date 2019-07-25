@@ -46,8 +46,8 @@ tr,td { padding:0px; }
 .manageTable { width:100%; position:relative; z-index:1; }
 .manageTable tr { border-bottom: 3px solid white; }
 
-.remove { cursor:pointer; text-align:center; color:#3b0c1b; }
-.remove:hover { color:#713; }
+.remove { cursor:pointer; text-align:center; color:#44292a; }
+.remove:hover { color:#813; }
 span.remove { float:right; font-size:95%; width:1em; }
 
 .addButton,
@@ -68,7 +68,7 @@ td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 .addButton,.addLock { cursor:pointer; text-align:center; color:#445; }
 .addButton:hover { color:#371; }
 .helpText { color:#667; font-style:italic; font-size:0.7em; padding:0.1em 0.3em 0 0; }
-.addPhone.selected { outline-color:#371; background:#dfe; }
+.addPhone.selected { background:#d8fde2; }
 .addLock { font-size:0.8em; color:#112; padding-right:0.3em; }
 .addLock:hover,.addPhone.locked .addLock { color:#160; }
 .addPhone.locked:after { border-color:#371; }
@@ -135,12 +135,12 @@ button.selected { background-color: #dd9; }
     color:#261d10; font-size:0.75em; text-align:center; line-height:1.15;
     border-left:2px solid white;
 }
-.button:hover { color: #126; }
-.button.selected { background-color: #dd9; }
+.button:hover { color: #137; }
+.button.selected { background-color: #e4eb6c; }
 
 .button svg { display:block; margin:auto 0em; }
 .button.hideIcon { color: #989381; }
-.button.hideIcon.selected { background:none; color: #b52; }
+.button.hideIcon.selected { background:none; color: #b76138; }
 .button.hideIcon:hover { color: #359; }
 
 .keyOnly { fill:#555049; }

@@ -551,7 +551,9 @@ function showPhone(p, exclusive) {
     if (p.id === undefined) { p.id = getPhoneNumber(); }
     normalizePhone(p); p.offset=p.offset||0;
     if (exclusive) {
-        activePhones = activePhones.filter(q=>q.active=q.copyOf===p||q.pin);
+        activePhones = activePhones.filter(q=>
+            q.active = q.copyOf===p || q.pin || q.isTarget!==p.isTarget
+        );
         if (baseline.p && !baseline.p.active) baseline = baseline0;
     }
     if (activePhones.indexOf(p)===-1 && !p.objs) {

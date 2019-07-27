@@ -172,6 +172,28 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 .normalize div.selected { margin-bottom:-3px; border-bottom:3px solid #21150f; background:#cde4aa; }
 .normalize div span { cursor:pointer; }
 
+.targetClass {
+    display:flex; flex-grow:1; flex-wrap:wrap; position:relative;
+    padding:0.1em 0 0.4em; justify-content:space-around;
+    background:#f6f2f3; border-radius:7px; margin:0 2px;
+    border:1px solid #bab;
+}
+.targets {
+    display:flex; flex-wrap:none; position:relative;
+    width:100%; font-size:smaller; margin-bottom:6px;
+    padding-bottom:1em;
+}
+.targetLabel {
+    position:absolute; bottom:0; left:0; right:0; text-align:center;
+    font-size:0.8em; color:#5f5853;
+    z-index:1;
+}
+.targetClass .targetLabel span { background:#fbeef8; border-radius:2px; }
+.targetClass .targetLabel { bottom:-0.7em; }
+.targets>div>span { font-size:1.1em; }
+.target { cursor:pointer; z-index:1; text-decoration:underline #736960; color:#1c1307; }
+.target:hover { background:#eef5bc; text-decoration-color:#665f1e; }
+
 .cash,.cashMessage,.fadeAll { position:fixed; text-align:center; z-index:10; }
 .cashMessage {
     height:auto; top:calc(50vh - 7em);

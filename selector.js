@@ -625,18 +625,10 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             return r;
         });
     });
-    if (targets) {
-        var b = { name:"Targets", active:false };
-        b.phoneObjs = targets.map((t,i) => ({
-            isTarget:true, id:i-targets.length, brand:b,
-            dispName:t, phone:t, fullName:t+" Target", fileName:t+" Target"
-        }));
-        brands.unshift(b);
-    }
 
     var allPhones = d3.merge(brands.map(b=>b.phoneObjs)),
         currentBrands = [];
-    showPhone(allPhones[targets.length],1);
+    showPhone(allPhones[0],1);
 
     function setClicks(fn) { return function (elt) {
         elt .on("mousedown", () => d3.event.preventDefault())
@@ -659,6 +651,24 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
         .call(setClicks(showPhone));
     phoneSel.append("span").text(p=>p.fullName);
+
+    if (targets) {
+        var b = { name:"Targets", active:false },
+            ti = -targets.length,
+            ph = t => ({
+                isTarget:true, brand:b,
+                dispName:t, phone:t, fullName:t+" Target", fileName:t+" Target"
+            });
+        var l = (text,c) => s => s.append("div").attr("class","targetLabel").append("span").text(text);
+        var ts = b.phoneObjs = d3.select(".targets").call(l("Targets"))
+            .selectAll().data(targets).join().call(l(t=>t.type))
+            .style("flex-grow",t=>t.files.length).attr("class","targetClass")
+            .selectAll().data(t=>t.files.map(ph))
+            .join("div").text(t=>t.dispName).attr("class","target")
+            .call(setClicks(showPhone))
+            .data();
+        ts.forEach((t,i)=>t.id=i-ts.length);
+    }
 
     function setBrand(b, exclusive) {
         var incl = currentBrands.indexOf(b) !== -1;

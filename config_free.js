@@ -21,4 +21,7 @@ const max_compare = 2;
 const disallow_target = true;
 const premium_html = "<h2>You gonna pay for that?</h2><p>To use target curves, or more than two graphs, upgrade to Patreon <a href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a>.<p>";
 
-const targets = ["Diffuse Field","Harman","Crinacle"];
+const targets = [
+    { type:"Neutral"   , files:["Crinacle","Diffuse Field","Etymotic","Free Field","Innerfidelity ID"] },
+    { type:"Preference", files:["Harman","Rtings","Sonarworks"] }
+];

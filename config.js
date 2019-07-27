@@ -17,4 +17,7 @@ function watermark(svg) {
 
 const max_channel_imbalance = 5;
 
-const targets = ["Crinacle","Diffuse Field","Etymotic","Free Field","Harman","Innerfidelity ID","Rtings","Sonarworks"];
+const targets = [
+    { type:"Neutral"   , files:["Crinacle","Diffuse Field","Etymotic","Free Field","Innerfidelity ID"] },
+    { type:"Preference", files:["Harman","Rtings","Sonarworks"] }
+];

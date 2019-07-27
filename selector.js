@@ -154,7 +154,8 @@ function setPhoneTr(phtr) {
     });
     phtr.style("background",p=>getDivColor(p.id,p.highlight))
         .style("border-color",p=>p.highlight?getDivColor(p.id,1):null);
-    phtr.selectAll(".remove").data(p=>p.highlight?[p]:[])
+    phtr.filter(p=>!p.isTarget)
+        .selectAll(".remove").data(p=>p.highlight?[p]:[])
         .join("span").attr("class","remove").text("⊗")
         .on("click", p => { d3.event.stopPropagation(); removeCopies(p); });
 }
@@ -532,6 +533,10 @@ d3.select(".addLock").on("click", function () {
 });
 
 function showPhone(p, exclusive) {
+    if (p.isTarget && activePhones.indexOf(p)!==-1) {
+        removePhone(p);
+        return;
+    }
     if (addPhoneSet) {
         exclusive = false;
         if (!addPhoneLock || cantCompare(activePhones.length+1,null,true)) {

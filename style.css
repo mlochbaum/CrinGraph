@@ -190,8 +190,8 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 }
 .targetClass .targetLabel span { background:#fbeef8; border-radius:2px; }
 .targetClass .targetLabel { bottom:-0.7em; }
-.targets>div>span { font-size:1.1em; }
-.target { cursor:pointer; z-index:1; text-decoration:underline #736960; color:#1c1307; }
+.target span { font-size:1.1em; }
+.target { cursor:pointer; z-index:1; text-decoration:underline #736960; color:#1c1307; border-radius:2px; }
 .target:hover { background:#eef5bc; text-decoration-color:#665f1e; }
 
 .cash,.cashMessage,.fadeAll { position:fixed; text-align:center; z-index:10; }

@@ -152,7 +152,7 @@ function setPhoneTr(phtr) {
             p.highlight = true;
         }
     });
-    phtr.style("background",p=>getDivColor(p.id,p.highlight))
+    phtr.style("background",p=>p.isTarget&&!p.active?null:getDivColor(p.id,p.highlight))
         .style("border-color",p=>p.highlight?getDivColor(p.id,1):null);
     phtr.filter(p=>!p.isTarget)
         .selectAll(".remove").data(p=>p.highlight?[p]:[])
@@ -575,7 +575,7 @@ function showPhone(p, exclusive) {
     }
     updatePaths();
     updatePhoneTable();
-    d3.select("#phones").selectAll("div")
+    d3.selectAll("#phones div,.target")
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
     if (p.fileNames && !p.copyOf) {
@@ -599,7 +599,7 @@ function removePhone(p) {
     updatePaths();
     if (baseline.p && !baseline.p.active) { setBaseline(baseline0); }
     updatePhoneTable();
-    d3.select("#phones").selectAll("div")
+    d3.selectAll("#phones div,.target")
         .filter(q=>q===(p.copyOf||p))
         .call(setPhoneTr);
 }
@@ -754,7 +754,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         activePhones.forEach(p => { if (!p.isTarget) { p.id = getPhoneNumber(); } });
         updatePaths();
         var c = p=>p.active?getDivColor(p.id,true):null;
-        d3.select("#phones").selectAll("div").filter(p=>!p.isTarget)
+        d3.select("#phones").selectAll("div")
             .style("background",c).style("border-color",c);
         var t = table.selectAll("tr").filter(p=>!p.isTarget)
             .style("color", c)

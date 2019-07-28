@@ -57,7 +57,7 @@ td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 .calibrate      { width:2.5em; }
 .baselineButton { width:2.5em; }
 .hideButton     { width:2em; }
-.pinButton      { width:2.2em; }
+.lastColumn     { width:2.2em; }
 
 .addPhone { background:white; height:1.95em; }
 .addPhone:after {

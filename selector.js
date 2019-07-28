@@ -275,7 +275,7 @@ function updatePhoneTable() {
     td().attr("class","button hideIcon")
         .html("<svg viewBox='-2.5 0 19 12'><use xlink:href='#hide-icon'></use></svg>")
         .on("click", toggleHide);
-    td().attr("class","button")
+    td().attr("class","button pinButton")
         .html("<svg viewBox='-135 -100 270 200'><use xlink:href='#pin-icon'></use></svg>")
         .on("click",function(p){
             if (cantCompare(activePhones.filter(p=>p.pin).length+1)) return;

@@ -120,6 +120,7 @@ button {
     height:1.5em;
     color:#34170b;
 }
+#download { font-weight:bold; color:#3d130b; }
 button:hover { color: #124; }
 button:hover:before,button:hover:after { border-color: #9ac; color: #124; }
 button:before,button:after {

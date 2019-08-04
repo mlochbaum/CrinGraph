@@ -879,3 +879,8 @@ d3.select("#inspector").on("click", function () {
     clearLabels(); stopInspect();
     d3.select(this).classed("selected", interactInspect = !interactInspect);
 });
+
+d3.select("#expandTools").on("click", function () {
+    var t=d3.select(".tools"), cl="collapse", v=!t.classed(cl);
+    [t,d3.select(".targets")].forEach(s=>s.classed(cl, v));
+});

@@ -28,7 +28,7 @@
   <div>
     <div class="graphBox">
       <svg id="fr-graph" viewBox="0 0 800 346"></svg>
-      <div class="tools">
+      <div class="tools collapse">
         <div class="zoom">
           <span>Zoom:</span>
           <button>bass</button>
@@ -46,17 +46,21 @@
             <span>Hz</span>
           </div>
         </div>
-        <div>
+        <div class="miscTools">
           <button id="inspector">╞ inspect</button>
           <button id="label">▭ label</button>
           <button id="download"><u>⇩</u> screenshot</button>
           <button id="recolor">○ recolor</button>
         </div>
+        <svg id="expandTools" viewBox="0 0 14 12">
+            <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="#878156"      stroke-linecap="round" transform="translate(0,0.3)"/>
+            <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="currentColor" stroke-linecap="round"/>
+        </svg>
       </div>
     </div>
     <div class="controls">
       <div class="manage">
-        <div class="targets"></div>
+        <div class="targets collapse"></div>
         <table class="manageTable">
           <colgroup>
             <col class="remove">

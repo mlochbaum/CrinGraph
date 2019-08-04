@@ -12,6 +12,7 @@ svg text { cursor:default; user-select:none; }
     align-items:center; padding:0.2em 0; margin:-0.5em 1vw 0;
     border-radius:8px; background:#ebf0ed; font-size: smaller;
     border:1px solid #aca;
+    position:relative;
 }
 @media only screen and (max-width:70em) {
     @media (max-aspect-ratio:5/3) {
@@ -121,7 +122,8 @@ button {
     color:#34170b;
 }
 #download { font-weight:bold; color:#3d130b; }
-button:hover { color: #124; }
+#expandTools { color:#382d28; }
+button:hover,#expandTools:hover { color: #124; }
 button:hover:before,button:hover:after { border-color: #9ac; color: #124; }
 button:before,button:after {
   border:2px groove #dde4a0; content:'';
@@ -172,6 +174,17 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 .normalize input:invalid { background:#fbb; }
 .normalize div.selected { margin-bottom:-3px; border-bottom:3px solid #21150f; background:#cde4aa; }
 .normalize div span { cursor:pointer; }
+#expandTools { display:none; height:1.5em; }
+
+@media only screen and (max-width:70em) {
+    .tools { padding-right:3em; }
+    #expandTools { display:inline-block; position:absolute; right:1em; top:0.2em; }
+    .tools.collapse .normalize,.tools.collapse .miscTools button:not(#download) { display:none; }
+    @media screen and (max-width:40em) {
+        .tools.collapse .zoom { display:none; }
+    }
+    .targets.collapse { display:none; }
+}
 
 .targetClass {
     display:flex; flex-grow:1; flex-wrap:wrap; position:relative;

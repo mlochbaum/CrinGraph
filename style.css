@@ -123,7 +123,7 @@ button {
 }
 #download { font-weight:bold; color:#3d130b; }
 #expandTools { color:#382d28; }
-button:hover,#expandTools:hover { color: #124; }
+button:hover,#expandTools:hover,#download:hover { color: #124; }
 button:hover:before,button:hover:after { border-color: #9ac; color: #124; }
 button:before,button:after {
   border:2px groove #dde4a0; content:'';
@@ -176,7 +176,7 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 .normalize div span { cursor:pointer; }
 #expandTools { display:none; height:1.5em; }
 
-@media only screen and (max-width:70em) {
+@media only screen and (max-width:60em) {
     .tools { padding-right:3em; }
     #expandTools { display:inline-block; position:absolute; right:1em; top:0.2em; }
     .tools.collapse .normalize,.tools.collapse .miscTools button:not(#download) { display:none; }

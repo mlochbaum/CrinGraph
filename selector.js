@@ -29,10 +29,14 @@ function getAvg(p) {
 function hasImbalance(p) {
     if (has1Channel(p)) return false;
     var as = p.channels[0], bs = p.channels[1];
-    return as.some((a,i) =>
-        a[0] <= 15e3 &&
-        Math.abs(a[1]-bs[i][1]) > max_channel_imbalance
-    );
+    var s0=0, s1=0;
+    return as.some((a,i) => {
+        var d = a[1]-bs[i][1];
+        d *= 1/70;
+        s0 = Math.max(s0+d,0);
+        s1 = Math.max(s1-d,0);
+        return Math.max(s0,s1) > max_channel_imbalance;
+    });
 }
 
 var activePhones = [];

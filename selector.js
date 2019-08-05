@@ -32,7 +32,7 @@ function hasImbalance(p) {
     var s0=0, s1=0;
     return as.some((a,i) => {
         var d = a[1]-bs[i][1];
-        d *= 1/70;
+        d *= 1/(50 * Math.sqrt(1+Math.pow(a[0]/1e4,6)));
         s0 = Math.max(s0+d,0);
         s1 = Math.max(s1-d,0);
         return Math.max(s0,s1) > max_channel_imbalance;

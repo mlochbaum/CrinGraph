@@ -83,6 +83,7 @@ function color_curveToText(c) {
 var getTooltipColor = curve => color_curveToText(getColor_AC(curve));
 var getTextColor = p => color_curveToText(getCurveColor(p.id,0));
 
+let cantCompare;
 if (typeof max_compare !== "undefined") {
     const currency = [
         ["$", "#348542"],
@@ -92,7 +93,7 @@ if (typeof max_compare !== "undefined") {
     ];
     let currencyCounter = -1;
     if (typeof disallow_target === "undefined") { disallow_target=false; }
-    function cantCompare(m, target, noMessage) {
+    cantCompare = function(m, target, noMessage) {
         if (m<max_compare && !(target&&disallow_target)) { return false; }
         if (noMessage) { return true; }
         var div = d3.select("body").append("div");
@@ -115,7 +116,7 @@ if (typeof max_compare !== "undefined") {
         return true;
     }
 } else {
-    function cantCompare(m) { return false; }
+    cantCompare = function(m) { return false; }
 }
 
 var phoneNumber = 0; // I'm so sorry it just happened

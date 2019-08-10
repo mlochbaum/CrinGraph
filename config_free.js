@@ -7,7 +7,7 @@ const tsvParse = fr => d3.tsvParseRows(fr).slice(2,482)
 function watermark(svg) {
     var wm = svg.append("g")
         .attr("transform", "translate("+(pad.l+W/2)+","+(pad.t+H/2-20)+")")
-        .attr("opacity",0.1);
+        .attr("opacity",0.2);
     wm.append("image")
         .attrs({x:-64, y:-64, width:128, height:128, "xlink:href":"https://crinacle.com/wp-content/uploads/2019/01/avatardiao2xredditsafe.png"});
     wm.append("text")

@@ -259,7 +259,7 @@ function updatePhoneTable() {
     td().html(p=>p.isTarget?"":p.brand.name+"&nbsp;").call(addModel);
     td().append("svg").call(addKey);
     td().append("input")
-        .attrs({type:"number",step:"none",value:0})
+        .attrs({type:"number",step:"any",value:0})
         .property("value", p=>p.offset)
         .on("change input",function(p){ setOffset(p, +this.value); });
     td().attr("class","button")

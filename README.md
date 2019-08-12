@@ -36,7 +36,7 @@ The following features are planned for the crinacle.com graphing tool:
 * Range controls to zoom in on bass, mids, or treble ✔
 * Ability to rescale and adjust the y axis (SPL in decibels) ✔
 * Tooltips to see which headphone and channel each curves represents ✔
-* Allow the user to select a smoothing function
+* Graph smoothing by a configurable factor ✔
 * Ability to drag graphs up and down?
 
 ### Headphone manager

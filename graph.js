@@ -114,7 +114,7 @@ var fadeEdge = fade.selectAll().data([0,1]).join("rect")
 var line = d3.line()
     .x(d=>x(d[0]))
     .y(d=>y(d[1]))
-    .curve(d3.curveCardinal.tension(0.5));
+    .curve(d3.curveNatural);
 
 
 // Range buttons

@@ -549,15 +549,16 @@ function showPhone(p, exclusive) {
         }
     }
     if (cantCompare(exclusive?0:activePhones.length, p.isTarget)) return;
-    if (!p.channels) {
+    if (!p.rawChannels) {
         loadFiles(p, function (ch) {
-            if (p.channels) return;
-            p.channels = ch;
+            if (p.rawChannels) return;
+            p.rawChannels = ch;
             if (!f_values) { f_values = ch[0].map(d=>d[0]); }
             showPhone(p, exclusive);
         });
         return;
     }
+    smoothPhone(p);
     if (p.id === undefined) { p.id = getPhoneNumber(); }
     normalizePhone(p); p.offset=p.offset||0;
     if (exclusive) {

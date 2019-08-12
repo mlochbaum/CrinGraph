@@ -167,11 +167,11 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 
 .tools * { display:inline-block; }
 .zoom button { min-width:4em; }
-.normalize { color:#170b08; }
+.tools div { color:#170b08; }
 .normalize span { padding-right:0.3em; }
 #norm-phon { width:2.8em; }
 #norm-fr { width:4em; }
-.normalize input:invalid { background:#fbb; }
+.tools input:invalid { background:#fbb; }
 .normalize div.selected { margin-bottom:-3px; border-bottom:3px solid #21150f; background:#cde4aa; }
 .normalize div span { cursor:pointer; }
 #expandTools { display:none; height:1.5em; }

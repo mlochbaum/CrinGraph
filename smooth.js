@@ -60,7 +60,7 @@ function smooth(y) {
     if (!smooth_param) {
         let x = f_values.map(f=>Math.log(f)),
             h = pair(x, (a,b)=>a-b),
-            d = i => smooth_level*0.003*Math.pow(1/80,Math.pow(i/x.length,2));
+            d = i => smooth_level*0.01*Math.pow(1/80,Math.pow(i/x.length,2));
         smooth_param = smooth_prep(h, d);
     }
     return smooth_eval(smooth_param, y);

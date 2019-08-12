@@ -393,7 +393,7 @@ function addModel(t) {
         .on("focus", function (p) {
             if (p.selectInProgress) return;
             p.selectInProgress = true;
-            p.vars[p.fileName] = p.channels;
+            p.vars[p.fileName] = p.rawChannels;
             d3.select(this)
                 .on("mousedown", function () {
                     d3.event.preventDefault();
@@ -463,7 +463,8 @@ function changeVariant(p, update) {
     var fn = p.fileName,
         ch = p.vars[fn];
     function set(ch) {
-        p.channels = ch;
+        p.rawChannels = ch; p.smooth = undefined;
+        smoothPhone(p);
         setCurves(p, p.avg);
         update(p);
     }

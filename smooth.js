@@ -56,6 +56,7 @@ function smooth_eval(p, y) {
 let smooth_level = 5,
     smooth_param = undefined;
 function smooth(y) {
+    if (smooth_param === 0) { return y; }
     if (!smooth_param) {
         let x = f_values.map(f=>Math.log(f)),
             h = pair(x, (a,b)=>a-b),

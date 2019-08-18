@@ -242,7 +242,8 @@ function updatePaths() {
     clearLabels();
     var c = d3.merge(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
-    p.join("path").attr("stroke", getColor_AC).call(redrawLine);
+    p.join("path").attr("opacity", c=>c.p.hide?0:null)
+        .attr("stroke", getColor_AC).call(redrawLine);
 }
 function updatePhoneTable() {
     var c = table.selectAll("tr").data(activePhones, p=>p.id);

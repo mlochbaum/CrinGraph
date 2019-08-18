@@ -45,7 +45,7 @@ body { margin:0px; }
 table { border-collapse: collapse; }
 tr,td { padding:0px; }
 .manageTable { width:100%; position:relative; z-index:1; }
-.manageTable tr { border-bottom: 3px solid white; }
+.manageTable tr:not(.addPhone) { border-bottom: 3px solid white; }
 
 .remove { cursor:pointer; text-align:center; color:#44292a; }
 .remove:hover { color:#813; }
@@ -60,10 +60,10 @@ td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 .hideButton     { width:2em; }
 .lastColumn     { width:2.2em; }
 
-.addPhone { background:white; height:1.95em; }
+.addPhone { background:white; height:1.8em; }
 .addPhone:after {
-  border:2px dashed #99a; content:'';
-  position:absolute; left:0; right:0; bottom:0.2em; height:1.4em;
+  border:2px dashed #99a; content:''; box-sizing:border-box;
+  position:absolute; left:0; right:0; bottom:0; height:calc(1.8em - 2px);
   pointer-events:none;
 }
 .addButton,.addLock { cursor:pointer; text-align:center; color:#445; }

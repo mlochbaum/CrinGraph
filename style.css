@@ -1,3 +1,4 @@
+html { background:#e5e5e5; }
 body>div { height:100vh; display:flex; flex-direction:column; }
 .graphBox { margin:0.25em auto 0.75em; }
 #fr-graph { height:calc(100vw * 346 / 800); max-height:calc(100vh - 13.5em); max-width:100vw; }
@@ -10,7 +11,7 @@ svg text { cursor:default; user-select:none; }
 .tools {
     display:flex; flex-wrap:wrap; justify-content:space-around;
     align-items:center; padding:0.2em 0; margin:-0.5em 1vw 0;
-    border-radius:8px; background:#ebf0ed; font-size: smaller;
+    border-radius:8px; background:#f0f5f2; font-size: smaller;
     border:1px solid #aca;
     position:relative;
 }
@@ -45,7 +46,7 @@ body { margin:0px; }
 table { border-collapse: collapse; }
 tr,td { padding:0px; }
 .manageTable { width:100%; position:relative; z-index:1; }
-.manageTable tr:not(.addPhone) { border-bottom: 3px solid white; }
+.manageTable tr:not(.addPhone) { border-bottom: 3px solid #e5e5e5; }
 
 .remove { cursor:pointer; text-align:center; color:#44292a; }
 .remove:hover { color:#813; }
@@ -60,7 +61,7 @@ td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 .hideButton     { width:2em; }
 .lastColumn     { width:2.2em; }
 
-.addPhone { background:white; height:1.8em; }
+.addPhone { height:1.8em; }
 .addPhone:after {
   border:2px dashed #99a; content:''; box-sizing:border-box;
   position:absolute; left:0; right:0; bottom:0; height:calc(1.8em - 2px);
@@ -94,7 +95,7 @@ td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 
 .pinMark { float:right; width:80%; margin-right:-8.6%; margin-bottom:0.6em; }
 
-tr { background:#ebeeee; }
+tr { background:#f9fcfc; }
 .scrollOuter { flex:1; position:relative; }
 .scroll {
     position:absolute; left:0; right:0; top:0; bottom:0;
@@ -136,10 +137,10 @@ button.selected { background-color: #dd9; }
 .button {
     cursor:default;
     color:#261d10; font-size:0.75em; text-align:center; line-height:1.15;
-    border-left:2px solid white;
+    border-left:2px solid #e5e5e5;
 }
 .button:hover { color: #137; }
-.button.selected { background-color: #e4eb6c; }
+.button.selected { background-color: #e8ed82; }
 
 .button svg { display:block; margin:auto 0em; }
 .button.hideIcon { color: #989381; }

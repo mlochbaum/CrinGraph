@@ -1,4 +1,4 @@
-var pad = { l:14, r:14, t:10, b:36 };
+var pad = { l:15, r:15, t:10, b:36 };
 var W0 = 800, W = W0 - pad.l - pad.r,
     H0 = 360, H = H0 - pad.t - pad.b;
 
@@ -6,6 +6,8 @@ var gr = d3.select("#fr-graph"),
     defs = gr.append("defs");
 
 
+gr.append("rect").attrs({x:0, y:pad.t-8, width:W0, height:H0-22, rx:4,
+                         fill:"white"});
 watermark(gr);
 
 

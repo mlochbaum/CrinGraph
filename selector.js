@@ -613,6 +613,8 @@ function removePhone(p) {
 }
 
 d3.json(DIR+"phone_book.json").then(function (brands) {
+    var brandMap = {};
+    brands.forEach(b => brandMap[b.name] = b);
     brands.forEach(function (b) {
         b.active = false;
         b.phoneObjs = b.phones.map(function (p) {
@@ -621,7 +623,10 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                 r.phone = r.fileName = p;
             } else {
                 r.phone = p.name;
-                if (p.collab) { r.dispBrand += " x "+p.collab; }
+                if (p.collab) {
+                    r.dispBrand += " x "+p.collab;
+                    r.collab = brandMap[p.collab];
+                }
                 var f = p.file || p.name;
                 if (typeof f === "string") {
                     r.fileName = f;
@@ -688,6 +693,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
 
     function setBrand(b, exclusive) {
         var incl = currentBrands.indexOf(b) !== -1;
+        var hasBrand = (p,b) => p.brand===b || p.collab===b;
         if (exclusive || currentBrands.length===0) {
             currentBrands.forEach(br => br.active = false);
             if (incl) {
@@ -696,8 +702,8 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                 phoneSel.select("span").text(p=>p.fullName);
             } else {
                 currentBrands = [b];
-                phoneSel.style("display", p => p.brand===b?null:"none");
-                phoneSel.filter(p => p.brand===b).select("span").text(p=>p.phone);
+                phoneSel.style("display", p => hasBrand(p,b)?null:"none");
+                phoneSel.filter(p => hasBrand(p,b)).select("span").text(p=>p.phone);
             }
         } else {
             if (incl) return;
@@ -705,7 +711,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                 phoneSel.select("span").text(p=>p.fullName);
             }
             currentBrands.push(b);
-            phoneSel.filter(p => p.brand===b).style("display", null);
+            phoneSel.filter(p => hasBrand(p,b)).style("display", null);
         }
         if (!incl) b.active = true;
         brandSel.classed("active", br => br.active);
@@ -742,16 +748,17 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         d3.select(this).attr("placeholder",null);
         var fn, bl = brands;
         var c = currentBrands;
+        var test = p => c.indexOf(p.brand )!==-1
+                     || c.indexOf(p.collab)!==-1;
         if (this.value.length > 1) {
             var s = phoneSearch.search(this.value),
-                t = c.length ? s.filter(p=>c.indexOf(p.brand)!==-1) : s;
+                t = c.length ? s.filter(test) : s;
             if (t.length) s = t;
             fn = p => s.indexOf(p)!==-1;
             var b = brandSearch.search(this.value);
             if (b.length) bl = b;
         } else {
-            fn = c.length ? (p => c.indexOf(p.brand)!==-1)
-                          : (p => true);
+            fn = c.length ? test : (p=>true);
         }
         phoneSel.style("display", p => fn(p)?null:"none");
         brandSel.style("display", b => bl.indexOf(b)!==-1?null:"none");

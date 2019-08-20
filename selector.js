@@ -433,7 +433,7 @@ function addModel(t) {
                 if (cantCompare(activePhones.length)) return;
                 if (!q.objs) { q.objs = [q]; }
                 v.active=true; v.copyOf=q;
-                ["brand","fileNames","vars"].map(k=>v[k]=q[k]);
+                ["brand","dispBrand","fileNames","vars"].map(k=>v[k]=q[k]);
                 q.objs.push(v);
                 changeVariant(v, showPhone);
             });

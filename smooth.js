@@ -69,7 +69,7 @@ function smooth(y) {
 function smoothPhone(p) {
     if (p.smooth !== smooth_level) {
         p.channels = p.rawChannels.map(
-            c=>smooth(c.map(d=>d[1])).map((d,i)=>[c[i][0],d])
+            c=>c?smooth(c.map(d=>d[1])).map((d,i)=>[c[i][0],d]):c
         );
         p.smooth = smooth_level;
         setCurves(p, p.avg);

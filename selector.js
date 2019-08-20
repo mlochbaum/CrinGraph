@@ -171,7 +171,7 @@ function setCurves(p, avg, lr) {
     var dx = +avg - +p.avg;
     p.avg = avg;
     if (!p.isTarget) {
-        var id = n => p.brand.name + " " + p.dispName + " ("+n+")";
+        var id = n => p.dispBrand + " " + p.dispName + " ("+n+")";
         p.activeCurves = avg && !has1Channel(p)
             ? [{id:id("AVG"), l:avgCurves(p.channels), p:p, o:0}]
             : p.channels.map((l,i) => ({id:id(LR[i]), l:l, p:p, o:-1+2*i}))
@@ -257,7 +257,7 @@ function updatePhoneTable() {
         .on("click", removePhone)
         .style("background-image",p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" opacity="0.85" fill="'+getCurveColor(p.id,0)+'"/></svg>\')')
         .style("background-size","contain").style("background-repeat","no-repeat");
-    td().html(p=>p.isTarget?"":p.brand.name+"&nbsp;").call(addModel);
+    td().html(p=>p.isTarget?"":p.dispBrand+"&nbsp;").call(addModel);
     td().append("svg").call(addKey);
     td().append("input")
         .attrs({type:"number",step:"any",value:0})
@@ -616,12 +616,13 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
     brands.forEach(function (b) {
         b.active = false;
         b.phoneObjs = b.phones.map(function (p) {
-            var r = { brand:b };
+            var r = { brand:b, dispBrand:b.name };
             if (typeof p === "string") {
                 r.phone = r.fileName = p;
             } else {
                 r.phone = p.name;
-                var f = p.file;
+                if (p.collab) { r.dispBrand += " x "+p.collab; }
+                var f = p.file || p.name;
                 if (typeof f === "string") {
                     r.fileName = f;
                 } else {
@@ -636,7 +637,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                 }
             }
             r.dispName = r.dispName || r.phone;
-            r.fullName = b.name + " " + r.phone;
+            r.fullName = r.dispBrand + " " + r.phone;
             return r;
         });
     });
@@ -718,7 +719,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             threshold: 0.2,
             minMatchCharLength: 2,
             keys: [
-                {weight:0.3, name:"brand.name"},
+                {weight:0.3, name:"dispBrand"},
                 {weight:0.1, name:"brand.suffix"},
                 {weight:0.6, name:"phone"}
             ]

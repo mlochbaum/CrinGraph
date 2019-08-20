@@ -637,6 +637,12 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                         r.dispNames = p.suffix.map(
                             s => p.name + (s ? " "+s : "")
                         );
+                    } else if (p.prefix) {
+                        let reg = new RegExp("^"+p.prefix+"\s*", "i");
+                        r.dispNames = f.map(n => {
+                            n = n.replace(reg, "");
+                            return p.name + (n.length ? " "+n : n);
+                        });
                     }
                     r.dispName = (r.dispNames||r.fileNames)[0];
                 }

@@ -91,17 +91,25 @@ if (typeof max_compare !== "undefined") {
         ["€", "#2961d4"],
         ["฿", "#dcaf1d"]
     ];
-    let currencyCounter = -1;
+    let currencyCounter = -1,
+        lastMessage = null,
+        messageWeight = 0;
     if (typeof disallow_target === "undefined") { disallow_target=false; }
     cantCompare = function(m, target, noMessage) {
         if (m<max_compare && !(target&&disallow_target)) { return false; }
         if (noMessage) { return true; }
         var div = d3.select("body").append("div");
         var c = currency[currencyCounter++ % currency.length];
-        if (!currencyCounter) {
+        var lm = lastMessage;
+        lastMessage = Date.now();
+        messageWeight *= Math.pow(2, (lm?lm-lastMessage:0)/3e4); // 30-second half-life
+        messageWeight++;
+        if (!currencyCounter || messageWeight>=2) {
+            messageWeight /= 2;
             var button = div.attr("class","cashMessage")
                 .html(premium_html)
-                .append("button").text("Fine");
+                .append("button").text("Fine")
+                .on("mousedown", ()=>messageWeight=0);
             button.node().focus();
             var back = d3.select("body").append("div")
                 .attr("class","fadeAll");

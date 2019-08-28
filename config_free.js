@@ -19,7 +19,7 @@ const max_channel_imbalance = 5;
 
 const max_compare = 2;
 const disallow_target = true;
-const premium_html = "<h2>You gonna pay for that?</h2><p>To use r more than two graphs, upgrade to Patreon <a href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a> and switch to <a href='https://crinacle.com/graphs/graphtool/premium/'>the premium tool</a>.<p>";
+const premium_html = "<h2>You gonna pay for that?</h2><p>To use target curves, or more than two graphs, upgrade to Patreon <a target='_blank' href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a> and switch to <a target='_blank' href='https://crinacle.com/graphs/graphtool/premium/'>the premium tool</a>.<p>";
 
 const targets = [
     { type:"Neutral"   , files:["Crinacle","Diffuse Field","Etymotic","Free Field","Innerfidelity ID"] },

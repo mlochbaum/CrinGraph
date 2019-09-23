@@ -13,8 +13,15 @@ function drawLabels() {
         activePhones.filter(p=>!p.hide).map(p=>p.activeCurves)
     );
     if (!curves.length) return;
+
+    let bcurves = curves.slice(),
+        bp = baseline.p;
+    if (bp && bp.hide) {
+        bcurves.push({ id:"Baseline: "+bp.dispBrand+" "+bp.dispName, p:bp, o:0 });
+    }
+
     gr.selectAll(".tooltip").remove();
-    let g = gr.selectAll(".tooltip").data(curves)
+    let g = gr.selectAll(".tooltip").data(bcurves)
         .join("g").attr("class","tooltip").attr("opacity", 0);
     let t = g.append("text")
         .attrs({x:0, y:0, fill:c=>getTooltipColor(c)})
@@ -26,20 +33,21 @@ function drawLabels() {
     let boxes = g.data(),
         w = boxes.map(b=>b.width +6),
         h = boxes.map(b=>b.height+6);
-    let getLine = c => {
-        var o=getOffset(c.p);
+
+    let v = curves.map(c => {
+        let o=getOffset(c.p);
         return baseline.fn(c.l).map(d=>d[1]+o);
-    }
+    });
+    let tr;
 
     if (curves.length === 1) {
         let x0 = 50, y0 = 10,
             sl = range_to_slice([0,w[0]], o=>x0+o),
-            e = d3.extent(sl(getLine(curves[0])).map(y));
+            e = d3.extent(sl(v[0]).map(y));
         if (y0+h[0] >= e[0]) { y0 = Math.max(y0, e[1]); }
-        g.attr("transform","translate("+x0+","+y0+")");
+        tr = [[x0,y0]];
     } else {
-        let v = curves.map(getLine),
-            n = v.length;
+        let n = v.length;
         let invd = (sc,d) => sc.invert(d)-sc.invert(0),
             xr = x.range(),
             yd = y.domain(),
@@ -61,9 +69,8 @@ function drawLabels() {
             let t = v.map(c => winReduce(c, mw, 1, f));
             return w => t.map(c => winReduce(c, w, mw, f));
         });
-        let tr = [];
         let top = 0; // Use top left if we can't find a spot
-        v.forEach((e,j) => {
+        tr = v.map((e,j) => {
             let we = wind(w[j]),
                 he = -invd(y,h[j]),
                 range = d3.transpose(getRanges.map(r => r(we))),
@@ -105,14 +112,14 @@ function drawLabels() {
                     }
                 }
             });
-            if (pos) {
-                tr[j] = "translate("+x(f_values[pos[0]])+","+y(pos[1])+")";
-            } else {
-                tr[j] = "translate(60,"+(20+30*top++)+")";
-            }
+            return pos ? [x(f_values[pos[0]]), y(pos[1])]
+                       : [60, 20+30*top++];
         });
-        g.attr("transform",(_,j)=>tr[j]);
     }
+    for (let j=curves.length; j<bcurves.length; j++) {
+        tr.push([pad.l+(W-w[j])/2, pad.t+H-h[j]+2]);
+    }
+    g.attr("transform",(_,i)=>"translate("+tr[i].join(",")+")");
     g.attr("opacity",null);
     setLabelButton(true);
 }

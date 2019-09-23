@@ -9,7 +9,9 @@ function clearLabels() {
 }
 
 function drawLabels() {
-    let curves = d3.merge(activePhones.map(p => p.activeCurves));
+    let curves = d3.merge(
+        activePhones.filter(p=>!p.hide).map(p=>p.activeCurves)
+    );
     if (!curves.length) return;
     gr.selectAll(".tooltip").remove();
     let g = gr.selectAll(".tooltip").data(curves)

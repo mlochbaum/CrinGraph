@@ -60,6 +60,7 @@ function drawLabels() {
             return w => t.map(c => winReduce(c, w, mw, f));
         });
         let tr = [];
+        let top = 0; // Use top left if we can't find a spot
         v.forEach((e,j) => {
             let we = wind(w[j]),
                 he = -invd(y,h[j]),
@@ -105,7 +106,7 @@ function drawLabels() {
             if (pos) {
                 tr[j] = "translate("+x(f_values[pos[0]])+","+y(pos[1])+")";
             } else {
-                tr[j] = "translate(60,"+(20+30*j)+")";
+                tr[j] = "translate(60,"+(20+30*top++)+")";
             }
         });
         g.attr("transform",(_,j)=>tr[j]);

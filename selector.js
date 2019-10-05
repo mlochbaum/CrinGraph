@@ -548,7 +548,7 @@ d3.select(".addLock").on("click", function () {
     }
 });
 
-function showPhone(p, exclusive) {
+function showPhone(p, exclusive, suppressVariant) {
     if (p.isTarget && activePhones.indexOf(p)!==-1) {
         removePhone(p);
         return;
@@ -565,7 +565,7 @@ function showPhone(p, exclusive) {
             if (p.rawChannels) return;
             p.rawChannels = ch;
             if (!f_values) { f_values = ch[0].map(d=>d[0]); }
-            showPhone(p, exclusive);
+            showPhone(p, exclusive, suppressVariant);
         });
         return;
     }
@@ -595,7 +595,7 @@ function showPhone(p, exclusive) {
     d3.selectAll("#phones div,.target")
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
-    if (p.fileNames && !p.copyOf) {
+    if (!suppressVariant && p.fileNames && !p.copyOf) {
         table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
     }
 }
@@ -622,12 +622,17 @@ function removePhone(p) {
 }
 
 d3.json(DIR+"phone_book.json").then(function (brands) {
-    var brandMap = {};
+    var brandMap = {},
+        inits = [],
+        hasInit = typeof init_phones !== "undefined",
+        isInit =  hasInit ? f => init_phones.indexOf(f) !== -1
+                          : _ => false;
     brands.forEach(b => brandMap[b.name] = b);
     brands.forEach(function (b) {
         b.active = false;
         b.phoneObjs = b.phones.map(function (p) {
             var r = { brand:b, dispBrand:b.name };
+            var init = -2;
             if (typeof p === "string") {
                 r.phone = r.fileName = p;
             } else {
@@ -641,7 +646,9 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                     r.fileName = f;
                 } else {
                     r.fileNames = f;
-                    r.fileName = f[0];
+                    init = f.map(isInit).indexOf(true);
+                    var ind = Math.max(0, init);
+                    r.fileName = f[ind];
                     if (p.suffix) {
                         r.dispNames = p.suffix.map(
                             s => p.name + (s ? " "+s : "")
@@ -653,18 +660,20 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                             return p.name + (n.length ? " "+n : n);
                         });
                     }
-                    r.dispName = (r.dispNames||r.fileNames)[0];
+                    r.dispName = (r.dispNames||r.fileNames)[ind];
                 }
             }
             r.dispName = r.dispName || r.phone;
             r.fullName = r.dispBrand + " " + r.phone;
+            if (init===-2 ? isInit(r.fileName) : init>=0) { inits.push(r); }
             return r;
         });
     });
 
     var allPhones = d3.merge(brands.map(b=>b.phoneObjs)),
         currentBrands = [];
-    showPhone(allPhones[0],1);
+    if (!hasInit) inits.push(allPhones[0]);
+    inits.map(p => showPhone(p,0,1));
 
     function setClicks(fn) { return function (elt) {
         elt .on("mousedown", () => d3.event.preventDefault())

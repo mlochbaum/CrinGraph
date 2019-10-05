@@ -21,3 +21,5 @@ const targets = [
     { type:"Neutral"   , files:["Crinacle","Diffuse Field","Etymotic","Free Field","Innerfidelity ID"] },
     { type:"Preference", files:["Harman","Rtings","Sonarworks"] }
 ];
+
+// const init_phones = [ "N8 Mod" ];

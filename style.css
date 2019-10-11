@@ -118,7 +118,7 @@ tr { background:#f9fcfc; }
 .scroll div { background:white; }
 
 button {
-    border:none; background:#dddbce; position:relative;
+    border:none; background:#e0ded1; position:relative;
     height:1.5em;
     color:#34170b;
 }
@@ -127,7 +127,7 @@ button {
 button:hover,#expandTools:hover,#download:hover { color: #124; }
 button:hover:before,button:hover:after { border-color: #9ac; color: #124; }
 button:before,button:after {
-  border:2px groove #dde4a0; content:'';
+  border:2px groove #e1e8a3; content:'';
   position:absolute; top:0; bottom:0; width:0.3em;
 }
 button:before { border-right:0; left:0; }
@@ -173,7 +173,7 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 #norm-phon { width:2.8em; }
 #norm-fr { width:4em; }
 .tools input:invalid { background:#fbb; }
-.normalize div.selected { margin-bottom:-3px; border-bottom:3px solid #21150f; background:#cde4aa; }
+.normalize div.selected { margin-bottom:-3px; border-bottom:3px solid #261811; background:#cde4aa; }
 .normalize div span { cursor:pointer; }
 #expandTools { display:none; height:1.5em; }
 

@@ -131,6 +131,6 @@ d3.select("#download").on("click", function () {
     gpath.selectAll("path").classed("highlight",false);
     drawLabels();
     showControls(false);
-    saveSvgAsPng(gr.node(), "graph.png", {backgroundColor:"white", scale:2})
+    saveSvgAsPng(gr.node(), "graph.png", {backgroundColor:"white", scale:3})
         .then(()=>showControls(true));
 });

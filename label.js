@@ -128,6 +128,7 @@ labelButton.on("click", () => (labelsShown?clearLabels:drawLabels)());
 
 d3.select("#download").on("click", function () {
     let showControls = s => dB.all.attr("visibility",s?null:"hidden");
+    gpath.selectAll("path").classed("highlight",false);
     drawLabels();
     showControls(false);
     saveSvgAsPng(gr.node(), "graph.png", {backgroundColor:"white", scale:2})

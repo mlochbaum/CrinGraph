@@ -169,7 +169,7 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 .tools * { display:inline-block; }
 .zoom button { min-width:4em; }
 .tools div { color:#170b08; }
-.normalize span { padding-right:0.3em; }
+.normalize span:not(.helptip) { padding-right:0.3em; }
 #norm-phon { width:2.8em; }
 #norm-fr { width:4em; }
 .tools input:invalid { background:#fbb; }
@@ -187,6 +187,29 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
         .tools.collapse .zoom { display:none; }
     }
     .targets.collapse { display:none; }
+}
+
+.helptip {
+    position:relative; margin-left:-0.15em;
+    width:1em; height:1em; border-radius:50%;
+    background:#b3bfba; border:0.15em solid #b3bfba;
+    text-align:center; font-weight:bold; cursor:default;
+    color:#f0f5f2;
+}
+.helptip span {
+    visibility:hidden;
+    position:absolute; left:70%; bottom:70%; z-index:8;
+    width:16rem; max-width:100vw; padding:0.5em;
+    border-radius:0.6em; border-bottom-left-radius:0;
+    background-color:#1f2120; font-weight:normal;
+}
+.helptip:hover span,.helptip.active span { visibility:visible; }
+@media only screen and (max-width:40em) {
+    .helptip { position:static; }
+    .helptip span {
+        left:0; bottom:0; width:calc(100% - 1.25em);
+        border-bottom-left-radius:0.6em;
+    }
 }
 
 .targetClass {

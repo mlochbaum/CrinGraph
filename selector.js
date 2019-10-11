@@ -925,3 +925,8 @@ d3.select("#expandTools").on("click", function () {
     var t=d3.select(".tools"), cl="collapse", v=!t.classed(cl);
     [t,d3.select(".targets")].forEach(s=>s.classed(cl, v));
 });
+
+d3.selectAll(".helptip").on("click", function() {
+    var e = d3.select(this);
+    e.classed("active", !e.classed("active"));
+});

@@ -5,7 +5,7 @@ const tsvParse = fr => d3.tsvParseRows(fr).slice(2,482)
 
 // Add a watermark to the graph.
 function watermark(svg) {
-    var wm = svg.append("g")
+    let wm = svg.append("g")
         .attr("transform", "translate("+(pad.l+W/2)+","+(pad.t+H/2-20)+")")
         .attr("opacity",0.2);
     wm.append("image")

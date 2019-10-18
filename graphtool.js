@@ -233,7 +233,11 @@ function drawLabels() {
     let bcurves = curves.slice(),
         bp = baseline.p;
     if (bp && bp.hide) {
-        bcurves.push({ id:"Baseline: "+bp.dispBrand+" "+bp.dispName, p:bp, o:0 });
+        bcurves.push({
+            p:bp, o:0,
+            id:"Baseline: "+(bp.isTarget ? bp.fullName
+                                         : bp.dispBrand+" "+bp.dispName)
+        });
     }
 
     gr.selectAll(".tooltip").remove();

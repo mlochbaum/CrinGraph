@@ -342,14 +342,32 @@ function drawLabels() {
 
 labelButton.on("click", () => (labelsShown?clearLabels:drawLabels)());
 
-d3.select("#download").on("click", function () {
+function saveGraph(ext) {
+    let fn = {png:saveSvgAsPng, svg:saveSvg}[ext];
     let showControls = s => dB.all.attr("visibility",s?null:"hidden");
     gpath.selectAll("path").classed("highlight",false);
     drawLabels();
     showControls(false);
-    saveSvgAsPng(gr.node(), "graph.png", {backgroundColor:"white", scale:3})
+    fn(gr.node(), "graph."+ext, {backgroundColor:"white", scale:3})
         .then(()=>showControls(true));
-});
+}
+d3.select("#download")
+    .on("click", () => saveGraph("png"))
+    .on("contextmenu", function () {
+        d3.event.returnValue=false;
+        let b = d3.select(this);
+        let choice = b.selectAll("div")
+            .data(["png","svg"]).join("div")
+            .styles({position:"absolute", left:0, top:(_,i)=>i*1.3+"em",
+                     background:"inherit", padding:"0.1em 1em"})
+            .text(d => "As ."+d)
+            .on("click", function (d) {
+                saveGraph(d);
+                choice.remove();
+                d3.event.stopPropagation();
+            });
+        b.on("blur", ()=>choice.remove());
+    });
 
 
 // Graph smoothing

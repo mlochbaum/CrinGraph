@@ -1,8 +1,108 @@
+let doc = d3.select(".graphtool");
+doc.html(`
+  <svg style="display:none">
+    <defs>
+      <g id="baseline-icon" text-anchor="middle" font-size="100px" fill="currentColor">
+        <text dominant-baseline="central" y="-57">BASE</text>
+        <text dominant-baseline="central" y="57">-LINE</text>
+      </g>
+      <g id="hide-icon">
+        <path d="M2 6Q7 0 12 6Q7 12 2 6Z" stroke-width="1" stroke="currentColor" fill="none"/>
+        <circle cx="7" cy="6" r="2" stroke="none" fill="currentColor"/>
+        <line stroke-width="1" x1="4.4" y1="10.3" x2="10.4" y2="2.3" stroke="white"/>
+        <line stroke-width="1" x1="3.6" y1= "9.7" x2= "9.6" y2="1.7" stroke="currentColor"/>
+      </g>
+      <g id="pin-icon" text-anchor="middle" font-size="100px" fill="currentColor">
+        <text dominant-baseline="central">
+          PIN
+        </text>
+      </g>
+    </defs>
+  </svg>
+  <div class="main">
+    <div class="graphBox">
+      <svg id="fr-graph" viewBox="0 0 800 346"></svg>
+      <div class="tools collapse">
+        <div class="zoom">
+          <span>Zoom:</span>
+          <button>bass</button>
+          <button>mids</button>
+          <button>treble</button>
+        </div>
+        <div class="normalize">
+          <span>Normalize:</span>
+          <div>
+            <input type="number" id="norm-phon" required min="20" max="100" value="60" step="5"></input>
+            <span>dB</span>
+          </div>
+          <div>
+            <input type="number" id="norm-fr" required min="20" max="20000" value="1000" step="any"></input>
+            <span>Hz</span>
+          </div>
+          <span class="helptip">
+            ?<span>Choose a dB value to normalize to a target listening level, or a Hz value to make all curves match at that frequency.</span>
+          </span>
+        </div>
+        <div class="smooth">
+          <span>Smooth:</span>
+          <input type="number" id="smooth-level" required min="0" value="5" step="any"></input>
+        </div>
+        <div class="miscTools">
+          <button id="inspector">╞ inspect</button>
+          <button id="label">▭ label</button>
+          <button id="download"><u>⇩</u> screenshot</button>
+          <button id="recolor">○ recolor</button>
+        </div>
+        <svg id="expandTools" viewBox="0 0 14 12">
+            <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="#878156"      stroke-linecap="round" transform="translate(0,0.3)"/>
+            <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="currentColor" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="manage">
+        <div class="targets collapse"></div>
+        <table class="manageTable">
+          <colgroup>
+            <col class="remove">
+            <col class="phoneId">
+            <col class="key">
+            <col class="calibrate">
+            <col class="baselineButton">
+            <col class="hideButton">
+            <col class="lastColumn">
+          </colgroup>
+          <tbody class="curves"></tbody>
+          <tr class="addPhone">
+            <td class="addButton">⊕</td>
+            <td class="helpText" colspan="5">(or middle/ctrl-click when selecting; or pin other IEMs)</td>
+            <td class="addLock">LOCK</td>
+          </tr>
+        </table>
+      </div>
+      <div class="select">
+        <input class="search" type="text" placeholder="Search by brand or model" onClick="this.select();"/>
+        <div>
+          <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
+            <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4"/>
+          </svg>
+          <svg class="stop" viewBox="0 0 4 1">
+            <path d="M4 1H0C3 1 3.2 0.8 4 0Z"/>
+          </svg>
+          <div class="scrollOuter"><div class="scroll" id="brands"></div></div>
+          <div class="scrollOuter"><div class="scroll" id="phones"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+`);
+
+
 let pad = { l:15, r:15, t:10, b:36 };
 let W0 = 800, W = W0 - pad.l - pad.r,
     H0 = 360, H = H0 - pad.t - pad.b;
 
-let gr = d3.select("#fr-graph"),
+let gr = doc.select("#fr-graph"),
     defs = gr.append("defs");
 
 
@@ -123,7 +223,7 @@ let line = d3.line()
 let selectedRange = 3; // Full range
 let ranges = [[20,400],[100,4000],[1000,20000], [20,20000]],
     edgeWs = [[fW,fWm],[fWm,fWm],[fWm,fW],[fW,fW]];
-let rangeSel = d3.select(".zoom").selectAll("button");
+let rangeSel = doc.select(".zoom").selectAll("button");
 rangeSel.on("click", function (_,i) {
     let r = selectedRange,
         s = selectedRange = r===i ? 3 : i;
@@ -214,7 +314,7 @@ dB.updatey = function (dom) {
 
 
 // Label drawing and screenshot
-let labelButton = d3.select("#label"),
+let labelButton = doc.select("#label"),
     labelsShown = false;
 function setLabelButton(l) {
     labelButton.classed("selected", labelsShown = l);
@@ -355,7 +455,7 @@ function saveGraph(ext) {
     fn(gr.node(), "graph."+ext, {backgroundColor:"white", scale:3})
         .then(()=>showControls(true));
 }
-d3.select("#download")
+doc.select("#download")
     .on("click", () => saveGraph("png"))
     .on("contextmenu", function () {
         d3.event.returnValue=false;
@@ -453,7 +553,7 @@ function smoothPhone(p) {
     }
 }
 
-d3.select("#smooth-level").on("change input", function () {
+doc.select("#smooth-level").on("change input", function () {
     if (!this.checkValidity()) return;
     smooth_level = +this.value;
     smooth_param = undefined;
@@ -587,7 +687,7 @@ let gpath = gr.insert("g",".dBScaler")
 function hl(p, h) {
     gpath.selectAll("path").filter(c=>c.p===p).classed("highlight",h);
 }
-let table = d3.select(".curves");
+let table = doc.select(".curves");
 
 let ld_p1 = 1.1673039782614187;
 function getCurveColor(id, o) {
@@ -640,7 +740,7 @@ if (typeof max_compare !== "undefined") {
     cantCompare = function(m, target, noMessage) {
         if (m<max_compare && !(target&&disallow_target)) { return false; }
         if (noMessage) { return true; }
-        let div = d3.select("body").append("div");
+        let div = doc.append("div");
         let c = currency[currencyCounter++ % currency.length];
         let lm = lastMessage;
         lastMessage = Date.now();
@@ -653,7 +753,7 @@ if (typeof max_compare !== "undefined") {
                 .append("button").text("Fine")
                 .on("mousedown", ()=>messageWeight=0);
             button.node().focus();
-            let back = d3.select("body").append("div")
+            let back = doc.append("div")
                 .attr("class","fadeAll");
             [button,back].forEach(e =>
                 e.on("click", ()=>[div,back].forEach(e=>e.remove()))
@@ -1079,7 +1179,7 @@ function addColorPicker(svg) {
 function colorPhones() {
     updatePaths();
     let c = p=>p.active?getDivColor(p.id,true):null;
-    d3.select("#phones").selectAll("div")
+    doc.select("#phones").selectAll("div")
         .style("background",c).style("border-color",c);
     let t = table.selectAll("tr").filter(p=>!p.isTarget)
         .style("color", c)
@@ -1109,7 +1209,7 @@ function normalizePhone(p) {
     }
 }
 
-let norms = d3.select(".normalize").selectAll("div");
+let norms = doc.select(".normalize").selectAll("div");
 norms.classed("selected",(_,i)=>i===norm_sel);
 function setNorm(_, i, change) {
     if (change !== false) {
@@ -1137,19 +1237,19 @@ function setAddButton(a) {
     if (a && cantCompare(activePhones.length)) return false;
     if (addPhoneSet !== a) {
         addPhoneSet = a;
-        d3.select(".addPhone").classed("selected", a)
+        doc.select(".addPhone").classed("selected", a)
             .classed("locked", addPhoneLock &= a);
     }
     return true;
 }
-d3.select(".addPhone").selectAll("td")
+doc.select(".addPhone").selectAll("td")
     .on("click", ()=>setAddButton(!addPhoneSet));
-d3.select(".addLock").on("click", function () {
+doc.select(".addLock").on("click", function () {
     d3.event.preventDefault();
     let on = !addPhoneLock;
     if (!setAddButton(on)) return;
     if (on) {
-        d3.select(".addPhone").classed("locked", addPhoneLock=true);
+        doc.select(".addPhone").classed("locked", addPhoneLock=true);
     }
 });
 
@@ -1286,7 +1386,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             .on("auxclick", p => d3.event.button===1 ? fn(p,0) : 0);
     }; }
 
-    let brandSel = d3.select("#brands").selectAll()
+    let brandSel = doc.select("#brands").selectAll()
         .data(brands).join("div")
         .text(b => b.name + (b.suffix?" "+b.suffix:""))
         .call(setClicks(setBrand));
@@ -1295,7 +1395,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         d3.select(this).style("background", fn(p));
         (p.objs||[p]).forEach(q=>hl(q,h));
     }
-    let phoneSel = d3.select("#phones").selectAll()
+    let phoneSel = doc.select("#phones").selectAll()
         .data(allPhones).join("div")
         .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
         .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
@@ -1310,7 +1410,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                 dispName:t, phone:t, fullName:t+" Target", fileName:t+" Target"
             });
         let l = (text,c) => s => s.append("div").attr("class","targetLabel").append("span").text(text);
-        let ts = b.phoneObjs = d3.select(".targets").call(l("Targets"))
+        let ts = b.phoneObjs = doc.select(".targets").call(l("Targets"))
             .selectAll().data(targets).join().call(l(t=>t.type))
             .style("flex-grow",t=>t.files.length).attr("class","targetClass")
             .selectAll().data(t=>t.files.map(ph))
@@ -1375,7 +1475,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             ]
         }
     );
-    d3.select(".search").on("input", function () {
+    doc.select(".search").on("input", function () {
         d3.select(this).attr("placeholder",null);
         let fn, bl = brands;
         let c = currentBrands;
@@ -1395,7 +1495,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         brandSel.style("display", b => bl.indexOf(b)!==-1?null:"none");
     });
 
-    d3.select("#recolor").on("click", function () {
+    doc.select("#recolor").on("click", function () {
         allPhones.forEach(p => { if (!p.isTarget) { delete p.id; } });
         phoneNumber = 0; nextPN = null;
         activePhones.forEach(p => { if (!p.isTarget) { p.id = getPhoneNumber(); } });
@@ -1514,14 +1614,14 @@ gr.append("rect")
     .on("mouseout", ()=>interactInspect?stopInspect():pathHL(false))
     .on("click", graphInteract(true));
 
-d3.select("#inspector").on("click", function () {
+doc.select("#inspector").on("click", function () {
     clearLabels(); stopInspect();
     d3.select(this).classed("selected", interactInspect = !interactInspect);
 });
 
-d3.select("#expandTools").on("click", function () {
-    let t=d3.select(".tools"), cl="collapse", v=!t.classed(cl);
-    [t,d3.select(".targets")].forEach(s=>s.classed(cl, v));
+doc.select("#expandTools").on("click", function () {
+    let t=doc.select(".tools"), cl="collapse", v=!t.classed(cl);
+    [t,doc.select(".targets")].forEach(s=>s.classed(cl, v));
 });
 
 d3.selectAll(".helptip").on("click", function() {

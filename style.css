@@ -1,5 +1,5 @@
-html { background:#e5e5e5; }
-body>div { height:100vh; display:flex; flex-direction:column; }
+.graphtool { background:#e5e5e5; }
+.main { height:100vh; display:flex; flex-direction:column; }
 .graphBox { margin:0.25em auto 0.75em; }
 #fr-graph { height:calc(100vw * 346 / 800); max-height:calc(100vh - 13.5em); max-width:100vw; }
 svg text { cursor:default; user-select:none; }
@@ -27,7 +27,7 @@ svg text { cursor:default; user-select:none; }
     }
 }
 @media only screen and (min-aspect-ratio:9/4) {
-    body>div { flex-direction:row; }
+    .main { flex-direction:row; }
     .graphBox { margin:auto; }
     #fr-graph { height:auto; max-height:calc(100vh - 3em); width:calc(100vw - 30em); }
     .controls { flex-flow:column; }

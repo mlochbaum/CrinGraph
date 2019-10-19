@@ -612,6 +612,11 @@ function color_curveToText(c) {
 }
 let getTooltipColor = curve => color_curveToText(getColor_AC(curve));
 let getTextColor = p => color_curveToText(getCurveColor(p.id,0));
+let getBgColor = p => {
+    let c=getCurveColor(p.id,0).rgb();
+    ['r','g','b'].forEach(p=>c[p]=255-(255-Math.max(0,c[p]))*0.85);
+    return c;
+}
 
 let cantCompare;
 if (typeof max_compare !== "undefined") {
@@ -783,7 +788,7 @@ function updatePaths() {
     p.join("path").attr("opacity", c=>c.p.hide?0:null)
         .attr("stroke", getColor_AC).call(redrawLine);
 }
-let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" opacity="0.85" fill="'+getCurveColor(p.id,0)+'"/></svg>\')';
+let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" fill="'+getBgColor(p)+'"/></svg>\')';
 function updatePhoneTable() {
     let c = table.selectAll("tr").data(activePhones, p=>p.id);
     c.exit().remove();
@@ -795,7 +800,7 @@ function updatePhoneTable() {
     td().attr("class","remove").text("⊗")
         .on("click", removePhone)
         .style("background-image",colorBar)
-        .style("background-size","contain").style("background-repeat","no-repeat");
+        .append("svg").call(addColorPicker);
     td().html(p=>p.isTarget?"":p.dispBrand+"&nbsp;").call(addModel);
     td().append("svg").call(addKey);
     td().append("input")
@@ -1013,6 +1018,36 @@ function changeVariant(p, update) {
     } else {
         loadFiles(p, set);
     }
+}
+
+function cpCircles(svg) {
+    svg.selectAll("circle")
+        .data(p => [[3,3,2],[6.6,4,1]].map(([cx,cy,r])=>({cx,cy,r,fill:getBgColor(p)})))
+        .join("circle").attrs(d=>d);
+}
+function addColorPicker(svg) {
+    svg.attr("viewBox","0 0 9 5.5");
+    svg.append("rect").attrs({x:0,y:0,width:9,height:5.5,fill:"none"});
+    svg.call(cpCircles);
+    svg.on("click", function (p) {
+        p.id = getPhoneNumber();
+        colorPhones();
+        d3.event.stopPropagation();
+    });
+}
+
+function colorPhones() {
+    updatePaths();
+    let c = p=>p.active?getDivColor(p.id,true):null;
+    d3.select("#phones").selectAll("div")
+        .style("background",c).style("border-color",c);
+    let t = table.selectAll("tr").filter(p=>!p.isTarget)
+        .style("color", c)
+        .call(s => s.select(".remove").style("background-image",colorBar)
+                    .select("svg").call(cpCircles))
+        .select("td:nth-child(3)"); // Key line
+    t.select("svg").remove();
+    t.append("svg").call(addKey);
 }
 
 let f_values; // Assumed to be the same for all headphones
@@ -1322,16 +1357,7 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
         allPhones.forEach(p => { if (!p.isTarget) { delete p.id; } });
         phoneNumber = 0; nextPN = null;
         activePhones.forEach(p => { if (!p.isTarget) { p.id = getPhoneNumber(); } });
-        updatePaths();
-        let c = p=>p.active?getDivColor(p.id,true):null;
-        d3.select("#phones").selectAll("div")
-            .style("background",c).style("border-color",c);
-        let t = table.selectAll("tr").filter(p=>!p.isTarget)
-            .style("color", c)
-            .call(s => s.select(".remove").style("background-image",colorBar))
-            .select("td:nth-child(3)"); // Key line
-        t.select("svg").remove();
-        t.append("svg").call(addKey);
+        colorPhones();
     });
 });
 

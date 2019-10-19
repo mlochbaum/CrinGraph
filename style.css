@@ -48,9 +48,14 @@ tr,td { padding:0px; }
 .manageTable { width:100%; position:relative; z-index:1; }
 .manageTable tr:not(.addPhone) { border-bottom: 3px solid #e5e5e5; }
 
-.remove { cursor:pointer; text-align:center; color:#44292a; }
+.remove {
+    cursor:pointer; text-align:center; color:#44292a; position:relative;
+    background-size:contain; background-repeat:no-repeat;
+}
 .remove:hover { color:#813; }
 span.remove { float:right; font-size:95%; width:1em; }
+.remove svg { width:0.7em; position:absolute; left:0; bottom:0; user-select:none; }
+.remove svg:hover circle { fill:#fc0; }
 
 .addButton,
 td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }

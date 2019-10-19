@@ -755,9 +755,10 @@ function updateYCenter() {
     y.domain(y.domain().map(d=>d+(yCenter-c)));
     yAxisObj.call(fmtY);
 }
-function setBaseline(b) {
+function setBaseline(b, no_transition) {
     baseline = b;
     updateYCenter();
+    if (no_transition) return;
     clearLabels();
     gpath.selectAll("path")
         .transition().duration(500).ease(d3.easeQuad)
@@ -1141,7 +1142,7 @@ function showPhone(p, exclusive, suppressVariant) {
         activePhones = activePhones.filter(q=>
             q.active = q.copyOf===p || q.pin || q.isTarget!==p.isTarget
         );
-        if (baseline.p && !baseline.p.active) baseline = baseline0;
+        if (baseline.p && !baseline.p.active) setBaseline(baseline0,1);
     }
     if (activePhones.indexOf(p)===-1 && !p.objs) {
         if (activePhones.length===1 && activePhones[0].activeCurves.length!==1) {

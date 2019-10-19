@@ -4,10 +4,16 @@ If you're not weirdly obsessed with headphones you can leave at any time.
 
 Crinacle is a reviewer famous around the world (at least, I'm on the
 opposite side of it as he is) for his extensive reviews and measurements
-of in-ear monitors (IEMs). Until now his measurements have been shared
-with the general public through the medium of .jpg, which has some
-limitations when it comes to interactivity. This project is an attempt
-to rectify these issues.
+of in-ear monitors (IEMs). CrinGraph is the tool which allows readers to
+compare measurements against each other, and save easily readable images
+to share around the internet. Although it was designed for
+[Crin's site](https://crinacle.com/graphs/graphtool/),
+the tool can be used freely by anyone, with no restrictions. If you're
+interested in using it for your own graphs, see
+[Configuring.md](Configuring.md) and ask me any about any questions that
+come up.
+
+### What are the squiggles?
 
 The most informative headphone measurement, and the only one handled by
 this tool, is the frequency response (FR) graph. An FR graph shows how
@@ -18,47 +24,74 @@ The current industry standard is a "V-shaped" response which applies
 both conditions at once. Using an FR graph you may easily see which
 headphones conform to this standard and which are insufficiently "fun".
 
+### Sample graphs
+
+This repository includes some sample data so that the tool can be shown
+through Github pages. Sometimes I use this to show people features
+before they're adopted on Crin's site.
+
 [View some sample graphs.](https://mlochbaum.github.io/CrinGraph/graph.html)
 
 Because Crinacle's frequency response measurements are not public, the
-sample response curves shown here are synthesized. They are not real
+sample response curves shown are synthesized. They are not real
 headphones and you can't listen to them. To reduce potential
 disappointment, steps have been taken to ensure that the curves are as
 uninviting as possible. Any resemblence to the exports of a large East
 Asian county is purely coincidental.
 
-The following features are planned for the crinacle.com graphing tool:
+## Features
+
+If you want one that's not here, just ask so I can explain why it's a
+bad idea.
+
+### Layout
+
+The graph tool displays:
+* A graph window at the top
+* The toolbar just below it
+* The selector at the bottom left, or below the toolbar for narrow windows, and also a target selector
+* The manager for active curves
 
 ### Graph window
 
-* An aesthetically pleasing and intuitive display ✔
-* Colors are persistent and algorithmically generated to ensure contrast ✔
-* Range controls to zoom in on bass, mids, or treble ✔
-* Ability to rescale and adjust the y axis (SPL in decibels) ✔
-* Tooltips to see which headphone and channel each curves represents ✔
-* Graph smoothing by a configurable factor ✔
-* Ability to drag graphs up and down?
+* Standard logarithmic frequency (Hz) and sound pressure level (dB) axes
+* Colors are persistent and algorithmically generated to ensure contrast
+* Use the tabby-looking tool at the left to rescale and adjust the y axis
+* Hover over or click a curve to see its name and highlight it in the manager
+
+### Toolbar
+
+* Zoom into bass, mid, or treble frequencies
+* Normalize with a target loudness or a normalization frequency
+* Smooth graphs with a configurable parameter
+* Toggle inspect mode to see the numeric response values when you mouse over the graph
+* Label curves inside the graph window
+* Save a png screenshot of the graph (with labels)
+* Recolor the active curves in case there is a color conflict
+* Toolbar collapses and expands, along with the target selector, when the screen is small
+
+### Headphone and target selectors
+
+* Headphones are grouped by brand: select brands to narrow them down
+* Click to select one headphone or brand and unselect others; middle or ctrl-click for non-exclusive select
+* Search all brands or headphones by name
+* Targets are selected the same way but are independent from headphones
 
 ### Headphone manager
 
-* Choose to see left and/or right channels or average them together ✔
-* Set one response as the "baseline", adjusting all curves so that it is flat ✔
-* Select ordering and color of headphones or reset/regenerate colors …
-* Choose and compare variant measurements of the same model ✔
-* Pin a headphone to avoid losing it while adding others ✔
-* Temporarily hide a headphone ✔
-* Set normalization: adjust graphs up and down, or fix the gain at a particular frequency ✔
-* Links to reviews or ratings?
+* Curve names and colors are displayed here
+* Choose and compare variant measurements of the same model with a dropdown
+* Use the wishbone-shaped selector to see left and/or right channels or average them together
+* Change the offset to move graphs up and down
+* Select BASELINE to adjust all curves so the chosen one is flat
+* Temporarily hide or unhide a graph
+* PIN a headphone to avoid losing it while adding others
+* Click the little dots at the bottom left to change a single headphone's color
 
-### Headphone selector
+## Contact
 
-* Headphones grouped by brand ✔
-* Click to select one headphone or brand and unselect others; middle or ctrl-click for non-exclusive select ✔
-* Search all brands or headphones by name ✔
-* Search by driver configuration?
-* Filter by some algorithmically determined FR descriptors (bassy, bright, etc.)?
-
-### Entire page
-
-* Headphones in the selector, manager, and graph are linked so that hovering over one highlights the others ✔
-* Effective resizing and mobile friendliness ✔…
+File a Github issue here for topics related to the project. You can also
+reach me by the email in my Github profile and the [LICENSE](LICENSE).
+I can sometimes be found on
+[Crin's Discord server](https://discord.gg/CtTqcCb) where I am
+creatively named Marshall.

@@ -19,6 +19,7 @@ svg text { cursor:default; user-select:none; }
     @media (max-aspect-ratio:5/3) {
         .controls { flex-flow:column; }
         .manage { flex:0; }
+        .controls>div.manage { margin-bottom:0.6em; }
     }
     @media not (max-aspect-ratio:5/3) , (max-width:40em) {
         #fr-graph { margin:0 auto; }

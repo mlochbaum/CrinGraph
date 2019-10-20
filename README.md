@@ -36,7 +36,7 @@ Because Crinacle's frequency response measurements are not public, the
 sample response curves shown are synthesized. They are not real
 headphones and you can't listen to them. To reduce potential
 disappointment, steps have been taken to ensure that the curves are as
-uninviting as possible. Any resemblence to the exports of a large East
+uninviting as possible. Any resemblance to the exports of a large East
 Asian county is purely coincidental.
 
 ## Features
@@ -82,6 +82,7 @@ The graph tool displays:
 * Curve names and colors are displayed here
 * Choose and compare variant measurements of the same model with a dropdown
 * Use the wishbone-shaped selector to see left and/or right channels or [average](Documentation.md#averaging) them together
+* A red exclamation mark indicates that channels are [imbalanced](Documentation.md#channel-imbalance-marker)
 * Change the offset to move graphs up and down (after [normalization](Documentation.md#normalization))
 * Select [BASELINE](Documentation.md#baseline) to adjust all curves so the chosen one is flat
 * Temporarily hide or unhide a graph

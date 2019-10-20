@@ -49,7 +49,7 @@ Okay, it's really an export and not a screenshot. The graph is an
 drawn with d3; CrinGraph uses a lightly modified version of the
 Javascript library
 [saveSvgAsPng](https://github.com/exupero/saveSvgAsPng) to allow your
-browser to convert it to a standard-sized PNG image for convenient
+browser to convert it to a uniformly sized PNG image for convenient
 sharing.
 
 ## Graph display
@@ -75,7 +75,7 @@ uses a linear scale but the decibel is a logarithmic unit. A doubling in
 sound amplitude corresponds to an increase of 6 dB (well, about 6.02).
 In both cases the logarithmic scaling corresponds closely to human
 perception. For frequencies the correspondence is essentially exact,
-since we percieve the difference between two specific notes (say C and
+since we perceive the difference between two specific notes (say C and
 F) to be the the same regardless of which octave they are in. The
 difference is not a constant difference of frequencies but a constant
 ratio. Using frequency in a logarithmic sense, or pitch, converts this
@@ -208,7 +208,7 @@ indicate how they might correspond. CrinGraph weights graphs using the
 [ISO 226:2003](https://en.wikipedia.org/wiki/Equal-loudness_contour)
 loudness standard (with linear rather than cubic interpolation, since it
 has little effect on the average) with
-[Free field](https://en.wikipedia.org/wiki/Free_field_(acoustics))
+[free field](https://en.wikipedia.org/wiki/Free_field_(acoustics))
 compensation (which most closely matches the conditions in which that
 standard was measured) to convert from speakers to IEMs. The flat bass
 response of the free field compensation is set to -7 dB to produce a
@@ -275,6 +275,21 @@ any (smoothed) measurement in the graph, not to the cubic interpolation.
 It is found by filtering the measurements to a frequency range which is
 smaller than the maximum distance, then computing the distance to each
 of those points.
+
+### Channel imbalance marker
+
+A headphone is marked with a red exclamation mark if the total channel
+imbalance over any region is larger than a set maximum. The channel
+imbalance is the difference in decibels of the two channels, weighted to
+roll off steeply around 10kHz since higher frequencies are not as
+reliable or as important for determining imbalance.
+
+The channel imbalance for a region is signed, so if there are two
+regions where the left channel is louder with a region where the right
+channel is louder in between then the middle region would count against
+the total for all three. The maximum imbalance over all regions is
+computed with
+[Kadane's algorithm](https://en.wikipedia.org/wiki/Maximum_subarray_problem).
 
 ## Aesthetics
 

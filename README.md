@@ -54,19 +54,19 @@ The graph tool displays:
 
 ### Graph window
 
-* Standard logarithmic frequency (Hz) and sound pressure level (dB) axes
-* Colors are persistent and algorithmically generated to ensure contrast
+* Standard logarithmic frequency (Hz) and sound pressure level (dB) [axes](Documentation.md#axes)
+* [Colors](Documentation.md#colors) are persistent and algorithmically generated to ensure contrast
 * Use the tabby-looking tool at the left to rescale and adjust the y axis
-* Hover over or click a curve to see its name and highlight it in the manager
+* [Hover](Documentation.md#highlight-on-mouseover) over or click a curve to see its name and highlight it in the manager
 
 ### Toolbar
 
 * Zoom into bass, mid, or treble frequencies
-* Normalize with a target loudness or a normalization frequency
-* Smooth graphs with a configurable parameter
+* [Normalize](Documentation.md#normalization) with a target loudness or a normalization frequency
+* [Smooth](Documentation.md#smoothing) graphs with a configurable parameter
 * Toggle inspect mode to see the numeric response values when you mouse over the graph
-* Label curves inside the graph window
-* Save a png screenshot of the graph (with labels)
+* [Label](Documentation.md#labelling) curves inside the graph window
+* Save a png [screenshot](Documentation.md#screenshot) of the graph (with labels)
 * Recolor the active curves in case there is a color conflict
 * Toolbar collapses and expands, along with the target selector, when the screen is small
 
@@ -74,19 +74,19 @@ The graph tool displays:
 
 * Headphones are grouped by brand: select brands to narrow them down
 * Click to select one headphone or brand and unselect others; middle or ctrl-click for non-exclusive select
-* Search all brands or headphones by name
+* [Search](Documentation.md#searching) all brands or headphones by name
 * Targets are selected the same way but are independent from headphones
 
 ### Headphone manager
 
 * Curve names and colors are displayed here
 * Choose and compare variant measurements of the same model with a dropdown
-* Use the wishbone-shaped selector to see left and/or right channels or average them together
-* Change the offset to move graphs up and down
-* Select BASELINE to adjust all curves so the chosen one is flat
+* Use the wishbone-shaped selector to see left and/or right channels or [average](Documentation.md#averaging) them together
+* Change the offset to move graphs up and down (after [normalization](Documentation.md#normalization))
+* Select [BASELINE](Documentation.md#baseline) to adjust all curves so the chosen one is flat
 * Temporarily hide or unhide a graph
 * PIN a headphone to avoid losing it while adding others
-* Click the little dots at the bottom left to change a single headphone's color
+* Click the little dots at the bottom left to change a single headphone's [color](Documentation.md#colors)
 
 ## Contact
 

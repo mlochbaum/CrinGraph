@@ -319,7 +319,7 @@ function drawLabels() {
                         d = Math.max(d,drow[ii]);
                     }
                     let clip = x => x/Math.sqrt(1+x*x);
-                    d += clip((ii-i)/3);
+                    d = 4*clip(d/4) + clip((ii-i)/3);
                     i = Math.floor((i+ii)/2);
                     let dl = drow.length,
                         r = i/dl;

@@ -801,7 +801,7 @@ function updatePhoneTable() {
     td().attr("class","remove").text("⊗")
         .on("click", removePhone)
         .style("background-image",colorBar)
-        .append("svg").call(addColorPicker);
+        .filter(p=>!p.isTarget).append("svg").call(addColorPicker);
     td().html(p=>p.isTarget?"":p.dispBrand+"&nbsp;").call(addModel);
     td().append("svg").call(addKey);
     td().append("input")

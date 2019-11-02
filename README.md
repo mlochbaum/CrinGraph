@@ -8,8 +8,8 @@ of in-ear monitors (IEMs). CrinGraph is the tool which allows readers to
 compare measurements against each other, and save easily readable images
 to share around the internet. Although it was designed for
 [Crin's site](https://crinacle.com/graphs/graphtool/),
-the tool can be used freely by anyone, with no restrictions. If you're
-interested in using it for your own graphs, see
+the code here can be used freely by anyone, with no restrictions.
+If you're interested in using it for your own graphs, see
 [Configuring.md](Configuring.md) and ask me any about any questions that
 come up.
 
@@ -47,16 +47,17 @@ bad idea.
 ### Layout
 
 The graph tool displays:
-* A graph window at the top
-* The toolbar just below it
-* The selector at the bottom left, or below the toolbar for narrow windows, and also a target selector
-* The manager for active curves
+* A **graph window** at the top
+* The **toolbar** just below it
+* The **selector** at the bottom left, or below the toolbar for narrow windows
+* A **target selector**
+* The **manager** for active curves
 
 ### Graph window
 
 * Standard logarithmic frequency (Hz) and sound pressure level (dB) [axes](Documentation.md#axes)
 * [Colors](Documentation.md#colors) are persistent and algorithmically generated to ensure contrast
-* Use the tabby-looking tool at the left to rescale and adjust the y axis
+* Use the slider at the left to rescale and adjust the y axis
 * [Hover](Documentation.md#highlight-on-mouseover) over or click a curve to see its name and highlight it in the manager
 
 ### Toolbar

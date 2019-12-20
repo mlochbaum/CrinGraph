@@ -330,15 +330,15 @@ lines rather than color fields.
 Channels are separated from one another primarily by adjusting hue and
 chroma. Channels with different luminance don't look related. The
 exception is for blues and purples, where luminance is adjusted because
-to colors are too dark to distinguish by hue.
+the colors are too dark to distinguish by hue.
 
-Targets are colored using a much simple scheme which simply uses the
+Targets are colored using a much simpler scheme which uses the
 unadjusted hue and a fixed chroma and luminance to produce greys which
 differ only slightly.
 
 ### Labelling
 
-Labels are chosen so that the label box is next to the graph is labels
+Labels are chosen so that the label box is next to the graph it labels
 but as far as possible from each other graph. Distance is measured
 purely vertically, taking the minimum distance over the length of the
 label, and adjusted to try to avoid the sides of the graph.
@@ -354,4 +354,4 @@ it does not and they may overlap.
 
 If there is only one label, or if a suitable position for a label can't
 be found, it's placed at the top left corner. If there is a hidden
-baseline curve, it's label is placed at the bottom of the graph.
+baseline curve, its label is placed at the bottom of the graph.

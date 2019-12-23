@@ -35,6 +35,7 @@ svg text { cursor:default; user-select:none; }
     .controls>div { margin:0; }
 }
 
+path.sample { stroke-width:1.9px; opacity:0.8; }
 path.highlight { stroke-width:3.3px; }
 tr.highlight { box-shadow:inset 0 0 1.5em 0.2em; }
 td { color:initial; }

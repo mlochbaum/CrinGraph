@@ -66,7 +66,7 @@ yAxisObj.insert("text")
 let xvals = [2,3,4,5,6,8,10,15];
 let xAxis = d3.axisBottom(x)
     .tickSize(H+3).tickSizeOuter(0)
-    .tickValues([].concat.apply([],[1,2,3].map(e=>xvals.map(m=>m*Math.pow(10,e)))).concat([20000]))
+    .tickValues(d3.merge([1,2,3].map(e=>xvals.map(m=>m*Math.pow(10,e)))).concat([20000]))
     .tickFormat(f => f>=1000 ? (f/1000)+"k" : f);
 
 let tickPattern = [3,0,0,1,0,0,2,0],
@@ -449,7 +449,7 @@ function smoothPhone(p) {
             c=>c?smooth(c.map(d=>d[1])).map((d,i)=>[c[i][0],d]):c
         );
         p.smooth = smooth_level;
-        setCurves(p, p.avg);
+        setCurves(p);
     }
 }
 
@@ -529,11 +529,15 @@ function find_offset(fr, target) {
 
 
 // File loading and channel management
-const LR = ["L","R"];
+const LR = typeof default_channels !== "undefined" ? default_channels
+                                                   : ["L","R"];
+const sampnums = typeof num_samples !== "undefined" ? d3.range(1,num_samples+1)
+                                                    : [""];
 function loadFiles(p, callback) {
     let l = f => d3.text(DIR+f+".txt").catch(()=>null);
     let f = p.isTarget ? [l(p.fileName)]
-          : LR.map(s => l(p.fileName+" "+s));
+          : d3.merge(sampnums.map(n =>
+                LR.map(s => l(p.fileName+" "+s+n))));
     Promise.all(f).then(function (frs) {
         if (!frs.some(f=>f!==null)) {
             alert("Headphone not found!");
@@ -543,7 +547,10 @@ function loadFiles(p, callback) {
     });
 }
 let validChannels = p => p.channels.filter(c=>c!==null);
-let has1Channel = p => p.isTarget || p.channels.some(c=>c===null);
+let numChannels = p => d3.sum(p.channels, c=>c!==null);
+let notMultichannel = LR.length===1 ? p=>true : p=>p.isTarget;
+let hasChannelSel = p => !notMultichannel(p) && numChannels(p)>1;
+let keyExt = LR.length===1 ? 16 : 0;
 
 function avgCurves(curves) {
     return curves
@@ -552,12 +559,12 @@ function avgCurves(curves) {
         .map((x,i) => [curves[0][i][0], 20*Math.log10(x/curves.length)]);
 }
 function getAvg(p) {
-    return p.avg          ? p.activeCurves[0].l
-         : has1Channel(p) ? validChannels(p)[0]
-         :                  avgCurves(p.channels);
+    if (p.avg) return p.activeCurves[0].l;
+    let v = validChannels(p);
+    return v.length===1 ? v[0] : avgCurves(v);
 }
 function hasImbalance(p) {
-    if (has1Channel(p)) return false;
+    if (!hasChannelSel(p)) return false;
     let as = p.channels[0], bs = p.channels[1];
     let s0=0, s1=0;
     return as.some((a,i) => {
@@ -710,15 +717,26 @@ function setPhoneTr(phtr) {
 
 let channelbox_x = c => c?-86:-36,
     channelbox_tr = c => "translate("+channelbox_x(c)+",0)";
-function setCurves(p, avg, lr) {
+function setCurves(p, avg, lr, samp) {
+    if (avg ===undefined) avg = p.avg;
+    if (samp===undefined) samp = !avg;
+    else if (samp) avg = false;
     let dx = +avg - +p.avg;
     p.avg = avg;
+    p.samp = samp = sampnums.length>1 && samp;
     if (!p.isTarget) {
-        let id = n => p.dispBrand + " " + p.dispName + " ("+n+")";
-        p.activeCurves = avg && !has1Channel(p)
-            ? [{id:id("AVG"), l:avgCurves(p.channels), p:p, o:0}]
-            : p.channels.map((l,i) => ({id:id(LR[i]), l:l, p:p, o:-1+2*i}))
-                        .filter(c => c.l);
+        let id = n => p.dispBrand + " " + p.dispName + " ("+n+")",
+            v  = cs => cs.filter(c=>c!==null),
+            cs = p.channels,
+            cv = v(cs),
+            n  = sampnums.length
+            o  = i=>-1+i*2/(cs.length-1),
+            pc = (idstr, l, oi) => ({id:id(idstr), l:l, p:p,
+                                     o:oi===undefined?0:o(oi)});
+        p.activeCurves
+            = avg && cv.length!==1 ? [pc("AVG", avgCurves(cv))]
+            : !samp ? LR.map((l,i) => pc(l, avgCurves(v(cs.slice(i*n,(i+1)*n))), i))
+            : cs.map((l,i) => pc(LR[Math.floor(i/n)]+sampnums[i%n], l, i)).filter(c => c.l);
     } else {
         p.activeCurves = [{id:p.fullName, l:p.channels[0], p:p, o:0}];
     }
@@ -742,6 +760,11 @@ function setCurves(p, avg, lr) {
             return t => { t-=1/2; return ym+(t<0?y0:y1)*Math.pow(2,20*(Math.abs(t)-1/2)); };
         });
     k.select(".keySel").attr("transform", channelbox_tr(avg));
+    k.selectAll(".keySamp").attr("opacity",(_,i)=>i===+samp?1:0.6);
+}
+function updateCurves() {
+    setCurves.apply(null, arguments);
+    updatePaths();
 }
 
 let drawLine = d => line(baseline.fn(d.l));
@@ -787,6 +810,7 @@ function updatePaths() {
     let c = d3.merge(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
     p.join("path").attr("opacity", c=>c.p.hide?0:null)
+        .classed("sample", c=>c.p.samp)
         .attr("stroke", getColor_AC).call(redrawLine);
 }
 let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" fill="'+getBgColor(p)+'"/></svg>\')';
@@ -864,30 +888,31 @@ function addKey(s) {
     m.append("rect").attrs({"class":"keyMask", x:p=>channelbox_x(p.avg), y:-12, width:120, height:24, fill:"url(#blgrad)"});
     let t = s.append("g");
     t.append("path")
-        .attr("stroke", p => p.isTarget ? getCurveColor(p.id,0)
-                                        : "url(#chgrad"+p.id+")");
+        .attr("stroke", p => notMultichannel(p) ? getCurveColor(p.id,0)
+                                                : "url(#chgrad"+p.id+")");
     t.selectAll().data(p=>p.isTarget?[]:LR)
-        .join("text")
-        .attrs({x:17, y:(_,i)=>[-6,6][i], dy:"0.32em", "text-anchor":"start", "font-size":10.5})
+        .join("text").attr("class","keyCLabel")
+        .attrs({x:17+keyExt, y:(_,i)=>12*(i-(LR.length-1)/2),
+                dy:"0.32em", "text-anchor":"start", "font-size":10.5})
         .text(t=>t);
     t.filter(p=>p.isTarget).append("text")
         .attrs({x:17, y:0, dy:"0.32em", "text-anchor":"start",
                 "font-size":8, fill:p=>getCurveColor(p.id,0)})
         .text("Target");
-    let scuh = f => function (p) {
-        setCurves(p, f(p));
-        updatePaths(); hl(p,true);
+    let uchl = f => function (p) {
+        updateCurves(p, f(p)); hl(p,true);
     }
     s.append("rect").attr("class","keySelBoth")
         .attrs({x:40+channelbox_x(0), width:40, height:12,
                 opacity:0, display:"none"})
-        .on("click", scuh(p=>0));
+        .on("click", uchl(p=>0));
     s.append("g").attr("class","keySel")
         .attr("transform",p=>channelbox_tr(p.avg))
-        .on("click", scuh(p=>!p.avg))
+        .on("click", uchl(p=>!p.avg))
         .selectAll().data([0,80]).join("rect")
         .attrs({x:d=>d, y:-12, width:40, height:24, opacity:0});
-    let o = s.selectAll().data(p=>[[p,0],[p,1]])
+    let o = s.filter(p=>!notMultichannel(p))
+        .selectAll().data(p=>[[p,0],[p,1]])
         .join("g").attr("class","keyOnly")
         .attr("transform",pi=>"translate(25,"+[-6,6][pi[1]]+")")
         .call(setHover, h => function (pi) {
@@ -899,7 +924,7 @@ function addKey(s) {
                 gpath.selectAll("path").filter(c=>c.p===p).attr("opacity",h ? (c=>c!==cs[pi[1]]?0.7:null) : null);
             }
         })
-        .on("click", pi => { setCurves(pi[0], false, pi[1]); updatePaths(); });
+        .on("click", pi => updateCurves(pi[0], false, pi[1]));
     o.append("rect").attrs({x:0,y:-6,width:30,height:12,opacity:0});
     o.append("text").attrs({x:0, y:0, dy:"0.28em", "text-anchor":"start",
                             "font-size":7.5 })
@@ -907,18 +932,32 @@ function addKey(s) {
     s.append("text").attr("class","imbalance")
         .attrs({x:8,y:0,dy:"0.35em","font-size":10.5})
         .text("!");
+    if (sampnums.length>1) {
+        let a = s.filter(p=>!p.isTarget);
+        let t = a.selectAll()
+            .data(p=>["AVG",sampnums.length+" samples"]
+                        .map((t,i)=>[t,i===+p.samp?1:0.6]))
+            .join("text").attr("class","keySamp")
+            .attrs({x:-18.5, y:(_,i)=>12*(i-1/2), dy:"0.33em",
+                    "text-anchor":"start", "font-size":7, opacity:t=>t[1] })
+            .text(t=>t[0]);
+        a.append("rect")
+            .attrs({x:-19, y:-12, width:38, height:24, opacity:0})
+            .on("click", p=>updateCurves(p, undefined, undefined, !p.samp));
+    }
     updateKey(s);
 }
 
 function updateKey(s) {
-    let disp = fn => e => e.attr("display",p=>fn(p)?null:"none");
+    let disp = fn => e => e.attr("display",p=>fn(p)?null:"none"),
+        cs = hasChannelSel;
     s.select(".imbalance").call(disp(hasImbalance));
-    s.select(".keySel").call(disp(p=>!has1Channel(p)));
-    s.selectAll(".keyOnly").call(disp(pi=>!has1Channel(pi[0])));
-    s.selectAll("text").data(p=>p.channels).call(disp(c=>c));
-    s.select("g").attr("mask",p=>has1Channel(p)?null:"url(#chmask"+p.id+")");
+    s.select(".keySel").call(disp(p=>cs(p)));
+    s.selectAll(".keyOnly").call(disp(pi=>cs(pi[0])));
+    s.selectAll(".keyCLabel").data(p=>p.channels).call(disp(c=>c));
+    s.select("g").attr("mask",p=>cs(p)?"url(#chmask"+p.id+")":null);
     s.select("path").attr("d", p =>
-        p.isTarget ? "M15 0H-17" :
+        notMultichannel(p) ? "M"+(15+keyExt)+" 0H-17" :
         ["M15 -6H9C0 -6,0 0,-9 0H-17","M-17 0H-9C0 0,0 6,9 6H15"]
             .filter((_,i) => p.channels[i])
             .reduce((a,b) => a+b.slice(6))
@@ -1011,7 +1050,7 @@ function changeVariant(p, update) {
     function set(ch) {
         p.rawChannels = ch; p.smooth = undefined;
         smoothPhone(p);
-        setCurves(p, p.avg);
+        setCurves(p);
         update(p);
     }
     if (ch) {

@@ -1279,6 +1279,8 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             .call(setClicks(showPhone))
             .data();
         ts.forEach((t,i)=>t.id=i-ts.length);
+    } else {
+        d3.select(".targets").remove();
     }
 
     function setBrand(b, exclusive) {

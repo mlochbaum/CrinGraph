@@ -61,7 +61,6 @@ doc.html(`
     </div>
     <div class="controls">
       <div class="manage">
-        <div class="targets collapse"></div>
         <table class="manageTable">
           <colgroup>
             <col class="remove">
@@ -1409,6 +1408,8 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
                 isTarget:true, brand:b,
                 dispName:t, phone:t, fullName:t+" Target", fileName:t+" Target"
             });
+        d3.select(".manage").insert("div",".manageTable")
+            .attr("class", "targets collapse");
         let l = (text,c) => s => s.append("div").attr("class","targetLabel").append("span").text(text);
         let ts = b.phoneObjs = doc.select(".targets").call(l("Targets"))
             .selectAll().data(targets).join().call(l(t=>t.type))
@@ -1418,8 +1419,6 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             .call(setClicks(showPhone))
             .data();
         ts.forEach((t,i)=>t.id=i-ts.length);
-    } else {
-        d3.select(".targets").remove();
     }
 
     function setBrand(b, exclusive) {

@@ -1,0 +1,32 @@
+[
+  {
+    "name":   "Auditory",
+    "suffix": "Technology",
+    "phones": [ "tuT0"
+              , "u AX"
+              , "uiD11"
+              , "uddd"
+              , "yXir2"
+              , "tu" ]
+  }, {
+    "name":   "Groot",
+    "suffix": "Sound",
+    "phones": [ "D D"
+              , "AA01"
+              , {"name":"oDH74 Deluxe","file":"oDH74"}
+              , {"name":"Gr Gamergate","file":"Gr"}
+              , "GArG5" ]
+  }, {
+    "name":   "Himmler",
+    "suffix": "Designs",
+    "phones": [ "AXm"
+              , {"name":"T D04 Reference","file":"T D04"}
+              , "rTA5"
+              , {"name":"iH-r Bass Style","file":"iH-r"} ]
+  }, {
+    "name":   "Stonks",
+    "phones": [ {"name":"noS4 Pro","file":"noS4"}
+              , "kt0"
+              , "XoX" ]
+  }
+]

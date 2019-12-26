@@ -1,5 +1,5 @@
 noscript { position:absolute; left:0; right:0; font-size:6em; text-align:center; }
-.graphtool { background:#e5e5e5; }
+html { background:#e5e5e5; }
 .main { height:100vh; display:flex; flex-direction:column; }
 .graphBox { margin:0.25em auto 0.75em; }
 #fr-graph { height:calc(100vw * 346 / 800); max-height:calc(100vh - 13.5em); max-width:100vw; }

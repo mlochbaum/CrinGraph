@@ -362,10 +362,16 @@ function drawLabels() {
         w = boxes.map(b=>b.width +6),
         h = boxes.map(b=>b.height+6);
 
+    let rsl = d=>d; // Slice to fit in range
+    if (selectedRange !== 3) {
+        let r = x.domain().map(v => d3.bisectLeft(f_values, v));
+        rsl = a => a.slice(Math.max(r[0],0), r[1]+1);
+    }
+    let rf_values = rsl(f_values);
     let v = curves.map(c => {
         let o = getOffset(c.p);
         return (c.multi?c.l:[c.l])
-            .map(l => baseline.fn(l).map(d=>d[1]+o));
+            .map(l => rsl(baseline.fn(l).map(d=>d[1]+o)));
     });
     let tr;
 
@@ -380,7 +386,7 @@ function drawLabels() {
         let invd = (sc,d) => sc.invert(d)-sc.invert(0),
             xr = x.range(),
             yd = y.domain(),
-            wind = w => Math.ceil((w/(xr[1]-xr[0]))*f_values.length),
+            wind = w => Math.ceil((w/(xr[1]-xr[0]))*rf_values.length),
             mw = wind(d3.min(w));
         let winReduce = (l,w,d0,fn) => {
             l = l.slice();
@@ -442,7 +448,7 @@ function drawLabels() {
                     }
                 }
             });
-            return pos ? [x(f_values[pos[0]]), y(pos[1])]
+            return pos ? [x(rf_values[pos[0]]), y(pos[1])]
                        : [60, 20+30*top++];
         });
     }

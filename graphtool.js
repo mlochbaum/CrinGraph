@@ -313,6 +313,9 @@ dB.updatey = function (dom) {
 
 
 // Label drawing and screenshot
+let getFullName = p => p.dispBrand+" "+p.dispName,
+    getChannelName = p => n => getFullName(p) + " ("+n+")";
+
 let labelButton = doc.select("#label"),
     labelsShown = false;
 function setLabelButton(l) {
@@ -325,7 +328,13 @@ function clearLabels() {
 
 function drawLabels() {
     let curves = d3.merge(
-        activePhones.filter(p=>!p.hide).map(p=>p.activeCurves)
+        activePhones.filter(p=>!p.hide).map(p=>
+            !p.samp||p.avg ? p.activeCurves
+            : LR.map((l,i) => ({
+                p:p, o:getO(i), id:getChannelName(p)(l),
+                l:avgCurves((n=>p.channels.slice(i*n,(i+1)*n))(sampnums.length))
+              }))
+        )
     );
     if (!curves.length) return;
 
@@ -334,8 +343,7 @@ function drawLabels() {
     if (bp && bp.hide) {
         bcurves.push({
             p:bp, o:0,
-            id:"Baseline: "+(bp.isTarget ? bp.fullName
-                                         : bp.dispBrand+" "+bp.dispName)
+            id:"Baseline: "+(bp.isTarget?bp.fullName:getFullName(bp))
         });
     }
 
@@ -630,6 +638,7 @@ function find_offset(fr, target) {
 // File loading and channel management
 const LR = typeof default_channels !== "undefined" ? default_channels
                                                    : ["L","R"];
+let getO = i=>-1+i*2/Math.max(LR.length-1,1);
 const sampnums = typeof num_samples !== "undefined" ? d3.range(1,num_samples+1)
                                                     : [""];
 function loadFiles(p, callback) {
@@ -824,14 +833,13 @@ function setCurves(p, avg, lr, samp) {
     p.avg = avg;
     p.samp = samp = sampnums.length>1 && samp;
     if (!p.isTarget) {
-        let id = n => p.dispBrand + " " + p.dispName + " ("+n+")",
+        let id = getChannelName(p),
             v  = cs => cs.filter(c=>c!==null),
             cs = p.channels,
             cv = v(cs),
             n  = sampnums.length
-            o  = i=>-1+i*2/Math.max(LR.length-1,1),
             pc = (idstr, l, oi) => ({id:id(idstr), l:l, p:p,
-                                     o:oi===undefined?0:o(oi)});
+                                     o:oi===undefined?0:getO(oi)});
         p.activeCurves
             = avg && cv.length!==1 ? [pc("AVG", avgCurves(cv))]
             : !samp ? LR.map((l,i) => pc(l, avgCurves(v(cs.slice(i*n,(i+1)*n))), i))

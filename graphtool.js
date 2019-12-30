@@ -328,11 +328,12 @@ function clearLabels() {
 
 function drawLabels() {
     let curves = d3.merge(
-        activePhones.filter(p=>!p.hide).map(p=>
+        activePhones.filter(p=>!p.hide).map(p =>
             !p.samp||p.avg ? p.activeCurves
             : LR.map((l,i) => ({
-                p:p, o:getO(i), id:getChannelName(p)(l),
-                l:avgCurves((n=>p.channels.slice(i*n,(i+1)*n))(sampnums.length))
+                p:p, o:getO(i), id:getChannelName(p)(l), multi:true,
+                l:(n=>p.channels.slice(i*n,(i+1)*n))(sampnums.length)
+                    .filter(c=>c!==null)
               }))
         )
     );
@@ -362,15 +363,16 @@ function drawLabels() {
         h = boxes.map(b=>b.height+6);
 
     let v = curves.map(c => {
-        let o=getOffset(c.p);
-        return baseline.fn(c.l).map(d=>d[1]+o);
+        let o = getOffset(c.p);
+        return (c.multi?c.l:[c.l])
+            .map(l => baseline.fn(l).map(d=>d[1]+o));
     });
     let tr;
 
     if (curves.length === 1) {
         let x0 = 50, y0 = 10,
             sl = range_to_slice([0,w[0]], o=>x0+o),
-            e = d3.extent(sl(v[0]).map(y));
+            e = d3.extent(d3.merge(v[0].map(sl)).map(y));
         if (y0+h[0] >= e[0]) { y0 = Math.max(y0, e[1]); }
         tr = [[x0,y0]];
     } else {
@@ -392,15 +394,16 @@ function drawLabels() {
             l.length -= w-d0;
             return l;
         }
-        let getRanges = [Math.min, Math.max].map(f => {
-            let t = v.map(c => winReduce(c, mw, 1, f));
+        let rangeGetters = [Math.min, Math.max].map(f => {
+            let r = c => c.reduce((a,b)=>a.map((ai,i)=>f(ai,b[i])));
+            let t = v.map(c => winReduce(r(c), mw, 1, f));
             return w => t.map(c => winReduce(c, w, mw, f));
         });
         let top = 0; // Use top left if we can't find a spot
-        tr = v.map((e,j) => {
+        tr = v.map((_,j) => {
             let we = wind(w[j]),
                 he = -invd(y,h[j]),
-                range = d3.transpose(getRanges.map(r => r(we))),
+                range = d3.transpose(rangeGetters.map(r => r(we))),
                 ds;
             ds = range[j].map(function (r,ri) {
                 let le = r.length,

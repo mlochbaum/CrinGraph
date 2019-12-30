@@ -1179,8 +1179,8 @@ function cpCircles(svg) {
         .join("circle").attrs(d=>d);
 }
 function addColorPicker(svg) {
-    svg.attr("viewBox","0 0 9 5.5");
-    svg.append("rect").attrs({x:0,y:0,width:9,height:5.5,fill:"none"});
+    svg.attr("viewBox","0 0 9 5.3");
+    svg.append("rect").attrs({x:0,y:0,width:9,height:5.3,fill:"none"});
     svg.call(cpCircles);
     svg.on("click", function (p) {
         p.id = getPhoneNumber();

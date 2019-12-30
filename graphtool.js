@@ -641,7 +641,7 @@ function find_offset(fr, target) {
 // File loading and channel management
 const LR = typeof default_channels !== "undefined" ? default_channels
                                                    : ["L","R"];
-let getO = i=>-1+i*2/Math.max(LR.length-1,1);
+let getO = i => LR.length>1 ? -1+i*2/(LR.length-1) : 0;
 const sampnums = typeof num_samples !== "undefined" ? d3.range(1,num_samples+1)
                                                     : [""];
 function loadFiles(p, callback) {

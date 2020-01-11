@@ -22,4 +22,4 @@ const targets = [
     { type:"Preference", files:["Harman","Rtings","Sonarworks"] }
 ];
 
-// const init_phones = [ "N8 Mod" ];
+// const init_phones = [ "ER4S" ];

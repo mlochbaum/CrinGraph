@@ -71,11 +71,15 @@ Here are the current configuration parameters:
   detector (that red exclamation mark that can show up in a headphone's
   key) is. You probably don't need to change this.
 * `targets` lists the available target frequency responses. If you don't
-  want to display any targets just set it to the empty list `[]`. If
-  you do use targets, each one should be a file named `... Target.txt`
-  in the `DIR` directory you specified. The targets which are already
-  there were provided by Crinacle so make sure you have his permission
-  before using them.
+  want to display any targets set it to `false`. If you do use targets,
+  each one should be a file named `... Target.txt` in the `DIR`
+  directory you specified. The targets which are already there were
+  provided by Crinacle so make sure you have his permission before using
+  them.
+* `scale_smoothing` (default 1) adjusts the level of smoothing applied
+  at a given "Smooth:" setting. The setting will always start at 5, but
+  its value is multiplied by `scale_smoothing` to get the actual level
+  of smoothing.
 
 The following parameters can be set to configure a restricted version
 of the graph tool. They are only present in
@@ -88,6 +92,20 @@ be unrestricted.
   which isn't allowed according to the previous two settings. Given that
   it points to Crinacle's patreon and not yours, you probably want to
   change it.
+
+The following parameters are used to allow multiple samples per channel
+and different channel configurations than L/R. Currently multiple
+channels and multiple samples per channel at once are not supported: the
+curves will display fine but the interface doesn't really work. For
+example, `config_hp.js` is intended for headphones and shows only the
+right channel with five samples per channel.
+
+* `default_channels` is a list of channels in each measurement: it
+  defaults to `["L","R"]`. It's called "default" because I may add a
+  mechanism to change it for a single sample from `phone_book.json`,
+  but no such mechanism exists right now.
+* `num_samples`, if set, is the number of samples in each channel.
+  Samples are always numbered 1 to `num_samples`.
 
 ## Storing your FR files
 

@@ -19,3 +19,7 @@ const max_channel_imbalance = 5;
 const targets = false;
 const default_channels = ["R"];
 const num_samples = 5;
+
+const scale_smoothing = 0.2;
+
+// const init_phones = [ "HD650" ];

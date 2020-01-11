@@ -547,13 +547,15 @@ function smooth_eval(p, y) {
 }
 
 let smooth_level = 5,
+    smooth_scale = 0.01*(typeof scale_smoothing !== "undefined" ? scale_smoothing : 1),
     smooth_param = undefined;
 function smooth(y) {
     if (smooth_param === 0) { return y; }
     if (!smooth_param) {
         let x = f_values.map(f=>Math.log(f)),
             h = pair(x, (a,b)=>a-b),
-            d = i => smooth_level*0.01*Math.pow(1/80,Math.pow(i/x.length,2));
+            s = smooth_level*smooth_scale,
+            d = i => s*Math.pow(1/80,Math.pow(i/x.length,2));
         smooth_param = smooth_prep(h, d);
     }
     return smooth_eval(smooth_param, y);

@@ -26,4 +26,4 @@ const targets = [
     { type:"Preference", files:['IEF "Harman"'] }
 ];
 
-// const init_phones = [ "HD650" ];
+// const init_phones = [ "HD650", "IEF Neutral Target" ];

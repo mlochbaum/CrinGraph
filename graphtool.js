@@ -1400,7 +1400,6 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
     let allPhones = d3.merge(brands.map(b=>b.phoneObjs)),
         currentBrands = [];
     if (!hasInit) inits.push(allPhones[0]);
-    inits.map(p => showPhone(p,0,1));
 
     function setClicks(fn) { return function (elt) {
         elt .on("mousedown", () => d3.event.preventDefault())
@@ -1441,8 +1440,13 @@ d3.json(DIR+"phone_book.json").then(function (brands) {
             .join("div").text(t=>t.dispName).attr("class","target")
             .call(setClicks(showPhone))
             .data();
-        ts.forEach((t,i)=>t.id=i-ts.length);
+        ts.forEach((t,i) => {
+            t.id = i-ts.length;
+            if (isInit(t.fileName)) inits.push(t);
+        });
     }
+
+    inits.map(p => showPhone(p,0,1));
 
     function setBrand(b, exclusive) {
         let incl = currentBrands.indexOf(b) !== -1;

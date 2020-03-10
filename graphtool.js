@@ -1017,8 +1017,9 @@ function addKey(s) {
                 dy:"0.32em", "text-anchor":"start", "font-size":10.5})
         .text(t=>t);
     t.filter(p=>p.isTarget).append("text")
-        .attrs({x:17, y:0, dy:"0.32em", "text-anchor":"start",
-                "font-size":8, fill:p=>getCurveColor(p.id,0)})
+        .attrs(keyExt?{x:7,y:6,"text-anchor":"middle"}
+                     :{x:17,y:0,"text-anchor":"start"})
+        .attrs({dy:"0.32em", "font-size":8, fill:p=>getCurveColor(p.id,0)})
         .text("Target");
     let uchl = f => function (p) {
         updateCurves(p, f(p)); hl(p,true);

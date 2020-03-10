@@ -16,10 +16,14 @@ function watermark(svg) {
 }
 
 const max_channel_imbalance = 5;
-const targets = false;
 const default_channels = ["R"];
 const num_samples = 5;
 
 const scale_smoothing = 0.2;
+
+const targets = [
+    { type:"Neutral"   , files:["IEF Neutral"] },
+    { type:"Preference", files:['IEF "Harman"'] }
+];
 
 // const init_phones = [ "HD650" ];

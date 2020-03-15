@@ -329,7 +329,7 @@ function clearLabels() {
 function drawLabels() {
     let curves = d3.merge(
         activePhones.filter(p=>!p.hide).map(p =>
-            !p.samp||p.avg ? p.activeCurves
+            p.isTarget||!p.samp||p.avg ? p.activeCurves
             : LR.map((l,i) => ({
                 p:p, o:getO(i), id:getChannelName(p)(l), multi:true,
                 l:(n=>p.channels.slice(i*n,(i+1)*n))(sampnums.length)

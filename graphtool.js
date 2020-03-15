@@ -977,7 +977,7 @@ function updatePhoneTable() {
             if (cantCompare(activePhones.filter(p=>p.pin).length+1)) return;
             p.pin = true; nextPN = null;
             d3.select(this)
-                .text(null).classed("button",false)
+                .text(null).classed("button",false).on("click",null)
                 .insert("svg").attr("class","pinMark")
                 .attr("viewBox","0 0 280 145")
                 .insert("path").attrs({

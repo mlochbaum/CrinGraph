@@ -1306,16 +1306,19 @@ function showPhone(p, exclusive, suppressVariant) {
         if (baseline.p && !baseline.p.active) setBaseline(baseline0,1);
     }
     if (activePhones.indexOf(p)===-1 && !p.objs) {
-        if (activePhones.length===1 && activePhones[0].activeCurves.length!==1) {
-            setCurves(activePhones[0], true);
-        }
+        let avg = false;
         if (!p.isTarget) {
+            let ap = activePhones.filter(p => !p.isTarget);
+            avg = ap.length >= 1;
+            if (ap.length===1 && ap[0].activeCurves.length!==1) {
+                setCurves(ap[0], true);
+            }
             activePhones.push(p);
         } else {
             activePhones.unshift(p);
         }
         p.active = true;
-        setCurves(p, activePhones.length > 1);
+        setCurves(p, avg);
     }
     updatePaths();
     updatePhoneTable();
@@ -1337,8 +1340,11 @@ function removeCopies(p) {
 function removePhone(p) {
     p.active = p.pin = false; nextPN = null;
     activePhones = activePhones.filter(q => q.active);
-    if (activePhones.length === 1) {
-        setCurves(activePhones[0], false);
+    if (!p.isTarget) {
+        let ap = activePhones.filter(p => !p.isTarget);
+        if (ap.length === 1) {
+            setCurves(ap[0], false);
+        }
     }
     updatePaths();
     if (baseline.p && !baseline.p.active) { setBaseline(baseline0); }

@@ -15,6 +15,10 @@ come up.
 
 ### What are the squiggles?
 
+If you want the whole story, there's no choice but to get it from
+[the man himself](https://crinacle.com/2020/04/08/graphs-101-how-to-read-headphone-measurements/).
+5,000 words and you'll still be disappointed when it's over.
+
 The most informative headphone measurement, and the only one handled by
 this tool, is the frequency response (FR) graph. An FR graph shows how
 loud the headphone will render sounds at different pitches. The higher

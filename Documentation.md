@@ -134,17 +134,18 @@ the unsmoothed data but adjusted (smoothed) dB values.
 
 The smoothed values have the same average as the unsmoothed values. They
 are also locally area-preserving, approximately, in that the average of
-smoothed over a large region will tend to be quite close to average the
-original ones. This is because, if the averages differ over a region,
-then the sum of squared differences over the region can be decreased by
-adding the difference of averages to each smoothed value. If the region
-is the entire graph, this just shifts the entire graph and has no effect
-on smoothness; for a region of the graph it only has a constant effect
-on smoothness since it only disrupts smoothness at the two boundaries
-between that region and the rest of the graph (in fact, by tapering off
-at the edges the effect on smoothness is smaller for larger regions). In
-contrast the accuracy is improved by an amount proportional to the size
-of the region: for a large enough region the tradeoff must be worth it.
+smoothed values over a large region will tend to be quite close to
+average the original ones. This is because, if the averages differ over
+a region, then the sum of squared differences over the region can be
+decreased by adding the difference of averages to each smoothed value.
+If the region is the entire graph, this just shifts the entire graph and
+has no effect on smoothness; for a region of the graph it only has a
+constant effect on smoothness since it only disrupts smoothness at the
+two boundaries between that region and the rest of the graph (in fact,
+by tapering off at the edges the effect on smoothness is smaller for
+larger regions). In contrast the accuracy is improved by an amount
+proportional to the size of the region: for a large enough region the
+tradeoff must be worth it.
 
 Graph SPL values are smoothed directly without converting them from
 decibels to a non-logarithmic unit. That means the discussion above

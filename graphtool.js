@@ -655,8 +655,8 @@ const sampnums = typeof num_samples !== "undefined" ? d3.range(1,num_samples+1)
 function loadFiles(p, callback) {
     let l = f => d3.text(DIR+f+".txt").catch(()=>null);
     let f = p.isTarget ? [l(p.fileName)]
-          : d3.merge(sampnums.map(n =>
-                LR.map(s => l(p.fileName+" "+s+n))));
+          : d3.merge(LR.map(s =>
+                sampnums.map(n => l(p.fileName+" "+s+n))));
     Promise.all(f).then(function (frs) {
         if (!frs.some(f=>f!==null)) {
             alert("Headphone not found!");
@@ -840,20 +840,21 @@ function setCurves(p, avg, lr, samp) {
     if (avg ===undefined) avg = p.avg;
     if (samp===undefined) samp = !avg;
     else if (samp) avg = false;
-    let dx = +avg - +p.avg;
+    let dx = +avg - +p.avg,
+        n  = sampnums.length,
+        selCh = (l,i) => l.slice(i*n,(i+1)*n);
     p.avg = avg;
-    p.samp = samp = sampnums.length>1 && samp;
+    p.samp = samp = n>1 && samp;
     if (!p.isTarget) {
         let id = getChannelName(p),
             v  = cs => cs.filter(c=>c!==null),
             cs = p.channels,
             cv = v(cs),
-            n  = sampnums.length
             pc = (idstr, l, oi) => ({id:id(idstr), l:l, p:p,
                                      o:oi===undefined?0:getO(oi)});
         p.activeCurves
             = avg && cv.length!==1 ? [pc("AVG", avgCurves(cv))]
-            : !samp ? LR.map((l,i) => pc(l, avgCurves(v(cs.slice(i*n,(i+1)*n))), i))
+            : !samp ? LR.map((l,i) => pc(l, avgCurves(v(selCh(cs,i))), i))
             : cs.map((l,i) => {
                 let j = Math.floor(i/n);
                 return pc(LR[j]+sampnums[i%n], l, j);
@@ -865,7 +866,7 @@ function setCurves(p, avg, lr, samp) {
     let k = d3.selectAll(".keyLine").filter(q=>q===p);
     let ksb = k.select(".keySelBoth").attr("display","none");
     if (lr!==undefined) {
-        p.activeCurves = [p.activeCurves[lr]];
+        p.activeCurves = selCh(p.activeCurves, lr);
         y = [-1,1][lr];
         ksb.attr("display",null).attr("y", [0,-12][lr]);
     }
@@ -1055,17 +1056,18 @@ function addKey(s) {
         .attrs({x:8,y:0,dy:"0.35em","font-size":10.5})
         .text("!");
     if (sampnums.length>1) {
-        let a = s.filter(p=>!p.isTarget);
+        let a = s.filter(p=>!p.isTarget).append("g");
         let t = a.selectAll()
-            .data(p=>["AVG",sampnums.length+" samples"]
+            .data(p=>["AVG",LR.length>1?"all "+sampnums.length:sampnums.length+" samples"]
                         .map((t,i)=>[t,i===+p.samp?1:0.6]))
             .join("text").attr("class","keySamp")
             .attrs({x:-18.5, y:(_,i)=>12*(i-1/2), dy:"0.33em",
                     "text-anchor":"start", "font-size":7, opacity:t=>t[1] })
             .text(t=>t[0]);
-        a.append("rect")
-            .attrs({x:-19, y:-12, width:38, height:24, opacity:0})
-            .on("click", p=>updateCurves(p, undefined, undefined, !p.samp));
+        if (LR.length===1) {
+            a.append("rect").attrs({x:-19, y:-12, width:38, height:24, opacity:0});
+        }
+        a.on("click", p=>updateCurves(p, undefined, undefined, !p.samp));
     }
     updateKey(s);
 }

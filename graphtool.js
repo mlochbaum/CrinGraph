@@ -840,8 +840,8 @@ let channelbox_x = c => c?-86:-36,
     channelbox_tr = c => "translate("+channelbox_x(c)+",0)";
 function setCurves(p, avg, lr, samp) {
     if (avg ===undefined) avg = p.avg;
-    if (samp===undefined) samp = !avg;
-    else if (samp) avg = false;
+    if (samp===undefined) samp = avg ? false : LR.length===1||p.ssamp||false;
+    else { p.ssamp = samp; if (samp) avg = false; }
     let dx = +avg - +p.avg,
         n  = sampnums.length,
         selCh = (l,i) => l.slice(i*n,(i+1)*n);
@@ -867,8 +867,9 @@ function setCurves(p, avg, lr, samp) {
     let y = 0;
     let k = d3.selectAll(".keyLine").filter(q=>q===p);
     let ksb = k.select(".keySelBoth").attr("display","none");
+    p.lr = lr;
     if (lr!==undefined) {
-        p.activeCurves = selCh(p.activeCurves, lr);
+        p.activeCurves = p.samp ? selCh(p.activeCurves, lr) : [p.activeCurves[lr]];
         y = [-1,1][lr];
         ksb.attr("display",null).attr("y", [0,-12][lr]);
     }
@@ -1070,7 +1071,7 @@ function addKey(s) {
             .text(t=>t[0]);
         a.append("rect")
             .attrs({x:-19-keyLeft, y:-12, width:keyLeft?16:38, height:24, opacity:0})
-            .on("click", p=>updateCurves(p, undefined, undefined, !p.samp));
+            .on("click", p=>updateCurves(p, undefined, p.lr, !p.samp));
     }
     updateKey(s);
 }

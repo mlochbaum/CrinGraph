@@ -94,11 +94,9 @@ be unrestricted.
   change it.
 
 The following parameters are used to allow multiple samples per channel
-and different channel configurations than L/R. Currently multiple
-channels and multiple samples per channel at once are not supported: the
-curves will display fine but the interface doesn't really work. For
-example, `config_hp.js` is intended for headphones and shows only the
-right channel with five samples per channel.
+and different channel configurations than L/R. For example,
+`config_hp.js` is intended for headphones and shows only the right
+channel with five samples per channel.
 
 * `default_channels` is a list of channels in each measurement: it
   defaults to `["L","R"]`. It's called "default" because I may add a

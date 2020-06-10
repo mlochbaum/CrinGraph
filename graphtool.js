@@ -1060,8 +1060,9 @@ function addKey(s) {
         .text("!");
     if (sampnums.length>1) {
         let a = s.filter(p=>!p.isTarget);
+        let f = LR.length>1 ? (n=>"all "+n) : (n=>n+" samples");
         let t = a.selectAll()
-            .data(p=>["AVG",LR.length>1?"all "+sampnums.length:sampnums.length+" samples"]
+            .data(p=>["AVG",f(Math.floor(validChannels(p).length/LR.length))]
                         .map((t,i)=>[t,i===+p.samp?1:0.6]))
             .join("text").attr("class","keySamp")
             .attrs({x:-18.5-keyLeft, y:(_,i)=>12*(i-1/2), dy:"0.33em",

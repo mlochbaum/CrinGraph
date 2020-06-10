@@ -670,6 +670,8 @@ let numChannels = p => d3.sum(p.channels, c=>c!==null);
 let notMultichannel = LR.length===1 ? p=>true : p=>p.isTarget;
 let hasChannelSel = p => !notMultichannel(p) && numChannels(p)>1;
 let keyExt = LR.length===1 ? 16 : 0;
+let keyLeft= keyExt ? 0 : sampnums.length>1 ? 11 : 0;
+if (keyLeft) d3.select(".key").style("width","17%")
 
 function avgCurves(curves) {
     return curves
@@ -992,7 +994,8 @@ function updatePhoneTable() {
 }
 
 function addKey(s) {
-    s.attr("class","keyLine").attr("viewBox","-19 -12 65 24");
+    let dim={x:-19-keyLeft, y:-12, width:65+keyLeft, height:24}
+    s.attr("class","keyLine").attr("viewBox",[dim.x,dim.y,dim.width,dim.height].join(" "));
     let defs = s.append("defs");
     defs.append("linearGradient").attr("id", p=>"chgrad"+p.id)
         .attrs({x1:0,y1:0, x2:0,y2:1})
@@ -1006,7 +1009,7 @@ function addKey(s) {
         .attr("offset",o=>o)
         .attr("stop-color",(o,i) => i==2||i==3?"white":"#333");
     let m = defs.append("mask").attr("id",p=>"chmask"+p.id);
-    m.append("rect").attrs({x:-19, y:-12, width:65, height:24, fill:"#333"});
+    m.append("rect").attrs(dim).attr("fill","#333");
     m.append("rect").attrs({"class":"keyMask", x:p=>channelbox_x(p.avg), y:-12, width:120, height:24, fill:"url(#blgrad)"});
     let t = s.append("g");
     t.append("path")
@@ -1056,18 +1059,17 @@ function addKey(s) {
         .attrs({x:8,y:0,dy:"0.35em","font-size":10.5})
         .text("!");
     if (sampnums.length>1) {
-        let a = s.filter(p=>!p.isTarget).append("g");
+        let a = s.filter(p=>!p.isTarget);
         let t = a.selectAll()
             .data(p=>["AVG",LR.length>1?"all "+sampnums.length:sampnums.length+" samples"]
                         .map((t,i)=>[t,i===+p.samp?1:0.6]))
             .join("text").attr("class","keySamp")
-            .attrs({x:-18.5, y:(_,i)=>12*(i-1/2), dy:"0.33em",
+            .attrs({x:-18.5-keyLeft, y:(_,i)=>12*(i-1/2), dy:"0.33em",
                     "text-anchor":"start", "font-size":7, opacity:t=>t[1] })
             .text(t=>t[0]);
-        if (LR.length===1) {
-            a.append("rect").attrs({x:-19, y:-12, width:38, height:24, opacity:0});
-        }
-        a.on("click", p=>updateCurves(p, undefined, undefined, !p.samp));
+        a.append("rect")
+            .attrs({x:-19-keyLeft, y:-12, width:keyLeft?16:38, height:24, opacity:0})
+            .on("click", p=>updateCurves(p, undefined, undefined, !p.samp));
     }
     updateKey(s);
 }
@@ -1080,9 +1082,10 @@ function updateKey(s) {
     s.selectAll(".keyOnly").call(disp(pi=>cs(pi[0])));
     s.selectAll(".keyCLabel").data(p=>p.channels).call(disp(c=>c));
     s.select("g").attr("mask",p=>cs(p)?"url(#chmask"+p.id+")":null);
+    let l=-17-(keyLeft?8:0);
     s.select("path").attr("d", p =>
-        notMultichannel(p) ? "M"+(15+keyExt)+" 0H-17" :
-        ["M15 -6H9C0 -6,0 0,-9 0H-17","M-17 0H-9C0 0,0 6,9 6H15"]
+        notMultichannel(p) ? "M"+(15+keyExt)+" 0H"+l :
+        ["M15 -6H9C0 -6,0 0,-9 0H"+l,"M"+l+" 0H-9C0 0,0 6,9 6H15"]
             .filter((_,i) => p.channels[i])
             .reduce((a,b) => a+b.slice(6))
     );

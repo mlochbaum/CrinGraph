@@ -549,22 +549,29 @@ function smooth_eval(p, y) {
 let smooth_level = 5,
     smooth_scale = 0.01*(typeof scale_smoothing !== "undefined" ? scale_smoothing : 1),
     smooth_param = undefined;
-function smooth(y) {
-    if (smooth_param === 0) { return y; }
-    if (!smooth_param) {
-        let x = f_values.map(f=>Math.log(f)),
+function smooth(y, c) {
+    if (smooth_level === 0) { return y; }
+    let get_param = fv => {
+        let x = fv.map(f=>Math.log(f)),
             h = pair(x, (a,b)=>a-b),
             s = smooth_level*smooth_scale,
             d = i => s*Math.pow(1/80,Math.pow(i/x.length,2));
-        smooth_param = smooth_prep(h, d);
+        return smooth_prep(h, d);
     }
-    return smooth_eval(smooth_param, y);
+    let p;
+    if (y.length!==f_values.length) {
+        p = get_param(c.map(d=>d[0]));
+    } else {
+        if (!smooth_param) { smooth_param = get_param(f_values); }
+        p = smooth_param;
+    }
+    return smooth_eval(p, y);
 }
 
 function smoothPhone(p) {
     if (p.smooth !== smooth_level) {
         p.channels = p.rawChannels.map(
-            c=>c?smooth(c.map(d=>d[1])).map((d,i)=>[c[i][0],d]):c
+            c=>c?smooth(c.map(d=>d[1]),c).map((d,i)=>[c[i][0],d]):c
         );
         p.smooth = smooth_level;
         setCurves(p);

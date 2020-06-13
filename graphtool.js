@@ -931,7 +931,7 @@ function setBaseline(b, no_transition) {
 }
 function getBaseline(p) {
     let b = getAvg(p).map(d => d[1]+getOffset(p));
-    return { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[i]]) };
+    return { p:p, fn:l=>l.map((e,i)=>[e[0],e[1]-b[Math.min(i,b.length-1)]]) };
 }
 
 function setOffset(p, o) {

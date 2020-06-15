@@ -3,6 +3,7 @@ html,.addPhone { background:white; }
 .button { border-left-color:white; }
 .tools { background:#ebf0ed; }
 tr { background:#ebeeee; }
+.keyBackground { stroke:#ebeeee; }
 button { background:#dddbce; }
 button:before,button:after { border-color:#dde4a0; }
 .button.selected { background-color: #e4eb6c; }

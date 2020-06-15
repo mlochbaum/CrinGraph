@@ -1,5 +1,6 @@
 noscript { position:absolute; left:0; right:0; font-size:6em; text-align:center; }
 html { background:#e5e5e5; }
+.graphBackground { fill:white; }
 .main { height:100vh; display:flex; flex-direction:column; color:black; }
 .graphBox { margin:0.25em auto 0.75em; }
 #fr-graph { width:calc((100vh - 13.5em) * 800 / 346); max-width:100%; }
@@ -102,8 +103,10 @@ td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 .keySel rect,.keySelBoth { cursor:pointer; }
 
 .pinMark { float:right; width:80%; margin-right:-8.6%; margin-bottom:0.6em; }
+.pinMark path { stroke:#445; }
 
 tr { background:#f9fcfc; }
+.keyBackground { stroke:#f9fcfc; }
 .scrollOuter { flex:1; position:relative; }
 .scroll {
     position:absolute; left:0; right:0; top:0; bottom:0;

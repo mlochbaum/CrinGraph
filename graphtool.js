@@ -9,7 +9,7 @@ doc.html(`
       <g id="hide-icon">
         <path d="M2 6Q7 0 12 6Q7 12 2 6Z" stroke-width="1" stroke="currentColor" fill="none"/>
         <circle cx="7" cy="6" r="2" stroke="none" fill="currentColor"/>
-        <line stroke-width="1" x1="4.4" y1="10.3" x2="10.4" y2="2.3" stroke="white"/>
+        <line stroke-width="1" x1="4.4" y1="10.3" x2="10.4" y2="2.3" class="keyBackground"/>
         <line stroke-width="1" x1="3.6" y1= "9.7" x2= "9.6" y2="1.7" stroke="currentColor"/>
       </g>
       <g id="pin-icon" text-anchor="middle" font-size="100px" fill="currentColor">
@@ -106,7 +106,7 @@ let gr = doc.select("#fr-graph"),
 
 
 gr.append("rect").attrs({x:0, y:pad.t-8, width:W0, height:H0-22, rx:4,
-                         fill:"white"});
+                         "class":"graphBackground"});
 watermark(gr);
 
 
@@ -1001,7 +1001,6 @@ function updatePhoneTable() {
                 .attr("viewBox","0 0 280 145")
                 .insert("path").attrs({
                     fill:"none",
-                    stroke:"#445",
                     "stroke-width":30,
                     "stroke-linecap":"round",
                     d:"M265 110V25q0 -10 -10 -10H105q-24 0 -48 20l-24 20q-24 20 -2 40l18 15q24 20 42 20h100"

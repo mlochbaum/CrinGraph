@@ -1376,7 +1376,8 @@ function removePhone(p) {
         .call(setPhoneTr);
 }
 
-d3.json(DIR+"phone_book.json").then(function (brands) {
+d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
+            : DIR+"phone_book.json").then(function (brands) {
     let brandMap = {},
         inits = [],
         hasInit = typeof init_phones !== "undefined",

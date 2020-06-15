@@ -115,7 +115,9 @@ themselves.
 ### FR index: `phone_book.json`
 
 The index is a [JSON](https://en.wikipedia.org/wiki/JSON) file called
-[phone_book.json](data/phone_book.json). It consists of a list of brands,
+[phone_book.json](data/phone_book.json). By default it is located in the
+headphone directory `DIR`, but the setting `PHONE_BOOK` allows you to
+specify a different filepath. The file's contents are a list of brands,
 where each brand is a list of models. A simple example of a brand:
 
 ```json

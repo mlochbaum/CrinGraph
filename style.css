@@ -1,8 +1,8 @@
 noscript { position:absolute; left:0; right:0; font-size:6em; text-align:center; }
 html { background:#e5e5e5; }
-.graphtool { font-size:initial; }
+.graphtool { font-size:initial; color:black; }
 .graphBackground { fill:white; }
-.main { height:100vh; display:flex; flex-direction:column; color:black; }
+.main { height:100vh; display:flex; flex-direction:column; }
 .graphBox { margin:0.25em auto 0.75em; }
 #fr-graph { width:calc((100vh - 13.5em) * 800 / 346); max-width:100%; }
 svg text { cursor:default; user-select:none; }
@@ -41,7 +41,7 @@ svg text { cursor:default; user-select:none; }
 path.sample { stroke-width:1.9px; opacity:0.8; }
 path.highlight { stroke-width:3.3px; }
 tr.highlight { box-shadow:inset 0 0 1.5em 0.2em; }
-td { color:initial; }
+td { color:initial; vertical-align:middle; }
 
 .dBScaler { opacity:0.22; fill:#404c50; }
 .dBScaler circle,.dBScaler rect { cursor:move; }

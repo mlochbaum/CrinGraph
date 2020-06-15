@@ -171,8 +171,8 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 }
 .variants:hover { color:#124; }
 
-.tooltip { pointer-events:none; }
-.tooltip rect { fill:rgba(255,255,255,0.6); }
+.lineLabel { pointer-events:none; }
+.lineLabel rect { fill:rgba(255,255,255,0.6); }
 
 .inspector { pointer-events:none; }
 .inspector line { stroke-width:0.8px; stroke:#266149; }

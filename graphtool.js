@@ -322,7 +322,7 @@ function setLabelButton(l) {
     labelButton.classed("selected", labelsShown = l);
 }
 function clearLabels() {
-    gr.selectAll(".tooltip").remove();
+    gr.selectAll(".lineLabel").remove();
     setLabelButton(false);
 }
 
@@ -348,9 +348,9 @@ function drawLabels() {
         });
     }
 
-    gr.selectAll(".tooltip").remove();
-    let g = gr.selectAll(".tooltip").data(bcurves)
-        .join("g").attr("class","tooltip").attr("opacity", 0);
+    gr.selectAll(".lineLabel").remove();
+    let g = gr.selectAll(".lineLabel").data(bcurves)
+        .join("g").attr("class","lineLabel").attr("opacity", 0);
     let t = g.append("text")
         .attrs({x:0, y:0, fill:c=>getTooltipColor(c)})
         .text(c=>c.id);
@@ -1569,8 +1569,8 @@ function pathHL(c, m, imm) {
         undefined;
 }
 function pathTooltip(c, m) {
-    let g = gr.selectAll(".tooltip").data([c.id])
-        .join("g").attr("class","tooltip");
+    let g = gr.selectAll(".lineLabel").data([c.id])
+        .join("g").attr("class","lineLabel");
     let t = g.append("text")
         .attrs({x:m[0], y:m[1]-6, fill:getTooltipColor(c)})
         .text(t=>t);
@@ -1605,7 +1605,7 @@ let graphInteract = imm => function () {
         let cy = cs.map(c => [c, baseline.fn(c.l)[ind][1]+getOffset(c.p)]);
         cy.sort((d,e) => d[1]-e[1]);
         function newTooltip(t) {
-            t.attr("class","tooltip")
+            t.attr("class","lineLabel")
                 .attr("fill",d=>getTooltipColor(d));
             t.append("text").attr("x",2).text(d=>d.id);
             t.append("g").selectAll().data([0,1])
@@ -1616,7 +1616,7 @@ let graphInteract = imm => function () {
             t.insert("rect", "text")
                 .attrs(b=>({x:b.x-1, y:b.y-1, width:b.width+2, height:b.height+2}));
         }
-        let tt = insp.selectAll(".tooltip").data(cy.map(d=>d[0]), d=>d.id)
+        let tt = insp.selectAll(".lineLabel").data(cy.map(d=>d[0]), d=>d.id)
             .join(enter => enter.insert("g","line").call(newTooltip));
         let start = tt.select("g").datum((_,i) => cy[i][1])
             .selectAll("text").data(d => {

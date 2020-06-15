@@ -1,5 +1,6 @@
 noscript { position:absolute; left:0; right:0; font-size:6em; text-align:center; }
 html { background:#e5e5e5; }
+.graphtool { font-size:initial; }
 .graphBackground { fill:white; }
 .main { height:100vh; display:flex; flex-direction:column; color:black; }
 .graphBox { margin:0.25em auto 0.75em; }

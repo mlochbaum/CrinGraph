@@ -22,7 +22,7 @@ doc.html(`
   <div class="main">
     <div class="graphBox">
       <svg id="fr-graph" viewBox="0 0 800 346"></svg>
-      <div class="tools collapse">
+      <div class="tools collapseTools">
         <div class="zoom">
           <span>Zoom:</span>
           <button>bass</button>
@@ -1460,7 +1460,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                 dispName:t, phone:t, fullName:t+" Target", fileName:t+" Target"
             });
         d3.select(".manage").insert("div",".manageTable")
-            .attr("class", "targets collapse");
+            .attr("class", "targets collapseTools");
         let l = (text,c) => s => s.append("div").attr("class","targetLabel").append("span").text(text);
         let ts = b.phoneObjs = doc.select(".targets").call(l("Targets"))
             .selectAll().data(targets).join().call(l(t=>t.type))
@@ -1675,7 +1675,7 @@ doc.select("#inspector").on("click", function () {
 });
 
 doc.select("#expandTools").on("click", function () {
-    let t=doc.select(".tools"), cl="collapse", v=!t.classed(cl);
+    let t=doc.select(".tools"), cl="collapseTools", v=!t.classed(cl);
     [t,doc.select(".targets")].forEach(s=>s.classed(cl, v));
 });
 

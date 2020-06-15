@@ -188,13 +188,13 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 @media only screen and (max-width:60em) {
     .tools { padding-right:3em; }
     #expandTools { display:inline-block; position:absolute; right:1em; top:0.2em; }
-    .tools.collapse .normalize,
-    .tools.collapse .smooth,
-    .tools.collapse .miscTools button:not(#download) { display:none; }
+    .tools.collapseTools .normalize,
+    .tools.collapseTools .smooth,
+    .tools.collapseTools .miscTools button:not(#download) { display:none; }
     @media screen and (max-width:40em) {
-        .tools.collapse .zoom { display:none; }
+        .tools.collapseTools .zoom { display:none; }
     }
-    .targets.collapse { display:none; }
+    .targets.collapseTools { display:none; }
 }
 
 .helptip {

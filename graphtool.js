@@ -49,8 +49,8 @@ doc.html(`
         </div>
         <div class="miscTools">
           <button id="inspector">╞ inspect</button>
-          <button id="label">▭ label</button>
           <button id="download"><u>⇩</u> screenshot</button>
+          <button id="copy"><u>c</u> copy</button>
           <button id="recolor">○ recolor</button>
         </div>
         <svg id="expandTools" viewBox="0 0 14 12">
@@ -316,14 +316,8 @@ dB.updatey = function (dom) {
 let getFullName = p => p.dispBrand+" "+p.dispName,
     getChannelName = p => n => getFullName(p) + " ("+n+")";
 
-let labelButton = doc.select("#label"),
-    labelsShown = false;
-function setLabelButton(l) {
-    labelButton.classed("selected", labelsShown = l);
-}
 function clearLabels() {
     gr.selectAll(".lineLabel").remove();
-    setLabelButton(false);
 }
 
 function drawLabels() {
@@ -457,13 +451,10 @@ function drawLabels() {
     }
     g.attr("transform",(_,i)=>"translate("+tr[i].join(",")+")");
     g.attr("opacity",null);
-    setLabelButton(true);
 }
 
-labelButton.on("click", () => (labelsShown?clearLabels:drawLabels)());
-
 function saveGraph(ext) {
-    let fn = {png:saveSvgAsPng, svg:saveSvg}[ext];
+    let fn = {png:saveSvgAsPng, svg:saveSvg, copy:copySvgAsPng}[ext];
     let showControls = s => dB.all.attr("visibility",s?null:"hidden");
     gpath.selectAll("path").classed("highlight",false);
     drawLabels();
@@ -488,6 +479,8 @@ doc.select("#download")
             });
         b.on("blur", ()=>choice.remove());
     });
+doc.select("#copy")
+    .on("click", () => saveGraph("copy"));
 
 
 // Graph smoothing

@@ -413,4 +413,13 @@ THE SOFTWARE.
       .then(el => out$.svgAsPngUri(el, options || {}))
       .then(uri => out$.download(name, uri, downloadOpts));
   };
+
+  out$.copySvgAsPng = (el, _, options) => {
+    return requireDomNodePromise(el)
+      .then(el => out$.svgAsPngUri(el, options || {}))
+      .then(uri => navigator.clipboard.write([
+        new ClipboardItem({'image/png':uriToBlob(uri)})
+      ]))
+      .catch(fail=>console.error(fail));
+  }
 })();

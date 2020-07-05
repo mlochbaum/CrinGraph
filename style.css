@@ -2,7 +2,7 @@ noscript { position:absolute; left:0; right:0; font-size:6em; text-align:center;
 html { background:#e5e5e5; }
 .graphtool { font-size:initial; color:black; }
 .graphBackground { fill:white; }
-.main { height:100vh; display:flex; flex-direction:column; }
+.main { min-height:100vh; display:flex; flex-direction:column; }
 .graphBox { margin:0.25em auto 0.75em; }
 #fr-graph { width:calc((100vh - 13.5em) * 800 / 346); max-width:100%; }
 svg text { cursor:default; user-select:none; }

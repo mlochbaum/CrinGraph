@@ -867,11 +867,12 @@ function setCurves(p, avg, lr, samp) {
             v  = cs => cs.filter(c=>c!==null),
             cs = p.channels,
             cv = v(cs),
+            mc = cv.length>1,
             pc = (idstr, l, oi) => ({id:id(idstr), l:l, p:p,
                                      o:oi===undefined?0:getO(oi)});
         p.activeCurves
-            = avg && cv.length!==1 ? [pc("AVG", avgCurves(cv))]
-            : !samp ? LR.map((l,i) => pc(l, avgCurves(v(selCh(cs,i))), i))
+            = avg && mc ? [pc("AVG", avgCurves(cv))]
+            : !samp && mc ? LR.map((l,i) => pc(l, avgCurves(v(selCh(cs,i))), i))
             : cs.map((l,i) => {
                 let j = Math.floor(i/n);
                 return pc(LR[j]+sampnums[i%n], l, j);

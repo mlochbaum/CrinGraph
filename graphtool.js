@@ -362,11 +362,9 @@ function drawLabels() {
         w = boxes.map(b=>b.width +6),
         h = boxes.map(b=>b.height+6);
 
-    let rsl = d=>d; // Slice to fit in range
-    if (selectedRange !== 3) {
-        let r = x.domain().map(v => d3.bisectLeft(f_values, v));
-        rsl = a => a.slice(Math.max(r[0],0), r[1]+1);
-    }
+    // Slice to fit in range
+    let r = x.domain().map(v => d3.bisectLeft(f_values, v));
+    rsl = a => a.slice(Math.max(r[0],0), r[1]+1);
     let rf_values = rsl(f_values);
     let v = curves.map(c => {
         let o = getOffset(c.p);

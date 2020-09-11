@@ -9,9 +9,10 @@ compare measurements against each other, and save easily readable images
 to share around the internet. Although it was designed for
 [Crin's site](https://crinacle.com/graphs/graphtool/),
 the code here can be used freely by anyone, with no restrictions.
-If you're interested in using it for your own graphs, see
-[Configuring.md](Configuring.md) and ask me about any questions that
-come up.
+Banbeucmas has [another IEM database](https://banbeu.com/graph/tool/)
+online that also uses CrinGraph. If you're interested in using it for
+your own graphs, see [Configuring.md](Configuring.md) and ask me about
+any questions that come up.
 
 ### What are the squiggles?
 

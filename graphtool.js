@@ -763,7 +763,8 @@ let getBgColor = p => {
 }
 
 let cantCompare;
-if (typeof max_compare !== "undefined") {
+let noTargets = typeof disallow_target !== "undefined" && disallow_target;
+if (noTargets || typeof max_compare !== "undefined") {
     const currency = [
         ["$", "#348542"],
         ["¥", "#d11111"],
@@ -773,9 +774,18 @@ if (typeof max_compare !== "undefined") {
     let currencyCounter = -1,
         lastMessage = null,
         messageWeight = 0;
-    if (typeof disallow_target === "undefined") { disallow_target=false; }
-    cantCompare = function(m, target, noMessage) {
-        if (m<max_compare && !(target&&disallow_target)) { return false; }
+    let cantTarget = p => false;
+    if (noTargets) {
+        if (typeof allow_targets === "undefined") {
+            cantTarget = p => p.isTarget;
+        } else {
+            let r = f => f.replace(/ Target$/,""),
+                a = allow_targets.map(r);
+            cantTarget = p => p.isTarget && a.indexOf(r(p.fileName))<0;
+        }
+    }
+    cantCompare = function(m, p, noMessage) {
+        if (m<max_compare && !(p&&cantTarget(p))) { return false; }
         if (noMessage) { return true; }
         let div = doc.append("div");
         let c = currency[currencyCounter++ % currency.length];
@@ -1309,7 +1319,7 @@ function showPhone(p, exclusive, suppressVariant) {
             setAddButton(false);
         }
     }
-    if (cantCompare(exclusive?0:activePhones.length, p.isTarget)) return;
+    if (cantCompare(exclusive?0:activePhones.length, p)) return;
     if (!p.rawChannels) {
         loadFiles(p, function (ch) {
             if (p.rawChannels) return;

@@ -88,6 +88,9 @@ be unrestricted.
 
 * `max_compare` is the maximum number of graphs allowed at a time.
 * `disallow_target` prevents target FRs from ever being loaded.
+* `allow_targets` is a list of target names, and overrides
+  `disallow_target` for those targets, so they can be loaded. If
+  `disallow_target` isn't set, it has no effect.
 * `premium_html` is the message shown when a user tries to do something
   which isn't allowed according to the previous two settings. Given that
   it points to Crinacle's patreon and not yours, you probably want to

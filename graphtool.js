@@ -957,6 +957,19 @@ function setHover(elt, h) {
     elt.on("mouseover", h(true)).on("mouseout", h(false));
 }
 
+let ifURL = typeof share_url !== "undefined" && share_url;
+let baseTitle = typeof page_title !== "undefined" ? page_title : "CrinGraph";
+let baseURL;  // Set by setInitPhones
+function addPhonesToUrl() {
+    let title = baseTitle, url = baseURL,
+        names = activePhones.map(p => p.fileName);
+    if (names.length) {
+        url += "?share=" + encodeURI(names.join().replaceAll(" ", "_"));
+        title = names.join(", ") + " - " + title;
+    }
+    window.history.replaceState("", title, url);
+    document.title = title;
+}
 function updatePaths() {
     clearLabels();
     let c = d3.merge(activePhones.map(p => p.activeCurves)),
@@ -964,9 +977,7 @@ function updatePaths() {
     p.join("path").attr("opacity", c=>c.p.hide?0:null)
         .classed("sample", c=>c.p.samp)
         .attr("stroke", getColor_AC).call(redrawLine);
-    
-    // Invoke function to update URL params based on visible phones
-    addPhonesToUrl();
+    if (ifURL) addPhonesToUrl();
 }
 let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" fill="'+getBgColor(p)+'"/></svg>\')';
 function updatePhoneTable() {
@@ -1394,9 +1405,18 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             : DIR+"phone_book.json").then(function (brands) {
     let brandMap = {},
         inits = [],
-        hasInit = typeof init_phones !== "undefined",
-        isInit =  hasInit ? f => init_phones.indexOf(f) !== -1
-                          : _ => false;
+        initReq = typeof init_phones !== "undefined" ? init_phones : false;
+    if (ifURL) {
+        let url = window.location.href,
+            par = "?share=";
+        baseURL = url.split("?").shift();
+        if (url.includes(par)) {
+            initReq = decodeURI(url.split(par).pop())
+                .replaceAll("_", " ").split(",");
+        }
+    }
+    let isInit = initReq ? f => initReq.indexOf(f) !== -1
+                         : _ => false;
     brands.forEach(b => brandMap[b.name] = b);
     brands.forEach(function (b) {
         b.active = false;
@@ -1442,7 +1462,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
 
     let allPhones = d3.merge(brands.map(b=>b.phoneObjs)),
         currentBrands = [];
-    if (!hasInit) inits.push(allPhones[0]);
+    if (!initReq) inits.push(allPhones[0]);
 
     function setClicks(fn) { return function (elt) {
         elt .on("mousedown", () => d3.event.preventDefault())

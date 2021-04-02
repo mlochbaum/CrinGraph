@@ -22,21 +22,5 @@ const targets = [
     { type:"Preference", files:["Harman","Rtings","Sonarworks"] }
 ];
 
-// const init_phones = [ "ER4S" ];
-// Initialize phones based on URL query param, if present
-function setInitPhones() {
-    var defaultPhone = [ "HTH67" ];
-        url = window.location.href,
-        paramBase = '?share=';
-    
-    if ( url.includes(paramBase) ) {
-        var phonesNames = decodeURI(url.split(paramBase).pop()).replaceAll('_', ' ').split(',');
-        console.log(phonesNames);
-        
-        return phonesNames;
-    } else {
-        return defaultPhone;
-    }
-}
-
-const init_phones = setInitPhones();
+const init_phones = [ "HTH67" ];
+const share_url = true;

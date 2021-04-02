@@ -108,6 +108,16 @@ channel with five samples per channel.
 * `num_samples`, if set, is the number of samples in each channel.
   Samples are always numbered 1 to `num_samples`.
 
+The following parameters are for setting the initial samples to display,
+and enabling URL sharing. If enabled, URL sharing updates the page URL
+to reflect which samples are on the graph. Copying and opening that URL
+will open the page with those samples shown. For these parameters a
+headphone or target is identified by its filename.
+
+* `init_phones` is a list of filenames to open by default.
+* `share_url` enables URL sharing.
+* `page_title` sets the page title display if URL sharing is enabled.
+
 ## Storing your FR files
 
 All FR data is stored in its own file in the directory `DIR` you specify

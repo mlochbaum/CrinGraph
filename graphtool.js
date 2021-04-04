@@ -967,7 +967,7 @@ function addPhonesToUrl() {
         url += "?share=" + encodeURI(names.join().replaceAll(" ", "_"));
         title = names.join(", ") + " - " + title;
     }
-    window.history.replaceState("", title, url);
+    window.top.history.replaceState("", title, url);
     document.title = title;
 }
 function updatePaths() {
@@ -1407,7 +1407,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         inits = [],
         initReq = typeof init_phones !== "undefined" ? init_phones : false;
     if (ifURL) {
-        let url = window.location.href,
+        let url = window.top.location.href,
             par = "?share=";
         baseURL = url.split("?").shift();
         if (url.includes(par)) {

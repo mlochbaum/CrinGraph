@@ -1533,11 +1533,18 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     }
     let phoneSel = doc.select("#phones").selectAll()
         .data(allPhones).join("div")
-    .attr("class","phone-item")
+        .attr("class","phone-item")
         .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
         .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
-        .call(setClicks(showPhone));
+//        .call(setClicks(showPhone));
     phoneSel.append("span").text(p=>p.fullName);
+    
+    //Adding the selection button
+    phoneSel.append("div")
+            .attr("class", "phone-list-button")
+            .style("width", "100px")
+            .style("height", "100px")
+            .style("background", "#000")
 
     if (targets) {
         let b = { name:"Targets", active:false },

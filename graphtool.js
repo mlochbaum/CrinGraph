@@ -1522,6 +1522,12 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             .on("auxclick", p => d3.event.button===1 ? fn(p,0) : 0);
     }; }
 
+    function setLeftClicks(fn) {
+        return function (elt) {
+            elt .on("mousedown", p => fn(p, 0));
+        }
+    }
+
     let brandSel = doc.select("#brands").selectAll()
         .data(brands).join("div")
         .text(b => b.name + (b.suffix?" "+b.suffix:""))
@@ -1540,11 +1546,13 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     phoneSel.append("span").text(p=>p.fullName);
     
     //Adding the selection button
+    //TODO: This breaks the whole selection stuff, now the graph tool can only add
     phoneSel.append("div")
             .attr("class", "phone-list-button")
             .style("width", "100px")
             .style("height", "100px")
             .style("background", "#000")
+            .call(setLeftClicks(showPhone));
 
     if (targets) {
         let b = { name:"Targets", active:false },

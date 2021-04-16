@@ -1,6 +1,7 @@
 const DIR = "data/";
 // Get data (as a list of [x,y] pairs) from an FR file
-const tsvParse = fr => d3.tsvParseRows(fr).slice(2,482)
+const tsvParse = fr => d3.tsvParseRows(fr).slice(2,482)  // These slice values for AudioTools exports
+//const tsvParse = fr => d3.tsvParseRows(fr).slice(14,493)     // These slice values for REW exports
                        .map(r=>r.map(d=>+d));
 
 // Add a watermark to the graph.
@@ -11,7 +12,7 @@ function watermark(svg) {
 //  wm.append("image")
 //      .attrs({x:-64, y:-64, width:128, height:128, "xlink:href":URL});
     wm.append("text")
-        .attrs({x:0, y:40, "font-size":40, "text-anchor":"middle"})
+        .attrs({x:0, y:40, "font-size":40, "text-anchor":"middle", "class":"graph-name"})
         .text("sample graphs");
 }
 

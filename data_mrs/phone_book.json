@@ -1,0 +1,393 @@
+[
+    {
+        "name":   "64 Audio",
+        "phones": [
+            {"name":"Fourte","file":"64 Audio Fourte"},
+            {"name":"Nio","file":["64 Audio Nio (mX)","64 Audio Nio (m15)","64 Audio Nio (m20)"],"suffix":["(mx)","(m15)","(m20)"]},
+            {"name":"Trio","file":"64 Audio Trio"},
+            {"name":"U12t","file":["64 Audio U12t (mX)","64 Audio U12t (m15)","64 Audio U12t (m20)"],"suffix":["(mx)","(m15)","(m20)"]},
+            {"name":"U18s","file":["64 Audio U18s (m20)"],"suffix":["(m20)"]},
+            {"name":"U18t","file":["64 Audio U18t (mX)","64 Audio U18t (m15)","64 Audio U18t (m20)"],"suffix":["(mx)","(m15)","(m20)"]}
+        ]
+    },
+    {
+        "name":   "Akoustyx",
+        "phones": [
+            {"name":"R-120","file":"Akoustyx R-120"},
+            {"name":"R-220","file":"Akoustyx R-220"}
+        ]
+    },
+    {
+        "name":   "Apple",
+        "phones": [
+            {"name":"AirPods Pro","file":["Apple AirPods Pro"],"suffix":["(firmware 3A283)"]}
+        ]
+    },
+    {
+        "name":   "Audio Lokahi",
+        "phones": [
+            {"name":"7BA","file":"Audio Lokahi 7BA"}
+        ]
+    },
+    {
+        "name":   "Audiosense",
+        "phones": [
+            {"name":"AQ7","file":"Audiosense AQ7"},
+            {"name":"DT200","file":"Audiosense DT200"},
+            {"name":"T180","file":"Audiosense T180"}
+        ]
+    },
+    {
+        "name":   "Auglamour",
+        "phones": [
+            {"name":"F300","file":"Auglamour F300"},
+            {"name":"RT-3","file":"Auglamour RT-3"}
+        ]
+    },
+    {
+        "name":   "BGVP",
+        "phones": [
+            {"name":"DM6","file":"BGVP DM6"},
+            {"name":"DM8","file":"BGVP DM8"},
+            {"name":"DMG","file":["BGVP DMG (silver)"],"suffix":["(silver filter)"]}
+        ]
+    },
+    {
+        "name":   "Blon",
+        "phones": [
+            {"name":"BL03","file":"Blon BL03"},
+            {"name":"BL05","file":"Blon BL05"}
+        ]
+    },
+    {
+        "name":   "Brainwavz",
+        "phones": [
+            {"name":"Koel","file":"Brainwavz Koel"}
+        ]
+    },
+    {
+        "name":   "Campfire Audio",
+        "phones": [
+            {"name":"Andromeda 2019","file":"Campfire Audio Andromeda 2019"}
+        ]
+    },
+    {
+        "name":   "CCA",
+        "phones": [
+            {"name":"C10","file":"CCA C10"}
+        ]
+    },
+    {
+        "name":   "Co-Donguri",
+        "phones": [
+            {"name":"Brass","file":"Co-Donguri Brass"},
+            {"name":"Shizuku","file":"Co-Donguri Shizuku"}
+        ]
+    },
+    {
+        "name":   "Drop / Massdrop",
+        "phones": [
+            {"name":"Plus","file":"Massdrop Plus"}
+        ]
+    },
+    {
+        "name":   "Dunu",
+        "phones": [
+            {"name":"EST 112","file":["Dunu EST 112","Dunu EST 112 (SpinFit)"],"suffix":["(tips: Dunu)","(tips: SpinFit)"]},
+            {"name":"SA3","file":"Dunu SA3"},
+            {"name":"SA6","file":["Dunu SA6","Dunu SA6 (atmospheric)"],"suffix":["(switch: off)","(switch: on)"]},
+            {"name":"Zen","file":"Dunu Zen"}
+        ]
+    },
+    {
+        "name":   "EarFun",
+        "phones": [
+            {"name":"Free Pro - Oluv Edition","file":["EarFun Free Pro Oluv Edition","EarFun Free Pro Oluv Edition (ANC)"],"suffix":["ANC off","ANC on"]}
+        ]
+    },
+    {
+        "name":   "Etymotic",
+        "phones": [
+            {"name":"ETY Kids","file":"Etymotic ETY Kids"},
+            {"name":"ER2SE","file":"Etymotic ER2SE"},
+            {"name":"ER2XR","file":["Etymotic ER2XR","Etymotic ER2XR (brown)","Etymotic ER2XR (white)"],"suffix":["(green filter / [stock])","(brown filter)","(white filter)"]},
+            {"name":"ER4XR","file":"Etymotic ER4XR"}
+        ]
+    },
+    {
+        "name":   "Fiio",
+        "phones": [
+            {"name":"FA1","file":"Fiio FA1"},
+            {"name":"FD5","file":["Fiio FD5","Fiio FD5 (narrow)","Fiio FD5 (narrow + Brainwavz)","Fiio FD5 (narrow + Shure)"],"suffix":["(standard nozzle)","(narrow nozzle + tips: Fildos)","(narrow nozzle + tips: Brainwavz)","(narrow nozzle + tips: Shure)"]},
+            {"name":"FH1","file":"Fiio FH1"},
+            {"name":"FH3","file":"Fiio FH3"},
+            {"name":"FH5","file":"Fiio FH5"}
+        ]
+    },
+    {
+        "name":   "Final Audio",
+        "phones": [
+            {"name":"A4000","file":"Final A4000"},
+            {"name":"B3","file":["Final B3 (E-type)","Final B3 (TWS)"],"suffix":["(tips: E-type)","(tips: TWS)"]},
+            {"name":"E500","file":"Final E500"},
+            {"name":"E1000","file":"Final E1000"},
+            {"name":"E2000","file":"Final E2000"},
+            {"name":"VR3000","file":"Final VR3000"}
+        ]
+    },
+    {
+        "name":   "FLC",
+        "phones": [
+            {"name":"8P (golden nozzle)","file":["FLC 8P (gold-black-gunmetal)","FLC 8P (gold-black-red)","FLC 8P (gold-gray-gunmetal)","FLC 8P (gold-white-gunmetal)","FLC 8P (gold-white-transparent)"],"suffix":["golden / black / gunmetal","golden / black / red","golden / gray / gunmetal (stock)","golden / white / gunmetal","golden / white / transparent"]},
+            {"name":"8P (green nozzle)","file":["FLC 8P (green-gray-gunmetal)"],"suffix":["green / gray / gunmetal"]},
+            {"name":"8P (gunmetal nozzle)","file":["FLC 8P (gunmetal-black-gunmetal)","FLC 8P (gunmetal-gray-gunmetal)"],"suffix":["gunmetal / black / gunmetal","gunmetal / gray / gunmetal"]},
+            {"name":"8P (silver nozzle)","file":["FLC 8P (silver-gray-gunmetal)"],"suffix":["silver / gray / gunmetal"]},
+            {"name":"DD31","file":"FLC DD31"}
+        ]
+    },
+    {
+        "name":   "Haylou",
+        "phones": [
+            {"name":"GT1","file":"Haylou GT1"},
+            {"name":"GT2","file":"Haylou GT2"}
+        ]
+    },
+    {
+        "name":   "Hifiman",
+        "phones": [
+            {"name":"Bolt","file":"Hifiman Bolt"}
+        ]
+    },
+    {
+        "name":   "Ikko",
+        "phones": [
+            {"name":"OH1","file":"Ikko OH1"},
+            {"name":"OH10","file":"Ikko OH10"}
+        ]
+    },
+    {
+        "name":   "Intime",
+        "phones": [
+            {"name":"Sora","file":"Intime Sora"}
+        ]
+    },
+    {
+        "name":   "JVC",
+        "phones": [
+            {"name":"FDX1","file":["JVC FDX1 (f000)","JVC FDX1 (f050)","JVC FDX1 (f100)"],"suffix":["(filter: 0%)","(filter: 50%)","(filter: 100%)"]}
+        ]
+    },
+    {
+        "name":   "KBEar",
+        "phones": [
+            {"name":"Diamond","file":"KBEar Diamond"},
+            {"name":"KS2","file":"KBEar KS2"}
+        ]
+    },
+    {
+        "name":   "Kinera",
+        "phones": [
+            {"name":"Freya","file":"Kinera Freya"},
+            {"name":"Sif","file":"Kinera Sif"}
+        ]
+    },
+    {
+        "name":   "KZ",
+        "phones": [
+            {"name":"AS06","file":"KZ AS06"},
+            {"name":"AS10","file":"KZ AS10"},
+            {"name":"ASX","file":"KZ ASX"},
+            {"name":"ZS7","file":"KZ ZS7"},
+            {"name":"ZS10","file":"KZ ZS10"},
+            {"name":"ZS10 Pro","file":"KZ ZS10 Pro"},
+            {"name":"ZSN Pro","file":"KZ ZSN Pro"}
+        ]
+    },
+    {
+        "name":   "Magaosi",
+        "phones": [
+            {"name":"K3","file":"Magaosi K3"},
+            {"name":"K5","file":"Magaosi K5"}
+        ]
+    },
+    {
+        "name":   "MEE Audio",
+        "phones": [
+            {"name":"M6 Pro 2nd Gen","file":"MEE Audio M6 Pro 2G"}
+        ]
+    },
+    {
+        "name":   "Meizu",
+        "phones": [
+            {"name":"Live","file":["Meizu Live (black)","Meizu Live (blue)","Meizu Live (white)"],"suffix":["(filter: black)","(filter: blue)","(filter: white)"]}
+        ]
+    },
+    {
+        "name":   "Moondrop",
+        "phones": [
+            {"name":"Aria","file":"Moondrop Aria"},
+            {"name":"Crescent","file":"Moondrop Crescent"},
+            {"name":"Blessing 2","file":"Moondrop Blessing 2"},
+            {"name":"Blessing 2: Dusk","file":"Moondrop Blessing 2 Dusk"},
+            {"name":"Illumination","file":["Moondrop Illumination","Moondrop Illumination (Final E)","Moondrop Illumination (Final TWS)","Moondrop Illumination (Moondrop Foam)","Moondrop Illumination (Sedna Light)","Moondrop Illumination (Spiral Dots)"],"suffix":["(tips: stock)","(tips: Final E-type)","(tips: Final TWS)","(tips: Moondrop foam)","(tips: Sedna Light)","(tips: Spiral Dots)"]},
+            {"name":"Illumination (Sean)","file":"Moondrop Illumination (Sean)"},
+            {"name":"Kanas Pro","file":"Moondrop Kanas Pro"},
+            {"name":"KXXX","file":"Moondrop KXXX"},
+            {"name":"S8","file":"Moondrop S8"},
+            {"name":"Spaceship","file":"Moondrop Spaceship"},
+            {"name":"SSP","file":"Moondrop SSP"},
+            {"name":"SSR","file":["Moondrop SSR","Moondrop SSR (S2)","Moondrop SSR (Final E)","Moondrop SSR (Sedna)"],"suffix":["(sample 1)","(sample 2)","(tips: Final E-type)","(tips: Sedna Light)"]},
+            {"name":"Starfield","file":"Moondrop Starfield"}
+        ]
+    },
+    {
+        "name":   "Oriolus",
+        "phones": [
+            {"name":"2nd Gen","file":"Oriolus 2nd Gen"}
+        ]
+    },
+    {
+        "name":   "Prisma Audio",
+        "phones": [
+            {"name":"Azul","file":"Prisma Audio Azul"}
+        ]
+    },
+    {
+        "name":   "QDC",
+        "phones": [
+            {"name":"Neptune","file":"QDC Neptune"},
+            {"name":"Uranus","file":"QDC Uranus"}
+        ]
+    },
+    {
+        "name":   "Samsung",
+        "phones": [
+            {"name":"Earphones tuned by AKG","file":"Samsung Earphones"},
+            {"name":"Earphones tuned by AKG (2019)","file":"Samsung Earphones (2019)"},
+            {"name":"Galaxy Buds +","file":"Samsung Galaxy Buds Plus"}
+        ]
+    },
+    {
+        "name":   "SeeAudio",
+        "phones": [
+            {"name":"Yume","file":"SeeAudio Yume"}
+        ]
+    },
+    {
+        "name":   "Sennheiser",
+        "phones": [
+            {"name":"IE 40 Pro","file":"Sennheiser IE 40 Pro"},
+            {"name":"IE 300","file":["Sennheiser IE 300","Sennheiser IE 300 (Final E)","Sennheiser IE 300 (Sedna Light)"],"suffix":["(tips: stock)","(tips: Final E-type)","(tips: Seda Light)"]},
+            {"name":"Momentum TW2","file":["Sennheiser MTW2","Sennheiser MTW2 (HE)"],"suffix":["(standard)","(high-end tuning)"]}
+        ]
+    },
+    {
+        "name":   "Shozy",
+        "phones": [
+            {"name":"CP","file":"Shozy CP"},
+            {"name":"Rouge","file":"Shozy Rouge"}
+        ]
+    },
+    {
+        "name":   "Shuoer",
+        "phones": [
+            {"name":"Singer","file":"Shuoer Singer"}
+        ]
+    },
+    {
+        "name":   "Simgot",
+        "phones": [
+            {"name":"EN700 Pro","file":"Simgot EN700 Pro"}
+        ]
+    },
+    {
+        "name":   "Softears",
+        "phones": [
+            {"name":"RSV","file":"Softears RSV"}
+        ]
+    },
+    {
+        "name":   "Sony",
+        "phones": [
+            {"name":"MH755","file":["Sony MH755","Sony MH755 (S2)"],"suffix":["(sample 1)","(sample 2)"]},
+            {"name":"MH755 (fake)","file":"Sony MH755 clone"}
+        ]
+    },
+    {
+        "name":   "Status Audio",
+        "phones": [
+            {"name":"IEM-2X","file":"Status Audio IEM-2X"}
+        ]
+    },
+    {
+        "name":   "Tanchjim",
+        "phones": [
+            {"name":"Darling","file":["Tanchjim Darling (depth 1)","Tanchjim Darling (depth 2)"],"suffix":["(depth 1)","(depth 2)"]},
+            {"name":"Hana","file":["Tanchjim Hana","Tanchjim Hana (Final E)","Tanchjim Hana (Sedna Light)"],"suffix":["(tips: stock)","(tips: Final E-type)","(tips: Sedna Light)"]}
+        ]
+    },
+    {
+        "name":   "Tenhz",
+        "phones": [
+            {"name":"3BA","file":"Tenhz 3BA"},
+            {"name":"P4 Pro","file":"Tenhz P4 Pro"}
+        ]
+    },
+    {
+        "name":   "TFZ",
+        "phones": [
+            {"name":"No.3","file":"TFZ No.3"},
+            {"name":"T2 Galaxy","file":"TFZ T2 Galaxy"}
+        ]
+    },
+    {
+        "name":   "ThieAudio",
+        "phones": [
+            {"name":"Monarch","file":"ThieAudio Monarch"}
+        ]
+    },
+    {
+        "name":   "Tin Hifi",
+        "phones": [
+            {"name":"P1","file":"Tin Hifi P1"},
+            {"name":"T2","file":"Tin Hifi T2"},
+            {"name":"T2 Plus","file":"Tin Hifi T2 Plus"},
+            {"name":"T2 Pro","file":["Tin Hifi T2 Pro","Tin Hifi T2 Pro (Comply)"],"suffix":["(tips: stock)","(tips: Comply w/ Waxguard)"]},
+            {"name":"T3","file":"Tin Hifi T3"},
+            {"name":"T4","file":"Tin Hifi T4"}
+        ]
+    },
+    {
+        "name":   "TRN",
+        "phones": [
+            {"name":"IM1","file":"TRN IM1"},
+            {"name":"V30","file":"TRN V30"},
+            {"name":"V90","file":"TRN V90"}
+        ]
+    },
+    {
+        "name":   "Vsonic",
+        "phones": [
+            {"name":"GR07 Bass Edition","file":"Vsonic GR07 (Bass)"},
+            {"name":"VS7","file":"Vsonic VS7"}
+        ]
+    },
+    {
+        "name":   "Whizzer",
+        "phones": [
+            {"name":"Kylin","file":"Whizzer Kylin"}
+        ]
+    },
+    {
+        "name":   "Yinfu",
+        "phones": [
+            {"name":"MD51","file":"Yinfu MD51"}
+        ]
+    },
+    {
+        "name":   "Yinyoo",
+        "phones": [
+            {"name":"V2","file":"Yinyoo V2"}
+        ]
+    }
+]

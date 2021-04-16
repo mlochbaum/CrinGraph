@@ -1524,7 +1524,8 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
 
     function setLeftClicks(fn) {
         return function (elt) {
-            elt .on("mousedown", p => fn(p, 0));
+            elt .on("mousedown", () => d3.event.stopPropagation())
+                .on("click", p => fn(p, 0));
         }
     }
 
@@ -1542,17 +1543,22 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         .attr("class","phone-item")
         .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
         .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
-//        .call(setClicks(showPhone));
+        .call(setClicks(showPhone));
     phoneSel.append("span").text(p=>p.fullName);
     
     //Adding the selection button
     //TODO: This breaks the whole selection stuff, now the graph tool can only add
+    
     phoneSel.append("div")
             .attr("class", "phone-list-button")
             .style("width", "100px")
             .style("height", "100px")
             .style("background", "#000")
-            .call(setLeftClicks(showPhone));
+            .on("click", p => {
+                d3.event.stopPropagation();
+                showPhone(p, 0);
+            })
+            
 
     if (targets) {
         let b = { name:"Targets", active:false },

@@ -1,3 +1,5 @@
+/* Color scheme: Testing */
+
 :root {
     --background-primary: #161712;
     --background-primary-darker: #0b0b09;
@@ -19,6 +21,33 @@
     --color-secondary: #4E4187;
     --color-secondary-darker: #382E60;
     --color-secondary-lighter: #695AAF;
+    
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+}
+
+/* Color scheme: Relaxed dark */
+
+:root {
+    --background-primary: hsl(212, 14%, 13%);
+    --background-primary-darker: hsl(212, 14%, 10%);
+    --background-primary-lighter: hsl(212, 14%, 30%);
+    
+    --background-secondary: #7E8987;
+    --background-secondary-darker: #767F7E;
+    --background-secondary-lighter: #8A9392;
+    
+    --background-contrast: hsl(77, 11%, 87%);
+    --background-contrast-darker: #EED3D8;
+    --background-contrast-lighter: #ffffff;
+    
+    --color-primary: #3BCE5B;
+    --color-primary-darker: #25933D;
+    --color-primary-lighter: #7DDE92;
+    
+    --color-secondary: hsl(260, 10%, 55%);
+    --color-secondary-darker: hsl(260, 10%, 45%);
+    --color-secondary-lighter: hsl(260, 10%, 65%);
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
@@ -1619,11 +1648,11 @@ Mobile adjustments *****/
     /* Primary panel focused */
     
     main.main[data-focused-panel="primary"] section.parts-primary {
-        flex: calc(100% - 68px) 0 0;
+        flex: calc(100% - 84px) 0 0;
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary {
-        flex: 68px 0 0;
+        flex: 84px 0 0;
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary:before {
@@ -1640,7 +1669,6 @@ Mobile adjustments *****/
         
         width: 100%;
         height: 100%;
-        padding: 32px;
         
         background-color: var(--background-primary-darker);
         
@@ -1653,7 +1681,7 @@ Mobile adjustments *****/
     
     main.main[data-focused-panel="primary"] section.parts-secondary:after {
         position: absolute;
-        top: 16px;
+        top: 24px;
         left: 16px;
         z-index: 2;
         
@@ -1671,10 +1699,10 @@ Mobile adjustments *****/
         
         color: var(--color-secondary-lighter);
         font-weight: bold;
-        font-size: 12px;
-        line-height: 1em;
+        font-size: 14px;
+        line-height: 12px;
         
-        opacity: 0.95;
+        opacity: 1;
         
         animation-name: all-graphs-bounce;
         animation-duration: 4s;

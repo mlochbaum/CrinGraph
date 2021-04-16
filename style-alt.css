@@ -68,6 +68,7 @@ html {
     width: 100vw;
     height: 100vh;
     max-height: -webkit-fill-available;
+    overflow: hidden;
     
     user-select: none;
 }
@@ -77,6 +78,7 @@ body {
     width: 100vw;
     height: 100vh;
     max-height: -webkit-fill-available;
+    overflow: hidden;
     
     background-color: var(--background-primary);
     
@@ -1428,6 +1430,7 @@ div[data-selected="models"] div.scrollOuter[data-list="models"]:before {
 
 div.scroll > div {
     position: relative;
+    
     padding: 11px 12px;
     
     background-color: transparent !important;
@@ -1484,9 +1487,101 @@ div.scroll div.active:after {
 }
 
 div.scroll > div > span.remove {
+/*    display: none;*/
+}
+
+div.scroll > div.phone-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    padding: 0;
+}
+
+div.scroll > div.phone-item span {
+    padding: 11px 12px;
+}
+
+/* Plus button */
+div.scroll > div.phone-item div.phone-item-add {
+    position: relative;
+    
+    box-sizing: border-box;
+    flex: 44px 0 0;
+    height: 38px;
+    margin: 0 3px 0 auto;
+    
+    background-color: var(--background-primary-darker) !important;
+    border-radius: 4px;
+}
+
+div.scroll > div.phone-item div.phone-item-add:before {
+    position: absolute;
+    top: 6px;
+    left: 3px;
+    
+    content: '';
+    
+    box-sizing: border-box;
+    display: block;
+    width: calc(100% - 6px);
+    height: calc(100% - 12px);
+    background-color: var(--background-primary-lighter);
+    
+    mask: var(--icon-plus);
+    -webkit-mask: var(--icon-plus);
+    mask-size: 16px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: 16px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    
+    pointer-events: none;
+}
+
+div.scroll div[style*="border"] div.phone-item-add {
     display: none;
 }
 
+/* Remove button */
+div.scroll > div.phone-item span.remove {
+    position: relative;
+    
+    display: none;
+    box-sizing: border-box;
+    flex: 44px 0 0;
+    height: 38px;
+    margin: 0 3px 0 auto;
+    
+    background-color: var(--background-primary-darker) !important;
+    border-radius: 4px;
+}
+
+div.scroll > div.phone-item span.remove:before {
+    position: absolute;
+    top: 6px;
+    left: 3px;
+    
+    content: '';
+    
+    box-sizing: border-box;
+    display: block;
+    width: calc(100% - 6px);
+    height: calc(100% - 12px);
+    background-color: var(--background-primary-lighter);
+    
+    mask: var(--icon-remove);
+    -webkit-mask: var(--icon-remove);
+    mask-size: 16px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: 16px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    
+    pointer-events: none;
+}
 
 
 /*****

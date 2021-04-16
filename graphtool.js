@@ -1539,16 +1539,12 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         .call(setClicks(showPhone));
     phoneSel.append("span").text(p=>p.fullName);
     
-    //Adding the selection button
-    //TODO: This breaks the whole selection stuff, now the graph tool can only add
-    
+    // Adding the + selection button
     phoneSel.append("div")
-            .attr("class", "phone-list-button")
-            .style("width", "100px")
-            .style("height", "100px")
-            .style("background", "#000")
+            .attr("class", "phone-item-add")
             .on("click", p => {
-                d3.event.stopPropagation();
+            //  Commented out this for consistent mobile functionality, but not sure what it was for.
+            //  d3.event.stopPropagation();
                 showPhone(p, 0);
             })
             
@@ -1869,7 +1865,7 @@ function setFocusedPanel() {
     phonesList.addEventListener("click", function(e) {
         let thingClicked = e.target;
         
-        if ( thingClicked.matches(".phone-item, .phone-item span") ) {
+        if ( thingClicked.matches(".phone-item, .phone-item span, .phone-item-add") ) {
             panelsContainer.setAttribute("data-focused-panel","primary");
             e.stopPropagation();
         }
@@ -1877,7 +1873,7 @@ function setFocusedPanel() {
 }
 setFocusedPanel();
 
-// Set active graph database link
+// Set active graph site link
 
 function setActiveDatabase() {
     let url = window.top.location.href,

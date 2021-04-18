@@ -27,7 +27,6 @@
 }
 
 /* Color scheme: Relaxed dark */
-
 :root {
     --background-primary: hsl(212, 14%, 13%);
     --background-primary-darker: hsl(212, 14%, 10%);
@@ -47,11 +46,87 @@
     
     --color-secondary: hsl(260, 10%, 55%);
     --color-secondary-darker: hsl(260, 10%, 45%);
-    --color-secondary-lighter: hsl(260, 10%, 65%);
+    --color-secondary-lighter: hsl(260, 13%, 65%);
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
 }
+
+/* Color scheme: Variable light */
+/*
+:root {
+    --hue: 230;
+    
+    --background-primary: hsl(var(--hue), 2%, 95%);
+    --background-primary-darker: hsl(var(--hue), 10%, 90%);
+    --background-primary-lighter: hsl(var(--hue), 10%, 40%);
+    
+    --background-contrast: hsl(var(--hue), 2%, 15%);
+    
+    --color-secondary: hsl(var(--hue), 50%, 50%);
+    --color-secondary-darker: hsl(var(--hue), 30%, 40%);
+    --color-secondary-lighter: hsl(var(--hue), 60%, 75%);
+    
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+}
+*/
+
+/* Color scheme: Variable dark */
+/*
+:root {
+    --hue: 220;
+    
+    --background-primary: hsl(var(--hue), 5%, 10%);
+    --background-primary-darker: hsl(var(--hue), 5%, 6%);
+    --background-primary-lighter: hsl(var(--hue), 5%, 25%);
+    
+    --background-contrast: hsl(var(--hue), 5%, 90%);
+    
+    --color-secondary: hsl(var(--hue), 50%, 50%);
+    --color-secondary-darker: hsl(var(--hue), 30%, 25%);
+    --color-secondary-lighter: hsl(var(--hue), 30%, 50%);
+    
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+}
+*/
+
+/* Color scheme: Mono dark */
+/*
+:root {
+    --background-primary: hsl(0, 0%, 8%);
+    --background-primary-darker: hsl(0, 0%, 5%);
+    --background-primary-lighter: hsl(0, 0%, 25%);
+    
+    --background-contrast: hsl(0, 0%, 80%);
+    
+    --color-secondary: hsl(0, 0%, 40%);
+    --color-secondary-darker: hsl(0, 0%, 25%);
+    --color-secondary-lighter: hsl(0, 0%, 50%);
+    
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+}
+*/
+
+/* Color scheme: Mono light */
+/*
+:root {
+    --background-primary: hsl(0, 0%, 95%);
+    --background-primary-darker: hsl(0, 0%, 100%);
+    --background-primary-lighter: hsl(0, 0%, 30%);
+    
+    --background-contrast: hsl(0, 0%, 40%);
+    
+    --color-secondary: hsl(0, 0%, 20%);
+    --color-secondary-darker: hsl(0, 0%, 60%);
+    --color-secondary-lighter: hsl(0, 0%, 85%);
+    
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+}
+*/
 
 /***** https://yoksel.github.io/url-encoder/ *****/
 
@@ -1736,8 +1811,6 @@ Mobile adjustments *****/
     section.parts-secondary:before {
         content: '';
         opacity: 0;
-        
-        transition: opacity 0.2s ease-out 0.2s;
     }
     
     /* Primary panel focused */
@@ -1920,5 +1993,45 @@ Mobile adjustments *****/
 @media ( max-height: 500px ) {
     div.select > div.selector-tabs {
         display: none;
+    }
+}
+
+@media ( max-height: 500px ) and ( orientation: landscape ) {
+    section.parts-primary {
+        z-index: 3;
+        
+        flex: 100vh 1 1 !important;
+        max-height: -webkit-fill-available;
+    }
+    
+    section.parts-secondary {
+        display: none;
+    }
+
+    
+    div.graph-sizer {
+        position: fixed;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        box-sizing: border-box;
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+        max-height: -webkit-fill-available;
+        margin: 0;
+        
+        background-color: var(--background-primary);
+    }
+    
+    svg#fr-graph {
+        width: 100%;
+        
+        pointer-events: none;
     }
 }

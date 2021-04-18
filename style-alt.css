@@ -130,23 +130,41 @@
 
 /* Browser scrollbar styles */
 ::-webkit-scrollbar {
-	width: 7px;
-	background-color: rgba(0,0,0,0);
+	width: 8px;
+    height: 8px;
+    
+	background-color: transparent;
 	-webkit-border-radius: 100px;
+	border-radius: 100px;
+}
+
+::-webkit-scrollbar-track {
 }
 
 ::-webkit-scrollbar:hover {
-	background-color: rgba(0, 0, 0, 0.09);
+	background-color: var(--background-primary-darker);
 }
 
-::-webkit-scrollbar-thumb:vertical {
-	background-color: #695AAF70;
+::-webkit-scrollbar-thumb {
+    width: 4px;
+    
+	background-color: var(--background-primary-lighter);
+    border-radius: 100px;
+	-webkit-border-radius: 100px;
+    
+    border: 1px solid var(--background-primary-darker);
+}
+
+::-webkit-scrollbar-thumb:vertical:active,
+::-webkit-scrollbar-thumb:horizontal:active {
+	background: var(--color-secondary-lighter);
+    border-radius; 100px;
 	-webkit-border-radius: 100px;
 }
 
-::-webkit-scrollbar-thumb:vertical:active {
-	background: rgba(0,0,0,0.61);
-	-webkit-border-radius: 100px;
+/* For Firefox, maybe? */
+html {
+    scrollbar-color: dark;
 }
 
 /***** https://yoksel.github.io/url-encoder/ *****/

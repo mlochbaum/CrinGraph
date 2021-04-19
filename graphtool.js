@@ -1021,7 +1021,7 @@ function addPhonesToUrl() {
         title = names.join(", ") + " - " + title;
     }
     window.top.history.replaceState("", title, url);
-    document.title = title;
+    top.document.title = title;
 }
 function updatePaths() {
     clearLabels();

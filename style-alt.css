@@ -1,52 +1,24 @@
-/* Color scheme: Testing */
 
-:root {
-    --background-primary: #161712;
-    --background-primary-darker: #0b0b09;
-    --background-primary-lighter: #4D503F;
-/*    --background-primary-lighter: #37392D;*/
-    
-    --background-secondary: #7E8987;
-    --background-secondary-darker: #767F7E;
-    --background-secondary-lighter: #8A9392;
-    
-    --background-contrast: #FCF7F8;
-    --background-contrast-darker: #EED3D8;
-    --background-contrast-lighter: #ffffff;
-    
-    --color-primary: #3BCE5B;
-    --color-primary-darker: #25933D;
-    --color-primary-lighter: #7DDE92;
-    
-    --color-secondary: #4E4187;
-    --color-secondary-darker: #382E60;
-    --color-secondary-lighter: #695AAF;
-    
-    --font-primary: 'Open Sans', sans-serif;
-    --font-secondary: monospace;
-}
+/****
+Color themes *****/
 
 /* Color scheme: Relaxed dark */
 :root {
+    --accent-color: hsl(260, 13%, 65%);
+    --accent-color-contrast: hsl(260, 10%, 55%);
+    --accent-color-contrast-more: hsl(260, 10%, 45%);
+
     --background-primary: hsl(212, 14%, 13%);
-    --background-primary-darker: hsl(212, 14%, 10%);
-    --background-primary-lighter: hsl(212, 14%, 40%);
+    --background-color-contrast: hsl(212, 14%, 10%);
+    --background-color-contrast-more: hsl(212, 14%, 40%);
     
-    --background-secondary: #7E8987;
-    --background-secondary-darker: #767F7E;
-    --background-secondary-lighter: #8A9392;
+    --scrollbar-color: hsla(212, 14%, 40%, 50%);
     
-    --background-contrast: hsl(77, 11%, 87%);
-    --background-contrast-darker: #EED3D8;
-    --background-contrast-lighter: #ffffff;
-    
-    --color-primary: #3BCE5B;
-    --color-primary-darker: #25933D;
-    --color-primary-lighter: #7DDE92;
-    
-    --color-secondary: hsl(260, 10%, 55%);
-    --color-secondary-darker: hsl(260, 10%, 45%);
-    --color-secondary-lighter: hsl(260, 13%, 65%);
+    --background-color-secondary: hsl(212, 14%, 95%);
+
+    --font-color-primary: hsl(77, 11%, 87%);
+    --font-color-secondary: #FFFFFF;
+    --font-color-inputs: hsl(212, 14%, 40%);
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
@@ -58,14 +30,14 @@
     --hue: 230;
     
     --background-primary: hsl(var(--hue), 2%, 95%);
-    --background-primary-darker: hsl(var(--hue), 10%, 90%);
-    --background-primary-lighter: hsl(var(--hue), 10%, 40%);
+    --background-color-contrast: hsl(var(--hue), 10%, 90%);
+    --background-color-contrast-more: hsl(var(--hue), 10%, 40%);
     
-    --background-contrast: hsl(var(--hue), 2%, 15%);
+    --font-color-primary: hsl(var(--hue), 2%, 15%);
     
-    --color-secondary: hsl(var(--hue), 50%, 50%);
-    --color-secondary-darker: hsl(var(--hue), 30%, 40%);
-    --color-secondary-lighter: hsl(var(--hue), 60%, 75%);
+    --accent-color-contrast: hsl(var(--hue), 50%, 50%);
+    --accent-color-contrast-more: hsl(var(--hue), 30%, 40%);
+    --accent-color: hsl(var(--hue), 60%, 75%);
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
@@ -78,14 +50,14 @@
     --hue: 220;
     
     --background-primary: hsl(var(--hue), 5%, 10%);
-    --background-primary-darker: hsl(var(--hue), 5%, 6%);
-    --background-primary-lighter: hsl(var(--hue), 5%, 25%);
+    --background-color-contrast: hsl(var(--hue), 5%, 6%);
+    --background-color-contrast-more: hsl(var(--hue), 5%, 25%);
     
-    --background-contrast: hsl(var(--hue), 5%, 90%);
+    --font-color-primary: hsl(var(--hue), 5%, 90%);
     
-    --color-secondary: hsl(var(--hue), 50%, 50%);
-    --color-secondary-darker: hsl(var(--hue), 30%, 25%);
-    --color-secondary-lighter: hsl(var(--hue), 30%, 50%);
+    --accent-color-contrast: hsl(var(--hue), 50%, 50%);
+    --accent-color-contrast-more: hsl(var(--hue), 30%, 25%);
+    --accent-color: hsl(var(--hue), 30%, 50%);
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
@@ -96,14 +68,14 @@
 /*
 :root {
     --background-primary: hsl(0, 0%, 8%);
-    --background-primary-darker: hsl(0, 0%, 5%);
-    --background-primary-lighter: hsl(0, 0%, 25%);
+    --background-color-contrast: hsl(0, 0%, 5%);
+    --background-color-contrast-more: hsl(0, 0%, 25%);
     
-    --background-contrast: hsl(0, 0%, 80%);
+    --font-color-primary: hsl(0, 0%, 80%);
     
-    --color-secondary: hsl(0, 0%, 40%);
-    --color-secondary-darker: hsl(0, 0%, 25%);
-    --color-secondary-lighter: hsl(0, 0%, 50%);
+    --accent-color-contrast: hsl(0, 0%, 40%);
+    --accent-color-contrast-more: hsl(0, 0%, 25%);
+    --accent-color: hsl(0, 0%, 50%);
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
@@ -114,52 +86,47 @@
 /*
 :root {
     --background-primary: hsl(0, 0%, 95%);
-    --background-primary-darker: hsl(0, 0%, 100%);
-    --background-primary-lighter: hsl(0, 0%, 30%);
+    --background-color-contrast: hsl(0, 0%, 100%);
+    --background-color-contrast-more: hsl(0, 0%, 30%);
     
-    --background-contrast: hsl(0, 0%, 40%);
+    --font-color-primary: hsl(0, 0%, 40%);
     
-    --color-secondary: hsl(0, 0%, 20%);
-    --color-secondary-darker: hsl(0, 0%, 60%);
-    --color-secondary-lighter: hsl(0, 0%, 85%);
+    --accent-color-contrast: hsl(0, 0%, 20%);
+    --accent-color-contrast-more: hsl(0, 0%, 60%);
+    --accent-color: hsl(0, 0%, 85%);
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
 }
 */
 
-/* Browser scrollbar styles */
-::-webkit-scrollbar {
-	width: 8px;
-    height: 8px;
-    
-	background-color: transparent;
-	-webkit-border-radius: 100px;
-	border-radius: 100px;
-}
 
-::-webkit-scrollbar-track {
+
+/*****
+Browser scrollbar styles *****/
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    
+    background-color: rgba(0,0,0, 0.05);
+    border-radius: 100px;
 }
 
 ::-webkit-scrollbar:hover {
-	background-color: var(--background-primary-darker);
+    background-color: rgba(0,0,0, 0.2);
 }
 
 ::-webkit-scrollbar-thumb {
     width: 4px;
     
-	background-color: var(--background-primary-lighter);
+    background-color: rgba(255,255,255, 0.05);
     border-radius: 100px;
-	-webkit-border-radius: 100px;
-    
-    border: 1px solid var(--background-primary-darker);
 }
 
 ::-webkit-scrollbar-thumb:vertical:active,
 ::-webkit-scrollbar-thumb:horizontal:active {
-	background: var(--color-secondary-lighter);
+    background-color: rgba(255,255,255, 0.2);
     border-radius; 100px;
-	-webkit-border-radius: 100px;
 }
 
 /* For Firefox, maybe? */
@@ -167,8 +134,10 @@ html {
     scrollbar-color: dark;
 }
 
-/***** https://yoksel.github.io/url-encoder/ *****/
 
+
+/***** Icons *****/
+/***** https://yoksel.github.io/url-encoder/ *****/
 :root {
     --icon-remove: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M95.36,24.64h0a5,5,0,0,0-7.08,0L60,52.93,31.72,24.64a5,5,0,0,0-7.08,0h0a5,5,0,0,0,0,7.08L52.93,60,24.64,88.28a5,5,0,0,0,0,7.08h0a5,5,0,0,0,7.08,0L60,67.07,88.28,95.36a5,5,0,0,0,7.08,0h0a5,5,0,0,0,0-7.08L67.07,60,95.36,31.72A5,5,0,0,0,95.36,24.64Z'/%3E%3C/svg%3E");
     --icon-baseline: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect x='10' y='55' width='100' height='10' rx='5'/%3E%3C/svg%3E");
@@ -196,7 +165,7 @@ body {
     
     background-color: var(--background-primary);
     
-    color: var(--background-contrast);
+    color: var(--font-color-primary);
     font-family: var(--font-primary);
     font-weight: 300;
     font-size: 14px;
@@ -205,24 +174,24 @@ body {
 
 svg text {
     font-family: var(--font-secondary);
-    color: var(--background-primary-lighter);
+    color: var(--background-color-contrast-more);
 }
 
 svg text.graph-name {
-    fill: var(--background-primary-lighter);
+    fill: var(--background-color-contrast-more);
     font-family: var(--font-primary);
     font-weight: 700;
 }
 
 svg line {
     stroke: var(--color-primary);
-    stroke: var(--background-primary-lighter);
+    stroke: var(--background-color-contrast-more);
 /*    stroke-width: 1;*/
     opacity: 1.0;
 }
 
 g.lineLabel rect {
-/*    fill: var(--background-contrast);*/
+/*    fill: var(--font-color-primary);*/
     fill: var(--background-primary);
     opacity: 0.9;
 }
@@ -292,7 +261,7 @@ div.graphBox {
     padding-bottom: 16px;
     
     background-color: var(--background-primary);
-    border-bottom: 1px solid var(--background-primary-lighter);
+    border-bottom: 1px solid var(--background-color-contrast-more);
 }
 
 div.graph-sizer {
@@ -336,7 +305,7 @@ div.tools {
     
     overflow-x: scroll;
     
-    border-bottom: 1px solid var(--background-primary-lighter);
+    border-bottom: 1px solid var(--background-color-contrast-more);
 }
 
 /* Copy URL */
@@ -351,11 +320,11 @@ button#copy-url {
     padding: 12px 16px;
     overflow: hidden;
     
-    background-color: var(--color-secondary-darker) !important;
+    background-color: var(--accent-color-contrast-more) !important;
     border: none;
     border-radius: 50px;
     
-    color: var(--color-secondary-lighter);
+    color: var(--accent-color);
     font-weight: 700;
     font-size: 12px;
     line-height: 1em;
@@ -378,10 +347,10 @@ button#copy-url:before {
     width: 100%;
     height: 100%;
     
-    background-color: var(--color-secondary-lighter);
+    background-color: var(--accent-color);
     border-radius: 50px;
     
-    color: var(--background-contrast);
+    color: var(--font-color-primary);
     
     opacity: 0;
     
@@ -409,13 +378,13 @@ div.zoom {
     
     padding-left: 16px;
     margin-left: 16px;
-    border-left: 1px solid var(--background-primary-lighter);
+    border-left: 1px solid var(--background-color-contrast-more);
 }
 
 div.zoom > span {
     margin-right: 10px;
 
-    color: var(--color-secondary-lighter);
+    color: var(--background-color-contrast-more);
     font-family: var(--font-secondary);
     font-size: 11px;
     line-height: 1em;
@@ -429,11 +398,11 @@ div.zoom button {
     padding: 12px 16px;
     margin: 0;
     
-    background-color: var(--color-secondary-darker);
+    background-color: var(--accent-color-contrast-more);
     border: none;
     outline: none;
     
-    color: var(--color-secondary-lighter);
+    color: var(--accent-color);
     font-weight: 700;
     font-size: 12px;
     line-height: 1em;
@@ -442,14 +411,10 @@ div.zoom button {
     cursor: pointer;
 }
 
-div.zoom button + button {
-    border-left: 1px solid var(--background-primary);
-}
-
 div.zoom button.selected {
-    background-color: var(--color-secondary-lighter);
+    background-color: var(--accent-color);
     
-    color: var(--background-contrast);
+    color: var(--font-color-primary);
 }
 
 div.zoom button:nth-child(2) {
@@ -470,13 +435,13 @@ div.normalize {
     
     padding: 0 0 0 16px;
     
-    border-left: 1px solid var(--background-primary-lighter);
+    border-left: 1px solid var(--background-color-contrast-more);
 }
 
 div.normalize > span {
     margin-right: 10px;
 
-    color: var(--color-secondary-lighter);
+    color: var(--background-color-contrast-more);
     font-family: var(--font-secondary);
     font-size: 11px;
     line-height: 1em;
@@ -505,12 +470,12 @@ div.normalize > div > input {
     height: 36px;
     padding: 11px 0;
     
-    background-color: var(--background-contrast);
+    background-color: var(--background-color-secondary);
     border: none;
     border-radius: 0px;
     outline: none;
     
-    color: var(--background-secondary-lighter);
+    color: var(--font-color-inputs);
     font-family: var(--font-secondary);
     font-size: 11px;
     line-height: 1em;
@@ -526,7 +491,7 @@ div.normalize > div:after {
     width: 18px;
     height: 36px;
     
-    background-color: var(--background-contrast);
+    background-color: var(--background-color-secondary);
     border-radius: 0 50px 50px 0;
 }
 
@@ -535,10 +500,10 @@ div.normalize > div > span {
     
     padding: 12px 16px;
     
-    background-color: var(--color-secondary-darker) !important;
+    background-color: var(--accent-color-contrast-more) !important;
     border-radius: 50px 0 0 50px;
     
-    color: var(--color-secondary-lighter);
+    color: var(--accent-color);
     font-weight: 700;
     font-size: 12px;
     line-height: 1em;
@@ -548,9 +513,9 @@ div.normalize > div > span {
 }
 
 div.normalize > div.selected > span {
-    background-color: var(--color-secondary-lighter) !important;
+    background-color: var(--accent-color) !important;
     
-    color: var(--background-contrast);
+    color: var(--font-color-secondary);
 }
 
 /* Smooth */
@@ -563,13 +528,13 @@ div.smooth {
     
     padding-left: 16px;
     margin-left: 16px;
-    border-left: 1px solid var(--background-primary-lighter);
+    border-left: 1px solid var(--background-color-contrast-more);
 }
 
 div.smooth > span {
     margin-right: 10px;
 
-    color: var(--color-secondary-lighter);
+    color: var(--background-color-contrast-more);
     font-family: var(--font-secondary);
     font-size: 11px;
     line-height: 1em;
@@ -583,12 +548,12 @@ div.smooth input {
     height: 36px;
     padding: 11px 0;
     
-    background-color: var(--background-contrast);
+    background-color: var(--background-color-secondary);
     border: none;
     border-radius: 50px 0 0 50px;
     outline: none;
     
-    color: var(--background-secondary-lighter);
+    color: var(--font-color-inputs);
     font-family: var(--font-secondary);
     font-size: 11px;
     line-height: 1em;
@@ -604,7 +569,7 @@ div.smooth:after {
     width: 18px;
     height: 36px;
     
-    background-color: var(--background-contrast);
+    background-color: var(--background-color-secondary);
     border-radius: 0 50px 50px 0;
 }
 
@@ -620,7 +585,7 @@ div.miscTools {
     padding-right: 16px;
     padding-left: 16px;
     margin-left: 16px;
-    border-left: 1px solid var(--background-primary-lighter);
+    border-left: 1px solid var(--background-color-contrast-more);
 }
 
 div.miscTools button {
@@ -628,11 +593,11 @@ div.miscTools button {
     
     padding: 12px 16px;
     
-    background-color: var(--color-secondary-darker) !important;
+    background-color: var(--accent-color-contrast-more) !important;
     border: none;
     border-radius: 50px;
     
-    color: var(--color-secondary-lighter);
+    color: var(--accent-color);
     font-weight: 700;
     font-size: 12px;
     line-height: 1em;
@@ -647,13 +612,13 @@ div.miscTools button + button {
 }
 
 div.miscTools button.selected {
-    color: var(--background-contrast);
-    background-color: var(--color-secondary-lighter) !important;
+    color: var(--font-color-primary);
+    background-color: var(--accent-color) !important;
 }
 
 div.miscTools button#recolor:active {
-    color: var(--background-contrast);
-    background-color: var(--color-secondary-lighter) !important;
+    color: var(--font-color-primary);
+    background-color: var(--accent-color) !important;
 }
 
 div.tools div.miscTools button:not(#download) {
@@ -714,13 +679,13 @@ div.targets > div.targetLabel {
     padding-left: 16px;
     padding-right: 16px;
     margin-left: 16px;
-    border-left: 1px solid var(--background-primary-lighter);
+    border-left: 1px solid var(--background-color-contrast-more);
 }
 
 .targetClass div.targetLabel {
     margin-right: 10px;
 
-    color: var(--color-secondary-lighter);
+    color: var(--background-color-contrast-more);
     font-family: var(--font-secondary);
     font-size: 11px;
     line-height: 1em;
@@ -745,10 +710,10 @@ div.targetLabel {
 div.target {
     padding: 12px 16px;
     
-    background-color: var(--color-secondary-darker) !important;
+    background-color: var(--accent-color-contrast-more) !important;
     border-radius: 50px;
     
-    color: var(--color-secondary-lighter);
+    color: var(--accent-color);
     font-weight: 700;
     font-size: 12px;
     line-height: 1em;
@@ -762,7 +727,7 @@ div.target + .target {
 }
 
 div.target[style*="background"] {
-    background-color: var(--color-secondary-lighter) !important;
+    background-color: var(--accent-color) !important;
     
     color: var(--color-background-contrast);
 }
@@ -787,7 +752,7 @@ tbody.curves:empty {
     
     min-height: 50px;
     
-    border-top: 1px solid var(--background-primary-lighter);
+    border-top: 1px solid var(--background-color-contrast-more);
 }
 
 tbody.curves:empty:before {
@@ -804,7 +769,7 @@ tbody.curves > tr {
     display: flex;
     align-items: flex-start;
     
-    border-top: 1px solid var(--background-primary-lighter);
+    border-top: 1px solid var(--background-color-contrast-more);
 }
 
 tbody.curves > tr:hover {
@@ -842,8 +807,8 @@ tbody.curves > tr > td.remove:before {
     width: calc(100% - 6px);
     height: calc(100% - 12px);
     
-    background-color: var(--background-primary-darker);
-/*    border: 1px solid var(--background-primary-lighter);*/
+    background-color: var(--background-color-contrast);
+/*    border: 1px solid var(--background-color-contrast-more);*/
     border-radius: 4px;
     
     pointer-events: none;
@@ -862,7 +827,7 @@ tbody.curves > tr > td.remove:after {
     width: calc(100% - 6px);
     height: calc(100% - 12px);
     
-    background-color: var(--background-primary-lighter);
+    background-color: var(--background-color-contrast-more);
     
     pointer-events: none;
 }
@@ -951,7 +916,7 @@ tbody.curves > tr > td.button-baseline:before {
 }
 
 tbody.curves > tr > td.button-baseline:after {
-    background-color: var(--background-contrast);
+    background-color: var(--font-color-primary);
 }
 
 tbody.curves > tr > td.button-baseline.selected:before {
@@ -973,16 +938,16 @@ tbody.curves > tr > td.hideIcon:before {
 }
 
 tbody.curves > tr > td.hideIcon:after {
-    background-color: var(--background-contrast);
+    background-color: var(--font-color-primary);
 }
 
 tbody.curves > tr > td.hideIcon.selected:before {
-    background-color: var(--background-primary-darker);
+    background-color: var(--background-color-contrast);
     border: none;
 }
 
 tbody.curves > tr > td.hideIcon.selected:after {
-    background-color: var(--background-primary-lighter);
+    background-color: var(--background-color-contrast-more);
 }
 
 /* Pin */
@@ -997,7 +962,7 @@ tbody.curves > tr > td.button-pin[data-pinned="true"]:before {
 }
 
 tbody.curves > tr > td.button-pin[data-pinned="true"]:after {
-    background-color: var(--background-contrast);
+    background-color: var(--font-color-primary);
 }
 
 /* Curve color */
@@ -1062,7 +1027,7 @@ tbody.curves > tr > td.item-line > span + div {
     align-items: center;
     min-height: 50px;
     
-    color: var(--background-contrast);
+    color: var(--font-color-primary);
 }
 
 tbody.curves > tr > td.item-line span {
@@ -1090,14 +1055,14 @@ tbody.curves > tr > td.item-line div.variantName {
     align-items: center;
     margin: 0 16px 0 0;
 
-    color: var(--background-contrast) !important;
+    color: var(--font-color-primary) !important;
     font-weight: 300;
     
     cursor: pointer !important;
 }
 
 tbody.curves > tr > td.item-line div.variantName + div.variantName {
-/*    border-top: 1px solid var(--background-primary-lighter);*/
+/*    border-top: 1px solid var(--background-color-contrast-more);*/
 }
 
 tbody.curves > tr > td.item-line div.variantName:hover {
@@ -1120,7 +1085,7 @@ tbody.curves > tr > td.item-line span.variantPopout {
     flex: 44px 0 0;
     height: 38px;
     
-    background-color: var(--background-primary-darker);
+    background-color: var(--background-color-contrast);
     border-radius: 4px;
     
     font-size: 0px;
@@ -1147,7 +1112,7 @@ tbody.curves > tr > td.item-line span.variantPopout:after {
     width: calc(100% - 6px);
     height: calc(100% - 12px);
     
-    background-color: var(--background-primary-lighter);
+    background-color: var(--background-color-contrast-more);
     mask: var(--icon-plus);
     -webkit-mask: var(--icon-plus);
     
@@ -1163,7 +1128,7 @@ tbody.curves > tr > td.item-line span.variantPopout:after {
 }
 
 tbody.curves > tr > td.item-line span.variantPopout[style*="display"]:after {
-    background-color: var(--background-contrast);
+    background-color: var(--font-color-primary);
     display: none;
 }
 
@@ -1339,8 +1304,8 @@ tbody.curves > tr > td.channels svg.keyLine text {
 }
 
 tbody.curves > tr > td.channels text {
-    fill: var(--background-primary-lighter) !important;
-    color: var(--background-primary-lighter) !important;
+    fill: var(--background-color-contrast-more) !important;
+    color: var(--background-color-contrast-more) !important;
     font-family: var(--font-secondary);
     font-size: 8px !important;
     text-transform: uppercase;
@@ -1367,7 +1332,7 @@ div.select {
     width: 100%;
     height: 100%;
     
-    background-color: var(--background-primary-darker);
+    background-color: var(--background-color-contrast);
 }
 
 div.select {
@@ -1386,12 +1351,12 @@ input.search {
     padding: 10px 16px;
     margin: 16px 16px 0 16px;
     
-    background-color: var(--background-contrast);
+    background-color: var(--background-color-secondary);
     border: none;
     border-radius: 50px;
     outline: none;
     
-    color: var(--background-secondary-lighter);
+    color: var(--font-color-inputs);
     font-family: var(--font-secondary);
     font-size: 11px;
     line-height: 1em;
@@ -1406,7 +1371,7 @@ div.select > div.selector-tabs {
     
     display: flex;
     padding: 16px;
-    border-bottom: 1px solid var(--background-primary-lighter);
+    border-bottom: 1px solid var(--background-color-contrast-more);
 }
 
 div.select > div.selector-tabs button {
@@ -1415,11 +1380,11 @@ div.select > div.selector-tabs button {
     padding: 11px 0;
     margin: 0;
     
-    background-color: var(--color-secondary-darker);
+    background-color: var(--accent-color-contrast-more);
     border: none;
     border-radius: 50px 0 0 50px;
     
-    color: var(--color-secondary-lighter);
+    color: var(--accent-color);
     font-weight: 700;
     font-size: 12px;
     
@@ -1453,7 +1418,7 @@ div.scrollOuter:before {
     width: 60px;
     height: 100%;
     
-    background-color: var(--background-primary-darker);
+    background-color: var(--background-color-contrast);
     
     opacity: 0.5;
     transition: opacity 0.1s ease-out 0.3s;
@@ -1482,7 +1447,7 @@ div.scroll {
     height: 100%;
     padding: 16px 16px 16px 16px;
     
-    background-color: var(--background-primary-darker);
+    background-color: var(--background-color-contrast);
     
     overflow-y: scroll;
     transform: none;
@@ -1496,15 +1461,15 @@ div.scroll#brands {
 div.scroll#phones {
     right: 0;
     
-    border-left: 1px solid var(--background-primary-lighter);
+    border-left: 1px solid var(--background-color-contrast-more);
 }
 
 /* List selected styles */
 /* Brands selected */
 div.select[data-selected="brands"] > div.selector-tabs button.brands {
-    background-color: var(--color-secondary-lighter);
+    background-color: var(--accent-color);
     
-    color: var(--background-contrast);
+    color: var(--font-color-primary);
 }
 
 div[data-selected="brands"] div.scroll#phones {
@@ -1512,7 +1477,7 @@ div[data-selected="brands"] div.scroll#phones {
 }
 
 div[data-selected="brands"] div.scroll#brands {
-    color: var(--background-contrast);
+    color: var(--font-color-primary);
 }
 
 div[data-selected="brands"] div.scrollOuter[data-list="brands"]:before {
@@ -1523,13 +1488,13 @@ div[data-selected="brands"] div.scrollOuter[data-list="brands"]:before {
 
 /* Models selected */
 div.select[data-selected="models"] > div.selector-tabs button.models {
-    background-color: var(--color-secondary-lighter);
+    background-color: var(--accent-color);
     
-    color: var(--background-contrast);
+    color: var(--font-color-secondary);
 }
 
 div[data-selected="models"] div.scroll#phones {
-    color: var(--background-contrast);
+    color: var(--font-color-primary);
 }
 
 div[data-selected="models"] div.scrollOuter[data-list="models"]:before {
@@ -1559,7 +1524,7 @@ div.scroll > div + div {
 }
 
 div.scroll > div:hover {
-/*    background-color: var(--background-primary-lighter) !important;*/
+/*    background-color: var(--background-color-contrast-more) !important;*/
     
     text-decoration: underline;
 }
@@ -1581,7 +1546,7 @@ div.scroll div.active:after {
     width: 36px;
     height: 36px;
     
-    background-color: var(--background-contrast);
+    background-color: var(--font-color-primary);
     
     pointer-events: none;
 }
@@ -1623,7 +1588,7 @@ div.scroll > div.phone-item div.phone-item-add {
     height: 38px;
     margin: 0 3px 0 auto;
     
-    background-color: var(--background-primary-darker) !important;
+    background-color: var(--background-color-contrast) !important;
     border-radius: 4px;
 }
 
@@ -1638,7 +1603,7 @@ div.scroll > div.phone-item div.phone-item-add:before {
     display: block;
     width: calc(100% - 6px);
     height: calc(100% - 12px);
-    background-color: var(--background-primary-lighter);
+    background-color: var(--background-color-contrast-more);
     
     mask: var(--icon-plus);
     -webkit-mask: var(--icon-plus);
@@ -1666,7 +1631,7 @@ div.scroll > div.phone-item span.remove {
     height: 38px;
     margin: 0 3px 0 auto;
     
-    background-color: var(--background-primary-darker) !important;
+    background-color: var(--background-color-contrast) !important;
     border-radius: 4px;
 }
 
@@ -1681,7 +1646,7 @@ div.scroll > div.phone-item span.remove:before {
     display: block;
     width: calc(100% - 6px);
     height: calc(100% - 12px);
-    background-color: var(--background-primary-lighter);
+    background-color: var(--background-color-contrast-more);
     
     mask: var(--icon-remove);
     -webkit-mask: var(--icon-remove);
@@ -1703,8 +1668,8 @@ div.about-this-tool {
     box-sizing: border-box;
     padding: 32px 16px;
     
-    border-top: 1px solid var(--background-primary-lighter);
-    background-color: var(--background-primary-darker);
+    border-top: 1px solid var(--background-color-contrast-more);
+    background-color: var(--background-color-contrast);
 }
 
 div.about-this-tool p {
@@ -1713,7 +1678,7 @@ div.about-this-tool p {
     
     border-radius: 4px;
     
-    color: var(--background-primary-lighter);
+    color: var(--background-color-contrast-more);
     font-size: 14px;
     line-height: 1.6em;
     text-align: center;
@@ -1722,7 +1687,7 @@ div.about-this-tool p {
 div.about-this-tool a,
 div.about-this-tool a:hover,
 div.about-this-tool a:visited {
-    color: var(--background-primary-lighter);
+    color: var(--background-color-contrast-more);
 }
 
 div.more-graph-sites {
@@ -1734,7 +1699,7 @@ div.more-graph-sites {
     padding: 16px;
     overflow-x: scroll;
     
-    border-top: 1px solid var(--background-primary-lighter);
+    border-top: 1px solid var(--background-color-contrast-more);
 }
 
 div.more-graph-sites:after {
@@ -1748,7 +1713,7 @@ div.more-graph-sites span {
     flex: auto 0 0;
     margin: 0 10px 0 0;
     
-    color: var(--background-primary-lighter);
+    color: var(--background-color-contrast-more);
     font-family: var(--font-secondary);
     font-size: 11px;
     line-height: 1em;
@@ -1762,7 +1727,7 @@ div.more-graph-sites span {
 div.more-graph-sites a + span {
     padding-left: 16px;
     margin-left: 16px;
-    border-left: 1px dotted var(--background-primary-lighter);
+    border-left: 1px dotted var(--background-color-contrast-more);
 }
 
 div.more-graph-sites a {
@@ -1772,11 +1737,11 @@ div.more-graph-sites a {
     min-width: 100px;
     padding: 12px 16px;
     
-    background-color: var(--background-primary-darker);
+    background-color: var(--background-color-contrast);
     border: none;
     border-radius: 50px;
     
-    color: var(--background-primary-lighter);
+    color: var(--background-color-contrast-more);
     font-weight: 700;
     font-size: 12px;
     line-height: 1em;
@@ -1789,8 +1754,8 @@ div.more-graph-sites a {
 }
 
 div.more-graph-sites a.active {    
-    color: var(--background-primary-darker);
-    background-color: var(--background-primary-lighter);
+    color: var(--background-color-contrast);
+    background-color: var(--background-color-contrast-more);
 }
 
 div.more-graph-sites a + a {
@@ -1875,9 +1840,9 @@ Mobile adjustments *****/
         width: 100%;
         height: 100%;
         
-        background-color: var(--background-primary-darker);
+        background-color: var(--background-color-contrast);
         
-        color: var(--color-secondary-lighter);
+        color: var(--accent-color);
         font-weight: bold;
         font-size: 12px;
         
@@ -1899,10 +1864,10 @@ Mobile adjustments *****/
         width: calc(100% - 32px);
         padding: 12px 16px;
         
-        background-color: var(--color-secondary-darker);
+        background-color: var(--accent-color-contrast-more);
         border-radius: 50px;
         
-        color: var(--color-secondary-lighter);
+        color: var(--accent-color);
         font-weight: bold;
         font-size: 14px;
         line-height: 12px;
@@ -1963,9 +1928,9 @@ Mobile adjustments *****/
         padding: 32px;
         margin: -120px 0 0 0;
         
-        background-color: var(--color-secondary-darker);
+        background-color: var(--accent-color-contrast-more);
         
-        color: var(--color-secondary-lighter);
+        color: var(--accent-color);
         font-weight: bold;
         font-size: 12px;
         
@@ -2000,7 +1965,7 @@ Mobile adjustments *****/
         flex: 100% 0 0 !important;
         padding: 0 16px !important;
         
-        border-bottom: 1px solid var(--background-primary-darker);
+        border-bottom: 1px solid var(--background-color-contrast);
     }
     
     tbody.curves > tr > td.item-line div.phonename {

@@ -30,7 +30,7 @@
 :root {
     --background-primary: hsl(212, 14%, 13%);
     --background-primary-darker: hsl(212, 14%, 10%);
-    --background-primary-lighter: hsl(212, 14%, 30%);
+    --background-primary-lighter: hsl(212, 14%, 40%);
     
     --background-secondary: #7E8987;
     --background-secondary-darker: #767F7E;

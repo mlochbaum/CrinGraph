@@ -23,6 +23,8 @@ Color themes *****/
     
     --scrollbar-color: 0,0,0;
     --scrollbar-accent: 255,255,255;
+        
+    --svg-filter: invert(1.0);
 }
 */
 
@@ -49,6 +51,8 @@ Color themes *****/
     
     --scrollbar-color: 255,255,255;
     --scrollbar-accent: 0,0,0;
+        
+    --svg-filter: none;
 }
 */
 
@@ -75,6 +79,8 @@ Color themes *****/
     
     --scrollbar-color: 0,0,0;
     --scrollbar-accent: 255,255,255;
+        
+    --svg-filter: invert(1.0);
 }
 */
 
@@ -98,6 +104,8 @@ Color themes *****/
     
     --scrollbar-color: 255,255,255;
     --scrollbar-accent: 0,0,0;
+        
+    --svg-filter: none;
 }
 
 /* Color theme: Mono dark */
@@ -121,6 +129,8 @@ Color themes *****/
     
     --scrollbar-color: 0,0,0;
     --scrollbar-accent: 255,255,255;
+        
+    --svg-filter: invert(1.0);
 }
 */
 
@@ -146,6 +156,8 @@ Color themes *****/
 
         --scrollbar-color: 0,0,0;
         --scrollbar-accent: 255,255,255;
+        
+        --svg-filter: invert(1.0);
     }
 }
 
@@ -268,6 +280,10 @@ rect.graphBackground {
 
 g.dBScaler {
     display: none;
+}
+
+svg#fr-graph > g > image {
+    filter: var(--svg-filter);
 }
 
 

@@ -2,19 +2,17 @@
 /****
 Color themes *****/
 
-/* Color scheme: Relaxed dark */
+/* Color theme: Relaxed dark */
+/*
 :root {
     --accent-color: hsl(260, 13%, 65%);
-    --accent-color-contrast: hsl(260, 10%, 55%);
-    --accent-color-contrast-more: hsl(260, 10%, 45%);
-
-    --background-primary: hsl(212, 14%, 13%);
-    --background-color-contrast: hsl(212, 14%, 10%);
+    --accent-color-contrast: hsl(260, 10%, 45%);
+    
+    --background-color: hsl(212, 14%, 10%);
+    --background-color-contrast: hsl(212, 14%, 8%);
     --background-color-contrast-more: hsl(212, 14%, 40%);
     
-    --scrollbar-color: hsla(212, 14%, 40%, 50%);
-    
-    --background-color-secondary: hsl(212, 14%, 95%);
+    --background-color-inputs: hsl(212, 14%, 95%);
 
     --font-color-primary: hsl(77, 11%, 87%);
     --font-color-secondary: #FFFFFF;
@@ -22,111 +20,160 @@ Color themes *****/
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
-}
-
-/* Color scheme: Variable light */
-/*
-:root {
-    --hue: 230;
     
-    --background-primary: hsl(var(--hue), 2%, 95%);
-    --background-color-contrast: hsl(var(--hue), 10%, 90%);
-    --background-color-contrast-more: hsl(var(--hue), 10%, 40%);
-    
-    --font-color-primary: hsl(var(--hue), 2%, 15%);
-    
-    --accent-color-contrast: hsl(var(--hue), 50%, 50%);
-    --accent-color-contrast-more: hsl(var(--hue), 30%, 40%);
-    --accent-color: hsl(var(--hue), 60%, 75%);
-    
-    --font-primary: 'Open Sans', sans-serif;
-    --font-secondary: monospace;
+    --scrollbar-color: 0,0,0;
+    --scrollbar-accent: 255,255,255;
 }
 */
 
-/* Color scheme: Variable dark */
+/* Color theme: Variable light */
 /*
 :root {
-    --hue: 220;
+    --hue: 300;
     
-    --background-primary: hsl(var(--hue), 5%, 10%);
-    --background-color-contrast: hsl(var(--hue), 5%, 6%);
-    --background-color-contrast-more: hsl(var(--hue), 5%, 25%);
+    --accent-color: hsl(var(--hue), 30%, 50%);
+    --accent-color-contrast: hsl(var(--hue), 30%, 75%);
+    
+    --background-color: hsl(var(--hue), 3%, 95%);
+    --background-color-contrast: hsl(var(--hue), 3%, 85%);
+    --background-color-contrast-more: hsl(var(--hue), 3%, 50%);
+    
+    --background-color-inputs: hsl(var(--hue), 20%, 100%);
+    
+    --font-color-primary: hsl(var(--hue), 10%, 10%);
+    --font-color-secondary: hsl(var(--hue), 10%, 95%);
+    --font-color-inputs: hsl(var(--hue), 10%, 50%);
+    
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+    
+    --scrollbar-color: 255,255,255;
+    --scrollbar-accent: 0,0,0;
+}
+*/
+
+/* Color theme: Variable dark */
+/*
+:root {
+    --hue: 300;
+    
+    --accent-color: hsl(var(--hue), 50%, 40%);
+    --accent-color-contrast: hsl(var(--hue), 50%, 15%);
+    
+    --background-color: hsl(var(--hue), 10%, 8%);
+    --background-color-contrast: hsl(var(--hue), 10%, 4%);
+    --background-color-contrast-more: hsl(var(--hue), 10%, 35%);
+    
+    --background-color-inputs: hsl(var(--hue), 5%, 25%);
     
     --font-color-primary: hsl(var(--hue), 5%, 90%);
-    
-    --accent-color-contrast: hsl(var(--hue), 50%, 50%);
-    --accent-color-contrast-more: hsl(var(--hue), 30%, 25%);
-    --accent-color: hsl(var(--hue), 30%, 50%);
+    --font-color-secondary: hsl(var(--hue), 5%, 80%);
+    --font-color-inputs: hsl(var(--hue), 5%, 60%);
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
+    
+    --scrollbar-color: 0,0,0;
+    --scrollbar-accent: 255,255,255;
 }
 */
 
-/* Color scheme: Mono dark */
+/* Color theme: Mono light */
+:root {
+    --accent-color: hsl(0, 0%, 65%);
+    --accent-color-contrast: hsl(0, 0%, 45%);
+
+    --background-color: hsl(0, 0%, 94%);
+    --background-color-contrast: hsl(0, 0%, 90%);
+    --background-color-contrast-more: hsl(0, 0%, 40%);
+    
+    --background-color-inputs: hsl(0, 0%, 100%);
+    
+    --font-color-primary: hsl(0, 0%, 10%);
+    --font-color-secondary: hsl(0, 0%, 100%);
+    --font-color-inputs: hsl(0, 0%, 60%);
+    
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+    
+    --scrollbar-color: 255,255,255;
+    --scrollbar-accent: 0,0,0;
+}
+
+/* Color theme: Mono dark */
 /*
 :root {
-    --background-primary: hsl(0, 0%, 8%);
-    --background-color-contrast: hsl(0, 0%, 5%);
-    --background-color-contrast-more: hsl(0, 0%, 25%);
+    --accent-color: hsl(0, 0%, 40%);
+    --accent-color-contrast: hsl(0, 0%, 25%);
+
+    --background-color: hsl(0, 0%, 7%);
+    --background-color-contrast: hsl(0, 0%, 2%);
+    --background-color-contrast-more: hsl(0, 0%, 40%);
+    
+    --background-color-inputs: hsl(0, 0%, 15%);
     
     --font-color-primary: hsl(0, 0%, 80%);
-    
-    --accent-color-contrast: hsl(0, 0%, 40%);
-    --accent-color-contrast-more: hsl(0, 0%, 25%);
-    --accent-color: hsl(0, 0%, 50%);
+    --font-color-secondary: hsl(0, 0%, 80%);
+    --font-color-inputs: hsl(0, 0%, 50%);
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
+    
+    --scrollbar-color: 0,0,0;
+    --scrollbar-accent: 255,255,255;
 }
 */
 
-/* Color scheme: Mono light */
-/*
-:root {
-    --background-primary: hsl(0, 0%, 95%);
-    --background-color-contrast: hsl(0, 0%, 100%);
-    --background-color-contrast-more: hsl(0, 0%, 30%);
-    
-    --font-color-primary: hsl(0, 0%, 40%);
-    
-    --accent-color-contrast: hsl(0, 0%, 20%);
-    --accent-color-contrast-more: hsl(0, 0%, 60%);
-    --accent-color: hsl(0, 0%, 85%);
-    
-    --font-primary: 'Open Sans', sans-serif;
-    --font-secondary: monospace;
+/* If user has system preference for dark / light mode */
+@media ( prefers-color-scheme: dark ) {
+    /* Color theme: Mono dark */
+    :root {
+        --accent-color: hsl(0, 0%, 40%);
+        --accent-color-contrast: hsl(0, 0%, 25%);
+
+        --background-color: hsl(0, 0%, 7%);
+        --background-color-contrast: hsl(0, 0%, 2%);
+        --background-color-contrast-more: hsl(0, 0%, 40%);
+
+        --background-color-inputs: hsl(0, 0%, 15%);
+
+        --font-color-primary: hsl(0, 0%, 80%);
+        --font-color-secondary: hsl(0, 0%, 80%);
+        --font-color-inputs: hsl(0, 0%, 50%);
+
+        --font-primary: 'Open Sans', sans-serif;
+        --font-secondary: monospace;
+
+        --scrollbar-color: 0,0,0;
+        --scrollbar-accent: 255,255,255;
+    }
 }
-*/
 
 
 
 /*****
 Browser scrollbar styles *****/
+
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
     
-    background-color: rgba(0,0,0, 0.05);
-    border-radius: 100px;
+    background-color: rgba(var(--scrollbar-color), 0.05);
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar:hover {
-    background-color: rgba(0,0,0, 0.2);
+    background-color: rgba(var(--scrollbar-color), 0.2);
 }
 
 ::-webkit-scrollbar-thumb {
-    width: 4px;
-    
-    background-color: rgba(255,255,255, 0.05);
-    border-radius: 100px;
+    background-color: rgba(var(--scrollbar-accent), 0.05);
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:vertical:active,
 ::-webkit-scrollbar-thumb:horizontal:active {
-    background-color: rgba(255,255,255, 0.2);
-    border-radius; 100px;
+    background-color: rgba(var(--scrollbar-accent), 0.2);
 }
 
 /* For Firefox, maybe? */
@@ -136,8 +183,11 @@ html {
 
 
 
-/***** Icons *****/
+/*****
+Icons *****/
+
 /***** https://yoksel.github.io/url-encoder/ *****/
+
 :root {
     --icon-remove: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M95.36,24.64h0a5,5,0,0,0-7.08,0L60,52.93,31.72,24.64a5,5,0,0,0-7.08,0h0a5,5,0,0,0,0,7.08L52.93,60,24.64,88.28a5,5,0,0,0,0,7.08h0a5,5,0,0,0,7.08,0L60,67.07,88.28,95.36a5,5,0,0,0,7.08,0h0a5,5,0,0,0,0-7.08L67.07,60,95.36,31.72A5,5,0,0,0,95.36,24.64Z'/%3E%3C/svg%3E");
     --icon-baseline: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect x='10' y='55' width='100' height='10' rx='5'/%3E%3C/svg%3E");
@@ -146,6 +196,11 @@ html {
     --icon-pin: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M78.07,30.48A28.68,28.68,0,0,1,89.52,41.93l-2.33-.64L83.49,45,69.05,59.43l-4.78,4.78,3.27,5.93c2.61,4.74,2.9,7.76,2.79,8.93a3,3,0,0,1-.45,0c-2.64,0-7.89-1.7-14-6.48l-4.75-3.74-3.74-4.75c-5.55-7.09-6.65-12.6-6.48-14.45l.46,0c1,0,3.89.28,8.49,2.81l5.93,3.27L60.57,51,75,36.51l3.71-3.7-.64-2.33M74.41,20.27A6.34,6.34,0,0,0,69.77,22c-1.79,1.79-2.08,4.76-1.13,8.2L54.21,44.58C49.57,42,45.1,40.65,41.37,40.65a9.54,9.54,0,0,0-7,2.51c-5,5-2.27,16.09,5.9,26.51L23,95.58a1,1,0,0,0,.83,1.55,1,1,0,0,0,.55-.17L50.33,79.69c6.87,5.38,14,8.4,19.55,8.4a9.52,9.52,0,0,0,7-2.5c3.93-3.93,3.08-11.62-1.42-19.8L89.85,51.36a13.62,13.62,0,0,0,3.58.53,6.32,6.32,0,0,0,4.62-1.66C102,46.32,98.79,36.83,91,29c-5.54-5.54-11.93-8.75-16.57-8.75Z'/%3E%3C/svg%3E");
     --icon-plus: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M110,60h0a5,5,0,0,0-5-5H65V15a5,5,0,0,0-5-5h0a5,5,0,0,0-5,5V55H15a5,5,0,0,0-5,5h0a5,5,0,0,0,5,5H55v40a5,5,0,0,0,5,5h0a5,5,0,0,0,5-5V65h40A5,5,0,0,0,110,60Z'/%3E%3C/svg%3E");
 }
+
+
+
+/*****
+Base page styles *****/
 
 html {
     width: 100vw;
@@ -163,7 +218,7 @@ body {
     max-height: -webkit-fill-available;
     overflow: hidden;
     
-    background-color: var(--background-primary);
+    background-color: var(--background-color);
     
     color: var(--font-color-primary);
     font-family: var(--font-primary);
@@ -172,13 +227,19 @@ body {
     line-height: 1em;
 }
 
+
+
+/*****
+Graph colors *****/
+
 svg text {
-    font-family: var(--font-secondary);
     color: var(--background-color-contrast-more);
+    font-family: var(--font-secondary);
 }
 
 svg text.graph-name {
     fill: var(--background-color-contrast-more);
+    
     font-family: var(--font-primary);
     font-weight: 700;
 }
@@ -186,18 +247,27 @@ svg text.graph-name {
 svg line {
     stroke: var(--color-primary);
     stroke: var(--background-color-contrast-more);
-/*    stroke-width: 1;*/
-    opacity: 1.0;
 }
 
 g.lineLabel rect {
-/*    fill: var(--font-color-primary);*/
-    fill: var(--background-primary);
-    opacity: 0.9;
+    fill: var(--background-color);
 }
 
 g.lineLabel text {
     font-family: var(--font-primary);
+    font-weight: 700;
+}
+
+svg#fr-graph {
+    background-color: var(--background-color);
+}
+
+rect.graphBackground {
+    opacity: 0.0;
+}
+
+g.dBScaler {
+    display: none;
 }
 
 
@@ -227,7 +297,7 @@ section.parts-primary {
     box-sizing: border-box;
     height: 100%;
     
-    background-color: var(--background-primary);
+    background-color: var(--background-color);
     
     overflow-y: scroll;
 }
@@ -239,7 +309,7 @@ section.parts-secondary {
     box-sizing: border-box;
     height: 100%;
     
-    border-right: 1px solid var(--background-primary);
+    border-right: 1px solid var(--background-color);
 }
 
 
@@ -260,7 +330,7 @@ div.graphBox {
     height: auto;
     padding-bottom: 16px;
     
-    background-color: var(--background-primary);
+    background-color: var(--background-color);
     border-bottom: 1px solid var(--background-color-contrast-more);
 }
 
@@ -280,20 +350,7 @@ div.tools {
     flex: auto 0 0;
 }
 
-/*****
-Graph styles *****/
 
-svg#fr-graph {
-    background-color: var(--background-primary);
-}
-
-rect.graphBackground {
-    display: none;
-}
-
-g.dBScaler {
-    display: none;
-}
 
 /*****
 Tools styles *****/
@@ -301,7 +358,7 @@ Tools styles *****/
 div.tools {
     display: flex;
     align-items: center;
-    padding: 16px 0;
+    padding: 16px 0 10px 0;
     
     overflow-x: scroll;
     
@@ -309,7 +366,6 @@ div.tools {
 }
 
 /* Copy URL */
-
 div.copy-url {
     padding: 0 16px;
 }
@@ -320,7 +376,7 @@ button#copy-url {
     padding: 12px 16px;
     overflow: hidden;
     
-    background-color: var(--accent-color-contrast-more) !important;
+    background-color: var(--accent-color-contrast) !important;
     border: none;
     border-radius: 50px;
     
@@ -350,7 +406,7 @@ button#copy-url:before {
     background-color: var(--accent-color);
     border-radius: 50px;
     
-    color: var(--font-color-primary);
+    color: var(--font-color-secondary);
     
     opacity: 0;
     
@@ -362,14 +418,7 @@ button#copy-url.clicked:before {
     transition: opacity 0.0s linear;
 }
 
-/* Download */
-
-button#download {
-    
-}
-
 /* Zoom */
-
 div.zoom {
     order: 4;
     
@@ -398,7 +447,7 @@ div.zoom button {
     padding: 12px 16px;
     margin: 0;
     
-    background-color: var(--accent-color-contrast-more);
+    background-color: var(--accent-color-contrast);
     border: none;
     outline: none;
     
@@ -414,19 +463,18 @@ div.zoom button {
 div.zoom button.selected {
     background-color: var(--accent-color);
     
-    color: var(--font-color-primary);
+    color: var(--font-color-secondary);
 }
 
-div.zoom button:nth-child(2) {
+div.zoom button:nth-of-type(1) {
     border-radius: 50px 0 0 50px;
 }
 
-div.zoom button:nth-last-child(1) {
+div.zoom button:nth-last-of-type(1) {
     border-radius: 0 50px 50px 0;
 }
 
 /* Normalize */
-
 div.normalize {
     order: 2;
     
@@ -470,7 +518,7 @@ div.normalize > div > input {
     height: 36px;
     padding: 11px 0;
     
-    background-color: var(--background-color-secondary);
+    background-color: var(--background-color-inputs);
     border: none;
     border-radius: 0px;
     outline: none;
@@ -491,7 +539,7 @@ div.normalize > div:after {
     width: 18px;
     height: 36px;
     
-    background-color: var(--background-color-secondary);
+    background-color: var(--background-color-inputs);
     border-radius: 0 50px 50px 0;
 }
 
@@ -500,7 +548,7 @@ div.normalize > div > span {
     
     padding: 12px 16px;
     
-    background-color: var(--accent-color-contrast-more) !important;
+    background-color: var(--accent-color-contrast) !important;
     border-radius: 50px 0 0 50px;
     
     color: var(--accent-color);
@@ -519,7 +567,6 @@ div.normalize > div.selected > span {
 }
 
 /* Smooth */
-
 div.smooth {
     order: 3;
     
@@ -548,7 +595,7 @@ div.smooth input {
     height: 36px;
     padding: 11px 0;
     
-    background-color: var(--background-color-secondary);
+    background-color: var(--background-color-inputs);
     border: none;
     border-radius: 50px 0 0 50px;
     outline: none;
@@ -569,18 +616,17 @@ div.smooth:after {
     width: 18px;
     height: 36px;
     
-    background-color: var(--background-color-secondary);
+    background-color: var(--background-color-inputs);
     border-radius: 0 50px 50px 0;
 }
 
 /* Download, Inspect, Label, Recolor */
-
 div.miscTools {
     order: 5;
     
     display: flex;
     
-    background-color: var(--background-primary);
+    background-color: var(--background-color);
     
     padding-right: 16px;
     padding-left: 16px;
@@ -593,7 +639,7 @@ div.miscTools button {
     
     padding: 12px 16px;
     
-    background-color: var(--accent-color-contrast-more) !important;
+    background-color: var(--accent-color-contrast) !important;
     border: none;
     border-radius: 50px;
     
@@ -612,13 +658,15 @@ div.miscTools button + button {
 }
 
 div.miscTools button.selected {
-    color: var(--font-color-primary);
     background-color: var(--accent-color) !important;
+    
+    color: var(--font-color-secondary);
 }
 
 div.miscTools button#recolor:active {
-    color: var(--font-color-primary);
     background-color: var(--accent-color) !important;
+    
+    color: var(--font-color-secondary);
 }
 
 div.tools div.miscTools button:not(#download) {
@@ -629,30 +677,21 @@ div.miscTools button#download {
     order: 2;
 }
 
+div.miscTools button#download:active {
+    background-color: var(--accent-color) !important;
+    
+    color: var(--font-color-secondary);
+}
+
 svg#expandTools {
-    order: 5;
-    
     display: none;
-    flex: 50px 0 0;
-    height: 36px;
-    
-    background-image: var(--icon-remove);
-    background-size: 20px;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    cursor: pointer;
 }
 
 svg#expandTools path {
     display: none;
 }
 
-button#inspector,
-button#label,
-button#download,
-button#recolor {
-}
+
 
 /*****
 Targets styles *****/
@@ -662,7 +701,7 @@ div.targets {
     align-items: center;
     
     padding: 0 16px 16px 16px;
-    padding: 16px;
+    padding: 16px 16px 10px 16px;
     
     overflow-x: scroll;
 }
@@ -710,7 +749,7 @@ div.targetLabel {
 div.target {
     padding: 12px 16px;
     
-    background-color: var(--accent-color-contrast-more) !important;
+    background-color: var(--accent-color-contrast) !important;
     border-radius: 50px;
     
     color: var(--accent-color);
@@ -729,8 +768,10 @@ div.target + .target {
 div.target[style*="background"] {
     background-color: var(--accent-color) !important;
     
-    color: var(--color-background-contrast);
+    color: var(--font-color-secondary);
 }
+
+
 
 /*****
 Table styles *****/
@@ -772,9 +813,6 @@ tbody.curves > tr {
     border-top: 1px solid var(--background-color-contrast-more);
 }
 
-tbody.curves > tr:hover {
-}
-
 tbody.curves > tr > td {
     position: relative;
     
@@ -793,7 +831,6 @@ tbody.curves > tr > td.remove {
 }
 
 /* Table buttons */
-
 tbody.curves > tr > td.button:before,
 tbody.curves > tr > td.remove:before {
     position: absolute;
@@ -808,7 +845,6 @@ tbody.curves > tr > td.remove:before {
     height: calc(100% - 12px);
     
     background-color: var(--background-color-contrast);
-/*    border: 1px solid var(--background-color-contrast-more);*/
     border-radius: 4px;
     
     pointer-events: none;
@@ -908,18 +944,12 @@ tbody.curves > tr > td.button-baseline {
     order: 3;
 }
 
-tbody.curves > tr > td.button-baseline svg {
-}
-
 tbody.curves > tr > td.button-baseline:before {
-    background-color: var(--background-primary);
+    background-color: var(--background-color);
 }
 
 tbody.curves > tr > td.button-baseline:after {
     background-color: var(--font-color-primary);
-}
-
-tbody.curves > tr > td.button-baseline.selected:before {
 }
 
 /* Hide */
@@ -934,7 +964,7 @@ tbody.curves > tr > td.hideIcon svg {
 }
 
 tbody.curves > tr > td.hideIcon:before {
-    background-color: var(--background-primary);
+    background-color: var(--background-color);
 }
 
 tbody.curves > tr > td.hideIcon:after {
@@ -958,7 +988,7 @@ tbody.curves > tr > td.button-pin {
 }
 
 tbody.curves > tr > td.button-pin[data-pinned="true"]:before {
-    background-color: var(--background-primary);
+    background-color: var(--background-color);
 }
 
 tbody.curves > tr > td.button-pin[data-pinned="true"]:after {
@@ -966,7 +996,6 @@ tbody.curves > tr > td.button-pin[data-pinned="true"]:after {
 }
 
 /* Curve color */
-
 tbody.curves > tr > td.curve-color {
     order: 0;
     align-self: flex-start;
@@ -1061,10 +1090,6 @@ tbody.curves > tr > td.item-line div.variantName {
     cursor: pointer !important;
 }
 
-tbody.curves > tr > td.item-line div.variantName + div.variantName {
-/*    border-top: 1px solid var(--background-color-contrast-more);*/
-}
-
 tbody.curves > tr > td.item-line div.variantName:hover {
     text-decoration: underline;
 }
@@ -1097,7 +1122,7 @@ tbody.curves > tr > td.item-line span.variantPopout {
 
 tbody.curves > tr > td.item-line span.variantPopout[style*="display"] {
     display: inherit !important;
-    background-color: var(--background-primary);
+    background-color: var(--background-color);
 }
 
 tbody.curves > tr > td.item-line span.variantPopout:after {
@@ -1123,7 +1148,6 @@ tbody.curves > tr > td.item-line span.variantPopout:after {
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
     
-    
     pointer-events: none;
 }
 
@@ -1132,10 +1156,7 @@ tbody.curves > tr > td.item-line span.variantPopout[style*="display"]:after {
     display: none;
 }
 
-tbody.curves > tr > td.item-line span.variantPopout:hover {
-}
-
-/* Variant ordering */
+/* Variant ordering; pretty verbose because of DOM ordering, works up to 10 variants */
 tbody.curves > tr > td.item-line div.variantName:nth-of-type(1) {
     order: 1;
 }
@@ -1299,10 +1320,6 @@ tbody.curves > tr > td.channels svg.keyLine {
     max-height: 40px;
 }
 
-tbody.curves > tr > td.channels svg.keyLine text {
-    
-}
-
 tbody.curves > tr > td.channels text {
     fill: var(--background-color-contrast-more) !important;
     color: var(--background-color-contrast-more) !important;
@@ -1351,7 +1368,7 @@ input.search {
     padding: 10px 16px;
     margin: 16px 16px 0 16px;
     
-    background-color: var(--background-color-secondary);
+    background-color: var(--background-color-inputs);
     border: none;
     border-radius: 50px;
     outline: none;
@@ -1380,7 +1397,7 @@ div.select > div.selector-tabs button {
     padding: 11px 0;
     margin: 0;
     
-    background-color: var(--accent-color-contrast-more);
+    background-color: var(--accent-color-contrast);
     border: none;
     border-radius: 50px 0 0 50px;
     
@@ -1393,7 +1410,6 @@ div.select > div.selector-tabs button {
 }
 
 div.select > div.selector-tabs button + button {
-    border-left: 1px solid var(--background-color);
     border-radius: 0 50px 50px 0;
 }
 
@@ -1401,9 +1417,6 @@ div.select > div.scroll-container {
     position: relative;
     
     flex: auto 1 1;
-}
-
-div.scrollOuter {
 }
 
 div.scrollOuter:before {
@@ -1433,9 +1446,6 @@ div.scrollOuter[data-list="brands"]:before {
 
 div.scrollOuter[data-list="models"]:before {
     right: 0;
-}
-
-div.scrollOuter:hover:before {
 }
 
 div.scroll {
@@ -1469,7 +1479,7 @@ div.scroll#phones {
 div.select[data-selected="brands"] > div.selector-tabs button.brands {
     background-color: var(--accent-color);
     
-    color: var(--font-color-primary);
+    color: var(--font-color-secondary);
 }
 
 div[data-selected="brands"] div.scroll#phones {
@@ -1504,7 +1514,6 @@ div[data-selected="models"] div.scrollOuter[data-list="models"]:before {
 }
 
 /* List item */
-
 div.scroll > div {
     position: relative;
     
@@ -1524,14 +1533,12 @@ div.scroll > div + div {
 }
 
 div.scroll > div:hover {
-/*    background-color: var(--background-color-contrast-more) !important;*/
-    
     text-decoration: underline;
 }
 
 div.scroll div.active,
 div.scroll div[style*="border"] {
-    background-color: var(--background-primary) !important;
+    background-color: var(--background-color) !important;
 }
 
 div.scroll div.active:after {
@@ -1561,10 +1568,6 @@ div.scroll div.active:after {
     -webkit-mask-size: 20px;
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
-}
-
-div.scroll > div > span.remove {
-/*    display: none;*/
 }
 
 div.scroll > div.phone-item {
@@ -1622,6 +1625,7 @@ div.scroll div[style*="border"] div.phone-item-add {
 }
 
 /* Remove button */
+/* Currently hidden because of a bug that adds multiple remove buttons; want to unhide when fixed */
 div.scroll > div.phone-item span.remove {
     position: relative;
     
@@ -1661,6 +1665,7 @@ div.scroll > div.phone-item span.remove:before {
 }
 
 
+
 /*****
 Accoutrements *****/
 
@@ -1696,7 +1701,7 @@ div.more-graph-sites {
     
     box-sizing: border-box;
     width: 100%;
-    padding: 16px;
+    padding: 16px 16px 10px 16px;
     overflow-x: scroll;
     
     border-top: 1px solid var(--background-color-contrast-more);
@@ -1783,6 +1788,7 @@ Mobile adjustments *****/
         
         order: 1;
         flex: calc( (100vw * 0.44) + 100px ) 0 0;
+        max-height: calc(100% - 200px);
         overflow-y: scroll;
         
         transition: all 200ms ease-out;
@@ -1796,8 +1802,8 @@ Mobile adjustments *****/
         position: relative;
         
         order: 2;
-        flex: auto 1 1;
         flex: calc(100% - ((100vw * 0.44) + 100px)) 0 0;
+        min-height: 200px;
         overflow: hidden;
         
         border-right: none;
@@ -1816,13 +1822,14 @@ Mobile adjustments *****/
     }
     
     /* Primary panel focused */
-    
     main.main[data-focused-panel="primary"] section.parts-primary {
         flex: calc(100% - 84px) 0 0;
+        max-height: 100%;
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary {
         flex: 84px 0 0;
+        min-height: auto;
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary:before {
@@ -1864,7 +1871,7 @@ Mobile adjustments *****/
         width: calc(100% - 32px);
         padding: 12px 16px;
         
-        background-color: var(--accent-color-contrast-more);
+        background-color: var(--accent-color-contrast);
         border-radius: 50px;
         
         color: var(--accent-color);
@@ -1906,7 +1913,6 @@ Mobile adjustments *****/
     }
     
     /* Secondary panel focused */
-    
     main.main[data-focused-panel="secondary"] section.parts-primary {
         flex: 120px 0 0;
     }
@@ -1928,7 +1934,7 @@ Mobile adjustments *****/
         padding: 32px;
         margin: -120px 0 0 0;
         
-        background-color: var(--accent-color-contrast-more);
+        background-color: var(--accent-color-contrast);
         
         color: var(--accent-color);
         font-weight: bold;
@@ -1950,7 +1956,7 @@ Mobile adjustments *****/
 
 }
 
-/* Move table items to two rows */
+/* Move table items to two rows for narrow browsers */
 @media ( max-width: 1000px ) {
     tbody.curves > tr {
         flex-wrap: wrap;
@@ -1985,7 +1991,6 @@ Mobile adjustments *****/
 }
 
 /* Edge cases */
-
 @media ( max-width: 360px ) {
     tbody.curves > tr > td.channels {
         display: none;
@@ -1993,6 +1998,12 @@ Mobile adjustments *****/
 }
 
 @media ( max-height: 500px ) {
+    div.select > div.selector-tabs {
+        display: none;
+    }
+}
+
+@media ( min-aspect-ratio: 1/1 ) and ( max-height: 800px ) {
     div.select > div.selector-tabs {
         display: none;
     }
@@ -2027,7 +2038,7 @@ Mobile adjustments *****/
         max-height: -webkit-fill-available;
         margin: 0;
         
-        background-color: var(--background-primary);
+        background-color: var(--background-color);
     }
     
     svg#fr-graph {

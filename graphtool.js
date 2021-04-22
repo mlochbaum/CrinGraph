@@ -1544,8 +1544,10 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             .attr("class", "phone-item-add")
             .on("click", p => {
             //  Commented out this for consistent mobile functionality, but not sure what it was for.
-              d3.event.stopPropagation();
+                d3.event.stopPropagation();
                 showPhone(p, 0);
+                let panelsContainer = document.querySelector("main.main");
+                panelsContainer.setAttribute("data-focused-panel","primary");
             })
             
 
@@ -1866,6 +1868,7 @@ function setFocusedPanel() {
         let thingClicked = e.target;
         
         if ( thingClicked.matches(".phone-item, .phone-item span, .phone-item-add") ) {
+            
             panelsContainer.setAttribute("data-focused-panel","primary");
             e.stopPropagation();
         }

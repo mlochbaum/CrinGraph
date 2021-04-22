@@ -700,7 +700,6 @@ function find_offset(c, target) {
 // File loading and channel management
 const LR = typeof default_channels !== "undefined" ? default_channels
                                                    : ["L","R"];
-//                                                   : ["L"];
 let getO = i => LR.length>1 ? -1+i*2/(LR.length-1) : 0;
 const sampnums = typeof num_samples !== "undefined" ? d3.range(1,num_samples+1)
                                                     : [""];
@@ -1026,7 +1025,7 @@ function updatePhoneTable() {
     f   .call(setHover, h => p => hl(p,h))
         .style("color", p => getDivColor(p.id,true));
 
-    td().attr("class","remove").text("")
+    td().attr("class","remove").text("⊗")
         .on("click", removePhone)
         .style("background-image",colorBar)
         //.filter(p=>!p.isTarget).append("svg").call(addColorPicker);
@@ -1425,9 +1424,9 @@ function showPhone(p, exclusive, suppressVariant) {
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
 //    Displays variant pop-up when phone displayed
-//    if (!suppressVariant && p.fileNames && !p.copyOf) {
-//        table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
-//    }
+    if (!suppressVariant && p.fileNames && !p.copyOf) {
+        table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
+    }
 }
 
 function removeCopies(p) {

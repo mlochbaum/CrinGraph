@@ -86,8 +86,8 @@ Color themes *****/
 
 /* Color theme: Mono light */
 :root {
-    --accent-color: hsl(0, 0%, 65%);
-    --accent-color-contrast: hsl(0, 0%, 45%);
+    --accent-color: hsl(0, 0%, 30%);
+    --accent-color-contrast: hsl(0, 0%, 75%);
 
     --background-color: hsl(0, 0%, 94%);
     --background-color-contrast: hsl(0, 0%, 90%);
@@ -97,7 +97,7 @@ Color themes *****/
     
     --font-color-primary: hsl(0, 0%, 10%);
     --font-color-secondary: hsl(0, 0%, 100%);
-    --font-color-inputs: hsl(0, 0%, 60%);
+    --font-color-inputs: hsl(0, 0%, 50%);
     
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
@@ -2019,7 +2019,7 @@ Mobile adjustments *****/
     }
 }
 
-@media ( min-aspect-ratio: 1/1 ) and ( max-height: 800px ) {
+@media ( min-aspect-ratio: 1/1 ) and ( max-height: 800px ) and ( max-width: 1000px ) {
     div.select > div.selector-tabs {
         display: none;
     }

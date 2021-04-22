@@ -1,7 +1,7 @@
-const DIR = "data_mrs/";
+const DIR = "data/";
 // Get data (as a list of [x,y] pairs) from an FR file
-//const tsvParse = fr => d3.tsvParseRows(fr).slice(2,482)  // These slice values for AudioTools exports
-const tsvParse = fr => d3.tsvParseRows(fr).slice(14,493)     // These slice values for REW exports
+const tsvParse = fr => d3.tsvParseRows(fr).slice(2,482)  // These slice values for AudioTools exports
+//const tsvParse = fr => d3.tsvParseRows(fr).slice(14,493)     // These slice values for REW exports
                        .map(r=>r.map(d=>+d));
 
 // Add a watermark to the graph.

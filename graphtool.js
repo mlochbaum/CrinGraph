@@ -501,7 +501,7 @@ function saveGraph(ext) {
     gpath.selectAll("path").classed("highlight",false);
     drawLabels();
     showControls(false);
-    fn(gr.node(), "graph."+ext, {backgroundColor:"#1D1E18", scale:3})
+    fn(gr.node(), "graph."+ext, {scale:3})
         .then(()=>showControls(true));
 }
 doc.select("#download")
@@ -1543,7 +1543,6 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     phoneSel.append("div")
             .attr("class", "phone-item-add")
             .on("click", p => {
-            //  Commented out this for consistent mobile functionality, but not sure what it was for.
                 d3.event.stopPropagation();
                 showPhone(p, 0);
                 let panelsContainer = document.querySelector("main.main");
@@ -1783,7 +1782,7 @@ d3.selectAll(".helptip").on("click", function() {
     e.classed("active", !e.classed("active"));
 });
 
-// Copy URL
+// Copy URL button functionality
 function copyUrlInit() {
     let copyUrlButton = document.querySelector("button#copy-url");
     
@@ -1811,7 +1810,6 @@ function copyUrlInit() {
 copyUrlInit();
 
 // Set focused scroll list
-
 function setFocusedList(selectedList) {
     let listsContainer = document.querySelector("div.select");
     
@@ -1841,7 +1839,6 @@ function focusedListClicks() {
 focusedListClicks();
 
 // Set focused panel
-
 function setFocusedPanel() {
     let panelsContainer = document.querySelector("main.main"),
         primaryPanel = document.querySelector(".parts-primary"),
@@ -1853,8 +1850,6 @@ function setFocusedPanel() {
         
         if ( previouslyFocused === 'secondary' ) {
             panelsContainer.setAttribute("data-focused-panel","");
-//        } else if ( previouslyFocused === 'primary' ) {
-//            panelsContainer.setAttribute("data-focused-panel","");
         } else {
             panelsContainer.setAttribute("data-focused-panel","primary");
         }
@@ -1877,7 +1872,6 @@ function setFocusedPanel() {
 setFocusedPanel();
 
 // Set active graph site link
-
 function setActiveDatabase() {
     let url = window.top.location.href,
         dbLinks = document.querySelectorAll("div.more-graph-sites a");
@@ -1891,7 +1885,3 @@ function setActiveDatabase() {
     });
 }
 setActiveDatabase();
-
-//document.addEventListener('click', function (event) {
-//	console.log(event.target);
-//}, false);

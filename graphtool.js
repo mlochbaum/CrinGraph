@@ -211,7 +211,7 @@ function fmtX(xa) {
     xAxis(xa);
     (xa.selection ? xa.selection() : xa).select(".domain").remove();
     xa.selectAll(".tick line")
-      .attr("stroke", "#666")
+      .attr("stroke", "#333")
       .attr("stroke-width", (_,i) => tickThickness[getTickType(i)]);
     xa.selectAll(".tick text").filter((_,i) => tickPattern[i%8] === 0)
       .attr("font-size","100%")
@@ -1002,7 +1002,7 @@ function addPhonesToUrl() {
         url = baseURL,
         names = activePhones.map(p => p.fileName);
     if (names.length) {
-        url += "?share=" + encodeURI(names.join().replaceAll(" ","_"));
+        url += "?share=" + encodeURI(names.join().replace(/ /g,"_"));
         title = names.join(", ") + " - " + title;
     }
     window.top.history.replaceState("", title, url);
@@ -1466,7 +1466,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             par = "?share=";
         baseURL = url.split("?").shift();
         if (url.includes(par)) {
-            initReq = decodeURI(url.replaceAll("_"," ").split(par).pop()).split(",");
+            initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
         }
     }
     let isInit = initReq ? f => initReq.indexOf(f) !== -1

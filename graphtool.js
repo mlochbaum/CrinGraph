@@ -42,11 +42,11 @@ doc.html(`
 				<div class="normalize">
 					<span>Normalize</span>
 					<div>
-						<input type="number" inputmode="decimal" id="norm-phon" required min="20" max="100" value="60" step="1" onclick="this.focus();this.select()"></input>
+						<input type="number" inputmode="decimal" id="norm-phon" required min="20" max="100" value="`+ default_norm_db +`" step="1" onclick="this.focus();this.select()"></input>
 						<span>dB</span>
 					</div>
 					<div>
-						<input type="number" inputmode="decimal" id="norm-fr" required min="20" max="20000" value="1000" step="1" onclick="this.focus();this.select()"></input>
+						<input type="number" inputmode="decimal" id="norm-fr" required min="20" max="20000" value="`+ default_norm_hz +`" step="1" onclick="this.focus();this.select()"></input>
 						<span>Hz</span>
 					</div>
 					<span class="helptip">
@@ -998,7 +998,8 @@ let ifURL = typeof share_url !== "undefined" && share_url;
 let baseTitle = typeof page_title !== "undefined" ? page_title : "CrinGraph";
 let baseURL;  // Set by setInitPhones
 function addPhonesToUrl() {
-    let title = baseTitle, url = baseURL,
+    let title = baseTitle,
+        url = baseURL,
         names = activePhones.map(p => p.fileName);
     if (names.length) {
         url += "?share=" + encodeURI(names.join().replaceAll(" ","_"));
@@ -1316,9 +1317,11 @@ function range_to_slice(xs, fn) {
     let r = xs.map(v => d3.bisectLeft(f_values, x.invert(fn(v))));
     return a => a.slice(Math.max(r[0],0), r[1]+1);
 }
-let norm_sel = 0,
-    norm_fr = 1000,
-    norm_phon = 60;
+
+let norm_sel = ( default_normalization.toLowerCase() === "db" ) ? 0:1,
+    norm_fr = default_norm_hz,
+    norm_phon = default_norm_db;
+
 function normalizePhone(p) {
     if (norm_sel) { // fr
         let i = fr_to_ind(norm_fr);

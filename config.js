@@ -1,17 +1,17 @@
 // Configuration options
-const init_phones = ["HTH67"],              // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
-      DIR = "data/",                        // Directory where graph files are stored
-      data_format = "AudioTools",           // Accepts "AudioTools," "REW," or "other"
-      default_channels = ["L","R"],         // Which channels to display. Avoid javascript errors if loading just one channel per phone
-      default_normalization = "dB",         // Sets default graph normalization mode. Accepts "dB" or "Hz"
-      default_norm_db = 60,                 // Sets default dB normalization point
-      default_norm_hz = 1000,               // Sets default Hz normalization point
-      max_channel_imbalance = 5,            // ???
-      alt_layout = false,                   // Toggle between classic and alt layouts
-      share_url = true,                     // If true, enables shareable URLs
-      watermark_text = "CringGraph",        // Optional. Watermark appears behind graphs
-      watermark_image_url = "",             // Optional. If image file is in same directory as config, can be just the filename
-      page_title = "CrinGraph";             // Optional. Appended to the page title if share URLs are enabled
+const init_phones = ["HTH67"],                      // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
+      DIR = "data/",                                // Directory where graph files are stored
+      data_format = "AudioTools",                   // Accepts "AudioTools," "REW," or "other"
+      default_channels = ["L","R"],                 // Which channels to display. Avoid javascript errors if loading just one channel per phone
+      default_normalization = "dB",                 // Sets default graph normalization mode. Accepts "dB" or "Hz"
+      default_norm_db = 60,                         // Sets default dB normalization point
+      default_norm_hz = 1000,                       // Sets default Hz normalization point
+      max_channel_imbalance = 5,                    // ???
+      alt_layout = false,                           // Toggle between classic and alt layouts
+      share_url = true,                             // If true, enables shareable URLs
+      watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
+      watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
+      page_title = "CrinGraph";                     // Optional. Appended to the page title if share URLs are enabled
 
 // Specify which targets to display
 const targets = [
@@ -36,7 +36,7 @@ function watermark(svg) {
     
     if ( watermark_text ) {
         wm.append("text")
-            .attrs({x:0, y:40, "font-size":40, "text-anchor":"middle", "class":"graph-name"})
+            .attrs({x:0, y:70, "font-size":28, "text-anchor":"middle", "class":"graph-name"})
             .text(watermark_text);
     }
 }

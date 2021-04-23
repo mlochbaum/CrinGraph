@@ -1582,7 +1582,7 @@ div.scroll div.active:after {
     width: 36px;
     height: 43px;
     
-    background-color: var(--font-color-primary);
+    background-color: var(--background-color-contrast-more);
     
     pointer-events: none;
 }
@@ -1591,10 +1591,10 @@ div.scroll div.active:after {
     mask: var(--icon-remove);
     -webkit-mask: var(--icon-remove);
     
-    mask-size: 20px;
+    mask-size: 16px;
     mask-repeat: no-repeat;
     mask-position: center;
-    -webkit-mask-size: 20px;
+    -webkit-mask-size: 16px;
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
 }

@@ -66,19 +66,22 @@ initTsvParse();
 
 // Apply stylesheet based layout options above
 function setLayout() {
-    var docHead = document.querySelector("head"),
-        linkTag = document.createElement("link");
-
-    linkTag.setAttribute("rel", "stylesheet");
-    linkTag.setAttribute("type", "text/css");
-    
-    if ( alt_layout ) {
-        var styleSheet = "style-alt.css";
-    } else {
-        var styleSheet = "style.css";
+    function applyStylesheet(styleSheet) {
+        var docHead = document.querySelector("head"),
+            linkTag = document.createElement("link");
+        
+        linkTag.setAttribute("rel", "stylesheet");
+        linkTag.setAttribute("type", "text/css");
+        
+        linkTag.setAttribute("href", styleSheet);
+        docHead.append(linkTag);
     }
-    
-    linkTag.setAttribute("href", styleSheet);
-    docHead.append(linkTag);
+
+    if ( !alt_layout ) {
+        applyStylesheet("style.css");
+    } else {
+        applyStylesheet("style-alt.css");
+        applyStylesheet("style-alt-theme.css");
+    }
 }
 setLayout();

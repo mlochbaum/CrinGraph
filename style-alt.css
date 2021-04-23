@@ -237,6 +237,8 @@ body {
     font-weight: 300;
     font-size: 14px;
     line-height: 1em;
+    
+    opacity: 1.0;
 }
 
 
@@ -366,25 +368,27 @@ div.graph-sizer {
     margin: 16px auto 0 auto;
 }
 
-div.tools {
-    order: 1;
-    
-    flex: auto 0 0;
-}
-
 
 
 /*****
 Tools styles *****/
 
 div.tools {
+    order: 1;
+    
     display: flex;
     align-items: center;
-    padding: 16px 0 10px 0;
+    
+    box-sizing: border-box;
+    flex: auto 0 0;
+    max-height: 69px;
+    padding: 16px 0;
     
     overflow-x: scroll;
     
     border-bottom: 1px solid var(--background-color-contrast-more);
+
+    overflow-y: hidden;
 }
 
 /* Copy URL */
@@ -722,10 +726,13 @@ div.targets {
     display: flex;
     align-items: center;
     
+    box-sizing: border-box;
     padding: 0 16px 16px 16px;
-    padding: 16px 16px 10px 16px;
+    padding: 16px;
+    max-height: 68px;
     
     overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 div.targets > div.targetLabel {
@@ -1573,7 +1580,7 @@ div.scroll div.active:after {
     box-sizing: border-box;
     display: block;
     width: 36px;
-    height: 36px;
+    height: 43px;
     
     background-color: var(--font-color-primary);
     
@@ -1648,7 +1655,7 @@ div.scroll div[style*="border"] div.phone-item-add {
 
 /* Remove button */
 /* Currently hidden because of a bug that adds multiple remove buttons; want to unhide when fixed */
-div.scroll > div.phone-item span.remove {
+div.scroll > div.phone-item > span.remove {
     position: relative;
     
     display: none;
@@ -1659,9 +1666,58 @@ div.scroll > div.phone-item span.remove {
     
     background-color: var(--background-color-contrast) !important;
     border-radius: 4px;
+    
+    font-size: 0px;
 }
 
-div.scroll > div.phone-item span.remove:before {
+div.scroll > div.phone-item > span.remove:before {
+    position: absolute;
+    top: 6px;
+    left: 3px;
+    
+    content: '';
+    
+    box-sizing: border-box;
+    display: block;
+    width: calc(100% - 6px);
+    height: calc(100% - 12px);
+    background-color: var(--background-color-contrast-more);
+    
+    mask: var(--icon-remove);
+    -webkit-mask: var(--icon-remove);
+    mask-size: 16px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: 16px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    
+    pointer-events: none;
+}
+
+/* Hack to display remove button that appears inside the add button */
+div.scroll > div.phone-item[style*="border"] div.phone-item-add {
+    display: inherit;
+    
+    background-color: transparent !important;
+    pointer-events: none;
+}
+
+div.scroll div[style*="border"] div.phone-item-add:before {
+    display: none;
+    pointer-events: none;
+}
+
+div.scroll div[style*="border"] div.phone-item-add span.remove {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    
+    font-size: 0px;
+    pointer-events: all;
+}
+
+div.scroll div[style*="border"] div.phone-item-add span.remove:before {
     position: absolute;
     top: 6px;
     left: 3px;
@@ -1723,8 +1779,10 @@ div.more-graph-sites {
     
     box-sizing: border-box;
     width: 100%;
-    padding: 16px 16px 10px 16px;
+    max-height: 69px;
+    padding: 16px;
     overflow-x: scroll;
+    overflow-y: hidden;
     
     border-top: 1px solid var(--background-color-contrast-more);
 }
@@ -1792,7 +1850,7 @@ div.more-graph-sites a + a {
 
 
 /*****
-Mobile adjustments *****/
+Responsive styles *****/
 
 @media ( max-width: 1000px ) {
     body {
@@ -2009,6 +2067,44 @@ Mobile adjustments *****/
     }
     
     tbody.curves > tr > td.remove {
+    }
+}
+
+/* Move phones list to two columns for wide browsers */
+@media ( min-width: 1500px) and ( min-aspect-ratio: 2/1 ) {
+    section.parts-secondary {
+        flex: 600px 0 0;
+    }
+    
+    div.select > div.selector-tabs {
+        display: none;
+    }
+    
+    div.select > div.scroll-container {
+        display: flex;
+        max-height: 100%;
+    }
+    
+    div.scrollOuter {
+        display: flex;
+        
+        flex: 50% 1 1;
+    }
+    
+    div.scroll {
+        position: relative;
+        
+        flex: 50% 1 1;
+    }
+    
+    div.scrollOuter[data-list="brands"]:before,
+    div.scrollOuter[data-list="models"]:before {
+        display: none;
+    }
+    
+    div[data-selected="brands"] div.scroll#phones {
+        transform: none;
+        transition: none;
     }
 }
 

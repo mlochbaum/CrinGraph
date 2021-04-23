@@ -267,6 +267,10 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 Restoring original layout after DOM changes *****/
 /* Note to self: Graph aspect ratio is 800:346 */
 
+body {
+    opacity: 1.0;
+}
+
 main.main {
     position: relative;
 }

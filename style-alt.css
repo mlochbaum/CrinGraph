@@ -272,6 +272,8 @@ g.lineLabel text {
 
 svg#fr-graph {
     background-color: var(--background-color);
+    
+    pointer-events: none;
 }
 
 rect.graphBackground {
@@ -284,6 +286,10 @@ g.dBScaler {
 
 svg#fr-graph > g > image {
     filter: var(--svg-filter);
+}
+
+svg#fr-graph rect {
+    pointer-events: all;
 }
 
 

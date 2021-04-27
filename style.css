@@ -424,36 +424,6 @@ div.phone-item > span.remove {
     display: none;
 }
 
-/*****
-Browser scrollbar styles *****/
-
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-    
-    background-color: transparent;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar:hover {
-    background-color: rgba(255,255,255, 0.8);
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0, 0.2);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:vertical:active,
-::-webkit-scrollbar-thumb:horizontal:active {
-    background-color: rgba(255,255,255, 0.2);
-}
-
-/* For Firefox, maybe? */
-html {
-    scrollbar-color: dark;
-}
-
 
 
 /*****

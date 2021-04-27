@@ -120,7 +120,16 @@ doc.html(`
                 <button class="brands" data-list="brands">Brands</button>
                 <button class="models" data-list="models">Models</button>
             </div>
+
 	        <input class="search" type="text" inputmode="search" placeholder="Search" onclick="this.focus();this.select()"/>
+
+            <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
+                <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4"/>
+            </svg>
+            <svg class="stop" viewBox="0 0 4 1">
+                <path d="M4 1H0C3 1 3.2 0.8 4 0Z"/>
+            </svg>
+
 	        <div class="scroll-container">
 	          <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
 	          <div class="scrollOuter" data-list="models""><div class="scroll" id="phones"></div></div>
@@ -1035,7 +1044,7 @@ function updatePhoneTable() {
     td().attr("class","remove").text("⊗")
         .on("click", removePhone)
         .style("background-image",colorBar)
-        //.filter(p=>!p.isTarget).append("svg").call(addColorPicker);
+        .filter(p=>!p.isTarget).append("svg").call(addColorPicker);
     td().attr("class",p=>p.isTarget?"item-line item-target":"item-line item-phone").html(p=>p.isTarget?"":"<span class=\"brand\">"+p.dispBrand+"</span>").call(addModel)
         //Change colors on clicking
 //        .filter(p=>!p.isTarget).call(addColorPicker);

@@ -324,6 +324,11 @@ table.manageTable {
     font-size: 18px;
 }
 
+td.item-phone span.brand:after {
+    content: ' ';
+    white-space: pre;
+}
+
 section.parts-secondary {
     pointer-events: none;
 }
@@ -335,6 +340,22 @@ div.controls {
     grid-row-end: 3;
     
     pointer-events: all;
+}
+
+div.select {
+    position: relative;
+}
+
+svg.chevron {
+    top: 0px;
+}
+
+svg.stop {
+    z-index: 1;
+}
+
+div.scroll {
+    background-color: #fff;
 }
 
 div.phone-item {
@@ -401,6 +422,36 @@ div.phone-item-add {
 /* Hide second remove button. This is a temporary fix until second remove button bug is fixed */
 div.phone-item > span.remove {
     display: none;
+}
+
+/*****
+Browser scrollbar styles *****/
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar:hover {
+    background-color: rgba(255,255,255, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0, 0.2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:vertical:active,
+::-webkit-scrollbar-thumb:horizontal:active {
+    background-color: rgba(255,255,255, 0.2);
+}
+
+/* For Firefox, maybe? */
+html {
+    scrollbar-color: dark;
 }
 
 

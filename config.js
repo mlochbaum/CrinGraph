@@ -46,15 +46,15 @@ function watermark(svg) {
 // Set up tsvParse (?) with default values for AudioTools and REW measurements
 function initTsvParse() {
     if ( data_format.toLowerCase() === "audiotools" ) {
-        var dataStart = 2,
+        var dataStart = 3,
             dataEnd = 482;
     } else if ( data_format.toLowerCase() === "rew" ) {
         var dataStart = 14,
             dataEnd = 493;
     } else {
         // If exporting data from something other than AudioTools or REW, edit these vals to indicate on which lines of your text files the measurements data begins and ends
-        var dataStart = 0,
-            dataEnd = 480;
+        var dataStart = 2,
+            dataEnd = 482;
     }
     
     tsvParse = fr => d3.tsvParseRows(fr).slice(dataStart,dataEnd)

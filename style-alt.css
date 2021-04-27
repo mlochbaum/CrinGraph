@@ -754,6 +754,10 @@ tbody.curves > tr > td.remove:after {
     -webkit-mask-position: center;
 }
 
+tbody.curves > tr > td.remove svg {
+    display: none;
+}
+
 tbody.curves > tr > td.button.button-pin:after {
     mask: var(--icon-pin);
     -webkit-mask: var(--icon-pin);
@@ -1276,6 +1280,11 @@ div.select > div.selector-tabs button {
 
 div.select > div.selector-tabs button + button {
     border-radius: 0 50px 50px 0;
+}
+
+svg.chevron,
+svg.stop {
+    display: none;
 }
 
 div.select > div.scroll-container {

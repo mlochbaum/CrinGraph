@@ -214,7 +214,7 @@ function fmtX(xa) {
       .attr("stroke", "#333")
       .attr("stroke-width", (_,i) => tickThickness[getTickType(i)]);
     xa.selectAll(".tick text").filter((_,i) => tickPattern[i%8] === 0)
-      .attr("font-size","100%")
+      .attr("font-size","86%")
       .attr("font-weight","lighter");
     xa.select(".tick:last-of-type text")
       .attr("dx",-5)
@@ -785,6 +785,12 @@ function getDivColor(id, active) {
 //    c.c = (c.c-20)/(active?3:4);
     return c;
 }
+function getDivColorShifted(id, active) {
+    let c = getCurveColor(id,0);
+    c.l = 100-(80-Math.min(c.l,60))/(active?1.5:3);
+    c.c = (c.c-20)/(active?3:4);
+    return c;
+}
 function color_curveToText(c) {
 // Hiding these return the same color; unhiding returns a shifted color
 //    c.l = c.l/5 + 10;
@@ -891,8 +897,8 @@ function setPhoneTr(phtr) {
             p.highlight = true;
         }
     });
-    phtr.style("background",p=>p.isTarget&&!p.active?null:getDivColor(p.id,p.highlight))
-        .style("border-color",p=>p.highlight?getDivColor(p.id,1):null);
+    phtr.style("background",p=>p.isTarget&&!p.active?null:getDivColorShifted(p.id,p.highlight))
+        .style("border-color",p=>p.highlight?getDivColorShifted(p.id,1):null);
     phtr.filter(p=>!p.isTarget)
         .selectAll(".remove").data(p=>p.highlight?[p]:[])
         .join("span").attr("class","remove").text("⊗")
@@ -1536,8 +1542,8 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     let phoneSel = doc.select("#phones").selectAll()
         .data(allPhones).join("div")
         .attr("class","phone-item")
-        .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
-        .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
+        .on("mouseover", bg(true, p => getDivColorShifted(p.id===undefined?nextPhoneNumber():p.id, true)))
+        .on("mouseout" , bg(false,p => p.id!==undefined?getDivColorShifted(p.id,p.active):null))
         .call(setClicks(showPhone));
     phoneSel.append("span").text(p=>p.fullName);
     

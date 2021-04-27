@@ -283,7 +283,6 @@ section.parts-secondary {
     
     width: 100vw;
     height: 100vh;
-    overflow: scroll;
 }
 
 
@@ -321,11 +320,31 @@ div.manage {
     overflow: scroll;
 }
 
+table.manageTable {
+    font-size: 18px;
+}
+
+section.parts-secondary {
+    pointer-events: none;
+}
+
 div.controls {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
+    
+    pointer-events: all;
+}
+
+div.phone-item {
+    display: flex;
+}
+
+div.phone-item-add {
+    margin-left: auto;
+    border: none;
+    padding-left: 0px;
 }
 
 @media ( max-height: 60vw ) {
@@ -377,6 +396,11 @@ div.controls {
         height: 100%;
         min-height: 300px;
     }
+}
+
+/* Hide second remove button. This is a temporary fix until second remove button bug is fixed */
+div.phone-item > span.remove {
+    display: none;
 }
 
 

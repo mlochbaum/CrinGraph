@@ -6,7 +6,7 @@ Browser scrollbar styles *****/
     width: 6px;
     height: 6px;
     
-    background-color: rgba(var(--scrollbar-color), 0.05);
+    background-color: rgba(var(--scrollbar-color), 0.1);
     border-radius: 10px;
 }
 
@@ -15,7 +15,7 @@ Browser scrollbar styles *****/
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--scrollbar-accent), 0.05);
+    background-color: rgba(var(--scrollbar-accent), 0.1);
     border-radius: 10px;
 }
 

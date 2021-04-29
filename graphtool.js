@@ -789,21 +789,13 @@ let getColor_AC = c => getCurveColor(c.p.id, c.o);
 let getColor_ph = (p,i) => getCurveColor(p.id, p.activeCurves[i].o);
 function getDivColor(id, active) {
     let c = getCurveColor(id,0);
-// Hiding these return the same color; unhiding returns a shifted color
-//    c.l = 100-(80-Math.min(c.l,60))/(active?1.5:3);
-//    c.c = (c.c-20)/(active?3:4);
-    return c;
-}
-function getDivColorShifted(id, active) {
-    let c = getCurveColor(id,0);
     c.l = 100-(80-Math.min(c.l,60))/(active?1.5:3);
     c.c = (c.c-20)/(active?3:4);
     return c;
 }
 function color_curveToText(c) {
-// Hiding these return the same color; unhiding returns a shifted color
-//    c.l = c.l/5 + 10;
-//    c.c /= 3;
+    c.l = c.l/5 + 10;
+    c.c /= 3;
     return c;
 }
 let getTooltipColor = curve => color_curveToText(getColor_AC(curve));
@@ -906,8 +898,8 @@ function setPhoneTr(phtr) {
             p.highlight = true;
         }
     });
-    phtr.style("background",p=>p.isTarget&&!p.active?null:getDivColorShifted(p.id,p.highlight))
-        .style("border-color",p=>p.highlight?getDivColorShifted(p.id,1):null);
+    phtr.style("background",p=>p.isTarget&&!p.active?null:getDivColor(p.id,p.highlight))
+        .style("border-color",p=>p.highlight?getDivColor(p.id,1):null);
     phtr.filter(p=>!p.isTarget)
         .selectAll(".remove").data(p=>p.highlight?[p]:[])
         .join("span").attr("class","remove").text("⊗")
@@ -1551,8 +1543,8 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     let phoneSel = doc.select("#phones").selectAll()
         .data(allPhones).join("div")
         .attr("class","phone-item")
-        .on("mouseover", bg(true, p => getDivColorShifted(p.id===undefined?nextPhoneNumber():p.id, true)))
-        .on("mouseout" , bg(false,p => p.id!==undefined?getDivColorShifted(p.id,p.active):null))
+        .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
+        .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
         .call(setClicks(showPhone));
     phoneSel.append("span").text(p=>p.fullName);
 

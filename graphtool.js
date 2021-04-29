@@ -3,75 +3,75 @@ doc.html(`
   <svg style="display: none;">
     <defs>
       <g id="baseline-icon" text-anchor="middle" font-size="100px" fill="currentColor">
-		<text dominant-baseline="central" y="-57">BASE</text>
-		<text dominant-baseline="central" y="57">-LINE</text>
+        <text dominant-baseline="central" y="-57">BASE</text>
+        <text dominant-baseline="central" y="57">-LINE</text>
       </g>
       <g id="hide-icon">
-		<path d="M2 6Q7 0 12 6Q7 12 2 6Z" stroke-width="1" stroke="currentColor" fill="none"/>
-		<circle cx="7" cy="6" r="2" stroke="none" fill="currentColor"/>
-		<line stroke-width="1" x1="4.4" y1="10.3" x2="10.4" y2="2.3" class="keyBackground"/>
-		<line stroke-width="1" x1="3.6" y1= "9.7" x2= "9.6" y2="1.7" stroke="currentColor"/>
+        <path d="M2 6Q7 0 12 6Q7 12 2 6Z" stroke-width="1" stroke="currentColor" fill="none"/>
+        <circle cx="7" cy="6" r="2" stroke="none" fill="currentColor"/>
+        <line stroke-width="1" x1="4.4" y1="10.3" x2="10.4" y2="2.3" class="keyBackground"/>
+        <line stroke-width="1" x1="3.6" y1= "9.7" x2= "9.6" y2="1.7" stroke="currentColor"/>
       </g>
       <g id="pin-icon" text-anchor="middle" font-size="100px" fill="currentColor">
-		<text dominant-baseline="central">
-			PIN
-		</text>
+        <text dominant-baseline="central">
+          PIN
+        </text>
       </g>
     </defs>
   </svg>
-  
+
   <main class="main">
     <section class="parts-primary">
-	    <div class="graphBox">
-	    	<div class="graph-sizer">
-			      <svg id="fr-graph" viewBox="0 0 800 346"></svg>
-			</div>
+    <div class="graphBox">
+      <div class="graph-sizer">
+        <svg id="fr-graph" viewBox="0 0 800 346"></svg>
+      </div>
 
-			<div class="tools collapseTools">
-                <div class="copy-url">
-                    <button id="copy-url">Copy URL</button>
-                </div>
+      <div class="tools collapseTools">
+        <div class="copy-url">
+          <button id="copy-url">Copy URL</button>
+        </div>
 
-				<div class="zoom">
-				  <span>Zoom</span>
-				  <button>Bass</button>
-				  <button>Mids</button>
-				  <button>Treble</button>
-				</div>
+        <div class="zoom">
+          <span>Zoom:</span>
+          <button>Bass</button>
+          <button>Mids</button>
+          <button>Treble</button>
+        </div>
 
-				<div class="normalize">
-					<span>Normalize</span>
-					<div>
-						<input type="number" inputmode="decimal" id="norm-phon" required min="20" max="100" value="`+ default_norm_db +`" step="1" onclick="this.focus();this.select()"></input>
-						<span>dB</span>
-					</div>
-					<div>
-						<input type="number" inputmode="decimal" id="norm-fr" required min="20" max="20000" value="`+ default_norm_hz +`" step="1" onclick="this.focus();this.select()"></input>
-						<span>Hz</span>
-					</div>
-					<span class="helptip">
-						?<span>Choose a dB value to normalize to a target listening level, or a Hz value to make all curves match at that frequency.</span>
-					</span>
-				</div>
+        <div class="normalize">
+          <span>Normalize:</span>
+          <div>
+            <input type="number" inputmode="decimal" id="norm-phon" required min="20" max="100" value="`+ default_norm_db +`" step="1" onclick="this.focus();this.select()"></input>
+            <span>dB</span>
+          </div>
+          <div>
+            <input type="number" inputmode="decimal" id="norm-fr" required min="20" max="20000" value="`+ default_norm_hz +`" step="1" onclick="this.focus();this.select()"></input>
+            <span>Hz</span>
+          </div>
+          <span class="helptip">
+            ?<span>Choose a dB value to normalize to a target listening level, or a Hz value to make all curves match at that frequency.</span>
+          </span>
+        </div>
 
-				<div class="smooth">
-					<span>Smooth</span>
-					<input type="number" inputmode="decimal" id="smooth-level" required min="0" value="5" step="any" onclick="this.focus();this.select()"></input>
-				</div>
+        <div class="smooth">
+          <span>Smooth:</span>
+          <input type="number" inputmode="decimal" id="smooth-level" required min="0" value="5" step="any" onclick="this.focus();this.select()"></input>
+        </div>
 
-				<div class="miscTools">
-					<button id="inspector">Inspect</button>
-					<button id="label">Label</button>
-					<button id="recolor">Recolor</button>
-                    <button id="download">Download</button>
-				</div>
-				
-				<svg id="expandTools" viewBox="0 0 14 12">
-				    <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="#878156"      stroke-linecap="round" transform="translate(0,0.3)"/>
-				    <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="currentColor" stroke-linecap="round"/>
-				</svg>
-			</div>
-	  </div>
+        <div class="miscTools">
+          <button id="inspector">╞ inspect</button>
+          <button id="label">▭ label</button>
+          <button id="download"><u>⇩</u> screenshot</button>
+          <button id="recolor">○ recolor</button>
+        </div>
+
+        <svg id="expandTools" viewBox="0 0 14 12">
+          <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="#878156"    stroke-linecap="round" transform="translate(0,0.3)"/>
+          <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="currentColor" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
 
       <div class="manage">
         <table class="manageTable">
@@ -94,50 +94,50 @@ doc.html(`
       </div>
 
       <div class="about-this-tool">
-          <p>This graph database is maintained by [name] with frequency reponses produced with an IEC711-compliant ear simulator microphone. This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project.</p>
+        <p>This graph database is maintained by [name] with frequency reponses produced with an IEC711-compliant ear simulator microphone. This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project.</p>
       </div>
 
       <div class="more-graph-sites">
-          <span>IEM graph databases</span>
-          <a href="http://iems.audiodiscourse.com/">Audio Discourse</a>
-          <a href="https://banbeu.com/graph/tool/">Banbeucmas</a>
-          <a href="https://www.hypethesonics.com/iemdbc/">HypetheSonics</a>
-          <a href="https://crinacle.com/graphs/iems/graphtool/">In-Ear Fidelity</a>
-          <a href="https://precog.squig.link/">Precogvision</a>
-          <a href="https://squig.link/">Super* Review</a>
+        <span>IEM graph databases</span>
+        <a href="http://iems.audiodiscourse.com/">Audio Discourse</a>
+        <a href="https://banbeu.com/graph/tool/">Banbeucmas</a>
+        <a href="https://www.hypethesonics.com/iemdbc/">HypetheSonics</a>
+        <a href="https://crinacle.com/graphs/iems/graphtool/">In-Ear Fidelity</a>
+        <a href="https://precog.squig.link/">Precogvision</a>
+        <a href="https://squig.link/">Super* Review</a>
 
-          <span>Headphones</span>
-          <a href="http://headphones.audiodiscourse.com/">Audio Discourse</a>
-          <a href="https://crinacle.com/graphs/headphones/graphtool/">In-Ear Fidelity</a>
-          <a href="https://squig.link/hp.html">Super* Review</a>
+        <span>Headphones</span>
+        <a href="http://headphones.audiodiscourse.com/">Audio Discourse</a>
+        <a href="https://crinacle.com/graphs/headphones/graphtool/">In-Ear Fidelity</a>
+        <a href="https://squig.link/hp.html">Super* Review</a>
       </div>
     </section>
 
     <section class="parts-secondary">
-	    <div class="controls">
-	      <div class="select" data-selected="models">
-            <div class="selector-tabs">
-                <button class="brands" data-list="brands">Brands</button>
-                <button class="models" data-list="models">Models</button>
-            </div>
+      <div class="controls">
+        <div class="select" data-selected="models">
+          <div class="selector-tabs">
+            <button class="brands" data-list="brands">Brands</button>
+            <button class="models" data-list="models">Models</button>
+          </div>
 
-	        <input class="search" type="text" inputmode="search" placeholder="Search" onclick="this.focus();this.select()"/>
+          <input class="search" type="text" inputmode="search" placeholder="Search" onclick="this.focus();this.select()"/>
 
-            <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
-                <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4"/>
-            </svg>
-            <svg class="stop" viewBox="0 0 4 1">
-                <path d="M4 1H0C3 1 3.2 0.8 4 0Z"/>
-            </svg>
+          <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
+            <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4"/>
+          </svg>
+          <svg class="stop" viewBox="0 0 4 1">
+            <path d="M4 1H0C3 1 3.2 0.8 4 0Z"/>
+          </svg>
 
-	        <div class="scroll-container">
-	          <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
-	          <div class="scrollOuter" data-list="models""><div class="scroll" id="phones"></div></div>
-	        </div>
-	      </div>
-	    </div>
-	</section>
-</main>
+          <div class="scroll-container">
+            <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
+            <div class="scrollOuter" data-list="models""><div class="scroll" id="phones"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 `);
 
 
@@ -1078,7 +1078,7 @@ function updatePhoneTable() {
         .html("<svg viewBox='-135 -100 270 200'><use xlink:href='#pin-icon'></use></svg>")
         .on("click",function(p){
             if (cantCompare(activePhones.filter(p=>p.pin).length+1)) return;
-        
+
             if ( p.pin ) {
                 p.pin = false;
                 this.setAttribute("data-pinned","false");
@@ -1086,7 +1086,7 @@ function updatePhoneTable() {
                 p.pin = true; nextPN = null;
                 this.setAttribute("data-pinned","true");
             }
-        
+
             //p.pin = true; nextPN = null;
             d3.select(this)
 //                .text(null).classed("button",false).on("click",null)
@@ -1555,7 +1555,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         .on("mouseout" , bg(false,p => p.id!==undefined?getDivColorShifted(p.id,p.active):null))
         .call(setClicks(showPhone));
     phoneSel.append("span").text(p=>p.fullName);
-    
+
     // Adding the + selection button
     phoneSel.append("div")
             .attr("class", "phone-item-add")
@@ -1565,7 +1565,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                 let panelsContainer = document.querySelector("main.main");
                 panelsContainer.setAttribute("data-focused-panel","primary");
             })
-            
+
 
     if (targets) {
         let b = { name:"Targets", active:false },
@@ -1802,7 +1802,7 @@ d3.selectAll(".helptip").on("click", function() {
 // Copy URL button functionality
 function copyUrlInit() {
     let copyUrlButton = document.querySelector("button#copy-url");
-    
+
     copyUrlButton.addEventListener("click", function(e) {
         let urlHost = document.createElement('input'),
             currentUrl = window.top.location.href;
@@ -1810,14 +1810,14 @@ function copyUrlInit() {
         urlHost.setAttribute("style","position: fixed; opacity: 0.0;");
         urlHost.value = currentUrl;
         document.body.appendChild(urlHost);
-        
+
         urlHost.select();
         document.execCommand('copy');
         document.body.removeChild(urlHost);
-        
+
         console.log(currentUrl);
         e.stopPropagation();
-        
+
         copyUrlButton.classList.add("clicked");
         setTimeout(function() {
             copyUrlButton.classList.remove("clicked");
@@ -1829,20 +1829,20 @@ copyUrlInit();
 // Set focused scroll list
 function setFocusedList(selectedList) {
     let listsContainer = document.querySelector("div.select");
-    
+
     listsContainer.setAttribute("data-selected", selectedList)
 }
 
 function focusedListClicks() {
     let listClickTragets = document.querySelectorAll("*[data-list=\"brands\"], *[data-list=\"models\"]");
-    
+
     listClickTragets.forEach((clickedTarget) => {
         clickedTarget.addEventListener("click", () => {
             let selectedList = clickedTarget.getAttribute("data-list")
             setFocusedList(selectedList);
         });
     });
-    
+
     let brandsTargets = document.querySelectorAll("div.scroll#brands");
     brandsTargets.forEach((clickedTarget) => {
         clickedTarget.addEventListener("click", (e) => {
@@ -1851,7 +1851,7 @@ function focusedListClicks() {
                 e.stopPropagation();
         });
     });
-    
+
 }
 focusedListClicks();
 
@@ -1861,26 +1861,26 @@ function setFocusedPanel() {
         primaryPanel = document.querySelector(".parts-primary"),
         secondaryPanel = document.querySelector(".parts-secondary"),
         phonesList = document.querySelector("div#phones");
-    
+
     primaryPanel.addEventListener("click", function() {
         let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
-        
+
         if ( previouslyFocused === 'secondary' ) {
             panelsContainer.setAttribute("data-focused-panel","");
         } else {
             panelsContainer.setAttribute("data-focused-panel","primary");
         }
     });
-    
+
     secondaryPanel.addEventListener("click", function() {
         panelsContainer.setAttribute("data-focused-panel","");
     });
-    
+
     phonesList.addEventListener("click", function(e) {
         let thingClicked = e.target;
-        
+
         if ( thingClicked.matches(".phone-item, .phone-item span, .phone-item-add") ) {
-            
+
             panelsContainer.setAttribute("data-focused-panel","primary");
             e.stopPropagation();
         }
@@ -1892,10 +1892,10 @@ setFocusedPanel();
 function setActiveDatabase() {
     let url = window.top.location.href,
         dbLinks = document.querySelectorAll("div.more-graph-sites a");
-    
+
     dbLinks.forEach(function(link) {
         let linkUrl = link.getAttribute("href");
-        
+
         if ( url.includes(linkUrl) ) {
             link.setAttribute("class","active");
         }

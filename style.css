@@ -316,7 +316,6 @@ div.manage {
     
     max-height: 100%;
     margin: 0 0.8em;
-    overflow: scroll;
 }
 
 td.item-phone span.brand:after {

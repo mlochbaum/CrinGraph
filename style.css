@@ -7,8 +7,7 @@ html { background:#e5e5e5; }
 #fr-graph { width:calc((100vh - 13.5em) * 800 / 346); max-width:100%; }
 svg text { cursor:default; user-select:none; }
 .controls { flex:auto; display:flex; flex-flow:row-reverse wrap; }
-.controls>div { margin:0 0.8em; font-size:large; }
-.manage,.select { flex:1; }
+.manage,.select { flex:1; margin:0 0.8em; font-size:large; }
 .select { display:flex; flex-direction:column; border-bottom:2px solid #1c2126; }
 .select>div { flex:auto; display:flex; position:relative; }
 .tools {
@@ -26,7 +25,7 @@ svg text { cursor:default; user-select:none; }
     }
     @media not (max-aspect-ratio:5/3) , (max-width:40em) {
         #fr-graph { margin:0 auto; }
-        .controls>div { margin:0; }
+        .manage,.select { margin:0; }
     }
 }
 @media only screen and (min-aspect-ratio:9/4) {
@@ -35,7 +34,7 @@ svg text { cursor:default; user-select:none; }
     #fr-graph { height:auto; max-height:calc(100vh - 3em); width:100%; }
     .controls { flex-flow:column; }
     .manage { flex:0; }
-    .controls>div { margin:0; }
+    .manage,.select { margin:0; }
 }
 
 path.sample { stroke-width:1.9px; opacity:0.8; }

@@ -3,7 +3,7 @@ html { background:#e5e5e5; }
 .graphtool { font-size:initial; color:black; }
 .graphBackground { fill:white; }
 .main { min-height:100vh; display:flex; flex-direction:column; }
-.graphBox { margin:4px auto 12px; }
+.graphBox { margin:0.25em auto 0.75em; }
 #fr-graph { width:calc((100vh - 13.5em) * 800 / 346); max-width:100%; }
 svg text { cursor:default; user-select:none; }
 .controls { flex:auto; display:flex; flex-flow:row-reverse wrap; }
@@ -12,7 +12,7 @@ svg text { cursor:default; user-select:none; }
 .select>div { flex:auto; display:flex; position:relative; }
 .tools {
     display:flex; flex-wrap:wrap; justify-content:space-around;
-    align-items:center; padding:3px 0; margin:-6px 1vw 0;
+    align-items:center; padding:0.2em 0; margin:-0.5em 1vw 0;
     border-radius:8px; background:#f0f5f2; font-size: smaller;
     border:1px solid #aca;
     position:relative;
@@ -278,7 +278,7 @@ section.parts-primary,
 section.parts-secondary {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: calc((100vw * 0.4325) + 48px) 1fr;
+    grid-template-rows: calc((100vw * 0.4325) + 3em) 1fr;
     
     width: 100vw;
     height: 100vh;
@@ -317,10 +317,6 @@ div.manage {
     max-height: 100%;
     margin: 0 0.8em;
     overflow: scroll;
-}
-
-table.manageTable {
-    font-size: 18px;
 }
 
 td.item-phone span.brand:after {
@@ -370,12 +366,12 @@ div.phone-item-add {
 @media ( max-height: 60vw ) {
     section.parts-primary,
     section.parts-secondary {
-        grid-template-rows: calc((100vw * 0.4325) + 48px) 1fr;
-        grid-template-rows: calc(100vh - 170px) 1fr;
+        grid-template-rows: calc((100vw * 0.4325) + 3em) 1fr;
+        grid-template-rows: calc(100vh - 10.625em) 1fr;
     }
     
     div.graphBox {
-        max-width: calc((100vh - 170px - 48px) *  (800/346));
+        max-width: calc((100vh - 10.625em - 3em) *  (800/346));
     }
 }
 

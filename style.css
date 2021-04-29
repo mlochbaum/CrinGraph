@@ -3,7 +3,7 @@ html { background:#e5e5e5; }
 .graphtool { font-size:initial; color:black; }
 .graphBackground { fill:white; }
 .main { min-height:100vh; display:flex; flex-direction:column; }
-.graphBox { margin:0.25em auto 0.75em; }
+.graphBox { margin:4px auto 12px; }
 #fr-graph { width:calc((100vh - 13.5em) * 800 / 346); max-width:100%; }
 svg text { cursor:default; user-select:none; }
 .controls { flex:auto; display:flex; flex-flow:row-reverse wrap; }
@@ -13,7 +13,7 @@ svg text { cursor:default; user-select:none; }
 .select>div { flex:auto; display:flex; position:relative; }
 .tools {
     display:flex; flex-wrap:wrap; justify-content:space-around;
-    align-items:center; padding:0.2em 0; margin:-0.5em 1vw 0;
+    align-items:center; padding:3px 0; margin:-6px 1vw 0;
     border-radius:8px; background:#f0f5f2; font-size: smaller;
     border:1px solid #aca;
     position:relative;
@@ -260,3 +260,179 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 .fadeAll { z-index:9; top:0; bottom:0; background:rgba(255,255,255,0.3); }
 .cashMessage button { width:50%; margin:0px auto; }
 .cash { font-size:30em; top:calc(50vmin - 0.6em); pointer-events:none; }
+
+
+
+/*****
+Restoring original layout after DOM changes *****/
+/* Note to self: Graph aspect ratio is 800:346 */
+
+body {
+    opacity: 1.0;
+}
+
+main.main {
+    position: relative;
+}
+
+section.parts-primary,
+section.parts-secondary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: calc((100vw * 0.4325) + 48px) 1fr;
+    
+    width: 100vw;
+    height: 100vh;
+}
+
+
+section.parts-primary,
+section.parts-secondary {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+section.parts-primary {
+}
+
+div.graphBox {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    
+    width: 100%;
+}
+
+svg#fr-graph {
+    width: 100%;
+}
+
+div.manage {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    
+    max-height: 100%;
+    margin: 0 0.8em;
+    overflow: scroll;
+}
+
+table.manageTable {
+    font-size: 18px;
+}
+
+td.item-phone span.brand:after {
+    content: ' ';
+    white-space: pre;
+}
+
+section.parts-secondary {
+    pointer-events: none;
+}
+
+div.controls {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    
+    pointer-events: all;
+}
+
+div.select {
+    position: relative;
+}
+
+svg.chevron {
+    top: 0px;
+}
+
+svg.stop {
+    z-index: 1;
+}
+
+div.scroll {
+    background-color: #fff;
+}
+
+div.phone-item {
+    display: flex;
+}
+
+div.phone-item-add {
+    margin-left: auto;
+    border: none;
+    padding-left: 0px;
+}
+
+@media ( max-height: 60vw ) {
+    section.parts-primary,
+    section.parts-secondary {
+        grid-template-rows: calc((100vw * 0.4325) + 48px) 1fr;
+        grid-template-rows: calc(100vh - 170px) 1fr;
+    }
+    
+    div.graphBox {
+        max-width: calc((100vh - 170px - 48px) *  (800/346));
+    }
+}
+
+@media ( max-width: 800px ) {
+    main.main {
+        position: relative;
+        
+        display: flex;
+        flex-direction: column;
+    }
+
+    section.parts-primary,
+    section.parts-secondary {
+        position: relative;
+        
+        display: block;
+
+        width: 100vw;
+        height: auto;
+    }
+    
+    section.parts-primary {
+        flex: auto 0 0;
+    }
+    
+    section.parts-secondary {
+        display: flex;
+        flex-direction: column;
+        
+        flex: auto 1 1;
+    }
+    
+    div.controls {
+        flex: 300px 1 0;
+    }
+    
+    div.select {
+        height: 100%;
+        min-height: 300px;
+    }
+}
+
+/* Hide second remove button. This is a temporary fix until second remove button bug is fixed */
+div.phone-item > span.remove {
+    display: none;
+}
+
+
+
+/*****
+Hiding elements from alt layout *****/
+
+div.about-this-tool,
+div.more-graph-sites,
+div.selector-tabs,
+div.copy-url,
+td.curve-color {
+    display: none;
+}

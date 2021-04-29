@@ -1,65 +1,78 @@
 let doc = d3.select(".graphtool");
 doc.html(`
-  <svg style="display:none">
+  <svg style="display: none;">
     <defs>
       <g id="baseline-icon" text-anchor="middle" font-size="100px" fill="currentColor">
-        <text dominant-baseline="central" y="-57">BASE</text>
-        <text dominant-baseline="central" y="57">-LINE</text>
+		<text dominant-baseline="central" y="-57">BASE</text>
+		<text dominant-baseline="central" y="57">-LINE</text>
       </g>
       <g id="hide-icon">
-        <path d="M2 6Q7 0 12 6Q7 12 2 6Z" stroke-width="1" stroke="currentColor" fill="none"/>
-        <circle cx="7" cy="6" r="2" stroke="none" fill="currentColor"/>
-        <line stroke-width="1" x1="4.4" y1="10.3" x2="10.4" y2="2.3" class="keyBackground"/>
-        <line stroke-width="1" x1="3.6" y1= "9.7" x2= "9.6" y2="1.7" stroke="currentColor"/>
+		<path d="M2 6Q7 0 12 6Q7 12 2 6Z" stroke-width="1" stroke="currentColor" fill="none"/>
+		<circle cx="7" cy="6" r="2" stroke="none" fill="currentColor"/>
+		<line stroke-width="1" x1="4.4" y1="10.3" x2="10.4" y2="2.3" class="keyBackground"/>
+		<line stroke-width="1" x1="3.6" y1= "9.7" x2= "9.6" y2="1.7" stroke="currentColor"/>
       </g>
       <g id="pin-icon" text-anchor="middle" font-size="100px" fill="currentColor">
-        <text dominant-baseline="central">
-          PIN
-        </text>
+		<text dominant-baseline="central">
+			PIN
+		</text>
       </g>
     </defs>
   </svg>
-  <div class="main">
-    <div class="graphBox">
-      <svg id="fr-graph" viewBox="0 0 800 346"></svg>
-      <div class="tools collapseTools">
-        <div class="zoom">
-          <span>Zoom:</span>
-          <button>bass</button>
-          <button>mids</button>
-          <button>treble</button>
-        </div>
-        <div class="normalize">
-          <span>Normalize:</span>
-          <div>
-            <input type="number" id="norm-phon" required min="20" max="100" value="60" step="5"></input>
-            <span>dB</span>
-          </div>
-          <div>
-            <input type="number" id="norm-fr" required min="20" max="20000" value="1000" step="any"></input>
-            <span>Hz</span>
-          </div>
-          <span class="helptip">
-            ?<span>Choose a dB value to normalize to a target listening level, or a Hz value to make all curves match at that frequency.</span>
-          </span>
-        </div>
-        <div class="smooth">
-          <span>Smooth:</span>
-          <input type="number" id="smooth-level" required min="0" value="5" step="any"></input>
-        </div>
-        <div class="miscTools">
-          <button id="inspector">╞ inspect</button>
-          <button id="label">▭ label</button>
-          <button id="download"><u>⇩</u> screenshot</button>
-          <button id="recolor">○ recolor</button>
-        </div>
-        <svg id="expandTools" viewBox="0 0 14 12">
-            <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="#878156"      stroke-linecap="round" transform="translate(0,0.3)"/>
-            <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="currentColor" stroke-linecap="round"/>
-        </svg>
-      </div>
-    </div>
-    <div class="controls">
+  
+  <main class="main">
+    <section class="parts-primary">
+	    <div class="graphBox">
+	    	<div class="graph-sizer">
+			      <svg id="fr-graph" viewBox="0 0 800 346"></svg>
+			</div>
+
+			<div class="tools collapseTools">
+                <div class="copy-url">
+                    <button id="copy-url">Copy URL</button>
+                </div>
+
+				<div class="zoom">
+				  <span>Zoom</span>
+				  <button>Bass</button>
+				  <button>Mids</button>
+				  <button>Treble</button>
+				</div>
+
+				<div class="normalize">
+					<span>Normalize</span>
+					<div>
+						<input type="number" inputmode="decimal" id="norm-phon" required min="20" max="100" value="`+ default_norm_db +`" step="1" onclick="this.focus();this.select()"></input>
+						<span>dB</span>
+					</div>
+					<div>
+						<input type="number" inputmode="decimal" id="norm-fr" required min="20" max="20000" value="`+ default_norm_hz +`" step="1" onclick="this.focus();this.select()"></input>
+						<span>Hz</span>
+					</div>
+					<span class="helptip">
+						?<span>Choose a dB value to normalize to a target listening level, or a Hz value to make all curves match at that frequency.</span>
+					</span>
+				</div>
+
+				<div class="smooth">
+					<span>Smooth</span>
+					<input type="number" inputmode="decimal" id="smooth-level" required min="0" value="5" step="any" onclick="this.focus();this.select()"></input>
+				</div>
+
+				<div class="miscTools">
+					<button id="inspector">Inspect</button>
+					<button id="label">Label</button>
+					<button id="recolor">Recolor</button>
+                    <button id="download">Download</button>
+				</div>
+				
+				<svg id="expandTools" viewBox="0 0 14 12">
+				    <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="#878156"      stroke-linecap="round" transform="translate(0,0.3)"/>
+				    <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="currentColor" stroke-linecap="round"/>
+				</svg>
+			</div>
+	  </div>
+
       <div class="manage">
         <table class="manageTable">
           <colgroup>
@@ -79,21 +92,52 @@ doc.html(`
           </tr>
         </table>
       </div>
-      <div class="select">
-        <input class="search" type="text" placeholder="Search by brand or model" onClick="this.select();"/>
-        <div>
-          <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
-            <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4"/>
-          </svg>
-          <svg class="stop" viewBox="0 0 4 1">
-            <path d="M4 1H0C3 1 3.2 0.8 4 0Z"/>
-          </svg>
-          <div class="scrollOuter"><div class="scroll" id="brands"></div></div>
-          <div class="scrollOuter"><div class="scroll" id="phones"></div></div>
-        </div>
+
+      <div class="about-this-tool">
+          <p>This graph database is maintained by [name] with frequency reponses produced with an IEC711-compliant ear simulator microphone. This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project.</p>
       </div>
-    </div>
-  </div>
+
+      <div class="more-graph-sites">
+          <span>IEM graph databases</span>
+          <a href="http://iems.audiodiscourse.com/">Audio Discourse</a>
+          <a href="https://banbeu.com/graph/tool/">Banbeucmas</a>
+          <a href="https://www.hypethesonics.com/iemdbc/">HypetheSonics</a>
+          <a href="https://crinacle.com/graphs/iems/graphtool/">In-Ear Fidelity</a>
+          <a href="https://precog.squig.link/">Precogvision</a>
+          <a href="https://squig.link/">Super* Review</a>
+
+          <span>Headphones</span>
+          <a href="http://headphones.audiodiscourse.com/">Audio Discourse</a>
+          <a href="https://crinacle.com/graphs/headphones/graphtool/">In-Ear Fidelity</a>
+          <a href="https://squig.link/hp.html">Super* Review</a>
+      </div>
+    </section>
+
+    <section class="parts-secondary">
+	    <div class="controls">
+	      <div class="select" data-selected="models">
+            <div class="selector-tabs">
+                <button class="brands" data-list="brands">Brands</button>
+                <button class="models" data-list="models">Models</button>
+            </div>
+
+	        <input class="search" type="text" inputmode="search" placeholder="Search" onclick="this.focus();this.select()"/>
+
+            <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
+                <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4"/>
+            </svg>
+            <svg class="stop" viewBox="0 0 4 1">
+                <path d="M4 1H0C3 1 3.2 0.8 4 0Z"/>
+            </svg>
+
+	        <div class="scroll-container">
+	          <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
+	          <div class="scrollOuter" data-list="models""><div class="scroll" id="phones"></div></div>
+	        </div>
+	      </div>
+	    </div>
+	</section>
+</main>
 `);
 
 
@@ -466,7 +510,7 @@ function saveGraph(ext) {
     gpath.selectAll("path").classed("highlight",false);
     drawLabels();
     showControls(false);
-    fn(gr.node(), "graph."+ext, {backgroundColor:"white", scale:3})
+    fn(gr.node(), "graph."+ext, {scale:3})
         .then(()=>showControls(true));
 }
 doc.select("#download")
@@ -745,13 +789,21 @@ let getColor_AC = c => getCurveColor(c.p.id, c.o);
 let getColor_ph = (p,i) => getCurveColor(p.id, p.activeCurves[i].o);
 function getDivColor(id, active) {
     let c = getCurveColor(id,0);
+// Hiding these return the same color; unhiding returns a shifted color
+//    c.l = 100-(80-Math.min(c.l,60))/(active?1.5:3);
+//    c.c = (c.c-20)/(active?3:4);
+    return c;
+}
+function getDivColorShifted(id, active) {
+    let c = getCurveColor(id,0);
     c.l = 100-(80-Math.min(c.l,60))/(active?1.5:3);
     c.c = (c.c-20)/(active?3:4);
     return c;
 }
 function color_curveToText(c) {
-    c.l = c.l/5 + 10;
-    c.c /= 3;
+// Hiding these return the same color; unhiding returns a shifted color
+//    c.l = c.l/5 + 10;
+//    c.c /= 3;
     return c;
 }
 let getTooltipColor = curve => color_curveToText(getColor_AC(curve));
@@ -854,8 +906,8 @@ function setPhoneTr(phtr) {
             p.highlight = true;
         }
     });
-    phtr.style("background",p=>p.isTarget&&!p.active?null:getDivColor(p.id,p.highlight))
-        .style("border-color",p=>p.highlight?getDivColor(p.id,1):null);
+    phtr.style("background",p=>p.isTarget&&!p.active?null:getDivColorShifted(p.id,p.highlight))
+        .style("border-color",p=>p.highlight?getDivColorShifted(p.id,1):null);
     phtr.filter(p=>!p.isTarget)
         .selectAll(".remove").data(p=>p.highlight?[p]:[])
         .join("span").attr("class","remove").text("⊗")
@@ -961,7 +1013,8 @@ let ifURL = typeof share_url !== "undefined" && share_url;
 let baseTitle = typeof page_title !== "undefined" ? page_title : "CrinGraph";
 let baseURL;  // Set by setInitPhones
 function addPhonesToUrl() {
-    let title = baseTitle, url = baseURL,
+    let title = baseTitle,
+        url = baseURL,
         names = activePhones.map(p => p.fileName);
     if (names.length) {
         url += "?share=" + encodeURI(names.join().replace(/ /g,"_"));
@@ -992,13 +1045,17 @@ function updatePhoneTable() {
         .on("click", removePhone)
         .style("background-image",colorBar)
         .filter(p=>!p.isTarget).append("svg").call(addColorPicker);
-    td().html(p=>p.isTarget?"":p.dispBrand+"&nbsp;").call(addModel);
-    td().append("svg").call(addKey);
-    td().append("input")
+    td().attr("class",p=>p.isTarget?"item-line item-target":"item-line item-phone").html(p=>p.isTarget?"":"<span class=\"brand\">"+p.dispBrand+"</span>").call(addModel)
+        //Change colors on clicking
+//        .filter(p=>!p.isTarget).call(addColorPicker);
+    td().attr("class","curve-color").html("<button></button>")
+        .filter(p=>!p.isTarget).call(addColorPicker);
+    td().attr("class","channels").append("svg").call(addKey)
+    td().attr("class","levels").append("input")
         .attrs({type:"number",step:"any",value:0})
         .property("value", p=>p.offset)
         .on("change input",function(p){ setOffset(p, +this.value); });
-    td().attr("class","button")
+    td().attr("class","button button-baseline")
         .html("<svg viewBox='-170 -120 340 240'><use xlink:href='#baseline-icon'></use></svg>")
         .on("click", p => setBaseline(p===baseline.p ? baseline0
                                                      : getBaseline(p)));
@@ -1016,21 +1073,31 @@ function updatePhoneTable() {
     td().attr("class","button hideIcon")
         .html("<svg viewBox='-2.5 0 19 12'><use xlink:href='#hide-icon'></use></svg>")
         .on("click", toggleHide);
-    td().attr("class","button")
+    td().attr("class","button button-pin")
+        .attr("data-pinned","false")
         .html("<svg viewBox='-135 -100 270 200'><use xlink:href='#pin-icon'></use></svg>")
         .on("click",function(p){
             if (cantCompare(activePhones.filter(p=>p.pin).length+1)) return;
-            p.pin = true; nextPN = null;
+        
+            if ( p.pin ) {
+                p.pin = false;
+                this.setAttribute("data-pinned","false");
+            } else {
+                p.pin = true; nextPN = null;
+                this.setAttribute("data-pinned","true");
+            }
+        
+            //p.pin = true; nextPN = null;
             d3.select(this)
-                .text(null).classed("button",false).on("click",null)
-                .insert("svg").attr("class","pinMark")
-                .attr("viewBox","0 0 280 145")
-                .insert("path").attrs({
-                    fill:"none",
-                    "stroke-width":30,
-                    "stroke-linecap":"round",
-                    d:"M265 110V25q0 -10 -10 -10H105q-24 0 -48 20l-24 20q-24 20 -2 40l18 15q24 20 42 20h100"
-                });
+//                .text(null).classed("button",false).on("click",null)
+//                .insert("svg").attr("class","pinMark")
+//                .attr("viewBox","0 0 280 145")
+//                .insert("path").attrs({
+//                    fill:"none",
+//                    "stroke-width":30,
+//                    "stroke-linecap":"round",
+//                    d:"M265 110V25q0 -10 -10 -10H105q-24 0 -48 20l-24 20q-24 20 -2 40l18 15q24 20 42 20h100"
+//                });
         });
 }
 
@@ -1137,7 +1204,7 @@ function addModel(t) {
     t.each(function (p) { if (!p.vars) { p.vars = {}; } });
     let n = t.append("div").attr("class","phonename").text(p=>p.dispName);
     t.filter(p=>p.fileNames)
-        .append("svg").attr("class","variants")
+        .append("div").attr("class","variants")
         .call(function (s) {
             s.attr("viewBox","0 -2 10 11");
             s.append("path").attr("fill","currentColor")
@@ -1176,11 +1243,11 @@ function addModel(t) {
                     table.selectAll("tr").filter(q=>q===p)
                         .classed("highlight", h)
                 );
-            let c = n.selectAll().data(vars).join("div")
-                .html("&nbsp;⇲&nbsp;").attr("class","variantPopout")
+            let c = n.selectAll().data(vars).join("span")
+                .html("&nbsp;+&nbsp;").attr("class","variantPopout")
                 .style("left",(w+5)+"px")
                 .style("display",v=>v.active?"none":null);
-            [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1.3+"em"));
+            [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1+"em"));
             d.filter(v=>!v.active).on("mousedown", v => Object.assign(p,v));
             c.on("mousedown", function (v,i) {
                 if (cantCompare(activePhones.length)) return;
@@ -1254,7 +1321,7 @@ function colorPhones() {
         .style("color", c)
         .call(s => s.select(".remove").style("background-image",colorBar)
                     .select("svg").call(cpCircles))
-        .select("td:nth-child(3)"); // Key line
+        .select("td.channels"); // Key line
     t.select("svg").remove();
     t.append("svg").call(addKey);
 }
@@ -1265,9 +1332,11 @@ function range_to_slice(xs, fn) {
     let r = xs.map(v => d3.bisectLeft(f_values, x.invert(fn(v))));
     return a => a.slice(Math.max(r[0],0), r[1]+1);
 }
-let norm_sel = 0,
-    norm_fr = 1000,
-    norm_phon = 60;
+
+let norm_sel = ( default_normalization.toLowerCase() === "db" ) ? 0:1,
+    norm_fr = default_norm_hz,
+    norm_phon = default_norm_db;
+
 function normalizePhone(p) {
     if (norm_sel) { // fr
         let i = fr_to_ind(norm_fr);
@@ -1372,6 +1441,7 @@ function showPhone(p, exclusive, suppressVariant) {
     d3.selectAll("#phones div,.target")
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
+//    Displays variant pop-up when phone displayed
     if (!suppressVariant && p.fileNames && !p.copyOf) {
         table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
     }
@@ -1480,10 +1550,22 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     }
     let phoneSel = doc.select("#phones").selectAll()
         .data(allPhones).join("div")
-        .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
-        .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
+        .attr("class","phone-item")
+        .on("mouseover", bg(true, p => getDivColorShifted(p.id===undefined?nextPhoneNumber():p.id, true)))
+        .on("mouseout" , bg(false,p => p.id!==undefined?getDivColorShifted(p.id,p.active):null))
         .call(setClicks(showPhone));
     phoneSel.append("span").text(p=>p.fullName);
+    
+    // Adding the + selection button
+    phoneSel.append("div")
+            .attr("class", "phone-item-add")
+            .on("click", p => {
+                d3.event.stopPropagation();
+                showPhone(p, 0);
+                let panelsContainer = document.querySelector("main.main");
+                panelsContainer.setAttribute("data-focused-panel","primary");
+            })
+            
 
     if (targets) {
         let b = { name:"Targets", active:false },
@@ -1564,7 +1646,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         }
     );
     doc.select(".search").on("input", function () {
-        d3.select(this).attr("placeholder",null);
+        //d3.select(this).attr("placeholder",null);
         let fn, bl = brands;
         let c = currentBrands;
         let test = p => c.indexOf(p.brand )!==-1
@@ -1716,3 +1798,107 @@ d3.selectAll(".helptip").on("click", function() {
     let e = d3.select(this);
     e.classed("active", !e.classed("active"));
 });
+
+// Copy URL button functionality
+function copyUrlInit() {
+    let copyUrlButton = document.querySelector("button#copy-url");
+    
+    copyUrlButton.addEventListener("click", function(e) {
+        let urlHost = document.createElement('input'),
+            currentUrl = window.top.location.href;
+
+        urlHost.setAttribute("style","position: fixed; opacity: 0.0;");
+        urlHost.value = currentUrl;
+        document.body.appendChild(urlHost);
+        
+        urlHost.select();
+        document.execCommand('copy');
+        document.body.removeChild(urlHost);
+        
+        console.log(currentUrl);
+        e.stopPropagation();
+        
+        copyUrlButton.classList.add("clicked");
+        setTimeout(function() {
+            copyUrlButton.classList.remove("clicked");
+        }, 600);
+    });
+}
+copyUrlInit();
+
+// Set focused scroll list
+function setFocusedList(selectedList) {
+    let listsContainer = document.querySelector("div.select");
+    
+    listsContainer.setAttribute("data-selected", selectedList)
+}
+
+function focusedListClicks() {
+    let listClickTragets = document.querySelectorAll("*[data-list=\"brands\"], *[data-list=\"models\"]");
+    
+    listClickTragets.forEach((clickedTarget) => {
+        clickedTarget.addEventListener("click", () => {
+            let selectedList = clickedTarget.getAttribute("data-list")
+            setFocusedList(selectedList);
+        });
+    });
+    
+    let brandsTargets = document.querySelectorAll("div.scroll#brands");
+    brandsTargets.forEach((clickedTarget) => {
+        clickedTarget.addEventListener("click", (e) => {
+            let selectedList = "models";
+                setFocusedList(selectedList);
+                e.stopPropagation();
+        });
+    });
+    
+}
+focusedListClicks();
+
+// Set focused panel
+function setFocusedPanel() {
+    let panelsContainer = document.querySelector("main.main"),
+        primaryPanel = document.querySelector(".parts-primary"),
+        secondaryPanel = document.querySelector(".parts-secondary"),
+        phonesList = document.querySelector("div#phones");
+    
+    primaryPanel.addEventListener("click", function() {
+        let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
+        
+        if ( previouslyFocused === 'secondary' ) {
+            panelsContainer.setAttribute("data-focused-panel","");
+        } else {
+            panelsContainer.setAttribute("data-focused-panel","primary");
+        }
+    });
+    
+    secondaryPanel.addEventListener("click", function() {
+        panelsContainer.setAttribute("data-focused-panel","");
+    });
+    
+    phonesList.addEventListener("click", function(e) {
+        let thingClicked = e.target;
+        
+        if ( thingClicked.matches(".phone-item, .phone-item span, .phone-item-add") ) {
+            
+            panelsContainer.setAttribute("data-focused-panel","primary");
+            e.stopPropagation();
+        }
+    });
+}
+setFocusedPanel();
+
+// Set active graph site link
+function setActiveDatabase() {
+    let url = window.top.location.href,
+        dbLinks = document.querySelectorAll("div.more-graph-sites a");
+    
+    dbLinks.forEach(function(link) {
+        let linkUrl = link.getAttribute("href");
+        
+        if ( url.includes(linkUrl) ) {
+            link.setAttribute("class","active");
+        }
+    });
+}
+setActiveDatabase();

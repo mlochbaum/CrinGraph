@@ -1087,17 +1087,17 @@ function updatePhoneTable() {
                 this.setAttribute("data-pinned","true");
             }
 
-            //p.pin = true; nextPN = null;
+            p.pin = true; nextPN = null;
             d3.select(this)
-//                .text(null).classed("button",false).on("click",null)
-//                .insert("svg").attr("class","pinMark")
-//                .attr("viewBox","0 0 280 145")
-//                .insert("path").attrs({
-//                    fill:"none",
-//                    "stroke-width":30,
-//                    "stroke-linecap":"round",
-//                    d:"M265 110V25q0 -10 -10 -10H105q-24 0 -48 20l-24 20q-24 20 -2 40l18 15q24 20 42 20h100"
-//                });
+                .text(null).classed("button",false).on("click",null)
+                .insert("svg").attr("class","pinMark")
+                .attr("viewBox","0 0 280 145")
+                .insert("path").attrs({
+                    fill:"none",
+                    "stroke-width":30,
+                    "stroke-linecap":"round",
+                    d:"M265 110V25q0 -10 -10 -10H105q-24 0 -48 20l-24 20q-24 20 -2 40l18 15q24 20 42 20h100"
+                });
         });
 }
 

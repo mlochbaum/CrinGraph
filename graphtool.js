@@ -1493,6 +1493,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                     r.collab = brandMap[p.collab];
                 }
                 let f = p.file || p.name;
+                
                 if (typeof f === "string") {
                     r.fileName = f;
                 } else {
@@ -1516,7 +1517,27 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             }
             r.dispName = r.dispName || r.phone;
             r.fullName = r.dispBrand + " " + r.phone;
-            if (init===-2 ? isInit(r.fileName) : init>=0) { inits.push(r); }
+            if (init===-2 ? isInit(r.fileName) : init>=0) {
+                /*THIS IS A REALLY REALLY REALLY HORRIBLE IMPLEMENTATION OF MULTIPLE VARIANTS, NOT TO MENTION HOW RISKY THIS SOLUTION IS, 
+                BORN BY ME STAYING UP FOR NEARLY 7 HOURS WITH CRANG CRANG JS SKILL
+                This just serve a purpose that this gonna fix the current URL bug issue but this code need to be more effectively handled. 
+
+                If you merge this to the branch, DO IT AT YOUR OWN RISK
+                */
+                if(Array.isArray(initReq) && initReq.length > 1){
+                    initReq.forEach(function (name) {
+                        if(r.fileNames.indexOf(name) !== -1){
+                            let cloneR = Object.assign({}, r);
+                            cloneR.fileName = name;
+                            cloneR.dispName = cloneR.dispNames[cloneR.fileNames.indexOf(name)];
+                            inits.push(cloneR);
+                        }
+                    })
+                }
+                else {
+                    inits.push(r); 
+                } 
+            }
             return r;
         });
     });
@@ -1578,7 +1599,9 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             .data();
         ts.forEach((t,i) => {
             t.id = i-ts.length;
-            if (isInit(t.fileName)) inits.push(t);
+            if (isInit(t.fileName)){
+                inits.push(t);
+            }
         });
     }
 

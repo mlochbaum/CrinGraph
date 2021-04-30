@@ -101,6 +101,7 @@ svg line {
 
 g.lineLabel rect {
     fill: var(--background-color);
+    opacity: 0.6;
 }
 
 g.lineLabel text {

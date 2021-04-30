@@ -509,10 +509,15 @@ div.miscTools button {
     font-weight: 700;
     font-size: 12px;
     line-height: 1em;
+    text-transform: capitalize;
     
     white-space: nowrap;
     cursor: pointer;
     outline: none;
+}
+
+div.miscTools button span {
+    display: none;
 }
 
 div.miscTools button + button {
@@ -697,6 +702,7 @@ tbody.curves > tr > td.remove {
 
 /* Table buttons */
 tbody.curves > tr > td.button:before,
+tbody.curves > tr > td.button-pin:before,
 tbody.curves > tr > td.remove:before {
     position: absolute;
     
@@ -716,6 +722,7 @@ tbody.curves > tr > td.remove:before {
 }
 
 tbody.curves > tr > td.button:after,
+tbody.curves > tr > td.button-pin:after,
 tbody.curves > tr > td.remove:after {
     position: absolute;
     
@@ -758,7 +765,7 @@ tbody.curves > tr > td.remove svg {
     display: none;
 }
 
-tbody.curves > tr > td.button.button-pin:after {
+tbody.curves > tr > td.button-pin:after {
     mask: var(--icon-pin);
     -webkit-mask: var(--icon-pin);
     
@@ -862,6 +869,10 @@ tbody.curves > tr > td.button-pin[data-pinned="true"]:before {
 
 tbody.curves > tr > td.button-pin[data-pinned="true"]:after {
     background-color: var(--font-color-primary);
+}
+
+tbody.curves > tr > td.button-pin svg {
+    display: none;
 }
 
 /* Curve color */
@@ -1200,7 +1211,27 @@ tbody.curves > tr > td.channels text {
 
 /* Shift graph input / Levels */
 tbody.curves > tr > td.levels {
-    display: none;
+    order: 2;
+    
+    padding: 0 0 0 16px;
+}
+
+tbody.curves > tr > td.levels input {
+    box-sizing: border-box;
+    width: 70px;
+    height: 36px;
+    padding: 11px 16px 11px 0;
+    background-color: var(--background-color-inputs);
+    border: none;
+    border-radius: 50px;
+    outline: none;
+    color: var(--font-color-inputs);
+    font-family: var(--font-secondary);
+    font-size: 11px;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-align: center;
 }
 
 /* List lock controls */
@@ -1695,6 +1726,219 @@ div.more-graph-sites a + a {
 
 
 /*****
+Cash message style *****/
+/* https://crinacle.com/wp-content/uploads/2020/02/crinaclogo.png */
+
+div.cashMessage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    height: 100%;
+    
+    pointer-events: none;
+    
+}
+
+div.cashMessage h2 {
+    flex: auto 0 1;
+    
+    box-sizing: border-box;
+    max-width: 600px;
+    margin: 32px 32px 16px 32px;;
+    
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1em;
+    
+    text-align: center;
+    
+    pointer-events: all;
+}
+
+div.cashMessage p {
+    flex: auto 0 1;
+    
+    box-sizing: border-box;
+    max-width: 600px;
+    margin: 16px 32px;
+    
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5em;
+    
+    text-align: center;
+    
+    pointer-events: all;
+}
+
+div.cashMessage p:empty {
+    display: none;
+}
+
+div.cashMessage p a {
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+div.cashMessage button {
+    flex: auto 0 1;
+    
+    box-sizing: border-box;
+    width: 200px;
+    padding: 12px 16px;
+    margin: 16px 32px 32px 32px;
+
+    background-color: var(--accent-color-contrast);
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1em;
+    text-align: center;
+
+    
+    white-space: nowrap;
+    cursor: pointer;
+    pointer-events: all;
+    
+    animation-name: cash-fine;
+    animation-duration: 0.3s;
+    animation-delay: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    
+    opacity: 0.0;
+}
+
+@keyframes cash-fine {
+    0% {
+        opacity: 0.0;
+        transform: translateY(10px);
+    }
+    
+    100% {
+        opacity: 1.0;
+        transform: translateY(0px);
+    }
+}
+
+div.cashMessage button:active {
+    background-color: var(--accent-color);
+    color: var(--font-color-secondary);    
+}
+
+div.fadeAll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    
+    width: 100%;
+    height: 100%;
+    
+    background-color: var(--background-color);
+    
+    opacity: 0.9;
+    
+    cursor: pointer;
+    
+    animation-name: cash-in;
+    animation-duration: 0.1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes cash-in {
+    0% {
+        opacity: 0.0;
+    }
+    
+    100% {
+        opacity: 0.97;
+    }
+}
+
+div.fadeAll:before {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    
+    content: '';
+    
+    box-sizing: border-box;
+    display: block;
+    width: 50px;
+    height: 37px;
+    
+    background-color: var(--background-color-contrast);
+    border-radius: 4px;
+    
+    pointer-events: none;
+}
+
+div.fadeAll:after {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    
+    content: '';
+    
+    box-sizing: border-box;
+    display: block;
+    width: 50px;
+    height: 37px;
+    
+    background-color: var(--background-color-contrast-more);
+    
+    mask: var(--icon-remove);
+    -webkit-mask: var(--icon-remove);
+    mask-size: 16px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: 16px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    
+    pointer-events: none;
+}
+
+div.cash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    height: 100%;
+    
+    font-family: var(--font-secondary);
+    font-size: 30vh;
+    font-weight: 700;
+    line-height: 1em;
+    
+    cursor: pointer;
+}
+
+
+
+/*****
 Responsive styles *****/
 
 @media ( max-width: 1000px ) {
@@ -1882,7 +2126,7 @@ Responsive styles *****/
 }
 
 /* Move table items to two rows for narrow browsers */
-@media ( max-width: 1000px ) {
+@media ( max-width: 1200px ) {
     tbody.curves > tr {
         flex-wrap: wrap;
     }
@@ -1907,8 +2151,11 @@ Responsive styles *****/
         margin-right: auto;
     }
     
-    tbody.curves > tr > td.button-baseline {
+    tbody.curves > tr > td.levels {
         margin-left: auto;
+    }
+    
+    tbody.curves > tr > td.button-baseline {
     }
     
     tbody.curves > tr > td.remove {

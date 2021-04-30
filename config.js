@@ -11,7 +11,8 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
-      page_title = "CrinGraph";                     // Optional. Appended to the page title if share URLs are enabled
+      page_title = "CrinGraph",                     // Optional. Appended to the page title if share URLs are enabled
+      restricted = false;                           // Enables restricted mode. More restricted options below.
 
 // Specify which targets to display
 const targets = [
@@ -85,3 +86,13 @@ function setLayout() {
     }
 }
 setLayout();
+
+
+function setRestricted() {
+    if ( restricted ) {
+        max_compare = 2;
+        disallow_target = true;
+        premium_html = "<h2>You gonna pay for that?</h2><p>To use target curves, or more than two graphs, <a target='_blank' href='https://crinacle.com/wp-login.php?action=register'>subscribe</a> or upgrade to Patreon <a target='_blank' href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a> and switch to <a target='_blank' href='https://crinacle.com/graphs/iems/graphtool/premium/'>the premium tool</a>.</p>";
+    }
+}
+setRestricted();

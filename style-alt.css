@@ -131,6 +131,10 @@ svg#fr-graph rect {
     pointer-events: all;
 }
 
+text.insp_dB {
+    fill: var(--background-color-contrast-more);
+}
+
 
 
 /*****

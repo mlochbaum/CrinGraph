@@ -93,24 +93,9 @@ doc.html(`
         </table>
       </div>
 
-      <div class="about-this-tool">
-        <p>This graph database is maintained by [name] with frequency reponses produced with an IEC711-compliant ear simulator microphone. This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project.</p>
-      </div>
+      <div class="accessories"></div>
 
-      <div class="more-graph-sites">
-        <span>IEM graph databases</span>
-        <a href="http://iems.audiodiscourse.com/">Audio Discourse</a>
-        <a href="https://banbeu.com/graph/tool/">Banbeucmas</a>
-        <a href="https://www.hypethesonics.com/iemdbc/">HypetheSonics</a>
-        <a href="https://crinacle.com/graphs/iems/graphtool/">In-Ear Fidelity</a>
-        <a href="https://precog.squig.link/">Precogvision</a>
-        <a href="https://squig.link/">Super* Review</a>
-
-        <span>Headphones</span>
-        <a href="http://headphones.audiodiscourse.com/">Audio Discourse</a>
-        <a href="https://crinacle.com/graphs/headphones/graphtool/">In-Ear Fidelity</a>
-        <a href="https://squig.link/hp.html">Super* Review</a>
-      </div>
+      <div class="external-links"></div>
     </section>
 
     <section class="parts-secondary">
@@ -1880,16 +1865,52 @@ function setFocusedPanel() {
 }
 setFocusedPanel();
 
+// Add accessories to the bottom of the page, if configured
+function addAccessories() {
+    let accessoriesBar = document.querySelector("div.accessories"),
+        accessoriesContainer = document.createElement("aside");
+    
+    accessoriesContainer.innerHTML = whichAccessoriesToUse;
+    accessoriesBar.append(accessoriesContainer);
+}
+if (accessories) { addAccessories(); }
+
+// Add external links to bar at bottom of page, if configured
+function addExternalLinks() {
+    const externalLinksBar = document.querySelector("div.external-links");
+
+    linkSets.forEach(function(set) {
+        let setLabelHtml = document.createElement("span"),
+            setLabelText = set.label,
+            links = set.links;
+        
+        setLabelHtml.textContent = setLabelText;
+        externalLinksBar.append(setLabelHtml);
+        
+        links.forEach(function(link) {
+            let linkHtml = document.createElement("a"),
+                linkName = link.name,
+                linkUrl = link.url;
+            
+            linkHtml.textContent = linkName;
+            linkHtml.setAttribute("href", linkUrl);
+            linkHtml.setAttribute("target", "_parent");
+            externalLinksBar.append(linkHtml);
+        });
+    });
+}
+if (externalLinksBar) { addExternalLinks(); }
+
 // Set active graph site link
 function setActiveDatabase() {
     let url = window.top.location.href,
-        dbLinks = document.querySelectorAll("div.more-graph-sites a");
+        dbLinks = document.querySelectorAll("div.external-links a");
 
     dbLinks.forEach(function(link) {
         let linkUrl = link.getAttribute("href");
 
         if ( url.includes(linkUrl) ) {
-            link.setAttribute("class","active");
+            link.setAttribute("class", "active");
         }
     });
 }

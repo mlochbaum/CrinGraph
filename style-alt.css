@@ -1626,35 +1626,9 @@ div.scroll div[style*="border"] div.phone-item-add span.remove:before {
 
 
 /*****
-Accoutrements *****/
+External links *****/
 
-div.about-this-tool {
-    box-sizing: border-box;
-    padding: 32px 16px;
-    
-    border-top: 1px solid var(--background-color-contrast-more);
-    background-color: var(--background-color-contrast);
-}
-
-div.about-this-tool p {
-    max-width: 800px;
-    margin: auto;
-    
-    border-radius: 4px;
-    
-    color: var(--background-color-contrast-more);
-    font-size: 14px;
-    line-height: 1.6em;
-    text-align: center;
-}
-
-div.about-this-tool a,
-div.about-this-tool a:hover,
-div.about-this-tool a:visited {
-    color: var(--background-color-contrast-more);
-}
-
-div.more-graph-sites {
+div.external-links {
     display: flex;
     align-items: center;
     
@@ -1668,14 +1642,18 @@ div.more-graph-sites {
     border-top: 1px solid var(--background-color-contrast-more);
 }
 
-div.more-graph-sites:after {
+div.external-links:empty {
+    display: none;
+}
+
+div.external-links:after {
     content: '';
     display: inline-block;
     flex: 16px 0 0;
     height: 1px;
 }
 
-div.more-graph-sites span {
+div.external-links span {
     flex: auto 0 0;
     margin: 0 10px 0 0;
     
@@ -1690,13 +1668,13 @@ div.more-graph-sites span {
     white-space: nowrap;
 }
 
-div.more-graph-sites a + span {
+div.external-links a + span {
     padding-left: 16px;
     margin-left: 16px;
     border-left: 1px dotted var(--background-color-contrast-more);
 }
 
-div.more-graph-sites a {
+div.external-links a {
     flex: auto 0 0;
     
     box-sizing: border-box;
@@ -1719,20 +1697,91 @@ div.more-graph-sites a {
     outline: none;
 }
 
-div.more-graph-sites a.active {    
+div.external-links a.active {    
     color: var(--background-color-contrast);
     background-color: var(--background-color-contrast-more);
 }
 
-div.more-graph-sites a + a {
+div.external-links a + a {
     margin-left: 6px;
 }
 
 
 
 /*****
-Cash message style *****/
-/* https://crinacle.com/wp-content/uploads/2020/02/crinaclogo.png */
+Accessories *****/
+
+div.accessories {
+    box-sizing: border-box;
+    padding: 16px 0;
+    
+    border-top: 1px solid var(--background-color-contrast-more);
+    background-color: var(--background-color-contrast);
+}
+
+div.accessories:empty {
+    display: none;
+}
+
+div.accessories h2 {
+    width: calc(100% - 32px);
+    max-width: 660px;
+    margin: 32px auto 16px auto;
+    
+    border-radius: 4px;
+    
+    color: var(--background-color-contrast-more);
+    font-family: var(--font-secondary);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6em;
+    text-transform: uppercase;
+}
+
+div.accessories p {
+    width: calc(100% - 32px);
+    max-width: 660px;
+    margin: 16px auto;
+    
+    border-radius: 4px;
+    
+    color: var(--font-color-primary);
+    font-size: 14px;
+    line-height: 1.6em;
+}
+
+div.accessories p.center {
+    max-width: 800px;
+    
+    color: var(--background-color-contrast-more);
+    text-align: center;
+}
+
+div.accessories a,
+div.accessories a:hover,
+div.accessories a:visited {
+    color: var(--background-color-contrast-more);
+}
+
+div.accessories-widgets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 0 16px 16px 0;
+}
+
+div.accessories-widgets .widget {
+    flex: auto 0 0;
+    
+    margin: 16px 0 0 16px;
+}
+
+
+
+/*****
+Restricted mode / Cash message style *****/
 
 div.cashMessage {
     position: absolute;
@@ -2202,6 +2251,23 @@ Responsive styles *****/
     div[data-selected="brands"] div.scroll#phones {
         transform: none;
         transition: none;
+    }
+}
+
+/* Yeet table items for narrow screens */
+@media ( max-width: 500px) {
+    tbody.curves > tr > td.channels {
+        display: none;
+    }
+}
+
+@media ( max-width: 350px) {
+    tbody.curves > tr > td.levels {
+        display: none;
+    }
+    
+    tbody.curves > tr > td.button-baseline {
+        margin-left: auto;
     }
 }
 

@@ -109,7 +109,7 @@ setRestricted();
 const 
     // Short text, center-aligned, useful for a little side info, credits, links to measurement setup, etc. 
     simpleAbout = `
-        <p class="center">This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph" target="_parent">CrinGraph</a> open source software project.</p>
+        <p class="center">This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project.</p>
     `,
     // Slightly different presentation to make more readable paragraphs. Useful for elaborated methodology, etc.
     paragraphs = `

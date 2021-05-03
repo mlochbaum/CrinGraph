@@ -43,6 +43,12 @@ Icons *****/
     --icon-hide: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M60,30C32.39,30,10,43.43,10,60S32.39,90,60,90s50-13.43,50-30S87.61,30,60,30ZM90.21,72.64C82.41,77.32,71.4,80,60,80,37.11,80,20,69.44,20,60c0-4.3,3.57-8.91,9.79-12.64C37.59,42.68,48.6,40,60,40c22.89,0,40,10.56,40,20C100,64.3,96.43,68.91,90.21,72.64Z'/%3E%3Ccircle class='cls-1' cx='60' cy='60' r='10'/%3E%3C/svg%3E");
     --icon-pin: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M78.07,30.48A28.68,28.68,0,0,1,89.52,41.93l-2.33-.64L83.49,45,69.05,59.43l-4.78,4.78,3.27,5.93c2.61,4.74,2.9,7.76,2.79,8.93a3,3,0,0,1-.45,0c-2.64,0-7.89-1.7-14-6.48l-4.75-3.74-3.74-4.75c-5.55-7.09-6.65-12.6-6.48-14.45l.46,0c1,0,3.89.28,8.49,2.81l5.93,3.27L60.57,51,75,36.51l3.71-3.7-.64-2.33M74.41,20.27A6.34,6.34,0,0,0,69.77,22c-1.79,1.79-2.08,4.76-1.13,8.2L54.21,44.58C49.57,42,45.1,40.65,41.37,40.65a9.54,9.54,0,0,0-7,2.51c-5,5-2.27,16.09,5.9,26.51L23,95.58a1,1,0,0,0,.83,1.55,1,1,0,0,0,.55-.17L50.33,79.69c6.87,5.38,14,8.4,19.55,8.4a9.52,9.52,0,0,0,7-2.5c3.93-3.93,3.08-11.62-1.42-19.8L89.85,51.36a13.62,13.62,0,0,0,3.58.53,6.32,6.32,0,0,0,4.62-1.66C102,46.32,98.79,36.83,91,29c-5.54-5.54-11.93-8.75-16.57-8.75Z'/%3E%3C/svg%3E");
     --icon-plus: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M110,60h0a5,5,0,0,0-5-5H65V15a5,5,0,0,0-5-5h0a5,5,0,0,0-5,5V55H15a5,5,0,0,0-5,5h0a5,5,0,0,0,5,5H55v40a5,5,0,0,0,5,5h0a5,5,0,0,0,5-5V65h40A5,5,0,0,0,110,60Z'/%3E%3C/svg%3E");
+    
+    --icon-expand: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23252627;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M24.64,95.36l24.75-3.54-7.07-7.07,3.54-3.54a5,5,0,0,0,0-7.07h0a5,5,0,0,0-7.07,0l-3.54,3.54-7.07-7.07Z'/%3E%3Cpath class='cls-1' d='M95.36,24.64,70.61,28.18l7.07,7.07-3.54,3.54a5,5,0,0,0,0,7.07h0a5,5,0,0,0,7.07,0l3.54-3.54,7.07,7.07Z'/%3E%3Cpath class='cls-1' d='M42.32,35.25l7.07-7.07L24.64,24.64l3.54,24.75,7.07-7.07,3.54,3.54a5,5,0,0,0,7.07,0h0a5,5,0,0,0,0-7.07Z'/%3E%3Cpath class='cls-1' d='M95.36,95.36,91.82,70.61l-7.07,7.07-3.54-3.54a5,5,0,0,0-7.07,0h0a5,5,0,0,0,0,7.07l3.54,3.54-7.07,7.07Z'/%3E%3C/svg%3E");
+    --icon-collapse: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23252627;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M52.93,67.07,28.18,70.61l7.07,7.07-3.53,3.53a5,5,0,0,0,0,7.07h0a5,5,0,0,0,7.07,0l3.53-3.53,7.07,7.07Z'/%3E%3Cpath class='cls-1' d='M67.07,52.93l24.75-3.54-7.07-7.07,3.53-3.53a5,5,0,0,0,0-7.07h0a5,5,0,0,0-7.07,0l-3.53,3.53-7.07-7.07Z'/%3E%3C/svg%3E");
+    
+    --icon-expand: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23252627;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M45,105h0a5,5,0,0,1-5,5H10V80a5,5,0,0,1,5-5h0a5,5,0,0,1,5,5v20H40A5,5,0,0,1,45,105Z'/%3E%3Cpath class='cls-1' d='M110,80v30H80a5,5,0,0,1-5-5h0a5,5,0,0,1,5-5h20V80a5,5,0,0,1,5-5h0A5,5,0,0,1,110,80Z'/%3E%3Cpath class='cls-1' d='M110,10V40a5,5,0,0,1-5,5h0a5,5,0,0,1-5-5V20H80a5,5,0,0,1-5-5h0a5,5,0,0,1,5-5Z'/%3E%3Cpath class='cls-1' d='M45,15h0a5,5,0,0,1-5,5H20V40a5,5,0,0,1-5,5h0a5,5,0,0,1-5-5V10H40A5,5,0,0,1,45,15Z'/%3E%3C/svg%3E");
+    --icon-collapse: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23252627;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M10,80h0a5,5,0,0,1,5-5H45v30a5,5,0,0,1-5,5h0a5,5,0,0,1-5-5V85H15A5,5,0,0,1,10,80Z'/%3E%3Cpath class='cls-1' d='M75,105V75h30a5,5,0,0,1,5,5h0a5,5,0,0,1-5,5H85v20a5,5,0,0,1-5,5h0A5,5,0,0,1,75,105Z'/%3E%3Cpath class='cls-1' d='M75,45V15a5,5,0,0,1,5-5h0a5,5,0,0,1,5,5V35h20a5,5,0,0,1,5,5h0a5,5,0,0,1-5,5Z'/%3E%3Cpath class='cls-1' d='M10,40h0a5,5,0,0,1,5-5H35V15a5,5,0,0,1,5-5h0a5,5,0,0,1,5,5V45H15A5,5,0,0,1,10,40Z'/%3E%3C/svg%3E");
 }
 
 
@@ -200,6 +206,8 @@ div.graphBox {
 }
 
 div.graph-sizer {
+    position: relative;
+    
     order: 2;
     
     flex: auto 0;
@@ -230,6 +238,171 @@ div.tools {
     border-bottom: 1px solid var(--background-color-contrast-more);
 
     overflow-y: hidden;
+}
+
+/* Expand / Collapse */
+
+div.expand-collapse {
+    position: sticky;
+    right: 0;
+    order: 10;
+    
+    display: none;
+    
+    padding: 0 16px;
+    
+    background-color: var(--background-color);
+    border-left: 1px solid var(--background-color-contrast-more);
+    
+/*
+    position: relative;
+    order: -1;
+    border-left: none;
+    border-right: 1px solid var(--background-color-contrast-more);
+*/
+}
+
+body[data-expandable="true"] div.expand-collapse,
+body[data-expandable="only"] div.expand-collapse {
+    display: inherit;
+}
+
+button#expand-collapse {
+    position: relative;
+    
+    display: block;
+    width: 44px;
+    height: 38px;
+    padding: 0;
+    
+    background-color: var(--background-color-contrast);
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    
+    cursor: pointer;
+}
+
+button#expand-collapse:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    content: '';
+    
+    box-sizing: border-box;
+    display: block;
+    width: 44px;
+    height: 38px;
+    background-color: var(--background-color-contrast-more);
+    
+    mask: var(--icon-expand);
+    -webkit-mask: var(--icon-expand);
+    mask-size: 20px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: 20px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    
+    pointer-events: none;
+}
+
+body[data-graph-frame="expanded"] button#expand-collapse {
+/*    background-color: var(--background-color);*/
+}
+
+body[data-graph-frame="expanded"] button#expand-collapse:before {
+/*    background-color: var(--font-color-primary);*/
+
+    mask: var(--icon-collapse);
+    -webkit-mask: var(--icon-collapse);
+    mask-size: 20px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: 20px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+}
+
+/* Expandable only */
+body[data-expandable="only"][data-graph-frame="collapsed"] {
+    overflow: hidden;
+}
+
+body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse {
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    
+    background-color: var(--background-color);
+    background-color: transparent;
+    border: none;
+}
+
+body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse:after {
+    position: absolute;
+    
+    content: 'Tap to launch graph tool';
+    
+    color: var(--background-color-contrast-more);
+    font-family: var(--font-secondary);
+    font-size: 11px;
+    line-height: 1em;
+    text-transform: uppercase;
+    
+    pointer-events: none;
+}
+
+body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    height: 100%;
+    
+    background-color: transparent;
+}
+
+body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse:before {
+    position: relative;
+    z-index: 1;
+    
+    transform: scale(7);
+}
+
+body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    content: '';
+    
+    display: block;
+    width: 100%;
+    height: 100%;
+    
+    background-color: var(--background-color);
+    
+    opacity: 0.9;
+}
+
+body[data-expandable="only"][data-graph-frame="collapsed"] section.parts-primary {
+    flex: 100% 1 1;
+    overflow: hidden;
+}
+
+body[data-expandable="only"][data-graph-frame="collapsed"] section.parts-secondary {
+    display: none;
 }
 
 /* Copy URL */
@@ -305,7 +478,6 @@ div.zoom > span {
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
 }
 
 div.zoom button {
@@ -361,7 +533,6 @@ div.normalize > span {
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
 }
 
 div.normalize .helptip {
@@ -395,7 +566,6 @@ div.normalize > div > input {
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
     text-align: center;
 }
 
@@ -453,7 +623,6 @@ div.smooth > span {
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
 }
 
 div.smooth input {
@@ -472,7 +641,6 @@ div.smooth input {
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
     text-align: center;
 }
 
@@ -604,7 +772,6 @@ div.targets > div.targetLabel {
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
 }
 
 .targetClass div.targetLabel:after {
@@ -1159,7 +1326,6 @@ tbody.curves > tr > td.item-line div.variants:before {
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
 }
 
 tbody.curves > tr > td.item-line div.variants:after {
@@ -1211,7 +1377,6 @@ tbody.curves > tr > td.channels text {
     font-family: var(--font-secondary);
     font-size: 8px !important;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
 }
 
 /* Shift graph input / Levels */
@@ -1235,7 +1400,6 @@ tbody.curves > tr > td.levels input {
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
     text-align: center;
 }
 
@@ -1283,7 +1447,6 @@ input.search {
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
 }
 
 div.select > div.selector-tabs {
@@ -1662,7 +1825,6 @@ div.external-links span {
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
     line-height: 36px;
     
     white-space: nowrap;
@@ -1927,15 +2089,15 @@ div.fadeAll {
 
 div.fadeAll:before {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 12px;
+    right: 22px;
     
     content: '';
     
     box-sizing: border-box;
     display: block;
-    width: 50px;
-    height: 37px;
+    width: 44px;
+    height: 38px;
     
     background-color: var(--background-color-contrast);
     border-radius: 4px;
@@ -1945,24 +2107,24 @@ div.fadeAll:before {
 
 div.fadeAll:after {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 12px;
+    right: 22px;
     
     content: '';
     
     box-sizing: border-box;
     display: block;
-    width: 50px;
-    height: 37px;
+    width: 44px;
+    height: 38px;
     
     background-color: var(--background-color-contrast-more);
     
     mask: var(--icon-remove);
     -webkit-mask: var(--icon-remove);
-    mask-size: 16px;
+    mask-size: 20px;
     mask-repeat: no-repeat;
     mask-position: center;
-    -webkit-mask-size: 16px;
+    -webkit-mask-size: 20px;
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
     

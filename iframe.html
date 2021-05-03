@@ -20,6 +20,8 @@
                 top: 0;
                 
                 display: flex;
+                justify-content: center;
+                align-items: center;
                 
                 box-sizing: border-box;
                 width: 100%;
@@ -27,6 +29,8 @@
                 padding: 6px;
                 
                 background-color: #000;
+                
+                color: #fff;
             }
             
             button.graph-frame-expand,
@@ -70,42 +74,18 @@
                 height: 80vh;
                 margin: 32px auto;
             }
-            
-            /*****
-            Styles for expanding / collapsing graph frame *****/
-            :root {
-                --header-height: 50px;
-            }
-            
-            body[data-graph-frame="expanded"] {
-                width: 100%;
-                height: 100%;
-                max-height: -webkit-fill-available;
-                overflow: hidden;
-            }
-            
-            body[data-graph-frame="expanded"] button.graph-frame-collapse {
-                display: inherit;
-            }
-            
-            body[data-graph-frame="expanded"] iframe#GraphTool {
-                position: fixed;
-                top: var(--header-height);
-                left: 0;
-                
-                width: 100%;
-                height: calc(100% - var(--header-height));
-            }
         </style>
     </head>
     
     <body data-graph-frame="collapsed">
-        <header><button class="graph-frame-collapse"></button></header>
+        <header>
+            Header
+        </header>
         
         <div class="copy-container">
             <h2>Viverra tellus in hac</h2>
 
-            <p>Lorem ipsum dolor sit amet, <a href="">consectetur adipiscing elit</a>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quisque non tellus orci ac. Dictumst quisque sagittis purus sit amet volutpat consequat. Vitae nunc sed velit dignissim sodales ut. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus in. Dignissim enim sit amet venenatis urna cursus eget nunc. Mi proin sed libero enim. Ut sem viverra aliquet eget sit amet. Integer enim neque volutpat ac tincidunt vitae. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Lacus luctus accumsan tortor posuere ac ut consequat semper. Non pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Aliquam sem et tortor consequat id. Cursus sit amet dictum sit amet justo donec. Donec adipiscing tristique risus nec feugiat in fermentum posuere.</p>
+            <p>Lorem ipsum dolor sit amet, <a href="">consxectetur adipiscing elit</a>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quisque non tellus orci ac. Dictumst quisque sagittis purus sit amet volutpat consequat. Vitae nunc sed velit dignissim sodales ut. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus in. Dignissim enim sit amet venenatis urna cursus eget nunc. Mi proin sed libero enim. Ut sem viverra aliquet eget sit amet. Integer enim neque volutpat ac tincidunt vitae. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Lacus luctus accumsan tortor posuere ac ut consequat semper. Non pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Aliquam sem et tortor consequat id. Cursus sit amet dictum sit amet justo donec. Donec adipiscing tristique risus nec feugiat in fermentum posuere.</p>
 
             <p>Diam donec adipiscing tristique risus nec. Amet nisl purus in mollis. Et malesuada fames ac turpis egestas maecenas pharetra. Ante metus dictum at tempor commodo ullamcorper a. Dui id ornare arcu odio ut sem nulla. Ut pharetra sit amet aliquam id diam maecenas. Scelerisque in dictum non consectetur a erat nam at. In ante metus dictum at tempor. Eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque. Euismod nisi porta lorem mollis aliquam ut porttitor leo a. Malesuada proin libero nunc consequat interdum. Turpis egestas sed tempus urna et pharetra pharetra massa massa. Quis blandit turpis cursus in hac habitasse. Amet commodo nulla facilisi nullam vehicula ipsum a.</p>
 
@@ -118,9 +98,9 @@
             <p>Scelerisque in dictum non consectetur a. Elit pellentesque habitant morbi tristique senectus et. Nulla aliquet enim tortor at auctor urna nunc id. In ornare quam viverra orci. Auctor eu augue ut lectus arcu bibendum at varius vel. In cursus turpis massa tincidunt dui ut ornare lectus. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. A diam sollicitudin tempor id. Tellus mauris a diam maecenas sed enim ut sem. Pellentesque id nibh tortor id aliquet lectus proin. Fermentum et sollicitudin ac orci phasellus. Dolor morbi non arcu risus quis. Bibendum enim facilisis gravida neque. Tellus in metus vulputate eu scelerisque felis. Integer malesuada nunc vel risus commodo. Lacus laoreet non curabitur gravida arcu.</p>
         </div>
         
-        <div class="expand-button-container">
+        <!--<div class="expand-button-container">
             <button class="graph-frame-expand"></button>
-        </div>
+        </div>-->
         
         <div class="sample-iframe-container">
             <iframe id="GraphTool" class="frame" src="graph.html" allowfullscreen style="width: 100%; height: 100%; border: none;"></iframe>

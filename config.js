@@ -14,7 +14,10 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       page_title = "CrinGraph",                     // Optional. Appended to the page title if share URLs are enabled
       accessories = true,                           // If true, displays specified HTML at the bottom of the page. Configure further below
       externalLinksBar = true,                      // If true, displays row of pill-shaped links at the bottom of the page. Configure further below
-      restricted = false;                           // Enables restricted mode. More restricted options below.
+      restricted = false,                           // Enables restricted mode. More restricted options below
+      expandable = false,                           // Enables button to expand iframe over the top of the parent page
+      expandableOnly = false,                       // Prevents iframe interactions unless the user has expanded it
+      headerHeight = '0px';                        // Optional. If expandable=true, determines how much space to leave for the parent page header
 
 // Specify which targets to display
 const targets = [

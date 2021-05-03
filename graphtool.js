@@ -66,6 +66,10 @@ doc.html(`
           <button id="recolor"><span>○</span> recolor</button>
         </div>
 
+        <div class="expand-collapse">
+            <button id="expand-collapse"></button>
+        </div>
+
         <svg id="expandTools" viewBox="0 0 14 12">
           <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="#878156"    stroke-linecap="round" transform="translate(0,0.3)"/>
           <path d="M2 2h10M2 6h10M2 10h10" stroke-width="2px" stroke="currentColor" stroke-linecap="round"/>
@@ -1792,7 +1796,6 @@ function copyUrlInit() {
         document.execCommand('copy');
         document.body.removeChild(urlHost);
 
-        console.log(currentUrl);
         e.stopPropagation();
 
         copyUrlButton.classList.add("clicked");
@@ -1914,3 +1917,117 @@ function setActiveDatabase() {
     });
 }
 setActiveDatabase();
+
+//var B = (A ==="red") ? "hot":"cool";
+
+// Expand / collapse function
+function toggleExpandCollapse() {
+    const graphIsIframe = (window.top !== window.self) ? true:false,
+        graphBody = document.querySelector("body"),
+        parentBody = window.top.document.querySelector("body"),
+        expandCollapseButton = document.querySelector("button#expand-collapse");
+    
+    
+    if ( graphIsIframe) { graphBody.setAttribute("data-graph-frame", "collapsed"); }
+    
+    
+    if ( graphIsIframe && expandableOnly ) {
+        graphBody.setAttribute("data-expandable", "only");
+    } else if ( graphIsIframe && expandable ) {
+        graphBody.setAttribute("data-expandable", "true");
+    }
+    
+    const parentStyle = window.top.document.createElement("style"),
+          parentCss = `
+            :root {
+                --header-height: `+ headerHeight +`;
+            }
+            
+            body[data-graph-frame="expanded"] {
+                width: 100%;
+                height: 100%;
+                max-height: -webkit-fill-available;
+                overflow: hidden;
+            }
+            
+            body[data-graph-frame="expanded"] button.graph-frame-collapse {
+                display: inherit;
+            }
+            
+            body[data-graph-frame="expanded"] iframe#GraphTool {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                
+                width: 100% !important;
+                height: calc(100% - var(--header-height)) !important;
+
+                animation-name: graph-tool-expand;
+                animation-duration: 0.2s;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes graph-tool-expand {
+                0% {
+                    position: relative;
+                    opacity: 1.0;
+                    transform: translateY(0px);
+                }
+                48% {
+                    position: relative;
+                    opacity: 0.0;
+                    transform: translateY(-100px);
+                }
+                50% {
+                    position: fixed;
+                    opacity: 0.0;
+                    transform: translateY(0px);
+                }
+                52% {
+                    position: fixed;
+                    opacity: 0.0;
+                    transform: translateY(0px);
+                }
+                100% {
+                    position: fixed;
+                    opacity: 1.0;
+                    transform: translateY(0px);
+                }
+            }`;
+    
+    parentStyle.textContent = parentCss;
+    parentStyle.setAttribute("type", "text/css");
+    parentBody.append(parentStyle);
+    
+    expandCollapseButton.addEventListener("click", function(e) {
+        let frameState = document.querySelector("body").getAttribute("data-graph-frame");
+        
+        if ( frameState === "expanded" ) {
+            graphBody.setAttribute("data-graph-frame", "collapsed");
+            parentBody.setAttribute("data-graph-frame", "collapsed");
+        } else {
+            graphBody.setAttribute("data-graph-frame", "expanded");
+            parentBody.setAttribute("data-graph-frame", "expanded");
+        }
+        
+        e.stopPropagation();
+    });
+        
+}
+
+if ( expandable ) { toggleExpandCollapse(); }
+
+
+
+
+// https://www.w3schools.com/jsref/prop_win_top.asp
+//function myFunction() {
+//  if (window.top != window.self) {
+//    document.getElementById("demo").innerHTML = "This window is NOT the topmost window!";
+//  } else {
+//    document.getElementById("demo").innerHTML = "This window is the topmost window!";
+//  }
+//}
+

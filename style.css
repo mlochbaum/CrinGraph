@@ -427,6 +427,7 @@ div.accessories,
 div.external-links,
 div.selector-tabs,
 div.copy-url,
-td.curve-color {
+td.curve-color,
+div.expand-collapse {
     display: none;
 }

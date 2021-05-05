@@ -17,7 +17,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       restricted = false,                           // Enables restricted mode. More restricted options below
       expandable = false,                           // Enables button to expand iframe over the top of the parent page
       expandableOnly = false,                       // Prevents iframe interactions unless the user has expanded it
-      headerHeight = '0px';                        // Optional. If expandable=true, determines how much space to leave for the parent page header
+      headerHeight = '0px';                         // Optional. If expandable=true, determines how much space to leave for the parent page header
 
 // Specify which targets to display
 const targets = [

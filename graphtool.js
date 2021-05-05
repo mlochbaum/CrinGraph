@@ -990,6 +990,22 @@ function setHover(elt, h) {
     elt.on("mouseover", h(true)).on("mouseout", h(false));
 }
 
+// See if iframe gets CORS error when interacting with window.top
+try {
+    accessWindowTop = (window.top.location.href) ? true:false;
+    targetWindow = window.top;
+} catch {
+    accessWindowTop = false;
+    targetWindow = window;
+}
+
+// See if iframe gets CORS error when interacting with window.top.document
+try {
+    accessDocumentTop = (window.top.document) ? true:false;
+} catch {
+    accessDocumentTop = false;
+}
+
 let ifURL = typeof share_url !== "undefined" && share_url;
 let baseTitle = typeof page_title !== "undefined" ? page_title : "CrinGraph";
 let baseURL;  // Set by setInitPhones
@@ -1001,8 +1017,8 @@ function addPhonesToUrl() {
         url += "?share=" + encodeURI(names.join().replace(/ /g,"_"));
         title = names.join(", ") + " - " + title;
     }
-    window.top.history.replaceState("", title, url);
-    top.document.title = title;
+    targetWindow.history.replaceState("", title, url);
+    targetWindow.document.title = title;
 }
 function updatePaths() {
     clearLabels();
@@ -1458,7 +1474,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         inits = [],
         initReq = typeof init_phones !== "undefined" ? init_phones : false;
     if (ifURL) {
-        let url = window.top.location.href,
+        let url = targetWindow.location.href,
             par = "?share=";
         baseURL = url.split("?").shift();
         if (url.includes(par)) {
@@ -1786,7 +1802,7 @@ function copyUrlInit() {
 
     copyUrlButton.addEventListener("click", function(e) {
         let urlHost = document.createElement('input'),
-            currentUrl = window.top.location.href;
+            currentUrl = targetWindow.location.href;
 
         urlHost.setAttribute("style","position: fixed; opacity: 0.0;");
         urlHost.value = currentUrl;
@@ -1905,7 +1921,7 @@ if (externalLinksBar) { addExternalLinks(); }
 
 // Set active graph site link
 function setActiveDatabase() {
-    let url = window.top.location.href,
+    let url = targetWindow.location.href,
         dbLinks = document.querySelectorAll("div.external-links a");
 
     dbLinks.forEach(function(link) {
@@ -2017,17 +2033,4 @@ function toggleExpandCollapse() {
         
 }
 
-if ( expandable ) { toggleExpandCollapse(); }
-
-
-
-
-// https://www.w3schools.com/jsref/prop_win_top.asp
-//function myFunction() {
-//  if (window.top != window.self) {
-//    document.getElementById("demo").innerHTML = "This window is NOT the topmost window!";
-//  } else {
-//    document.getElementById("demo").innerHTML = "This window is the topmost window!";
-//  }
-//}
-
+if ( expandable && accessDocumentTop ) { toggleExpandCollapse(); }

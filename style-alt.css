@@ -253,13 +253,6 @@ div.expand-collapse {
     
     background-color: var(--background-color);
     border-left: 1px solid var(--background-color-contrast-more);
-    
-/*
-    position: relative;
-    order: -1;
-    border-left: none;
-    border-right: 1px solid var(--background-color-contrast-more);
-*/
 }
 
 body[data-expandable="true"] div.expand-collapse,
@@ -323,86 +316,6 @@ body[data-graph-frame="expanded"] button#expand-collapse:before {
     -webkit-mask-size: 20px;
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
-}
-
-/* Expandable only */
-body[data-expandable="only"][data-graph-frame="collapsed"] {
-    overflow: hidden;
-}
-
-body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse {
-    position: fixed;
-    top: 0;
-    left: 0;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    
-    background-color: var(--background-color);
-    background-color: transparent;
-    border: none;
-}
-
-body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse:after {
-    position: absolute;
-    
-    content: 'Tap to launch graph tool';
-    
-    color: var(--background-color-contrast-more);
-    font-family: var(--font-secondary);
-    font-size: 11px;
-    line-height: 1em;
-    text-transform: uppercase;
-    
-    pointer-events: none;
-}
-
-body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    width: 100%;
-    height: 100%;
-    
-    background-color: transparent;
-}
-
-body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse:before {
-    position: relative;
-    z-index: 1;
-    
-    transform: scale(7);
-}
-
-body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    
-    content: '';
-    
-    display: block;
-    width: 100%;
-    height: 100%;
-    
-    background-color: var(--background-color);
-    
-    opacity: 0.9;
-}
-
-body[data-expandable="only"][data-graph-frame="collapsed"] section.parts-primary {
-    flex: 100% 1 1;
-    overflow: hidden;
-}
-
-body[data-expandable="only"][data-graph-frame="collapsed"] section.parts-secondary {
-    display: none;
 }
 
 /* Copy URL */
@@ -2158,9 +2071,14 @@ div.cash {
 Responsive styles *****/
 
 @media ( max-width: 1000px ) {
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+    
     body {
         overflow: hidden;
     }
+    
     
     main.main {
         display: flex;
@@ -2204,6 +2122,10 @@ Responsive styles *****/
     section.parts-secondary:before {
         content: '';
         opacity: 0;
+    }
+
+    tbody.curves:empty:before {
+        content: 'Select a model from the list below to graph its frequency response';
     }
     
     /* Primary panel focused */
@@ -2299,44 +2221,13 @@ Responsive styles *****/
     
     /* Secondary panel focused */
     main.main[data-focused-panel="secondary"] section.parts-primary {
-        flex: 120px 0 0;
-    }
-    
-    main.main[data-focused-panel="secondary"] section.parts-primary:before {
-        position: sticky;
-        top: 0;
-        left: 0;
-        z-index: 2;
-        
-        content: 'Tap here to view the graph';
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-        width: 100%;
-        height: 100%;
-        padding: 32px;
-        margin: -120px 0 0 0;
-        
-        background-color: var(--accent-color-contrast);
-        
-        color: var(--accent-color);
-        font-weight: bold;
-        font-size: 12px;
-        
-        opacity: 0.95;
+        overflow: hidden;
     }
     
     main.main[data-focused-panel="secondary"] section.parts-secondary {
-        flex: calc(100% - 120px) 0 0;
     }
     
     section.parts-secondary div.controls {
-    }
-
-    tbody.curves:empty:before {
-        content: 'Select a model from the list below to graph its frequency response';
     }
 
 }
@@ -2452,7 +2343,9 @@ Responsive styles *****/
     }
 }
 
-@media ( max-height: 500px ) and ( orientation: landscape ) {
+/*@media ( max-height: 500px ) and ( orientation: landscape ) {*/
+/*
+@media ( max-height: 500px ) and ( min-aspect-ratio: 3 / 2 ) {
     section.parts-primary {
         z-index: 3;
         
@@ -2490,3 +2383,4 @@ Responsive styles *****/
         pointer-events: none;
     }
 }
+*/

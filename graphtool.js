@@ -1440,7 +1440,7 @@ function showPhone(p, exclusive, suppressVariant) {
         .call(setPhoneTr);
 //    Displays variant pop-up when phone displayed
     if (!suppressVariant && p.fileNames && !p.copyOf) {
-        table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
+        //table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
     }
 }
 
@@ -1560,7 +1560,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                 d3.event.stopPropagation();
                 showPhone(p, 0);
                 let panelsContainer = document.querySelector("main.main");
-                panelsContainer.setAttribute("data-focused-panel","primary");
+                //panelsContainer.setAttribute("data-focused-panel","primary");
             })
 
 
@@ -1857,29 +1857,40 @@ function setFocusedPanel() {
         primaryPanel = document.querySelector(".parts-primary"),
         secondaryPanel = document.querySelector(".parts-secondary"),
         phonesList = document.querySelector("div#phones");
+    
+    panelsContainer.setAttribute("data-focused-panel","secondary");
 
     primaryPanel.addEventListener("click", function() {
         let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
 
         if ( previouslyFocused === 'secondary' ) {
-            panelsContainer.setAttribute("data-focused-panel","");
+            panelsContainer.setAttribute("data-focused-panel","primary");
         } else {
             panelsContainer.setAttribute("data-focused-panel","primary");
         }
     });
 
     secondaryPanel.addEventListener("click", function() {
-        panelsContainer.setAttribute("data-focused-panel","");
+        panelsContainer.setAttribute("data-focused-panel","secondary");
+        
+        let windowWidth = window.innerWidth;
+        console.log(windowWidth);
+        
+        if ( windowWidth < 10001 ) {
+            primaryPanel.scroll({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
     });
 
     phonesList.addEventListener("click", function(e) {
         let thingClicked = e.target;
 
-        if ( thingClicked.matches(".phone-item, .phone-item span, .phone-item-add") ) {
-
-            panelsContainer.setAttribute("data-focused-panel","primary");
-            e.stopPropagation();
-        }
+        //if ( thingClicked.matches(".phone-item, .phone-item span, .phone-item-add") ) {
+        //    panelsContainer.setAttribute("data-focused-panel","primary");
+        //    e.stopPropagation();
+        //}
     });
 }
 setFocusedPanel();
@@ -1934,8 +1945,6 @@ function setActiveDatabase() {
 }
 setActiveDatabase();
 
-//var B = (A ==="red") ? "hot":"cool";
-
 // Expand / collapse function
 function toggleExpandCollapse() {
     const graphIsIframe = (window.top !== window.self) ? true:false,
@@ -1948,6 +1957,95 @@ function toggleExpandCollapse() {
     
     
     if ( graphIsIframe && expandableOnly ) {
+        const expandOnlyMax = ( expandableOnly === true ) ? 1000000:expandableOnly,
+            expandOnlyStyle = document.createElement("style"),
+            expandOnlyCss = `
+            @media ( max-width: `+ expandOnlyMax +`px ) {
+                body[data-expandable="only"][data-graph-frame="collapsed"] {
+                    overflow: hidden;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    width: 100%;
+                    height: 100%;
+                    padding: 0;
+
+                    background-color: var(--background-color);
+                    background-color: transparent;
+                    border: none;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse:after {
+                    position: absolute;
+
+                    content: 'Tap to launch graph tool';
+
+                    color: var(--background-color-contrast-more);
+                    font-family: var(--font-secondary);
+                    font-size: 11px;
+                    line-height: 1em;
+                    text-transform: uppercase;
+
+                    pointer-events: none;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    width: 100%;
+                    height: 100%;
+
+                    background-color: transparent;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse:before {
+                    position: relative;
+                    z-index: 1;
+
+                    transform: scale(7);
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse:after {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+
+                    content: '';
+
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+
+                    background-color: var(--background-color);
+
+                    opacity: 0.9;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] section.parts-primary {
+                    flex: 100% 1 1;
+                    overflow: hidden;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] section.parts-secondary {
+                    display: none;
+                }
+            }
+        `;
+        
+        expandOnlyStyle.textContent = expandOnlyCss;
+        expandOnlyStyle.setAttribute("type", "text/css");
+        document.querySelector("body").append(expandOnlyStyle);
+        
         graphBody.setAttribute("data-expandable", "only");
     } else if ( graphIsIframe && expandable ) {
         graphBody.setAttribute("data-expandable", "true");

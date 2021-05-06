@@ -7,6 +7,7 @@
     --background-color: hsl(0, 0%, 94%);
     --background-color-contrast: hsl(0, 0%, 90%);
     --background-color-contrast-more: hsl(0, 0%, 40%);
+    --background-color-graph: hsl(0, 0%, 100%);
     
     --background-color-inputs: hsl(0, 0%, 100%);
     
@@ -32,6 +33,7 @@
         --background-color: hsl(0, 0%, 7%);
         --background-color-contrast: hsl(0, 0%, 2%);
         --background-color-contrast-more: hsl(0, 0%, 40%);
+        --background-color-graph: var(--background-color);
 
         --background-color-inputs: hsl(0, 0%, 15%);
 
@@ -70,6 +72,7 @@ color values in the alt layout come from this theme.
     --background-color: hsl(212, 14%, 10%);
     --background-color-contrast: hsl(212, 14%, 8%);
     --background-color-contrast-more: hsl(212, 14%, 40%);
+    --background-color-graph: var(--background-color);
     
     --background-color-inputs: hsl(212, 14%, 95%);
 
@@ -99,6 +102,7 @@ color values in the alt layout come from this theme.
     --background-color: hsl(var(--hue), 3%, 95%);
     --background-color-contrast: hsl(var(--hue), 3%, 85%);
     --background-color-contrast-more: hsl(var(--hue), 3%, 50%);
+    --background-color-graph: var(--background-color);
     
     --background-color-inputs: hsl(var(--hue), 20%, 100%);
     
@@ -128,6 +132,7 @@ color values in the alt layout come from this theme.
     --background-color: hsl(var(--hue), 10%, 8%);
     --background-color-contrast: hsl(var(--hue), 10%, 4%);
     --background-color-contrast-more: hsl(var(--hue), 10%, 35%);
+    --background-color-graph: var(--background-color);
     
     --background-color-inputs: hsl(var(--hue), 5%, 25%);
     
@@ -154,6 +159,7 @@ color values in the alt layout come from this theme.
     --background-color: hsl(0, 0%, 94%);
     --background-color-contrast: hsl(0, 0%, 90%);
     --background-color-contrast-more: hsl(0, 0%, 40%);
+    --background-color-graph: var(--background-color);
     
     --background-color-inputs: hsl(0, 0%, 100%);
     
@@ -180,6 +186,7 @@ color values in the alt layout come from this theme.
     --background-color: hsl(0, 0%, 7%);
     --background-color-contrast: hsl(0, 0%, 2%);
     --background-color-contrast-more: hsl(0, 0%, 40%);
+    --background-color-graph: var(--background-color);
     
     --background-color-inputs: hsl(0, 0%, 15%);
     

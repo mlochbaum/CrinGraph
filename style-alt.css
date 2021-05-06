@@ -117,6 +117,7 @@ g.lineLabel text {
 
 svg#fr-graph {
     background-color: var(--background-color);
+    background-color: var(--background-color-graph);
     
     pointer-events: none;
 }
@@ -202,6 +203,7 @@ div.graphBox {
     padding-bottom: 16px;
     
     background-color: var(--background-color);
+    background-color: var(--background-color-graph);
     border-bottom: 1px solid var(--background-color-contrast-more);
 }
 
@@ -235,6 +237,7 @@ div.tools {
     
     overflow-x: scroll;
     
+    background-color: var(--background-color);
     border-bottom: 1px solid var(--background-color-contrast-more);
 
     overflow-y: hidden;
@@ -320,7 +323,7 @@ body[data-graph-frame="expanded"] button#expand-collapse:before {
 
 /* Copy URL */
 div.copy-url {
-    padding: 0 16px;
+    padding: 0 6px 0 16px;
 }
 
 button#copy-url {
@@ -378,7 +381,7 @@ div.zoom {
     display: flex;
     align-items: center;
     
-    padding-left: 16px;
+    padding: 0 16px;
     margin-left: 16px;
     border-left: 1px solid var(--background-color-contrast-more);
 }
@@ -570,16 +573,13 @@ div.smooth:after {
 
 /* Download, Inspect, Label, Recolor */
 div.miscTools {
-    order: 5;
+    order: 1;
     
     display: flex;
     
     background-color: var(--background-color);
     
     padding-right: 16px;
-    padding-left: 16px;
-    margin-left: 16px;
-    border-left: 1px solid var(--background-color-contrast-more);
 }
 
 div.miscTools button {
@@ -627,7 +627,8 @@ div.tools div.miscTools button:not(#download) {
 }
 
 div.miscTools button#download {
-    order: 2;
+    order: 0;
+    margin: 0 6px 0 0;
 }
 
 div.miscTools button#download:active {

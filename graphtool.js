@@ -28,9 +28,13 @@ doc.html(`
       </div>
 
       <div class="tools collapseTools">
-        <div class="copy-url">
+        <!--<div class="copy-url">
           <button id="copy-url">Copy URL</button>
         </div>
+
+	      <div class="download">
+		      <button id="download"><u>⇩</u> screenshot</button>
+	      </div>-->
 
         <div class="zoom">
           <span>Zoom:</span>
@@ -42,7 +46,7 @@ doc.html(`
         <div class="normalize">
           <span>Normalize:</span>
           <div>
-            <input type="number" inputmode="decimal" id="norm-phon" required min="20" max="100" value="`+ default_norm_db +`" step="1" onclick="this.focus();this.select()"></input>
+            <input type="number" inputmode="decimal" id="norm-phon" required min="0" max="100" value="`+ default_norm_db +`" step="1" onclick="this.focus();this.select()"></input>
             <span>dB</span>
           </div>
           <div>
@@ -60,10 +64,14 @@ doc.html(`
         </div>
 
         <div class="miscTools">
+ <button id="copy-url">Copy URL</button>
+<button id="download"><u>⇩</u> screenshot</button>
+
           <button id="inspector">╞ inspect</button>
           <button id="label">▭ label</button>
-          <button id="download"><u>⇩</u> screenshot</button>
+
           <button id="recolor">○ recolor</button>
+	  <button id="theme">theme</button>
         </div>
 
         <svg id="expandTools" viewBox="0 0 14 12">
@@ -99,7 +107,8 @@ doc.html(`
 
       <div class="more-graph-sites">
         <span>IEM graph databases</span>
-        <a href="http://iems.audiodiscourse.com/">Audio Discourse</a>
+        <a href="https://iems.audiodiscourse.com/">Audio Discourse</a>
+	<a href="https://hbb.squig.link/">Bad Guy Good Audio Reviews</a>
         <a href="https://banbeu.com/graph/tool/">Banbeucmas</a>
         <a href="https://www.hypethesonics.com/iemdbc/">HypetheSonics</a>
         <a href="https://crinacle.com/graphs/iems/graphtool/">In-Ear Fidelity</a>
@@ -107,7 +116,7 @@ doc.html(`
         <a href="https://squig.link/">Super* Review</a>
 
         <span>Headphones</span>
-        <a href="http://headphones.audiodiscourse.com/">Audio Discourse</a>
+        <a href="https://headphones.audiodiscourse.com/">Audio Discourse</a>
         <a href="https://crinacle.com/graphs/headphones/graphtool/">In-Ear Fidelity</a>
         <a href="https://squig.link/hp.html">Super* Review</a>
       </div>
@@ -1663,6 +1672,10 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         activePhones.forEach(p => { if (!p.isTarget) { p.id = getPhoneNumber(); } });
         colorPhones();
     });
+
+    doc.select("#theme").on("click", function () {
+	themeChooser();
+    });
 });
 
 let pathHoverTimeout;
@@ -1894,3 +1907,10 @@ function setActiveDatabase() {
     });
 }
 setActiveDatabase();
+
+
+//Theme Chooser
+function themeChooser() {
+  var element = document.body;
+  element.classList.toggle("dark-mode");
+}

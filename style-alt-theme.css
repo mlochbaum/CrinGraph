@@ -23,7 +23,7 @@
   --svg-filter: none;
 }
 
-.dark-mode {
+body.dark-mode {
   --accent-color: hsl(0, 0%, 40%);
   --accent-color-contrast: hsl(0, 0%, 25%);
 

@@ -253,6 +253,7 @@ div.expand-collapse {
     display: none;
     
     padding: 0 16px;
+    margin-left: auto;
     
     background-color: var(--background-color);
     border-left: 1px solid var(--background-color-contrast-more);

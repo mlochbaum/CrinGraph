@@ -1209,6 +1209,7 @@ function addModel(t) {
         })
         .attr("tabindex",0) // Make focusable
         .on("focus", function (p) {
+            console.log("Focused");
             if (p.selectInProgress) return;
             p.selectInProgress = true;
             p.vars[p.fileName] = p.rawChannels;
@@ -1438,7 +1439,7 @@ function showPhone(p, exclusive, suppressVariant) {
     d3.selectAll("#phones div,.target")
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
-//    Displays variant pop-up when phone displayed
+    //Displays variant pop-up when phone displayed
     if (!suppressVariant && p.fileNames && !p.copyOf) {
         //table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
     }
@@ -1874,7 +1875,6 @@ function setFocusedPanel() {
         panelsContainer.setAttribute("data-focused-panel","secondary");
         
         let windowWidth = window.innerWidth;
-        console.log(windowWidth);
         
         if ( windowWidth < 10001 ) {
             primaryPanel.scroll({

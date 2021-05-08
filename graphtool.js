@@ -1209,7 +1209,6 @@ function addModel(t) {
         })
         .attr("tabindex",0) // Make focusable
         .on("focus", function (p) {
-            console.log("Focused");
             if (p.selectInProgress) return;
             p.selectInProgress = true;
             p.vars[p.fileName] = p.rawChannels;
@@ -1440,8 +1439,8 @@ function showPhone(p, exclusive, suppressVariant) {
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
     //Displays variant pop-up when phone displayed
-    if (!suppressVariant && p.fileNames && !p.copyOf) {
-        //table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
+    if (!suppressVariant && p.fileNames && !p.copyOf && window.innerWidth > 1000) {
+        table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
     }
 }
 

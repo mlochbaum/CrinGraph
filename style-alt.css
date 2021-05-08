@@ -831,7 +831,7 @@ tbody.curves > tr > td.remove:after {
 tbody.curves > tr > td.remove {
     order: 6;
     
-    margin: 0 13px 0 0;
+    margin: 0 15px 0 0;
     
     background: none !important;
 }

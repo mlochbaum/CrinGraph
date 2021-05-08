@@ -448,6 +448,7 @@ div.external-links,
 div.selector-tabs,
 div.copy-url,
 td.curve-color,
-div.expand-collapse {
+div.expand-collapse,
+button#theme {
     display: none;
 }

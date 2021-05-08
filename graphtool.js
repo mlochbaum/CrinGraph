@@ -30,6 +30,7 @@ doc.html(`
       <div class="tools collapseTools">
         <div class="copy-url">
           <button id="copy-url">Copy URL</button>
+          <button id="download-faux">Screenshot</button>
         </div>
 
         <div class="zoom">
@@ -64,7 +65,7 @@ doc.html(`
           <button id="label"><span>▭</span> label</button>
           <button id="download"><span><u>⇩</u></span> screenshot</button>
           <button id="recolor"><span>○</span> recolor</button>
-          <button id="theme">Theme</button>
+          <button id="theme">dark mode</button>
         </div>
 
         <div class="expand-collapse">
@@ -1827,11 +1828,22 @@ function copyUrlInit() {
 }
 copyUrlInit();
 
-//Theme Chooser
+// Theme Chooser
 function themeChooser() {
     var element = document.body;
     element.classList.toggle("dark-mode");
 }
+
+// Map faux download button
+function mapDownloadFaux() {
+    let downloadButton = document.querySelector("button#download"),
+        downloadFaux = document.querySelector("button#download-faux");
+    
+    downloadFaux.addEventListener("click", function() {
+        downloadButton.click();
+    })
+}
+mapDownloadFaux();
 
 // Set focused scroll list
 function setFocusedList(selectedList) {

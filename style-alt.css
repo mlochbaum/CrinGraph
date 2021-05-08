@@ -324,10 +324,14 @@ body[data-graph-frame="expanded"] button#expand-collapse:before {
 
 /* Copy URL */
 div.copy-url {
-    padding: 0 6px 0 16px;
+    display: flex;
+    
+    padding: 0 0 0 16px;
+    margin: 0 16px 0 0;
 }
 
-button#copy-url {
+button#copy-url,
+button#download-faux {
     position: relative;
     
     padding: 12px 16px;
@@ -345,6 +349,12 @@ button#copy-url {
     white-space: nowrap;
     cursor: pointer;
     outline: none;
+}
+
+button#copy-url:active,
+button#download-faux:active {
+    background-color: var(--accent-color) !important;
+    color: var(--font-color-secondary);
 }
 
 button#copy-url:before {
@@ -373,6 +383,10 @@ button#copy-url:before {
 button#copy-url.clicked:before {
     opacity: 1.0;
     transition: opacity 0.0s linear;
+}
+
+button#download-faux {
+    margin-left: 6px;
 }
 
 /* Zoom */
@@ -574,13 +588,14 @@ div.smooth:after {
 
 /* Download, Inspect, Label, Recolor */
 div.miscTools {
-    order: 1;
+    order: 4;
     
     display: flex;
     
     background-color: var(--background-color);
+    border-left: 1px solid var(--background-color-contrast-more);
     
-    padding-right: 16px;
+    padding: 0 16px;
 }
 
 div.miscTools button {
@@ -628,6 +643,8 @@ div.tools div.miscTools button:not(#download) {
 }
 
 div.miscTools button#download {
+    display: none;
+    
     order: 0;
     margin: 0 6px 0 0;
 }
@@ -646,6 +663,7 @@ svg#expandTools path {
     display: none;
 }
 
+body.dark-mode div.miscTools button#theme,
 div.miscTools button#theme:active {
   background-color: var(--accent-color) !important;
 

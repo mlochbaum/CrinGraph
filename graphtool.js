@@ -28,13 +28,9 @@ doc.html(`
       </div>
 
       <div class="tools collapseTools">
-        <!--<div class="copy-url">
+        <div class="copy-url">
           <button id="copy-url">Copy URL</button>
         </div>
-
-	      <div class="download">
-		      <button id="download"><u>⇩</u> screenshot</button>
-	      </div>-->
 
         <div class="zoom">
           <span>Zoom:</span>
@@ -64,14 +60,15 @@ doc.html(`
         </div>
 
         <div class="miscTools">
- <button id="copy-url">Copy URL</button>
-<button id="download"><u>⇩</u> screenshot</button>
+          <button id="inspector"><span>╞</span> inspect</button>
+          <button id="label"><span>▭</span> label</button>
+          <button id="download"><span><u>⇩</u></span> screenshot</button>
+          <button id="recolor"><span>○</span> recolor</button>
+          <button id="theme">Theme</button>
+        </div>
 
-          <button id="inspector">╞ inspect</button>
-          <button id="label">▭ label</button>
-
-          <button id="recolor">○ recolor</button>
-	  <button id="theme">theme</button>
+        <div class="expand-collapse">
+            <button id="expand-collapse"></button>
         </div>
 
         <svg id="expandTools" viewBox="0 0 14 12">
@@ -101,25 +98,9 @@ doc.html(`
         </table>
       </div>
 
-      <div class="about-this-tool">
-        <p>This graph database is maintained by [name] with frequency reponses produced with an IEC711-compliant ear simulator microphone. This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project.</p>
-      </div>
+      <div class="accessories"></div>
 
-      <div class="more-graph-sites">
-        <span>IEM graph databases</span>
-        <a href="https://iems.audiodiscourse.com/">Audio Discourse</a>
-	<a href="https://hbb.squig.link/">Bad Guy Good Audio Reviews</a>
-        <a href="https://banbeu.com/graph/tool/">Banbeucmas</a>
-        <a href="https://www.hypethesonics.com/iemdbc/">HypetheSonics</a>
-        <a href="https://crinacle.com/graphs/iems/graphtool/">In-Ear Fidelity</a>
-        <a href="https://precog.squig.link/">Precogvision</a>
-        <a href="https://squig.link/">Super* Review</a>
-
-        <span>Headphones</span>
-        <a href="https://headphones.audiodiscourse.com/">Audio Discourse</a>
-        <a href="https://crinacle.com/graphs/headphones/graphtool/">In-Ear Fidelity</a>
-        <a href="https://squig.link/hp.html">Super* Review</a>
-      </div>
+      <div class="external-links"></div>
     </section>
 
     <section class="parts-secondary">
@@ -1010,6 +991,22 @@ function setHover(elt, h) {
     elt.on("mouseover", h(true)).on("mouseout", h(false));
 }
 
+// See if iframe gets CORS error when interacting with window.top
+try {
+    accessWindowTop = (window.top.location.href) ? true:false;
+    targetWindow = window.top;
+} catch {
+    accessWindowTop = false;
+    targetWindow = window;
+}
+
+// See if iframe gets CORS error when interacting with window.top.document
+try {
+    accessDocumentTop = (window.top.document) ? true:false;
+} catch {
+    accessDocumentTop = false;
+}
+
 let ifURL = typeof share_url !== "undefined" && share_url;
 let baseTitle = typeof page_title !== "undefined" ? page_title : "CrinGraph";
 let baseURL;  // Set by setInitPhones
@@ -1021,8 +1018,8 @@ function addPhonesToUrl() {
         url += "?share=" + encodeURI(names.join().replace(/ /g,"_"));
         title = names.join(", ") + " - " + title;
     }
-    window.top.history.replaceState("", title, url);
-    top.document.title = title;
+    targetWindow.history.replaceState("", title, url);
+    targetWindow.document.title = title;
 }
 function updatePaths() {
     clearLabels();
@@ -1442,8 +1439,8 @@ function showPhone(p, exclusive, suppressVariant) {
     d3.selectAll("#phones div,.target")
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
-//    Displays variant pop-up when phone displayed
-    if (!suppressVariant && p.fileNames && !p.copyOf) {
+    //Displays variant pop-up when phone displayed
+    if (!suppressVariant && p.fileNames && !p.copyOf && window.innerWidth > 1000) {
         table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
     }
 }
@@ -1478,7 +1475,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         inits = [],
         initReq = typeof init_phones !== "undefined" ? init_phones : false;
     if (ifURL) {
-        let url = window.top.location.href,
+        let url = targetWindow.location.href,
             par = "?share=";
         baseURL = url.split("?").shift();
         if (url.includes(par)) {
@@ -1564,7 +1561,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                 d3.event.stopPropagation();
                 showPhone(p, 0);
                 let panelsContainer = document.querySelector("main.main");
-                panelsContainer.setAttribute("data-focused-panel","primary");
+                //panelsContainer.setAttribute("data-focused-panel","primary");
             })
 
 
@@ -1672,9 +1669,9 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         activePhones.forEach(p => { if (!p.isTarget) { p.id = getPhoneNumber(); } });
         colorPhones();
     });
-
+    
     doc.select("#theme").on("click", function () {
-	themeChooser();
+        themeChooser();
     });
 });
 
@@ -1810,7 +1807,7 @@ function copyUrlInit() {
 
     copyUrlButton.addEventListener("click", function(e) {
         let urlHost = document.createElement('input'),
-            currentUrl = window.top.location.href;
+            currentUrl = targetWindow.location.href;
 
         urlHost.setAttribute("style","position: fixed; opacity: 0.0;");
         urlHost.value = currentUrl;
@@ -1820,7 +1817,6 @@ function copyUrlInit() {
         document.execCommand('copy');
         document.body.removeChild(urlHost);
 
-        console.log(currentUrl);
         e.stopPropagation();
 
         copyUrlButton.classList.add("clicked");
@@ -1830,6 +1826,12 @@ function copyUrlInit() {
     });
 }
 copyUrlInit();
+
+//Theme Chooser
+function themeChooser() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
 
 // Set focused scroll list
 function setFocusedList(selectedList) {
@@ -1866,51 +1868,277 @@ function setFocusedPanel() {
         primaryPanel = document.querySelector(".parts-primary"),
         secondaryPanel = document.querySelector(".parts-secondary"),
         phonesList = document.querySelector("div#phones");
+    
+    panelsContainer.setAttribute("data-focused-panel","secondary");
 
     primaryPanel.addEventListener("click", function() {
         let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
 
         if ( previouslyFocused === 'secondary' ) {
-            panelsContainer.setAttribute("data-focused-panel","");
+            panelsContainer.setAttribute("data-focused-panel","primary");
         } else {
             panelsContainer.setAttribute("data-focused-panel","primary");
         }
     });
 
     secondaryPanel.addEventListener("click", function() {
-        panelsContainer.setAttribute("data-focused-panel","");
+        panelsContainer.setAttribute("data-focused-panel","secondary");
+        
+        let windowWidth = window.innerWidth;
+        
+        if ( windowWidth < 10001 ) {
+            primaryPanel.scroll({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
     });
 
     phonesList.addEventListener("click", function(e) {
         let thingClicked = e.target;
 
-        if ( thingClicked.matches(".phone-item, .phone-item span, .phone-item-add") ) {
-
-            panelsContainer.setAttribute("data-focused-panel","primary");
-            e.stopPropagation();
-        }
+        //if ( thingClicked.matches(".phone-item, .phone-item span, .phone-item-add") ) {
+        //    panelsContainer.setAttribute("data-focused-panel","primary");
+        //    e.stopPropagation();
+        //}
     });
 }
 setFocusedPanel();
 
+// Add accessories to the bottom of the page, if configured
+function addAccessories() {
+    let accessoriesBar = document.querySelector("div.accessories"),
+        accessoriesContainer = document.createElement("aside");
+    
+    accessoriesContainer.innerHTML = whichAccessoriesToUse;
+    accessoriesBar.append(accessoriesContainer);
+}
+if (accessories) { addAccessories(); }
+
+// Add external links to bar at bottom of page, if configured
+function addExternalLinks() {
+    const externalLinksBar = document.querySelector("div.external-links");
+
+    linkSets.forEach(function(set) {
+        let setLabelHtml = document.createElement("span"),
+            setLabelText = set.label,
+            links = set.links;
+        
+        setLabelHtml.textContent = setLabelText;
+        externalLinksBar.append(setLabelHtml);
+        
+        links.forEach(function(link) {
+            let linkHtml = document.createElement("a"),
+                linkName = link.name,
+                linkUrl = link.url;
+            
+            linkHtml.textContent = linkName;
+            linkHtml.setAttribute("href", linkUrl);
+            externalLinksBar.append(linkHtml);
+        });
+    });
+}
+if (externalLinksBar) { addExternalLinks(); }
+
 // Set active graph site link
 function setActiveDatabase() {
-    let url = window.top.location.href,
-        dbLinks = document.querySelectorAll("div.more-graph-sites a");
+    let url = targetWindow.location.href,
+        dbLinks = document.querySelectorAll("div.external-links a");
 
     dbLinks.forEach(function(link) {
         let linkUrl = link.getAttribute("href");
 
         if ( url.includes(linkUrl) ) {
-            link.setAttribute("class","active");
+            link.setAttribute("class", "active");
         }
     });
 }
 setActiveDatabase();
 
+// Expand / collapse function
+function toggleExpandCollapse() {
+    const graphIsIframe = (window.top !== window.self) ? true:false,
+        graphBody = document.querySelector("body"),
+        parentBody = window.top.document.querySelector("body"),
+        expandCollapseButton = document.querySelector("button#expand-collapse");
+    
+    
+    if ( graphIsIframe) { graphBody.setAttribute("data-graph-frame", "collapsed"); }
+    
+    
+    if ( graphIsIframe && expandableOnly ) {
+        const expandOnlyMax = ( expandableOnly === true ) ? 1000000:expandableOnly,
+            expandOnlyStyle = document.createElement("style"),
+            expandOnlyCss = `
+            @media ( max-width: `+ expandOnlyMax +`px ) {
+                body[data-expandable="only"][data-graph-frame="collapsed"] {
+                    overflow: hidden;
+                }
 
-//Theme Chooser
-function themeChooser() {
-  var element = document.body;
-  element.classList.toggle("dark-mode");
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    width: 100%;
+                    height: 100%;
+                    padding: 0;
+
+                    background-color: var(--background-color);
+                    background-color: transparent;
+                    border: none;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse:after {
+                    position: absolute;
+
+                    content: 'Tap to launch graph tool';
+
+                    color: var(--background-color-contrast-more);
+                    font-family: var(--font-secondary);
+                    font-size: 11px;
+                    line-height: 1em;
+                    text-transform: uppercase;
+
+                    pointer-events: none;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    width: 100%;
+                    height: 100%;
+
+                    background-color: transparent;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse:before {
+                    position: relative;
+                    z-index: 1;
+
+                    transform: scale(7);
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] div.expand-collapse button#expand-collapse:after {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+
+                    content: '';
+
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+
+                    background-color: var(--background-color);
+
+                    opacity: 0.9;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] section.parts-primary {
+                    flex: 100% 1 1;
+                    overflow: hidden;
+                }
+
+                body[data-expandable="only"][data-graph-frame="collapsed"] section.parts-secondary {
+                    display: none;
+                }
+            }
+        `;
+        
+        expandOnlyStyle.textContent = expandOnlyCss;
+        expandOnlyStyle.setAttribute("type", "text/css");
+        document.querySelector("body").append(expandOnlyStyle);
+        
+        graphBody.setAttribute("data-expandable", "only");
+    } else if ( graphIsIframe && expandable ) {
+        graphBody.setAttribute("data-expandable", "true");
+    }
+    
+    const parentStyle = window.top.document.createElement("style"),
+          parentCss = `
+            :root {
+                --header-height: `+ headerHeight +`;
+            }
+            
+            body[data-graph-frame="expanded"] {
+                width: 100%;
+                height: 100%;
+                max-height: -webkit-fill-available;
+                overflow: hidden;
+            }
+            
+            body[data-graph-frame="expanded"] button.graph-frame-collapse {
+                display: inherit;
+            }
+            
+            body[data-graph-frame="expanded"] iframe#GraphTool {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                
+                width: 100% !important;
+                height: calc(100% - var(--header-height)) !important;
+
+                animation-name: graph-tool-expand;
+                animation-duration: 0.2s;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes graph-tool-expand {
+                0% {
+                    position: relative;
+                    opacity: 1.0;
+                    transform: translateY(0px);
+                }
+                48% {
+                    position: relative;
+                    opacity: 0.0;
+                    transform: translateY(-100px);
+                }
+                50% {
+                    position: fixed;
+                    opacity: 0.0;
+                    transform: translateY(0px);
+                }
+                52% {
+                    position: fixed;
+                    opacity: 0.0;
+                    transform: translateY(0px);
+                }
+                100% {
+                    position: fixed;
+                    opacity: 1.0;
+                    transform: translateY(0px);
+                }
+            }`;
+    
+    parentStyle.textContent = parentCss;
+    parentStyle.setAttribute("type", "text/css");
+    parentBody.append(parentStyle);
+    
+    expandCollapseButton.addEventListener("click", function(e) {
+        let frameState = document.querySelector("body").getAttribute("data-graph-frame");
+        
+        if ( frameState === "expanded" ) {
+            graphBody.setAttribute("data-graph-frame", "collapsed");
+            parentBody.setAttribute("data-graph-frame", "collapsed");
+        } else {
+            graphBody.setAttribute("data-graph-frame", "expanded");
+            parentBody.setAttribute("data-graph-frame", "expanded");
+        }
+        
+        e.stopPropagation();
+    });
+        
 }
+
+if ( expandable && accessDocumentTop ) { toggleExpandCollapse(); }

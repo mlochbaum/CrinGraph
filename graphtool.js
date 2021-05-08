@@ -1672,7 +1672,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     });
     
     doc.select("#theme").on("click", function () {
-        themeChooser();
+        themeChooser("change");
     });
 });
 
@@ -1829,10 +1829,29 @@ function copyUrlInit() {
 copyUrlInit();
 
 // Theme Chooser
-function themeChooser() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
+function themeChooser(command) {
+    let docBody = document.querySelector("body"),
+        darkClass = "dark-mode",
+        darkModePref = localStorage.getItem("dark-mode-pref");
+    
+    if ( darkModePref ) {
+        console.log("Pref exists");
+        
+        if ( command === "change") {
+            localStorage.removeItem("dark-mode-pref");
+            docBody.classList.remove(darkClass);
+        } else {
+            docBody.classList.add(darkClass);
+        }
+    } else {
+        console.log("No pref");
+        if ( command === "change" ) {
+            localStorage.setItem("dark-mode-pref", "true");
+            docBody.classList.add(darkClass);
+        }
+    }
 }
+themeChooser();
 
 // Map faux download button
 function mapDownloadFaux() {

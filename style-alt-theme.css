@@ -7,24 +7,47 @@
     --background-color: hsl(0, 0%, 94%);
     --background-color-contrast: hsl(0, 0%, 90%);
     --background-color-contrast-more: hsl(0, 0%, 40%);
-    --background-color-graph: hsl(0, 0%, 100%);
-    
+
     --background-color-inputs: hsl(0, 0%, 100%);
-    
+
     --font-color-primary: hsl(0, 0%, 10%);
     --font-color-secondary: hsl(0, 0%, 100%);
     --font-color-inputs: hsl(0, 0%, 50%);
-    
+
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
-    
+
     --scrollbar-color: 255,255,255;
     --scrollbar-accent: 0,0,0;
-        
+
     --svg-filter: none;
 }
 
+body.dark-mode {
+    --accent-color: hsl(0, 0%, 40%);
+    --accent-color-contrast: hsl(0, 0%, 25%);
+
+    --background-color: hsl(0, 0%, 7%);
+    --background-color-contrast: hsl(0, 0%, 2%);
+    --background-color-contrast-more: hsl(0, 0%, 40%);
+
+    --background-color-inputs: hsl(0, 0%, 15%);
+
+    --font-color-primary: hsl(0, 0%, 80%);
+    --font-color-secondary: hsl(0, 0%, 80%);
+    --font-color-inputs: hsl(0, 0%, 50%);
+
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+
+    --scrollbar-color: 0,0,0;
+    --scrollbar-accent: 255,255,255;
+
+    --svg-filter: invert(1.0);
+}
+
 /* If user has system preference for dark mode, this theme overrides the theme above. Optional */
+/*
 @media ( prefers-color-scheme: dark ) {
     :root {
         --accent-color: hsl(0, 0%, 40%);
@@ -33,7 +56,6 @@
         --background-color: hsl(0, 0%, 7%);
         --background-color-contrast: hsl(0, 0%, 2%);
         --background-color-contrast-more: hsl(0, 0%, 40%);
-        --background-color-graph: var(--background-color);
 
         --background-color-inputs: hsl(0, 0%, 15%);
 
@@ -46,11 +68,11 @@
 
         --scrollbar-color: 0,0,0;
         --scrollbar-accent: 255,255,255;
-        
+
         --svg-filter: invert(1.0);
     }
 }
-
+*/
 
 
 /*****
@@ -68,24 +90,23 @@ color values in the alt layout come from this theme.
 :root {
     --accent-color: hsl(260, 13%, 65%);
     --accent-color-contrast: hsl(260, 10%, 45%);
-    
+
     --background-color: hsl(212, 14%, 10%);
     --background-color-contrast: hsl(212, 14%, 8%);
     --background-color-contrast-more: hsl(212, 14%, 40%);
-    --background-color-graph: var(--background-color);
-    
+
     --background-color-inputs: hsl(212, 14%, 95%);
 
     --font-color-primary: hsl(77, 11%, 87%);
     --font-color-secondary: #FFFFFF;
     --font-color-inputs: hsl(212, 14%, 40%);
-    
+
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
-    
+
     --scrollbar-color: 0,0,0;
     --scrollbar-accent: 255,255,255;
-        
+
     --svg-filter: invert(1.0);
 }
 */
@@ -95,27 +116,26 @@ color values in the alt layout come from this theme.
 /*
 :root {
     --hue: 300;
-    
+
     --accent-color: hsl(var(--hue), 30%, 50%);
     --accent-color-contrast: hsl(var(--hue), 30%, 75%);
-    
+
     --background-color: hsl(var(--hue), 3%, 95%);
     --background-color-contrast: hsl(var(--hue), 3%, 85%);
     --background-color-contrast-more: hsl(var(--hue), 3%, 50%);
-    --background-color-graph: var(--background-color);
-    
+
     --background-color-inputs: hsl(var(--hue), 20%, 100%);
-    
+
     --font-color-primary: hsl(var(--hue), 10%, 10%);
     --font-color-secondary: hsl(var(--hue), 10%, 95%);
     --font-color-inputs: hsl(var(--hue), 10%, 50%);
-    
+
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
-    
+
     --scrollbar-color: 255,255,255;
     --scrollbar-accent: 0,0,0;
-        
+
     --svg-filter: none;
 }
 */
@@ -125,27 +145,26 @@ color values in the alt layout come from this theme.
 /*
 :root {
     --hue: 300;
-    
+
     --accent-color: hsl(var(--hue), 50%, 40%);
     --accent-color-contrast: hsl(var(--hue), 50%, 15%);
-    
+
     --background-color: hsl(var(--hue), 10%, 8%);
     --background-color-contrast: hsl(var(--hue), 10%, 4%);
     --background-color-contrast-more: hsl(var(--hue), 10%, 35%);
-    --background-color-graph: var(--background-color);
-    
+
     --background-color-inputs: hsl(var(--hue), 5%, 25%);
-    
+
     --font-color-primary: hsl(var(--hue), 5%, 90%);
     --font-color-secondary: hsl(var(--hue), 5%, 80%);
     --font-color-inputs: hsl(var(--hue), 5%, 60%);
-    
+
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
-    
+
     --scrollbar-color: 0,0,0;
     --scrollbar-accent: 255,255,255;
-        
+
     --svg-filter: invert(1.0);
 }
 */
@@ -159,20 +178,19 @@ color values in the alt layout come from this theme.
     --background-color: hsl(0, 0%, 94%);
     --background-color-contrast: hsl(0, 0%, 90%);
     --background-color-contrast-more: hsl(0, 0%, 40%);
-    --background-color-graph: var(--background-color);
-    
+
     --background-color-inputs: hsl(0, 0%, 100%);
-    
+
     --font-color-primary: hsl(0, 0%, 10%);
     --font-color-secondary: hsl(0, 0%, 100%);
     --font-color-inputs: hsl(0, 0%, 50%);
-    
+
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
-    
+
     --scrollbar-color: 255,255,255;
     --scrollbar-accent: 0,0,0;
-        
+
     --svg-filter: none;
 }
 */
@@ -186,20 +204,19 @@ color values in the alt layout come from this theme.
     --background-color: hsl(0, 0%, 7%);
     --background-color-contrast: hsl(0, 0%, 2%);
     --background-color-contrast-more: hsl(0, 0%, 40%);
-    --background-color-graph: var(--background-color);
-    
+
     --background-color-inputs: hsl(0, 0%, 15%);
-    
+
     --font-color-primary: hsl(0, 0%, 80%);
     --font-color-secondary: hsl(0, 0%, 80%);
     --font-color-inputs: hsl(0, 0%, 50%);
-    
+
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
-    
+
     --scrollbar-color: 0,0,0;
     --scrollbar-accent: 255,255,255;
-        
+
     --svg-filter: invert(1.0);
 }
 */

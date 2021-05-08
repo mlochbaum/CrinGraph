@@ -42,7 +42,7 @@ doc.html(`
         <div class="normalize">
           <span>Normalize:</span>
           <div>
-            <input type="number" inputmode="decimal" id="norm-phon" required min="20" max="100" value="`+ default_norm_db +`" step="1" onclick="this.focus();this.select()"></input>
+            <input type="number" inputmode="decimal" id="norm-phon" required min="0" max="100" value="`+ default_norm_db +`" step="1" onclick="this.focus();this.select()"></input>
             <span>dB</span>
           </div>
           <div>
@@ -64,6 +64,7 @@ doc.html(`
           <button id="label"><span>▭</span> label</button>
           <button id="download"><span><u>⇩</u></span> screenshot</button>
           <button id="recolor"><span>○</span> recolor</button>
+          <button id="theme">Theme</button>
         </div>
 
         <div class="expand-collapse">
@@ -1668,6 +1669,10 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         activePhones.forEach(p => { if (!p.isTarget) { p.id = getPhoneNumber(); } });
         colorPhones();
     });
+    
+    doc.select("#theme").on("click", function () {
+        themeChooser();
+    });
 });
 
 let pathHoverTimeout;
@@ -1821,6 +1826,12 @@ function copyUrlInit() {
     });
 }
 copyUrlInit();
+
+//Theme Chooser
+function themeChooser() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
 
 // Set focused scroll list
 function setFocusedList(selectedList) {

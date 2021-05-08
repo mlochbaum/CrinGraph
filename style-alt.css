@@ -646,6 +646,12 @@ svg#expandTools path {
     display: none;
 }
 
+div.miscTools button#theme:active {
+  background-color: var(--accent-color) !important;
+
+  color: var(--font-color-secondary);
+}
+
 
 
 /*****

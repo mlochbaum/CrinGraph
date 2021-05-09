@@ -1512,7 +1512,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                     let initMap = f.map(isInit);
                     let rInited = false;
 
-                    //Init the Map for combination entry
+                    //Init the loop for combination entry
                     initMap.forEach(function(isDisplayed, index) {
                         let ind = Math.max(0, index);
 
@@ -1548,7 +1548,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                 }
             }
 
-            //Final data assignment, use for displaying entry on the Phone list table
+            //Final data assignment
             r.dispName = r.dispName || r.phone;
             r.fullName = r.dispBrand + " " + r.phone;
 

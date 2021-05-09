@@ -1484,9 +1484,11 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         b.phoneObjs = b.phones.map(function (p) {
             let r = { brand:b, dispBrand:b.name };
             let init = -2;
+            let multiQueue = [];
             if (typeof p === "string") {
                 r.phone = r.fileName = p;
-            } else {
+            } 
+            else {
                 r.phone = p.name;
                 if (p.collab) {
                     r.dispBrand += " x "+p.collab;
@@ -1496,11 +1498,34 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                 
                 if (typeof f === "string") {
                     r.fileName = f;
-                } else {
+                } 
+                else {
                     r.fileNames = f;
-                    init = f.map(isInit).indexOf(true);
-                    let ind = Math.max(0, init);
-                    r.fileName = f[ind];
+                    let initMap = f.map(isInit);
+                    let rInited = false;
+
+                    //Init the loop for combination entry
+                    initMap.forEach(function(isDisplayed, index) {
+                        let ind = Math.max(0, index);
+
+                        //Combination entry need to be fully rendered, it takes the first initialization of the object found.
+                        if(!rInited) {
+                            r.fileName = f[index];
+                            r.dispName = (r.dispNames||r.fileNames)[ind];
+                            rInited = true;
+                        }
+
+                        //Clone the graph object and push into queue if it is going to be displayed.
+                        if(isDisplayed){
+                            let rLoop = Object.assign({}, r);
+                            rLoop.fileName = f[ind];
+                            rLoop.dispName = (rLoop.dispNames||rLoop.fileNames)[ind];
+                            rLoop.dispName = rLoop.dispName || rLoop.phone;
+                            rLoop.fullName = rLoop.dispBrand + " " + rLoop.phone;
+                            multiQueue.push(rLoop);
+                        }
+                    });
+
                     if (p.suffix) {
                         r.dispNames = p.suffix.map(
                             s => p.name + (s ? " "+s : "")
@@ -1512,36 +1537,26 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                             return p.name + (n.length ? " "+n : n);
                         });
                     }
-                    r.dispName = (r.dispNames||r.fileNames)[ind];
                 }
             }
+
+            //Final data assignment
             r.dispName = r.dispName || r.phone;
             r.fullName = r.dispBrand + " " + r.phone;
-            if (init===-2 ? isInit(r.fileName) : init>=0) {
-                /*THIS IS A REALLY REALLY REALLY HORRIBLE IMPLEMENTATION OF MULTIPLE VARIANTS, NOT TO MENTION HOW RISKY THIS SOLUTION IS, 
-                BORN BY ME STAYING UP FOR NEARLY 7 HOURS WITH CRANG CRANG JS SKILL
-                This just serve a purpose that this gonna fix the current URL bug issue but this code need to be more effectively handled. 
 
-                If you merge this to the branch, DO IT AT YOUR OWN RISK
-                */
-                if(Array.isArray(initReq) && initReq.length > 1){
-                    initReq.forEach(function (name) {
-                        if(r.fileNames.indexOf(name) !== -1){
-                            let cloneR = Object.assign({}, r);
-                            cloneR.fileName = name;
-                            cloneR.dispName = cloneR.dispNames[cloneR.fileNames.indexOf(name)];
-                            inits.push(cloneR);
-                        }
-                    })
-                }
-                else {
-                    inits.push(r); 
-                } 
+            //Pushing queue for combination set
+            if(multiQueue.length > 0){
+                multiQueue.forEach(function(phone) {
+                    inits.push(phone);
+                });
+            }
+            //In case the entry is a single variable one
+            else if(init===-2 ? isInit(r.fileName) : init>=0) { 
+                inits.push(r); 
             }
             return r;
         });
     });
-
     let allPhones = d3.merge(brands.map(b=>b.phoneObjs)),
         currentBrands = [];
     if (!initReq) inits.push(allPhones[0]);

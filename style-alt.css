@@ -572,8 +572,8 @@ div.smooth:after {
     border-radius: 0 50px 50px 0;
 }
 
-/* Download, Inspect, Label, Recolor */
-div.miscTools {
+/* CopyURL + Download */
+div.miscToolsL {
     order: 1;
     
     display: flex;
@@ -583,7 +583,7 @@ div.miscTools {
     padding-right: 16px;
 }
 
-div.miscTools button {
+div.miscToolsL button {
     order: 1;
     
     padding: 12px 16px;
@@ -603,31 +603,25 @@ div.miscTools button {
     outline: none;
 }
 
-div.miscTools button span {
+div.miscToolsL button span {
     display: none;
 }
 
-div.miscTools button + button {
+div.miscToolsL button + button {
     margin-left: 6px;
 }
 
-div.miscTools button.selected {
+div.miscToolsL button.selected {
     background-color: var(--accent-color) !important;
     
     color: var(--font-color-secondary);
 }
 
-div.miscTools button#recolor:active {
-    background-color: var(--accent-color) !important;
-    
-    color: var(--font-color-secondary);
-}
-
-div.tools div.miscTools button:not(#download) {
+div.miscToolsL div.miscTools button:not(#download) {
     display: inherit;
 }
 
-div.miscTools button#download {
+div.miscToolsL button#download {
     order: 0;
     margin: 0 6px 0 0;
 }
@@ -646,7 +640,82 @@ svg#expandTools path {
     display: none;
 }
 
-div.miscTools button#theme:active {
+
+/* Inspect, Label, Recolor, Theme */
+div.miscToolsR {
+    order: 4;
+    
+    display: flex;
+    
+    background-color: var(--background-color);
+    
+    padding-right: 16px;
+}
+
+div.miscToolsR button {
+    order: 1;
+    
+    padding: 12px 16px;
+    
+    background-color: var(--accent-color-contrast) !important;
+    border: none;
+    border-radius: 50px;
+    
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1em;
+    text-transform: capitalize;
+    
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+}
+
+div.miscToolsR button span {
+    display: none;
+}
+
+div.miscToolsR button + button {
+    margin-left: 6px;
+}
+
+div.miscToolsR button.selected {
+    background-color: var(--accent-color) !important;
+    
+    color: var(--font-color-secondary);
+}
+
+div.miscToolsR button#recolor:active {
+    background-color: var(--accent-color) !important;
+    
+    color: var(--font-color-secondary);
+}
+
+div.miscToolsR div.miscTools button:not(#download) {
+    display: inherit;
+}
+
+div.miscToolsR button#download {
+    order: 0;
+    margin: 0 6px 0 0;
+}
+
+div.miscToolsR button#download:active {
+    background-color: var(--accent-color) !important;
+    
+    color: var(--font-color-secondary);
+}
+
+svg#expandTools {
+    display: none;
+}
+
+svg#expandTools path {
+    display: none;
+}
+
+div.miscToolsR button#theme:active {
   background-color: var(--accent-color) !important;
 
   color: var(--font-color-secondary);

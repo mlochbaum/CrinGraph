@@ -28,8 +28,9 @@ doc.html(`
       </div>
 
       <div class="tools collapseTools">
-        <div class="copy-url">
+        <div class="miscToolsL">
           <button id="copy-url">Copy URL</button>
+	  <button id="download"><span><u>⇩</u></span> screenshot</button>
         </div>
 
         <div class="zoom">
@@ -59,10 +60,9 @@ doc.html(`
           <input type="number" inputmode="decimal" id="smooth-level" required min="0" value="5" step="any" onclick="this.focus();this.select()"></input>
         </div>
 
-        <div class="miscTools">
+        <div class="miscToolsR">
           <button id="inspector"><span>╞</span> inspect</button>
           <button id="label"><span>▭</span> label</button>
-          <button id="download"><span><u>⇩</u></span> screenshot</button>
           <button id="recolor"><span>○</span> recolor</button>
           <button id="theme">Theme</button>
         </div>
@@ -1673,6 +1673,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     doc.select("#theme").on("click", function () {
         themeChooser();
     });
+
 });
 
 let pathHoverTimeout;

@@ -65,7 +65,6 @@ doc.html(`
           <button id="label"><span>▭</span> label</button>
           <button id="download"><span><u>⇩</u></span> screenshot</button>
           <button id="recolor"><span>○</span> recolor</button>
-          <button id="theme">dark mode</button>
         </div>
 
         <div class="expand-collapse">
@@ -1830,6 +1829,13 @@ copyUrlInit();
 
 // Theme Chooser
 function themeChooser(command) {
+    let themeButton = document.createElement("button"),
+        miscTools = document.querySelector("div.miscTools");
+        
+    themeButton.setAttribute("id", "theme");
+    themeButton.textContent = "dark mode";
+    miscTools.append(themeButton);
+    
     let docBody = document.querySelector("body"),
         darkClass = "dark-mode",
         darkModePref = localStorage.getItem("dark-mode-pref");
@@ -1848,7 +1854,7 @@ function themeChooser(command) {
         }
     }
 }
-themeChooser();
+if ( darkModeButton ) { themeChooser(); }
 
 // Map faux download button
 function mapDownloadFaux() {

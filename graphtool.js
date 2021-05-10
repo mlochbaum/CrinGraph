@@ -1835,8 +1835,6 @@ function themeChooser(command) {
         darkModePref = localStorage.getItem("dark-mode-pref");
     
     if ( darkModePref ) {
-        console.log("Pref exists");
-        
         if ( command === "change") {
             localStorage.removeItem("dark-mode-pref");
             docBody.classList.remove(darkClass);
@@ -1844,7 +1842,6 @@ function themeChooser(command) {
             docBody.classList.add(darkClass);
         }
     } else {
-        console.log("No pref");
         if ( command === "change" ) {
             localStorage.setItem("dark-mode-pref", "true");
             docBody.classList.add(darkClass);

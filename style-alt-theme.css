@@ -7,6 +7,7 @@
     --background-color: hsl(0, 0%, 94%);
     --background-color-contrast: hsl(0, 0%, 90%);
     --background-color-contrast-more: hsl(0, 0%, 40%);
+    --background-color-graph: hsl(0, 0%, 100%);
     
     --background-color-inputs: hsl(0, 0%, 100%);
     
@@ -23,40 +24,40 @@
     --svg-filter: none;
 }
 
+body.dark-mode {
+    --accent-color: hsl(0, 0%, 40%);
+    --accent-color-contrast: hsl(0, 0%, 25%);
+
+    --background-color: hsl(0, 0%, 7%);
+    --background-color-contrast: hsl(0, 0%, 2%);
+    --background-color-contrast-more: hsl(0, 0%, 40%);
+    --background-color-graph: var(--background-color);
+
+    --background-color-inputs: hsl(0, 0%, 15%);
+
+    --font-color-primary: hsl(0, 0%, 80%);
+    --font-color-secondary: hsl(0, 0%, 80%);
+    --font-color-inputs: hsl(0, 0%, 50%);
+
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+
+    --scrollbar-color: 0,0,0;
+    --scrollbar-accent: 255,255,255;
+
+    --svg-filter: invert(1.0);
+}
+
 /* If user has system preference for dark mode, this theme overrides the theme above. Optional */
 @media ( prefers-color-scheme: dark ) {
-    :root {
-        --accent-color: hsl(0, 0%, 40%);
-        --accent-color-contrast: hsl(0, 0%, 25%);
-
-        --background-color: hsl(0, 0%, 7%);
-        --background-color-contrast: hsl(0, 0%, 2%);
-        --background-color-contrast-more: hsl(0, 0%, 40%);
-
-        --background-color-inputs: hsl(0, 0%, 15%);
-
-        --font-color-primary: hsl(0, 0%, 80%);
-        --font-color-secondary: hsl(0, 0%, 80%);
-        --font-color-inputs: hsl(0, 0%, 50%);
-
-        --font-primary: 'Open Sans', sans-serif;
-        --font-secondary: monospace;
-
-        --scrollbar-color: 0,0,0;
-        --scrollbar-accent: 255,255,255;
-        
-        --svg-filter: invert(1.0);
-    }
 }
 
 
 
 /*****
 Below are some sample themes.
-
 To use them, copy and paste them over the top of the themes
 above (without the *//* comment characters).
-
 Alternatively, you can manually edit the color values. All
 color values in the alt layout come from this theme.
 *****/
@@ -70,9 +71,9 @@ color values in the alt layout come from this theme.
     --background-color: hsl(212, 14%, 10%);
     --background-color-contrast: hsl(212, 14%, 8%);
     --background-color-contrast-more: hsl(212, 14%, 40%);
+    --background-color-graph: var(--background-color);
     
     --background-color-inputs: hsl(212, 14%, 95%);
-
     --font-color-primary: hsl(77, 11%, 87%);
     --font-color-secondary: #FFFFFF;
     --font-color-inputs: hsl(212, 14%, 40%);
@@ -99,6 +100,7 @@ color values in the alt layout come from this theme.
     --background-color: hsl(var(--hue), 3%, 95%);
     --background-color-contrast: hsl(var(--hue), 3%, 85%);
     --background-color-contrast-more: hsl(var(--hue), 3%, 50%);
+    --background-color-graph: var(--background-color);
     
     --background-color-inputs: hsl(var(--hue), 20%, 100%);
     
@@ -128,6 +130,7 @@ color values in the alt layout come from this theme.
     --background-color: hsl(var(--hue), 10%, 8%);
     --background-color-contrast: hsl(var(--hue), 10%, 4%);
     --background-color-contrast-more: hsl(var(--hue), 10%, 35%);
+    --background-color-graph: var(--background-color);
     
     --background-color-inputs: hsl(var(--hue), 5%, 25%);
     
@@ -150,10 +153,10 @@ color values in the alt layout come from this theme.
 :root {
     --accent-color: hsl(0, 0%, 30%);
     --accent-color-contrast: hsl(0, 0%, 75%);
-
     --background-color: hsl(0, 0%, 94%);
     --background-color-contrast: hsl(0, 0%, 90%);
     --background-color-contrast-more: hsl(0, 0%, 40%);
+    --background-color-graph: var(--background-color);
     
     --background-color-inputs: hsl(0, 0%, 100%);
     
@@ -176,10 +179,10 @@ color values in the alt layout come from this theme.
 :root {
     --accent-color: hsl(0, 0%, 40%);
     --accent-color-contrast: hsl(0, 0%, 25%);
-
     --background-color: hsl(0, 0%, 7%);
     --background-color-contrast: hsl(0, 0%, 2%);
     --background-color-contrast-more: hsl(0, 0%, 40%);
+    --background-color-graph: var(--background-color);
     
     --background-color-inputs: hsl(0, 0%, 15%);
     

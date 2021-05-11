@@ -1043,7 +1043,10 @@ function updatePhoneTable() {
         .on("click", removePhone)
         .style("background-image",colorBar)
         .filter(p=>!p.isTarget).append("svg").call(addColorPicker);
-    td().attr("class",p=>p.isTarget?"item-line item-target":"item-line item-phone").html(p=>p.isTarget?"":"<span class=\"brand\">"+p.dispBrand+"</span>").call(addModel)
+    td().attr("class","item-line item-target")
+        .call(s=>s.filter(p=>!p.isTarget).attr("class","item-line item-phone")
+                  .append("span").attr("class","brand").text(p=>p.dispBrand))
+        .call(addModel)
         //Change colors on clicking
 //        .filter(p=>!p.isTarget).call(addColorPicker);
     td().attr("class","curve-color").html("<button></button>")
@@ -1204,8 +1207,8 @@ function addModel(t) {
     t.filter(p=>p.fileNames)
         .append("div").attr("class","variants")
         .call(function (s) {
-            s.attr("viewBox","0 -2 10 11");
-            s.append("path").attr("fill","currentColor")
+            s.append("svg").attr("viewBox","0 -2 10 11")
+                .append("path").attr("fill","currentColor")
                 .attr("d","M1 2L5 6L9 2L8 1L6 3Q5 4 4 3L2 1Z");
         })
         .attr("tabindex",0) // Make focusable
@@ -1245,7 +1248,7 @@ function addModel(t) {
                 .html("&nbsp;+&nbsp;").attr("class","variantPopout")
                 .style("left",(w+5)+"px")
                 .style("display",v=>v.active?"none":null);
-            [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1+"em"));
+            [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1.3+"em"));
             d.filter(v=>!v.active).on("mousedown", v => Object.assign(p,v));
             c.on("mousedown", function (v,i) {
                 if (cantCompare(activePhones.length)) return;

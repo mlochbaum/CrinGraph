@@ -7,7 +7,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       default_norm_db = 60,                         // Sets default dB normalization point
       default_norm_hz = 500,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
       max_channel_imbalance = 5,                    // ???
-      alt_layout = true,                           // Toggle between classic and alt layouts
+      alt_layout = false,                           // Toggle between classic and alt layouts
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
@@ -88,7 +88,7 @@ function setLayout() {
     if ( !alt_layout ) {
         applyStylesheet("style.css");
     } else {
-        applyStylesheet("style-alt-2.css");
+        applyStylesheet("style-alt.css");
         applyStylesheet("style-alt-theme.css");
     }
 }

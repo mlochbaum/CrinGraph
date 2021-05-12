@@ -11,7 +11,7 @@ Browser scrollbar styles *****/
 }
 
 ::-webkit-scrollbar:hover {
-    background-color: rgba(var(--scrollbar-color), 0.2);
+    background-color: rgba(var(--scrollbar-color), 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -51,8 +51,6 @@ Icons *****/
     --icon-collapse: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23252627;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M10,80h0a5,5,0,0,1,5-5H45v30a5,5,0,0,1-5,5h0a5,5,0,0,1-5-5V85H15A5,5,0,0,1,10,80Z'/%3E%3Cpath class='cls-1' d='M75,105V75h30a5,5,0,0,1,5,5h0a5,5,0,0,1-5,5H85v20a5,5,0,0,1-5,5h0A5,5,0,0,1,75,105Z'/%3E%3Cpath class='cls-1' d='M75,45V15a5,5,0,0,1,5-5h0a5,5,0,0,1,5,5V35h20a5,5,0,0,1,5,5h0a5,5,0,0,1-5,5Z'/%3E%3Cpath class='cls-1' d='M10,40h0a5,5,0,0,1,5-5H35V15a5,5,0,0,1,5-5h0a5,5,0,0,1,5,5V45H15A5,5,0,0,1,10,40Z'/%3E%3C/svg%3E");
 }
 
-
-
 /*****
 Base page styles *****/
 
@@ -61,6 +59,11 @@ html {
     height: 100vh;
     max-height: -webkit-fill-available;
     overflow: hidden;
+    
+    font-family: var(--font-primary);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
     
     user-select: none;
 }
@@ -90,18 +93,18 @@ Graph colors *****/
 
 svg text {
     color: var(--background-color-contrast-more);
+    color: var(--font-color-primary);
     font-family: var(--font-secondary);
 }
 
 svg text.graph-name {
-    fill: var(--background-color-contrast-more);
+    fill: var(--font-color-primary);
     
     font-family: var(--font-primary);
     font-weight: 700;
 }
 
 svg line {
-    stroke: var(--color-primary);
     stroke: var(--background-color-contrast-more);
 }
 
@@ -228,7 +231,7 @@ div.tools {
     order: 1;
     
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     
     box-sizing: border-box;
     flex: auto 0 0;
@@ -238,7 +241,7 @@ div.tools {
     overflow-x: scroll;
     
     background-color: var(--background-color);
-    border-bottom: 1px solid var(--background-color-contrast-more);
+    border-bottom: 1px solid var(--background-color-contrast);
 
     overflow-y: hidden;
 }
@@ -334,15 +337,18 @@ button#copy-url,
 button#download-faux {
     position: relative;
     
-    padding: 12px 16px;
+    box-sizing: border-box;
+    padding: 11px 16px;
     overflow: hidden;
     
-    background-color: var(--accent-color-contrast) !important;
+    background-color: var(--background-color);
+    border: 1px solid var(--background-color-contrast-more) !important;
     border: none;
-    border-radius: 50px;
+    border-radius: 6px;
     
-    color: var(--accent-color);
-    font-weight: 700;
+    color: var(--accent-color-contrast);
+    font-family: var(--font-primary);
+    font-weight: 300;
     font-size: 12px;
     line-height: 1em;
     
@@ -353,7 +359,10 @@ button#download-faux {
 
 button#copy-url:active,
 button#download-faux:active {
+    box-sizing: border-box;
     background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+    
     color: var(--font-color-secondary);
 }
 
@@ -371,7 +380,6 @@ button#copy-url:before {
     height: 100%;
     
     background-color: var(--accent-color);
-    border-radius: 50px;
     
     color: var(--font-color-secondary);
     
@@ -417,12 +425,13 @@ div.zoom button {
     padding: 12px 16px;
     margin: 0;
     
-    background-color: var(--accent-color-contrast);
-    border: none;
+    background-color: var(--background-color);
+    border: 1px solid var(--background-color-contrast-more);
     outline: none;
     
-    color: var(--accent-color);
-    font-weight: 700;
+    color: var(--accent-color-contrast);
+    font-family: var(--font-primary);
+    font-weight: 300;
     font-size: 12px;
     line-height: 1em;
     
@@ -432,16 +441,24 @@ div.zoom button {
 
 div.zoom button.selected {
     background-color: var(--accent-color);
+    border-color: var(--accent-color);
     
     color: var(--font-color-secondary);
 }
 
 div.zoom button:nth-of-type(1) {
-    border-radius: 50px 0 0 50px;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+}
+
+div.zoom button:nth-of-type(2) {
+    border-left: none;
+    border-right: none;
 }
 
 div.zoom button:nth-last-of-type(1) {
-    border-radius: 0 50px 50px 0;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
 }
 
 /* Normalize */
@@ -485,10 +502,12 @@ div.normalize > div > input {
     box-sizing: border-box;
     width: 70px;
     height: 36px;
-    padding: 11px 0;
+    padding: 10px 0;
     
     background-color: var(--background-color-inputs);
-    border: none;
+    border: 1px solid var(--background-color-contrast-more);
+    border-right: none;
+    border-left: none;
     border-radius: 0px;
     outline: none;
     
@@ -503,24 +522,30 @@ div.normalize > div > input {
 div.normalize > div:after {
     order: 3;
     content: '';
+    
+    box-sizing: border-box;
     display: block;
-    width: 18px;
+    width: 6px;
     height: 36px;
     
     background-color: var(--background-color-inputs);
-    border-radius: 0 50px 50px 0;
+    border: 1px solid var(--background-color-contrast-more);
+    border-left: none;
+    border-radius: 0 6px 6px 0;
 }
 
 div.normalize > div > span {
     order: 1;
     
-    padding: 12px 16px;
+    padding: 11px 16px;
     
-    background-color: var(--accent-color-contrast) !important;
-    border-radius: 50px 0 0 50px;
+    background-color: var(--background-color) !important;
+    border: 1px solid var(--background-color-contrast-more);
+    border-right: none;
+    border-radius: 6px 0 0 6px;
     
-    color: var(--accent-color);
-    font-weight: 700;
+    color: var(--accent-color-contrast);
+    font-weight: 300;
     font-size: 12px;
     line-height: 1em;
     
@@ -530,6 +555,7 @@ div.normalize > div > span {
 
 div.normalize > div.selected > span {
     background-color: var(--accent-color) !important;
+    border-color: var(--accent-color);
     
     color: var(--font-color-secondary);
 }
@@ -560,11 +586,12 @@ div.smooth input {
     box-sizing: border-box;
     width: 70px;
     height: 36px;
-    padding: 11px 0;
+    padding: 10px 0;
     
     background-color: var(--background-color-inputs);
-    border: none;
-    border-radius: 50px 0 0 50px;
+    border: 1px solid var(--background-color-contrast-more);
+    border-right: none;
+    border-radius: 6px 0 0 6px;
     outline: none;
     
     color: var(--font-color-inputs);
@@ -578,12 +605,16 @@ div.smooth input {
 div.smooth:after {
     order: 3;
     content: '';
+    
+    box-sizing: border-box;
     display: block;
-    width: 18px;
+    width: 6px;
     height: 36px;
     
     background-color: var(--background-color-inputs);
-    border-radius: 0 50px 50px 0;
+    border: 1px solid var(--background-color-contrast-more);
+    border-left: none;
+    border-radius: 0 6px 6px 0;
 }
 
 /* Download, Inspect, Label, Recolor */
@@ -601,14 +632,15 @@ div.miscTools {
 div.miscTools button {
     order: 1;
     
-    padding: 12px 16px;
+    padding: 11px 16px;
     
-    background-color: var(--accent-color-contrast) !important;
-    border: none;
-    border-radius: 50px;
+    background-color: var(--background-color) !important;
+    border: 1px solid var(--background-color-contrast-more);
+    border-radius: 6px;
     
-    color: var(--accent-color);
-    font-weight: 700;
+    color: var(--accent-color-contrast);
+    font-family: var(--font-primary);
+    font-weight: 300;
     font-size: 12px;
     line-height: 1em;
     text-transform: capitalize;
@@ -628,12 +660,14 @@ div.miscTools button + button {
 
 div.miscTools button.selected {
     background-color: var(--accent-color) !important;
+    border-color: var(--accent-color);
     
     color: var(--font-color-secondary);
 }
 
 div.miscTools button#recolor:active {
     background-color: var(--accent-color) !important;
+    border-color: var(--accent-color);
     
     color: var(--font-color-secondary);
 }
@@ -665,9 +699,10 @@ svg#expandTools path {
 
 body.dark-mode div.miscTools button#theme,
 div.miscTools button#theme:active {
-  background-color: var(--accent-color) !important;
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color);
 
-  color: var(--font-color-secondary);
+    color: var(--font-color-secondary);
 }
 
 
@@ -677,7 +712,7 @@ Targets styles *****/
 
 div.targets {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     
     box-sizing: border-box;
     padding: 0 16px 16px 16px;
@@ -714,7 +749,7 @@ div.targets > div.targetLabel {
 }
 
 .targetClass div.targetLabel:after {
-    content: ' targets';
+    content: ' targets:';
     white-space: pre;
 }
 
@@ -728,13 +763,14 @@ div.targetLabel {
 }
 
 div.target {
-    padding: 12px 16px;
+    padding: 11px 16px;
     
-    background-color: var(--accent-color-contrast) !important;
-    border-radius: 50px;
+    background-color: var(--background-color) !important;
+    border: 1px solid var(--background-color-contrast-more);
+    border-radius: 6px;
     
-    color: var(--accent-color);
-    font-weight: 700;
+    color: var(--accent-color-contrast);
+    font-weight: 300;
     font-size: 12px;
     line-height: 1em;
     
@@ -748,6 +784,7 @@ div.target + .target {
 
 div.target[style*="background"] {
     background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
     
     color: var(--font-color-secondary);
 }
@@ -774,7 +811,7 @@ tbody.curves:empty {
     
     min-height: 50px;
     
-    border-top: 1px solid var(--background-color-contrast-more);
+    border-top: 1px solid var(--background-color-contrast);
 }
 
 tbody.curves:empty:before {
@@ -791,7 +828,7 @@ tbody.curves > tr {
     display: flex;
     align-items: flex-start;
     
-    border-top: 1px solid var(--background-color-contrast-more);
+    border-top: 1px solid var(--background-color-contrast);
 }
 
 tbody.curves > tr > td {
@@ -807,7 +844,12 @@ tbody.curves > tr > td {
 }
 
 tbody.curves > tr > td.button,
+tbody.curves > tr > td.button-pin,
 tbody.curves > tr > td.remove {
+    box-sizing: border-box;
+    flex: 40px 0 0;
+    margin-left: 6px;
+    
     cursor: pointer;
 }
 
@@ -818,16 +860,17 @@ tbody.curves > tr > td.remove:before {
     position: absolute;
     
     top: 6px;
-    left: 3px;
+    left: 0;
     
     content: '';
     box-sizing: border-box;
     display: block;
-    width: calc(100% - 6px);
-    height: calc(100% - 12px);
+    width: 40px;
+    height: 40px;
     
-    background-color: var(--background-color-contrast);
-    border-radius: 4px;
+    background-color: var(--background-color);
+    border: 1px solid var(--background-color-contrast);
+    border-radius: 6px;
     
     pointer-events: none;
 }
@@ -838,13 +881,13 @@ tbody.curves > tr > td.remove:after {
     position: absolute;
     
     top: 6px;
-    left: 3px;
+    left: 0px;
     
     content: '';
     box-sizing: border-box;
     display: block;
-    width: calc(100% - 6px);
-    height: calc(100% - 12px);
+    width: 40px;
+    height: 40px;
     
     background-color: var(--background-color-contrast-more);
     
@@ -855,7 +898,7 @@ tbody.curves > tr > td.remove:after {
 tbody.curves > tr > td.remove {
     order: 6;
     
-    margin: 0 15px 0 0;
+    margin: 0 16px 0 6px;
     
     background: none !important;
 }
@@ -933,6 +976,7 @@ tbody.curves > tr > td.button-baseline {
 
 tbody.curves > tr > td.button-baseline:before {
     background-color: var(--background-color);
+    border-color: transparent;
 }
 
 tbody.curves > tr > td.button-baseline:after {
@@ -952,6 +996,7 @@ tbody.curves > tr > td.hideIcon svg {
 
 tbody.curves > tr > td.hideIcon:before {
     background-color: var(--background-color);
+    border-color: transparent;
 }
 
 tbody.curves > tr > td.hideIcon:after {
@@ -959,8 +1004,7 @@ tbody.curves > tr > td.hideIcon:after {
 }
 
 tbody.curves > tr > td.hideIcon.selected:before {
-    background-color: var(--background-color-contrast);
-    border: none;
+    border-color: var(--background-color-contrast);
 }
 
 tbody.curves > tr > td.hideIcon.selected:after {
@@ -976,6 +1020,7 @@ tbody.curves > tr > td.button-pin {
 
 tbody.curves > tr > td.button-pin[data-pinned="true"]:before {
     background-color: var(--background-color);
+    border-color: transparent;
 }
 
 tbody.curves > tr > td.button-pin[data-pinned="true"]:after {
@@ -1027,6 +1072,7 @@ tbody.curves > tr > td.item-line {
     
     display: flex;
     
+    color: var(--background-color-contrast-more);
     font-weight: 700;
     cursor: inherit;
 }
@@ -1329,11 +1375,13 @@ tbody.curves > tr > td.levels input {
     box-sizing: border-box;
     width: 70px;
     height: 36px;
-    padding: 11px 16px 11px 0;
+    padding: 11px 6px 11px 0;
+    
     background-color: var(--background-color-inputs);
-    border: none;
-    border-radius: 50px;
+    border: 1px solid var(--background-color-contrast-more);
+    border-radius: 6px;
     outline: none;
+    
     color: var(--font-color-inputs);
     font-family: var(--font-secondary);
     font-size: 11px;
@@ -1356,8 +1404,10 @@ div.controls,
 div.select {
     width: 100%;
     height: 100%;
+    overflow: hidden;
     
-    background-color: var(--background-color-contrast);
+    background-color: var(--background-color);
+    border-right: 1px solid var(--background-color-contrast-more);
 }
 
 div.select {
@@ -1377,8 +1427,8 @@ input.search {
     margin: 16px 16px 0 16px;
     
     background-color: var(--background-color-inputs);
-    border: none;
-    border-radius: 50px;
+    border: 1px solid var(--background-color-contrast-more);
+    border-radius: 6px;
     outline: none;
     
     color: var(--font-color-inputs);
@@ -1395,7 +1445,7 @@ div.select > div.selector-tabs {
     
     display: flex;
     padding: 16px;
-    border-bottom: 1px solid var(--background-color-contrast-more);
+    border-bottom: 1px solid var(--background-color-contrast);
 }
 
 div.select > div.selector-tabs button {
@@ -1404,20 +1454,27 @@ div.select > div.selector-tabs button {
     padding: 11px 0;
     margin: 0;
     
-    background-color: var(--accent-color-contrast);
-    border: none;
-    border-radius: 50px 0 0 50px;
+    background-color: var(--background-color);
+    border: 1px solid var(--background-color-contrast-more);
+    border-radius: 6px 0 0 6px;
     
-    color: var(--accent-color);
-    font-weight: 700;
+    color: var(--accent-color-contrast);
+    font-family: var(--font-primary);
+    font-weight: 300;
     font-size: 12px;
+    line-height: 1em;
     
     cursor: pointer;
     outline: none;
 }
 
-div.select > div.selector-tabs button + button {
-    border-radius: 0 50px 50px 0;
+div.select > div.selector-tabs button:nth-of-type(1) {
+    border-right: none;
+}
+
+div.select > div.selector-tabs button:nth-of-type(2) {
+    border-left: none;
+    border-radius: 0 6px 6px 0;
 }
 
 svg.chevron,
@@ -1443,9 +1500,9 @@ div.scrollOuter:before {
     width: 60px;
     height: 100%;
     
-    background-color: var(--background-color-contrast);
+    background-color: var(--background-color);
     
-    opacity: 0.5;
+    opacity: 0.8;
     transition: opacity 0.1s ease-out 0.3s;
     
     pointer-events: all;
@@ -1469,7 +1526,10 @@ div.scroll {
     height: 100%;
     padding: 16px 16px 16px 16px;
     
-    background-color: var(--background-color-contrast);
+    background-color: var(--background-color);
+    border-width: 0px;
+    border-style: solid;
+    border-color: var(--background-color-contrast-more);
     
     overflow-y: scroll;
     transform: none;
@@ -1478,18 +1538,22 @@ div.scroll {
 
 div.scroll#brands {
     left: 0;
+    border-right: 1px solid inherit;
 }
 
 div.scroll#phones {
     right: 0;
     
-    border-left: 1px solid var(--background-color-contrast-more);
+    padding: 16px 10px 16px 16px;
+    
+    border-left-width: 1px;
 }
 
 /* List selected styles */
 /* Brands selected */
 div.select[data-selected="brands"] > div.selector-tabs button.brands {
     background-color: var(--accent-color);
+    border-color: var(--accent-color);
     
     color: var(--font-color-secondary);
 }
@@ -1511,6 +1575,7 @@ div[data-selected="brands"] div.scrollOuter[data-list="brands"]:before {
 /* Models selected */
 div.select[data-selected="models"] > div.selector-tabs button.models {
     background-color: var(--accent-color);
+    border-color: var(--accent-color);
     
     color: var(--font-color-secondary);
 }
@@ -1529,12 +1594,18 @@ div[data-selected="models"] div.scrollOuter[data-list="models"]:before {
 div.scroll > div {
     position: relative;
     
+    box-sizing: border-box;
+    height: 40px;
     padding: 11px 12px;
+    overflow: hidden;
     
-    background-color: transparent !important;
-    border-radius: 4px;
+    background-color: var(--background-color) !important;
+    border: none;
+    border-radius: 6px;
     
-    font-size: 14px;
+    color: var(--font-color-primary);
+    font-weight: 300;
+    font-size: 12px;
     line-height: 1.5em;
     
     cursor: pointer;
@@ -1550,7 +1621,26 @@ div.scroll > div:hover {
 
 div.scroll div.active,
 div.scroll div[style*="border"] {
-    background-color: var(--background-color) !important;
+    background-color: var(--accent-color) !important;
+    
+    color: var(--font-color-secondary);
+}
+
+div.scroll div.active:before {
+    position: absolute;
+    
+    top: 0;
+    right: 0;
+    
+    content: '';
+    box-sizing: border-box;
+    display: block;
+    width: 40px;
+    height: 40px;
+    
+    border-radius: 6px;
+    
+    pointer-events: none;
 }
 
 div.scroll div.active:after {
@@ -1562,10 +1652,10 @@ div.scroll div.active:after {
     content: '';
     box-sizing: border-box;
     display: block;
-    width: 36px;
-    height: 43px;
+    width: 40px;
+    height: 40px;
     
-    background-color: var(--background-color-contrast-more);
+    background-color: var(--font-color-secondary);
     
     pointer-events: none;
 }
@@ -1588,6 +1678,8 @@ div.scroll > div.phone-item {
     align-items: center;
     
     padding: 0;
+    
+    border-right: none;
 }
 
 div.scroll > div.phone-item span {
@@ -1599,25 +1691,26 @@ div.scroll > div.phone-item div.phone-item-add {
     position: relative;
     
     box-sizing: border-box;
-    flex: 44px 0 0;
-    height: 38px;
-    margin: 0 3px 0 auto;
+    flex: 40px 0 0;
+    height: 40px;
+    margin: 0 0px 0 auto;
+    overflow: hidden;
     
-    background-color: var(--background-color-contrast) !important;
-    border-radius: 4px;
+    background-color: var(--background-color) !important;
+    border-radius: 6px;
 }
 
 div.scroll > div.phone-item div.phone-item-add:before {
     position: absolute;
-    top: 6px;
-    left: 3px;
+    top: 0;
+    left: 0;
     
     content: '';
     
     box-sizing: border-box;
     display: block;
-    width: calc(100% - 6px);
-    height: calc(100% - 12px);
+    width: 40px;
+    height: 40px;
     background-color: var(--background-color-contrast-more);
     
     mask: var(--icon-plus);
@@ -1633,7 +1726,7 @@ div.scroll > div.phone-item div.phone-item-add:before {
 }
 
 div.scroll div[style*="border"] div.phone-item-add {
-    display: none;
+    border-color: transparent !important;
 }
 
 /* Remove button */
@@ -1693,8 +1786,10 @@ div.scroll div[style*="border"] div.phone-item-add:before {
 
 div.scroll div[style*="border"] div.phone-item-add span.remove {
     box-sizing: border-box;
-    width: 100%;
-    height: 100%;
+    flex: 40px 0 0;
+    height: 40px;
+    
+    border-radius: 6px;
     
     font-size: 0px;
     pointer-events: all;
@@ -1702,16 +1797,17 @@ div.scroll div[style*="border"] div.phone-item-add span.remove {
 
 div.scroll div[style*="border"] div.phone-item-add span.remove:before {
     position: absolute;
-    top: 6px;
-    left: 3px;
+    top: 0px;
+    left: 0px;
     
     content: '';
     
     box-sizing: border-box;
     display: block;
-    width: calc(100% - 6px);
-    height: calc(100% - 12px);
+    width: 100%;
+    height: 100%;
     background-color: var(--background-color-contrast-more);
+    background-color: var(--font-color-secondary);
     
     mask: var(--icon-remove);
     -webkit-mask: var(--icon-remove);
@@ -1723,6 +1819,20 @@ div.scroll div[style*="border"] div.phone-item-add span.remove:before {
     -webkit-mask-position: center;
     
     pointer-events: none;
+    
+    animation-name: remove-spin;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes remove-spin {
+    0% {
+        transform: rotate(115deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 
@@ -1732,7 +1842,7 @@ External links *****/
 
 div.external-links {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     
     box-sizing: border-box;
     width: 100%;
@@ -1780,14 +1890,14 @@ div.external-links a {
     
     box-sizing: border-box;
     min-width: 100px;
-    padding: 12px 16px;
+    padding: 11px 16px;
     
-    background-color: var(--background-color-contrast);
-    border: none;
-    border-radius: 50px;
+    background-color: var(--background-color);
+    border: 1px solid var(--background-color-contrast);
+    border-radius: 6px;
     
     color: var(--background-color-contrast-more);
-    font-weight: 700;
+    font-weight: 300;
     font-size: 12px;
     line-height: 1em;
     text-align: center;
@@ -1801,6 +1911,7 @@ div.external-links a {
 div.external-links a.active {    
     color: var(--background-color-contrast);
     background-color: var(--background-color-contrast-more);
+    border-color: var(--background-color-contrast-more);
 }
 
 div.external-links a + a {
@@ -1817,7 +1928,7 @@ div.accessories {
     padding: 16px 0;
     
     border-top: 1px solid var(--background-color-contrast-more);
-    background-color: var(--background-color-contrast);
+    background-color: var(--background-color);
 }
 
 div.accessories:empty {
@@ -2180,7 +2291,8 @@ Responsive styles *****/
         width: 100%;
         height: 100%;
         
-        background-color: var(--background-color-contrast);
+        background-color: var(--background-color);
+        border-top: 1px solid var(--background-color-contrast-more);
         
         color: var(--accent-color);
         font-weight: bold;
@@ -2191,7 +2303,7 @@ Responsive styles *****/
     
     main.main[data-focused-panel="primary"] section.parts-secondary:after {
         position: absolute;
-        top: 24px;
+        top: 16px;
         left: 16px;
         z-index: 2;
         
@@ -2204,12 +2316,12 @@ Responsive styles *****/
         width: calc(100% - 32px);
         padding: 12px 16px;
         
-        background-color: var(--accent-color-contrast);
-        border-radius: 50px;
+        background-color: var(--accent-color);
+        border-radius: 6px;
         
-        color: var(--accent-color);
-        font-weight: bold;
-        font-size: 14px;
+        color: var(--font-color-secondary);
+        font-weight: 300;
+        font-size: 12px;
         line-height: 12px;
         
         opacity: 1;
@@ -2254,8 +2366,8 @@ Responsive styles *****/
     }
     
     section.parts-secondary div.controls {
+        border-top: 1px solid var(--background-color-contrast-more);
     }
-
 }
 
 /* Move table items to two rows for narrow browsers */
@@ -2273,7 +2385,7 @@ Responsive styles *****/
         flex: 100% 0 0 !important;
         padding: 0 16px !important;
         
-        border-bottom: 1px solid var(--background-color-contrast);
+/*        border-bottom: 1px solid var(--background-color-contrast);*/
     }
     
     tbody.curves > tr > td.item-line div.phonename {

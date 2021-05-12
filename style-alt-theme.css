@@ -1,12 +1,12 @@
 
 /* Primary color theme */
 :root {
-    --accent-color: hsl(0, 0%, 30%);
-    --accent-color-contrast: hsl(0, 0%, 75%);
+    --accent-color: hsl(0, 0%, 0%);
+    --accent-color-contrast: hsl(0, 0%, 55%);
 
-    --background-color: hsl(0, 0%, 94%);
+    --background-color: hsl(0, 0%, 96%);
     --background-color-contrast: hsl(0, 0%, 90%);
-    --background-color-contrast-more: hsl(0, 0%, 40%);
+    --background-color-contrast-more: hsl(0, 0%, 65%);
     --background-color-graph: hsl(0, 0%, 100%);
     
     --background-color-inputs: hsl(0, 0%, 100%);
@@ -25,19 +25,19 @@
 }
 
 body.dark-mode {
-    --accent-color: hsl(0, 0%, 40%);
-    --accent-color-contrast: hsl(0, 0%, 25%);
+    --accent-color: hsl(0, 0%, 100%);
+    --accent-color-contrast: hsl(0, 0%, 50%);
 
-    --background-color: hsl(0, 0%, 7%);
-    --background-color-contrast: hsl(0, 0%, 2%);
-    --background-color-contrast-more: hsl(0, 0%, 40%);
-    --background-color-graph: var(--background-color);
+    --background-color: hsl(0, 0%, 6%);
+    --background-color-contrast: hsl(0, 0%, 15%);
+    --background-color-contrast-more: hsl(0, 0%, 30%);
+    --background-color-graph: hsl(0, 0%, 8%);
 
     --background-color-inputs: hsl(0, 0%, 15%);
 
     --font-color-primary: hsl(0, 0%, 80%);
-    --font-color-secondary: hsl(0, 0%, 80%);
-    --font-color-inputs: hsl(0, 0%, 50%);
+    --font-color-secondary: hsl(0, 0%, 0%);
+    --font-color-inputs: hsl(0, 0%, 60%);
 
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: monospace;
@@ -50,6 +50,7 @@ body.dark-mode {
 
 /* If user has system preference for dark mode, this theme overrides the theme above. Optional */
 @media ( prefers-color-scheme: dark ) {
+    /* Paste theme here, in between { curly braces } */
 }
 
 

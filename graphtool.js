@@ -1830,13 +1830,6 @@ copyUrlInit();
 
 // Theme Chooser
 function themeChooser(command) {
-    let themeButton = document.createElement("button"),
-        miscTools = document.querySelector("div.miscTools");
-        
-    themeButton.setAttribute("id", "theme");
-    themeButton.textContent = "dark mode";
-    miscTools.append(themeButton);
-    
     let docBody = document.querySelector("body"),
         darkClass = "dark-mode",
         darkModePref = localStorage.getItem("dark-mode-pref");
@@ -1855,7 +1848,16 @@ function themeChooser(command) {
         }
     }
 }
-if ( darkModeButton ) { themeChooser(); }
+if ( darkModeButton ) {
+    let themeButton = document.createElement("button"),
+        miscTools = document.querySelector("div.miscTools");
+        
+    themeButton.setAttribute("id", "theme");
+    themeButton.textContent = "dark mode";
+    miscTools.append(themeButton);
+    
+    themeChooser();
+}
 
 // Map faux download button
 function mapDownloadFaux() {

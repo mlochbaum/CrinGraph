@@ -2,11 +2,11 @@
 /* Primary color theme */
 :root {
     --accent-color: hsl(0, 0%, 30%);
-    --accent-color-contrast: hsl(0, 0%, 75%);
+    --accent-color-contrast: hsl(0, 0%, 65%);
 
     --background-color: hsl(0, 0%, 94%);
     --background-color-contrast: hsl(0, 0%, 90%);
-    --background-color-contrast-more: hsl(0, 0%, 40%);
+    --background-color-contrast-more: hsl(0, 0%, 60%);
     --background-color-graph: hsl(0, 0%, 100%);
     
     --background-color-inputs: hsl(0, 0%, 100%);
@@ -199,3 +199,51 @@ color values in the alt layout come from this theme.
     --svg-filter: invert(1.0);
 }
 */
+
+/* Color theme: Super* */
+:root {
+    --accent-color: hsl(210, 60%, 40%);
+    --accent-color-contrast: hsl(210, 20%, 40%);
+    
+    --background-color: hsl(30, 5%, 95%);
+    --background-color-contrast: hsl(30, 5%, 90%);
+    --background-color-contrast-more: hsl(30, 5%, 60%);
+    
+    --background-color-inputs: hsl(0, 0%, 100%);
+
+    --font-color-primary: hsl(210, 20%, 20%);
+    --font-color-secondary: hsl(30, 5%, 95%);
+    --font-color-inputs: hsl(210, 20%, 20%);
+    
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+    
+    --scrollbar-color: 255,255,255;
+    --scrollbar-accent: 0,0,0;
+        
+    --svg-filter: grayscale(1);
+}
+
+/* Color theme: Super* Dark */
+body.dark-mode {
+    --accent-color: hsl(210, 40%, 40%);
+    --accent-color-contrast: hsl(210, 20%, 40%);
+    
+    --background-color: hsl(212, 14%, 10%);
+    --background-color-contrast: hsl(212, 14%, 8%);
+    --background-color-contrast-more: hsl(212, 14%, 40%);
+    --background-color-graph: var(--background-color);
+    
+    --background-color-inputs: hsl(212, 14%, 95%);
+    --font-color-primary: hsl(77, 11%, 87%);
+    --font-color-secondary: #FFFFFF;
+    --font-color-inputs: hsl(212, 14%, 40%);
+    
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: monospace;
+    
+    --scrollbar-color: 0,0,0;
+    --scrollbar-accent: 255,255,255;
+        
+    --svg-filter: invert(1.0) grayscale(1.0);
+}

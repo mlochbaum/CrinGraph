@@ -271,12 +271,12 @@ button#expand-collapse {
     position: relative;
     
     display: block;
-    width: 44px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     padding: 0;
     
-    background-color: var(--background-color-contrast);
-    border: none;
+    background-color: var(--background-color);
+    border: 1px solid var(--background-color-contrast);
     border-radius: 4px;
     outline: none;
     
@@ -292,8 +292,8 @@ button#expand-collapse:before {
     
     box-sizing: border-box;
     display: block;
-    width: 44px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     background-color: var(--background-color-contrast-more);
     
     mask: var(--icon-expand);
@@ -422,7 +422,7 @@ div.zoom > span {
 div.zoom button {
     order: 1;
     
-    padding: 12px 16px;
+    padding: 11px 16px;
     margin: 0;
     
     background-color: var(--background-color);
@@ -847,7 +847,7 @@ tbody.curves > tr > td.button,
 tbody.curves > tr > td.button-pin,
 tbody.curves > tr > td.remove {
     box-sizing: border-box;
-    flex: 40px 0 0;
+    flex: 36px 0 0;
     margin-left: 6px;
     
     cursor: pointer;
@@ -865,8 +865,8 @@ tbody.curves > tr > td.remove:before {
     content: '';
     box-sizing: border-box;
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     
     background-color: var(--background-color);
     border: 1px solid var(--background-color-contrast);
@@ -886,8 +886,8 @@ tbody.curves > tr > td.remove:after {
     content: '';
     box-sizing: border-box;
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     
     background-color: var(--background-color-contrast-more);
     
@@ -1113,7 +1113,7 @@ tbody.curves > tr > td.item-line div.variantName {
     position: relative;
     top: auto !important;
     
-    flex: calc(100% - 62px) 0 0;
+    flex: calc(100% - 52px) 0 0;
     height: 50px;
     
     box-sizing: border-box;
@@ -1144,11 +1144,11 @@ tbody.curves > tr > td.item-line span.variantPopout {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 44px 0 0;
-    height: 38px;
+    flex: 36px 0 0;
+    height: 36px;
     
-    background-color: var(--background-color-contrast);
-    border-radius: 4px;
+    background-color: var(--background-color);
+    border-radius: 6px;
     
     font-size: 0px;
     font-weight: 300;
@@ -1158,21 +1158,20 @@ tbody.curves > tr > td.item-line span.variantPopout {
 }
 
 tbody.curves > tr > td.item-line span.variantPopout[style*="display"] {
-    display: inherit !important;
     background-color: var(--background-color);
 }
 
 tbody.curves > tr > td.item-line span.variantPopout:after {
     position: absolute;
     
-    top: 6px;
-    left: 3px;
+    top: 0;
+    left: 0;
     
     content: '';
     box-sizing: border-box;
     display: block;
-    width: calc(100% - 6px);
-    height: calc(100% - 12px);
+    width: 36px;
+    height: 36px;
     
     background-color: var(--background-color-contrast-more);
     mask: var(--icon-plus);
@@ -1595,7 +1594,7 @@ div.scroll > div {
     position: relative;
     
     box-sizing: border-box;
-    height: 40px;
+    height: 36px;
     padding: 11px 12px;
     overflow: hidden;
     
@@ -1635,8 +1634,8 @@ div.scroll div.active:before {
     content: '';
     box-sizing: border-box;
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     
     border-radius: 6px;
     
@@ -1652,8 +1651,8 @@ div.scroll div.active:after {
     content: '';
     box-sizing: border-box;
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     
     background-color: var(--font-color-secondary);
     
@@ -1691,8 +1690,8 @@ div.scroll > div.phone-item div.phone-item-add {
     position: relative;
     
     box-sizing: border-box;
-    flex: 40px 0 0;
-    height: 40px;
+    flex: 36px 0 0;
+    height: 36px;
     margin: 0 0px 0 auto;
     overflow: hidden;
     
@@ -1709,8 +1708,8 @@ div.scroll > div.phone-item div.phone-item-add:before {
     
     box-sizing: border-box;
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background-color: var(--background-color-contrast-more);
     
     mask: var(--icon-plus);
@@ -1786,8 +1785,8 @@ div.scroll div[style*="border"] div.phone-item-add:before {
 
 div.scroll div[style*="border"] div.phone-item-add span.remove {
     box-sizing: border-box;
-    flex: 40px 0 0;
-    height: 40px;
+    flex: 36px 0 0;
+    height: 36px;
     
     border-radius: 6px;
     

@@ -2026,7 +2026,7 @@ function toggleExpandCollapse() {
 
                     content: 'Tap to launch graph tool';
 
-                    color: var(--background-color-contrast-more);
+                    color: var(--font-color-primary);
                     font-family: var(--font-secondary);
                     font-size: 11px;
                     line-height: 1em;
@@ -2115,9 +2115,9 @@ function toggleExpandCollapse() {
                 height: calc(100% - var(--header-height)) !important;
 
                 animation-name: graph-tool-expand;
-                animation-duration: 0.2s;
+                animation-duration: 0.15s;
                 animation-iteration-count: 1;
-                animation-timing-function: ease-in-out;
+                animation-timing-function: ease-out;
                 animation-fill-mode: forwards;
             }
 
@@ -2125,27 +2125,27 @@ function toggleExpandCollapse() {
                 0% {
                     position: relative;
                     opacity: 1.0;
-                    transform: translateY(0px);
+                    transform: scale(1.0);
                 }
                 48% {
                     position: relative;
                     opacity: 0.0;
-                    transform: translateY(-100px);
+                    transform: scale(0.9);
                 }
                 50% {
                     position: fixed;
                     opacity: 0.0;
-                    transform: translateY(0px);
+                    transform: scale(0.9);
                 }
                 52% {
                     position: fixed;
                     opacity: 0.0;
-                    transform: translateY(0px);
+                    transform: scale(0.9);
                 }
                 100% {
                     position: fixed;
                     opacity: 1.0;
-                    transform: translateY(0px);
+                    transform: scale(1.0);
                 }
             }`;
     

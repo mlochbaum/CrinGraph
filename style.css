@@ -86,13 +86,13 @@ td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 
 /* For headphone as opposed to brand in current headphone table */
 .phonename { font-weight:bold; display:inline; position:relative; }
-.phonename div {
+.phonename div, .phonename span {
     position:absolute; top:0; white-space:nowrap;
     z-index:2; cursor:pointer; height:1.3em;
     background:rgba(238,238,238,0.7);
 }
 .variantName { left:-3px; padding-left:1px; border-left:2px solid #b61; }
-.variantPopout { position: absolute; opacity:0.65; }
+.variantPopout { opacity:0.8; }
 .phonename div:hover { color:#a61; }
 
 .keyLine { max-height:2.3em; display:block; vertical-align:center; }
@@ -166,9 +166,11 @@ input[type=number] { width:2.3em; border:1px solid #899174; height:1.5em; }
 .curves input[type=number] { display:block; margin-left:auto; margin-right:auto; }
 
 .variants {
-    float:right; width:0.95em; margin-right:0.3em;
+    display:flex; align-items:center;
+    float:right; margin-right:0.3em;
     color:#3d332a; cursor:pointer; outline:none;
 }
+.variants svg { width:0.95em; }
 .variants:hover { color:#124; }
 
 .lineLabel { pointer-events:none; }
@@ -352,28 +354,8 @@ div.scroll {
     background-color: #fff;
 }
 
-td.item-line.item-phone {
-    display: flex;
-    align-items: center;
-    
-    height: 34px;
-}
-
 div.phone-item {
     display: flex;
-}
-
-div.variants {
-    flex: 17px 0 0;
-    height: 22px;
-    margin-left: auto;
-    
-    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 8 5' style='enable-background:new 0 0 8 5;' xml:space='preserve'%3E%3Cpath d='M0,4l4-4l4,4L7,5L5,3C4.3,2.3,3.7,2.3,3,3L1,5L0,4z'/%3E%3C/svg%3E%0A");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    
-    float: none;
 }
 
 div.phone-item-add {

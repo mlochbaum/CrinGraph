@@ -9,11 +9,11 @@ compare measurements against each other, and save easily readable images
 to share around the internet. Although it was designed for
 [Crin's site](https://crinacle.com/graphs/graphtool/),
 the code here can be used freely by anyone, with no restrictions.
-Other instances I know of are
+There are now many instances, including
 [Banbeucmas](https://banbeu.com/graph/tool/),
-[Super\* Review](https://squig.link/), and
-[HypetheSonics](https://www.hypethesonics.com/iemdbc/).
-If you're interested in using it for your own graphs, see
+[HypetheSonics](https://www.hypethesonics.com/iemdbc/), and
+[Super\* Review](https://squig.link/), which has links to even more of
+them. If you're interested in using it for your own graphs, see
 [Configuring.md](Configuring.md) and ask me about any questions that
 come up.
 

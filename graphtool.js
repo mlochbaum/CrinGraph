@@ -1446,6 +1446,8 @@ function showPhone(p, exclusive, suppressVariant) {
     if (!suppressVariant && p.fileNames && !p.copyOf && window.innerWidth > 1000) {
         table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
     }
+    
+    document.activeElement.blur();
 }
 
 function removeCopies(p) {
@@ -1943,8 +1945,8 @@ setFocusedPanel();
 
 // Blur focus from inputs on submit
 function blurFocus() {
-    let inputFields = document.querySelectorAll("input");
-    console.log(inputFields);
+    let inputFields = document.querySelectorAll("input"),
+        body = document.querySelector("body");
     
     inputFields.forEach(function(field) {
         field.addEventListener("keyup", function(e) {
@@ -1952,9 +1954,16 @@ function blurFocus() {
                 field.blur();
             }
         });
+        
+        field.addEventListener("focus", function() {
+            body.setAttribute("data-input-state","focus");
+        });
+        
+        field.addEventListener("blur", function() {
+            body.setAttribute("data-input-state","blur");
+        });
     });
 }
-
 blurFocus();
 
 // Add accessories to the bottom of the page, if configured

@@ -30,7 +30,6 @@ html {
 }
 
 
-
 /*****
 Icons *****/
 
@@ -343,6 +342,7 @@ button#download-faux {
     
     box-sizing: border-box;
     padding: 11px 16px;
+    margin: 0;
     overflow: hidden;
     
     background-color: var(--background-color);
@@ -637,6 +637,7 @@ div.miscTools button {
     order: 1;
     
     padding: 11px 16px;
+    margin: 0;
     
     background-color: var(--background-color) !important;
     border: 1px solid var(--background-color-contrast-more);
@@ -2490,20 +2491,19 @@ Responsive styles *****/
 }
 
 /*@media ( max-height: 500px ) and ( orientation: landscape ) {*/
-/*
 @media ( max-height: 500px ) and ( min-aspect-ratio: 3 / 2 ) {
-    section.parts-primary {
+    body:not([data-input-state="focus"]) section.parts-primary {
         z-index: 3;
         
         flex: 100vh 1 1 !important;
         max-height: -webkit-fill-available;
     }
     
-    section.parts-secondary {
+    body:not([data-input-state="focus"]) section.parts-secondary {
         display: none;
     }
     
-    div.graph-sizer {
+    body:not([data-input-state="focus"]) div.graph-sizer {
         position: fixed;
         z-index: 5;
         top: 0;
@@ -2523,10 +2523,9 @@ Responsive styles *****/
         background-color: var(--background-color);
     }
     
-    svg#fr-graph {
+    body:not([data-input-state="focus"]) svg#fr-graph {
         width: 100%;
         
         pointer-events: none;
     }
 }
-*/

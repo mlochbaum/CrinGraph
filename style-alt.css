@@ -78,7 +78,7 @@ body {
     
     color: var(--font-color-primary);
     font-family: var(--font-primary);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 14px;
     line-height: 1em;
     
@@ -352,7 +352,7 @@ button#download-faux {
     
     color: var(--accent-color-contrast);
     font-family: var(--font-primary);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 12px;
     line-height: 1em;
     
@@ -435,7 +435,7 @@ div.zoom button {
     
     color: var(--accent-color-contrast);
     font-family: var(--font-primary);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 12px;
     line-height: 1em;
     
@@ -549,7 +549,7 @@ div.normalize > div > span {
     border-radius: 6px 0 0 6px;
     
     color: var(--accent-color-contrast);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 12px;
     line-height: 1em;
     
@@ -645,7 +645,7 @@ div.miscTools button {
     
     color: var(--accent-color-contrast);
     font-family: var(--font-primary);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 12px;
     line-height: 1em;
     text-transform: capitalize;
@@ -775,7 +775,7 @@ div.target {
     border-radius: 6px;
     
     color: var(--accent-color-contrast);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 12px;
     line-height: 1em;
     
@@ -1127,7 +1127,7 @@ tbody.curves > tr > td.item-line div.variantName {
     margin: 0 16px 0 0;
 
     color: var(--font-color-primary) !important;
-    font-weight: 300;
+    font-weight: 400;
     
     cursor: pointer !important;
 }
@@ -1156,7 +1156,7 @@ tbody.curves > tr > td.item-line span.variantPopout {
     border-radius: 6px;
     
     font-size: 0px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1em;
     
     cursor: pointer;
@@ -1311,7 +1311,7 @@ tbody.curves > tr > td.item-line div.variants:before {
     
     color: currentColor;
     font-family: var(--font-secondary);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 11px;
     line-height: 1em;
     text-transform: uppercase;
@@ -1464,7 +1464,7 @@ div.select > div.selector-tabs button {
     
     color: var(--accent-color-contrast);
     font-family: var(--font-primary);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 12px;
     line-height: 1em;
     
@@ -1608,7 +1608,7 @@ div.scroll > div {
     border-radius: 6px;
     
     color: var(--font-color-primary);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 12px;
     line-height: 1.5em;
     
@@ -1902,7 +1902,7 @@ div.external-links a {
     border-radius: 6px;
     
     color: var(--background-color-contrast-more);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 12px;
     line-height: 1em;
     text-align: center;
@@ -1949,7 +1949,7 @@ div.accessories h2 {
     
     color: var(--background-color-contrast-more);
     font-family: var(--font-secondary);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 14px;
     line-height: 1.6em;
     text-transform: uppercase;
@@ -2041,7 +2041,7 @@ div.cashMessage p {
     max-width: 600px;
     margin: 16px 32px;
     
-    font-weight: 300;
+    font-weight: 400;
     font-size: 16px;
     line-height: 1.5em;
     
@@ -2329,7 +2329,7 @@ Responsive styles *****/
         border-radius: 6px;
         
         color: var(--font-color-secondary);
-        font-weight: 300;
+        font-weight: 400;
         font-size: 12px;
         line-height: 12px;
         

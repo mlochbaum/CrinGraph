@@ -1916,6 +1916,14 @@ function setFocusedPanel() {
             panelsContainer.setAttribute("data-focused-panel","primary");
         } else {
             panelsContainer.setAttribute("data-focused-panel","secondary");
+        
+            let windowWidth = window.innerWidth;
+            if ( windowWidth < 10001 ) {
+                primaryPanel.scroll({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
         }
     });
 
@@ -1923,7 +1931,6 @@ function setFocusedPanel() {
         panelsContainer.setAttribute("data-focused-panel","secondary");
         
         let windowWidth = window.innerWidth;
-        
         if ( windowWidth < 10001 ) {
             primaryPanel.scroll({
                 top: 0,

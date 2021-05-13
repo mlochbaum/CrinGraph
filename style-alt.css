@@ -86,6 +86,10 @@ body {
     opacity: 1.0;
 }
 
+input {
+    -webkit-appearance: none;
+}
+
 
 
 /*****

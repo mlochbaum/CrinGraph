@@ -1904,17 +1904,18 @@ function setFocusedPanel() {
     let panelsContainer = document.querySelector("main.main"),
         primaryPanel = document.querySelector(".parts-primary"),
         secondaryPanel = document.querySelector(".parts-secondary"),
-        phonesList = document.querySelector("div#phones");
+        phonesList = document.querySelector("div#phones"),
+        graphBox = document.querySelector("div.graph-sizer");
     
     panelsContainer.setAttribute("data-focused-panel","secondary");
 
-    primaryPanel.addEventListener("click", function() {
+    graphBox.addEventListener("click", function() {
         let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
 
-        if ( previouslyFocused === 'secondary' ) {
+        if ( previouslyFocused === "secondary" ) {
             panelsContainer.setAttribute("data-focused-panel","primary");
         } else {
-            panelsContainer.setAttribute("data-focused-panel","primary");
+            panelsContainer.setAttribute("data-focused-panel","secondary");
         }
     });
 
@@ -1932,6 +1933,22 @@ function setFocusedPanel() {
     });
 }
 setFocusedPanel();
+
+// Blur focus from inputs on submit
+function blurFocus() {
+    let inputFields = document.querySelectorAll("input");
+    console.log(inputFields);
+    
+    inputFields.forEach(function(field) {
+        field.addEventListener("keyup", function(e) {
+            if (e.keyCode === 13) {
+                field.blur();
+            }
+        });
+    });
+}
+
+blurFocus();
 
 // Add accessories to the bottom of the page, if configured
 function addAccessories() {

@@ -1677,6 +1677,7 @@ div.scroll > div.phone-item {
     justify-content: flex-start;
     align-items: center;
     
+    width: calc(350px - 94px);
     padding: 0;
     
     border-right: none;
@@ -2261,6 +2262,10 @@ Responsive styles *****/
         opacity: 0;
     }
 
+    div.scroll > div.phone-item {
+        width: calc(100vw - 94px);
+    }
+    
     tbody.curves:empty:before {
         content: 'Select a model from the list below to graph its frequency response';
     }

@@ -1422,6 +1422,9 @@ function showPhone(p, exclusive, suppressVariant) {
             p.rawChannels = ch;
             if (!f_values) { f_values = ch[0].map(d=>d[0]); }
             showPhone(p, exclusive, suppressVariant);
+            
+            // Tag manager push
+            if (analyticsEnabled) { pushPhoneTag("phone_displayed", p); }
         });
         return;
     }
@@ -1838,6 +1841,9 @@ function copyUrlInit() {
         setTimeout(function() {
             copyUrlButton.classList.remove("clicked");
         }, 600);
+        
+        // Tag manager push
+        if (analyticsEnabled) { pushEventTag("clicked_copyUrl", targetWindow); }
     });
 }
 copyUrlInit();
@@ -1880,7 +1886,10 @@ function mapDownloadFaux() {
     
     downloadFaux.addEventListener("click", function() {
         downloadButton.click();
-    })
+        
+        // Tag manager push
+        if (analyticsEnabled) { pushEventTag("clicked_download", targetWindow); }
+    });
 }
 mapDownloadFaux();
 

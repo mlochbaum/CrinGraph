@@ -20,7 +20,11 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       headerHeight = '0px',                         // Optional. If expandable=true, determines how much space to leave for the parent page header
       darkModeButton = true,                        // Adds a "Dark Mode" button the main toolbar to let users set preference
       targetDashed = false,                         // If true, makes target curves dashed lines
-      targetColorCustom = false;                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
+      targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
+      analyticsEnabled = true,                      // Enables Google Analytics 4 measurement of site usage
+      analyticsSite = "Generic Graph site",         // Site name for attributing analytics events to your site
+      analyticsGa4Id = "G-M68DGTWYLX",              // GA4 ID used for analytics. If you don't already have one, you'll need to create a Google Analytics 4 account
+      analyticsGtmId = "GTM-N74Z5L8";               // GTM ID used for analytics. If you don't already have one, you'' need to create a Google Tag Manager account
 
 // Specify which targets to display
 const targets = [
@@ -31,7 +35,9 @@ const targets = [
 
 
 
+// *************************************************************
 // Functions to support config options set above; probably don't need to change these
+// *************************************************************
 
 // Set up the watermark, based on config options above
 function watermark(svg) {
@@ -207,3 +213,45 @@ const linkSets = [
         ]
     }
 ];
+
+
+
+// Set up analytics
+function setupGraphAnalytics() {
+    if ( analyticsEnabled ) {
+        let ga4TagSrc = "https://www.googletagmanager.com/gtag/js?id="+ analyticsGa4Id,
+            ga4ScriptContent = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '"+ analyticsGa4Id +"');",
+            gtmScriptContent = "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','"+ analyticsGtmId +"');",
+            gtmIframeSrc = "https://www.googletagmanager.com/ns.html?id="+ analyticsGtmId,
+            gtmIframeStyle = "display: none; visibility: hidden;",
+            graphAnalyticsSrc = "graphAnalytics.js";
+
+        const pageHead = document.querySelector("head"),
+              pageBody = document.querySelector("body"),
+              ga4Tag = document.createElement("script"),
+              ga4Script = document.createElement("script"),
+              gtmScript = document.createElement("script"),
+              gtmNoscript = document.createElement("noscript"),
+              gtmIframe = document.createElement("iframe"),
+              graphAnalytics = document.createElement("script");
+        
+        ga4Tag.setAttribute("async", "true");
+        ga4Tag.setAttribute("src", ga4TagSrc);
+        pageHead.append(ga4Tag);
+        
+        ga4Script.textContent = ga4ScriptContent;
+        pageHead.append(ga4Script);
+        
+        gtmScript.textContent = gtmScriptContent;
+        pageHead.append(gtmScript);
+        
+        gtmIframe.setAttribute("src", gtmIframeSrc);
+        gtmIframe.setAttribute("style", gtmIframeStyle);
+        gtmNoscript.append(gtmIframe);
+        pageBody.prepend(gtmNoscript);
+        
+        graphAnalytics.setAttribute("src", graphAnalyticsSrc);
+        pageHead.append(graphAnalytics);
+    }
+}
+setupGraphAnalytics();

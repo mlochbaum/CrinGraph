@@ -22,9 +22,9 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       targetDashed = false,                         // If true, makes target curves dashed lines
       targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
       analyticsEnabled = true,                      // Enables Google Analytics 4 measurement of site usage
-      analyticsSite = "Generic Graph site",         // Site name for attributing analytics events to your site
-      analyticsGa4Id = "G-M68DGTWYLX",              // GA4 ID used for analytics. If you don't already have one, you'll need to create a Google Analytics 4 account
-      analyticsGtmId = "GTM-N74Z5L8";               // GTM ID used for analytics. If you don't already have one, you'' need to create a Google Tag Manager account
+      analyticsSite = "Generic Graph site",         // Optional. Site name for attributing analytics events to your site
+      analyticsGa4Id = "G-M68DGTWYLX",              // Optional. GA4 ID used for analytics. If you don't already have one, you'll need to create a Google Analytics 4 account
+      analyticsGtmId = "GTM-N74Z5L8";               // Optional. GTM ID used for analytics. If you don't already have one, you'' need to create a Google Tag Manager account
 
 // Specify which targets to display
 const targets = [

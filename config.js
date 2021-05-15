@@ -18,12 +18,14 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       expandable = false,                           // Enables button to expand iframe over the top of the parent page
       expandableOnly = false,                       // Prevents iframe interactions unless the user has expanded it. Accepts "true" or "false" OR a pixel value; if pixel value, that is used as the maximum width at which expandableOnly is used
       headerHeight = '0px',                         // Optional. If expandable=true, determines how much space to leave for the parent page header
-      darkModeButton = true;                        // Adds a "Dark Mode" button the main toolbar to let users set preference
+      darkModeButton = true,                        // Adds a "Dark Mode" button the main toolbar to let users set preference
+      targetDashed = false,                         // If true, makes target curves dashed lines
+      targetColorCustom = false;                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
 
 // Specify which targets to display
 const targets = [
     { type:"Neutral",    files:["Diffuse Field","Etymotic","Free Field","Innerfidelity ID"] },
-    { type:"Reviewer",   files:["Antdroid","Bad Guy","Crinacle","Precogvision","Super* Review"] },
+    { type:"Reviewer",   files:["Antdroid","Bad Guy","Banbeucmas","Crinacle","Precogvision","Super* Review"] },
     { type:"Preference", files:["Harman","Rtings","Sonarworks"] }
 ];
 

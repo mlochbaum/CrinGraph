@@ -1025,9 +1025,21 @@ function updatePaths() {
     clearLabels();
     let c = d3.merge(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
-    p.join("path").attr("opacity", c=>c.p.hide?0:null)
-        .classed("sample", c=>c.p.samp)
-        .attr("stroke", getColor_AC).call(redrawLine);
+    
+    if ( !targetColorCustom ) {
+        p.join("path").attr("opacity", c=>c.p.hide?0:null)
+            .classed("sample", c=>c.p.samp)
+            .attr("stroke", getColor_AC).call(redrawLine)
+            .filter(c=>c.p.isTarget)
+            .style("stroke-dasharray", function(){ if (targetDashed) {return ("6, 3")} else { return null } });
+    } else {
+        p.join("path").attr("opacity", c=>c.p.hide?0:null)
+            .classed("sample", c=>c.p.samp)
+            .attr("stroke", getColor_AC).call(redrawLine)
+            .filter(c=>c.p.isTarget)
+            .style("stroke-dasharray", function(){ if (targetDashed) {return ("6, 3")} })
+            .attr("stroke", targetColorCustom);
+    }    
     if (ifURL) addPhonesToUrl();
 }
 let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" fill="'+getBgColor(p)+'"/></svg>\')';
@@ -1446,6 +1458,8 @@ function showPhone(p, exclusive, suppressVariant) {
     if (!suppressVariant && p.fileNames && !p.copyOf && window.innerWidth > 1000) {
         table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
     }
+    
+    document.activeElement.blur();
 }
 
 function removeCopies(p) {
@@ -1904,17 +1918,26 @@ function setFocusedPanel() {
     let panelsContainer = document.querySelector("main.main"),
         primaryPanel = document.querySelector(".parts-primary"),
         secondaryPanel = document.querySelector(".parts-secondary"),
-        phonesList = document.querySelector("div#phones");
+        phonesList = document.querySelector("div#phones"),
+        graphBox = document.querySelector("div.graph-sizer");
     
     panelsContainer.setAttribute("data-focused-panel","secondary");
 
-    primaryPanel.addEventListener("click", function() {
+    graphBox.addEventListener("click", function() {
         let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
 
-        if ( previouslyFocused === 'secondary' ) {
+        if ( previouslyFocused === "secondary" ) {
             panelsContainer.setAttribute("data-focused-panel","primary");
         } else {
-            panelsContainer.setAttribute("data-focused-panel","primary");
+            panelsContainer.setAttribute("data-focused-panel","secondary");
+        
+            let windowWidth = window.innerWidth;
+            if ( windowWidth < 10001 ) {
+                primaryPanel.scroll({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
         }
     });
 
@@ -1922,7 +1945,6 @@ function setFocusedPanel() {
         panelsContainer.setAttribute("data-focused-panel","secondary");
         
         let windowWidth = window.innerWidth;
-        
         if ( windowWidth < 10001 ) {
             primaryPanel.scroll({
                 top: 0,
@@ -1932,6 +1954,29 @@ function setFocusedPanel() {
     });
 }
 setFocusedPanel();
+
+// Blur focus from inputs on submit
+function blurFocus() {
+    let inputFields = document.querySelectorAll("input"),
+        body = document.querySelector("body");
+    
+    inputFields.forEach(function(field) {
+        field.addEventListener("keyup", function(e) {
+            if (e.keyCode === 13) {
+                field.blur();
+            }
+        });
+        
+        field.addEventListener("focus", function() {
+            body.setAttribute("data-input-state","focus");
+        });
+        
+        field.addEventListener("blur", function() {
+            body.setAttribute("data-input-state","blur");
+        });
+    });
+}
+blurFocus();
 
 // Add accessories to the bottom of the page, if configured
 function addAccessories() {
@@ -2026,7 +2071,7 @@ function toggleExpandCollapse() {
 
                     content: 'Tap to launch graph tool';
 
-                    color: var(--background-color-contrast-more);
+                    color: var(--font-color-primary);
                     font-family: var(--font-secondary);
                     font-size: 11px;
                     line-height: 1em;
@@ -2115,9 +2160,9 @@ function toggleExpandCollapse() {
                 height: calc(100% - var(--header-height)) !important;
 
                 animation-name: graph-tool-expand;
-                animation-duration: 0.2s;
+                animation-duration: 0.15s;
                 animation-iteration-count: 1;
-                animation-timing-function: ease-in-out;
+                animation-timing-function: ease-out;
                 animation-fill-mode: forwards;
             }
 
@@ -2125,27 +2170,27 @@ function toggleExpandCollapse() {
                 0% {
                     position: relative;
                     opacity: 1.0;
-                    transform: translateY(0px);
+                    transform: scale(1.0);
                 }
                 48% {
                     position: relative;
                     opacity: 0.0;
-                    transform: translateY(-100px);
+                    transform: scale(0.9);
                 }
                 50% {
                     position: fixed;
                     opacity: 0.0;
-                    transform: translateY(0px);
+                    transform: scale(0.9);
                 }
                 52% {
                     position: fixed;
                     opacity: 0.0;
-                    transform: translateY(0px);
+                    transform: scale(0.9);
                 }
                 100% {
                     position: fixed;
                     opacity: 1.0;
-                    transform: translateY(0px);
+                    transform: scale(1.0);
                 }
             }`;
     

@@ -502,6 +502,9 @@ function saveGraph(ext) {
     showControls(false);
     fn(gr.node(), "graph."+ext, {scale:3})
         .then(()=>showControls(true));
+    
+    // Tag manager push
+    if (analyticsEnabled) { pushEventTag("clicked_download", targetWindow); }
 }
 doc.select("#download")
     .on("click", () => saveGraph("png"))
@@ -1888,7 +1891,7 @@ function mapDownloadFaux() {
         downloadButton.click();
         
         // Tag manager push
-        if (analyticsEnabled) { pushEventTag("clicked_download", targetWindow); }
+        //if (analyticsEnabled) { pushEventTag("clicked_download", targetWindow); }
     });
 }
 mapDownloadFaux();

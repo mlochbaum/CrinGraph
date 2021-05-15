@@ -1,4 +1,4 @@
-let logAnalytics = false;
+let logAnalytics = true;
 
 window.dataLayer = window.dataLayer || [];
 

@@ -1457,9 +1457,9 @@ function showPhone(p, exclusive, suppressVariant) {
     //Displays variant pop-up when phone displayed
     if (!suppressVariant && p.fileNames && !p.copyOf && window.innerWidth > 1000) {
         table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
+    } else {
+        document.activeElement.blur();
     }
-    
-    document.activeElement.blur();
 }
 
 function removeCopies(p) {

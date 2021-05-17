@@ -148,6 +148,28 @@ text.insp_dB {
     fill: var(--background-color-contrast-more);
 }
 
+/* Animating graph stroke */
+
+g[mask="url(#graphFade)"] path:not(.target) {
+    stroke-dasharray: 2000px;
+    
+    animation-name: graph-draw;
+    animation-duration: 1.0s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes graph-draw {
+    0% {
+        stroke-dashoffset: 2000px;
+    }
+    
+    100% {
+        stroke-dashoffset: 0px;
+    }
+}
+
 
 
 /*****

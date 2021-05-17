@@ -1028,7 +1028,8 @@ function updatePaths() {
     let t = p.join("path").attr("opacity", c=>c.p.hide?0:null)
         .classed("sample", c=>c.p.samp)
         .attr("stroke", getColor_AC).call(redrawLine)
-        .filter(c=>c.p.isTarget);
+        .filter(c=>c.p.isTarget)
+        .attr("class", "target");
     if (targetDashed) t.style("stroke-dasharray", "6, 3");
     if (targetColorCustom) t.attr("stroke", targetColorCustom);
     if (ifURL) addPhonesToUrl();

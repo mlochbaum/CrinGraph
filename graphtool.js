@@ -1911,7 +1911,8 @@ function setFocusedPanel() {
         primaryPanel = document.querySelector(".parts-primary"),
         secondaryPanel = document.querySelector(".parts-secondary"),
         phonesList = document.querySelector("div#phones"),
-        graphBox = document.querySelector("div.graph-sizer");
+        graphBox = document.querySelector("div.graph-sizer"),
+        scrollableList = document.querySelector("div.scroll-container");
     
     panelsContainer.setAttribute("data-focused-panel","secondary");
 
@@ -1928,12 +1929,76 @@ function setFocusedPanel() {
     setInterval(function() {
         let primaryScrollPos = primaryPanel.scrollTop;
         
-        if ( primaryScrollPos > 10 ) {
+        if ( primaryScrollPos >= 10 ) {
             panelsContainer.setAttribute("data-focused-panel","primary");
         } else {
             panelsContainer.setAttribute("data-focused-panel","secondary");
         }
     }, 100);
+    
+    // Touch events
+    let selectorTabs = document.querySelector("div.selector-tabs");
+    
+    secondaryPanel.addEventListener("touchstart", function(e) {
+        focusedPanel = document.querySelector("main.main").getAttribute("data-focused-panel");
+        
+        touchStart = e.targetTouches[0].screenY;
+        
+        secondaryPanel.addEventListener("touchmove", function(e) {
+            touchNow = e.targetTouches[0].screenY;
+            touchDelta = touchNow - touchStart;
+            
+            if ( focusedPanel === "secondary" && touchDelta > 0 && touchDelta < 10) {
+                secondaryPanel.setAttribute("style", "margin-top: " + touchDelta + "px;")
+            } else if ( focusedPanel === "primary" && touchDelta < 0 && touchDelta > -70) {
+                secondaryPanel.setAttribute("style", "margin-top: " + touchDelta + "px;")
+            }
+            
+            if ( touchDelta > 0 && touchDelta < 10 ) {
+                primaryPanel.scroll({
+                    top: touchDelta
+                });
+            }
+        });
+    });
+    
+    secondaryPanel.addEventListener("touchend", function(e) {
+        if ( touchDelta < 10 && touchDelta > -50 ) {
+            primaryPanel.scroll({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        if ( touchDelta > 9 ) {
+            primaryPanel.scroll({
+                top: 10,
+                behavior: 'smooth'
+            });            
+        }
+        
+        if ( touchDelta < -50 ) {
+            primaryPanel.scroll({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        secondaryPanel.setAttribute("style", "")
+        touchStart = 0;
+        touchNow = 0;
+        touchDelta = 0;
+    });
+    
+    scrollableList.addEventListener("touchstart", function(e) {
+        e.stopPropagation();
+    });
+    scrollableList.addEventListener("touchmove", function(e) {
+        e.stopPropagation();
+    });
+    scrollableList.addEventListener("touchend", function(e) {
+        e.stopPropagation();
+    });
 }
 setFocusedPanel();
 

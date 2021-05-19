@@ -2390,6 +2390,7 @@ Responsive styles *****/
     
     /* Secondary panel focused */
     main.main[data-focused-panel="secondary"] section.parts-primary {
+        overflow: hidden;
     }
     
     main.main[data-focused-panel="secondary"] section.parts-secondary {

@@ -1915,25 +1915,33 @@ function setFocusedPanel() {
     
     panelsContainer.setAttribute("data-focused-panel","secondary");
 
+    graphBox.addEventListener("click", function() {
+        let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
+
+        if ( previouslyFocused === "secondary" ) {
+            panelsContainer.setAttribute("data-focused-panel","primary");
+        } else {
+            panelsContainer.setAttribute("data-focused-panel","secondary");
+        
+            let windowWidth = window.innerWidth;
+            if ( windowWidth < 10001 ) {
+                primaryPanel.scroll({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+
     secondaryPanel.addEventListener("click", function() {
+        panelsContainer.setAttribute("data-focused-panel","secondary");
+        
         let windowWidth = window.innerWidth;
         if ( windowWidth < 10001 ) {
             primaryPanel.scroll({
                 top: 0,
                 behavior: 'smooth'
             });
-        }
-    });
-    
-    primaryPanel.addEventListener("scroll", function() {
-        let previouslyFocused = panelsContainer.getAttribute("data-focused-panel");
-        
-        scrollPos = primaryPanel.scrollTop;
-        
-        if ( scrollPos > 0 && previouslyFocused === "secondary" ) {
-            panelsContainer.setAttribute("data-focused-panel","primary");
-        } else if ( scrollPos < 1 && previouslyFocused === "primary" ) {
-            panelsContainer.setAttribute("data-focused-panel","secondary");
         }
     });
 }

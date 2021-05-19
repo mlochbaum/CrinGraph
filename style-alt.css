@@ -65,6 +65,7 @@ html {
     -webkit-text-size-adjust: none;
     
     user-select: none;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -2245,8 +2246,9 @@ Responsive styles *****/
     
     
     main.main {
-        display: flex;
-        flex-direction: column;
+        position: relative;
+        
+        display: block;
         overflow: hidden;
     }
     
@@ -2254,89 +2256,80 @@ Responsive styles *****/
         position: relative;
         
         order: 1;
-        flex: calc( (100vw * 0.44) + 100px ) 0 0;
-        max-height: calc(100% - 200px);
+        height: 100%;
         overflow-y: scroll;
+    }
+    
+    section.parts-primary:after {
+        content: '';
         
-        transition: all 200ms ease-out;
+        display: block;
+        height: 84px;
     }
     
     div.graphBox {
         position: relative;
+        padding-bottom: 8px;
+    }
+    
+    div.graph-sizer {
+        margin: 8px auto 0 auto;
+    }
+    
+    div.manage {
+        transition: background-color 0.2s ease-out;
+    }
+    
+    table.manageTable {
+        min-height: calc( 100vh - ((100vw * 0.44) + 92px) );
     }
     
     section.parts-secondary {
-        position: relative;
+        position: absolute;
+        top: 0;
+        z-index: 1;
         
         order: 2;
-        flex: calc(100% - ((100vw * 0.44) + 100px)) 0 0;
+        width: 100%;
+        height: calc(100% - ((100vw * 0.44) + 92px));
         min-height: 200px;
-        overflow: hidden;
         
         border-right: none;
+        border-top: 1px solid var(--background-color-contrast-more);
+        border-radius: 16px 16px 0 0;
         
         transition: all 200ms ease-out;
+        transform: translateY(calc( (100vw * 0.44) + 92px ));
+    }
+    
+    div.controls {
+        border-radius: 16px 16px 0 0;
     }
     
     div.selector-tabs {
         display: none;
     }
-    
-    section.parts-primary:before,
-    section.parts-secondary:before {
-        content: '';
-        opacity: 0;
-    }
 
-    div.scroll > div.phone-item {
-        width: calc(100vw - 94px);
-    }
-    
-    tbody.curves:empty:before {
-        content: 'Select a model from the list below to graph its frequency response';
-    }
-    
-    /* Primary panel focused */
-    main.main[data-focused-panel="primary"] section.parts-primary {
-        flex: calc(100% - 84px) 0 0;
-        max-height: 100%;
-    }
-    
-    main.main[data-focused-panel="primary"] section.parts-secondary {
-        flex: 84px 0 0;
-        min-height: auto;
-    }
-    
-    main.main[data-focused-panel="primary"] section.parts-secondary:before {
+    xsection.parts-secondary:before {
         position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 2;
+        top: -4px;
+        z-index: -1;
         
         content: '';
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
+        display: block;
         width: 100%;
-        height: 100%;
+        height: 100px;
         
-        background-color: var(--background-color);
-        border-top: 1px solid var(--background-color-contrast-more);
+        background-color: var(--background-color-contrast-more);
+        border-radius: 24px 24px 0 0;
         
-        color: var(--accent-color);
-        font-weight: bold;
-        font-size: 12px;
-        
-        opacity: 1;
+        opacity: 0.6;
+        filter: blur(4px);
     }
     
-    main.main[data-focused-panel="primary"] section.parts-secondary:after {
-        position: absolute;
-        top: 16px;
-        left: 16px;
-        z-index: 2;
+    section.parts-secondary div.select:before {
+        position: relative;
+        z-index: 1;
         
         content: 'Browse all graphs';
         display: flex;
@@ -2346,6 +2339,7 @@ Responsive styles *****/
         box-sizing: border-box;
         width: calc(100% - 32px);
         padding: 12px 16px;
+        margin: -36px 16px 0 16px;
         
         background-color: var(--accent-color);
         border-radius: 6px;
@@ -2355,50 +2349,117 @@ Responsive styles *****/
         font-size: 12px;
         line-height: 12px;
         
-        opacity: 1;
+        pointer-events: none;
+    }
+    
+    div.scroll > div.phone-item {
+        width: calc(100vw - 94px);
+    }
+    
+    tbody.curves:empty:before {
+        content: 'Select a model from the list below to graph its frequency response';
+    }
+    
+    /* Primary panel focused */
+    
+    main.main[data-focused-panel="primary"] section.parts-primary {
+    }
+    main.main[data-focused-panel="primary"] div.manage {
+        background-color: var(--background-color);
+    }
+    
+    main.main[data-focused-panel="primary"] section.parts-secondary {
+        transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
         
-        animation-name: all-graphs-bounce;
-        animation-duration: 4s;
-        animation-iteration-count: infinite;
-        animation-delay: 3s;
+        animation-name: graph-drawer-hide;
+        animation-duration: 0.4s;
         animation-timing-function: ease-in;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    
+    @keyframes graph-drawer-hide {
+        0% {
+            transform: translateY(calc( (100vw * 0.44) + 92px ));
+        }
+        75% {
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
+        }
+        85% {
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 74px ));
+        }
+        100% {
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
+        }
+    }
+    
+    main.main[data-focused-panel="primary"] section.parts-secondary div.select:before {
+        animation-name: all-graphs-bounce;
+        animation-duration: 0.3s;
+        animation-iteration-count: 1;
+        animation-delay: 0.3s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
     }
     
     @keyframes all-graphs-bounce {
         0% {
-            transform: translateY(0px);
-        }
-        5% {
-            transform: translateY(-6px);
-        }
-        10% {
-            transform: translateY(4px);
-        }
-        15% {
-            transform: translateY(-2px);
-        }
-        20% {
-            transform: translateY(2px);
-        }
-        25% {
-            transform: translateY(0px);
+            margin: -36px 16px 0 16px;
         }
         100% {
-            transform: translateY(0px);
+            margin: 16px 16px 32px 16px;
         }
     }
     
     /* Secondary panel focused */
-    main.main[data-focused-panel="secondary"] section.parts-primary {
+    
+    main.main[data-focused-panel="secondary"] div.manage {
+        background-color: var(--background-color-contrast-more);
+        transition: background-color 0.2s ease-out 0.3s;
     }
     
     main.main[data-focused-panel="secondary"] section.parts-secondary {
+        animation-name: graph-drawer-show;
+        animation-duration: 0.4s;
+        animation-timing-function: ease-in;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
     }
     
-    section.parts-secondary div.controls {
-        border-top: 1px solid var(--background-color-contrast-more);
+    @keyframes graph-drawer-show {
+        0% {
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
+        }
+        75% {
+            transform: translateY(calc( (100vw * 0.44) + 92px ));
+        }
+        85% {
+            transform: translateY(calc( (100vw * 0.44) + 102px ));
+        }
+        100% {
+            height: calc(100% - ((100vw * 0.44) + 92px));
+            min-height: 200px;
+            transform: translateY(calc( (100vw * 0.44) + 92px ));
+        }
     }
 }
+    
+    main.main[data-focused-panel="secondary"] section.parts-secondary div.select:before {
+        animation-name: all-graphs-bounce-up;
+        animation-duration: 0.3s;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+    }
+    
+    @keyframes all-graphs-bounce-up {
+        0% {
+            margin: 16px 16px 32px 16px;
+        }
+        100% {
+            margin: -36px 16px 0 16px;
+        }
+    }
 
 /* Move table items to two rows for narrow browsers */
 @media ( max-width: 1200px ) {

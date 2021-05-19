@@ -2245,8 +2245,9 @@ Responsive styles *****/
     
     
     main.main {
-        display: flex;
-        flex-direction: column;
+        position: relative;
+        
+        display: block;
         overflow: hidden;
     }
     
@@ -2254,26 +2255,38 @@ Responsive styles *****/
         position: relative;
         
         order: 1;
-        flex: calc( (100vw * 0.44) + 100px ) 0 0;
-        max-height: calc(100% - 200px);
+        height: 100%;
         overflow-y: scroll;
+    }
+    
+    section.parts-primary:after {
+        content: '';
         
-        transition: all 200ms ease-out;
+        display: block;
+        height: 84px;
     }
     
     div.graphBox {
         position: relative;
     }
     
+    table.manageTable {
+        min-height: calc( 100vh - ((100vw * 0.44) + 100px) );
+    }
+    
     section.parts-secondary {
-        position: relative;
+        position: absolute;
+        top: calc( (100vw * 0.44) + 100px );
+        z-index: 1;
         
         order: 2;
-        flex: calc(100% - ((100vw * 0.44) + 100px)) 0 0;
+        width: 100%;
+        height: calc(100% - ((100vw * 0.44) + 100px));
         min-height: 200px;
         overflow: hidden;
         
         border-right: none;
+        border-top: 1px solid var(--background-color-contrast-more);
         
         transition: all 200ms ease-out;
     }
@@ -2298,13 +2311,40 @@ Responsive styles *****/
     
     /* Primary panel focused */
     main.main[data-focused-panel="primary"] section.parts-primary {
-        flex: calc(100% - 84px) 0 0;
-        max-height: 100%;
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary {
-        flex: 84px 0 0;
+        top: calc( 100% - 84px);
+        
+        height: 84px;
         min-height: auto;
+        
+        animation-name: graph-drawer-hide;
+        animation-duration: 0.4s;
+        animation-timing-function: ease-in;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    
+    @keyframes graph-drawer-hide {
+        0% {
+            top: calc( (100vw * 0.44) + 100px );
+            height: calc(100% - ((100vw * 0.44) + 100px));
+            min-height: 200px;
+        }
+        75% {
+            top: calc( 100% - 84px);
+            height: 84px;
+            min-height: 84px;
+        }
+        85% {
+            top: calc( 100% - 74px);
+        }
+        100% {
+            top: calc( 100% - 84px);
+            height: 84px;
+            min-height: 84px;
+        }
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary:before {
@@ -2323,13 +2363,20 @@ Responsive styles *****/
         height: 100%;
         
         background-color: var(--background-color);
-        border-top: 1px solid var(--background-color-contrast-more);
         
         color: var(--accent-color);
         font-weight: bold;
         font-size: 12px;
         
-        opacity: 1;
+        opacity: 0.0;
+        transform: translateY(-84px);
+        
+        animation-name: all-graphs-bounce;
+        animation-duration: 0.3s;
+        animation-iteration-count: 1;
+        animation-delay: 0.3s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary:after {
@@ -2355,49 +2402,63 @@ Responsive styles *****/
         font-size: 12px;
         line-height: 12px;
         
-        opacity: 1;
+        opacity: 0.0;
+        transform: translateY(-84px);
         
         animation-name: all-graphs-bounce;
-        animation-duration: 4s;
-        animation-iteration-count: infinite;
-        animation-delay: 3s;
-        animation-timing-function: ease-in;
+        animation-duration: 0.3s;
+        animation-iteration-count: 1;
+        animation-delay: 0.3s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
     }
     
     @keyframes all-graphs-bounce {
         0% {
-            transform: translateY(0px);
-        }
-        5% {
-            transform: translateY(-6px);
-        }
-        10% {
-            transform: translateY(4px);
-        }
-        15% {
-            transform: translateY(-2px);
-        }
-        20% {
-            transform: translateY(2px);
-        }
-        25% {
-            transform: translateY(0px);
+            transform: translateY(-84px);
+            opacity: 0.0;
         }
         100% {
             transform: translateY(0px);
+            opacity: 1.0;
         }
     }
     
     /* Secondary panel focused */
-    main.main[data-focused-panel="secondary"] section.parts-primary {
-        overflow: hidden;
-    }
-    
     main.main[data-focused-panel="secondary"] section.parts-secondary {
+        top: calc( 100% - 84px);
+        
+        height: 84px;
+        min-height: auto;
+        
+        animation-name: graph-drawer-show;
+        animation-duration: 0.4s;
+        animation-timing-function: ease-in;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
     }
     
-    section.parts-secondary div.controls {
-        border-top: 1px solid var(--background-color-contrast-more);
+    @keyframes graph-drawer-show {
+        0% {
+            top: calc( 100% - 84px);
+            height: 84px;
+            min-height: 84px;
+        }
+        10% {
+            height: calc(100% - ((100vw * 0.44) + 100px));
+            min-height: 200px;
+        }
+        75% {
+            top: calc( (100vw * 0.44) + 100px );
+        }
+        85% {
+            top: calc( (100vw * 0.44) + 110px );
+        }
+        100% {
+            top: calc( (100vw * 0.44) + 100px );
+            height: calc(100% - ((100vw * 0.44) + 100px));
+            min-height: 200px;
+        }
     }
 }
 

@@ -1915,27 +1915,7 @@ function setFocusedPanel() {
     
     panelsContainer.setAttribute("data-focused-panel","secondary");
 
-    graphBox.addEventListener("click", function() {
-        let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
-
-        if ( previouslyFocused === "secondary" ) {
-            panelsContainer.setAttribute("data-focused-panel","primary");
-        } else {
-            panelsContainer.setAttribute("data-focused-panel","secondary");
-        
-            let windowWidth = window.innerWidth;
-            if ( windowWidth < 10001 ) {
-                primaryPanel.scroll({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    });
-
     secondaryPanel.addEventListener("click", function() {
-        panelsContainer.setAttribute("data-focused-panel","secondary");
-        
         let windowWidth = window.innerWidth;
         if ( windowWidth < 10001 ) {
             primaryPanel.scroll({
@@ -1944,6 +1924,16 @@ function setFocusedPanel() {
             });
         }
     });
+    
+    setInterval(function() {
+        let primaryScrollPos = primaryPanel.scrollTop;
+        
+        if ( primaryScrollPos > 10 ) {
+            panelsContainer.setAttribute("data-focused-panel","primary");
+        } else {
+            panelsContainer.setAttribute("data-focused-panel","secondary");
+        }
+    }, 100);
 }
 setFocusedPanel();
 

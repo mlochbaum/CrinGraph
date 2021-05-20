@@ -184,6 +184,10 @@ const linkSets = [
                 url: "https://precog.squig.link/"
             },
             {
+                name: "Rikudou Goku",
+                url: "https://rg.squig.link/"
+            },
+            {
                 name: "Super* Review",
                 url: "https://squig.link/"
             },

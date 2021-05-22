@@ -820,8 +820,11 @@ if (noTargets || typeof max_compare !== "undefined") {
             cantTarget = p => p.isTarget && a.indexOf(r(p.fileName))<0;
         }
     }
-    cantCompare = function(m, p, noMessage) {
-        if (m<max_compare && !(p&&cantTarget(p))) { return false; }
+    let ct = typeof restrict_target === "undefined" || restrict_target,
+        ccfilter = ct ? (l => l) : (l => l.filter(p=>!p.isTarget));
+    cantCompare = function(ps, add, p, noMessage) {
+        let count = ccfilter(ps).length + add - (!ct&&p&&p.isTarget?1:0);
+        if (count<max_compare && !(p&&cantTarget(p))) { return false; }
         if (noMessage) { return true; }
         let div = doc.append("div");
         let c = currency[currencyCounter++ % currency.length];
@@ -1084,7 +1087,7 @@ function updatePhoneTable() {
         .attr("data-pinned","false")
         .html("<svg viewBox='-135 -100 270 200'><use xlink:href='#pin-icon'></use></svg>")
         .on("click",function(p){
-            if (cantCompare(activePhones.filter(p=>p.pin).length+1)) return;
+            if (cantCompare(activePhones.filter(p=>p.pin),1)) return;
 
             if ( p.pin ) {
                 p.pin = false;
@@ -1296,7 +1299,7 @@ function changeVariant(p, update) {
     }
 }
 function showVariant(p, c) {
-    if (cantCompare(activePhones.length)) return;
+    if (cantCompare(activePhones)) return;
     if (!p.objs) { p.objs = [p]; }
     p.objs.push(c);
     c.active=true; c.copyOf=p;
@@ -1380,7 +1383,7 @@ norms.select("span").on("click", (_,i)=>setNorm(_,i,false));
 let addPhoneSet = false, // Whether add phone button was clicked
     addPhoneLock= false;
 function setAddButton(a) {
-    if (a && cantCompare(activePhones.length)) return false;
+    if (a && cantCompare(activePhones)) return false;
     if (addPhoneSet !== a) {
         addPhoneSet = a;
         doc.select(".addPhone").classed("selected", a)
@@ -1406,11 +1409,13 @@ function showPhone(p, exclusive, suppressVariant) {
     }
     if (addPhoneSet) {
         exclusive = false;
-        if (!addPhoneLock || cantCompare(activePhones.length+1,null,true)) {
+        if (!addPhoneLock || cantCompare(activePhones,1,null,true)) {
             setAddButton(false);
         }
     }
-    if (cantCompare(exclusive?0:activePhones.length, p)) return;
+    let keep = !exclusive ? (q=>true)
+             : (q => q.copyOf===p || q.pin || q.isTarget!==p.isTarget);
+    if (cantCompare(activePhones.filter(keep),0, p)) return;
     if (!p.rawChannels) {
         loadFiles(p, function (ch) {
             if (p.rawChannels) return;
@@ -1423,9 +1428,7 @@ function showPhone(p, exclusive, suppressVariant) {
     if (p.id === undefined) { p.id = getPhoneNumber(); }
     normalizePhone(p); p.offset=p.offset||0;
     if (exclusive) {
-        activePhones = activePhones.filter(q=>
-            q.active = q.copyOf===p || q.pin || q.isTarget!==p.isTarget
-        );
+        activePhones = activePhones.filter(q => q.active = keep(q));
         if (baseline.p && !baseline.p.active) setBaseline(baseline0,1);
     }
     if (activePhones.indexOf(p)===-1 && (suppressVariant || !p.objs)) {

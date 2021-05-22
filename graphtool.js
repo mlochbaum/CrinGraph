@@ -1206,7 +1206,6 @@ function updateKey(s) {
 }
 
 function addModel(t) {
-    t.each(function (p) { if (!p.vars) { p.vars = {}; } });
     let n = t.append("div").attr("class","phonename").text(p=>p.dispName);
     t.filter(p=>p.fileNames)
         .append("div").attr("class","variants")
@@ -1231,11 +1230,10 @@ function addModel(t) {
             let q = p.copyOf || p,
                 o = q.objs || [p],
                 active_fns = o.map(v=>v.fileName),
-                dns = q.dispNames || q.fileNames;
                 vars = p.fileNames.map((f,i) => {
                     let j = active_fns.indexOf(f);
                     return j!==-1 ? o[j] :
-                        {fileName:f, dispName:dns[i]};
+                        {fileName:f, dispName:q.dispNames[i]};
                 });
             let d = n.selectAll().data(vars).join("div")
                      .attr("class","variantName").text(v=>v.dispName),
@@ -1254,13 +1252,8 @@ function addModel(t) {
                 .style("display",v=>v.active?"none":null);
             [d,c].forEach(e=>e.transition().style("top",(_,i)=>i*1.3+"em"));
             d.filter(v=>!v.active).on("mousedown", v => Object.assign(p,v));
-            c.on("mousedown", function (v,i) {
-                if (cantCompare(activePhones.length)) return;
-                if (!q.objs) { q.objs = [q]; }
-                v.active=true; v.copyOf=q;
-                ["brand","dispBrand","fileNames","vars"].map(k=>v[k]=q[k]);
-                q.objs.push(v);
-                changeVariant(v, showPhone);
+            c.on("mousedown", function (v) {
+                showVariant(q, v);
             });
         })
         .on("blur", function endSelect(p) {
@@ -1299,6 +1292,14 @@ function changeVariant(p, update) {
     } else {
         loadFiles(p, set);
     }
+}
+function showVariant(p, c) {
+    if (cantCompare(activePhones.length)) return;
+    if (!p.objs) { p.objs = [p]; }
+    p.objs.push(c);
+    c.active=true; c.copyOf=p;
+    ["brand","dispBrand","fileNames","vars"].map(k=>c[k]=p[k]);
+    changeVariant(c, showPhone);
 }
 
 function cpCircles(svg) {
@@ -1426,7 +1427,7 @@ function showPhone(p, exclusive, suppressVariant) {
         );
         if (baseline.p && !baseline.p.active) setBaseline(baseline0,1);
     }
-    if (activePhones.indexOf(p)===-1 && !p.objs) {
+    if (activePhones.indexOf(p)===-1 && (suppressVariant || !p.objs)) {
         let avg = false;
         if (!p.isTarget) {
             let ap = activePhones.filter(p => !p.isTarget);
@@ -1498,9 +1499,9 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         b.active = false;
         b.phoneObjs = b.phones.map(function (p) {
             let r = { brand:b, dispBrand:b.name };
-            let init = -2;
             if (typeof p === "string") {
                 r.phone = r.fileName = p;
+                if (isInit(p)) inits.push(r);
             } else {
                 r.phone = p.name;
                 if (p.collab) {
@@ -1512,26 +1513,38 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                     r.fileName = f;
                 } else {
                     r.fileNames = f;
-                    init = f.map(isInit).indexOf(true);
-                    let ind = Math.max(0, init);
-                    r.fileName = f[ind];
+                    r.vars = {};
+                    let dns = f;
                     if (p.suffix) {
-                        r.dispNames = p.suffix.map(
+                        dns = p.suffix.map(
                             s => p.name + (s ? " "+s : "")
                         );
                     } else if (p.prefix) {
                         let reg = new RegExp("^"+p.prefix+"\s*", "i");
-                        r.dispNames = f.map(n => {
+                        dns = f.map(n => {
                             n = n.replace(reg, "");
                             return p.name + (n.length ? " "+n : n);
                         });
                     }
-                    r.dispName = (r.dispNames||r.fileNames)[ind];
+                    r.dispNames = dns;
+                    let first = -1;
+                    f.map((fn,i) => {
+                        if (!isInit(fn)) return;
+                        let p = r;
+                        if (first < 0) {
+                            first = i;
+                        } else {
+                            p = {copyOf:r, fileName:fn, dispName:dns[i]};
+                        }
+                        inits.push(p);
+                    });
+                    let ind = Math.max(0, first);
+                    r.fileName = f[ind];
+                    r.dispName = dns[ind];
                 }
             }
             r.dispName = r.dispName || r.phone;
             r.fullName = r.dispBrand + " " + r.phone;
-            if (init===-2 ? isInit(r.fileName) : init>=0) { inits.push(r); }
             return r;
         });
     });
@@ -1595,7 +1608,8 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         });
     }
 
-    inits.map(p => showPhone(p,0,1));
+    inits.map(p => p.copyOf ? showVariant(p.copyOf, p)
+                            : showPhone(p,0,1));
 
     function setBrand(b, exclusive) {
         let incl = currentBrands.indexOf(b) !== -1;

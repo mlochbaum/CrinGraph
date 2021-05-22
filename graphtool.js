@@ -1528,20 +1528,15 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                         });
                     }
                     r.dispNames = dns;
-                    let first = -1;
+                    r.fileName = f[0];
+                    r.dispName = dns[0];
+                    let c = r;
                     f.map((fn,i) => {
                         if (!isInit(fn)) return;
-                        let p = r;
-                        if (first < 0) {
-                            first = i;
-                        } else {
-                            p = {copyOf:r, fileName:fn, dispName:dns[i]};
-                        }
-                        inits.push(p);
+                        c.fileName=fn; c.dispName=dns[i];
+                        inits.push(c);
+                        c = {copyOf:r};
                     });
-                    let ind = Math.max(0, first);
-                    r.fileName = f[ind];
-                    r.dispName = dns[ind];
                 }
             }
             r.dispName = r.dispName || r.phone;

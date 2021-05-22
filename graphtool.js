@@ -711,7 +711,9 @@ function loadFiles(p, callback) {
         if (!frs.some(f=>f!==null)) {
             alert("Headphone not found!");
         } else {
-            callback(frs.map(f => f && tsvParse(f)));
+            let ch = frs.map(f => f && tsvParse(f));
+            if (!f_values) { f_values = ch[0].map(d=>d[0]); }
+            callback(ch);
         }
     });
 }
@@ -1413,7 +1415,6 @@ function showPhone(p, exclusive, suppressVariant) {
         loadFiles(p, function (ch) {
             if (p.rawChannels) return;
             p.rawChannels = ch;
-            if (!f_values) { f_values = ch[0].map(d=>d[0]); }
             showPhone(p, exclusive, suppressVariant);
         });
         return;

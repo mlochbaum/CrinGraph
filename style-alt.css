@@ -2268,7 +2268,9 @@ Responsive styles *****/
     }
     
     div.graphBox {
-        position: relative;
+        position: sticky;
+        top: 0;
+        
         padding-bottom: 8px;
     }
     
@@ -2306,28 +2308,30 @@ Responsive styles *****/
         border-radius: 16px 16px 0 0;
     }
     
+    div.controls:before {
+        position: absolute;
+        top: 6px;
+        left: 0;
+        right: 0;
+        
+        content: '';
+        display: block;
+        margin: auto;
+        
+        width: 60px;
+        height: 4px;
+        
+        background-color: var(--background-color-contrast-more);
+        border-radius: 6px;
+        
+        pointer-events: none;
+    }
+    
     div.selector-tabs {
         display: none;
     }
 
-    xsection.parts-secondary:before {
-        position: absolute;
-        top: -4px;
-        z-index: -1;
-        
-        content: '';
-        display: block;
-        width: 100%;
-        height: 100px;
-        
-        background-color: var(--background-color-contrast-more);
-        border-radius: 24px 24px 0 0;
-        
-        opacity: 0.6;
-        filter: blur(4px);
-    }
-    
-    section.parts-secondary div.select:before {
+    Xsection.parts-secondary div.select:before {
         position: relative;
         z-index: 1;
         
@@ -2412,6 +2416,10 @@ Responsive styles *****/
     }
     
     /* Secondary panel focused */
+    
+    main.main[data-focused-panel="secondary"] section.parts-primary {
+        overflow: hidden;
+    }
     
     main.main[data-focused-panel="secondary"] div.manage {
         background-color: var(--background-color-contrast-more);

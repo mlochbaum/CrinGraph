@@ -823,7 +823,7 @@ if (noTargets || typeof max_compare !== "undefined") {
     let ct = typeof restrict_target === "undefined" || restrict_target,
         ccfilter = ct ? (l => l) : (l => l.filter(p=>!p.isTarget));
     cantCompare = function(ps, add, p, noMessage) {
-        let count = ccfilter(ps).length + add - (!ct&&p&&p.isTarget?1:0);
+        let count = ccfilter(ps).length + (add||0) - (!ct&&p&&p.isTarget?1:0);
         if (count<max_compare && !(p&&cantTarget(p))) { return false; }
         if (noMessage) { return true; }
         let div = doc.append("div");

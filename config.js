@@ -6,7 +6,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       default_normalization = "dB",                 // Sets default graph normalization mode. Accepts "dB" or "Hz"
       default_norm_db = 60,                         // Sets default dB normalization point
       default_norm_hz = 500,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
-      max_channel_imbalance = 5,                    // ???
+      max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
       alt_layout = false,                           // Toggle between classic and alt layouts
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
@@ -108,6 +108,7 @@ setLayout();
 function setRestricted() {
     if ( restricted ) {
         max_compare = 2;
+        restrict_target = false;
         disallow_target = true;
         premium_html = "<h2>You gonna pay for that?</h2><p>To use target curves, or more than two graphs, <a target='_blank' href='https://crinacle.com/wp-login.php?action=register'>subscribe</a> or upgrade to Patreon <a target='_blank' href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a> and switch to <a target='_blank' href='https://crinacle.com/graphs/iems/graphtool/premium/'>the premium tool</a>.</p>";
     }
@@ -188,6 +189,10 @@ const linkSets = [
             {
                 name: "Precogvision",
                 url: "https://precog.squig.link/"
+            },
+            {
+                name: "Rikudou Goku",
+                url: "https://rg.squig.link/"
             },
             {
                 name: "Super* Review",

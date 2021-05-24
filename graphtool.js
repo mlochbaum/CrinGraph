@@ -1928,7 +1928,7 @@ focusedListClicks();
 function focusedListSwipes() {
     let horizontalSwipeTarget = document.querySelector("div.scroll-container"),
         listsContainer = document.querySelector("div.select"),
-        swipableList = document.querySelector("div.scroll#phones");
+        swipableList = document.querySelector("div.scrollOuter[data-list=\"models\"]");
     
     
     horizontalSwipeTarget.addEventListener("touchstart", function(e) {

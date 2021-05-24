@@ -1981,18 +1981,6 @@ function setFocusedPanel() {
         panelsContainer.setAttribute("data-focused-panel","secondary");
     });
     
-    secondaryPanel.addEventListener("wheel", function(e) {
-        let wheelDelta = e.deltaY;
-        
-        if (wheelDelta < -5) {
-            panelsContainer.setAttribute("data-focused-panel","primary");
-        }
-        
-        if (wheelDelta > 5) {
-            panelsContainer.setAttribute("data-focused-panel","secondary");
-        }
-    });
-    
     graphBox.addEventListener("click", function() {
         let previousState = panelsContainer.getAttribute("data-focused-panel");
         
@@ -2037,6 +2025,18 @@ function setFocusedPanel() {
             touchStart = 0;
             touchNow = 0;
             touchDelta = 0;
+        });
+    
+        target.addEventListener("wheel", function(e) {
+            let wheelDelta = e.deltaY;
+
+            if (wheelDelta < -5) {
+                panelsContainer.setAttribute("data-focused-panel","primary");
+            }
+
+            if (wheelDelta > 5) {
+                panelsContainer.setAttribute("data-focused-panel","secondary");
+            }
         });
     });
 }

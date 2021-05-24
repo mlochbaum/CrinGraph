@@ -1544,6 +1544,9 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             }
             r.dispName = r.dispName || r.phone;
             r.fullName = r.dispBrand + " " + r.phone;
+                    
+            // Pushing inits for strings
+            if ( isInit(p.file) ) inits.push(r);            
             return r;
         });
     });

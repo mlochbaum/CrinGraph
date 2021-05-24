@@ -1515,6 +1515,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                 let f = p.file || p.name;
                 if (typeof f === "string") {
                     r.fileName = f;
+                    if (isInit(f)) inits.push(r);
                 } else {
                     r.fileNames = f;
                     r.vars = {};
@@ -1544,9 +1545,6 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             }
             r.dispName = r.dispName || r.phone;
             r.fullName = r.dispBrand + " " + r.phone;
-                    
-            // Pushing inits for strings
-            if ( isInit(p.file) ) inits.push(r);            
             return r;
         });
     });

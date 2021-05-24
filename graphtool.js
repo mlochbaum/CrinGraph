@@ -1909,13 +1909,17 @@ function focusedListClicks() {
         });
     });
 
-    let brandsTargets = document.querySelectorAll("div.scroll#brands");
-    brandsTargets.forEach((clickedTarget) => {
-        clickedTarget.addEventListener("click", (e) => {
-            let selectedList = "models";
-                setFocusedList(selectedList);
-                e.stopPropagation();
-        });
+    let brandsList = document.querySelector("div.scroll#brands");
+    
+    brandsList.addEventListener("click", function(e) {
+        let clickedElem = e.target,
+            clickedElemIsBrand = clickedElem.matches("div.scroll#brands div");
+        
+        if (clickedElemIsBrand) {
+            setFocusedList("models");
+            console.log("Brand selected");
+            e.stopPropagation();
+        }
     });
 
 }
@@ -1933,14 +1937,15 @@ function focusedListSwipes() {
 
         horizontalSwipeTarget.addEventListener("touchmove", function(e) {
             touchNow = e.targetTouches[0].screenX;
-            touchDelta = touchNow - touchStart;
+            touchDelta = touchNow - touchStart,
+            touchDeltaNegative = 0 - touchDelta;
             
             if ( selectedList === "models" && touchDelta > 0 && touchDelta < 100 ) {
-                swipableList.setAttribute("style","transform: translateX("+ touchDelta +"px);")
+                swipableList.setAttribute("style","right: "+ touchDeltaNegative +"px;")
             }
             
             if ( selectedList === "brands" && touchDelta < 0 && touchDelta > -100 ) {
-                swipableList.setAttribute("style","transform: translateX("+ touchDelta +"px);")
+                swipableList.setAttribute("style","right: "+ touchDeltaNegative +"px;")
             }
         });
     });
@@ -1953,7 +1958,7 @@ function focusedListSwipes() {
         if ( touchDelta < -50 ) {
             listsContainer.setAttribute("data-selected","models");
         }
-
+        
         swipableList.setAttribute("style","")
         touchStart = 0;
         touchNow = 0;
@@ -1992,9 +1997,9 @@ function setFocusedPanel() {
                 touchDelta = touchNow - touchStart;
 
                 if ( focusedPanel === "secondary" && touchDelta > 0 && touchDelta < 200) {
-                    secondaryPanel.setAttribute("style", "margin-top: " + touchDelta + "px;")
+                    secondaryPanel.setAttribute("style", "top: " + touchDelta + "px;")
                 } else if ( focusedPanel === "primary" && touchDelta < 0 && touchDelta > -200) {
-                    secondaryPanel.setAttribute("style", "margin-top: " + touchDelta + "px;")
+                    secondaryPanel.setAttribute("style", "top: " + touchDelta + "px;")
                 }
             });
         });

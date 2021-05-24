@@ -122,7 +122,7 @@ doc.html(`
 
           <div class="scroll-container">
             <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
-            <div class="scrollOuter" data-list="models""><div class="scroll" id="phones"></div></div>
+            <div class="scrollOuter" data-list="models"><div class="scroll" id="phones"></div></div>
           </div>
         </div>
       </div>
@@ -1907,17 +1907,65 @@ function focusedListClicks() {
         });
     });
 
-    let brandsTargets = document.querySelectorAll("div.scroll#brands");
-    brandsTargets.forEach((clickedTarget) => {
-        clickedTarget.addEventListener("click", (e) => {
-            let selectedList = "models";
-                setFocusedList(selectedList);
-                e.stopPropagation();
-        });
+    let brandsList = document.querySelector("div.scroll#brands");
+    
+    brandsList.addEventListener("click", function(e) {
+        let clickedElem = e.target,
+            clickedElemIsBrand = clickedElem.matches("div.scroll#brands div");
+        
+        if (clickedElemIsBrand) {
+            setFocusedList("models");
+            console.log("Brand selected");
+            e.stopPropagation();
+        }
     });
 
 }
 focusedListClicks();
+
+function focusedListSwipes() {
+    let horizontalSwipeTarget = document.querySelector("div.scroll-container"),
+        listsContainer = document.querySelector("div.select"),
+        swipableList = document.querySelector("div.scrollOuter[data-list=\"models\"]");
+    
+    
+    horizontalSwipeTarget.addEventListener("touchstart", function(e) {
+        selectedList = listsContainer.getAttribute("data-selected");
+        touchStart = e.targetTouches[0].screenX;
+
+        horizontalSwipeTarget.addEventListener("touchmove", function(e) {
+            touchNow = e.targetTouches[0].screenX;
+            touchDelta = touchNow - touchStart,
+            touchDeltaNegative = 0 - touchDelta;
+            
+            if ( selectedList === "models" && touchDelta > 0 && touchDelta < 100 ) {
+                swipableList.setAttribute("style","right: "+ touchDeltaNegative +"px;")
+            }
+            
+            if ( selectedList === "brands" && touchDelta < 0 && touchDelta > -100 ) {
+                swipableList.setAttribute("style","right: "+ touchDeltaNegative +"px;")
+            }
+        });
+    });
+
+    horizontalSwipeTarget.addEventListener("touchend", function(e) {
+        if ( touchDelta > 49 ) {
+            listsContainer.setAttribute("data-selected","brands");
+        }
+
+        if ( touchDelta < -50 ) {
+            listsContainer.setAttribute("data-selected","models");
+        }
+        
+        swipableList.setAttribute("style","")
+        touchStart = 0;
+        touchNow = 0;
+        touchDelta = 0;
+        
+        //horizontalSwipeTarget.removeEventListener("touchmove");
+    });
+}
+focusedListSwipes();
 
 // Set focused panel
 function setFocusedPanel() {
@@ -1929,34 +1977,45 @@ function setFocusedPanel() {
     
     panelsContainer.setAttribute("data-focused-panel","secondary");
 
-    graphBox.addEventListener("click", function() {
-        let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
-
-        if ( previouslyFocused === "secondary" ) {
-            panelsContainer.setAttribute("data-focused-panel","primary");
-        } else {
-            panelsContainer.setAttribute("data-focused-panel","secondary");
-        
-            let windowWidth = window.innerWidth;
-            if ( windowWidth < 10001 ) {
-                primaryPanel.scroll({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    });
-
     secondaryPanel.addEventListener("click", function() {
         panelsContainer.setAttribute("data-focused-panel","secondary");
-        
-        let windowWidth = window.innerWidth;
-        if ( windowWidth < 10001 ) {
-            primaryPanel.scroll({
-                top: 0,
-                behavior: 'smooth'
+    });
+    
+    // Touch events
+    let verticalSwipeTargets = document.querySelectorAll("div.selector-tabs, input.search");
+    
+    verticalSwipeTargets.forEach(function(target) {
+        target.addEventListener("touchstart", function(e) {
+            focusedPanel = document.querySelector("main.main").getAttribute("data-focused-panel");
+
+            touchStart = e.targetTouches[0].screenY;
+
+            target.addEventListener("touchmove", function(e) {
+                touchNow = e.targetTouches[0].screenY;
+                touchDelta = touchNow - touchStart;
+
+                if ( focusedPanel === "secondary" && touchDelta > 0 && touchDelta < 200) {
+                    secondaryPanel.setAttribute("style", "top: " + touchDelta + "px;")
+                } else if ( focusedPanel === "primary" && touchDelta < 0 && touchDelta > -200) {
+                    secondaryPanel.setAttribute("style", "top: " + touchDelta + "px;")
+                }
             });
-        }
+        });
+
+        target.addEventListener("touchend", function(e) {
+            if ( touchDelta > 49 ) {
+                panelsContainer.setAttribute("data-focused-panel","primary");
+            }
+
+            if ( touchDelta < -50 ) {
+                panelsContainer.setAttribute("data-focused-panel","secondary");
+            }
+
+            secondaryPanel.setAttribute("style", "")
+            touchStart = 0;
+            touchNow = 0;
+            touchDelta = 0;
+        });
     });
 }
 setFocusedPanel();

@@ -1515,6 +1515,30 @@ div.select > div.scroll-container {
     flex: auto 1 1;
 }
 
+div.scrollOuter {
+    
+}
+
+div.scrollOuter {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    
+    box-sizing: border-box;
+    width: calc(100% - 60px);
+    height: 100%;
+    
+    background-color: var(--background-color);
+    border-width: 0px;
+    border-style: solid;
+    border-color: var(--background-color-contrast-more);
+    
+    overflow-y: hidden;
+    overflow-x: hidden;
+    transform: none;
+    transition: transform 0.3s ease-out, right 0.3s ease-out;
+}
+
 div.scrollOuter:before {
     position: absolute;
     top: 0;
@@ -1524,56 +1548,43 @@ div.scrollOuter:before {
     
     box-sizing: border-box;
     display: block;
-    width: 60px;
+    width: 100%;
     height: 100%;
     
     background-color: var(--background-color);
     
-    opacity: 0.8;
-    transition: opacity 0.1s ease-out 0.3s;
+    opacity: 0.0;
+    transition: opacity 0.1s ease-out;
     
-    pointer-events: all;
-    cursor: pointer;
+    pointer-events: none;
+    
+/*    opacity: 0.8;*/
+/*    background-color: magenta;*/
 }
 
-div.scrollOuter[data-list="brands"]:before {
+div.scrollOuter[data-list="brands"] {
     left: 0;
-}
-
-div.scrollOuter[data-list="models"]:before {
-    right: 0;
-}
-
-div.scroll {
-    position: absolute;
-    top: 0;
+    padding: 0 16px;
     
-    box-sizing: border-box;
-    width: calc(100% - 60px);
-    height: 100%;
-    padding: 16px 16px 16px 16px;
-    
-    background-color: var(--background-color);
-    border-width: 0px;
-    border-style: solid;
-    border-color: var(--background-color-contrast-more);
-    
-    overflow-y: scroll;
-    transform: none;
-    transition: transform 0.3s ease-out;
-}
-
-div.scroll#brands {
-    left: 0;
     border-right: 1px solid inherit;
 }
 
-div.scroll#phones {
+div.scrollOuter[data-list="models"] {
     right: 0;
     
-    padding: 16px 10px 16px 16px;
+    padding: 0 10px 0 16px;
     
     border-left-width: 1px;
+}
+
+div.scroll {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 16px 0;
+    
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 /* List selected styles */
@@ -1585,18 +1596,14 @@ div.select[data-selected="brands"] > div.selector-tabs button.brands {
     color: var(--font-color-secondary);
 }
 
-div[data-selected="brands"] div.scroll#phones {
+div.select[data-selected="brands"] div.scrollOuter[data-list="models"] {
     transform: translateX(calc(100% - 60px));
 }
 
-div[data-selected="brands"] div.scroll#brands {
-    color: var(--font-color-primary);
-}
-
-div[data-selected="brands"] div.scrollOuter[data-list="brands"]:before {
-    opacity: 0.0;
-    pointer-events: none;
-    transition: opacity 0.1s ease-out 0.0s;
+div.select[data-selected="brands"] div.scrollOuter[data-list="models"]:before {
+    opacity: 0.8;
+    pointer-events: all;
+    cursor: pointer;
 }
 
 /* Models selected */
@@ -1607,14 +1614,10 @@ div.select[data-selected="models"] > div.selector-tabs button.models {
     color: var(--font-color-secondary);
 }
 
-div[data-selected="models"] div.scroll#phones {
-    color: var(--font-color-primary);
-}
-
-div[data-selected="models"] div.scrollOuter[data-list="models"]:before {
-    opacity: 0.0;
-    pointer-events: none;
-    transition: opacity 0.1s ease-out 0.0s;
+div.select[data-selected="models"] div.scrollOuter[data-list="brands"]:before {
+    opacity: 0.8;
+    pointer-events: all;
+    cursor: pointer;
 }
 
 /* List item */
@@ -2268,7 +2271,10 @@ Responsive styles *****/
     }
     
     div.graphBox {
-        position: relative;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        
         padding-bottom: 8px;
     }
     
@@ -2277,7 +2283,26 @@ Responsive styles *****/
     }
     
     div.manage {
-        transition: background-color 0.2s ease-out;
+        position: relative;
+    }
+    
+    div.manage:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        
+        background-color: magenta;
+        background-color: var(--background-color-contrast-more);
+        pointer-events: none;
+        
+        opacity: 0.0;
+        transition: opacity 0.2s ease-in 0.2s;
     }
     
     table.manageTable {
@@ -2293,12 +2318,13 @@ Responsive styles *****/
         width: 100%;
         height: calc(100% - ((100vw * 0.44) + 92px));
         min-height: 200px;
+        margin-top: 0px;
         
         border-right: none;
         border-top: 1px solid var(--background-color-contrast-more);
         border-radius: 16px 16px 0 0;
         
-        transition: all 200ms ease-out;
+        transition: all 200ms ease-in;
         transform: translateY(calc( (100vw * 0.44) + 92px ));
     }
     
@@ -2306,50 +2332,27 @@ Responsive styles *****/
         border-radius: 16px 16px 0 0;
     }
     
-    div.selector-tabs {
-        display: none;
-    }
-
-    xsection.parts-secondary:before {
+    div.controls:before {
         position: absolute;
-        top: -4px;
-        z-index: -1;
+        top: 6px;
+        left: 0;
+        right: 0;
         
         content: '';
         display: block;
-        width: 100%;
-        height: 100px;
+        margin: auto;
+        
+        width: 60px;
+        height: 4px;
         
         background-color: var(--background-color-contrast-more);
-        border-radius: 24px 24px 0 0;
-        
-        opacity: 0.6;
-        filter: blur(4px);
-    }
-    
-    section.parts-secondary div.select:before {
-        position: relative;
-        z-index: 1;
-        
-        content: 'Browse all graphs';
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-        box-sizing: border-box;
-        width: calc(100% - 32px);
-        padding: 12px 16px;
-        margin: -36px 16px 0 16px;
-        
-        background-color: var(--accent-color);
         border-radius: 6px;
         
-        color: var(--font-color-secondary);
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 12px;
-        
         pointer-events: none;
+    }
+    
+    div.selector-tabs {
+        display: none;
     }
     
     div.scroll > div.phone-item {
@@ -2362,10 +2365,8 @@ Responsive styles *****/
     
     /* Primary panel focused */
     
-    main.main[data-focused-panel="primary"] section.parts-primary {
-    }
-    main.main[data-focused-panel="primary"] div.manage {
-        background-color: var(--background-color);
+    main.main[data-focused-panel="primary"] div.manage:before {
+        opacity: 0.0;
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary {
@@ -2413,9 +2414,13 @@ Responsive styles *****/
     
     /* Secondary panel focused */
     
-    main.main[data-focused-panel="secondary"] div.manage {
-        background-color: var(--background-color-contrast-more);
-        transition: background-color 0.2s ease-out 0.3s;
+    main.main[data-focused-panel="secondary"] section.parts-primary {
+        overflow: hidden;
+    }
+    
+    main.main[data-focused-panel="secondary"] div.manage:before {
+        opacity: 0.8;
+        transition: opacity 0.2s ease-in 0.0s;
     }
     
     main.main[data-focused-panel="secondary"] section.parts-secondary {
@@ -2443,23 +2448,6 @@ Responsive styles *****/
         }
     }
 }
-    
-    main.main[data-focused-panel="secondary"] section.parts-secondary div.select:before {
-        animation-name: all-graphs-bounce-up;
-        animation-duration: 0.3s;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-out;
-        animation-fill-mode: forwards;
-    }
-    
-    @keyframes all-graphs-bounce-up {
-        0% {
-            margin: 16px 16px 32px 16px;
-        }
-        100% {
-            margin: -36px 16px 0 16px;
-        }
-    }
 
 /* Move table items to two rows for narrow browsers */
 @media ( max-width: 1200px ) {

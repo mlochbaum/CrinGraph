@@ -122,7 +122,7 @@ doc.html(`
 
           <div class="scroll-container">
             <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
-            <div class="scrollOuter" data-list="models""><div class="scroll" id="phones"></div></div>
+            <div class="scrollOuter" data-list="models"><div class="scroll" id="phones"></div></div>
           </div>
         </div>
       </div>
@@ -1521,6 +1521,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                 let f = p.file || p.name;
                 if (typeof f === "string") {
                     r.fileName = f;
+                    if (isInit(f)) inits.push(r);
                 } else {
                     r.fileNames = f;
                     r.vars = {};
@@ -1550,9 +1551,6 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             }
             r.dispName = r.dispName || r.phone;
             r.fullName = r.dispBrand + " " + r.phone;
-                    
-            // Pushing inits for strings
-            if ( isInit(p.file) ) inits.push(r);            
             return r;
         });
     });
@@ -1921,17 +1919,65 @@ function focusedListClicks() {
         });
     });
 
-    let brandsTargets = document.querySelectorAll("div.scroll#brands");
-    brandsTargets.forEach((clickedTarget) => {
-        clickedTarget.addEventListener("click", (e) => {
-            let selectedList = "models";
-                setFocusedList(selectedList);
-                e.stopPropagation();
-        });
+    let brandsList = document.querySelector("div.scroll#brands");
+    
+    brandsList.addEventListener("click", function(e) {
+        let clickedElem = e.target,
+            clickedElemIsBrand = clickedElem.matches("div.scroll#brands div");
+        
+        if (clickedElemIsBrand) {
+            setFocusedList("models");
+            console.log("Brand selected");
+            e.stopPropagation();
+        }
     });
 
 }
 focusedListClicks();
+
+function focusedListSwipes() {
+    let horizontalSwipeTarget = document.querySelector("div.scroll-container"),
+        listsContainer = document.querySelector("div.select"),
+        swipableList = document.querySelector("div.scrollOuter[data-list=\"models\"]");
+    
+    
+    horizontalSwipeTarget.addEventListener("touchstart", function(e) {
+        selectedList = listsContainer.getAttribute("data-selected");
+        touchStart = e.targetTouches[0].screenX;
+
+        horizontalSwipeTarget.addEventListener("touchmove", function(e) {
+            touchNow = e.targetTouches[0].screenX;
+            touchDelta = touchNow - touchStart,
+            touchDeltaNegative = 0 - touchDelta;
+            
+            if ( selectedList === "models" && touchDelta > 0 && touchDelta < 100 ) {
+                swipableList.setAttribute("style","right: "+ touchDeltaNegative +"px;")
+            }
+            
+            if ( selectedList === "brands" && touchDelta < 0 && touchDelta > -100 ) {
+                swipableList.setAttribute("style","right: "+ touchDeltaNegative +"px;")
+            }
+        });
+    });
+
+    horizontalSwipeTarget.addEventListener("touchend", function(e) {
+        if ( touchDelta > 49 ) {
+            listsContainer.setAttribute("data-selected","brands");
+        }
+
+        if ( touchDelta < -50 ) {
+            listsContainer.setAttribute("data-selected","models");
+        }
+        
+        swipableList.setAttribute("style","")
+        touchStart = 0;
+        touchNow = 0;
+        touchDelta = 0;
+        
+        //horizontalSwipeTarget.removeEventListener("touchmove");
+    });
+}
+focusedListSwipes();
 
 // Set focused panel
 function setFocusedPanel() {
@@ -1939,93 +1985,49 @@ function setFocusedPanel() {
         primaryPanel = document.querySelector(".parts-primary"),
         secondaryPanel = document.querySelector(".parts-secondary"),
         phonesList = document.querySelector("div#phones"),
-        graphBox = document.querySelector("div.graph-sizer"),
-        scrollableList = document.querySelector("div.scroll-container");
+        graphBox = document.querySelector("div.graph-sizer");
     
     panelsContainer.setAttribute("data-focused-panel","secondary");
 
     secondaryPanel.addEventListener("click", function() {
-        let windowWidth = window.innerWidth;
-        if ( windowWidth < 10001 ) {
-            primaryPanel.scroll({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
+        panelsContainer.setAttribute("data-focused-panel","secondary");
     });
-    
-    setInterval(function() {
-        let primaryScrollPos = primaryPanel.scrollTop;
-        
-        if ( primaryScrollPos >= 10 ) {
-            panelsContainer.setAttribute("data-focused-panel","primary");
-        } else {
-            panelsContainer.setAttribute("data-focused-panel","secondary");
-        }
-    }, 100);
     
     // Touch events
-    let selectorTabs = document.querySelector("div.selector-tabs");
+    let verticalSwipeTargets = document.querySelectorAll("div.selector-tabs, input.search");
     
-    secondaryPanel.addEventListener("touchstart", function(e) {
-        focusedPanel = document.querySelector("main.main").getAttribute("data-focused-panel");
-        
-        touchStart = e.targetTouches[0].screenY;
-        
-        secondaryPanel.addEventListener("touchmove", function(e) {
-            touchNow = e.targetTouches[0].screenY;
-            touchDelta = touchNow - touchStart;
-            
-            if ( focusedPanel === "secondary" && touchDelta > 0 && touchDelta < 10) {
-                secondaryPanel.setAttribute("style", "margin-top: " + touchDelta + "px;")
-            } else if ( focusedPanel === "primary" && touchDelta < 0 && touchDelta > -70) {
-                secondaryPanel.setAttribute("style", "margin-top: " + touchDelta + "px;")
-            }
-            
-            if ( touchDelta > 0 && touchDelta < 10 ) {
-                primaryPanel.scroll({
-                    top: touchDelta
-                });
-            }
+    verticalSwipeTargets.forEach(function(target) {
+        target.addEventListener("touchstart", function(e) {
+            focusedPanel = document.querySelector("main.main").getAttribute("data-focused-panel");
+
+            touchStart = e.targetTouches[0].screenY;
+
+            target.addEventListener("touchmove", function(e) {
+                touchNow = e.targetTouches[0].screenY;
+                touchDelta = touchNow - touchStart;
+
+                if ( focusedPanel === "secondary" && touchDelta > 0 && touchDelta < 200) {
+                    secondaryPanel.setAttribute("style", "top: " + touchDelta + "px;")
+                } else if ( focusedPanel === "primary" && touchDelta < 0 && touchDelta > -200) {
+                    secondaryPanel.setAttribute("style", "top: " + touchDelta + "px;")
+                }
+            });
         });
-    });
-    
-    secondaryPanel.addEventListener("touchend", function(e) {
-        if ( touchDelta < 10 && touchDelta > -50 ) {
-            primaryPanel.scroll({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        
-        if ( touchDelta > 9 ) {
-            primaryPanel.scroll({
-                top: 10,
-                behavior: 'smooth'
-            });            
-        }
-        
-        if ( touchDelta < -50 ) {
-            primaryPanel.scroll({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        
-        secondaryPanel.setAttribute("style", "")
-        touchStart = 0;
-        touchNow = 0;
-        touchDelta = 0;
-    });
-    
-    scrollableList.addEventListener("touchstart", function(e) {
-        e.stopPropagation();
-    });
-    scrollableList.addEventListener("touchmove", function(e) {
-        e.stopPropagation();
-    });
-    scrollableList.addEventListener("touchend", function(e) {
-        e.stopPropagation();
+
+        target.addEventListener("touchend", function(e) {
+            if ( touchDelta > 49 ) {
+                panelsContainer.setAttribute("data-focused-panel","primary");
+            }
+
+            if ( touchDelta < -50 ) {
+                panelsContainer.setAttribute("data-focused-panel","secondary");
+            }
+
+            secondaryPanel.setAttribute("style", "")
+            touchStart = 0;
+            touchNow = 0;
+            touchDelta = 0;
+        });
     });
 }
 setFocusedPanel();

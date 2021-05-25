@@ -982,6 +982,9 @@ function setBaseline(b, no_transition) {
         .attr("d", drawLine);
     table.selectAll("tr").select(".button")
         .classed("selected", p=>p===baseline.p);
+    
+    // Tag manager push
+    if (analyticsEnabled && b.p) { pushPhoneTag("baseline_set", b.p); }
 }
 function getBaseline(p) {
     let b = getAvg(p).map(d => d[1]+getOffset(p));
@@ -1286,14 +1289,14 @@ function updateVariant(p) {
     normalizePhone(p);
     updatePaths();
 }
-function changeVariant(p, update) {
+function changeVariant(p, update, trigger) {
     let fn = p.fileName,
         ch = p.vars[fn];
     function set(ch) {
         p.rawChannels = ch; p.smooth = undefined;
         smoothPhone(p);
         setCurves(p);
-        update(p);
+        update(p, 0, 0, trigger);
     }
     if (ch) {
         set(ch);
@@ -1301,13 +1304,13 @@ function changeVariant(p, update) {
         loadFiles(p, set);
     }
 }
-function showVariant(p, c) {
+function showVariant(p, c, trigger) {
     if (cantCompare(activePhones)) return;
     if (!p.objs) { p.objs = [p]; }
     p.objs.push(c);
     c.active=true; c.copyOf=p;
     ["brand","dispBrand","fileNames","vars"].map(k=>c[k]=p[k]);
-    changeVariant(c, showPhone);
+    changeVariant(c, showPhone, trigger);
 }
 
 function cpCircles(svg) {
@@ -1405,7 +1408,7 @@ doc.select(".addLock").on("click", function () {
     }
 });
 
-function showPhone(p, exclusive, suppressVariant) {
+function showPhone(p, exclusive, suppressVariant, trigger) {
     if (p.isTarget && activePhones.indexOf(p)!==-1) {
         removePhone(p);
         return;
@@ -1423,10 +1426,10 @@ function showPhone(p, exclusive, suppressVariant) {
         loadFiles(p, function (ch) {
             if (p.rawChannels) return;
             p.rawChannels = ch;
-            showPhone(p, exclusive, suppressVariant);
+            showPhone(p, exclusive, suppressVariant, trigger);
             
             // Tag manager push
-            if (analyticsEnabled) { pushPhoneTag("phone_displayed", p); }
+            if (analyticsEnabled) { pushPhoneTag("phone_displayed", p, trigger); }
         });
         return;
     }
@@ -1494,16 +1497,21 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     let brandMap = {},
         inits = [],
         initReq = typeof init_phones !== "undefined" ? init_phones : false;
+    loadFromShare = 0;
+    
     if (ifURL) {
         let url = targetWindow.location.href,
             par = "?share=";
         baseURL = url.split("?").shift();
         if (url.includes(par)) {
             initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
+            loadFromShare = 1;
         }
     }
     let isInit = initReq ? f => initReq.indexOf(f) !== -1
                          : _ => false;
+    let initMode = loadFromShare ? "share" : "config";
+    
     brands.forEach(b => brandMap[b.name] = b);
     brands.forEach(function (b) {
         b.active = false;
@@ -1614,8 +1622,8 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         });
     }
 
-    inits.map(p => p.copyOf ? showVariant(p.copyOf, p)
-                            : showPhone(p,0,1));
+    inits.map(p => p.copyOf ? showVariant(p.copyOf, p, initMode)
+                            : showPhone(p,0,1, initMode));
 
     function setBrand(b, exclusive) {
         let incl = currentBrands.indexOf(b) !== -1;
@@ -1927,7 +1935,6 @@ function focusedListClicks() {
         
         if (clickedElemIsBrand) {
             setFocusedList("models");
-            console.log("Brand selected");
             e.stopPropagation();
         }
     });

@@ -4,7 +4,7 @@ window.dataLayer = window.dataLayer || [];
 
 // For events related to specific phones, e.g. when a phone is displayed
 function pushPhoneTag(eventName, p, trigger) {
-    let eventTrigger = trigger ? trigger : "click",
+    let eventTrigger = trigger ? trigger : "user",
         phoneBrand = p.dispBrand ? p.dispBrand : "Target",
         phoneModel = p.dispName,
         value = 1;
@@ -24,7 +24,7 @@ function pushPhoneTag(eventName, p, trigger) {
 
 // For events not related to a specific phone, e.g. user clicked screenshot button
 function pushEventTag(eventName, targetWindow, trigger) {
-    let eventTrigger = trigger ? trigger : "click",
+    let eventTrigger = trigger ? trigger : "user",
         url = targetWindow.location.href,
         par = "?share=",
         value = 1,

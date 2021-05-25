@@ -1927,7 +1927,7 @@ function focusedListSwipes() {
     let horizontalSwipeTarget = document.querySelector("div.scroll-container"),
         listsContainer = document.querySelector("div.select"),
         swipableList = document.querySelector("div.scrollOuter[data-list=\"models\"]");
-    
+    touchDelta = 0;
     
     horizontalSwipeTarget.addEventListener("touchstart", function(e) {
         selectedList = listsContainer.getAttribute("data-selected");

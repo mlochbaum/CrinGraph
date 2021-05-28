@@ -1882,6 +1882,9 @@ function themeChooser(command) {
         if ( command === "change" ) {
             localStorage.setItem("dark-mode-pref", "true");
             docBody.classList.add(darkClass);
+            
+            // Tag manager push
+            if (analyticsEnabled) { pushEventTag("darkmode_enabled", targetWindow); }
         }
     }
 }

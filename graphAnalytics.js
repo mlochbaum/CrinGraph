@@ -1,5 +1,5 @@
+// Set these variables to your own GTM ID and site name
 let analyticsSite = "Generic Graph site",           // Site name for attributing analytics events to your site
-    analyticsGa4Id = "G-M68DGTWYLX",                // GA4 ID used for analytics. If you don't already have one, you'll need to create a Google Analytics 4 account
     analyticsGtmId = "GTM-N74Z5L8",                 // GTM ID used for analytics. If you don't already have one, you'' need to create a Google Tag Manager account
     logAnalytics = true,                            // If true, events are logged in console
     analyticsVer = "1.0.6";                         // Number you can change to validate changes in console logs
@@ -27,7 +27,10 @@ window.dataLayer = window.dataLayer || [];
 
 
 
+// *************************************************************
 // Functions to fire events
+// *************************************************************
+
 // For events related to specific phones, e.g. when a phone is displayed
 function pushPhoneTag(eventName, p, trigger) {
     let eventTrigger = trigger ? trigger : "user",

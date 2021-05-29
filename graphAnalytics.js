@@ -1,6 +1,6 @@
 // Set these variables to your own GTM ID and site name
 let analyticsSite = "Generic Graph site",           // Site name for attributing analytics events to your site
-    analyticsGtmId = "GTM-N74Z5L8",                 // GTM ID used for analytics. If you don't already have one, you'' need to create a Google Tag Manager account
+    analyticsGtmId = "",                            // GTM ID used for analytics. If you don't already have one, you'' need to create a Google Tag Manager account
     logAnalytics = true,                            // If true, events are logged in console
     analyticsVer = "1.0.6";                         // Number you can change to validate changes in console logs
 

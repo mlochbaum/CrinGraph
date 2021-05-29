@@ -1068,7 +1068,7 @@ tbody.curves > tr > td.curve-color {
     box-sizing: border-box;
     justify-content: flex-end;
     align-items: center;
-    flex: 40px 0 0;
+    flex: 38px 0 0;
     min-height: 50px;
     
     cursor: pointer;
@@ -1076,12 +1076,13 @@ tbody.curves > tr > td.curve-color {
 
 tbody.curves > tr > td.curve-color button {
     box-sizing: border-box;
-    flex: 18px 0 0;
-    height: 2px;
+    flex: 16px 0 0;
+    height: 16px;
     margin: 0 6px 0 0;
     
     background-color: currentColor;
     border: none;
+    border-radius: 50%;
     outline: none;
     
     color: inherit;
@@ -2457,7 +2458,6 @@ Responsive styles *****/
     
     tbody.curves > tr > td.curve-color {
         order: 2 !important;
-        flex: 40px 0 0 !important;
     }
     
     tbody.curves > tr > td.item-line {

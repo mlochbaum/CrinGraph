@@ -784,13 +784,17 @@ let getColor_AC = c => getCurveColor(c.p.id, c.o);
 let getColor_ph = (p,i) => getCurveColor(p.id, p.activeCurves[i].o);
 function getDivColor(id, active) {
     let c = getCurveColor(id,0);
-    c.l = 100-(80-Math.min(c.l,60))/(active?1.5:3);
-    c.c = (c.c-20)/(active?3:4);
+    if (!alt_layout) {
+        c.l = 100-(80-Math.min(c.l,60))/(active?1.5:3);
+        c.c = (c.c-20)/(active?3:4);
+    }
     return c;
 }
 function color_curveToText(c) {
-    c.l = c.l/5 + 10;
-    c.c /= 3;
+    if (!alt_layout) {
+        c.l = c.l/5 + 10;
+        c.c /= 3;
+    }
     return c;
 }
 let getTooltipColor = curve => color_curveToText(getColor_AC(curve));

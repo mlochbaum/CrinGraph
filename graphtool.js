@@ -503,7 +503,7 @@ function saveGraph(ext) {
     fn(gr.node(), "graph."+ext, {scale:3})
         .then(()=>showControls(true));
     
-    // Tag manager push
+    // Analytics event
     if (analyticsEnabled) { pushEventTag("clicked_download", targetWindow); }
 }
 doc.select("#download")
@@ -987,7 +987,7 @@ function setBaseline(b, no_transition) {
     table.selectAll("tr").select(".button")
         .classed("selected", p=>p===baseline.p);
     
-    // Tag manager push
+    // Analytics event
     if (analyticsEnabled && b.p) { pushPhoneTag("baseline_set", b.p); }
 }
 function getBaseline(p) {
@@ -1432,7 +1432,7 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
             p.rawChannels = ch;
             showPhone(p, exclusive, suppressVariant, trigger);
             
-            // Tag manager push
+            // Analytics event
             if (analyticsEnabled) { pushPhoneTag("phone_displayed", p, trigger); }
         });
         return;
@@ -1863,7 +1863,7 @@ function copyUrlInit() {
             copyUrlButton.classList.remove("clicked");
         }, 600);
         
-        // Tag manager push
+        // Analytics event
         if (analyticsEnabled) { pushEventTag("clicked_copyUrl", targetWindow); }
     });
 }
@@ -1886,9 +1886,6 @@ function themeChooser(command) {
         if ( command === "change" ) {
             localStorage.setItem("dark-mode-pref", "true");
             docBody.classList.add(darkClass);
-            
-            // Tag manager push
-            if (analyticsEnabled) { pushEventTag("darkmode_enabled", targetWindow); }
         }
     }
 }
@@ -1910,9 +1907,6 @@ function mapDownloadFaux() {
     
     downloadFaux.addEventListener("click", function() {
         downloadButton.click();
-        
-        // Tag manager push
-        //if (analyticsEnabled) { pushEventTag("clicked_download", targetWindow); }
     });
 }
 mapDownloadFaux();

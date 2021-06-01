@@ -7,7 +7,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       default_norm_db = 60,                         // Sets default dB normalization point
       default_norm_hz = 500,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
-      alt_layout = true,                           // Toggle between classic and alt layouts
+      alt_layout = false,                           // Toggle between classic and alt layouts
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
@@ -21,7 +21,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       darkModeButton = true,                        // Adds a "Dark Mode" button the main toolbar to let users set preference
       targetDashed = false,                         // If true, makes target curves dashed lines
       targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
-      analyticsEnabled = true;                     // Enables Google Analytics 4 measurement of site usage
+      analyticsEnabled = false;                     // Enables Google Analytics 4 measurement of site usage
 
 // Specify which targets to display
 const targets = [

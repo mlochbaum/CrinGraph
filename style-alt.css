@@ -1080,7 +1080,6 @@ tbody.curves > tr > td.curve-color button {
     height: 16px;
     margin: 0 6px 0 0;
     
-    background-color: currentColor;
     border: none;
     border-radius: 50%;
     outline: none;

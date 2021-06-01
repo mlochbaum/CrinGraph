@@ -784,10 +784,8 @@ let getColor_AC = c => getCurveColor(c.p.id, c.o);
 let getColor_ph = (p,i) => getCurveColor(p.id, p.activeCurves[i].o);
 function getDivColor(id, active) {
     let c = getCurveColor(id,0);
-    if (!alt_layout) {
-        c.l = 100-(80-Math.min(c.l,60))/(active?1.5:3);
-        c.c = (c.c-20)/(active?3:4);
-    }
+    c.l = 100-(80-Math.min(c.l,60))/(active?1.5:3);
+    c.c = (c.c-20)/(active?3:4);
     return c;
 }
 function color_curveToText(c) {
@@ -1061,15 +1059,14 @@ function updatePhoneTable() {
     td().attr("class","remove").text("⊗")
         .on("click", removePhone)
         .style("background-image",colorBar)
-        .filter(p=>!p.isTarget).append("svg").call(addColorPicker);
+        .filter(p=>!p.isTarget).call(addColorPicker);
     td().attr("class","item-line item-target")
         .call(s=>s.filter(p=>!p.isTarget).attr("class","item-line item-phone")
                   .append("span").attr("class","brand").text(p=>p.dispBrand))
-        .call(addModel)
-        //Change colors on clicking
-//        .filter(p=>!p.isTarget).call(addColorPicker);
-    td().attr("class","curve-color").html("<button></button>")
-        .filter(p=>!p.isTarget).call(addColorPicker);
+        .call(addModel);
+    td().attr("class","curve-color").append("button")
+        .style("background-color",p=>getCurveColor(p.id,0))
+        .filter(p=>!p.isTarget).call(makeColorPicker);
     td().attr("class","channels").append("svg").call(addKey)
     td().attr("class","levels").append("input")
         .attrs({type:"number",step:"any",value:0})
@@ -1326,7 +1323,10 @@ function addColorPicker(svg) {
     svg.attr("viewBox","0 0 9 5.3");
     svg.append("rect").attrs({x:0,y:0,width:9,height:5.3,fill:"none"});
     svg.call(cpCircles);
-    svg.on("click", function (p) {
+    makeColorPicker(svg);
+}
+function makeColorPicker(elt) {
+    elt.on("click", function (p) {
         p.id = getPhoneNumber();
         colorPhones();
         d3.event.stopPropagation();
@@ -1339,8 +1339,9 @@ function colorPhones() {
     doc.select("#phones").selectAll("div")
         .style("background",c).style("border-color",c);
     let t = table.selectAll("tr").filter(p=>!p.isTarget)
-        .style("color", c)
-        .call(s => s.select(".remove").style("background-image",colorBar)
+        .style("color", c);
+    t.select("button").style("background-color",p=>getCurveColor(p.id,0));
+    t= t.call(s => s.select(".remove").style("background-image",colorBar)
                     .select("svg").call(cpCircles))
         .select("td.channels"); // Key line
     t.select("svg").remove();

@@ -20,7 +20,8 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       headerHeight = '0px',                         // Optional. If expandable=true, determines how much space to leave for the parent page header
       darkModeButton = true,                        // Adds a "Dark Mode" button the main toolbar to let users set preference
       targetDashed = false,                         // If true, makes target curves dashed lines
-      targetColorCustom = false;                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
+      targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
+      analyticsEnabled = false;                     // Enables Google Analytics 4 measurement of site usage
 
 // Specify which targets to display
 const targets = [
@@ -31,7 +32,9 @@ const targets = [
 
 
 
+// *************************************************************
 // Functions to support config options set above; probably don't need to change these
+// *************************************************************
 
 // Set up the watermark, based on config options above
 function watermark(svg) {
@@ -212,3 +215,18 @@ const linkSets = [
         ]
     }
 ];
+
+
+
+// Set up analytics
+function setupGraphAnalytics() {
+    if ( analyticsEnabled ) {
+        const pageHead = document.querySelector("head"),
+              graphAnalytics = document.createElement("script"),
+              graphAnalyticsSrc = "graphAnalytics.js";
+        
+        graphAnalytics.setAttribute("src", graphAnalyticsSrc);
+        pageHead.append(graphAnalytics);
+    }
+}
+setupGraphAnalytics();

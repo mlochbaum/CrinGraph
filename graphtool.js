@@ -1059,7 +1059,7 @@ function updatePhoneTable() {
     td().attr("class","remove").text("⊗")
         .on("click", removePhone)
         .style("background-image",colorBar)
-        .filter(p=>!p.isTarget).call(addColorPicker);
+        .filter(p=>!p.isTarget).append("svg").call(addColorPicker);
     td().attr("class","item-line item-target")
         .call(s=>s.filter(p=>!p.isTarget).attr("class","item-line item-phone")
                   .append("span").attr("class","brand").text(p=>p.dispBrand))

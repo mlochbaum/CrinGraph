@@ -65,6 +65,7 @@ html {
     -webkit-text-size-adjust: none;
     
     user-select: none;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -1067,7 +1068,7 @@ tbody.curves > tr > td.curve-color {
     box-sizing: border-box;
     justify-content: flex-end;
     align-items: center;
-    flex: 40px 0 0;
+    flex: 38px 0 0;
     min-height: 50px;
     
     cursor: pointer;
@@ -1075,12 +1076,13 @@ tbody.curves > tr > td.curve-color {
 
 tbody.curves > tr > td.curve-color button {
     box-sizing: border-box;
-    flex: 18px 0 0;
-    height: 2px;
+    flex: 16px 0 0;
+    height: 16px;
     margin: 0 6px 0 0;
     
     background-color: currentColor;
     border: none;
+    border-radius: 50%;
     outline: none;
     
     color: inherit;
@@ -1514,6 +1516,30 @@ div.select > div.scroll-container {
     flex: auto 1 1;
 }
 
+div.scrollOuter {
+    
+}
+
+div.scrollOuter {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    
+    box-sizing: border-box;
+    width: calc(100% - 60px);
+    height: 100%;
+    
+    background-color: var(--background-color);
+    border-width: 0px;
+    border-style: solid;
+    border-color: var(--background-color-contrast-more);
+    
+    overflow-y: hidden;
+    overflow-x: hidden;
+    transform: none;
+    transition: transform 0.3s ease-out, right 0.3s ease-out;
+}
+
 div.scrollOuter:before {
     position: absolute;
     top: 0;
@@ -1523,56 +1549,43 @@ div.scrollOuter:before {
     
     box-sizing: border-box;
     display: block;
-    width: 60px;
+    width: 100%;
     height: 100%;
     
     background-color: var(--background-color);
     
-    opacity: 0.8;
-    transition: opacity 0.1s ease-out 0.3s;
+    opacity: 0.0;
+    transition: opacity 0.1s ease-out;
     
-    pointer-events: all;
-    cursor: pointer;
+    pointer-events: none;
+    
+/*    opacity: 0.8;*/
+/*    background-color: magenta;*/
 }
 
-div.scrollOuter[data-list="brands"]:before {
+div.scrollOuter[data-list="brands"] {
     left: 0;
-}
-
-div.scrollOuter[data-list="models"]:before {
-    right: 0;
-}
-
-div.scroll {
-    position: absolute;
-    top: 0;
+    padding: 0 16px;
     
-    box-sizing: border-box;
-    width: calc(100% - 60px);
-    height: 100%;
-    padding: 16px 16px 16px 16px;
-    
-    background-color: var(--background-color);
-    border-width: 0px;
-    border-style: solid;
-    border-color: var(--background-color-contrast-more);
-    
-    overflow-y: scroll;
-    transform: none;
-    transition: transform 0.3s ease-out;
-}
-
-div.scroll#brands {
-    left: 0;
     border-right: 1px solid inherit;
 }
 
-div.scroll#phones {
+div.scrollOuter[data-list="models"] {
     right: 0;
     
-    padding: 16px 10px 16px 16px;
+    padding: 0 10px 0 16px;
     
     border-left-width: 1px;
+}
+
+div.scroll {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 16px 0;
+    
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 /* List selected styles */
@@ -1584,18 +1597,14 @@ div.select[data-selected="brands"] > div.selector-tabs button.brands {
     color: var(--font-color-secondary);
 }
 
-div[data-selected="brands"] div.scroll#phones {
+div.select[data-selected="brands"] div.scrollOuter[data-list="models"] {
     transform: translateX(calc(100% - 60px));
 }
 
-div[data-selected="brands"] div.scroll#brands {
-    color: var(--font-color-primary);
-}
-
-div[data-selected="brands"] div.scrollOuter[data-list="brands"]:before {
-    opacity: 0.0;
-    pointer-events: none;
-    transition: opacity 0.1s ease-out 0.0s;
+div.select[data-selected="brands"] div.scrollOuter[data-list="models"]:before {
+    opacity: 0.8;
+    pointer-events: all;
+    cursor: pointer;
 }
 
 /* Models selected */
@@ -1606,14 +1615,10 @@ div.select[data-selected="models"] > div.selector-tabs button.models {
     color: var(--font-color-secondary);
 }
 
-div[data-selected="models"] div.scroll#phones {
-    color: var(--font-color-primary);
-}
-
-div[data-selected="models"] div.scrollOuter[data-list="models"]:before {
-    opacity: 0.0;
-    pointer-events: none;
-    transition: opacity 0.1s ease-out 0.0s;
+div.select[data-selected="models"] div.scrollOuter[data-list="brands"]:before {
+    opacity: 0.8;
+    pointer-events: all;
+    cursor: pointer;
 }
 
 /* List item */
@@ -2245,8 +2250,9 @@ Responsive styles *****/
     
     
     main.main {
-        display: flex;
-        flex-direction: column;
+        position: relative;
+        
+        display: block;
         overflow: hidden;
     }
     
@@ -2254,40 +2260,102 @@ Responsive styles *****/
         position: relative;
         
         order: 1;
-        flex: calc( (100vw * 0.44) + 100px ) 0 0;
-        max-height: calc(100% - 200px);
+        height: 100%;
         overflow-y: scroll;
+    }
+    
+    section.parts-primary:after {
+        content: '';
         
-        transition: all 200ms ease-out;
+        display: block;
+        height: 84px;
     }
     
     div.graphBox {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        
+        padding-bottom: 8px;
+    }
+    
+    div.graph-sizer {
+        margin: 8px auto 0 auto;
+    }
+    
+    div.manage {
         position: relative;
     }
     
+    div.manage:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        
+        background-color: magenta;
+        background-color: var(--background-color-contrast-more);
+        pointer-events: none;
+        
+        opacity: 0.0;
+        transition: opacity 0.2s ease-in 0.2s;
+    }
+    
+    table.manageTable {
+        min-height: calc( 100vh - ((100vw * 0.44) + 92px) );
+    }
+    
     section.parts-secondary {
-        position: relative;
+        position: absolute;
+        top: 0;
+        z-index: 1;
         
         order: 2;
-        flex: calc(100% - ((100vw * 0.44) + 100px)) 0 0;
+        width: 100%;
+        height: calc(100% - ((100vw * 0.44) + 92px));
         min-height: 200px;
-        overflow: hidden;
+        margin-top: 0px;
         
         border-right: none;
+        border-top: 1px solid var(--background-color-contrast-more);
+        border-radius: 16px 16px 0 0;
         
-        transition: all 200ms ease-out;
+        transition: all 200ms ease-in;
+        transform: translateY(calc( (100vw * 0.44) + 92px ));
+    }
+    
+    div.controls {
+        border-radius: 16px 16px 0 0;
+    }
+    
+    div.controls:before {
+        position: absolute;
+        top: 6px;
+        left: 0;
+        right: 0;
+        
+        content: '';
+        display: block;
+        margin: auto;
+        
+        width: 60px;
+        height: 4px;
+        
+        background-color: var(--background-color-contrast-more);
+        border-radius: 6px;
+        
+        pointer-events: none;
     }
     
     div.selector-tabs {
         display: none;
     }
     
-    section.parts-primary:before,
-    section.parts-secondary:before {
-        content: '';
-        opacity: 0;
-    }
-
     div.scroll > div.phone-item {
         width: calc(100vw - 94px);
     }
@@ -2297,107 +2365,88 @@ Responsive styles *****/
     }
     
     /* Primary panel focused */
-    main.main[data-focused-panel="primary"] section.parts-primary {
-        flex: calc(100% - 84px) 0 0;
-        max-height: 100%;
+    
+    main.main[data-focused-panel="primary"] div.manage:before {
+        opacity: 0.0;
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary {
-        flex: 84px 0 0;
-        min-height: auto;
-    }
-    
-    main.main[data-focused-panel="primary"] section.parts-secondary:before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 2;
+        transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
         
-        content: '';
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-        width: 100%;
-        height: 100%;
-        
-        background-color: var(--background-color);
-        border-top: 1px solid var(--background-color-contrast-more);
-        
-        color: var(--accent-color);
-        font-weight: bold;
-        font-size: 12px;
-        
-        opacity: 1;
-    }
-    
-    main.main[data-focused-panel="primary"] section.parts-secondary:after {
-        position: absolute;
-        top: 16px;
-        left: 16px;
-        z-index: 2;
-        
-        content: 'Browse all graphs';
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-        box-sizing: border-box;
-        width: calc(100% - 32px);
-        padding: 12px 16px;
-        
-        background-color: var(--accent-color);
-        border-radius: 6px;
-        
-        color: var(--font-color-secondary);
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 12px;
-        
-        opacity: 1;
-        
-        animation-name: all-graphs-bounce;
-        animation-duration: 4s;
-        animation-iteration-count: infinite;
-        animation-delay: 3s;
+        animation-name: graph-drawer-hide;
+        animation-duration: 0.4s;
         animation-timing-function: ease-in;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    
+    @keyframes graph-drawer-hide {
+        0% {
+            transform: translateY(calc( (100vw * 0.44) + 92px ));
+        }
+        75% {
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
+        }
+        85% {
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 74px ));
+        }
+        100% {
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
+        }
+    }
+    
+    main.main[data-focused-panel="primary"] section.parts-secondary div.select:before {
+        animation-name: all-graphs-bounce;
+        animation-duration: 0.3s;
+        animation-iteration-count: 1;
+        animation-delay: 0.3s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
     }
     
     @keyframes all-graphs-bounce {
         0% {
-            transform: translateY(0px);
-        }
-        5% {
-            transform: translateY(-6px);
-        }
-        10% {
-            transform: translateY(4px);
-        }
-        15% {
-            transform: translateY(-2px);
-        }
-        20% {
-            transform: translateY(2px);
-        }
-        25% {
-            transform: translateY(0px);
+            margin: -36px 16px 0 16px;
         }
         100% {
-            transform: translateY(0px);
+            margin: 16px 16px 32px 16px;
         }
     }
     
     /* Secondary panel focused */
+    
     main.main[data-focused-panel="secondary"] section.parts-primary {
         overflow: hidden;
     }
     
-    main.main[data-focused-panel="secondary"] section.parts-secondary {
+    main.main[data-focused-panel="secondary"] div.manage:before {
+        opacity: 0.8;
+        transition: opacity 0.2s ease-in 0.0s;
     }
     
-    section.parts-secondary div.controls {
-        border-top: 1px solid var(--background-color-contrast-more);
+    main.main[data-focused-panel="secondary"] section.parts-secondary {
+        animation-name: graph-drawer-show;
+        animation-duration: 0.4s;
+        animation-timing-function: ease-in;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    
+    @keyframes graph-drawer-show {
+        0% {
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
+        }
+        75% {
+            transform: translateY(calc( (100vw * 0.44) + 92px ));
+        }
+        85% {
+            transform: translateY(calc( (100vw * 0.44) + 102px ));
+        }
+        100% {
+            height: calc(100% - ((100vw * 0.44) + 92px));
+            min-height: 200px;
+            transform: translateY(calc( (100vw * 0.44) + 92px ));
+        }
     }
 }
 
@@ -2409,7 +2458,6 @@ Responsive styles *****/
     
     tbody.curves > tr > td.curve-color {
         order: 2 !important;
-        flex: 40px 0 0 !important;
     }
     
     tbody.curves > tr > td.item-line {

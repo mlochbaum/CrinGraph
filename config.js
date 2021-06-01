@@ -7,7 +7,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       default_norm_db = 60,                         // Sets default dB normalization point
       default_norm_hz = 500,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
-      alt_layout = false,                           // Toggle between classic and alt layouts
+      alt_layout = true,                           // Toggle between classic and alt layouts
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
@@ -20,18 +20,21 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       headerHeight = '0px',                         // Optional. If expandable=true, determines how much space to leave for the parent page header
       darkModeButton = true,                        // Adds a "Dark Mode" button the main toolbar to let users set preference
       targetDashed = false,                         // If true, makes target curves dashed lines
-      targetColorCustom = false;                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
+      targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
+      analyticsEnabled = true;                     // Enables Google Analytics 4 measurement of site usage
 
 // Specify which targets to display
 const targets = [
     { type:"Neutral",    files:["Diffuse Field","Etymotic","Free Field","Innerfidelity ID"] },
-    { type:"Reviewer",   files:["Antdroid","Bad Guy","Banbeucmas","Crinacle","Precogvision","Super* Review"] },
+    { type:"Reviewer",   files:["Antdroid","Bad Guy","Banbeucmas","Crinacle","Precogvision","Super Review"] },
     { type:"Preference", files:["Harman","Rtings","Sonarworks"] }
 ];
 
 
 
+// *************************************************************
 // Functions to support config options set above; probably don't need to change these
+// *************************************************************
 
 // Set up the watermark, based on config options above
 function watermark(svg) {
@@ -212,3 +215,18 @@ const linkSets = [
         ]
     }
 ];
+
+
+
+// Set up analytics
+function setupGraphAnalytics() {
+    if ( analyticsEnabled ) {
+        const pageHead = document.querySelector("head"),
+              graphAnalytics = document.createElement("script"),
+              graphAnalyticsSrc = "graphAnalytics.js";
+        
+        graphAnalytics.setAttribute("src", graphAnalyticsSrc);
+        pageHead.append(graphAnalytics);
+    }
+}
+setupGraphAnalytics();

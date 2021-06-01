@@ -122,7 +122,7 @@ doc.html(`
 
           <div class="scroll-container">
             <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
-            <div class="scrollOuter" data-list="models"><div class="scroll" id="phones"></div></div>
+            <div class="scrollOuter" data-list="models""><div class="scroll" id="phones"></div></div>
           </div>
         </div>
       </div>
@@ -502,9 +502,6 @@ function saveGraph(ext) {
     showControls(false);
     fn(gr.node(), "graph."+ext, {scale:3})
         .then(()=>showControls(true));
-    
-    // Analytics event
-    if (analyticsEnabled) { pushEventTag("clicked_download", targetWindow); }
 }
 doc.select("#download")
     .on("click", () => saveGraph("png"))
@@ -789,10 +786,8 @@ function getDivColor(id, active) {
     return c;
 }
 function color_curveToText(c) {
-    if (!alt_layout) {
-        c.l = c.l/5 + 10;
-        c.c /= 3;
-    }
+    c.l = c.l/5 + 10;
+    c.c /= 3;
     return c;
 }
 let getTooltipColor = curve => color_curveToText(getColor_AC(curve));
@@ -984,9 +979,6 @@ function setBaseline(b, no_transition) {
         .attr("d", drawLine);
     table.selectAll("tr").select(".button")
         .classed("selected", p=>p===baseline.p);
-    
-    // Analytics event
-    if (analyticsEnabled && b.p) { pushPhoneTag("baseline_set", b.p); }
 }
 function getBaseline(p) {
     let b = getAvg(p).map(d => d[1]+getOffset(p));
@@ -1063,10 +1055,11 @@ function updatePhoneTable() {
     td().attr("class","item-line item-target")
         .call(s=>s.filter(p=>!p.isTarget).attr("class","item-line item-phone")
                   .append("span").attr("class","brand").text(p=>p.dispBrand))
-        .call(addModel);
-    td().attr("class","curve-color").append("button")
-        .style("background-color",p=>getCurveColor(p.id,0))
-        .filter(p=>!p.isTarget).call(makeColorPicker);
+        .call(addModel)
+        //Change colors on clicking
+//        .filter(p=>!p.isTarget).call(addColorPicker);
+    td().attr("class","curve-color").html("<button></button>")
+        .filter(p=>!p.isTarget).call(addColorPicker);
     td().attr("class","channels").append("svg").call(addKey)
     td().attr("class","levels").append("input")
         .attrs({type:"number",step:"any",value:0})
@@ -1290,14 +1283,14 @@ function updateVariant(p) {
     normalizePhone(p);
     updatePaths();
 }
-function changeVariant(p, update, trigger) {
+function changeVariant(p, update) {
     let fn = p.fileName,
         ch = p.vars[fn];
     function set(ch) {
         p.rawChannels = ch; p.smooth = undefined;
         smoothPhone(p);
         setCurves(p);
-        update(p, 0, 0, trigger);
+        update(p);
     }
     if (ch) {
         set(ch);
@@ -1305,13 +1298,13 @@ function changeVariant(p, update, trigger) {
         loadFiles(p, set);
     }
 }
-function showVariant(p, c, trigger) {
+function showVariant(p, c) {
     if (cantCompare(activePhones)) return;
     if (!p.objs) { p.objs = [p]; }
     p.objs.push(c);
     c.active=true; c.copyOf=p;
     ["brand","dispBrand","fileNames","vars"].map(k=>c[k]=p[k]);
-    changeVariant(c, showPhone, trigger);
+    changeVariant(c, showPhone);
 }
 
 function cpCircles(svg) {
@@ -1323,10 +1316,7 @@ function addColorPicker(svg) {
     svg.attr("viewBox","0 0 9 5.3");
     svg.append("rect").attrs({x:0,y:0,width:9,height:5.3,fill:"none"});
     svg.call(cpCircles);
-    makeColorPicker(svg);
-}
-function makeColorPicker(elt) {
-    elt.on("click", function (p) {
+    svg.on("click", function (p) {
         p.id = getPhoneNumber();
         colorPhones();
         d3.event.stopPropagation();
@@ -1339,9 +1329,8 @@ function colorPhones() {
     doc.select("#phones").selectAll("div")
         .style("background",c).style("border-color",c);
     let t = table.selectAll("tr").filter(p=>!p.isTarget)
-        .style("color", c);
-    t.select("button").style("background-color",p=>getCurveColor(p.id,0));
-    t= t.call(s => s.select(".remove").style("background-image",colorBar)
+        .style("color", c)
+        .call(s => s.select(".remove").style("background-image",colorBar)
                     .select("svg").call(cpCircles))
         .select("td.channels"); // Key line
     t.select("svg").remove();
@@ -1413,7 +1402,7 @@ doc.select(".addLock").on("click", function () {
     }
 });
 
-function showPhone(p, exclusive, suppressVariant, trigger) {
+function showPhone(p, exclusive, suppressVariant) {
     if (p.isTarget && activePhones.indexOf(p)!==-1) {
         removePhone(p);
         return;
@@ -1431,10 +1420,7 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
         loadFiles(p, function (ch) {
             if (p.rawChannels) return;
             p.rawChannels = ch;
-            showPhone(p, exclusive, suppressVariant, trigger);
-            
-            // Analytics event
-            if (analyticsEnabled) { pushPhoneTag("phone_displayed", p, trigger); }
+            showPhone(p, exclusive, suppressVariant);
         });
         return;
     }
@@ -1502,21 +1488,16 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     let brandMap = {},
         inits = [],
         initReq = typeof init_phones !== "undefined" ? init_phones : false;
-    loadFromShare = 0;
-    
     if (ifURL) {
         let url = targetWindow.location.href,
             par = "?share=";
         baseURL = url.split("?").shift();
         if (url.includes(par)) {
             initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
-            loadFromShare = 1;
         }
     }
     let isInit = initReq ? f => initReq.indexOf(f) !== -1
                          : _ => false;
-    let initMode = loadFromShare ? "share" : "config";
-    
     brands.forEach(b => brandMap[b.name] = b);
     brands.forEach(function (b) {
         b.active = false;
@@ -1627,8 +1608,8 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         });
     }
 
-    inits.map(p => p.copyOf ? showVariant(p.copyOf, p, initMode)
-                            : showPhone(p,0,1, initMode));
+    inits.map(p => p.copyOf ? showVariant(p.copyOf, p)
+                            : showPhone(p,0,1));
 
     function setBrand(b, exclusive) {
         let incl = currentBrands.indexOf(b) !== -1;
@@ -1863,9 +1844,6 @@ function copyUrlInit() {
         setTimeout(function() {
             copyUrlButton.classList.remove("clicked");
         }, 600);
-        
-        // Analytics event
-        if (analyticsEnabled) { pushEventTag("clicked_copyUrl", targetWindow); }
     });
 }
 copyUrlInit();
@@ -1908,7 +1886,7 @@ function mapDownloadFaux() {
     
     downloadFaux.addEventListener("click", function() {
         downloadButton.click();
-    });
+    })
 }
 mapDownloadFaux();
 
@@ -1929,64 +1907,17 @@ function focusedListClicks() {
         });
     });
 
-    let brandsList = document.querySelector("div.scroll#brands");
-    
-    brandsList.addEventListener("click", function(e) {
-        let clickedElem = e.target,
-            clickedElemIsBrand = clickedElem.matches("div.scroll#brands div");
-        
-        if (clickedElemIsBrand) {
-            setFocusedList("models");
-            e.stopPropagation();
-        }
+    let brandsTargets = document.querySelectorAll("div.scroll#brands");
+    brandsTargets.forEach((clickedTarget) => {
+        clickedTarget.addEventListener("click", (e) => {
+            let selectedList = "models";
+                setFocusedList(selectedList);
+                e.stopPropagation();
+        });
     });
 
 }
 focusedListClicks();
-
-function focusedListSwipes() {
-    let horizontalSwipeTarget = document.querySelector("div.scroll-container"),
-        listsContainer = document.querySelector("div.select"),
-        swipableList = document.querySelector("div.scrollOuter[data-list=\"models\"]");
-    touchDelta = 0;
-    
-    horizontalSwipeTarget.addEventListener("touchstart", function(e) {
-        selectedList = listsContainer.getAttribute("data-selected");
-        touchStart = e.targetTouches[0].screenX;
-
-        horizontalSwipeTarget.addEventListener("touchmove", function(e) {
-            touchNow = e.targetTouches[0].screenX;
-            touchDelta = touchNow - touchStart,
-            touchDeltaNegative = 0 - touchDelta;
-            
-            if ( selectedList === "models" && touchDelta > 0 && touchDelta < 100 ) {
-                swipableList.setAttribute("style","right: "+ touchDeltaNegative +"px;")
-            }
-            
-            if ( selectedList === "brands" && touchDelta < 0 && touchDelta > -100 ) {
-                swipableList.setAttribute("style","right: "+ touchDeltaNegative +"px;")
-            }
-        });
-    });
-
-    horizontalSwipeTarget.addEventListener("touchend", function(e) {
-        if ( touchDelta > 49 ) {
-            listsContainer.setAttribute("data-selected","brands");
-        }
-
-        if ( touchDelta < -50 ) {
-            listsContainer.setAttribute("data-selected","models");
-        }
-        
-        swipableList.setAttribute("style","")
-        touchStart = 0;
-        touchNow = 0;
-        touchDelta = 0;
-        
-        //horizontalSwipeTarget.removeEventListener("touchmove");
-    });
-}
-focusedListSwipes();
 
 // Set focused panel
 function setFocusedPanel() {
@@ -1998,67 +1929,34 @@ function setFocusedPanel() {
     
     panelsContainer.setAttribute("data-focused-panel","secondary");
 
-    secondaryPanel.addEventListener("click", function() {
-        panelsContainer.setAttribute("data-focused-panel","secondary");
-    });
-    
     graphBox.addEventListener("click", function() {
-        let previousState = panelsContainer.getAttribute("data-focused-panel");
-        
-        if ( previousState === "primary") {
-            panelsContainer.setAttribute("data-focused-panel","secondary");
-        } else if ( previousState === "secondary" ) {
+        let previouslyFocused = panelsContainer.getAttribute("data-focused-panel")
+
+        if ( previouslyFocused === "secondary" ) {
             panelsContainer.setAttribute("data-focused-panel","primary");
+        } else {
+            panelsContainer.setAttribute("data-focused-panel","secondary");
+        
+            let windowWidth = window.innerWidth;
+            if ( windowWidth < 10001 ) {
+                primaryPanel.scroll({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
         }
     });
-    
-    // Touch events
-    let verticalSwipeTargets = document.querySelectorAll("div.selector-tabs, input.search");
-    
-    verticalSwipeTargets.forEach(function(target) {
-        target.addEventListener("touchstart", function(e) {
-            focusedPanel = document.querySelector("main.main").getAttribute("data-focused-panel");
 
-            touchStart = e.targetTouches[0].screenY;
-
-            target.addEventListener("touchmove", function(e) {
-                touchNow = e.targetTouches[0].screenY;
-                touchDelta = touchNow - touchStart;
-
-                if ( focusedPanel === "secondary" && touchDelta > 0 && touchDelta < 200) {
-                    secondaryPanel.setAttribute("style", "top: " + touchDelta + "px;")
-                } else if ( focusedPanel === "primary" && touchDelta < 0 && touchDelta > -200) {
-                    secondaryPanel.setAttribute("style", "top: " + touchDelta + "px;")
-                }
+    secondaryPanel.addEventListener("click", function() {
+        panelsContainer.setAttribute("data-focused-panel","secondary");
+        
+        let windowWidth = window.innerWidth;
+        if ( windowWidth < 10001 ) {
+            primaryPanel.scroll({
+                top: 0,
+                behavior: 'smooth'
             });
-        });
-
-        target.addEventListener("touchend", function(e) {
-            if ( touchDelta > 49 ) {
-                panelsContainer.setAttribute("data-focused-panel","primary");
-            }
-
-            if ( touchDelta < -50 ) {
-                panelsContainer.setAttribute("data-focused-panel","secondary");
-            }
-
-            secondaryPanel.setAttribute("style", "")
-            touchStart = 0;
-            touchNow = 0;
-            touchDelta = 0;
-        });
-    
-        target.addEventListener("wheel", function(e) {
-            let wheelDelta = e.deltaY;
-
-            if (wheelDelta < -5) {
-                panelsContainer.setAttribute("data-focused-panel","primary");
-            }
-
-            if (wheelDelta > 5) {
-                panelsContainer.setAttribute("data-focused-panel","secondary");
-            }
-        });
+        }
     });
 }
 setFocusedPanel();

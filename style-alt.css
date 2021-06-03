@@ -2501,6 +2501,8 @@ Responsive styles *****/
     }
     
     div.scrollOuter {
+        position: relative;
+        
         display: flex;
         
         flex: 50% 1 1;

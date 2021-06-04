@@ -1022,17 +1022,22 @@ try {
 
 let ifURL = typeof share_url !== "undefined" && share_url;
 let baseTitle = typeof page_title !== "undefined" ? page_title : "CrinGraph";
+let baseDescription = typeof page_description !== "undefined" ? page_description : "View and compare frequency response graphs";
 let baseURL;  // Set by setInitPhones
 function addPhonesToUrl() {
     let title = baseTitle,
         url = baseURL,
-        names = activePhones.map(p => p.fileName);
+        names = activePhones.map(p => p.fileName),
+        namesCombined = names.join(", ");
+    console.log(namesCombined);
     if (names.length) {
         url += "?share=" + encodeURI(names.join().replace(/ /g,"_"));
-        title = names.join(", ") + " - " + title;
+        title = namesCombined + " - " + title;
     }
     targetWindow.history.replaceState("", title, url);
     targetWindow.document.title = title;
+    targetWindow.document.querySelector("link[rel='canonical']").setAttribute("href",url)
+    targetWindow.document.querySelector("meta[name='description']").setAttribute("content",baseDescription + ", including " + namesCombined +".");
 }
 function updatePaths() {
     clearLabels();

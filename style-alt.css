@@ -290,6 +290,7 @@ ul.header-links a {
     
     color: var(--accent-color);
     font-family: var(--font-primary);
+    font-weight: 700;
     font-size: 14px;
     line-height: 1em;
     text-decoration-color: var(--background-color-contrast-more);

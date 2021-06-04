@@ -1034,9 +1034,13 @@ function addPhonesToUrl() {
         url += "?share=" + encodeURI(names.join().replace(/ /g,"_"));
         title = namesCombined + " - " + title;
     }
+    if (names.length === 1) {
+        targetWindow.document.querySelector("link[rel='canonical']").setAttribute("href",url)
+    } else {
+        targetWindow.document.querySelector("link[rel='canonical']").setAttribute("href",baseURL)
+    }
     targetWindow.history.replaceState("", title, url);
     targetWindow.document.title = title;
-    targetWindow.document.querySelector("link[rel='canonical']").setAttribute("href",url)
     targetWindow.document.querySelector("meta[name='description']").setAttribute("content",baseDescription + ", including " + namesCombined +".");
 }
 function updatePaths() {

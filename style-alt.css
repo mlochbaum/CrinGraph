@@ -225,9 +225,10 @@ header.header {
     align-items: center;
     
     box-sizing: border-box;
-    flex: 48px 0 0;
+    flex: 49px 0 0;
     
     background-color: var(--background-color-contrast);
+    border-bottom: 1px solid var(--background-color-contrast-more);
 }
 
 div.logo {

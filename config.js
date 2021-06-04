@@ -8,6 +8,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       default_norm_hz = 500,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
       alt_layout = false,                           // Toggle between classic and alt layouts
+      alt_header = false,                           // Display a configurable header at the top of the alt layout
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
@@ -231,3 +232,14 @@ function setupGraphAnalytics() {
     }
 }
 setupGraphAnalytics();
+
+
+
+// If alt_header is enabled, these are the items added to the header
+let headerLogoImgUrl = "cringraph-logo.svg",
+    headerLinks = [
+    {
+        name: "Sample",
+        url: "https://sample.com"
+    }
+];

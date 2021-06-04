@@ -2105,6 +2105,50 @@ function addAccessories() {
 }
 if (accessories) { addAccessories(); }
 
+// Add header to alt layout
+function addHeader() {
+    let graphToolContainer = document.querySelector("div.graphtool"),
+        altHeaderElem = document.createElement("header"),
+        headerLogoElem = document.createElement("div"),
+        headerLogoImg = document.createElement("img"),
+        linksList = document.createElement("ul");
+    
+    headerLogoElem.className = "logo";
+    headerLogoImg.setAttribute("src", headerLogoImgUrl);
+    headerLogoElem.append(headerLogoImg);
+    altHeaderElem.setAttribute("data-links", "");
+    altHeaderElem.append(headerLogoElem);
+
+    altHeaderElem.className = "header";
+    graphToolContainer.prepend(altHeaderElem);
+    
+    linksList.className = "header-links";
+    altHeaderElem.append(linksList);
+    
+    headerLinks.forEach(function(link) {
+        console.log(link.name);
+        
+        let linkContainerElem = document.createElement("li"),
+            linkElem = document.createElement("a");
+        
+        linkElem.setAttribute("href", link.url);
+        linkElem.textContent = link.name;
+        linkContainerElem.append(linkElem);
+        linksList.append(linkContainerElem);
+    })
+    
+    altHeaderElem.addEventListener("click", function() {
+        let headerLinksState = altHeaderElem.getAttribute("data-links");
+        
+        if (headerLinksState === "expanded") {
+            altHeaderElem.setAttribute("data-links", "collapsed");
+        } else {
+            altHeaderElem.setAttribute("data-links", "expanded");
+        }
+    });
+}
+if (alt_layout && alt_header) { addHeader(); }
+
 // Add external links to bar at bottom of page, if configured
 function addExternalLinks() {
     const externalLinksBar = document.querySelector("div.external-links");

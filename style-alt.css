@@ -225,9 +225,10 @@ header.header {
     align-items: center;
     
     box-sizing: border-box;
-    flex: 48px 0 0;
+    flex: 49px 0 0;
     
     background-color: var(--background-color-contrast);
+    border-bottom: 1px solid var(--background-color-contrast-more);
 }
 
 div.logo {
@@ -238,7 +239,7 @@ div.logo {
     box-sizing: border-box;
     flex: 350px 0 0;
     height: 48px;
-    padding: 10px 0;
+    padding: 12px 0;
     overflow: hidden;
     
     background-size: contain;
@@ -288,8 +289,9 @@ ul.header-links a {
     display: flex;
     align-items: center;
     
-    color: var(--accent-color);
+    color: var(--font-color-primary);
     font-family: var(--font-primary);
+    font-weight: 500;
     font-size: 14px;
     line-height: 1em;
     text-decoration-color: var(--background-color-contrast-more);
@@ -1161,11 +1163,11 @@ tbody.curves > tr > td.curve-color button {
     box-sizing: border-box;
     flex: 16px 0 0;
     height: 16px;
+    padding: 0;
     margin: 0 6px 0 0;
     
-    background-color: currentColor;
     border: none;
-    border-radius: 50%;
+    border-radius: 8px;
     outline: none;
     
     color: inherit;
@@ -2538,7 +2540,7 @@ Responsive styles *****/
     header.header:before {
         position: absolute;
         top: 6px;
-        right: 6px;
+        left: 6px;
 
         content: '';
         box-sizing: border-box;
@@ -2550,13 +2552,14 @@ Responsive styles *****/
         border: 1px solid var(--background-color-contrast-more);
         border-radius: 6px;
         cursor: pointer;
+        display: none;
     }
 
     header.header:after {
         position: absolute;
 
         top: 6px;
-        right: 6px;
+        left: 6px;
 
         content: '';
         box-sizing: border-box;
@@ -2600,7 +2603,7 @@ Responsive styles *****/
 
         background-color: var(--background-color);
 
-        transform: translateX(100vw);
+        transform: translateX(-100vw);
         
         overflow-x: hidden;
         overflow-y: scroll;
@@ -2621,7 +2624,7 @@ Responsive styles *****/
     }
 
     header.header[data-links="collapsed"] ul.header-links {
-        transform: translateX(100vw);
+        transform: translateX(-100vw);
         transition: transform 0.2s ease;
     }
 
@@ -2683,6 +2686,8 @@ Responsive styles *****/
     }
     
     div.scrollOuter {
+        position: relative;
+        
         display: flex;
         
         flex: 50% 1 1;

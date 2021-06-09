@@ -1347,6 +1347,14 @@ tbody.curves > tr > td.item-line div.variantName:nth-of-type(10) {
     order: 19;
 }
 
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(11) {
+    order: 21;
+}
+
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(12) {
+    order: 23;
+}
+
 tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(1) {
     order: 2;
 }
@@ -1385,6 +1393,14 @@ tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(9) {
 
 tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(10) {
     order: 20;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(11) {
+    order: 22;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(12) {
+    order: 24;
 }
 
 tbody.curves > tr > td.item-line div.variants {

@@ -248,37 +248,37 @@ let headerLogoImgUrl = "cringraph-logo.svg",
 let tutorialDefinitions = [
     {
         name: "Sub bass",
-        width: "20%",
-        description: "Bass frequencies give sound depth and body, and sub-bass specifically adds a sense of rumble in the very low registers."
+        width: "20.1%",
+        description: "Subbwubb. Cras ornare quis nibh ut imperdiet. Phasellus sed ipsum id lorem tincidunt placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         name: "Mid bass",
-        width: "19.5%",
-        description: "Mid-bass can add to a sense of depth and body, but also comes with the risk of \"bleeding into the midrange.\""
+        width: "19.2%",
+        description: "Mid bass? Cras ornare quis nibh ut imperdiet. Phasellus sed ipsum id lorem tincidunt placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas at justo eget."
     },
     {
         name: "Lower midrange",
-        width: "17%",
-        description: "..."
+        width: "17.4%",
+        description: "This is what lower midrange is: Cras ornare quis nibh ut imperdiet. Phasellus sed ipsum id lorem tincidunt placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         name: "Upper midrange",
         width: "20%",
-        description: "..."
+        description: "Upper midrange info. Cras ornare quis nibh ut imperdiet. Phasellus sed ipsum id lorem tincidunt placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas at justo eget."
     },
     {
-        name: "Lower treble",
-        width: "8%",
-        description: "..."
+        name: "Presence region",
+        width: "6%",
+        description: "What is presence region? Cras ornare quis nibh ut imperdiet. Phasellus sed ipsum id lorem tincidunt placerat."
     },
     {
         name: "Mid treble",
-        width: "5.5%",
-        description: "..."
+        width: "7.3%",
+        description: "About mid treble. Cras ornare quis nibh ut imperdiet. Phasellus sed ipsum id lorem tincidunt placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
     {
         name: "Air",
         width: "10%",
-        description: "..."
+        description: "Air description. Cras ornare quis nibh ut imperdiet. Phasellus sed ipsum id lorem tincidunt placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     }
 ]

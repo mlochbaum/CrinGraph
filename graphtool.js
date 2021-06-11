@@ -95,6 +95,7 @@ doc.html(`
             <td class="helpText" colspan="5">(or middle/ctrl-click when selecting; or pin other IEMs)</td>
             <td class="addLock">LOCK</td>
           </tr>
+          <tr class="mobile-helper"></tr>
         </table>
       </div>
 
@@ -1993,9 +1994,14 @@ function setFocusedPanel() {
         primaryPanel = document.querySelector(".parts-primary"),
         secondaryPanel = document.querySelector(".parts-secondary"),
         phonesList = document.querySelector("div#phones"),
-        graphBox = document.querySelector("div.graph-sizer");
+        graphBox = document.querySelector("div.graph-sizer"),
+        mobileHelper = document.querySelector("tr.mobile-helper");
     
-    panelsContainer.setAttribute("data-focused-panel","secondary");
+    panelsContainer.setAttribute("data-focused-panel","primary");
+    
+    mobileHelper.addEventListener("click", function() {
+        panelsContainer.setAttribute("data-focused-panel","secondary");
+    });
 
     secondaryPanel.addEventListener("click", function() {
         panelsContainer.setAttribute("data-focused-panel","secondary");
@@ -2164,7 +2170,8 @@ if (externalLinksBar) { addExternalLinks(); }
 
 // Add tutorial to alt layout
 function addTutorial() {
-    let graphContainer = document.querySelector("div.graph-sizer"),
+    let partsPrimary = document.querySelector("section.parts-primary")
+        graphContainer = document.querySelector("div.graph-sizer"),
         manageContainer = document.querySelector("div.manage"),
         overlayContainer = document.createElement("div"),
         buttonContainer = document.createElement("div"),
@@ -2206,19 +2213,39 @@ function addTutorial() {
         
         defButton.addEventListener("click", function() {
             let activeStatus = defButton.getAttribute("tutorial-on"),
-                activeTutorialElements = document.querySelectorAll("[tutorial-on='true']");
+                activeTutorialElements = document.querySelectorAll("[tutorial-on='true']"),
+                activeOverlay = document.querySelector("div.overlay-segment[tutorial-on='true']"),
+                activeButton = document.querySelector("button.button-segment[tutorial-on='true']"),
+                activeDescription = document.querySelector("article.description-segment[tutorial-on='true']");
             
-            activeTutorialElements.forEach(function(activeElem) {
-                activeElem.setAttribute("tutorial-on", "false");
-            });
+            if (activeOverlay) { activeOverlay.setAttribute("tutorial-on", "false"); }
+            if (activeButton) { activeButton.setAttribute("tutorial-on", "false"); }
             
             if (activeStatus === "false") {
+                if (activeDescription) { activeDescription.setAttribute("tutorial-on", "false"); }
+                
                 defOverlay.setAttribute("tutorial-on", "true");
                 defButton.setAttribute("tutorial-on", "true");
                 defDescription.setAttribute("tutorial-on", "true");
+                
+                partsPrimary.setAttribute("tutorial-active", "true");
+            } else {
+                partsPrimary.setAttribute("tutorial-active", "false");
             }
             
             console.log("Clicked");
+        });
+        
+        defButton.addEventListener("mouseover", function() {
+            defOverlay.setAttribute("tutorial-hover", "true");
+        });
+        
+        defButton.addEventListener("mouseout", function() {
+            defOverlay.setAttribute("tutorial-hover", "false");
+        });
+        
+        defButton.addEventListener("touchend", function() {
+            defOverlay.setAttribute("tutorial-hover", "false");
         });
         
         console.log(def);

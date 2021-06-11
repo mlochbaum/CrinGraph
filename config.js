@@ -7,8 +7,9 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       default_norm_db = 60,                         // Sets default dB normalization point
       default_norm_hz = 500,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
-      alt_layout = false,                           // Toggle between classic and alt layouts
-      alt_header = false,                           // Display a configurable header at the top of the alt layout
+      alt_layout = true,                           // Toggle between classic and alt layouts
+      alt_header = true,                           // Display a configurable header at the top of the alt layout
+      alt_tutorial = true,
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
@@ -242,3 +243,42 @@ let headerLogoImgUrl = "cringraph-logo.svg",
         url: "https://sample.com"
     }
 ];
+
+
+let tutorialDefinitions = [
+    {
+        name: "Sub bass",
+        width: "20%",
+        description: "Bass frequencies give sound depth and body, and sub-bass specifically adds a sense of rumble in the very low registers."
+    },
+    {
+        name: "Mid bass",
+        width: "19.5%",
+        description: "Mid-bass can add to a sense of depth and body, but also comes with the risk of \"bleeding into the midrange.\""
+    },
+    {
+        name: "Lower midrange",
+        width: "17%",
+        description: "..."
+    },
+    {
+        name: "Upper midrange",
+        width: "20%",
+        description: "..."
+    },
+    {
+        name: "Lower treble",
+        width: "8%",
+        description: "..."
+    },
+    {
+        name: "Mid treble",
+        width: "5.5%",
+        description: "..."
+    },
+    {
+        name: "Air",
+        width: "10%",
+        description: "..."
+    }
+]

@@ -2116,8 +2116,6 @@ function addHeader() {
     altHeaderElem.append(linksList);
     
     headerLinks.forEach(function(link) {
-        console.log(link.name);
-        
         let linkContainerElem = document.createElement("li"),
             linkElem = document.createElement("a");
         
@@ -2163,6 +2161,70 @@ function addExternalLinks() {
     });
 }
 if (externalLinksBar) { addExternalLinks(); }
+
+// Add tutorial to alt layout
+function addTutorial() {
+    let graphContainer = document.querySelector("div.graph-sizer"),
+        manageContainer = document.querySelector("div.manage"),
+        overlayContainer = document.createElement("div"),
+        buttonContainer = document.createElement("div"),
+        descriptionContainer = document.createElement("div");
+    
+    overlayContainer.className = "tutorial-overlay";
+    graphContainer.prepend(overlayContainer);
+    
+    buttonContainer.className = "tutorial-buttons";
+    descriptionContainer.className = "tutorial-description";
+    
+    manageContainer.prepend(descriptionContainer);
+    manageContainer.prepend(buttonContainer);
+    
+    tutorialDefinitions.forEach(function(def) {
+        let defOverlay = document.createElement("div"),
+            defButton = document.createElement("button"),
+            defDescription = document.createElement("article"),
+            defDescriptionCopy = document.createElement("p");
+        
+        defOverlay.setAttribute("tutorial-def", def.name);
+        defOverlay.setAttribute("tutorial-on", "false");
+        defOverlay.className = "overlay-segment";
+        defOverlay.setAttribute("style", "flex-basis: "+ def.width +";")
+        overlayContainer.append(defOverlay);
+        
+        defButton.setAttribute("tutorial-def", def.name);
+        defButton.setAttribute("tutorial-on", "false");
+        defButton.className = "button-segment";
+        defButton.textContent = def.name;
+        buttonContainer.append(defButton);
+        
+        defDescription.setAttribute("tutorial-def", def.name);
+        defDescription.setAttribute("tutorial-on", "false");
+        defDescription.className = "description-segment";
+        defDescriptionCopy.textContent = def.description;
+        defDescription.append(defDescriptionCopy);
+        descriptionContainer.append(defDescription);
+        
+        defButton.addEventListener("click", function() {
+            let activeStatus = defButton.getAttribute("tutorial-on"),
+                activeTutorialElements = document.querySelectorAll("[tutorial-on='true']");
+            
+            activeTutorialElements.forEach(function(activeElem) {
+                activeElem.setAttribute("tutorial-on", "false");
+            });
+            
+            if (activeStatus === "false") {
+                defOverlay.setAttribute("tutorial-on", "true");
+                defButton.setAttribute("tutorial-on", "true");
+                defDescription.setAttribute("tutorial-on", "true");
+            }
+            
+            console.log("Clicked");
+        });
+        
+        console.log(def);
+    });
+}
+if (alt_tutorial) { addTutorial(); }
 
 // Set active graph site link
 function setActiveDatabase() {

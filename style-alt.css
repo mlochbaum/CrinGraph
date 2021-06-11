@@ -1971,6 +1971,107 @@ div.scroll div[style*="border"] div.phone-item-add span.remove:before {
 
 
 /*****
+Tutorial *****/
+
+div.tutorial-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 1% 1.8% 3.2% 1.9%;
+    
+    background-color: rgba(0,0,0, 0.0);
+    
+    pointer-events: none;
+}
+
+div.overlay-segment {
+    box-sizing: border-box;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 100%;
+    
+    background-color: var(--accent-color);
+    
+    opacity: 0.0;
+    
+    transition: opacity 0.1s ease;
+}
+
+div.tutorial-buttons {
+    display: flex;
+    
+    padding: 16px 16px 10px 16px;
+    
+    border-bottom: 1px solid var(--background-color-contrast);
+    
+    overflow-x: scroll;
+}
+
+button.button-segment {
+    flex: auto 1 0;
+    padding: 0 0 6px 0;
+    
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid var(--font-color-primary);
+    outline: none;
+    
+    color: var(--font-color-primary);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1em;
+    
+    cursor: pointer;
+}
+
+button.button-segment + button.button-segment {
+    margin-left: 16px;
+}
+
+div.tutorial-description {
+    display: flex;
+    flex-direction: column;
+    
+    padding: 16px;
+    
+    color: var(--font-color-primary);
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+article.description-segment {
+    display: none;
+    
+    flex: auto 0 0;
+    width: 100%;
+}
+
+div.overlay-segment[tutorial-on="true"] {
+    opacity: 0.2;
+}
+
+button.button-segment[tutorial-on="true"] {
+    color: magenta;
+}
+
+article.description-segment[tutorial-on="true"] {
+    display: inherit;
+}
+
+
+/*****
 External links *****/
 
 div.external-links {

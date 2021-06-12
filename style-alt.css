@@ -125,8 +125,8 @@ g.lineLabel text {
 }
 
 svg#fr-graph {
-    background-color: var(--background-color);
-    background-color: var(--background-color-graph);
+    position: relative;
+    z-index: 2;
     
     pointer-events: none;
 }
@@ -239,7 +239,7 @@ div.logo {
     box-sizing: border-box;
     flex: 350px 0 0;
     height: 48px;
-    padding: 10px 0;
+    padding: 12px 0;
     overflow: hidden;
     
     background-size: contain;
@@ -289,9 +289,9 @@ ul.header-links a {
     display: flex;
     align-items: center;
     
-    color: var(--accent-color);
+    color: var(--font-color-primary);
     font-family: var(--font-primary);
-    font-weight: 700;
+    font-weight: 500;
     font-size: 14px;
     line-height: 1em;
     text-decoration-color: var(--background-color-contrast-more);
@@ -318,7 +318,6 @@ div.graphBox {
     
     background-color: var(--background-color);
     background-color: var(--background-color-graph);
-    border-bottom: 1px solid var(--background-color-contrast-more);
 }
 
 div.graph-sizer {
@@ -1347,6 +1346,14 @@ tbody.curves > tr > td.item-line div.variantName:nth-of-type(10) {
     order: 19;
 }
 
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(11) {
+    order: 21;
+}
+
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(12) {
+    order: 23;
+}
+
 tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(1) {
     order: 2;
 }
@@ -1385,6 +1392,14 @@ tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(9) {
 
 tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(10) {
     order: 20;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(11) {
+    order: 22;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(12) {
+    order: 24;
 }
 
 tbody.curves > tr > td.item-line div.variants {
@@ -1955,6 +1970,169 @@ div.scroll div[style*="border"] div.phone-item-add span.remove:before {
 
 
 /*****
+Tutorial *****/
+
+div.tutorial-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 1% 1.8% 3.2% 1.9%;
+    
+    pointer-events: none;
+}
+
+div.overlay-segment {
+    box-sizing: border-box;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 100%;
+    
+    background-color: var(--accent-color);
+    
+    opacity: 0.0;
+    
+    transition: opacity 0.1s ease;
+}
+
+div.tutorial-buttons {
+    position: relative;
+    
+    display: flex;
+    align-items: flex-start;
+    
+    box-sizing: border-box;
+    width: 100%;
+    height: 45px;
+    padding: 6px 0 0 16px;
+    
+    background-color: var(--background-color-graph);
+    border-top: 1px solid var(--background-color-contrast);
+    
+    overflow-x: scroll;
+}
+
+div.tutorial-buttons:after {
+    content: '';
+    display: inline-block;
+    flex: 1px 0 0;
+    height: 100%;
+    background-color: transparent;
+}
+
+button.button-segment {
+    position: relative;
+    
+    flex: auto 1 0;
+    padding: 10px 16px;
+    margin: 0;
+    
+    background-color: var(--background-color);
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    
+    color: var(--font-color-primary);
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1em;
+    
+    cursor: pointer;
+}
+
+button.button-segment:last-child {
+    margin-right: 15px;
+}
+
+div.tutorial-description {
+    display: flex;
+    
+    max-height: 0px;
+    overflow: hidden;
+    
+    background-color: var(--background-color-graph);
+    border-bottom: 1px solid var(--background-color-contrast-more);
+    
+    transition: max-height 0.2s ease-in-out;
+}
+
+section.parts-primary[tutorial-active="true"] div.tutorial-description {
+    max-height: 500px;
+}
+
+article.description-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    order: 1;
+    flex: auto 0 0;
+    width: 100%;
+}
+
+article.description-segment p {
+    padding: 16px;
+    margin: 0 16px 16px 16px;
+    
+    flex: auto 1 1;
+    max-width: 800px;
+    
+    color: var(--font-color-primary);
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.6em;
+    text-align: center;
+}
+
+div.overlay-segment[tutorial-hover="true"] {
+    opacity: 0.05;
+}
+
+section.parts-primary[tutorial-active="true"] div.overlay-segment[tutorial-on="false"] {
+    opacity: 0.0;
+}
+
+div.overlay-segment[tutorial-on="true"] {
+    opacity: 0.1;
+}
+
+button.button-segment[tutorial-on="true"] {
+}
+
+button.button-segment[tutorial-on="true"]:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    
+    background-color: var(--accent-color);
+    border-radius: 100px;
+    
+    opacity: 0.1;
+}
+
+article.description-segment[tutorial-on="true"] {
+    order: 0;
+}
+
+
+
+/*****
 External links *****/
 
 div.external-links {
@@ -2368,8 +2546,13 @@ Responsive styles *****/
         margin: 8px auto 0 auto;
     }
     
+    div.targets {
+        
+    }
+    
     div.manage {
         position: relative;
+        background-color: var(--background-color-contrast);
     }
     
     div.manage:before {
@@ -2393,6 +2576,36 @@ Responsive styles *****/
     
     table.manageTable {
         min-height: calc( 100vh - ((100vw * 0.44) + 92px) );
+    }
+    
+    tbody.curves > tr {
+        border-top: 1px solid var(--background-color);
+    }
+/*
+    
+    tbody.curves > tr > td.button-baseline:before,
+    tbody.curves > tr > td.hideIcon:before,
+    tbody.curves > tr > td.button-pin[data-pinned="true"]:before,
+    tbody.curves > tr > td.button:before,
+    tbody.curves > tr > td.button-pin:before,
+    tbody.curves > tr > td.remove:before,
+    tbody.curves > tr > td.hideIcon.selected:before {
+        border: 1px solid var(--background-color);
+        background-color: var(--background-color-contrast);
+    }
+*/
+    
+    tbody.curves > tr > td.hideIcon.selected:before,
+    tbody.curves > tr > td.button-pin:before,
+    tbody.curves > tr > td.remove:before {
+        border: 1px solid var(--background-color);
+        background-color: var(--background-color-contrast);
+    }
+    
+    tbody.curves > tr > td.button-baseline:before,
+    tbody.curves > tr > td.hideIcon:before,
+    tbody.curves > tr > td.button-pin[data-pinned="true"]:before {
+        background-color: var(--background-color-contrast);
     }
     
     section.parts-secondary {
@@ -2449,8 +2662,65 @@ Responsive styles *****/
         content: 'Select a model from the list below to graph its frequency response';
     }
     
-    /* Primary panel focused */
+    tr.mobile-helper {
+        position: relative;
+        
+        display: block;
+        padding: 16px;
+    }
     
+    tr.mobile-helper:before {
+        z-index: 1;
+        
+        content: 'Browse all graphs';
+        display: block;
+        
+        box-sizing: border-box;
+        width: 100%;
+        height: 36px;
+        padding: 11px 16px;
+        
+        background-color: var(--background-color);
+        border: 1px solid var(--background-color-contrast-more);
+        border-radius: 6px;
+        
+        color: var(--font-color-primary);
+        font-size: 12px;
+        line-height: 1em;
+        text-align: center;
+        
+        cursor: pointer;
+    }
+    
+    tr.mobile-helper:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        
+        content: '';
+        display: block;
+        
+        box-sizing: border-box;
+        width: 100%;
+        height: 36px;
+        margin-top: 16px;
+        
+        background-color: var(--background-color-contrast-more);
+
+        mask: var(--icon-plus);
+        -webkit-mask: var(--icon-plus);
+        mask-size: 16px;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-size: 16px;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: right 26px center;
+        
+        cursor: pointer;
+    }
+    
+    /* Primary panel focused */
     main.main[data-focused-panel="primary"] div.manage:before {
         opacity: 0.0;
     }
@@ -2499,7 +2769,6 @@ Responsive styles *****/
     }
     
     /* Secondary panel focused */
-    
     main.main[data-focused-panel="secondary"] section.parts-primary {
         overflow: hidden;
     }
@@ -2540,7 +2809,7 @@ Responsive styles *****/
     header.header:before {
         position: absolute;
         top: 6px;
-        right: 6px;
+        left: 6px;
 
         content: '';
         box-sizing: border-box;
@@ -2552,13 +2821,14 @@ Responsive styles *****/
         border: 1px solid var(--background-color-contrast-more);
         border-radius: 6px;
         cursor: pointer;
+        display: none;
     }
 
     header.header:after {
         position: absolute;
 
         top: 6px;
-        right: 6px;
+        left: 6px;
 
         content: '';
         box-sizing: border-box;
@@ -2602,7 +2872,7 @@ Responsive styles *****/
 
         background-color: var(--background-color);
 
-        transform: translateX(100vw);
+        transform: translateX(-100vw);
         
         overflow-x: hidden;
         overflow-y: scroll;
@@ -2623,7 +2893,7 @@ Responsive styles *****/
     }
 
     header.header[data-links="collapsed"] ul.header-links {
-        transform: translateX(100vw);
+        transform: translateX(-100vw);
         transition: transform 0.2s ease;
     }
 

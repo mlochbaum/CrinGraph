@@ -9,6 +9,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
       alt_layout = false,                           // Toggle between classic and alt layouts
       alt_header = false,                           // Display a configurable header at the top of the alt layout
+      alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
@@ -243,3 +244,42 @@ let headerLogoImgUrl = "cringraph-logo.svg",
         url: "https://sample.com"
     }
 ];
+
+
+let tutorialDefinitions = [
+    {
+        name: 'Sub bass',
+        width: '20.1%',
+        description: 'Lorem ipsum.'
+    },
+    {
+        name: 'Mid bass',
+        width: '19.2%',
+        description: 'Lorem ipsum.'
+    },
+    {
+        name: 'Lower midrange',
+        width: '17.4%',
+        description: 'Lorem ipsum.'
+    },
+    {
+        name: 'Upper midrange',
+        width: "20%",
+        description: 'Lorem ipsum.'
+    },
+    {
+        name: 'Presence region',
+        width: '6%',
+        description: 'Lorem ipsum.'
+    },
+    {
+        name: 'Mid treble',
+        width: '7.3%',
+        description: 'Lorem ipsum.'
+    },
+    {
+        name: 'Air',
+        width: '10%',
+        description: 'Lorem ipsum.'
+    }
+]

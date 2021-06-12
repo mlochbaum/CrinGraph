@@ -318,7 +318,6 @@ div.graphBox {
     
     background-color: var(--background-color);
     background-color: var(--background-color-graph);
-    border-bottom: 1px solid var(--background-color-contrast-more);
 }
 
 div.graph-sizer {
@@ -1999,32 +1998,35 @@ div.overlay-segment {
     flex-shrink: 0;
     height: 100%;
     
-    background-color: transparent;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
+    background-color: var(--accent-color);
     
-    opacity: 0.2;
+    opacity: 0.0;
     
-    transition: background-color 0.1s ease;
+    transition: opacity 0.1s ease;
 }
 
 div.tutorial-buttons {
+    position: relative;
+    
     display: flex;
     align-items: flex-start;
     
     box-sizing: border-box;
     width: 100%;
-    height: 44px;
+    height: 45px;
     padding: 6px 0 0 16px;
     
-    background-color: var(--background-color);
+    background-color: var(--background-color-graph);
+    border-top: 1px solid var(--background-color-contrast);
     
     overflow-x: scroll;
 }
 
 button.button-segment {
+    position: relative;
+    
     flex: auto 1 0;
-    padding: 10px;
+    padding: 10px 16px;
     margin: 0;
     
     background-color: var(--background-color);
@@ -2032,7 +2034,7 @@ button.button-segment {
     border: 0;
     outline: none;
     
-    color: var(--background-color-contrast-more);
+    color: var(--font-color-primary);
     font-family: var(--font-primary);
     font-weight: 400;
     font-size: 12px;
@@ -2042,7 +2044,7 @@ button.button-segment {
 }
 
 button.button-segment:last-child {
-    padding-right: 26px;
+    margin-right: 16px;
 }
 
 div.tutorial-description {
@@ -2051,14 +2053,14 @@ div.tutorial-description {
     max-height: 0px;
     overflow: hidden;
     
-    background-color: var(--accent-color);
+    background-color: var(--background-color-graph);
     border-bottom: 1px solid var(--background-color-contrast-more);
     
-    transition: max-height 0.2s ease-out;
+    transition: max-height 0.2s ease-in-out;
 }
 
 section.parts-primary[tutorial-active="true"] div.tutorial-description {
-    max-height: 200px;
+    max-height: 500px;
 }
 
 article.description-segment {
@@ -2073,28 +2075,48 @@ article.description-segment {
 
 article.description-segment p {
     padding: 16px;
-    margin: 16px;
+    margin: 0 16px 16px 16px;
     
     flex: auto 1 1;
+    max-width: 800px;
     
-    color: var(--font-color-secondary);
+    color: var(--font-color-primary);
     font-family: var(--font-primary);
     font-weight: 400;
     font-size: 14px;
-    line-height: 1.5em;
+    line-height: 1.6em;
     text-align: center;
 }
 
 div.overlay-segment[tutorial-hover="true"] {
-    background-color: var(--background-color-contrast-more);
+    opacity: 0.05;
+}
+
+section.parts-primary[tutorial-active="true"] div.overlay-segment[tutorial-on="false"] {
+    opacity: 0.0;
 }
 
 div.overlay-segment[tutorial-on="true"] {
-    background-color: var(--accent-color);
+    opacity: 0.1;
 }
 
 button.button-segment[tutorial-on="true"] {
-    color: var(--font-color-primary);
+}
+
+button.button-segment[tutorial-on="true"]:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    
+    background-color: var(--accent-color);
+    border-radius: 100px;
+    
+    opacity: 0.1;
 }
 
 article.description-segment[tutorial-on="true"] {

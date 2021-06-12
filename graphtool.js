@@ -1997,7 +1997,7 @@ function setFocusedPanel() {
         graphBox = document.querySelector("div.graph-sizer"),
         mobileHelper = document.querySelector("tr.mobile-helper");
     
-    panelsContainer.setAttribute("data-focused-panel","primary");
+    panelsContainer.setAttribute("data-focused-panel","secondary");
     
     mobileHelper.addEventListener("click", function() {
         panelsContainer.setAttribute("data-focused-panel","secondary");
@@ -2207,7 +2207,7 @@ function addTutorial() {
         defDescription.setAttribute("tutorial-def", def.name);
         defDescription.setAttribute("tutorial-on", "false");
         defDescription.className = "description-segment";
-        defDescriptionCopy.textContent = def.description;
+        defDescriptionCopy.innerHTML = def.description;
         defDescription.append(defDescriptionCopy);
         descriptionContainer.append(defDescription);
         
@@ -2247,8 +2247,6 @@ function addTutorial() {
         defButton.addEventListener("touchend", function() {
             defOverlay.setAttribute("tutorial-hover", "false");
         });
-        
-        console.log(def);
     });
 }
 if (alt_tutorial) { addTutorial(); }

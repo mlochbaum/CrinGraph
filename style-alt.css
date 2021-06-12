@@ -1170,6 +1170,7 @@ tbody.curves > tr > td.curve-color button {
     outline: none;
     
     color: inherit;
+    background-color: currentColor;
     
     cursor: pointer;
 }
@@ -1354,6 +1355,38 @@ tbody.curves > tr > td.item-line div.variantName:nth-of-type(12) {
     order: 23;
 }
 
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(13) {
+    order: 25;
+}
+
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(14) {
+    order: 27;
+}
+
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(15) {
+    order: 29;
+}
+
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(16) {
+    order: 31;
+}
+
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(17) {
+    order: 33;
+}
+
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(18) {
+    order: 35;
+}
+
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(19) {
+    order: 37;
+}
+
+tbody.curves > tr > td.item-line div.variantName:nth-of-type(20) {
+    order: 39;
+}
+
 tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(1) {
     order: 2;
 }
@@ -1400,6 +1433,38 @@ tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(11) {
 
 tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(12) {
     order: 24;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(13) {
+    order: 26;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(14) {
+    order: 28;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(15) {
+    order: 30;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(16) {
+    order: 32;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(17) {
+    order: 34;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(18) {
+    order: 36;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(19) {
+    order: 38;
+}
+
+tbody.curves > tr > td.item-line span.variantPopout:nth-of-type(20) {
+    order: 40;
 }
 
 tbody.curves > tr > td.item-line div.variants {

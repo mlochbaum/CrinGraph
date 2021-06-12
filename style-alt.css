@@ -2022,6 +2022,14 @@ div.tutorial-buttons {
     overflow-x: scroll;
 }
 
+div.tutorial-buttons:after {
+    content: '';
+    display: inline-block;
+    flex: 1px 0 0;
+    height: 100%;
+    background-color: transparent;
+}
+
 button.button-segment {
     position: relative;
     
@@ -2044,7 +2052,7 @@ button.button-segment {
 }
 
 button.button-segment:last-child {
-    margin-right: 16px;
+    margin-right: 15px;
 }
 
 div.tutorial-description {

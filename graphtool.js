@@ -2175,7 +2175,8 @@ function addTutorial() {
         manageContainer = document.querySelector("div.manage"),
         overlayContainer = document.createElement("div"),
         buttonContainer = document.createElement("div"),
-        descriptionContainer = document.createElement("div");
+        descriptionContainer = document.createElement("div"),
+        zoomButtons = document.querySelectorAll("div.zoom button");
     
     overlayContainer.className = "tutorial-overlay";
     graphContainer.prepend(overlayContainer);
@@ -2229,11 +2230,13 @@ function addTutorial() {
                 defDescription.setAttribute("tutorial-on", "true");
                 
                 partsPrimary.setAttribute("tutorial-active", "true");
+                disableZoom();
+                
+                // Analytics event
+                if (analyticsEnabled) { pushEventTag("tutorial_activated", targetWindow, def.name); }
             } else {
                 partsPrimary.setAttribute("tutorial-active", "false");
             }
-            
-            console.log("Clicked");
         });
         
         defButton.addEventListener("mouseover", function() {
@@ -2246,6 +2249,30 @@ function addTutorial() {
         
         defButton.addEventListener("touchend", function() {
             defOverlay.setAttribute("tutorial-hover", "false");
+        });
+    });
+    
+    // Disable zoom if tutorial is engaged
+    function disableZoom() {
+        let activeZoomButton = document.querySelector("div.zoom button.selected");
+        
+        if (activeZoomButton) { activeZoomButton.click(); }
+    }
+    
+    // Disable tutorial if zoom is engaged
+    zoomButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            let tutorialState = document.querySelector("section.parts-primary").getAttribute("tutorial-active");
+            
+            if (button.classList.contains("selected") && tutorialState === "true") {
+                let activeOverlay = document.querySelector("div.overlay-segment[tutorial-on='true']"),
+                    activeButton = document.querySelector("button.button-segment[tutorial-on='true']"),
+                    activeDescription = document.querySelector("article.description-segment[tutorial-on='true']");
+                
+                document.querySelector("section.parts-primary").setAttribute("tutorial-active","false");
+                activeOverlay.setAttribute("tutorial-on", "false");
+                activeButton.setAttribute("tutorial-on", "false");
+            }
         });
     });
 }

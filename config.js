@@ -7,9 +7,9 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       default_norm_db = 60,                         // Sets default dB normalization point
       default_norm_hz = 500,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
-      alt_layout = true,                           // Toggle between classic and alt layouts
-      alt_header = true,                           // Display a configurable header at the top of the alt layout
-      alt_tutorial = true,
+      alt_layout = false,                           // Toggle between classic and alt layouts
+      alt_header = false,                           // Display a configurable header at the top of the alt layout
+      alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
@@ -249,36 +249,36 @@ let tutorialDefinitions = [
     {
         name: 'Sub bass',
         width: '20.1%',
-        description: '<b>Sub bass</b> frequencies are responsible for rumble. Elevated sub bass can lend an added sense of depth to music, and usually does not come at the expense of "bleeding into the midrange." Is there a limit to how much sub bass sounds good? Some may argue no, but I find too much sub bass can sound conspicuously disjointed from the rest of the music. It\'s notable, however, that a lot of music is light on usage of sub bass, so a sound signature that\'s big on sub-bass but light on mid bass may not sound very bassy with some popular recordings.'
+        description: 'Lorem ipsum.'
     },
     {
         name: 'Mid bass',
         width: '19.2%',
-        description: '<b>Mid bass</b> is responsible for a sense of punch. In contrast to sub bass, mid bass is typically more percussive and energetic, feeling like it\'s literally pushing air, and can lend a sense of body and fullness to a sound. Listeners craving a "bassy" sound will commonly be more satisfied by mid bass emphasis, as it will add a bassy punch to most common music. However, too much mid bass can give the sound a sense of bloat, or even yield the dreaded midrange "bleed" in which lower midrange notes are masked and smeared by excessive mid bass presence.'
+        description: 'Lorem ipsum.'
     },
     {
         name: 'Lower midrange',
         width: '17.4%',
-        description: '<b>Lower midrange</b> is often ignored in the discussion of musical frequencies, but it is nonetheless a crucial piece. A full lower midrange can lend a sense of body and warmth to the overall tone, while a "scooped" lower midrange can give a very clean sound at the cost of some thinness to the tone. A lot of vocal micro detail depends on a well-executed lower midrange. But lower midrange is often sacrificed to create contrast between bass and treble for a typical "V-shaped" sound signature, which will commonly exhibit less natural vocal timbre than a more linear midrange tune.'
+        description: 'Lorem ipsum.'
     },
     {
         name: 'Upper midrange',
         width: "20%",
-        description: '<b>Upper midrange</b> is where a lot of "clarity" in a tune comes from. An elevated -- or "forward" -- upper midrange typically results in a forward vocal presentation, especially emphasizing the higher-pitched vocals. Trumpets and guitars get their bite from upper midrange frequencies. Too much upper midrange can result in shrill or "shouty" vocals. Too little can result in a distant, recessed sound that\'s low on clarity. And uneven upper midrange emphasis can lead to oddly nasal or hollow vocals, with other odd timbral effects.'
+        description: 'Lorem ipsum.'
     },
     {
         name: 'Presence region',
         width: '6%',
-        description: 'Also commonly referred to as "lower treble," the <b>presence region</b> has a lot to do with the naturalness of vocal tones. Too much emphasis here and vocals may take on an "edgy" or metallic tone. Too little emphasis and the tune can lose definition, sound soft or dark. Much of the initial bite of trumpet and acoustic guitar string transients comes from a well-tuned presence region.'
+        description: 'Lorem ipsum.'
     },
     {
         name: 'Mid treble',
         width: '7.3%',
-        description: 'A lot of treble harshness and fatigue comes from this <b>mid treble</b> region. Peaks in this region commonly result in unpleasant sharpness, or sibilance in vocals which adds abrasive harshness to S and T sounds. Too little mid treble, however, will result in a dark or dead sound, resulting in odd timbre to cymbal strikes. Making matters difficult for us graph readers, there is a commonly-observed "resonance peak" that appears in measurements, usually situated at 8kHz, that is an artifact of the measurement process. It can often be hard to tell how much of such a peak is "real" without listening.'
+        description: 'Lorem ipsum.'
     },
     {
         name: 'Air',
         width: '10%',
-        description: 'In the way sub bass can add a sense of depth to the low end, <b>air</b> frequencies -- also called upper treble -- can add a dimensionality via the top end. When air frequencies are "rolled off," the sound may lose a sense of micro detail and definition, and cymbals may lose shimmer, leaving them blunt in their decay. Too much air is not common, but certainly possible, resulting in a fatiguing "shh shh" to cymbals, drum brushes, and other high-frequency sounds.'
+        description: 'Lorem ipsum.'
     }
 ]

@@ -3047,28 +3047,47 @@ Responsive styles *****/
 
 /* Yeet table items for narrow screens */
 @media ( max-width: 500px) {
-    tbody.curves > tr > td.channels {
-        display: none;
+    
+    tbody.curves > tr:before {
+        order: 5;
+        
+        content:'';
+        display: block;
+        flex: 100% 1 1;
+        
+        height: 0px;
+        
+        background-color: magenta;
     }
-}
 
-@media ( max-width: 350px) {
+    tbody.curves > tr > td.item-line {
+    }
+    
+    tbody.curves > tr > td.curve-color {
+    }
+    
+    tbody.curves > tr > td.channels {
+        order: 3;
+    }
+    
     tbody.curves > tr > td.levels {
-        display: none;
+        order: 4;
+        
+        margin-right: 16px;
     }
     
     tbody.curves > tr > td.button-baseline {
         margin-left: auto;
     }
-}
-
-/* Edge cases */
-@media ( max-width: 360px ) {
-    tbody.curves > tr > td.channels {
-        display: none;
+    
+    tbody.curves > tr > td.button-baseline,
+    tbody.curves > tr > td.hideIcon,
+    tbody.curves > tr > td.button-pin {
+        order: 5;
     }
 }
 
+/* Edge cases */
 @media ( max-height: 500px ) {
     div.select > div.selector-tabs {
         display: none;

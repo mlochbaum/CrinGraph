@@ -1030,7 +1030,7 @@ function addPhonesToUrl() {
         url = baseURL,
         names = activePhones.map(p => p.fileName),
         namesCombined = names.join(", ");
-    console.log(namesCombined);
+    
     if (names.length) {
         url += "?share=" + encodeURI(names.join().replace(/ /g,"_"));
         title = namesCombined + " - " + title;

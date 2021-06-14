@@ -126,7 +126,8 @@ g.lineLabel text {
 
 svg#fr-graph {
     position: relative;
-    z-index: 2;
+    
+    background-color: var(--background-color-graph);
     
     pointer-events: none;
 }

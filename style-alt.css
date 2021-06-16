@@ -174,6 +174,113 @@ g[mask="url(#graphFade)"] path:not(.target) {
     }
 }
 
+/*****
+Graph labels *****/
+
+svg#fr-graph > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
+svg#fr-graph > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
+svg#fr-graph > rect + g.lineLabel + g.lineLabel:nth-last-child(1),
+svg#fr-graph > rect + g.lineLabel:nth-last-child(1) {
+    transform: translate(40px, 296px);
+}
+
+svg#fr-graph > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
+svg#fr-graph > rect + g.lineLabel + g.lineLabel:nth-last-child(2),
+svg#fr-graph > rect + g.lineLabel:nth-last-child(2) {
+    transform: translate(40px, 266px);
+}
+
+svg#fr-graph > rect + g.lineLabel + g.lineLabel:nth-last-child(3),
+svg#fr-graph > rect + g.lineLabel:nth-last-child(3) {
+    transform: translate(40px, 236px);
+}
+
+svg#fr-graph > rect + g.lineLabel:nth-last-child(4) {
+    transform: translate(40px, 206px);
+}
+
+svg#fr-graph > g.lineLabel rect {
+    padding: 16px;
+    rx: 6px;
+    ry: 6px;
+    
+    fill: var(--background-color-graph);
+/*    fill: magenta;*/
+    border-radius: 6px;
+}
+
+svg#fr-graph > g.lineLabel text {
+    width: calc(100% + 200px);
+}
+
+/*****
+Graph lite *****/
+
+/* Horizontal lines */
+
+svg#fr-graph > g:nth-of-type(2) > text {
+    fill: var(--font-color-primary);
+    font-size: 8px;
+    
+    opacity: 0.5;
+}
+
+svg#fr-graph > g:nth-of-type(2) g.tick line {
+    stroke: var(--background-color-contrast-more);
+    stroke-width: 1px;
+    
+    opacity: 0.2;
+}
+
+svg#fr-graph > g:nth-of-type(2) g.tick:nth-child(2n+1) line {
+    opacity: 0.1;
+}
+
+svg#fr-graph > g:nth-of-type(2) g.tick text {
+    fill: var(--font-color-primary);
+    font-size: 8px;
+    
+    opacity: 0.2;
+}
+
+svg#fr-graph > g:nth-of-type(2) g.tick:nth-child(2n+1) text {
+    display: none;
+}
+
+/* Vertical lines */
+
+svg#fr-graph > g:nth-of-type(3) g.tick line {
+    stroke: var(--background-color-contrast-more);
+    stroke-width: 1px;
+    
+    opacity: 0.2;
+}
+
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-of-type(1) line,
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-last-of-type(1) line {
+    display: none;
+}
+
+svg#fr-graph > g:nth-of-type(3) g.tick text {
+    fill: var(--font-color-primary);
+    font-size: 8px;
+    
+    opacity: 0.2;
+}
+
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-child(1) text,
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-child(4) text,
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-child(7) text,
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-child(9) text,
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-child(12) text,
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-child(15) text,
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-child(17) text,
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-child(20) text,
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-child(23) text,
+svg#fr-graph > g:nth-of-type(3) g.tick:nth-child(25) text {
+    opacity: 0.5;
+}
+
 
 
 /*****
@@ -317,8 +424,8 @@ div.graphBox {
     height: auto;
     padding-bottom: 16px;
     
-    background-color: var(--background-color);
     background-color: var(--background-color-graph);
+    border-bottom: 1px solid var(--background-color-contrast);
 }
 
 div.graph-sizer {
@@ -2082,7 +2189,6 @@ div.tutorial-buttons {
     padding: 6px 0 0 16px;
     
     background-color: var(--background-color-graph);
-    border-top: 1px solid var(--background-color-contrast);
     
     overflow-x: scroll;
 }

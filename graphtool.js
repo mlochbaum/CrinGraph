@@ -1731,12 +1731,12 @@ function pathHL(c, m, imm) {
     gpath.selectAll("path").classed("highlight", c ? d=>d===c   : false);
     table.selectAll("tr")  .classed("highlight", c ? p=>p===c.p : false);
     if (pathHoverTimeout) { clearTimeout(pathHoverTimeout); }
-    // Testing new label rules
-    // clearLabels();
-    pathHoverTimeout =
-        imm ? pathTooltip(c, m) :
-        c   ? setTimeout(pathTooltip, 400, c, m) :
-        undefined;
+// Testing new label rules
+//     clearLabels();
+//    pathHoverTimeout =
+//        imm ? pathTooltip(c, m) :
+//        c   ? setTimeout(pathTooltip, 400, c, m) :
+//        undefined;
 }
 function pathTooltip(c, m) {
     let g = gr.selectAll(".lineLabel").data([c.id])
@@ -1836,7 +1836,8 @@ gr.append("rect")
     .attrs({x:pad.l,y:pad.t,width:W,height:H,opacity:0})
     .on("mousemove", graphInteract())
     .on("mouseout", ()=>interactInspect?stopInspect():pathHL(false))
-    .on("click", graphInteract(true));
+    // Commenting out as a test; this line throws JS errors
+    //.on("click", graphInteract(true));
 
 doc.select("#inspector").on("click", function () {
     clearLabels(); stopInspect();

@@ -2759,6 +2759,10 @@ Responsive styles *****/
         margin: 8px auto 0 auto;
     }
     
+    g.lineLabel text {
+        font-size: 20px;
+    }
+    
     div.targets {
         
     }
@@ -2783,7 +2787,18 @@ Responsive styles *****/
         pointer-events: none;
         
         opacity: 0.0;
-        transition: opacity 0.2s ease-in 0.2s;
+        transition: opacity 0.2s ease-in;
+        
+/*
+        mask: linear-gradient(to top, #000 95%, transparent);
+        -webkit-mask: linear-gradient(to bottom, transparent 12px, #000 28px);
+        mask-size: 100%;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-size: 100%;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+*/
     }
     
     table.manageTable {
@@ -2824,6 +2839,7 @@ Responsive styles *****/
         
         transform: translateY(100vh);
         transition: all 0.4s ease;
+        will-change: transform;
     }
     
     div.controls {
@@ -2849,8 +2865,13 @@ Responsive styles *****/
         pointer-events: none;
     }
     
-    div.selector-tabs {
+    div.select > div.selector-tabs {
         display: none;
+    }
+    
+    div.scroll-container {
+        opacity: 1.0;
+        transition: opacity 0.2s ease;
     }
     
     div.scroll > div.phone-item {
@@ -2937,15 +2958,21 @@ Responsive styles *****/
             transform: translateY(calc( (100vw * 0.44) + 109px ));
         }
         75% {
-            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 52px ));
         }
         85% {
-            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 74px ));
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 42px ));
         }
         100% {
-            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 52px ));
         }
     }
+    
+    main.main[data-focused-panel="primary"] div.scroll-container {
+        opacity: 0.0;
+        pointer-events: none;
+    }
+
     
     /***** Secondary panel focused *****/
     main.main[data-focused-panel="secondary"] section.parts-primary {
@@ -3043,7 +3070,7 @@ Responsive styles *****/
         z-index: 2;
 
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
 
         box-sizing: border-box;
@@ -3062,7 +3089,6 @@ Responsive styles *****/
 
     ul.header-links li {
         text-align: center;
-        margin: 16px 0 0 0;
     }
 
     ul.header-links li + li {

@@ -68,6 +68,7 @@ html {
     
     user-select: none;
     scroll-behavior: smooth;
+    overscroll-behavior-y: none;
 }
 
 body {
@@ -222,35 +223,11 @@ svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-last-of-type(
     display: none;
 }
 
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(4) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(7) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(9) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(12) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(15) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(17) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(20) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(23) line {
-    opacity: 0.5;
-}
-
 svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick text {
     fill: var(--font-color-primary);
     font-size: 8px;
     
     opacity: 0.2;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(1) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(4) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(7) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(9) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(12) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(15) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(17) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(20) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(23) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(25) text {
-    opacity: 0.5;
 }
 
 /*****

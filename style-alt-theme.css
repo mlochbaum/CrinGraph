@@ -50,154 +50,28 @@ body.dark-mode {
     --svg-filter: invert(1.0);
 }
 
-/* If user has system preference for dark mode, this theme overrides the theme above. Optional */
-@media ( prefers-color-scheme: dark ) {
-    /* Paste theme here, in between { curly braces } */
+/***** For lite graph: Dark lines *****/
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(4) line,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(7) line,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(9) line,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(12) line,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(15) line,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(17) line,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(20) line,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(23) line,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(0) line {
+    opacity: 0.5;
 }
 
-
-
-/*****
-Below are some sample themes.
-To use them, copy and paste them over the top of the themes
-above (without the *//* comment characters).
-Alternatively, you can manually edit the color values. All
-color values in the alt layout come from this theme.
-*****/
-
-/* Color theme: Relaxed dark */
-/*
-:root {
-    --accent-color: hsl(260, 13%, 65%);
-    --accent-color-contrast: hsl(260, 10%, 45%);
-    
-    --background-color: hsl(212, 14%, 10%);
-    --background-color-contrast: hsl(212, 14%, 8%);
-    --background-color-contrast-more: hsl(212, 14%, 40%);
-    --background-color-graph: var(--background-color);
-    
-    --background-color-inputs: hsl(212, 14%, 95%);
-    --font-color-primary: hsl(77, 11%, 87%);
-    --font-color-secondary: #FFFFFF;
-    --font-color-inputs: hsl(212, 14%, 40%);
-    
-    --font-primary: 'Open Sans', sans-serif;
-    --font-secondary: monospace;
-    
-    --scrollbar-color: 0,0,0;
-    --scrollbar-accent: 255,255,255;
-        
-    --svg-filter: invert(1.0);
-}
-*/
-
-/* Color theme: Variable light */
-/* Just by changing the hue value at the top, you can get an entirely different theme */
-/*
-:root {
-    --hue: 300;
-    
-    --accent-color: hsl(var(--hue), 30%, 50%);
-    --accent-color-contrast: hsl(var(--hue), 30%, 75%);
-    
-    --background-color: hsl(var(--hue), 3%, 95%);
-    --background-color-contrast: hsl(var(--hue), 3%, 85%);
-    --background-color-contrast-more: hsl(var(--hue), 3%, 50%);
-    --background-color-graph: var(--background-color);
-    
-    --background-color-inputs: hsl(var(--hue), 20%, 100%);
-    
-    --font-color-primary: hsl(var(--hue), 10%, 10%);
-    --font-color-secondary: hsl(var(--hue), 10%, 95%);
-    --font-color-inputs: hsl(var(--hue), 10%, 50%);
-    
-    --font-primary: 'Open Sans', sans-serif;
-    --font-secondary: monospace;
-    
-    --scrollbar-color: 255,255,255;
-    --scrollbar-accent: 0,0,0;
-        
-    --svg-filter: none;
-}
-*/
-
-/* Color theme: Variable dark */
-/* Just by changing the hue value at the top, you can get an entirely different theme */
-/*
-:root {
-    --hue: 300;
-    
-    --accent-color: hsl(var(--hue), 50%, 40%);
-    --accent-color-contrast: hsl(var(--hue), 50%, 15%);
-    
-    --background-color: hsl(var(--hue), 10%, 8%);
-    --background-color-contrast: hsl(var(--hue), 10%, 4%);
-    --background-color-contrast-more: hsl(var(--hue), 10%, 35%);
-    --background-color-graph: var(--background-color);
-    
-    --background-color-inputs: hsl(var(--hue), 5%, 25%);
-    
-    --font-color-primary: hsl(var(--hue), 5%, 90%);
-    --font-color-secondary: hsl(var(--hue), 5%, 80%);
-    --font-color-inputs: hsl(var(--hue), 5%, 60%);
-    
-    --font-primary: 'Open Sans', sans-serif;
-    --font-secondary: monospace;
-    
-    --scrollbar-color: 0,0,0;
-    --scrollbar-accent: 255,255,255;
-        
-    --svg-filter: invert(1.0);
-}
-*/
-
-/* Color theme: Mono light */
-/*
-:root {
-    --accent-color: hsl(0, 0%, 30%);
-    --accent-color-contrast: hsl(0, 0%, 75%);
-    --background-color: hsl(0, 0%, 94%);
-    --background-color-contrast: hsl(0, 0%, 90%);
-    --background-color-contrast-more: hsl(0, 0%, 40%);
-    --background-color-graph: var(--background-color);
-    
-    --background-color-inputs: hsl(0, 0%, 100%);
-    
-    --font-color-primary: hsl(0, 0%, 10%);
-    --font-color-secondary: hsl(0, 0%, 100%);
-    --font-color-inputs: hsl(0, 0%, 50%);
-    
-    --font-primary: 'Open Sans', sans-serif;
-    --font-secondary: monospace;
-    
-    --scrollbar-color: 255,255,255;
-    --scrollbar-accent: 0,0,0;
-        
-    --svg-filter: none;
-}
-*/
-
-/* Color theme: Mono dark */
-/*
-:root {
-    --accent-color: hsl(0, 0%, 40%);
-    --accent-color-contrast: hsl(0, 0%, 25%);
-    --background-color: hsl(0, 0%, 7%);
-    --background-color-contrast: hsl(0, 0%, 2%);
-    --background-color-contrast-more: hsl(0, 0%, 40%);
-    --background-color-graph: var(--background-color);
-    
-    --background-color-inputs: hsl(0, 0%, 15%);
-    
-    --font-color-primary: hsl(0, 0%, 80%);
-    --font-color-secondary: hsl(0, 0%, 80%);
-    --font-color-inputs: hsl(0, 0%, 50%);
-    
-    --font-primary: 'Open Sans', sans-serif;
-    --font-secondary: monospace;
-    
-    --scrollbar-color: 0,0,0;
-    --scrollbar-accent: 255,255,255;
-        
-    --svg-filter: invert(1.0);
+/***** For lite graph: Dark labels *****/
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(4) text,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(7) text,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(9) text,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(12) text,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(15) text,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(17) text,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(20) text,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(23) text,
+svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(0) text {
+    opacity: 0.5;
 }

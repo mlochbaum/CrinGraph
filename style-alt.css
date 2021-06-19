@@ -1875,9 +1875,6 @@ div.scrollOuter:before {
     transition: opacity 0.1s ease-out;
     
     pointer-events: none;
-    
-/*    opacity: 0.8;*/
-/*    background-color: magenta;*/
 }
 
 div.scrollOuter[data-list="brands"] {
@@ -2782,7 +2779,6 @@ Responsive styles *****/
         width: 100%;
         height: 100%;
         
-        background-color: magenta;
         background-color: var(--background-color-contrast-more);
         pointer-events: none;
         
@@ -2797,19 +2793,6 @@ Responsive styles *****/
     tbody.curves > tr {
         border-top: 1px solid var(--background-color);
     }
-/*
-    
-    tbody.curves > tr > td.button-baseline:before,
-    tbody.curves > tr > td.hideIcon:before,
-    tbody.curves > tr > td.button-pin[data-pinned="true"]:before,
-    tbody.curves > tr > td.button:before,
-    tbody.curves > tr > td.button-pin:before,
-    tbody.curves > tr > td.remove:before,
-    tbody.curves > tr > td.hideIcon.selected:before {
-        border: 1px solid var(--background-color);
-        background-color: var(--background-color-contrast);
-    }
-*/
     
     tbody.curves > tr > td.hideIcon.selected:before,
     tbody.curves > tr > td.button-pin:before,
@@ -2831,20 +2814,20 @@ Responsive styles *****/
         
         order: 2;
         width: 100%;
-        height: calc(100% - ((100vw * 0.44) + 92px));
+        height: calc(100% - ((100vw * 0.44) + 109px));
         min-height: 200px;
         margin-top: 0px;
         
         border-right: none;
         border-top: 1px solid var(--background-color-contrast-more);
-        border-radius: 16px 16px 0 0;
+        border-radius: 12px 12px 0 0;
         
-        transition: all 200ms ease-in;
-        transform: translateY(calc( (100vw * 0.44) + 92px ));
+        transform: translateY(100vh);
+        transition: all 0.4s ease;
     }
     
     div.controls {
-        border-radius: 16px 16px 0 0;
+        border-radius: 12px 12px 0 0;
     }
     
     div.controls:before {
@@ -2936,14 +2919,12 @@ Responsive styles *****/
         cursor: pointer;
     }
     
-    /* Primary panel focused */
+    /***** Primary panel focused *****/
     main.main[data-focused-panel="primary"] div.manage:before {
         opacity: 0.0;
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary {
-        transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
-        
         animation-name: graph-drawer-hide;
         animation-duration: 0.4s;
         animation-timing-function: ease-in;
@@ -2953,7 +2934,7 @@ Responsive styles *****/
     
     @keyframes graph-drawer-hide {
         0% {
-            transform: translateY(calc( (100vw * 0.44) + 92px ));
+            transform: translateY(calc( (100vw * 0.44) + 109px ));
         }
         75% {
             transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
@@ -2966,32 +2947,16 @@ Responsive styles *****/
         }
     }
     
-    main.main[data-focused-panel="primary"] section.parts-secondary div.select:before {
-        animation-name: all-graphs-bounce;
-        animation-duration: 0.3s;
-        animation-iteration-count: 1;
-        animation-delay: 0.3s;
-        animation-timing-function: ease-out;
-        animation-fill-mode: forwards;
-    }
-    
-    @keyframes all-graphs-bounce {
-        0% {
-            margin: -36px 16px 0 16px;
-        }
-        100% {
-            margin: 16px 16px 32px 16px;
-        }
-    }
-    
-    /* Secondary panel focused */
+    /***** Secondary panel focused *****/
     main.main[data-focused-panel="secondary"] section.parts-primary {
         overflow: hidden;
     }
     
     main.main[data-focused-panel="secondary"] div.manage:before {
-        opacity: 0.8;
+        opacity: 0.5;
         transition: opacity 0.2s ease-in 0.0s;
+        
+        pointer-events: all;
     }
     
     main.main[data-focused-panel="secondary"] section.parts-secondary {
@@ -3007,15 +2972,16 @@ Responsive styles *****/
             transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
         }
         75% {
-            transform: translateY(calc( (100vw * 0.44) + 92px ));
+            transform: translateY(calc( (100vw * 0.44) + 109px ));
         }
         85% {
-            transform: translateY(calc( (100vw * 0.44) + 102px ));
+            transform: translateY(calc( (100vw * 0.44) + 119px ));
         }
         100% {
-            height: calc(100% - ((100vw * 0.44) + 92px));
+            height: calc(100% - ((100vw * 0.44) + 109px));
             min-height: 200px;
             transform: translateY(calc( (100vw * 0.44) + 92px ));
+            transform: translateY(calc( (100vw * 0.44) + 109px ));
         }
     }
 
@@ -3132,8 +3098,6 @@ Responsive styles *****/
     tbody.curves > tr > td.item-line {
         flex: 100% 0 0 !important;
         padding: 0 16px !important;
-        
-/*        border-bottom: 1px solid var(--background-color-contrast);*/
     }
     
     tbody.curves > tr > td.item-line div.phonename {
@@ -3206,8 +3170,6 @@ Responsive styles *****/
         flex: 100% 1 1;
         
         height: 0px;
-        
-        background-color: magenta;
     }
 
     tbody.curves > tr > td.item-line {

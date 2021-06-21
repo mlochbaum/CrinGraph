@@ -22,7 +22,6 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       expandableOnly = false,                       // Prevents iframe interactions unless the user has expanded it. Accepts "true" or "false" OR a pixel value; if pixel value, that is used as the maximum width at which expandableOnly is used
       headerHeight = '0px',                         // Optional. If expandable=true, determines how much space to leave for the parent page header
       darkModeButton = true,                        // Adds a "Dark Mode" button the main toolbar to let users set preference
-      liteGraph = false,                            // Reduces number of lines drawn on graph. Maybe controversial.
       targetDashed = false,                         // If true, makes target curves dashed lines
       targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
       labelsPosition = "default",                   // Up to four labels will be grouped in a specified corner. Accepts "top-left," bottom-left," "bottom-right," and "default"

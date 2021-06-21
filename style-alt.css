@@ -177,60 +177,6 @@ g[mask="url(#graphFade)"] path:not(.target) {
 }
 
 /*****
-Graph lite *****/
-
-/* Horizontal lines */
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(2) > text {
-    fill: var(--font-color-primary);
-    font-size: 8px;
-    
-    opacity: 0.5;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(2) g.tick line {
-    stroke: var(--background-color-contrast-more);
-    stroke-width: 1px;
-    
-    opacity: 0.2;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(2) g.tick:nth-child(2n+1) line {
-    opacity: 0.1;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(2) g.tick text {
-    fill: var(--font-color-primary);
-    font-size: 8px;
-    
-    opacity: 0.2;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(2) g.tick:nth-child(2n+1) text {
-    display: none;
-}
-
-/* Vertical lines */
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick line {
-    stroke: var(--background-color-contrast-more);
-    stroke-width: 1px;
-    
-    opacity: 0.2;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-of-type(1) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-last-of-type(1) line {
-    display: none;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick text {
-    fill: var(--font-color-primary);
-    font-size: 8px;
-    
-    opacity: 0.2;
-}
-
-/*****
 Graph labels *****/
 
 /* top-left */

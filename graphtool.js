@@ -24,7 +24,7 @@ doc.html(`
     <section class="parts-primary">
     <div class="graphBox">
       <div class="graph-sizer">
-        <svg id="fr-graph" viewBox="0 0 800 346" data-lite-graph="`+ liteGraph +`" data-labels-position="`+ labelsPosition +`"></svg>
+        <svg id="fr-graph" viewBox="0 0 800 346" data-labels-position="`+ labelsPosition +`"></svg>
       </div>
 
       <div class="tools collapseTools">

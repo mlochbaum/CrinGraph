@@ -22,7 +22,7 @@ doc.html(`
 
   <main class="main">
     <section class="parts-primary">
-    <div class="graphBox">
+    <div class="graphBox" data-sticky-graph="`+ alt_sticky_graph +`">
       <div class="graph-sizer">
         <svg id="fr-graph" viewBox="0 0 800 346" data-lite-graph="`+ liteGraph +`" data-labels-position="`+ labelsPosition +`"></svg>
       </div>

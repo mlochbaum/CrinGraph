@@ -459,7 +459,7 @@ section.parts-primary {
 }
 
 div.graphBox {
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 1;
     
@@ -470,6 +470,10 @@ div.graphBox {
     
     background-color: var(--background-color-graph);
     border-bottom: 1px solid var(--background-color-contrast);
+}
+
+div.graphBox[data-sticky-graph="true"] {
+    position: sticky;
 }
 
 div.graph-sizer {
@@ -2751,10 +2755,8 @@ Responsive styles *****/
     }
     
     div.graphBox {
-        position: sticky;
         top: 0;
         z-index: 2;
-        
         padding-bottom: 8px;
     }
     

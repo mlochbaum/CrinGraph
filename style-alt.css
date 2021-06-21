@@ -3163,6 +3163,10 @@ Responsive styles *****/
 
 /*@media ( max-height: 500px ) and ( orientation: landscape ) {*/
 @media ( max-height: 500px ) and ( min-aspect-ratio: 3 / 2 ) {
+    header.header {
+        display: none;
+    }
+    
     body:not([data-input-state="focus"]) section.parts-primary {
         z-index: 3;
         

@@ -300,10 +300,9 @@ header.header {
     align-items: center;
     
     box-sizing: border-box;
-    flex: 49px 0 0;
+    flex: 48px 0 0;
     
-    background-color: var(--background-color-contrast);
-    border-bottom: 1px solid var(--background-color-contrast-more);
+    background-color: var(--font-color-primary);
 }
 
 div.logo {
@@ -344,6 +343,11 @@ ul.header-links {
     overflow-x: scroll;
 }
 
+ul.header-links::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
 ul.header-links li {
     display: flex;
     align-items: center;
@@ -364,7 +368,7 @@ ul.header-links a {
     display: flex;
     align-items: center;
     
-    color: var(--font-color-primary);
+    color: var(--background-color-graph);
     font-family: var(--font-primary);
     font-weight: 500;
     font-size: 14px;

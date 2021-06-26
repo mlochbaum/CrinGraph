@@ -1007,8 +1007,10 @@ function setHover(elt, h) {
 
 // See if iframe gets CORS error when interacting with window.top
 try {
+    let emb = window.location.href.includes('embed');
+    
     accessWindowTop = (window.top.location.href) ? true:false;
-    targetWindow = window.top;
+    targetWindow = emb ? window : window.top;
 } catch {
     accessWindowTop = false;
     targetWindow = window;
@@ -1517,16 +1519,28 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     
     if (ifURL) {
         let url = targetWindow.location.href,
-            par = "?share=";
+            par = "share=";
+            emb = "embed";
         baseURL = url.split("?").shift();
-        if (url.includes(par)) {
+        if (url.includes(par) && url.includes(emb)) {
+            initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
+            loadFromShare = 2;
+        } else if (url.includes(par)) {
             initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
             loadFromShare = 1;
         }
     }
     let isInit = initReq ? f => initReq.indexOf(f) !== -1
                          : _ => false;
-    let initMode = loadFromShare ? "share" : "config";
+    
+    if (loadFromShare === 1) {
+        initMode = "share";
+    } else if (loadFromShare === 2) {
+        initMode = "embed";
+        console.log("embed");
+    } else {
+        initMode = "config";
+    }
     
     brands.forEach(b => brandMap[b.name] = b);
     brands.forEach(function (b) {

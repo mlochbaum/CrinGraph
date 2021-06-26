@@ -3025,6 +3025,7 @@ Responsive styles *****/
     ul.header-links li a {
         display: block;
         padding: 16px;
+        color: var(--font-color-primary);
     }
 
     header.header[data-links="collapsed"] ul.header-links {

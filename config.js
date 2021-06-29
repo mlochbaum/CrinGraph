@@ -8,6 +8,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       default_norm_hz = 500,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
       alt_layout = false,                           // Toggle between classic and alt layouts
+      alt_sticky_graph = true,                      // If active graphs overflows the viewport, does the graph scroll with the page or stick to the viewport?
       alt_header = false,                           // Display a configurable header at the top of the alt layout
       alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
       share_url = true,                             // If true, enables shareable URLs

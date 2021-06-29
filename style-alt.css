@@ -139,7 +139,12 @@ rect.graphBackground {
 }
 
 g.dBScaler {
-    display: none;
+    fill: var(--background-color-contrast-more);
+    pointer-events: all;
+}
+
+g.dBScaler rect[fill="#bbb"] {
+    fill: var(--background-color-graph);
 }
 
 svg#fr-graph > g > image {
@@ -386,7 +391,7 @@ section.parts-primary {
 }
 
 div.graphBox {
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 1;
     
@@ -397,6 +402,10 @@ div.graphBox {
     
     background-color: var(--background-color-graph);
     border-bottom: 1px solid var(--background-color-contrast);
+}
+
+div.graphBox[data-sticky-graph="true"] {
+    position: sticky;
 }
 
 div.graph-sizer {
@@ -1802,6 +1811,9 @@ div.scrollOuter:before {
     transition: opacity 0.1s ease-out;
     
     pointer-events: none;
+    
+/*    opacity: 0.8;*/
+/*    background-color: magenta;*/
 }
 
 div.scrollOuter[data-list="brands"] {
@@ -2675,19 +2687,13 @@ Responsive styles *****/
     }
     
     div.graphBox {
-        position: sticky;
         top: 0;
         z-index: 2;
-        
         padding-bottom: 8px;
     }
     
     div.graph-sizer {
         margin: 8px auto 0 auto;
-    }
-    
-    g.lineLabel text {
-        font-size: 20px;
     }
     
     div.targets {
@@ -2710,22 +2716,12 @@ Responsive styles *****/
         width: 100%;
         height: 100%;
         
+        background-color: magenta;
         background-color: var(--background-color-contrast-more);
         pointer-events: none;
         
         opacity: 0.0;
-        transition: opacity 0.2s ease-in;
-        
-/*
-        mask: linear-gradient(to top, #000 95%, transparent);
-        -webkit-mask: linear-gradient(to bottom, transparent 12px, #000 28px);
-        mask-size: 100%;
-        mask-repeat: no-repeat;
-        mask-position: center;
-        -webkit-mask-size: 100%;
-        -webkit-mask-repeat: no-repeat;
-        -webkit-mask-position: center;
-*/
+        transition: opacity 0.2s ease-in 0.2s;
     }
     
     table.manageTable {
@@ -2735,6 +2731,19 @@ Responsive styles *****/
     tbody.curves > tr {
         border-top: 1px solid var(--background-color);
     }
+/*
+    
+    tbody.curves > tr > td.button-baseline:before,
+    tbody.curves > tr > td.hideIcon:before,
+    tbody.curves > tr > td.button-pin[data-pinned="true"]:before,
+    tbody.curves > tr > td.button:before,
+    tbody.curves > tr > td.button-pin:before,
+    tbody.curves > tr > td.remove:before,
+    tbody.curves > tr > td.hideIcon.selected:before {
+        border: 1px solid var(--background-color);
+        background-color: var(--background-color-contrast);
+    }
+*/
     
     tbody.curves > tr > td.hideIcon.selected:before,
     tbody.curves > tr > td.button-pin:before,
@@ -2756,21 +2765,20 @@ Responsive styles *****/
         
         order: 2;
         width: 100%;
-        height: calc(100% - ((100vw * 0.44) + 109px));
+        height: calc(100% - ((100vw * 0.44) + 92px));
         min-height: 200px;
         margin-top: 0px;
         
         border-right: none;
         border-top: 1px solid var(--background-color-contrast-more);
-        border-radius: 12px 12px 0 0;
+        border-radius: 16px 16px 0 0;
         
-        transform: translateY(100vh);
-        transition: all 0.4s ease;
-        will-change: transform;
+        transition: all 200ms ease-in;
+        transform: translateY(calc( (100vw * 0.44) + 92px ));
     }
     
     div.controls {
-        border-radius: 12px 12px 0 0;
+        border-radius: 16px 16px 0 0;
     }
     
     div.controls:before {
@@ -2792,13 +2800,8 @@ Responsive styles *****/
         pointer-events: none;
     }
     
-    div.select > div.selector-tabs {
+    div.selector-tabs {
         display: none;
-    }
-    
-    div.scroll-container {
-        opacity: 1.0;
-        transition: opacity 0.2s ease;
     }
     
     div.scroll > div.phone-item {
@@ -2867,12 +2870,14 @@ Responsive styles *****/
         cursor: pointer;
     }
     
-    /***** Primary panel focused *****/
+    /* Primary panel focused */
     main.main[data-focused-panel="primary"] div.manage:before {
         opacity: 0.0;
     }
     
     main.main[data-focused-panel="primary"] section.parts-secondary {
+        transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
+        
         animation-name: graph-drawer-hide;
         animation-duration: 0.4s;
         animation-timing-function: ease-in;
@@ -2882,35 +2887,45 @@ Responsive styles *****/
     
     @keyframes graph-drawer-hide {
         0% {
-            transform: translateY(calc( (100vw * 0.44) + 109px ));
+            transform: translateY(calc( (100vw * 0.44) + 92px ));
         }
         75% {
-            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 52px ));
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
         }
         85% {
-            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 42px ));
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 74px ));
         }
         100% {
-            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 52px ));
+            transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
         }
     }
     
-    main.main[data-focused-panel="primary"] div.scroll-container {
-        opacity: 0.0;
-        pointer-events: none;
+    main.main[data-focused-panel="primary"] section.parts-secondary div.select:before {
+        animation-name: all-graphs-bounce;
+        animation-duration: 0.3s;
+        animation-iteration-count: 1;
+        animation-delay: 0.3s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
     }
-
     
-    /***** Secondary panel focused *****/
+    @keyframes all-graphs-bounce {
+        0% {
+            margin: -36px 16px 0 16px;
+        }
+        100% {
+            margin: 16px 16px 32px 16px;
+        }
+    }
+    
+    /* Secondary panel focused */
     main.main[data-focused-panel="secondary"] section.parts-primary {
         overflow: hidden;
     }
     
     main.main[data-focused-panel="secondary"] div.manage:before {
-        opacity: 0.5;
+        opacity: 0.8;
         transition: opacity 0.2s ease-in 0.0s;
-        
-        pointer-events: all;
     }
     
     main.main[data-focused-panel="secondary"] section.parts-secondary {
@@ -2926,16 +2941,15 @@ Responsive styles *****/
             transform: translateY(calc( ((100vw * 0.44) + 92px) + 100% - 84px ));
         }
         75% {
-            transform: translateY(calc( (100vw * 0.44) + 109px ));
+            transform: translateY(calc( (100vw * 0.44) + 92px ));
         }
         85% {
-            transform: translateY(calc( (100vw * 0.44) + 119px ));
+            transform: translateY(calc( (100vw * 0.44) + 102px ));
         }
         100% {
-            height: calc(100% - ((100vw * 0.44) + 109px));
+            height: calc(100% - ((100vw * 0.44) + 92px));
             min-height: 200px;
             transform: translateY(calc( (100vw * 0.44) + 92px ));
-            transform: translateY(calc( (100vw * 0.44) + 109px ));
         }
     }
 
@@ -2997,7 +3011,7 @@ Responsive styles *****/
         z-index: 2;
 
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
 
         box-sizing: border-box;
@@ -3016,6 +3030,7 @@ Responsive styles *****/
 
     ul.header-links li {
         text-align: center;
+        margin: 16px 0 0 0;
     }
 
     ul.header-links li + li {
@@ -3052,6 +3067,8 @@ Responsive styles *****/
     tbody.curves > tr > td.item-line {
         flex: 100% 0 0 !important;
         padding: 0 16px !important;
+        
+/*        border-bottom: 1px solid var(--background-color-contrast);*/
     }
     
     tbody.curves > tr > td.item-line div.phonename {
@@ -3124,6 +3141,8 @@ Responsive styles *****/
         flex: 100% 1 1;
         
         height: 0px;
+        
+        background-color: magenta;
     }
 
     tbody.curves > tr > td.item-line {

@@ -138,7 +138,7 @@ rect.graphBackground {
 }
 
 g.dBScaler {
-    fill: var(--background-color-contrast);
+    fill: var(--background-color-contrast-more);
     pointer-events: all;
 }
 

@@ -138,7 +138,12 @@ rect.graphBackground {
 }
 
 g.dBScaler {
-    display: none;
+    fill: var(--background-color-contrast);
+    pointer-events: all;
+}
+
+g.dBScaler rect[fill="#bbb"] {
+    fill: var(--background-color-graph);
 }
 
 svg#fr-graph > g > image {

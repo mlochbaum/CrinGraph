@@ -1058,6 +1058,7 @@ function updatePaths() {
     if (targetDashed) t.style("stroke-dasharray", "6, 3");
     if (targetColorCustom) t.attr("stroke", targetColorCustom);
     if (ifURL) addPhonesToUrl();
+    if (stickyLabels) drawLabels();
 }
 let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" fill="'+getBgColor(p)+'"/></svg>\')';
 function updatePhoneTable() {
@@ -1744,11 +1745,13 @@ function pathHL(c, m, imm) {
     gpath.selectAll("path").classed("highlight", c ? d=>d===c   : false);
     table.selectAll("tr")  .classed("highlight", c ? p=>p===c.p : false);
     if (pathHoverTimeout) { clearTimeout(pathHoverTimeout); }
-    clearLabels();
-    pathHoverTimeout =
-        imm ? pathTooltip(c, m) :
-        c   ? setTimeout(pathTooltip, 400, c, m) :
-        undefined;
+    if(!stickyLabels) {
+        clearLabels();
+        pathHoverTimeout =
+            imm ? pathTooltip(c, m) :
+            c   ? setTimeout(pathTooltip, 400, c, m) :
+            undefined;
+    }
 }
 function pathTooltip(c, m) {
     let g = gr.selectAll(".lineLabel").data([c.id])

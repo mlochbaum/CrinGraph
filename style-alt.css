@@ -235,22 +235,22 @@ svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineL
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-child(1) {
-    transform: translate(530px, 296px);
+    transform: translate(500px, 296px);
 }
 
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel:nth-last-child(2) {
-    transform: translate(530px, 274px);
+    transform: translate(500px, 274px);
 }
 
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel:nth-last-child(3) {
-    transform: translate(530px, 252px);
+    transform: translate(500px, 252px);
 }
 
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-child(4) {
-    transform: translate(530px, 230px);
+    transform: translate(500px, 230px);
 }
 
 
@@ -1811,9 +1811,6 @@ div.scrollOuter:before {
     transition: opacity 0.1s ease-out;
     
     pointer-events: none;
-    
-/*    opacity: 0.8;*/
-/*    background-color: magenta;*/
 }
 
 div.scrollOuter[data-list="brands"] {
@@ -2716,7 +2713,6 @@ Responsive styles *****/
         width: 100%;
         height: 100%;
         
-        background-color: magenta;
         background-color: var(--background-color-contrast-more);
         pointer-events: none;
         
@@ -3141,8 +3137,6 @@ Responsive styles *****/
         flex: 100% 1 1;
         
         height: 0px;
-        
-        background-color: magenta;
     }
 
     tbody.curves > tr > td.item-line {

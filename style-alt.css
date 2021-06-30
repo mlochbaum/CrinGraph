@@ -161,7 +161,7 @@ text.insp_dB {
 
 /* Animating graph stroke */
 
-g[mask="url(#graphFade)"] path:not(.target) {
+div.graphBox[data-animated="true"] g[mask="url(#graphFade)"] path:not(.target) {
     stroke-dasharray: 2000px;
     
     animation-name: graph-draw;

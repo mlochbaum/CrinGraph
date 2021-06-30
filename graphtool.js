@@ -1511,7 +1511,7 @@ function removePhone(p) {
 }
 
 d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
-            : DIR+"phone_book.json").then(function (brands) {
+            : DIR+"phone_book.json?"+ new Date().getTime()).then(function (brands) {
     let brandMap = {},
         inits = [],
         initReq = typeof init_phones !== "undefined" ? init_phones : false;

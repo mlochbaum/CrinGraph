@@ -1046,7 +1046,7 @@ function addPhonesToUrl() {
     targetWindow.document.title = title;
     targetWindow.document.querySelector("meta[name='description']").setAttribute("content",baseDescription + ", including " + namesCombined +".");
 }
-function updatePaths() {
+function updatePaths(trigger) {
     clearLabels();
     let c = d3.merge(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
@@ -1057,7 +1057,7 @@ function updatePaths() {
         .attr("class", "target");
     if (targetDashed) t.style("stroke-dasharray", "6, 3");
     if (targetColorCustom) t.attr("stroke", targetColorCustom);
-    if (ifURL) addPhonesToUrl();
+    if (ifURL && !trigger) addPhonesToUrl();
     if (stickyLabels) drawLabels();
 }
 let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" fill="'+getBgColor(p)+'"/></svg>\')';
@@ -1473,7 +1473,7 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
         p.active = true;
         setCurves(p, avg);
     }
-    updatePaths();
+    updatePaths(trigger);
     updatePhoneTable();
     d3.selectAll("#phones div,.target")
         .filter(p=>p.id!==undefined)
@@ -1537,7 +1537,6 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         initMode = "share";
     } else if (loadFromShare === 2) {
         initMode = "embed";
-        console.log("embed");
     } else {
         initMode = "config";
     }
@@ -2133,12 +2132,15 @@ function addHeader() {
     let graphToolContainer = document.querySelector("div.graphtool"),
         altHeaderElem = document.createElement("header"),
         headerLogoElem = document.createElement("div"),
+        headerLogoLink = document.createElement("a"),
         headerLogoImg = document.createElement("img"),
         linksList = document.createElement("ul");
     
     headerLogoElem.className = "logo";
+    headerLogoLink.setAttribute('href', site_url);
     headerLogoImg.setAttribute("src", headerLogoImgUrl);
-    headerLogoElem.append(headerLogoImg);
+    headerLogoLink.append(headerLogoImg);
+    headerLogoElem.append(headerLogoLink);
     altHeaderElem.setAttribute("data-links", "");
     altHeaderElem.append(headerLogoElem);
 

@@ -21,6 +21,7 @@
     --scrollbar-color: 255,255,255;
     --scrollbar-accent: 0,0,0;
         
+    --logo-filter: none;
     --svg-filter: none;
 }
 
@@ -45,6 +46,7 @@ body.dark-mode {
     --scrollbar-color: 0,0,0;
     --scrollbar-accent: 255,255,255;
 
+    --logo-filter: invert(1.0);
     --svg-filter: invert(1.0);
 }
 
@@ -199,4 +201,3 @@ color values in the alt layout come from this theme.
         
     --svg-filter: invert(1.0);
 }
-*/

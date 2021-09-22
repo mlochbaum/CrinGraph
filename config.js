@@ -9,8 +9,10 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
       alt_layout = false,                           // Toggle between classic and alt layouts
       alt_sticky_graph = true,                      // If active graphs overflows the viewport, does the graph scroll with the page or stick to the viewport?
+      alt_animated = false,                         // Determines if new graphs are drawn with a 1-second animation, or appear instantly
       alt_header = false,                           // Display a configurable header at the top of the alt layout
       alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
+      site_url = 'graph.html',                      // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
@@ -23,10 +25,10 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       expandableOnly = false,                       // Prevents iframe interactions unless the user has expanded it. Accepts "true" or "false" OR a pixel value; if pixel value, that is used as the maximum width at which expandableOnly is used
       headerHeight = '0px',                         // Optional. If expandable=true, determines how much space to leave for the parent page header
       darkModeButton = true,                        // Adds a "Dark Mode" button the main toolbar to let users set preference
-      liteGraph = false,                            // Reduces number of lines drawn on graph. Maybe controversial.
       targetDashed = false,                         // If true, makes target curves dashed lines
       targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
       labelsPosition = "default",                   // Up to four labels will be grouped in a specified corner. Accepts "top-left," bottom-left," "bottom-right," and "default"
+      stickyLabels = false,                         // "Sticky" labels 
       analyticsEnabled = false;                     // Enables Google Analytics 4 measurement of site usage
 
 // Specify which targets to display

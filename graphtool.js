@@ -22,9 +22,9 @@ doc.html(`
 
   <main class="main">
     <section class="parts-primary">
-    <div class="graphBox" data-sticky-graph="`+ alt_sticky_graph +`">
+    <div class="graphBox" data-sticky-graph="`+ alt_sticky_graph +`" data-animated="`+ alt_animated +`">
       <div class="graph-sizer">
-        <svg id="fr-graph" viewBox="0 0 800 346" data-lite-graph="`+ liteGraph +`" data-labels-position="`+ labelsPosition +`"></svg>
+        <svg id="fr-graph" viewBox="0 0 800 346" data-labels-position="`+ labelsPosition +`"></svg>
       </div>
 
       <div class="tools collapseTools">
@@ -1007,8 +1007,10 @@ function setHover(elt, h) {
 
 // See if iframe gets CORS error when interacting with window.top
 try {
+    let emb = window.location.href.includes('embed');
+    
     accessWindowTop = (window.top.location.href) ? true:false;
-    targetWindow = window.top;
+    targetWindow = emb ? window : window.top;
 } catch {
     accessWindowTop = false;
     targetWindow = window;
@@ -1044,7 +1046,7 @@ function addPhonesToUrl() {
     targetWindow.document.title = title;
     targetWindow.document.querySelector("meta[name='description']").setAttribute("content",baseDescription + ", including " + namesCombined +".");
 }
-function updatePaths() {
+function updatePaths(trigger) {
     clearLabels();
     let c = d3.merge(activePhones.map(p => p.activeCurves)),
         p = gpath.selectAll("path").data(c, d=>d.id);
@@ -1055,7 +1057,8 @@ function updatePaths() {
         .attr("class", "target");
     if (targetDashed) t.style("stroke-dasharray", "6, 3");
     if (targetColorCustom) t.attr("stroke", targetColorCustom);
-    if (ifURL) addPhonesToUrl();
+    if (ifURL && !trigger) addPhonesToUrl();
+    if (stickyLabels) drawLabels();
 }
 let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" fill="'+getBgColor(p)+'"/></svg>\')';
 function updatePhoneTable() {
@@ -1470,7 +1473,7 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
         p.active = true;
         setCurves(p, avg);
     }
-    updatePaths();
+    updatePaths(trigger);
     updatePhoneTable();
     d3.selectAll("#phones div,.target")
         .filter(p=>p.id!==undefined)
@@ -1508,7 +1511,7 @@ function removePhone(p) {
 }
 
 d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
-            : DIR+"phone_book.json").then(function (brands) {
+            : DIR+"phone_book.json?"+ new Date().getTime()).then(function (brands) {
     let brandMap = {},
         inits = [],
         initReq = typeof init_phones !== "undefined" ? init_phones : false;
@@ -1516,16 +1519,27 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     
     if (ifURL) {
         let url = targetWindow.location.href,
-            par = "?share=";
+            par = "share=";
+            emb = "embed";
         baseURL = url.split("?").shift();
-        if (url.includes(par)) {
+        if (url.includes(par) && url.includes(emb)) {
+            initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
+            loadFromShare = 2;
+        } else if (url.includes(par)) {
             initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
             loadFromShare = 1;
         }
     }
     let isInit = initReq ? f => initReq.indexOf(f) !== -1
                          : _ => false;
-    let initMode = loadFromShare ? "share" : "config";
+    
+    if (loadFromShare === 1) {
+        initMode = "share";
+    } else if (loadFromShare === 2) {
+        initMode = "embed";
+    } else {
+        initMode = "config";
+    }
     
     brands.forEach(b => brandMap[b.name] = b);
     brands.forEach(function (b) {
@@ -1730,11 +1744,13 @@ function pathHL(c, m, imm) {
     gpath.selectAll("path").classed("highlight", c ? d=>d===c   : false);
     table.selectAll("tr")  .classed("highlight", c ? p=>p===c.p : false);
     if (pathHoverTimeout) { clearTimeout(pathHoverTimeout); }
-    clearLabels();
-    pathHoverTimeout =
-        imm ? pathTooltip(c, m) :
-        c   ? setTimeout(pathTooltip, 400, c, m) :
-        undefined;
+    if(!stickyLabels) {
+        clearLabels();
+        pathHoverTimeout =
+            imm ? pathTooltip(c, m) :
+            c   ? setTimeout(pathTooltip, 400, c, m) :
+            undefined;
+    }
 }
 function pathTooltip(c, m) {
     let g = gr.selectAll(".lineLabel").data([c.id])
@@ -2116,12 +2132,15 @@ function addHeader() {
     let graphToolContainer = document.querySelector("div.graphtool"),
         altHeaderElem = document.createElement("header"),
         headerLogoElem = document.createElement("div"),
+        headerLogoLink = document.createElement("a"),
         headerLogoImg = document.createElement("img"),
         linksList = document.createElement("ul");
     
     headerLogoElem.className = "logo";
+    headerLogoLink.setAttribute('href', site_url);
     headerLogoImg.setAttribute("src", headerLogoImgUrl);
-    headerLogoElem.append(headerLogoImg);
+    headerLogoLink.append(headerLogoImg);
+    headerLogoElem.append(headerLogoLink);
     altHeaderElem.setAttribute("data-links", "");
     altHeaderElem.append(headerLogoElem);
 

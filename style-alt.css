@@ -68,6 +68,7 @@ html {
     
     user-select: none;
     scroll-behavior: smooth;
+    overscroll-behavior-y: none;
 }
 
 body {
@@ -160,7 +161,7 @@ text.insp_dB {
 
 /* Animating graph stroke */
 
-g[mask="url(#graphFade)"] path:not(.target) {
+div.graphBox[data-animated="true"] g[mask="url(#graphFade)"] path:not(.target) {
     stroke-dasharray: 2000px;
     
     animation-name: graph-draw;
@@ -178,84 +179,6 @@ g[mask="url(#graphFade)"] path:not(.target) {
     100% {
         stroke-dashoffset: 0px;
     }
-}
-
-/*****
-Graph lite *****/
-
-/* Horizontal lines */
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(2) > text {
-    fill: var(--font-color-primary);
-    font-size: 8px;
-    
-    opacity: 0.5;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(2) g.tick line {
-    stroke: var(--background-color-contrast-more);
-    stroke-width: 1px;
-    
-    opacity: 0.2;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(2) g.tick:nth-child(2n+1) line {
-    opacity: 0.1;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(2) g.tick text {
-    fill: var(--font-color-primary);
-    font-size: 8px;
-    
-    opacity: 0.2;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(2) g.tick:nth-child(2n+1) text {
-    display: none;
-}
-
-/* Vertical lines */
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick line {
-    stroke: var(--background-color-contrast-more);
-    stroke-width: 1px;
-    
-    opacity: 0.2;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-of-type(1) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-last-of-type(1) line {
-    display: none;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(4) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(7) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(9) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(12) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(15) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(17) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(20) line,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(23) line {
-    opacity: 0.5;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick text {
-    fill: var(--font-color-primary);
-    font-size: 8px;
-    
-    opacity: 0.2;
-}
-
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(1) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(4) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(7) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(9) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(12) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(15) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(17) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(20) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(23) text,
-svg#fr-graph[data-lite-graph="true"] > g:nth-of-type(3) g.tick:nth-child(25) text {
-    opacity: 0.5;
 }
 
 /*****
@@ -312,22 +235,22 @@ svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineL
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-child(1) {
-    transform: translate(530px, 296px);
+    transform: translate(500px, 296px);
 }
 
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel:nth-last-child(2) {
-    transform: translate(530px, 274px);
+    transform: translate(500px, 274px);
 }
 
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel:nth-last-child(3) {
-    transform: translate(530px, 252px);
+    transform: translate(500px, 252px);
 }
 
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-child(4) {
-    transform: translate(530px, 230px);
+    transform: translate(500px, 230px);
 }
 
 
@@ -382,10 +305,9 @@ header.header {
     align-items: center;
     
     box-sizing: border-box;
-    flex: 49px 0 0;
+    flex: 48px 0 0;
     
-    background-color: var(--background-color-contrast);
-    border-bottom: 1px solid var(--background-color-contrast-more);
+    background-color: var(--font-color-primary);
 }
 
 div.logo {
@@ -402,6 +324,12 @@ div.logo {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center left;
+}
+
+div.logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 div.logo img {
@@ -426,6 +354,11 @@ ul.header-links {
     overflow-x: scroll;
 }
 
+ul.header-links::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
 ul.header-links li {
     display: flex;
     align-items: center;
@@ -446,7 +379,7 @@ ul.header-links a {
     display: flex;
     align-items: center;
     
-    color: var(--font-color-primary);
+    color: var(--background-color-graph);
     font-family: var(--font-primary);
     font-weight: 500;
     font-size: 14px;
@@ -1884,9 +1817,6 @@ div.scrollOuter:before {
     transition: opacity 0.1s ease-out;
     
     pointer-events: none;
-    
-/*    opacity: 0.8;*/
-/*    background-color: magenta;*/
 }
 
 div.scrollOuter[data-list="brands"] {
@@ -2789,7 +2719,6 @@ Responsive styles *****/
         width: 100%;
         height: 100%;
         
-        background-color: magenta;
         background-color: var(--background-color-contrast-more);
         pointer-events: none;
         
@@ -3113,6 +3042,7 @@ Responsive styles *****/
     ul.header-links li a {
         display: block;
         padding: 16px;
+        color: var(--font-color-primary);
     }
 
     header.header[data-links="collapsed"] ul.header-links {
@@ -3213,8 +3143,6 @@ Responsive styles *****/
         flex: 100% 1 1;
         
         height: 0px;
-        
-        background-color: magenta;
     }
 
     tbody.curves > tr > td.item-line {
@@ -3259,6 +3187,10 @@ Responsive styles *****/
 
 /*@media ( max-height: 500px ) and ( orientation: landscape ) {*/
 @media ( max-height: 500px ) and ( min-aspect-ratio: 3 / 2 ) {
+    header.header {
+        display: none;
+    }
+    
     body:not([data-input-state="focus"]) section.parts-primary {
         z-index: 3;
         

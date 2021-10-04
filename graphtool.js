@@ -1523,10 +1523,10 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             emb = "embed";
         baseURL = url.split("?").shift();
         if (url.includes(par) && url.includes(emb)) {
-            initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
+            initReq = decodeURIComponent(url.replace(/_/g," ").split(par).pop()).split(",");
             loadFromShare = 2;
         } else if (url.includes(par)) {
-            initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
+            initReq = decodeURIComponent(url.replace(/_/g," ").split(par).pop()).split(",");
             loadFromShare = 1;
         }
     }

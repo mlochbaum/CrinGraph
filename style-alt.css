@@ -185,6 +185,7 @@ div.graphBox[data-animated="true"] g[mask="url(#graphFade)"] path:not(.target) {
 Graph labels *****/
 
 /* top-left */
+svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(1),
@@ -192,22 +193,30 @@ svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel:nth-last-chil
     transform: translate(40px, 8px);
 }
 
+svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="top-left"] rect + g.lineLabel:nth-last-child(2) {
     transform: translate(40px, 30px);
 }
 
+svg#fr-graph[data-labels-position="top-left"] rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="top-left"] rect + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="top-left"] rect + g.lineLabel:nth-last-child(3) {
     transform: translate(40px, 52px);
 }
 
+svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(4),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel:nth-last-child(4) {
     transform: translate(40px, 74px);
 }
 
+svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel:nth-last-child(5) {
+    transform: translate(40px, 96px);
+}
+
 /* bottom-left */
+svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(1),
@@ -215,22 +224,30 @@ svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel:nth-last-c
     transform: translate(40px, 296px);
 }
 
+svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-left"] rect + g.lineLabel:nth-last-child(2) {
     transform: translate(40px, 274px);
 }
 
+svg#fr-graph[data-labels-position="bottom-left"] rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="bottom-left"] rect + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="bottom-left"] rect + g.lineLabel:nth-last-child(3) {
     transform: translate(40px, 252px);
 }
 
+svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(4),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel:nth-last-child(4) {
     transform: translate(40px, 230px);
 }
 
+svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel:nth-last-child(5) {
+    transform: translate(40px, 208px);
+}
+
 /* bottom-right */
+svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel:nth-last-child(1),
@@ -238,19 +255,26 @@ svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-
     transform: translate(500px, 296px);
 }
 
+svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel:nth-last-child(2) {
     transform: translate(500px, 274px);
 }
 
+svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel:nth-last-child(3) {
     transform: translate(500px, 252px);
 }
 
+svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel:nth-last-child(4),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-child(4) {
     transform: translate(500px, 230px);
+}
+
+svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-child(5) {
+    transform: translate(500px, 208px);
 }
 
 

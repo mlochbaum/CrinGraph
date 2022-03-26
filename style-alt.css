@@ -3026,7 +3026,7 @@ Responsive styles *****/
     }
 
     div.logo {
-        flex: calc(100% - 116px) 0 0;
+        flex: calc(100% - 160px) 0 0;
         flex: auto;
         margin: 0 42px 0 0;
     }
@@ -3037,6 +3037,7 @@ Responsive styles *****/
         left: 0;
         z-index: 2;
 
+        width: 100%;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
@@ -3044,7 +3045,7 @@ Responsive styles *****/
         box-sizing: border-box;
         height: calc(100vh - 49px);
         max-height: -webkit-fill-available;
-        padding: 16px;
+        padding: 0 16px 16px 16px;
 
         background-color: var(--background-color);
 

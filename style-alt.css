@@ -334,6 +334,10 @@ header.header {
     background-color: var(--font-color-primary);
 }
 
+button.header-button {
+    display: none;
+}
+
 div.logo {
     display: flex;
     justify-content: center;
@@ -3000,17 +3004,13 @@ Responsive styles *****/
         display: none;
     }
 
-    header.header:after {
-        position: absolute;
-
-        top: 6px;
-        left: 6px;
-
+    button.header-button {
         content: '';
         box-sizing: border-box;
         display: block;
         width: 36px;
         height: 36px;
+        margin: 0 0 0 6px;
 
         background-color: var(--background-color-contrast-more);
         mask: var(--icon-hamburger);
@@ -3027,7 +3027,8 @@ Responsive styles *****/
 
     div.logo {
         flex: calc(100% - 116px) 0 0;
-        margin: auto;
+        flex: auto;
+        margin: 0 42px 0 0;
     }
 
     ul.header-links {

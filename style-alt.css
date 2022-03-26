@@ -3026,9 +3026,12 @@ Responsive styles *****/
     }
 
     div.logo {
-        flex: calc(100% - 160px) 0 0;
         flex: auto;
         margin: 0 42px 0 0;
+    }
+    
+    div.logo a {
+        width: 80%;
     }
 
     ul.header-links {

@@ -374,7 +374,7 @@ ul.header-links {
     align-items: flex-start;
     
     box-sizing: border-box;
-    flex: auto 0 1;
+    flex: 100% 0 1;
     height: 100%;
     margin: auto;
     padding: 0 16px;
@@ -3042,7 +3042,6 @@ Responsive styles *****/
         align-items: center;
 
         box-sizing: border-box;
-        width: 100vw;
         height: calc(100vh - 49px);
         max-height: -webkit-fill-available;
         padding: 16px;

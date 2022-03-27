@@ -397,6 +397,7 @@ ul.header-links li {
     margin: 0;
     
     list-style: none;
+    white-space: nowrap;
 }
 
 ul.header-links li + li {

@@ -14,7 +14,7 @@ const init_phones = [],                      // Optional. Which graphs to displa
       alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
       site_url = 'graph.html',                      // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
-      watermark_text = "이어폰 측정 DB",                 // Optional. Watermark appears behind graphs
+      watermark_text = "",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "DC_inside_logo_edit.svg",   // Optional. If image file is in same directory as config, can be just the filename
       page_title = "dc 헤마갤 이어폰 측정 DB by ER4SR",   // Optional. Appended to the page title if share URLs are enabled
       page_description = "헤마갤 힘내세요 ㅋㅋㄷㄷ",
@@ -52,7 +52,7 @@ function watermark(svg) {
     
     if ( watermark_image_url ) {
         wm.append("image")
-            .attrs({x:-128, y:-128, width:256, height:256, "xlink:href":watermark_image_url});
+            .attrs({x:-128, y:-96, width:256, height:256, "xlink:href":watermark_image_url});
     }
     
     if ( watermark_text ) {

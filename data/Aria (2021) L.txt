@@ -1,8 +1,4 @@
-Smoothed Frequency Response
-Resolution = 1/24 octave
-Numpoints = 720
-SamplingRate = 48000 Hz
-Frequency(Hz)   Magnitude(dB)
+   Frequency    dB
    11.804	 92.7913
    11.929	 92.8190
    12.056	 92.8675

@@ -1,10 +1,10 @@
 // Configuration options
-const init_phones = ["HTH67"],                      // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
+const init_phones = [],                      // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
       DIR = "data/",                                // Directory where graph files are stored
       data_format = "REW",                   // Accepts "AudioTools," "REW," or "other"
       default_channels = ["L","R"],                 // Which channels to display. Avoid javascript errors if loading just one channel per phone
       default_normalization = "dB",                 // Sets default graph normalization mode. Accepts "dB" or "Hz"
-      default_norm_db = 85,                         // Sets default dB normalization point
+      default_norm_db = 75,                         // Sets default dB normalization point
       default_norm_hz = 1000,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
       alt_layout = true,                           // Toggle between classic and alt layouts
@@ -52,12 +52,12 @@ function watermark(svg) {
     
     if ( watermark_image_url ) {
         wm.append("image")
-            .attrs({x:-64, y:-64, width:128, height:128, "xlink:href":watermark_image_url});
+            .attrs({x:-64, y:-64, width:256, height:256, "xlink:href":watermark_image_url});
     }
     
     if ( watermark_text ) {
         wm.append("text")
-            .attrs({x:0, y:70, "font-size":28, "text-anchor":"middle", "class":"graph-name"})
+            .attrs({x:0, y:70, "font-size":20, "text-anchor":"middle", "class":"graph-name"})
             .text(watermark_text);
     }
 }
@@ -242,7 +242,7 @@ setupGraphAnalytics();
 
 
 // If alt_header is enabled, these are the items added to the header
-let headerLogoImgUrl = "DC_inside_logo.svg",
+let headerLogoImgUrl = "DC_inside_logo_edit.svg",
     headerLinks = [
     {
         name: "dcinside 헤드폰 마이너 갤러리 이어폰 DB by ER4SR(wienerphilharmoniker)",

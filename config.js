@@ -1,23 +1,23 @@
 // Configuration options
 const init_phones = ["HTH67"],                      // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
       DIR = "data/",                                // Directory where graph files are stored
-      data_format = "AudioTools",                   // Accepts "AudioTools," "REW," or "other"
+      data_format = "REW",                   // Accepts "AudioTools," "REW," or "other"
       default_channels = ["L","R"],                 // Which channels to display. Avoid javascript errors if loading just one channel per phone
       default_normalization = "dB",                 // Sets default graph normalization mode. Accepts "dB" or "Hz"
-      default_norm_db = 60,                         // Sets default dB normalization point
-      default_norm_hz = 500,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
+      default_norm_db = 85,                         // Sets default dB normalization point
+      default_norm_hz = 1000,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
-      alt_layout = false,                           // Toggle between classic and alt layouts
+      alt_layout = true,                           // Toggle between classic and alt layouts
       alt_sticky_graph = true,                      // If active graphs overflows the viewport, does the graph scroll with the page or stick to the viewport?
       alt_animated = false,                         // Determines if new graphs are drawn with a 1-second animation, or appear instantly
-      alt_header = false,                           // Display a configurable header at the top of the alt layout
+      alt_header = true,                           // Display a configurable header at the top of the alt layout
       alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
       site_url = 'graph.html',                      // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
-      watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
+      watermark_text = "dcinside 헤마갤 이어폰 DB",                 // Optional. Watermark appears behind graphs
       watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
-      page_title = "CrinGraph",                     // Optional. Appended to the page title if share URLs are enabled
-      page_description = "View and compare frequency response graphs for earphones",
+      page_title = "[WIP] dc 헤마갤 이어폰 DB by ER4SR", // Optional. Appended to the page title if share URLs are enabled
+      page_description = "헤마갤 힘내세요 ㅋㅋㄷㄷ",
       accessories = false,                          // If true, displays specified HTML at the bottom of the page. Configure further below
       externalLinksBar = true,                      // If true, displays row of pill-shaped links at the bottom of the page. Configure further below
       restricted = false,                           // Enables restricted mode. More restricted options below
@@ -25,7 +25,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       expandableOnly = false,                       // Prevents iframe interactions unless the user has expanded it. Accepts "true" or "false" OR a pixel value; if pixel value, that is used as the maximum width at which expandableOnly is used
       headerHeight = '0px',                         // Optional. If expandable=true, determines how much space to leave for the parent page header
       darkModeButton = true,                        // Adds a "Dark Mode" button the main toolbar to let users set preference
-      targetDashed = false,                         // If true, makes target curves dashed lines
+      targetDashed = true,                         // If true, makes target curves dashed lines
       targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
       labelsPosition = "default",                   // Up to four labels will be grouped in a specified corner. Accepts "top-left," bottom-left," "bottom-right," and "default"
       stickyLabels = false,                         // "Sticky" labels 
@@ -245,8 +245,8 @@ setupGraphAnalytics();
 let headerLogoImgUrl = "cringraph-logo.svg",
     headerLinks = [
     {
-        name: "Sample",
-        url: "https://sample.com"
+        name: "dcinside 헤드폰 마이너 갤러리",
+        url: "https://gall.dcinside.com/mgallery/board/lists?id=newheadphone"
     }
 ];
 

@@ -14,8 +14,8 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
       site_url = 'graph.html',                      // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
-      watermark_text = "dcinside 헤마갤 이어폰 DB",                 // Optional. Watermark appears behind graphs
-      watermark_image_url = "cringraph-logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
+      watermark_text = "헤마갤 이어폰 DB",                 // Optional. Watermark appears behind graphs
+      watermark_image_url = "DC_inside_logo.svg",   // Optional. If image file is in same directory as config, can be just the filename
       page_title = "[WIP] dc 헤마갤 이어폰 DB by ER4SR", // Optional. Appended to the page title if share URLs are enabled
       page_description = "헤마갤 힘내세요 ㅋㅋㄷㄷ",
       accessories = false,                          // If true, displays specified HTML at the bottom of the page. Configure further below
@@ -242,10 +242,10 @@ setupGraphAnalytics();
 
 
 // If alt_header is enabled, these are the items added to the header
-let headerLogoImgUrl = "cringraph-logo.svg",
+let headerLogoImgUrl = "DC_inside_logo.svg",
     headerLinks = [
     {
-        name: "dcinside 헤드폰 마이너 갤러리",
+        name: "dcinside 헤드폰 마이너 갤러리 이어폰 DB by ER4SR(wienerphilharmoniker)",
         url: "https://gall.dcinside.com/mgallery/board/lists?id=newheadphone"
     }
 ];

@@ -1,12 +1,12 @@
 * Measurement data measured by REW V5.20.5
-* Source: ¸¶ÀÌÅ©(7- USB Sound Device       , MICROPHONE (¸¶½º), L, volume: 0.560
+* Source: ë§ˆì´í¬(7- USB Sound Device       , MICROPHONE (ë§ˆìŠ¤), L, volume: 0.560
 * Format: 128k Log Swept Sine, 1 sweep at -13.0 dBFS with no timing reference
-* Dated: 2022. 4. 1 ¿ÀÈÄ 8:36:06
+* Dated: 2022. 4. 1 ì˜¤í›„ 8:36:06
 * REW Settings:
 *  C-weighting compensation: Off
 *  Target level: 75.0 dB
 * Note: 
-* Measurement: ½ºÅ¸ÇÊµå L
+* Measurement: ìŠ¤íƒ€í•„ë“œ L
 * Smoothing: 1/24 octave
 * Frequency Step: 1/48 octave
 * Start Frequency: 20.300 Hz

@@ -11,7 +11,7 @@
 * Frequency Step: 1/48 octave
 * Start Frequency: 20.300 Hz
 *
-* Freq(Hz)	SPL(dB)	Phase(degrees)
+Freq	dB
 20.3000	75.409
 20.6000	75.439
 20.9000	75.496

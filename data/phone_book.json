@@ -1,6 +1,10 @@
 [
   {
-    "name":   "Moondrop",
+    "name": "Moondrop",
     "phones": [ "Aria (2021)" ]
+  },
+  {
+    "name": "Sennheiser",
+    "phones": [ "IE400 Pro" ]
   }
 ]

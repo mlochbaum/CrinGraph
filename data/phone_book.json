@@ -6,5 +6,9 @@
   {
     "name": "Sennheiser",
     "phones": [ "IE400 Pro" ]
+  },
+  {
+    "name": "Sonicast",
+    "phones": [ "Direm KASA" ]
   }
 ]

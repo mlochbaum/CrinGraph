@@ -16,5 +16,11 @@
     "phones": [
                {"name":["Direm KASA"],"file":["Direm KASA Sample 1 (by ER4SR, Final E M)"]}
               ]
+  },
+  {
+    "name": "Sony",
+    "phones": [
+               {"name":["IER-M7"],"file":["IER-M7 Sample 1 (by ER4SR, Hybrid Silicone M)"]}
+              ]
   }
 ]

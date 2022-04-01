@@ -1,14 +1,20 @@
 [
   {
     "name": "Moondrop",
-    "phones": [ "Aria (2021)" ]
+    "phones": [ 
+              {"name":["Aria (2021)"],"file":["Aria (2021) Sample 1 (by ER4SR, Orza L)"]}
+              ]
   },
   {
     "name": "Sennheiser",
-    "phones": [ "IE400 Pro" ]
+    "phones": [ 
+               {"name":["IE400 Pro"],"file":["IE400 Pro Sample 1 (by ER4SR, Final E M)"]}
+              ]
   },
   {
     "name": "Sonicast",
-    "phones": [ "Direm KASA" ]
+    "phones": [
+               {"name":["Direm KASA"],"file":["Direm KASA Sample 1 (by ER4SR, Final E M)"]}
+              ]
   }
 ]

@@ -1,107 +1,48 @@
-# The In-Ear Graphing Library
+# 헤드폰 마이너 갤러리 이어폰 FR 측정치 DB/비교 사이트
 
-If you're not weirdly obsessed with headphones you can leave at any time.
+측정치 비교 바로가기: https://https://jerrybeomsoo.github.io/CrinGraph/graph.html
 
-Crinacle is a reviewer famous around the world (at least, I'm on the
-opposite side of it as he is) for his extensive reviews and measurements
-of in-ear monitors (IEMs). CrinGraph is the tool which allows readers to
-compare measurements against each other, and save easily readable images
-to share around the internet. Although it was designed for
-[Crin's site](https://crinacle.com/graphs/graphtool/),
-the code here can be used freely by anyone, with no restrictions.
-There are now many instances, including
-[Banbeucmas](https://banbeu.com/graph/tool/),
-[HypetheSonics](https://www.hypethesonics.com/iemdbc/), and
-[Super\* Review](https://squig.link/), which has links to even more of
-them. If you're interested in using it for your own graphs, see
-[Configuring.md](Configuring.md) and ask me about any questions that
-come up.
+IEC 711 (60318-4) 호환 이어 커플러 마이크로 측정한 이어폰/IEM의 주파수 응답 측정치를 열람/비교/공유할 수 있는 사이트입니다.
 
-### What are the squiggles?
+mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활용하였습니다.
 
-If you want the whole story, there's no choice but to get it from
-[the man himself](https://crinacle.com/2020/04/08/graphs-101-how-to-read-headphone-measurements/).
-5,000 words and you'll still be disappointed when it's over.
+현재는 Github Pages로 운영 중이지만, 추후에는 직접 웹사이트를 호스팅할 예정입니다.
 
-The most informative headphone measurement, and the only one handled by
-this tool, is the frequency response (FR) graph. An FR graph shows how
-loud the headphone will render sounds at different pitches. The higher
-the left portion of the graph, the more your brain will rattle; the
-higher the right portion of the graph, the more your ears will bleed.
-The current industry standard is a "V-shaped" response which applies
-both conditions at once. Using an FR graph you may easily see which
-headphones conform to this standard and which are insufficiently "fun".
 
-### Sample graphs
+## 현재 업로드된 이어폰/IEM 목록
 
-This repository includes some sample data so that the tool can be shown
-through Github pages. Sometimes I use this to show people features
-before they're adopted on Crin's site.
+**Moondrop** : Aria (2021) / Starfield (은구리님 측정)
 
-[View some sample graphs.](https://mlochbaum.github.io/CrinGraph/graph.html)
+**Sennheiser** : IE 400 pro
 
-Because Crinacle's frequency response measurements are not public, the
-sample response curves shown are synthesized. They are not real
-headphones and you can't listen to them. To reduce potential
-disappointment, steps have been taken to ensure that the curves are as
-uninviting as possible. Any resemblance to the exports of a large East
-Asian county is purely coincidental.
+**Sonicast** : Direm KASA
 
-## Features
+**Sony** : IER-M7
 
-If you want one that's not here, just ask so I can explain why it's a
-bad idea.
 
-### Layout
+## 측정치 업로드 방법
 
-The graph tool displays:
-* A **graph window** at the top
-* The **toolbar** just below it
-* The **selector** at the bottom left, or below the toolbar for narrow windows
-* A **target selector**
-* The **manager** for active curves
+Room EQ Wizard로 측정하는 방법은 아래 링크에 있는 글로 대체하겠습니다.
 
-### Graph window
+https://gall.dcinside.com/mgallery/board/view/?id=newheadphone&no=71325
 
-* Standard logarithmic frequency (Hz) and sound pressure level (dB) [axes](Documentation.md#axes)
-* [Colors](Documentation.md#colors) are persistent and algorithmically generated to ensure contrast
-* Use the slider at the left to rescale and adjust the y axis
-* [Hover](Documentation.md#highlight-on-mouseover) over or click a curve to see its name and highlight it in the manager
+측정이 완료되어 L/R 채널 별로 TXT 파일을 얻으셨다면 이 Github 레포지터리에 파일을 올려주셔야 합니다.
 
-### Toolbar
+Github의 Issues 탭에서 새로운 이슈에 파일을 첨부해서 올려주셔도 괜찮으며, 이 레포지터리를 포크하고 수정해 Pull Request를 넣어주시면 더욱 좋습니다.
 
-* Zoom into bass, mid, or treble frequencies
-* [Normalize](Documentation.md#normalization) with a target loudness or a normalization frequency
-* [Smooth](Documentation.md#smoothing) graphs with a configurable parameter
-* Toggle inspect mode to see the numeric response values when you mouse over the graph
-* [Label](Documentation.md#labelling) curves inside the graph window
-* Save a png [screenshot](Documentation.md#screenshot) of the graph (with labels)
-* Recolor the active curves in case there is a color conflict
-* Toolbar collapses and expands, along with the target selector, when the screen is small
+### TXT 파일은 가능하면 다음과 같은 형식으로 이름을 정해주시기 바랍니다.
+* 이어폰명(제조사 이름 X) 샘플 번호 (by 측정한 사람) 채널.txt  
 
-### Headphone and target selectors
+예시로 ABC가 측정한 IER-Z1R인 경우,
+ 
+* IER-Z1R Sample 1 (by ABC) L.txt
+* IER-Z1R Sample 1 (by ABC) L.txt
 
-* Headphones are grouped by brand: select brands to narrow them down
-* Click to select one headphone or brand and unselect others; middle or ctrl-click for non-exclusive select
-* [Search](Documentation.md#searching) all brands or headphones by name
-* Targets are selected the same way but are independent from headphones
+이런 식으로 파일 명을 바꿔주시길 부탁드립니다. 
 
-### Headphone manager
+샘플 수는 레포지터리 내 data 폴더 내 동일한 이어폰이 없는 경우는 1, 있다면 현재 샘플 수에 +1을 해주시면 됩니다.
 
-* Curve names and colors are displayed here
-* Choose and compare variant measurements of the same model with a dropdown
-* Use the wishbone-shaped selector to see left and/or right channels or [average](Documentation.md#averaging) them together
-* A red exclamation mark indicates that channels are [imbalanced](Documentation.md#channel-imbalance-marker)
-* Change the offset to move graphs up and down (after [normalization](Documentation.md#normalization))
-* Select [BASELINE](Documentation.md#baseline) to adjust all curves so the chosen one is flat
-* Temporarily hide or unhide a graph
-* PIN a headphone to avoid losing it while adding others
-* Click the little dots at the bottom left to change a single headphone's [color](Documentation.md#colors)
+이렇게 이름을 수정한 TXT 파일들은 Pull Request를 하실 경우 data 폴더 내에 넣어주시면 되고, Issue에 올리셔도 됩니다.
 
-## Contact
+json 수정하는 법은 쓰다보니 귀찮아져서 Pull Request나 Issue 넣어주시면 TXT 파일은 업로드를 하겠고, json 파일은 제가 알아서 처리해드리도록 하겠습니다.
 
-File a Github issue here for topics related to the project. You can also
-reach me by the email in my Github profile and the [LICENSE](LICENSE).
-I can sometimes be found on
-[Crin's Discord server](https://discord.gg/CtTqcCb) where I am
-creatively named Marshall.

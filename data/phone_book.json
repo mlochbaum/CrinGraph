@@ -1,5 +1,23 @@
 [
   {
+    "name": "AKG",
+    "phones": [ 
+               {"name":["N5005"],"file":["N5005 Sample 1 (Mid High Filter, by ER4SR)"]}
+              ]
+  },
+  {
+    "name": "Etymotic Research",
+    "phones": [ 
+               {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange)"]}
+              ]
+  },
+  {
+    "name": "LG",
+    "phones": [ 
+               {"name":["USB-C Earphones"],"file":["USB-C Earphones Sample 1 (by ER4SR)"]}
+              ]
+  },
+  {
     "name": "Moondrop",
     "phones": [ 
               {"name":["Aria (2021)"],"file":["Aria (2021) Sample 1 (by ER4SR, Orza L)"]},

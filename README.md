@@ -11,6 +11,12 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 ## 현재 업로드된 이어폰/IEM 목록
 
+**AKG** : N5005 (Mid High Filter)
+
+**Etymotic Research** : ER4SR (Grey Tri-flange Eartips)
+
+**LG** : USB-C Earphones (LG Wing Bundle)
+
 **Moondrop** : Aria (2021) / Starfield (은구리님 측정)
 
 **Sennheiser** : IE 400 pro

@@ -13,6 +13,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **AKG** : N5005 (Mid High Filter)
 
+**Beyerdynamic** : Beat Byrd (냥냐냥님 측정)
+
 **Etymotic Research** : ER4SR (Grey Tri-flange Eartips)
 
 **Iriver** : ICP-AT2000 (냥냐냥님 측정)
@@ -25,15 +27,17 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Moondrop** : Aria (2021) / Starfield (은구리님 측정) / Nekocake (냥냐냥님 측정)
 
+**Project Refine** : P1AL (냥냐냥님 측정)
+
+**QCY** : T1 (냥냐냥님 측정)
+
+**QDC** : Dmagic Solo (냥냐냥님 측정)
+
 **Sennheiser** : IE 400 pro
 
 **Sonicast** : Direm KASA
 
 **Sony** : IER-M7
-
-**QCY** : T1 (냥냐냥님 측정)
-
-**QDC** : Dmagic Solo (냥냐냥님 측정)
 
 **Tanchjim** : Oxygen (냥냐냥님 측정)
 

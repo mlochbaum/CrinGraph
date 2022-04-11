@@ -12,9 +12,21 @@
               ]
   },
   {
+    "name": "Iriver",
+    "phones": [
+                {"name":["ICP-AT2000"],"file":["AT2000 Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
     "name": "JBL",
     "phones": [
                 {"name":["Club Pro+"],"file":["Club Pro+ Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
+    "name": "Kinera",
+    "phones": [
+                {"name":["Idun Golden"],"file":["Idun Golden Sample 1 (by 냥냐냥)", "Idun Golden Sample 1 (by 냥냐냥, Foam Tips)", "Idun Golden Sample 1 (by 냥냐냥, White Tips)"]}
               ]
   },
   {
@@ -49,12 +61,6 @@
               ]
   },
   {
-    "name": "Sony",
-    "phones": [
-               {"name":["IER-M7"],"file":["IER-M7 Sample 1 (by ER4SR, Hybrid Silicone M)"]}
-              ]
-  },
-  {
     "name": "QCY",
     "phones": [
                 {"name":["T1"], "file":["T1 Sample 1 (by 냥냐냥)"]}
@@ -64,6 +70,18 @@
     "name": "qdc",
     "phones": [
                 {"name":["Dmagic Solo"],"file":["Dmagic Solo Sample 1 (by 냥냐냥)", "Dmagic Solo Sample 1 (by 냥냐냥, 2단팁)"]}
+              ]
+  },
+  {
+    "name": "Sony",
+    "phones": [
+               {"name":["IER-M7"],"file":["IER-M7 Sample 1 (by ER4SR, Hybrid Silicone M)"]}
+              ]
+  },
+  {
+    "name": "Tanchjim",
+    "phones": [
+                {"name":["Oxygen"],"file":["Oxygen Sample 1 (by 냥냐냥, Bass Tips)", "Oxygen Sample 1 (by 냥냐냥, Treble Tips)"]}
               ]
   }
 ]

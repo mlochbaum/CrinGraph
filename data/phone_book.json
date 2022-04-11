@@ -2,7 +2,12 @@
   {
     "name": "AKG",
     "phones": [ 
-               {"name":["N5005"],"file":["N5005 Sample 1 (Mid High Filter, by ER4SR)"]}
+               {"name":["N5005"],"file":["N5005 Sample 1 (Mid High Filter, by ER4SR)",
+                "N5005 Sample 2 (by 냥냐냥, Reference Filter)",
+                "N5005 Sample 2 (by 냥냐냥, Bass Filter)",
+                "N5005 Sample 2 (by 냥냐냥, Mid High Filter)",
+                "N5005 Sample 2 (by 냥냐냥, High Filter)"
+                ]}
               ]
   },
   {

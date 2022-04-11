@@ -1523,10 +1523,10 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             emb = "embed";
         baseURL = url.split("?").shift();
         if (url.includes(par) && url.includes(emb)) {
-            initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
+            initReq = decodeURIComponent(url.replace(/_/g," ").split(par).pop()).split(",");
             loadFromShare = 2;
         } else if (url.includes(par)) {
-            initReq = decodeURI(url.replace(/_/g," ").split(par).pop()).split(",");
+            initReq = decodeURIComponent(url.replace(/_/g," ").split(par).pop()).split(",");
             loadFromShare = 1;
         }
     }
@@ -2131,14 +2131,18 @@ if (accessories) { addAccessories(); }
 function addHeader() {
     let graphToolContainer = document.querySelector("div.graphtool"),
         altHeaderElem = document.createElement("header"),
+        headerButton = document.createElement("button"),
         headerLogoElem = document.createElement("div"),
         headerLogoLink = document.createElement("a"),
         headerLogoImg = document.createElement("img"),
         linksList = document.createElement("ul");
     
+    headerButton.className = "header-button";
     headerLogoElem.className = "logo";
     headerLogoLink.setAttribute('href', site_url);
     headerLogoImg.setAttribute("src", headerLogoImgUrl);
+    
+    altHeaderElem.append(headerButton);
     headerLogoLink.append(headerLogoImg);
     headerLogoElem.append(headerLogoLink);
     altHeaderElem.setAttribute("data-links", "");
@@ -2160,7 +2164,7 @@ function addHeader() {
         linksList.append(linkContainerElem);
     })
     
-    altHeaderElem.addEventListener("click", function() {
+    headerButton.addEventListener("click", function() {
         let headerLinksState = altHeaderElem.getAttribute("data-links");
         
         if (headerLinksState === "expanded") {

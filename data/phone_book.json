@@ -2,7 +2,18 @@
   {
     "name": "AKG",
     "phones": [ 
-               {"name":["N5005"],"file":["N5005 Sample 1 (Mid High Filter, by ER4SR)"]}
+               {"name":["N5005"],"file":["N5005 Sample 1 (Mid High Filter, by ER4SR)",
+                "N5005 Sample 2 (by 냥냐냥, Reference Filter)",
+                "N5005 Sample 2 (by 냥냐냥, Bass Filter)",
+                "N5005 Sample 2 (by 냥냐냥, Mid High Filter)",
+                "N5005 Sample 2 (by 냥냐냥, High Filter)"
+                ]}
+              ]
+  },
+  {
+    "name": "Beyerdynamic",
+    "phones": [
+                {"name":["Beat Byrd"],"file":["Beat Byrd Sample 1 (by 냥냐냥)"]}
               ]
   },
   {
@@ -12,9 +23,21 @@
               ]
   },
   {
+    "name": "Iriver",
+    "phones": [
+                {"name":["ICP-AT2000"],"file":["AT2000 Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
     "name": "JBL",
     "phones": [
                 {"name":["Club Pro+"],"file":["Club Pro+ Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
+    "name": "Kinera",
+    "phones": [
+                {"name":["Idun Golden"],"file":["Idun Golden Sample 1 (by 냥냐냥)", "Idun Golden Sample 1 (by 냥냐냥, Foam Tips)", "Idun Golden Sample 1 (by 냥냐냥, White Tips)"]}
               ]
   },
   {
@@ -33,6 +56,24 @@
                 "Nekocake Sample 1 (by 냥냐냥, XDynamic EQ)",
                 "Nekocake Sample 1 (by 냥냐냥, NoBass EQ)",
                 "Nekocake Sample 1 (by 냥냐냥, Wennebostel EQ)"]}
+              ]
+  },
+  {
+    "name": "Project Refine",
+    "phones": [
+                {"name":["P1AL"],"file":["P1AL Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
+    "name": "QCY",
+    "phones": [
+                {"name":["T1"], "file":["T1 Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
+    "name": "qdc",
+    "phones": [
+                {"name":["Dmagic Solo"],"file":["Dmagic Solo Sample 1 (by 냥냐냥)", "Dmagic Solo Sample 1 (by 냥냐냥, 2단팁)"]}
               ]
   },
   {
@@ -55,15 +96,9 @@
               ]
   },
   {
-    "name": "QCY",
+    "name": "Tanchjim",
     "phones": [
-                {"name":["T1"], "file":["T1 Sample 1 (by 냥냐냥)"]}
-              ]
-  },
-  {
-    "name": "qdc",
-    "phones": [
-                {"name":["Dmagic Solo"],"file":["Dmagic Solo Sample 1 (by 냥냐냥)", "Dmagic Solo Sample 1 (by 냥냐냥, 2단팁)"]}
+                {"name":["Oxygen"],"file":["Oxygen Sample 1 (by 냥냐냥, Bass Tips)", "Oxygen Sample 1 (by 냥냐냥, Treble Tips)"]}
               ]
   }
 ]

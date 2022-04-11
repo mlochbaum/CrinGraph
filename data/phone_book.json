@@ -33,13 +33,19 @@
   {
     "name": "Sonicast",
     "phones": [
-               {"name":["Direm KASA"],"file":["Direm KASA Sample 1 (by ER4SR, Final E M)"]}
+               {"name":["Direm KASA", "Direm E3-C"],"file":["Direm KASA Sample 1 (by ER4SR, Final E M)", "Direm E3-C Sample 1 (by 냥냐냥)"]}
               ]
   },
   {
     "name": "Sony",
     "phones": [
                {"name":["IER-M7"],"file":["IER-M7 Sample 1 (by ER4SR, Hybrid Silicone M)"]}
+              ]
+  },
+  {
+    "name": "qdc",
+    "phones": [
+                {"name":["Dmagic Solo"],"file":["Dmagic Solo Sample 1 (by 냥냐냥)", "Dmagic Solo Sample 1 (by 냥냐냥, 2단팁)"]}
               ]
   }
 ]

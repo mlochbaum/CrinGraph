@@ -15,9 +15,11 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Etymotic Research** : ER4SR (Grey Tri-flange Eartips)
 
+**JBL** : Club Pro+ (냥냐냥님 측정)
+
 **LG** : USB-C Earphones (LG Wing Bundle)
 
-**Moondrop** : Aria (2021) / Starfield (은구리님 측정)
+**Moondrop** : Aria (2021) / Starfield (은구리님 측정) / Nekocake (냥냐냥님 측정)
 
 **Sennheiser** : IE 400 pro
 
@@ -25,6 +27,9 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Sony** : IER-M7
 
+**QCY** : T1 (냥냐냥님 측정)
+
+**QDC** : Dmagic Solo (냥냐냥님 측정)
 
 ## 측정치 업로드 방법
 

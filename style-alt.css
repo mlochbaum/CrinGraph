@@ -185,6 +185,7 @@ div.graphBox[data-animated="true"] g[mask="url(#graphFade)"] path:not(.target) {
 Graph labels *****/
 
 /* top-left */
+svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(1),
@@ -192,22 +193,30 @@ svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel:nth-last-chil
     transform: translate(40px, 8px);
 }
 
+svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="top-left"] rect + g.lineLabel:nth-last-child(2) {
     transform: translate(40px, 30px);
 }
 
+svg#fr-graph[data-labels-position="top-left"] rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="top-left"] rect + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="top-left"] rect + g.lineLabel:nth-last-child(3) {
     transform: translate(40px, 52px);
 }
 
+svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(4),
 svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel:nth-last-child(4) {
     transform: translate(40px, 74px);
 }
 
+svg#fr-graph[data-labels-position="top-left"] > rect + g.lineLabel:nth-last-child(5) {
+    transform: translate(40px, 96px);
+}
+
 /* bottom-left */
+svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(1),
@@ -215,22 +224,30 @@ svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel:nth-last-c
     transform: translate(40px, 296px);
 }
 
+svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-left"] rect + g.lineLabel:nth-last-child(2) {
     transform: translate(40px, 274px);
 }
 
+svg#fr-graph[data-labels-position="bottom-left"] rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="bottom-left"] rect + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="bottom-left"] rect + g.lineLabel:nth-last-child(3) {
     transform: translate(40px, 252px);
 }
 
+svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel + g.lineLabel:nth-last-child(4),
 svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel:nth-last-child(4) {
     transform: translate(40px, 230px);
 }
 
+svg#fr-graph[data-labels-position="bottom-left"] > rect + g.lineLabel:nth-last-child(5) {
+    transform: translate(40px, 208px);
+}
+
 /* bottom-right */
+svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(1),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel:nth-last-child(1),
@@ -238,19 +255,26 @@ svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-
     transform: translate(500px, 296px);
 }
 
+svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel:nth-last-child(2),
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel:nth-last-child(2) {
     transform: translate(500px, 274px);
 }
 
+svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel + g.lineLabel:nth-last-child(3),
 svg#fr-graph[data-labels-position="bottom-right"] rect + g.lineLabel:nth-last-child(3) {
     transform: translate(500px, 252px);
 }
 
+svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel + g.lineLabel:nth-last-child(4),
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-child(4) {
     transform: translate(500px, 230px);
+}
+
+svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-child(5) {
+    transform: translate(500px, 208px);
 }
 
 
@@ -310,6 +334,10 @@ header.header {
     background-color: var(--font-color-primary);
 }
 
+button.header-button {
+    display: none;
+}
+
 div.logo {
     display: flex;
     justify-content: center;
@@ -346,7 +374,7 @@ ul.header-links {
     align-items: flex-start;
     
     box-sizing: border-box;
-    flex: auto 0 1;
+    flex: 100% 0 1;
     height: 100%;
     margin: auto;
     padding: 0 16px;
@@ -369,6 +397,7 @@ ul.header-links li {
     margin: 0;
     
     list-style: none;
+    white-space: nowrap;
 }
 
 ul.header-links li + li {
@@ -2976,17 +3005,13 @@ Responsive styles *****/
         display: none;
     }
 
-    header.header:after {
-        position: absolute;
-
-        top: 6px;
-        left: 6px;
-
+    button.header-button {
         content: '';
         box-sizing: border-box;
         display: block;
         width: 36px;
         height: 36px;
+        margin: 0 0 0 6px;
 
         background-color: var(--background-color-contrast-more);
         mask: var(--icon-hamburger);
@@ -3002,8 +3027,12 @@ Responsive styles *****/
     }
 
     div.logo {
-        flex: calc(100% - 116px) 0 0;
-        margin: auto;
+        flex: auto;
+        margin: 0 42px 0 0;
+    }
+    
+    div.logo a {
+        width: 80%;
     }
 
     ul.header-links {
@@ -3012,15 +3041,15 @@ Responsive styles *****/
         left: 0;
         z-index: 2;
 
+        width: 100%;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
 
         box-sizing: border-box;
-        width: 100vw;
         height: calc(100vh - 49px);
         max-height: -webkit-fill-available;
-        padding: 16px;
+        padding: 0 16px 16px 16px;
 
         background-color: var(--background-color);
 

@@ -51,7 +51,7 @@
     "phones": [ 
               {"name":["Aria (2021)"],"file":["Aria (2021) Sample 1 (by ER4SR, Orza L)"]},
               {"name":["Starfield"],"file":["Starfield Sample 1 (by 은구리)"]},
-              {"name": ["Nekocake"],"file":["Nekocake Sample 1 (by 냥냐냥)", 
+              {"name": ["Nekocake"],"file":["Nekocake Sample 1 (by 냥냐냥, Balanced EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, Classic EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, XDynamic EQ)",
                 "Nekocake Sample 1 (by 냥냐냥, NoBass EQ)",
@@ -85,8 +85,9 @@
   {
     "name": "Sonicast",
     "phones": [
-               {"name":["Direm KASA"],"file":["Direm KASA Sample 1 (by ER4SR, Final E M)"]},
-               {"name": ["Direm E3-C"], "file":["Direm E3-C Sample 1 (by 냥냐냥)"]}
+               {"name":["Dirac mk2"],"file":["Dirac mk2 Sample 1 (by 냥냐냥)"]},
+               {"name": ["Direm KASA"], "file":["Direm KASA Sample 1 (by ER4SR, Final E M)"]},
+               {"name": ["Direm E3-C"],"file":"Direm E3-C Sample 1 (by 냥냐냥)"}
               ]
   },
   {

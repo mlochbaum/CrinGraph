@@ -110,24 +110,98 @@ doc.html(`
           <div class="selector-tabs">
             <button class="brands" data-list="brands">Brands</button>
             <button class="models" data-list="models">Models</button>
+            <button class="extra">Equalizer</button>
           </div>
 
-          <input class="search" type="text" inputmode="search" placeholder="Search" onclick="this.focus();this.select()"/>
+          <div class="selector-panel">
+            <input class="search" type="text" inputmode="search" placeholder="Search" onclick="this.focus();this.select()"/>
 
-          <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
-            <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4"/>
-          </svg>
-          <svg class="stop" viewBox="0 0 4 1">
-            <path d="M4 1H0C3 1 3.2 0.8 4 0Z"/>
-          </svg>
+            <svg class="chevron" viewBox="0 0 12 8" preserveAspectRatio="none">
+              <path d="M0 0h4c0 1.5,5 3,7 4c-2 1,-7 2.5,-7 4h-4c0 -3,4 -3,4 -4s-4 -1,-4 -4"/>
+            </svg>
+            <svg class="stop" viewBox="0 0 4 1">
+              <path d="M4 1H0C3 1 3.2 0.8 4 0Z"/>
+            </svg>
 
-          <div class="scroll-container">
-            <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
-            <div class="scrollOuter" data-list="models"><div class="scroll" id="phones"></div></div>
+            <div class="scroll-container">
+              <div class="scrollOuter" data-list="brands"><div class="scroll" id="brands"></div></div>
+              <div class="scrollOuter" data-list="models"><div class="scroll" id="phones"></div></div>
+            </div>
+          </div>
+
+          <div class="extra-panel" style="display: none;">
+            <div class="extra-upload">
+              <h5>Uploading</h2>
+              <button class="upload-fr">Upload FR</button>
+              <button class="upload-target">Upload Target</button>
+              <br />
+              <span><small>Uploaded data will not be persistent</small></span>
+              <form style="display:none"><input type="file" id="file-fr" accept=".csv,.txt" /></form>
+            </div>
+            <div class="extra-eq">
+              <h5>Parametric Equalizer</h2>
+              <div class="select-eq-phone">
+                <select name="phone">
+                    <option value="" selected>Choose EQ model</option>
+                </select>
+              </div>
+              <div class="filters-header">
+                <span>Type</span>
+                <span>Frequency</span>
+                <span>Q</span>
+                <span>Gain</span>
+              </div>
+              <div class="filters">
+                <div class="filter">
+                    <span>
+                      <input name="enabled" type="checkbox" checked></input>
+                      <select name="type">
+                        <option value="PK" selected>PK</option>
+                        <option value="LSQ">LSQ</option>
+                        <option value="HSQ">HSQ</option>
+                      </select>
+                    </span>
+                    <span><input name="freq" type="number" min="20" max="20000" step="1" value="0"></input></span>
+                    <span><input name="q" type="number" min="0" max="10" step="0.1" value="0"></input></span>
+                    <span><input name="gain" type="number" min="-40" max="40" step="0.1" value="0"></input></span>
+                </div>
+              </div>
+              <div class="settings-row">
+                <span>AutoEQ Range</span>
+                <span><input name="autoeq-from" type="number" min="20" max="20000" step="1" value="20"></input></span>
+                <span><input name="autoeq-to" type="number" min="20" max="20000" step="1" value="20000"></input></span>
+              </div>
+              <div class="filters-button">
+                <button class="add-filter">＋</button>
+                <button class="remove-filter">－</button>
+                <button class="sort-filters">Sort</button>
+                <button class="import-filters">Import</button>
+                <button class="export-filters">Export</button>
+                <button class="autoeq">AutoEQ</button>
+                <button class="export-graphic-filters">Export Graphic EQ (For Wavelet)</button>
+                <button class="readme">Readme</button>
+              </div>
+              <a style="display: none" id="file-filters-export"></a>
+              <form style="display:none"><input type="file" id="file-filters-import" accept=".txt" /></form>
+            </div>
+            <div class="extra-tone-generator">
+              <h5>Tone Generator</h2>
+              <div class="settings-row">
+                <span>Freq Range</span>
+                <span><input name="tone-generator-from" type="number" min="20" max="20000" step="1" value="20"></input></span>
+                <span><input name="tone-generator-to" type="number" min="20" max="20000" step="1" value="20000"></input></span>
+              </div>
+              <div><input name="tone-generator-freq" type="range" min="0" max="1" step="0.0001" value="0" /></div>
+              <div>
+                <button class="play">Play</button>
+                <span>Frequency: <span class="freq-text">20</span> Hz</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
+    <div style="display: none" class="extra-eq-overlay">AutoEQ is running, it could take 5~20 seconds or more.</div>
   </main>
 `);
 
@@ -715,8 +789,7 @@ function loadFiles(p, callback) {
         if (!frs.some(f=>f!==null)) {
             alert("Headphone not found!");
         } else {
-            let ch = frs.map(f => f && tsvParse(f));
-            if (!f_values) { f_values = ch[0].map(d=>d[0]); }
+            let ch = frs.map(f => f && Equalizer.interp(f_values, tsvParse(f)));
             callback(ch);
         }
     });
@@ -902,6 +975,7 @@ function setPhoneTr(phtr) {
     phtr.style("background",p=>p.isTarget&&!p.active?null:getDivColor(p.id,p.highlight))
         .style("border-color",p=>p.highlight?getDivColor(p.id,1):null);
     phtr.filter(p=>!p.isTarget)
+        .select(".phone-item-add")
         .selectAll(".remove").data(p=>p.highlight?[p]:[])
         .join("span").attr("class","remove").text("⊗")
         .on("click", p => { d3.event.stopPropagation(); removeCopies(p); });
@@ -1030,7 +1104,7 @@ let baseURL;  // Set by setInitPhones
 function addPhonesToUrl() {
     let title = baseTitle,
         url = baseURL,
-        names = activePhones.map(p => p.fileName),
+        names = activePhones.filter(p => !p.isDynamic).map(p => p.fileName),
         namesCombined = names.join(", ");
     
     if (names.length) {
@@ -1062,7 +1136,7 @@ function updatePaths(trigger) {
 }
 let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 8"><path d="M0 8v-8h1c0.05 1.5,-0.3 3,-0.16 5s0.1 2,0.15 3z" fill="'+getBgColor(p)+'"/></svg>\')';
 function updatePhoneTable() {
-    let c = table.selectAll("tr").data(activePhones, p=>p.id);
+    let c = table.selectAll("tr").data(activePhones, p=>p.fileName);
     c.exit().remove();
     let f = c.enter().append("tr"),
         td = () => f.append("td");
@@ -1095,10 +1169,13 @@ function updatePhoneTable() {
         t.select(".keyLine").on("click", h?null:toggleHide)
             .selectAll("path,.imbalance").attr("opacity", h?null:0.5);
         t.select(".hideIcon").classed("selected", !h);
-        clearLabels();
         gpath.selectAll("path").filter(c=>c.p===p)
             .attr("opacity", h?null:0);
         p.hide = !h;
+        if (labelsShown) {
+            clearLabels();
+            drawLabels();
+        }
     }
     td().attr("class","button hideIcon")
         .html("<svg viewBox='-2.5 0 19 12'><use xlink:href='#hide-icon'></use></svg>")
@@ -1361,7 +1438,13 @@ function colorPhones() {
     t.append("svg").call(addKey);
 }
 
-let f_values; // Assumed to be the same for all headphones
+let f_values = (function() {
+    // Standard frequencies, all phone need to interpolate to this
+    let f = [20];
+    let step = Math.pow(2, 1/48); // 1/48 octave
+    while (f[f.length-1] < 20000) { f.push(f[f.length-1] * step) }
+    return f;
+})();
 let fr_to_ind = fr => d3.bisect(f_values, fr, 0, f_values.length-1);
 function range_to_slice(xs, fn) {
     let r = xs.map(v => d3.bisectLeft(f_values, x.invert(fn(v))));
@@ -1379,6 +1462,11 @@ function normalizePhone(p) {
         p.norm = 60 - avg(validChannels(p).map(l=>l[i][1]));
     } else { // phon
         p.norm = find_offset(getAvg(p), norm_phon);
+    }
+    if (p.eq) {
+        p.eq.norm = p.norm; // copy parent's norm to child
+    } else if (p.eqParent) {
+        p.norm = p.eqParent.norm; // set child's norm from parent
     }
 }
 
@@ -1475,7 +1563,7 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
     }
     updatePaths(trigger);
     updatePhoneTable();
-    d3.selectAll("#phones div,.target")
+    d3.selectAll("#phones .phone-item,.target")
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
     //Displays variant pop-up when phone displayed
@@ -1483,6 +1571,9 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
         table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
     } else {
         document.activeElement.blur();
+    }
+    if (extraEnabled && extraEQEnabled) {
+        updateEQPhoneSelect();
     }
 }
 
@@ -1493,6 +1584,7 @@ function removeCopies(p) {
     }
     removePhone(p);
 }
+
 function removePhone(p) {
     p.active = p.pin = false; nextPN = null;
     activePhones = activePhones.filter(q => q.active);
@@ -1508,11 +1600,64 @@ function removePhone(p) {
     d3.selectAll("#phones div,.target")
         .filter(q=>q===(p.copyOf||p))
         .call(setPhoneTr);
+    if (extraEnabled && extraEQEnabled) {
+        updateEQPhoneSelect();
+    }
+}
+
+function asPhoneObj(b, p, isInit, inits) {
+    if (!isInit) {
+        isInit = _ => false;
+    }
+    let r = { brand:b, dispBrand:b.name };
+    if (typeof p === "string") {
+        r.phone = r.fileName = p;
+        if (isInit(p)) inits.push(r);
+    } else {
+        r.phone = p.name;
+        if (p.collab) {
+            r.dispBrand += " x "+p.collab;
+            r.collab = brandMap[p.collab];
+        }
+        let f = p.file || p.name;
+        if (typeof f === "string") {
+            r.fileName = f;
+            if (isInit(f)) inits.push(r);
+        } else {
+            r.fileNames = f;
+            r.vars = {};
+            let dns = f;
+            if (p.suffix) {
+                dns = p.suffix.map(
+                    s => p.name + (s ? " "+s : "")
+                );
+            } else if (p.prefix) {
+                let reg = new RegExp("^"+p.prefix+"\s*", "i");
+                dns = f.map(n => {
+                    n = n.replace(reg, "");
+                    return p.name + (n.length ? " "+n : n);
+                });
+            }
+            r.dispNames = dns;
+            r.fileName = f[0];
+            r.dispName = dns[0];
+            let c = r;
+            f.map((fn,i) => {
+                if (!isInit(fn)) return;
+                c.fileName=fn; c.dispName=dns[i];
+                inits.push(c);
+                c = {copyOf:r};
+            });
+        }
+    }
+    r.dispName = r.dispName || r.phone;
+    r.fullName = r.dispBrand + " " + r.phone;
+    return r;
 }
 
 d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             : DIR+"phone_book.json?"+ new Date().getTime()).then(function (brands) {
-    let brandMap = {},
+    let brandMap = window.brandMap = {},
         inits = [],
         initReq = typeof init_phones !== "undefined" ? init_phones : false;
     loadFromShare = 0;
@@ -1540,59 +1685,17 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     } else {
         initMode = "config";
     }
-    
+
+    brands.push({ name: "Uploaded", phones: [] });
     brands.forEach(b => brandMap[b.name] = b);
     brands.forEach(function (b) {
         b.active = false;
         b.phoneObjs = b.phones.map(function (p) {
-            let r = { brand:b, dispBrand:b.name };
-            if (typeof p === "string") {
-                r.phone = r.fileName = p;
-                if (isInit(p)) inits.push(r);
-            } else {
-                r.phone = p.name;
-                if (p.collab) {
-                    r.dispBrand += " x "+p.collab;
-                    r.collab = brandMap[p.collab];
-                }
-                let f = p.file || p.name;
-                if (typeof f === "string") {
-                    r.fileName = f;
-                    if (isInit(f)) inits.push(r);
-                } else {
-                    r.fileNames = f;
-                    r.vars = {};
-                    let dns = f;
-                    if (p.suffix) {
-                        dns = p.suffix.map(
-                            s => p.name + (s ? " "+s : "")
-                        );
-                    } else if (p.prefix) {
-                        let reg = new RegExp("^"+p.prefix+"\s*", "i");
-                        dns = f.map(n => {
-                            n = n.replace(reg, "");
-                            return p.name + (n.length ? " "+n : n);
-                        });
-                    }
-                    r.dispNames = dns;
-                    r.fileName = f[0];
-                    r.dispName = dns[0];
-                    let c = r;
-                    f.map((fn,i) => {
-                        if (!isInit(fn)) return;
-                        c.fileName=fn; c.dispName=dns[i];
-                        inits.push(c);
-                        c = {copyOf:r};
-                    });
-                }
-            }
-            r.dispName = r.dispName || r.phone;
-            r.fullName = r.dispBrand + " " + r.phone;
-            return r;
+            return asPhoneObj(b, p, isInit, inits);
         });
     });
 
-    let allPhones = d3.merge(brands.map(b=>b.phoneObjs)),
+    let allPhones = window.allPhones = d3.merge(brands.map(b=>b.phoneObjs)),
         currentBrands = [];
     if (!initReq) inits.push(allPhones[0]);
 
@@ -1611,25 +1714,30 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         d3.select(this).style("background", fn(p));
         (p.objs||[p]).forEach(q=>hl(q,h));
     }
-    let phoneSel = doc.select("#phones").selectAll()
-        .data(allPhones).join("div")
-        .attr("class","phone-item")
-        .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
-        .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
-        .call(setClicks(showPhone));
-    phoneSel.append("span").text(p=>p.fullName);
-
-    // Adding the + selection button
-    phoneSel.append("div")
-            .attr("class", "phone-item-add")
-            .on("click", p => {
-                d3.event.stopPropagation();
-                showPhone(p, 0);
-            })
-
+    window.updatePhoneSelect = () => {
+        doc.select("#phones").selectAll("div.phone-item")
+            .data(allPhones)
+            .join((enter) => {
+                let phoneDiv = enter.append("div")
+                    .attr("class","phone-item")
+                    .attr("name", p=>p.fullName)
+                    .on("mouseover", bg(true, p => getDivColor(p.id===undefined?nextPhoneNumber():p.id, true)))
+                    .on("mouseout" , bg(false,p => p.id!==undefined?getDivColor(p.id,p.active):null))
+                    .call(setClicks(showPhone));
+                phoneDiv.append("span").text(p=>p.fullName);
+                // Adding the + selection button
+                phoneDiv.append("div")
+                    .attr("class", "phone-item-add")
+                    .on("click", p => {
+                        d3.event.stopPropagation();
+                        showPhone(p, 0);
+                    });
+           });
+    };
+    updatePhoneSelect();
 
     if (targets) {
-        let b = { name:"Targets", active:false },
+        let b = window.brandTarget = { name:"Targets", active:false },
             ti = -targets.length,
             ph = t => ({
                 isTarget:true, brand:b,
@@ -1639,7 +1747,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             .attr("class", "targets collapseTools");
         let l = (text,c) => s => s.append("div").attr("class","targetLabel").append("span").text(text);
         let ts = b.phoneObjs = doc.select(".targets").call(l("Targets"))
-            .selectAll().data(targets).join().call(l(t=>t.type))
+            .selectAll().data(targets).join("div").call(l(t=>t.type))
             .style("flex-grow",t=>t.files.length).attr("class","targetClass")
             .selectAll().data(t=>t.files.map(ph))
             .join("div").text(t=>t.dispName).attr("class","target")
@@ -1655,6 +1763,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
                             : showPhone(p,0,1, initMode));
 
     function setBrand(b, exclusive) {
+        let phoneSel = doc.select("#phones").selectAll("div.phone-item");
         let incl = currentBrands.indexOf(b) !== -1;
         let hasBrand = (p,b) => p.brand===b || p.collab===b;
         if (exclusive || currentBrands.length===0) {
@@ -1723,6 +1832,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         } else {
             fn = c.length ? test : (p=>true);
         }
+        let phoneSel = doc.select("#phones").selectAll("div.phone-item");
         phoneSel.style("display", p => fn(p)?null:"none");
         brandSel.style("display", b => bl.indexOf(b)!==-1?null:"none");
     });
@@ -1952,6 +2062,7 @@ function focusedListClicks() {
         clickedTarget.addEventListener("click", () => {
             let selectedList = clickedTarget.getAttribute("data-list")
             setFocusedList(selectedList);
+            window.hideExtraPanel && window.hideExtraPanel(selectedList);
         });
     });
 
@@ -2117,6 +2228,416 @@ function blurFocus() {
 }
 blurFocus();
 
+// Add extra feature
+function addExtra() {
+    let extraButton = document.querySelector("div.select > div.selector-tabs > button.extra");
+    // Disable functions by config
+    if (!extraEnabled) {
+        extraButton.remove();
+        return;
+    }
+    if (!extraUploadEnabled) {
+        document.querySelector("div.extra-panel > div.extra-upload").style["display"] = "none";
+    }
+    if (!extraEQEnabled) {
+        document.querySelector("div.extra-panel > div.extra-eq").style["display"] = "none";
+    }
+    if (!extraToneGeneratorEnabled) {
+        document.querySelector("div.extra-panel > div.extra-tone-generator").style["display"] = "none";
+    }
+    // Show and hide extra panel
+    window.showExtraPanel = () => {
+        document.querySelector("div.select > div.selector-panel").style["display"] = "none";
+        document.querySelector("div.select > div.extra-panel").style["display"] = "flex";
+        document.querySelector("div.select").setAttribute("data-selected", "extra");
+    };
+    window.hideExtraPanel = (selectedList) => {
+        document.querySelector("div.select > div.selector-panel").style["display"] = "flex";
+        document.querySelector("div.select > div.extra-panel").style["display"] = "none";
+        document.querySelector("div.select").setAttribute("data-selected", selectedList);
+    };
+    extraButton.addEventListener("click", showExtraPanel);
+    // Upload function
+    let uploadType = null;
+    let fileFR = document.querySelector("#file-fr");
+    document.querySelector("div.extra-upload > button.upload-fr").addEventListener("click", () => {
+        uploadType = "fr";
+        fileFR.click();
+    });
+    document.querySelector("div.extra-upload > button.upload-target").addEventListener("click", () => {
+        uploadType = "target";
+        fileFR.click();
+    });
+    let addOrUpdatePhone = (brand, phone, ch) => {
+        let phoneObj = asPhoneObj(brand, phone);
+        phoneObj.rawChannels = ch;
+        phoneObj.isDynamic = true;
+        let phoneObjs = brand.phoneObjs;
+        let oldPhoneObj = phoneObjs.filter(p => p.phone == phone.name)[0]
+        if (oldPhoneObj) {
+            oldPhoneObj.active && removePhone(oldPhoneObj);
+            phoneObj.id = oldPhoneObj.id;
+            phoneObjs[phoneObjs.indexOf(oldPhoneObj)] = phoneObj;
+            allPhones[allPhones.indexOf(oldPhoneObj)] = phoneObj;
+        } else {
+            brand.phones.push(phone);
+            phoneObjs.push(phoneObj);
+            allPhones.push(phoneObj);
+        }
+        updatePhoneSelect();
+        return phoneObj;
+    };
+    fileFR.addEventListener("change", (e) => {
+        let file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            let name = file.name.replace(/\.[^\.]+$/, "");
+            let phone = { name: name };
+            let ch = [tsvParse(e.target.result)];
+            if (ch[0].length < 128) {
+                alert("Parse frequence response file failed: invalid format.");
+                return;
+            }
+            ch[0] = Equalizer.interp(f_values, ch[0]);
+            if (uploadType === "fr") {
+                name.match(/ R$/) && ch.splice(0, 0, null);
+                let phoneObj = addOrUpdatePhone(brandMap.Uploaded, phone, ch);
+                showPhone(phoneObj, false);
+            } else if (uploadType === "target") {
+                let fullName = name + (name.match(/ Target$/i) ? "" : " Target");
+                let existsTargets = targets.reduce((a, b) => a.concat(b.files), []).map(f => f += " Target");
+                if (existsTargets.indexOf(fullName) >= 0) {
+                    alert("This target already exists on this tool, please select it instead of upload.");
+                    return;
+                }
+                let phoneObj = {
+                    isTarget: true,
+                    brand: brandTarget,
+                    dispName: name,
+                    phone: name,
+                    fullName: fullName,
+                    fileName: fullName,
+                    rawChannels: ch,
+                    isDynamic: true,
+                    id: -brandTarget.phoneObjs.length
+                };
+                showPhone(phoneObj, true);
+            }
+        };
+        reader.readAsText(file);
+    });
+    // EQ Function
+    let eqPhoneSelect = document.querySelector("div.extra-eq select[name='phone']");
+    let filtersContainer = document.querySelector("div.extra-eq > div.filters");
+    let fileFiltersImport = document.querySelector("#file-filters-import");
+    let filterEnabledInput, filterTypeSelect,
+        filterFreqInput, filterQInput, filterGainInput;
+    let eqBands = extraEQBands;
+    let updateFilterElements = () => {
+        let node = filtersContainer.querySelector("div.filter");
+        while (filtersContainer.childElementCount < eqBands) {
+            let clone = node.cloneNode(true);
+            clone.querySelector("input[name='enabled']").value = "true";
+            clone.querySelector("select[name='type']").value = "PK";
+            clone.querySelector("input[name='freq']").value = "0";
+            clone.querySelector("input[name='q']").value = "0";
+            clone.querySelector("input[name='gain']").value = "0";
+            filtersContainer.appendChild(clone);
+        }
+        while (filtersContainer.childElementCount > eqBands) {
+            filtersContainer.children[filtersContainer.childElementCount-1].remove();
+        }
+        filterEnabledInput = filtersContainer.querySelectorAll("input[name='enabled']");
+        filterTypeSelect = filtersContainer.querySelectorAll("select[name='type']");
+        filterFreqInput = filtersContainer.querySelectorAll("input[name='freq']");
+        filterQInput = filtersContainer.querySelectorAll("input[name='q']");
+        filterGainInput = filtersContainer.querySelectorAll("input[name='gain']");
+        filtersContainer.querySelectorAll("input,select").forEach(el => {
+            el.removeEventListener("input", applyEQ);
+            el.addEventListener("input", applyEQ);
+        });
+    };
+    let elemToFilters = (includeAll) => {
+        // Collect filters from ui
+        let filters = [];
+        for (let i = 0; i < eqBands; ++i) {
+            let disabled = !filterEnabledInput[i].checked;
+            let type = filterTypeSelect[i].value;
+            let freq = parseInt(filterFreqInput[i].value) || 0;
+            let q = parseFloat(filterQInput[i].value) || 0;
+            let gain = parseFloat(filterGainInput[i].value) || 0;
+            if (!includeAll && (disabled || !type || !freq || !q || !gain)) {
+                continue;
+            }
+            filters.push({ disabled, type, freq, q, gain });
+        }
+        return filters;
+    };
+    let filtersToElem = (filters) => {
+        // Set filters to ui
+        let filtersCopy = filters.map(f => f);
+        while (filtersCopy.length < eqBands) {
+            filtersCopy.push({ type: "PK", freq: 0, q: 0, gain: 0 });
+        }
+        if (filtersCopy.length > eqBands) {
+            eqBands = Math.min(filtersCopy.length, extraEQBandsMax);
+            filtersCopy = filtersCopy.slice(0, eqBands);
+            updateFilterElements();
+        }
+        filtersCopy.forEach((f, i) => {
+            filterEnabledInput[i].checked = !f.disabled;
+            filterTypeSelect[i].value = f.type;
+            filterFreqInput[i].value = f.freq;
+            filterQInput[i].value = f.q;
+            filterGainInput[i].value = f.gain;
+        });
+    };
+    let applyEQHandle = null;
+    let applyEQExec = () => {
+        // Create and show phone with eq applied
+        let activeElem = document.activeElement;
+        let phoneSelected = eqPhoneSelect.value;
+        let filters = elemToFilters();
+        if (filters.length && !phoneSelected) {
+            let firstPhone = eqPhoneSelect.querySelectorAll("option")[1];
+            if (firstPhone) {
+                phoneSelected = eqPhoneSelect.value = firstPhone.value;
+            }
+        }
+        let phoneObj = phoneSelected && activePhones.filter(
+            p => p.fullName == phoneSelected)[0];
+        if (!phoneObj || (!filters.length && !phoneObj.eq)) {
+            return; // Allow empty filters if eq is applied before
+        }
+        let phoneEQ = { name: phoneObj.phone + " EQ" };
+        let phoneObjEQ = addOrUpdatePhone(phoneObj.brand, phoneEQ,
+            phoneObj.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null));
+        phoneObj.eq = phoneObjEQ;
+        phoneObjEQ.eqParent = phoneObj;
+        showPhone(phoneObjEQ, false);
+        activeElem.focus();
+    };
+    let applyEQ = () => {
+        clearTimeout(applyEQHandle);
+        applyEQHandle = setTimeout(applyEQExec, 100);
+    };
+    window.updateEQPhoneSelect = () => {
+        let oldValue = eqPhoneSelect.value;
+        let optionValues = activePhones.filter(p =>
+            !p.isTarget && !p.fullName.match(/ EQ$/)).map(p => p.fullName);
+        Array.from(eqPhoneSelect.children).slice(1).forEach(c => eqPhoneSelect.removeChild(c));
+        optionValues.forEach(value => {
+            let optionElem = document.createElement("option");
+            optionElem.setAttribute("value", value);
+            optionElem.innerText = value;
+            eqPhoneSelect.appendChild(optionElem);
+        });
+        eqPhoneSelect.value = (optionValues.indexOf(oldValue) >= 0) ? oldValue : "";
+    };
+    updateFilterElements();
+    eqPhoneSelect.addEventListener("input", applyEQ);
+    // Add new filter
+    document.querySelector("div.extra-eq button.add-filter").addEventListener("click", () => {
+        eqBands = Math.min(eqBands + 1, extraEQBandsMax);
+        updateFilterElements();
+    });
+    // Remove last filter
+    document.querySelector("div.extra-eq button.remove-filter").addEventListener("click", () => {
+        eqBands = Math.max(eqBands - 1, 1);
+        updateFilterElements();
+        applyEQ(); // May removed effective filter
+    });
+    // Sort filters by frequency
+    document.querySelector("div.extra-eq button.sort-filters").addEventListener("click", () => {
+        filtersToElem(elemToFilters(true).sort((a, b) =>
+            (a.freq || Infinity) - (b.freq || Infinity)));
+    });
+    // Import filters
+    document.querySelector("div.extra-eq button.import-filters").addEventListener("click", () => {
+        fileFiltersImport.click();
+    });
+    fileFiltersImport.addEventListener("change", (e) => {
+        // Import filters callback
+        let file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            let settings = e.target.result;
+            let filters = settings.split("\n").map(l => {
+                let r = l.match(/Filter\s*\d+:\s*(\S+)\s*(\S+)\s*Fc\s*(\S+)\s*Hz\s*Gain\s*(\S+)\s*dB(\s*Q\s*(\S+))?/);
+                if (!r) { return undefined; }
+                let disabled = (r[1] !== "ON");
+                let type = r[2];
+                let freq = parseInt(r[3]) || 0;
+                let gain = parseFloat(r[4]) || 0;
+                let q = parseFloat(r[6]) || 0;
+                if (type === "LS" || type === "HS") {
+                    type += "Q";
+                    q = 0.707;
+                }
+                return { disabled, type, freq, q, gain };
+            }).filter(f => f);
+            while (filters.length > 0) {
+                // Remove empty tail filters
+                let lastFilter = filters[filters.length-1];
+                if (!lastFilter.freq && !lastFilter.q && !lastFilter.gain) {
+                    filters.pop(); 
+                } else {
+                    break;
+                }
+            }
+            if (filters.length > 0) {
+                filtersToElem(filters);
+                applyEQ();
+            } else {
+                alert("Parse filters file failed: no filter found.");
+            }
+        };
+        reader.readAsText(file);
+    });
+    // Export filters
+    document.querySelector("div.extra-eq button.export-filters").addEventListener("click", () => {
+        let phoneSelected = eqPhoneSelect.value;
+        let phoneObj = phoneSelected && activePhones.filter(
+            p => p.fullName == phoneSelected && p.eq)[0];
+        let filters = elemToFilters(true);
+        if (!phoneObj || !filters.length) {
+            alert("Please select model and add atleast one filter before export.");
+            return;
+        }
+        let preamp = Equalizer.calc_preamp(
+            phoneObj.rawChannels.filter(c => c)[0],
+            phoneObj.eq.rawChannels.filter(c => c)[0]);
+        let settings = "Preamp: " + preamp.toFixed(1) + " dB\r\n";
+        filters.forEach((f, i) => {
+            let on = (!f.disabled && f.type && f.freq && f.gain && f.q) ? "ON" : "OFF";
+            settings += ("Filter " + (i+1) + ": " + on + " " + f.type + " Fc " +
+                f.freq.toFixed(0) + " Hz Gain " + f.gain.toFixed(1) + " dB Q " +
+                f.q.toFixed(3) + "\r\n");
+        });
+        let exportElem = document.querySelector("#file-filters-export");
+        exportElem.href && URL.revokeObjectURL(exportElem.href);
+        exportElem.href = URL.createObjectURL(new Blob([settings]));
+        exportElem.download = phoneObj.fullName.replace(/^Uploaded /, "") + " Filters.txt";
+        exportElem.click();
+    });
+    // Export filters as graphic eq (for wavelet)
+    document.querySelector("div.extra-eq button.export-graphic-filters").addEventListener("click", () => {
+        let phoneSelected = eqPhoneSelect.value;
+        let phoneObj = phoneSelected && activePhones.filter(
+            p => p.fullName == phoneSelected && p.eq)[0] || { fullName: "Unnamed" };
+        let filters = elemToFilters();
+        if (!filters.length) {
+            alert("Please add atleast one filter before export.");
+            return;
+        }
+        let graphicEQ = Equalizer.as_graphic_eq(filters);
+        let settings = "GraphicEQ: " + graphicEQ.map(([f, gain]) =>
+            f.toFixed(0) + " " + gain.toFixed(1)).join("; ");
+        let exportElem = document.querySelector("#file-filters-export");
+        exportElem.href && URL.revokeObjectURL(exportElem.href);
+        exportElem.href = URL.createObjectURL(new Blob([settings]));
+        exportElem.download = phoneObj.fullName.replace(/^Uploaded /, "") + " Graphic Filters.txt";
+        exportElem.click();
+    });
+    // Readme
+    document.querySelector("div.extra-eq button.readme").addEventListener("click", () => {
+        alert("1. If you want to AutoEQ model A to B, display A B and remove target\n" +
+            "2. Add/Remove bands before AutoEQ may give you a better result\n" +
+            "3. Curve of PK filter close to 20K is implementation dependent, avoid such filter if you're not sure how your DSP software works\n" +
+            "4. EQ treble require resonant peak matching and fine tune by ear, keep treble untouched if you're not sure how to do that\n" +
+            "5. Tone generator is useful to find actual location of peaks and dips, notice the web version may not work on some platform\n");
+    });
+    // AutoEQ
+    let autoEQFromInput = document.querySelector("div.extra-eq input[name='autoeq-from']");
+    let autoEQToInput = document.querySelector("div.extra-eq input[name='autoeq-to']");
+    autoEQFromInput.value = Equalizer.config.AutoEQRange[0].toFixed(0);
+    autoEQToInput.value = Equalizer.config.AutoEQRange[1].toFixed(0);
+    document.querySelector("div.extra-eq button.autoeq").addEventListener("click", () => {
+        // Generate filters automatically
+        let phoneSelected = eqPhoneSelect.value;
+        if (!phoneSelected) {
+            let firstPhone = eqPhoneSelect.querySelectorAll("option")[1];
+            if (firstPhone) {
+                phoneSelected = eqPhoneSelect.value = firstPhone.value;
+            }
+        }
+        let phoneObj = phoneSelected && activePhones.filter(
+            p => p.fullName == phoneSelected)[0];
+        let targetObj = (activePhones.filter(p => p.isTarget)[0] ||
+            activePhones.filter(p => p !== phoneObj && !p.isTarget)[0]);
+        if (!phoneObj || !targetObj) {
+            alert("Please select model and target, if there are no target and multiple models are displayed then the second one will be selected as target.");
+            return;
+        }
+        let autoEQOverlay = document.querySelector(".extra-eq-overlay");
+        autoEQOverlay.style.display = "block";
+        setTimeout(() => {
+            let autoEQFrom = Math.min(Math.max(parseInt(autoEQFromInput.value) || 0, 20), 20000);
+            let autoEQTo = Math.min(Math.max(parseInt(autoEQToInput.value) || 0, autoEQFrom), 20000);
+            Equalizer.config.AutoEQRange = [autoEQFrom, autoEQTo];
+            let phoneCHs = (phoneObj.rawChannels.filter(c => c)
+                .map(ch => ch.map(([f, v]) => [f, v + phoneObj.norm])));
+            let phoneCH = (phoneCHs.length > 1) ? avgCurves(phoneCHs) : phoneCHs[0];
+            let targetCH = targetObj.rawChannels.filter(c => c)[0].map(([f, v]) => [f, v + targetObj.norm]);
+            let filters = Equalizer.autoeq(phoneCH, targetCH, eqBands);
+            filtersToElem(filters);
+            applyEQ();
+            autoEQOverlay.style.display = "none";
+        }, 100);
+    });
+    // Tone Generator
+    let toneGeneratorFromInput = document.querySelector("div.extra-tone-generator input[name='tone-generator-from']");
+    let toneGeneratorToInput = document.querySelector("div.extra-tone-generator input[name='tone-generator-to']");
+    let toneGeneratorSlider = document.querySelector("div.extra-tone-generator input[name='tone-generator-freq']");
+    let toneGeneratorPlayButton = document.querySelector("div.extra-tone-generator .play");
+    let toneGeneratorText = document.querySelector("div.extra-tone-generator .freq-text");
+    let toneGeneratorContext = null;
+    let toneGeneratorOsc = null;
+    let toneGeneratorTimeoutHandle = null
+    toneGeneratorSlider.addEventListener("input", () => {
+        let from = Math.min(Math.max(parseInt(toneGeneratorFromInput.value) || 0, 20), 20000);
+        let to = Math.min(Math.max(parseInt(toneGeneratorToInput.value) || 0, from), 20000);
+        let position = parseFloat(toneGeneratorSlider.value) || 0;
+        let freq = Math.round(Math.exp( // Slider move in log scale
+            Math.log(from) + (Math.log(to) - Math.log(from)) * position));
+        toneGeneratorText.innerText = freq;
+        if (toneGeneratorOsc) {
+            let t = toneGeneratorContext.currentTime;
+            toneGeneratorOsc.frequency.cancelScheduledValues(t);
+            toneGeneratorOsc.frequency.setTargetAtTime(freq, t, 0.2); // Smoother transition but also delay
+        }
+    });
+    toneGeneratorPlayButton.addEventListener("click", () => {
+        if (toneGeneratorOsc) {
+            toneGeneratorOsc.stop();
+            toneGeneratorOsc = null;
+            toneGeneratorPlayButton.innerText = "Play";
+        } else {
+            if (!toneGeneratorContext) {
+                if (!window.AudioContext) {
+                    alert("Web audio api is disabled, please enable it if you want to use tone generator.");
+                    return;
+                }
+                toneGeneratorContext = new AudioContext();
+            }
+            toneGeneratorOsc = toneGeneratorContext.createOscillator();
+            toneGeneratorOsc.type = "sine";
+            toneGeneratorOsc.frequency.value = parseInt(toneGeneratorText.innerText);
+            toneGeneratorOsc.connect(toneGeneratorContext.destination);
+            toneGeneratorOsc.start();
+            toneGeneratorPlayButton.innerText = "Stop";
+        }
+    });
+    
+}
+addExtra();
+
 // Add accessories to the bottom of the page, if configured
 function addAccessories() {
     let accessoriesBar = document.querySelector("div.accessories"),
@@ -2135,15 +2656,21 @@ function addHeader() {
         headerLogoElem = document.createElement("div"),
         headerLogoLink = document.createElement("a"),
         headerLogoImg = document.createElement("img"),
+        headerLogoSpan = document.createElement("span"),
         linksList = document.createElement("ul");
     
     headerButton.className = "header-button";
     headerLogoElem.className = "logo";
     headerLogoLink.setAttribute('href', site_url);
-    headerLogoImg.setAttribute("src", headerLogoImgUrl);
+    if (headerLogoText) {
+        headerLogoSpan.innerText = headerLogoText;
+        headerLogoLink.append(headerLogoSpan);
+    } else if (headerLogoImgUrl) {
+        headerLogoImg.setAttribute("src", headerLogoImgUrl);
+        headerLogoLink.append(headerLogoImg);
+    }
     
     altHeaderElem.append(headerButton);
-    headerLogoLink.append(headerLogoImg);
     headerLogoElem.append(headerLogoLink);
     altHeaderElem.setAttribute("data-links", "");
     altHeaderElem.append(headerLogoElem);
@@ -2159,6 +2686,7 @@ function addHeader() {
             linkElem = document.createElement("a");
         
         linkElem.setAttribute("href", link.url);
+        linkElem.setAttribute("target", "_blank");
         linkElem.textContent = link.name;
         linkContainerElem.append(linkElem);
         linksList.append(linkContainerElem);

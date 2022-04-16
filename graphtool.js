@@ -148,8 +148,8 @@ doc.html(`
               <div class="filters-header">
                 <span>Type</span>
                 <span>Frequency</span>
-                <span>Q</span>
                 <span>Gain</span>
+                <span>Q</span>
               </div>
               <div class="filters">
                 <div class="filter">
@@ -162,8 +162,8 @@ doc.html(`
                       </select>
                     </span>
                     <span><input name="freq" type="number" min="20" max="20000" step="1" value="0"></input></span>
-                    <span><input name="q" type="number" min="0" max="10" step="0.1" value="0"></input></span>
                     <span><input name="gain" type="number" min="-40" max="40" step="0.1" value="0"></input></span>
+                    <span><input name="q" type="number" min="0" max="10" step="0.1" value="0"></input></span>
                 </div>
               </div>
               <div class="settings-row">
@@ -2478,7 +2478,10 @@ function addExtra() {
                 let q = parseFloat(r[6]) || 0;
                 if (type === "LS" || type === "HS") {
                     type += "Q";
-                    q = 0.707;
+                    q = q || 0.707;
+                } else if (type === "LSC" || type === "HSC") {
+                    // Equalizer APO use LSC/HSC instead of LSQ/HSQ
+                    type = type.substr(0, 2) + "Q";
                 }
                 return { disabled, type, freq, q, gain };
             }).filter(f => f);
@@ -2516,7 +2519,12 @@ function addExtra() {
         let settings = "Preamp: " + preamp.toFixed(1) + " dB\r\n";
         filters.forEach((f, i) => {
             let on = (!f.disabled && f.type && f.freq && f.gain && f.q) ? "ON" : "OFF";
-            settings += ("Filter " + (i+1) + ": " + on + " " + f.type + " Fc " +
+            let type = f.type;
+            if (type === "LSQ" || type === "HSQ") {
+                // Equalizer APO use LSC/HSC instead of LSQ/HSQ
+                type = type.substr(0, 2) + "C";
+            }
+            settings += ("Filter " + (i+1) + ": " + on + " " + type + " Fc " +
                 f.freq.toFixed(0) + " Hz Gain " + f.gain.toFixed(1) + " dB Q " +
                 f.q.toFixed(3) + "\r\n");
         });

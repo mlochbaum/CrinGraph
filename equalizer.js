@@ -141,15 +141,11 @@ Equalizer = (function() {
     };
 
     let calc_preamp = function (fr1, fr2) {
-        let max1 = -Infinity;
-        let max2 = -Infinity;
+        let maxGain = -Infinity;
         for (let i = 0; i < fr1.length; ++i) {
-            max1 = Math.max(max1, fr1[i][1]);
+            maxGain = Math.max(maxGain, fr2[i][1] - fr1[i][1]);
         }
-        for (let i = 0; i < fr2.length; ++i) {
-            max2 = Math.max(max2, fr2[i][1]);
-        }
-        return max1 - max2;
+        return -maxGain;
     };
 
     let calc_distance = function (fr1, fr2) {

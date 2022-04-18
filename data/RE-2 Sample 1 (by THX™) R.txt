@@ -1,7 +1,7 @@
 * Measurement data measured by REW V5.20.5
 * Source: Input device not selected, no input selected, L, volume: 0.000
 * Format: 128k Log Swept Sine, 4 sweeps at -15.0 dBFS with no timing reference
-* Dated: 2022. 4. 18 ¿ÀÈÄ 10:33:26
+* Dated: 2022. 4. 18 Â¿Ã€ÃˆÃ„ 10:33:26
 * REW Settings:
 *  C-weighting compensation: Off
 *  Target level: 75.0 dB

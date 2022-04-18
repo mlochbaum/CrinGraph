@@ -1,7 +1,7 @@
 * Measurement data measured by REW V5.20.5
-* Source: ¸¶ÀÌÅ©(THX Onyx USB Amplifie, MICROPHONE (¸¶½º), L, volume: 0.250
+* Source: Â¸Â¶Ã€ÃŒÃ…Â©(THX Onyx USB Amplifie, MICROPHONE (Â¸Â¶Â½Âº), L, volume: 0.250
 * Format: 128k Log Swept Sine, 4 sweeps at -28.0 dBFS with no timing reference
-* Dated: 2022. 4. 18 ¿ÀÈÄ 7:52:22
+* Dated: 2022. 4. 18 Â¿Ã€ÃˆÃ„ 7:52:22
 * REW Settings:
 *  C-weighting compensation: Off
 *  Target level: 75.0 dB

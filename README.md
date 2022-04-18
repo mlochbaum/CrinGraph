@@ -15,7 +15,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Beyerdynamic** : Beat Byrd (냥냐냥님 측정)
 
-**Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™)
+**Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™님 )
 
 **Iriver** : ICP-AT2000 (냥냐냥님 측정)
 

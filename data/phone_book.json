@@ -42,6 +42,12 @@
               ]
   },
   {
+    "name": "KEF",
+    "phones": [
+                {"name":["M100"],"file":["M100 Sample 1 (by THX™, Bundle Tips)", "M100 Sample 1 (by THX™, Spinfit Tips)"]}
+              ]
+  },
+  {
     "name": "LG",
     "phones": [ 
                {"name":["USB-C Earphones"],"file":["USB-C Earphones Sample 1 (by ER4SR)"]}

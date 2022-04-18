@@ -11,6 +11,12 @@
               ]
   },
   {
+    "name": "AME",
+    "phones": [
+                {"name":["J2XR"],"file":["J2XR Sample 1 (Brown Damper, Final E Tips, by THX™)"]}
+              ]
+  },
+  {
     "name": "Beyerdynamic",
     "phones": [
                 {"name":["Beat Byrd"],"file":["Beat Byrd Sample 1 (by 냥냐냥)"]}
@@ -84,6 +90,12 @@
               ]
   },
   {
+    "name": "Sange",
+    "phones": [
+                {"name":["1+4"],"file":["1+4 Sample 1 (Unknown Tips, by THX™)"]}
+              ]
+  },
+  {
     "name": "Sennheiser",
     "phones": [ 
                {"name":["IE400 Pro"],"file":["IE400 Pro Sample 1 (by ER4SR, Final E M)"]}
@@ -107,6 +119,12 @@
     "name": "Tanchjim",
     "phones": [
                 {"name":["Oxygen"],"file":["Oxygen Sample 1 (by 냥냐냥, Bass Tips)", "Oxygen Sample 1 (by 냥냐냥, Treble Tips)"]}
+              ]
+  },
+  {
+    "name": "Ucotech",
+    "phones": [
+                {"name":["RE-2"],"file":["RE-2 Sample 1 (by THX™)"]}
               ]
   }
 ]

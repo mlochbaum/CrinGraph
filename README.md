@@ -11,17 +11,19 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 ## 현재 업로드된 이어폰/IEM 목록
 
-**AKG** : N5005 (Mid High Filter)
+**AKG** : N5005 (샘플 1: 미드하이필터, 샘플 2: 전 필터 / 냥냐냥님 측정)
 
 **Beyerdynamic** : Beat Byrd (냥냐냥님 측정)
 
-**Etymotic Research** : ER4SR (Grey Tri-flange Eartips)
+**Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™)
 
 **Iriver** : ICP-AT2000 (냥냐냥님 측정)
 
 **JBL** : Club Pro+ (냥냐냥님 측정)
 
 **Kinera** : Idun Golden (냥냐냥님 측정)
+
+**KEF** : M100 (THX™님 측정)
 
 **LG** : USB-C Earphones (LG Wing Bundle)
 

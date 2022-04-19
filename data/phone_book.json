@@ -50,7 +50,7 @@
   {
     "name": "KEF",
     "phones": [
-                {"name":["M100"],"file":["M100 Sample 1 (by THX™, Bundle Tips)", "M100 Sample 1 (by THX™, Spinfit Tips)"]}
+                {"name":["M100"],"file":["M100 Sample 1 (by THX™, Bundle Tips)", "M100 Sample 1 (by THX™, Spinfit CP145 Tips)"]}
               ]
   },
   {
@@ -63,12 +63,15 @@
     "name": "Moondrop",
     "phones": [ 
               {"name":["Aria (2021)"],"file":["Aria (2021) Sample 1 (by ER4SR, Orza L)"]},
+              {"name":["Chu"],"file":["Chu Sample 1 (Final E Tips, by THX™)", "Chu Sample 1 (Spring Tips, by THX™)"]},
               {"name":["Starfield"],"file":["Starfield Sample 1 (by 은구리)"]},
               {"name": ["Nekocake"],"file":["Nekocake Sample 1 (by 냥냐냥, Balanced EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, Classic EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, XDynamic EQ)",
                 "Nekocake Sample 1 (by 냥냐냥, NoBass EQ)",
-                "Nekocake Sample 1 (by 냥냐냥, Wennebostel EQ)"]}
+                "Nekocake Sample 1 (by 냥냐냥, Wennebostel EQ)"]},
+              {"name":["Quarks"],"file":["Quarks Sample 1 (EO-IG955 Tips, by THX™)"]}
+              
               ]
   },
   {

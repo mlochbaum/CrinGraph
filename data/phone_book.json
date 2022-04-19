@@ -130,7 +130,7 @@
     "phones": [
                {"name":["Dirac mk2"],"file":["Dirac mk2 Sample 1 (by 냥냐냥)"]},
                {"name": ["Direm KASA"], "file":["Direm KASA Sample 1 (by ER4SR, Final E M)"]},
-               {"name": ["Direm E3-C"],"file":"Direm E3-C Sample 1 (by 냥냐냥)"}
+               {"name": ["Direm E3-C"],"file":["Direm E3-C Sample 1 (by 냥냐냥)"]}
               ]
   },
   {

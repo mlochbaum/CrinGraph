@@ -32,7 +32,7 @@
   {
     "name": "FiiO",
     "phones": [
-                {"name":["FD5"],"file":["FD5 Sample 1 (by 이소양)"]}
+                {"name":["FD5"],"file":["FD5 Sample 1 (by 이소양)"]}
               ]
   },
   {
@@ -69,10 +69,10 @@
     "name": "Moondrop",
     "phones": [ 
               {"name":["Aria (2021)"],"file":["Aria (2021) Sample 1 (by ER4SR, Orza L)"]},
-              {"name":["Blessing"],"file":["Blessing Sample 1 (by 이소양)"]},
-              {"name":["Blessing 2"],"file":["Blessing 2 Sample 1 (by 이소양)"]},
+              {"name":["Blessing"],"file":["Blessing Sample 1 (by 이소양)"]},
+              {"name":["Blessing 2"],"file":["Blessing 2 Sample 1 (by 이소양)"]},
               {"name":["Chu"],"file":["Chu Sample 1 (Final E Tips, by THX™)", "Chu Sample 1 (Spring Tips, by THX™)"]},
-              {"name":["KXXS"],"file":["KXXS Sample 1 (by 이소양)"]},
+              {"name":["KXXS"],"file":["KXXS Sample 1 (by 이소양)"]},
               {"name": ["Nekocake"],"file":["Nekocake Sample 1 (by 냥냐냥, Balanced EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, Classic EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, XDynamic EQ)",
@@ -80,7 +80,7 @@
                 "Nekocake Sample 1 (by 냥냐냥, Wennebostel EQ)"]},
               {"name":["Quarks"],"file":["Quarks Sample 1 (EO-IG955 Tips, by THX™)"]},
               {"name":["Starfield"],"file":["Starfield Sample 1 (by 은구리)"]},
-              {"name":["SSR"],"file":["SSR Sample 1 (by 이소양)"]}
+              {"name":["SSR"],"file":["SSR Sample 1 (by 이소양)"]}
               ]
   },
   {
@@ -104,7 +104,7 @@
   {
     "name": "Queen of Audio (QOA)",
     "phones": [
-                {"name":["Adonis"], "file":["Adonis Sample 1 (by 이소양)"]}
+                {"name":["Adonis"], "file":["Adonis Sample 1 (by 이소양)"]}
               ]
   },
   {
@@ -116,7 +116,7 @@
   {
     "name": "SeeAudio",
     "phones": [ 
-               {"name":["Yume"],"file":["Yume Sample 1 (by 이소양)"]}
+               {"name":["Yume"],"file":["Yume Sample 1 (by 이소양)"]}
               ]
   },
   {
@@ -142,17 +142,17 @@
   {
     "name": "Tanchjim",
     "phones": [
-                {"name":["Darling"],"file":["Darling Sample 1 (by 이소양)"]},
+                {"name":["Darling"],"file":["Darling Sample 1 (by 이소양)"]},
                 {"name":["Oxygen"],"file":["Oxygen Sample 1 (by 냥냐냥, Bass Tips)", "Oxygen Sample 1 (by 냥냐냥, Treble Tips)"]},
-                {"name":["Oxygen Asano"],"file":["Oxygen Asano Sample 1 (by 이소양)"]},
-                {"name":["PRISM"],"file":["PRISM Sample 1 (by 이소양)"]}
+                {"name":["Oxygen Asano"],"file":["Oxygen Asano Sample 1 (by 이소양)"]},
+                {"name":["PRISM"],"file":["PRISM Sample 1 (by 이소양)"]}
               ]
   },
   {
     "name": "Ucotech",
     "phones": [
                 {"name":["RE-1"],"file":["RE-1 Sample 1 (by 이소양)"]},
-                {"name":["RE-2"],"file":["RE-2 Sample 1 (by THX™)", "RE-2 Sample 2 (by 이소양)"]}
+                {"name":["RE-2"],"file":["RE-2 Sample 1 (by THX™)", "RE-2 Sample 2 (by 이소양)"]}
               ]
   }
 ]

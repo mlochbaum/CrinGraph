@@ -29,7 +29,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **LG** : USB-C Earphones (LG Wing Bundle)
 
-**Moondrop** : Aria (2021), Starfield (은구리님 측정), Nekocake (냥냐냥님 측정)
+**Moondrop** : Aria (2021), Chu (THX™님 측정), Quarks (THX™님 측정), Starfield (은구리님 측정), Nekocake (냥냐냥님 측정)
 
 **Project Refine** : P1AL (냥냐냥님 측정)
 

@@ -116,7 +116,8 @@
   {
     "name": "SeeAudio",
     "phones": [ 
-               {"name":["Yume"],"file":["Yume Sample 1 (by 이소양)"]}
+               {"name":["Yume"],"file":["Yume Sample 1 (by 이소양)"]},
+               {"name":["Bravery"],"file":["Bravery Sample 1 (by 냥냐냥)"]}
               ]
   },
   {

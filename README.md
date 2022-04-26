@@ -31,6 +31,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **KEF** : M100 (THX™님 측정)
 
+**KZ** : ZEX Pro (CRN) (냥냐냥님 측정)
+
 **LG** : USB-C Earphones (LG Wing Bundle)
 
 **Moondrop** : Aria (2021), Blessing (이소양님 측정), Blessing 2 (이소양님 측정), Chu (THX™님 측정), KXXS (이소양님 측정), Nekocake (냥냐냥님 측정), Quarks (샘플 1: THX™님 측정, 샘플 2: 냥냐냥님 측정), Starfield (이소양님 측정), SSR (이소양님 측정)

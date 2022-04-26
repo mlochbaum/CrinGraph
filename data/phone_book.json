@@ -1,5 +1,12 @@
 [
   {
+    "name": "7Hz",
+    "phones": [
+                {"name":["Eternal"],"file":["Eternal Sample 1 (by 냥냐냥)"]},
+                {"name":["Timeless"],"file":["Timeless Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
     "name": "AKG",
     "phones": [ 
                {"name":["N5005"],"file":["N5005 Sample 1 (Mid High Filter, by ER4SR)",
@@ -78,8 +85,10 @@
                 "Nekocake Sample 1 (by 냥냐냥, XDynamic EQ)",
                 "Nekocake Sample 1 (by 냥냐냥, NoBass EQ)",
                 "Nekocake Sample 1 (by 냥냐냥, Wennebostel EQ)"]},
-              {"name":["Quarks"],"file":["Quarks Sample 1 (EO-IG955 Tips, by THX™)"]},
-              {"name":["Starfield"],"file":["Starfield Sample 1 (by 은구리)"]},
+              {"name":["Quarks"],"file":[
+                "Quarks Sample 1 (EO-IG955 Tips, by THX™)",
+                "Quarks Sample 2 (by 냥냐냥)"]},
+              {"name":["Starfield"],"file":["Starfield Sample 1 (by 이소양)"]},
               {"name":["SSR"],"file":["SSR Sample 1 (by 이소양)"]}
               ]
   },
@@ -111,6 +120,12 @@
     "name": "Sange",
     "phones": [
                 {"name":["1+4"],"file":["1+4 Sample 1 (Unknown Tips, by THX™)"]}
+              ]
+  },
+  {
+    "name": "Samsung",
+    "phones": [
+                {"name":["Gear Icon X (2018)"],"file":["Gear Icon X(2018) Sample 1 (by 냥냐냥, Tanchjim Oxygen Filter, AT2000 Tips)"]}
               ]
   },
   {

@@ -73,7 +73,7 @@ function watermark(svg) {
 function tsvParse(fr) {
     return fr.split(/[\r\n]/)
         .map(l => l.trim()).filter(l => l && l[0] !== '*')
-        .map(l => l.split(/[\s,]+/).map(e => parseFloat(e)).slice(0, 2))
+        .map(l => l.split(/[\s,;]+/).map(e => parseFloat(e)).slice(0, 2))
         .filter(t => !isNaN(t[0]) && !isNaN(t[1]));
 }
 

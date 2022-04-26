@@ -2297,7 +2297,7 @@ function addExtra() {
             let name = file.name.replace(/\.[^\.]+$/, "");
             let phone = { name: name };
             let ch = [tsvParse(e.target.result)];
-            if (ch[0].length < 128) {
+            if (ch[0].length < 32) {
                 alert("Parse frequence response file failed: invalid format.");
                 return;
             }

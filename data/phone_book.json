@@ -67,6 +67,12 @@
               ]
   },
   {
+    "name": "KZ",
+    "phones": [
+                {"name":["ZEX Pro (CRN)"],"file":["ZEX Pro Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
     "name": "LG",
     "phones": [ 
                {"name":["USB-C Earphones"],"file":["USB-C Earphones Sample 1 (by ER4SR)"]}

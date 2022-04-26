@@ -11,13 +11,17 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 ## 현재 업로드된 이어폰/IEM 목록
 
+**7Hz** : Eternal (냥냐냥님 측정), Timeless (냥냐냥님 측정)
+
 **AME** : J2XR (샘플 1: 브라운 필터, 파이널 E팁 / THX™님 측정)
 
 **AKG** : N5005 (샘플 1: 미드하이필터, 샘플 2: 전 필터 / 냥냐냥님 측정)
 
-**Beyerdynamic** : Beat Byrd (샘플 1: 냥냐냥님 측정)
+**Beyerdynamic** : Beat Byrd (냥냐냥님 측정)
 
 **Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™님 측정)
+
+**FiiO** : FD5 (이소양님 측정)
 
 **Iriver** : ICP-AT2000 (냥냐냥님 측정)
 
@@ -29,7 +33,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **LG** : USB-C Earphones (LG Wing Bundle)
 
-**Moondrop** : Aria (2021), Chu (THX™님 측정), Quarks (THX™님 측정), Starfield (은구리님 측정), Nekocake (냥냐냥님 측정)
+**Moondrop** : Aria (2021), Blessing (이소양님 측정), Blessing 2 (이소양님 측정), Chu (THX™님 측정), KXXS (이소양님 측정), Nekocake (냥냐냥님 측정), Quarks (샘플 1: THX™님 측정, 샘플 2: 냥냐냥님 측정), Starfield (이소양님 측정), SSR (이소양님 측정)
 
 **Project Refine** : P1AL (냥냐냥님 측정)
 
@@ -37,7 +41,13 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **QDC** : Dmagic Solo (냥냐냥님 측정)
 
+**Queen Of Audio (QOA)**: Adonis (이소양님 측정)
+
 **Sange** : 1+4 (THX™님 측정)
+
+**Samsung** : Gear Icon X (2018) (옥시즌 나노 필터, AT2000팁, 냥냐냥님 측정)
+
+**Seeaudio** : Yume(이소양님 측정), Bravery (냥냐냥님 측정)
 
 **Sennheiser** : IE 400 pro
 
@@ -45,9 +55,9 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Sony** : IER-M7
 
-**Tanchjim** : Oxygen (냥냐냥님 측정)
+**Tanchjim** : Darling (이소양님 측정), Oxygen (냥냐냥님 측정), Oxygen Asano (이소양님 측정), PRISM (이소양님 측정)
 
-**Ucotech** : RE-2 (THX™님 측정)
+**Ucotech** : RE-1(이소양님 측정), RE-2 (샘플 1: THX™님 측정, 샘플 2: 이소양님 측정)
 
 
 ## 측정치 생성/업로드 방법

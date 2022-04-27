@@ -308,7 +308,7 @@ section.parts-primary {
     
     background-color: var(--background-color);
     
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 section.parts-secondary {
@@ -331,7 +331,7 @@ header.header {
     box-sizing: border-box;
     flex: 48px 0 0;
     
-    background-color: var(--font-color-primary);
+    background-color: var(--header-color);
 }
 
 button.header-button {
@@ -358,6 +358,7 @@ div.logo a {
     display: block;
     width: 100%;
     height: 100%;
+    text-decoration: none;
 }
 
 div.logo img {
@@ -366,6 +367,15 @@ div.logo img {
     object-fit: contain;
     
     filter: var(--logo-filter);
+}
+
+div.logo span {
+    margin: 0 1em;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    
+    color: var(--header-links-color);
 }
 
 ul.header-links {
@@ -379,7 +389,7 @@ ul.header-links {
     margin: auto;
     padding: 0 16px;
     
-    overflow-x: scroll;
+    overflow-x: hidden;
 }
 
 ul.header-links::-webkit-scrollbar {
@@ -408,7 +418,7 @@ ul.header-links a {
     display: flex;
     align-items: center;
     
-    color: var(--background-color-graph);
+    color: var(--header-links-color);
     font-family: var(--font-primary);
     font-weight: 500;
     font-size: 14px;
@@ -471,7 +481,7 @@ div.tools {
     max-height: 69px;
     padding: 16px 0;
     
-    overflow-x: scroll;
+    overflow-x: auto;
     
     background-color: var(--background-color);
     border-bottom: 1px solid var(--background-color-contrast);
@@ -863,10 +873,11 @@ div.miscTools {
     padding: 0 16px;
 }
 
-div.miscTools button {
+div.miscTools button,
+div.extra-panel button {
     order: 1;
     
-    padding: 11px 16px;
+    padding: 11px 8px;
     margin: 0;
     
     background-color: var(--background-color) !important;
@@ -940,7 +951,86 @@ div.miscTools button#theme:active {
     color: var(--font-color-secondary);
 }
 
+/** extra panel **/
 
+div.extra-panel {
+    flex-direction: column;
+    overflow: auto;
+}
+
+div.extra-panel > div {
+    margin: 0 0 1em 0;
+}
+
+div.extra-panel h5 {
+    margin: 0 0 1em 0;
+    color: var(--accent-color-contrast);
+}
+
+div.extra-panel span {
+    color: var(--background-color-contrast-more);
+}
+
+div.extra-panel > div.extra-eq > div.select-eq-phone,
+div.extra-panel > div.extra-eq > div.filters,
+div.extra-panel div.settings-row {
+    margin: 0 0 0.5em 0;
+}
+
+div.extra-panel > div.extra-eq > div.select-eq-phone > select {
+    width: 99%;
+}
+
+div.extra-panel > div.extra-eq > div.filters-header > span,
+div.extra-panel > div.extra-eq > div.filters > div.filter > span {
+    width: 24%;
+    display: inline-block;
+}
+
+div.extra-panel > div.extra-eq > div.filters > div.filter > span > input[type='checkbox'] {
+    width: 20%;
+    margin: 0;
+    -webkit-appearance: checkbox;
+    appearance: checkbox;
+}
+
+div.extra-panel > div.extra-eq > div.filters > div.filter > span > select {
+    width: 70%;
+}
+
+div.extra-panel div.settings-row > span {
+    width: 30%;
+    display: inline-block;
+}
+
+div.extra-panel > div.extra-eq > div.filters > div.filter > span > input,
+div.extra-panel div.settings-row > span > input {
+    width: 90%;
+}
+
+div.extra-eq-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    padding: calc(50vh - 1em) 0;
+    font-weight: bold;
+}
+
+div.extra-panel button {
+    margin-bottom: 4px !important;
+}
+
+div.extra-panel > div.extra-tone-generator input[name='tone-generator-freq'] {
+    width: 100%;
+    border: 1px solid var(--accent-color-contrast);
+    
+}
 
 /*****
 Targets styles *****/
@@ -954,7 +1044,7 @@ div.targets {
     padding: 16px;
     max-height: 68px;
     
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
 }
 
@@ -1731,6 +1821,14 @@ div.select {
     flex-direction: column;
 }
 
+div.select > div.selector-panel {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
 input.search {
     position: sticky;
     top: 0;
@@ -1772,7 +1870,6 @@ div.select > div.selector-tabs button {
     
     background-color: var(--background-color);
     border: 1px solid var(--background-color-contrast-more);
-    border-radius: 6px 0 0 6px;
     
     color: var(--accent-color-contrast);
     font-family: var(--font-primary);
@@ -1786,9 +1883,10 @@ div.select > div.selector-tabs button {
 
 div.select > div.selector-tabs button:nth-of-type(1) {
     border-right: none;
+    border-radius: 6px 0px 0px 6px;
 }
 
-div.select > div.selector-tabs button:nth-of-type(2) {
+div.select > div.selector-tabs button:nth-last-of-type(1) {
     border-left: none;
     border-radius: 0 6px 6px 0;
 }
@@ -1798,10 +1896,13 @@ svg.stop {
     display: none;
 }
 
-div.select > div.scroll-container {
+div.select > div.selector-panel > div.scroll-container {
     position: relative;
-    
     flex: auto 1 1;
+}
+
+div.select > div.extra-panel {
+    padding: 16px 16px 0 16px;
 }
 
 div.scrollOuter {
@@ -1869,7 +1970,7 @@ div.scroll {
     height: 100%;
     padding: 16px 0;
     
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -1904,6 +2005,13 @@ div.select[data-selected="models"] div.scrollOuter[data-list="brands"]:before {
     opacity: 0.8;
     pointer-events: all;
     cursor: pointer;
+}
+
+div.select[data-selected="extra"] > div.selector-tabs button.extra {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    
+    color: var(--font-color-secondary);
 }
 
 /* List item */
@@ -2202,7 +2310,7 @@ div.tutorial-buttons {
     
     background-color: var(--background-color-graph);
     
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 div.tutorial-buttons:after {
@@ -2327,7 +2435,7 @@ div.external-links {
     width: 100%;
     max-height: 69px;
     padding: 16px;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     
     border-top: 1px solid var(--background-color-contrast-more);
@@ -2708,7 +2816,7 @@ Responsive styles *****/
         
         order: 1;
         height: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
     
     section.parts-primary:after {
@@ -2829,10 +2937,6 @@ Responsive styles *****/
         border-radius: 6px;
         
         pointer-events: none;
-    }
-    
-    div.selector-tabs {
-        display: none;
     }
     
     div.scroll > div.phone-item {
@@ -3013,7 +3117,7 @@ Responsive styles *****/
         height: 36px;
         margin: 0 0 0 6px;
 
-        background-color: var(--background-color-contrast-more);
+        background-color: var(--header-menu-icon-color);
         mask: var(--icon-hamburger);
         -webkit-mask: var(--icon-hamburger);
         mask-size: 20px;
@@ -3056,7 +3160,7 @@ Responsive styles *****/
         transform: translateX(-100vw);
         
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     ul.header-links li {
@@ -3127,11 +3231,7 @@ Responsive styles *****/
         flex: 600px 0 0;
     }
     
-    div.select > div.selector-tabs {
-        display: none;
-    }
-    
-    div.select > div.scroll-container {
+    div.select > div.selector-panel > div.scroll-container {
         display: flex;
         max-height: 100%;
     }
@@ -3198,19 +3298,6 @@ Responsive styles *****/
     tbody.curves > tr > td.hideIcon,
     tbody.curves > tr > td.button-pin {
         order: 5;
-    }
-}
-
-/* Edge cases */
-@media ( max-height: 500px ) {
-    div.select > div.selector-tabs {
-        display: none;
-    }
-}
-
-@media ( min-aspect-ratio: 1/1 ) and ( max-height: 800px ) and ( max-width: 1000px ) {
-    div.select > div.selector-tabs {
-        display: none;
     }
 }
 

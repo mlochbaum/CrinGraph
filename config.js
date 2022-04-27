@@ -30,6 +30,13 @@ const init_phones = [],                      // Optional. Which graphs to displa
       labelsPosition = "default",                   // Up to four labels will be grouped in a specified corner. Accepts "top-left," bottom-left," "bottom-right," and "default"
       stickyLabels = false,                         // "Sticky" labels 
       analyticsEnabled = false;                     // Enables Google Analytics 4 measurement of site usage
+      extraEnabled = true,                          // Enable extra features
+      extraUploadEnabled = true,                    // Enable upload function
+      extraEQEnabled = true,                        // Enable parametic eq function
+      extraEQBands = 10,                            // Default EQ bands available
+      extraEQBandsMax = 20,                         // Max EQ bands available
+      extraToneGeneratorEnabled = true;             // Enable tone generator function
+
 
 // Specify which targets to display
 const targets = [

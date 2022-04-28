@@ -1442,7 +1442,16 @@ let f_values = (function() {
     // Standard frequencies, all phone need to interpolate to this
     let f = [20];
     let step = Math.pow(2, 1/48); // 1/48 octave
-    while (f[f.length-1] < 20000) { f.push(f[f.length-1] * step) }
+    while (f[f.length-1] < 20000) {
+        let value = Math.round(f[f.length-1] * step * 10) / 10;
+        if (value >= 1000) {
+            value = Math.round(value / 10) * 10;
+        } else if (value >= 100) {
+            value = Math.round(value);
+        }
+        f.push(value);
+    }
+    f[f.length-1] = 20000;
     return f;
 })();
 let fr_to_ind = fr => d3.bisect(f_values, fr, 0, f_values.length-1);

@@ -9,9 +9,9 @@
   {
     "name": "AAW",
     "phones": [
-                {"name":["Halcyon"],"file":["Halcyon Sample 1 (by NX7, NORM Filter)",
-                  "Halcyon Sample 1 (by NX7, BASS Filter)",
-                  "Halcyon Sample 1 (by NX7, VOKAL Filter)"]}
+                {"name":["Halcyon"],"file":["Halcyon Sample 1 (by NX7, NORM Filter, L Only)",
+                  "Halcyon Sample 1 (by NX7, BASS Filter, L Only)",
+                  "Halcyon Sample 1 (by NX7, VOKAL Filter, L Only)"]}
               ]
   },
   {
@@ -65,7 +65,7 @@
   {
     "name": "Final",
     "phones": [
-                {"name":["A4000"],"file":["A4000 Sample 1 (by NX7)"]}
+                {"name":["A4000"],"file":["A4000 Sample 1 (by NX7, L Only)"]}
               ]
   },
   {

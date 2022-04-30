@@ -7,6 +7,14 @@
               ]
   },
   {
+    "name": "AAW",
+    "phones": [
+                {"name":["Halcyon"],"file":["Halcyon Sample 1 (by NX7, NORM Filter)",
+                  "Halcyon Sample 1 (by NX7, BASS Filter)",
+                  "Halcyon Sample 1 (by NX7, VOKAL Filter)"]}
+              ]
+  },
+  {
     "name": "AKG",
     "phones": [ 
                {"name":["N5005"],"file":["N5005 Sample 1 (Mid High Filter, by ER4SR)",
@@ -24,9 +32,21 @@
               ]
   },
   {
+    "name": "AYA Audio",
+    "phones": [
+                {"name":["SA-01"],"file":["SA-01 Sample 1 (by NX7)"]}
+              ]
+  },
+  {
     "name": "Beyerdynamic",
     "phones": [
                 {"name":["Beat Byrd"],"file":["Beat Byrd Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
+    "name": "CCA",
+    "phones": [
+                {"name":["CRA"],"file":["CRA Sample 1 (by NX7)"]}
               ]
   },
   {
@@ -39,7 +59,13 @@
   {
     "name": "FiiO",
     "phones": [
-                {"name":["FD5"],"file":["FD5 Sample 1 (by 이소양)"]}
+                {"name":["FD5"],"file":["FD5 Sample 1 (by 이소양)", "FD5 Sample 2 (by NX7)"]}
+              ]
+  },
+  {
+    "name": "Final",
+    "phones": [
+                {"name":["A4000"],"file":["A4000 Sample 1 (by NX7)"]}
               ]
   },
   {
@@ -173,7 +199,7 @@
   {
     "name": "Ucotech",
     "phones": [
-                {"name":["RE-1"],"file":["RE-1 Sample 1 (by 이소양)"]},
+                {"name":["RE-1"],"file":["RE-1 Sample 1 (by 이소양)", "RE-1 Sample 2 (by NX7)"]},
                 {"name":["RE-2"],"file":["RE-2 Sample 1 (by THX™)", "RE-2 Sample 2 (by 이소양)"]}
               ]
   }

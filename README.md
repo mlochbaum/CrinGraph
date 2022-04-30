@@ -13,15 +13,23 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **7Hz** : Eternal (냥냐냥님 측정), Timeless (냥냐냥님 측정)
 
+**AAW** : Halcyon (전 필터 / NX7님 측정)
+
 **AME** : J2XR (샘플 1: 브라운 필터, 파이널 E팁 / THX™님 측정)
 
 **AKG** : N5005 (샘플 1: 미드하이필터, 샘플 2: 전 필터 / 냥냐냥님 측정)
 
+**AYA Audio** : SA-01 (NX7님 측정)
+
 **Beyerdynamic** : Beat Byrd (냥냐냥님 측정)
+
+**CCA** : CRA (NX7님 측정)
 
 **Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™님 측정)
 
-**FiiO** : FD5 (이소양님 측정)
+**FiiO** : FD5 (샘플 1: 이소양님 측정, 샘플 2: NX7님 측정)
+
+**Final** : A4000 (NX7님 측정)
 
 **Iriver** : ICP-AT2000 (냥냐냥님 측정)
 
@@ -59,7 +67,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Tanchjim** : Darling (이소양님 측정), Oxygen (냥냐냥님 측정), Oxygen Asano (이소양님 측정), PRISM (이소양님 측정)
 
-**Ucotech** : RE-1(이소양님 측정), RE-2 (샘플 1: THX™님 측정, 샘플 2: 이소양님 측정)
+**Ucotech** : RE-1(샘플 1: 이소양님 측정, 샘플 2: NX7님 측정), RE-2 (샘플 1: THX™님 측정, 샘플 2: 이소양님 측정)
 
 
 ## 측정치 생성/업로드 방법

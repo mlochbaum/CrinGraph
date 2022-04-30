@@ -13,7 +13,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **7Hz** : Eternal (냥냐냥님 측정), Timeless (냥냐냥님 측정)
 
-**AAW** : Halcyon (전 필터 / NX7님 측정)
+**AAW** : Halcyon (전 필터 / NX7님 측정, 왼쪽 측정치만 존재)
 
 **AME** : J2XR (샘플 1: 브라운 필터, 파이널 E팁 / THX™님 측정)
 
@@ -29,7 +29,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **FiiO** : FD5 (샘플 1: 이소양님 측정, 샘플 2: NX7님 측정)
 
-**Final** : A4000 (NX7님 측정)
+**Final** : A4000 (NX7님 측정, 왼쪽 측정치만 존재)
 
 **Iriver** : ICP-AT2000 (냥냐냥님 측정)
 

@@ -28,10 +28,11 @@
   {
     "name": "AME",
     "phones": [
-                {"name":["J2XR"],"file":["J2XR Sample 1 (Brown Damper, Final E Tips, by THX™)",
+                {"name":["J2XR"],"file":["J2XR Sample 1 (by 냥냐냥, Brown Damper, Spinfit)",
+                  "J2XR Sample 1 (by 냥냐냥, Brown Damper, Foam Tips)",
                   "J2XR Sample 2 (Green Damper, Final E Tips, by ER4SR)",
-                  "J2XR Sample 3 (by 냥냐냥, Brown Damper, Spinfit)",
-                  "J2XR Sample 3 (by 냥냐냥, Brown Damper, Foam Tips)"]}
+                  "J2XR Sample 3 (Brown Damper, Final E Tips, by 아소카)"
+                  ]}
               ]
   },
   {
@@ -100,7 +101,7 @@
   {
     "name": "KEF",
     "phones": [
-                {"name":["M100"],"file":["M100 Sample 1 (by THX™, Bundle Tips)", "M100 Sample 1 (by THX™, Spinfit CP145 Tips)"]}
+                {"name":["M100"],"file":["M100 Sample 1 (by 아소카, Bundle Tips)", "M100 Sample 1 (by 아소카, Spinfit CP145 Tips)"]}
               ]
   },
   {
@@ -127,7 +128,7 @@
               {"name":["Aria (2021)"],"file":["Aria (2021) Sample 1 (by ER4SR)"]},
               {"name":["Blessing"],"file":["Blessing Sample 1 (by 이소양)"]},
               {"name":["Blessing 2"],"file":["Blessing 2 Sample 1 (by 이소양)"]},
-              {"name":["Chu"],"file":["Chu Sample 1 (Final E Tips, by THX™)", "Chu Sample 1 (Spring Tips, by THX™)", "Chu Sample 1 (Softears UC Tips, by THX™)"]},
+              {"name":["Chu"],"file":["Chu Sample 1 (Final E Tips, by 아소카)", "Chu Sample 1 (Spring Tips, by 아소카)", "Chu Sample 1 (Softears UC Tips, by 아소카)"]},
               {"name":["KXXS"],"file":["KXXS Sample 1 (by 이소양)"]},
               {"name": ["Nekocake"],"file":["Nekocake Sample 1 (by 냥냐냥, Balanced EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, Classic EQ)", 
@@ -135,7 +136,7 @@
                 "Nekocake Sample 1 (by 냥냐냥, NoBass EQ)",
                 "Nekocake Sample 1 (by 냥냐냥, Wennebostel EQ)"]},
               {"name":["Quarks"],"file":[
-                "Quarks Sample 1 (EO-IG955 Tips, by THX™)",
+                "Quarks Sample 1 (EO-IG955 Tips, by 아소카)",
                 "Quarks Sample 2 (by 냥냐냥)"]},
               {"name":["Starfield"],"file":["Starfield Sample 1 (by 이소양)"]},
               {"name":["SSR"],"file":["SSR Sample 1 (by 이소양)"]}
@@ -195,7 +196,7 @@
   {
     "name": "Sange",
     "phones": [
-                {"name":["1+4"],"file":["1+4 Sample 1 (Unknown Tips, by THX™)"]}
+                {"name":["1+4"],"file":["1+4 Sample 1 (Unknown Tips, by 아소카)"]}
               ]
   },
   {
@@ -258,7 +259,7 @@
     "name": "Ucotech",
     "phones": [
                 {"name":["RE-1"],"file":["RE-1 Sample 1 (by 이소양)", "RE-1 Sample 2 (by NX7)"]},
-                {"name":["RE-2"],"file":["RE-2 Sample 1 (by THX™)", "RE-2 Sample 2 (by 이소양)"]}
+                {"name":["RE-2"],"file":["RE-2 Sample 1 (by 아소카)", "RE-2 Sample 2 (by 이소양)"]}
               ]
   }
 ]

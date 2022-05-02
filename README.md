@@ -15,9 +15,11 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **AAW** : Halcyon (전 필터 / NX7님 측정, 왼쪽 측정치만 존재)
 
-**AME** : J2XR (샘플 1: 브라운 필터, 파이널 E팁 / THX™님 측정)
-
 **AKG** : N5005 (샘플 1: 미드하이필터, 샘플 2: 전 필터 / 냥냐냥님 측정)
+
+**AME** : J2XR (샘플 1: 브라운 필터, 파이널 E팁 / THX™님 측정, 샘플 2: 브라운 필터 / 냥냐냥님 측정)
+
+**ATOMIC FLOYD** : SuperDarts Titanium (냥냐냥님 측정)
 
 **AYA Audio** : SA-01 (NX7님 측정)
 
@@ -25,7 +27,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **CCA** : CRA (NX7님 측정)
 
-**Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™님 측정)
+**Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™님 측정), mc5 (슈어 폼팁, 냥냐냥님 측정), mk5 (슈어 폼팁, 냥냐냥님 측정)
 
 **FiiO** : FD5 (샘플 1: 이소양님 측정, 샘플 2: NX7님 측정)
 
@@ -41,9 +43,19 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **KZ** : ZEX Pro (CRN) (냥냐냥님 측정)
 
+**Lefrig Audio** : TRECENTO 2020 Live (냥냐냥님 측정)
+
 **LG** : USB-C Earphones (LG Wing Bundle)
 
 **Moondrop** : Aria (2021), Blessing (이소양님 측정), Blessing 2 (이소양님 측정), Chu (THX™님 측정), KXXS (이소양님 측정), Nekocake (냥냐냥님 측정), Quarks (샘플 1: THX™님 측정, 샘플 2: 냥냐냥님 측정), Starfield (이소양님 측정), SSR (이소양님 측정)
+
+**Muse Hifi** : Power (냥냐냥님 측정)
+
+**nura** : True (냥냐냥님 측정)
+
+**Ostry** : KC06A (냥냐냥님 측정)
+
+**Phonak Audio** : PFE 022 (냥냐냥님 측정)
 
 **Project Refine** : P1AL (냥냐냥님 측정)
 
@@ -60,6 +72,10 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 **Seeaudio** : Yume(이소양님 측정), Bravery (냥냐냥님 측정)
 
 **Sennheiser** : IE 400 pro
+
+**Shouer** : S12 (냥냐냥님 측정)
+
+**Simgot** : EM5 (냥냐냥님 측정)
 
 **Sonicast** : Direm KASA, Direm E3-C (냥냐냥님 측정)
 

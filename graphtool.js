@@ -2478,7 +2478,7 @@ function addExtra() {
         reader.onload = (e) => {
             let settings = e.target.result;
             let filters = settings.split("\n").map(l => {
-                let r = l.match(/Filter\s*\d+:\s*(\S+)\s*(\S+)\s*Fc\s*(\S+)\s*Hz\s*Gain\s*(\S+)\s*dB(\s*Q\s*(\S+))?/);
+                let r = l.match(/Filter\s*\d*:\s*(\S+)\s*(\S+)\s*Fc\s*(\S+)\s*Hz\s*Gain\s*(\S+)\s*dB(\s*Q\s*(\S+))?/);
                 if (!r) { return undefined; }
                 let disabled = (r[1] !== "ON");
                 let type = r[2];

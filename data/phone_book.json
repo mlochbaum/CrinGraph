@@ -29,6 +29,7 @@
     "name": "AME",
     "phones": [
                 {"name":["J2XR"],"file":["J2XR Sample 1 (Brown Damper, Final E Tips, by THX™)",
+                  "J2XR Sample 2 (Green Damper, Final E Tips, by ER4SR)",
                   "J2XR Sample 2 (by 냥냐냥, Brown Damper, Spinfit)",
                   "J2XR Sample 2 (by 냥냐냥, Brown Damper, Foam Tips)"]}
               ]
@@ -126,7 +127,7 @@
               {"name":["Aria (2021)"],"file":["Aria (2021) Sample 1 (by ER4SR)"]},
               {"name":["Blessing"],"file":["Blessing Sample 1 (by 이소양)"]},
               {"name":["Blessing 2"],"file":["Blessing 2 Sample 1 (by 이소양)"]},
-              {"name":["Chu"],"file":["Chu Sample 1 (Final E Tips, by THX™)", "Chu Sample 1 (Spring Tips, by THX™)"]},
+              {"name":["Chu"],"file":["Chu Sample 1 (Final E Tips, by THX™)", "Chu Sample 1 (Spring Tips, by THX™)", "Chu Sample 1 (Softears UC Tips, by THX™)"]},
               {"name":["KXXS"],"file":["KXXS Sample 1 (by 이소양)"]},
               {"name": ["Nekocake"],"file":["Nekocake Sample 1 (by 냥냐냥, Balanced EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, Classic EQ)", 

@@ -28,7 +28,16 @@
   {
     "name": "AME",
     "phones": [
-                {"name":["J2XR"],"file":["J2XR Sample 1 (Brown Damper, Final E Tips, by THX™)", "J2XR Sample 2 (Green Damper, Final E Tips, by ER4SR)"]}
+                {"name":["J2XR"],"file":["J2XR Sample 1 (Brown Damper, Final E Tips, by THX™)",
+                  "J2XR Sample 2 (Green Damper, Final E Tips, by ER4SR)",
+                  "J2XR Sample 2 (by 냥냐냥, Brown Damper, Spinfit)",
+                  "J2XR Sample 2 (by 냥냐냥, Brown Damper, Foam Tips)"]}
+              ]
+  },
+  {
+    "name": "ATOMIC FLOYD",
+    "phones": [
+                {"name":["SuperDarts Titanium"],"file":["SuperDarts Titanium Sample 1 (by 냥냐냥, Spiral Dots Tips)"]}
               ]
   },
   {
@@ -53,7 +62,9 @@
     "name": "Etymotic Research",
     "phones": [ 
                {"name":["ER2SE"],"file":["ER2SE Sample 1 (by THX™, Clear Tri-flange)"]},
-               {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange, by ER4SR)"]}
+               {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange, by ER4SR)"]},
+               {"name":["mc5"],"file":["mc5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]},
+               {"name":["mk5"],"file":["mk5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]}
               ]
   },
   {
@@ -99,6 +110,12 @@
               ]
   },
   {
+    "name": "Lefrig Audio",
+    "phones": [
+                {"name":["TRECENTO 2020 Live"],"file":["TRECENTO 2020 Live Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
     "name": "LG",
     "phones": [ 
                {"name":["USB-C Earphones"],"file":["USB-C Earphones Sample 1 (by ER4SR)"]}
@@ -122,6 +139,33 @@
                 "Quarks Sample 2 (by 냥냐냥)"]},
               {"name":["Starfield"],"file":["Starfield Sample 1 (by 이소양)"]},
               {"name":["SSR"],"file":["SSR Sample 1 (by 이소양)"]}
+              ]
+  },
+  {
+    "name": "Muse Hifi",
+    "phones": [
+                {"name":["Power"],"file":["Power Sample 1 (by 냥냐냥, Gray Core Tips)",
+                  "Power Sample 1 (by 냥냐냥, Black Core Tips)",
+                  "Power Sample 1 (by 냥냐냥, Red Core Tips)",
+                  "Power Sample 1 (by 냥냐냥, Green Core Tips)"]}
+              ]
+  },
+  {
+    "name": "nura",
+    "phones": [
+                {"name":["True"],"file":["True Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
+    "name": "Ostry",
+    "phones": [
+                {"name":["KC06A"],"file":["KC06A Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
+    "name": "Phonak Audio",
+    "phones": [
+                {"name":["PFE 022"],"file":["PFE 022 Sample 1 (by 냥냐냥, Shure Foam Tips)"]}
               ]
   },
   {
@@ -171,6 +215,20 @@
     "name": "Sennheiser",
     "phones": [ 
                {"name":["IE400 Pro"],"file":["IE400 Pro Sample 1 (by ER4SR, Final E M)"]}
+              ]
+  },
+  {
+    "name": "Shouer",
+    "phones": [
+                {"name":["S12"],"file":["S12 Sample 1 (by 냥냐냥, White Tips)",
+                  "S12 Sample 1 (by 냥냐냥, Black Tips)"]}
+              ]
+  },
+  {
+    "name": "Simgot",
+    "phones": [
+                {"name":["EM5"],"file":["EM5 Sample 1 (by 냥냐냥, Tip II, L Only)",
+                  "EM5 Sample 1 (by 냥냐냥, Tip I, L Only)"]}
               ]
   },
   {

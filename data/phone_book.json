@@ -33,7 +33,6 @@
                   "J2XR Sample 2 (Green Damper, Final E Tips, by ER4SR)",
                   "J2XR Sample 3 (Brown Damper, Final E Tips, by 아소카)"
                   ]}
-               ]
   },
   {
     "name": "ATOMIC FLOYD",
@@ -62,7 +61,7 @@
   {
     "name": "Etymotic Research",
     "phones": [ 
-               {"name":["ER2SE"],"file":["ER2SE Sample 1 (by 아소카, Clear Tri-flange)"]},
+               {"name":["ER2SE"],"file":["ER2SE Sample 1 (by THX™, Clear Tri-flange)"]},
                {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange, by ER4SR)"]},
                {"name":["mc5"],"file":["mc5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]},
                {"name":["mk5"],"file":["mk5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]}

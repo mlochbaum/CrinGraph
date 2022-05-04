@@ -54,6 +54,12 @@
               ]
   },
   {
+    "name": "BQEYZ",
+    "phones": [
+                {"name":["K2"],"file":["K2 Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
     "name": "CCA",
     "phones": [
                 {"name":["CRA"],"file":["CRA Sample 1 (by NX7)"]}
@@ -71,13 +77,15 @@
   {
     "name": "FiiO",
     "phones": [
+                {"name":["F3"],"file":["F3 Sample 1 (by 냥냐냥)"]},
                 {"name":["FD5"],"file":["FD5 Sample 1 (by 이소양)", "FD5 Sample 2 (by NX7)"]}
               ]
   },
   {
     "name": "Final",
     "phones": [
-                {"name":["A4000"],"file":["A4000 Sample 1 (by NX7, L Only)"]}
+                {"name":["A4000"],"file":["A4000 Sample 1 (by NX7, L Only)"]},
+                {"name":["E500"],"file":["E500 Sample 1 (by 냥냐냥)"]}
               ]
   },
   {
@@ -163,7 +171,7 @@
   {
     "name": "Ostry",
     "phones": [
-                {"name":["KC06A"],"file":["KC06A Sample 1 (by 냥냐냥)"]}
+                {"name":["KC06A"],"file":["KC06A Sample 1 (by 냥냐냥)", "KC06A Sample 2 (by 냥냐냥, L Only)"]}
               ]
   },
   {

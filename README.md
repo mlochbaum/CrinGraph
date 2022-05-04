@@ -25,13 +25,15 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Beyerdynamic** : Beat Byrd (냥냐냥님 측정)
 
+**BQEYZ** : K2 (냥냐냥님 측정)
+
 **CCA** : CRA (NX7님 측정)
 
 **Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™님 측정), mc5 (슈어 폼팁, 냥냐냥님 측정), mk5 (슈어 폼팁, 냥냐냥님 측정)
 
-**FiiO** : FD5 (샘플 1: 이소양님 측정, 샘플 2: NX7님 측정)
+**FiiO** : F3 (냥냐냥님 측정), FD5 (샘플 1: 이소양님 측정, 샘플 2: NX7님 측정)
 
-**Final** : A4000 (NX7님 측정, 왼쪽 측정치만 존재)
+**Final** : A4000 (NX7님 측정, 왼쪽 측정치만 존재), E500 (냥냐냥님 측정)
 
 **Iriver** : ICP-AT2000 (냥냐냥님 측정)
 

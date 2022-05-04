@@ -17,7 +17,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **AKG** : N5005 (샘플 1: 미드하이필터, 샘플 2: 전 필터 / 냥냐냥님 측정)
 
-**AME** : J2XR (샘플 1: 브라운 필터, 파이널 E팁 / THX™님 측정, 샘플 2: 브라운 필터 / 냥냐냥님 측정)
+**AME** : J2XR (샘플 1: 브라운 필터 / 냥냐냥님 측정, 샘플 2: 그린 필터, 샘플 3: 브라운 필터, 파이널 E팁 / THX™님 측정,)
 
 **ATOMIC FLOYD** : SuperDarts Titanium (냥냐냥님 측정)
 
@@ -27,7 +27,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **CCA** : CRA (NX7님 측정)
 
-**Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™님 측정), mc5 (슈어 폼팁, 냥냐냥님 측정), mk5 (슈어 폼팁, 냥냐냥님 측정)
+**Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™님 측정), mc5 (슈어 폼팁, 냥냐냥님 측정), mk5 (슈어 폼팁, 냥냐냥님 측정), ER4XR (전염님 제공 샘플)
 
 **FiiO** : FD5 (샘플 1: 이소양님 측정, 샘플 2: NX7님 측정)
 

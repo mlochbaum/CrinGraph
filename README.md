@@ -21,9 +21,11 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **ATOMIC FLOYD** : SuperDarts Titanium (냥냐냥님 측정)
 
+**Apple** : Airpods Pro (냥냐냥님 측정)
+
 **AYA Audio** : SA-01 (NX7님 측정)
 
-**Beyerdynamic** : Beat Byrd (냥냐냥님 측정)
+**Beyerdynamic** : Beat Byrd (냥냐냥님 측정), DTX 41 iE (냥냐냥님 측정)
 
 **BQEYZ** : K2 (냥냐냥님 측정)
 
@@ -43,13 +45,13 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **KEF** : M100 (THX™님 측정)
 
-**KZ** : ZEX Pro (CRN) (냥냐냥님 측정)
+**KZ** : AS10 (냥냐냥님 측정), ZEX Pro (CRN) (냥냐냥님 측정)
 
 **Lefrig Audio** : TRECENTO 2020 Live (냥냐냥님 측정)
 
 **LG** : USB-C Earphones (LG Wing Bundle)
 
-**Moondrop** : Aria (2021), Blessing (이소양님 측정), Blessing 2 (이소양님 측정), Chu (THX™님 측정), KXXS (이소양님 측정), Nekocake (냥냐냥님 측정), Quarks (샘플 1: THX™님 측정, 샘플 2: 냥냐냥님 측정), Starfield (이소양님 측정), SSR (이소양님 측정)
+**Moondrop** : Aria (2018) (냥냐냥님 측정), Aria (2021), Blessing (이소양님 측정), Blessing 2 (이소양님 측정), Chu (THX™님 측정), KXXS (이소양님 측정), Nekocake (냥냐냥님 측정), Quarks (샘플 1: THX™님 측정, 샘플 2: 냥냐냥님 측정), Starfield (이소양님 측정), SSR (샘플 1: 이소양님 측정, 샘플 2: 냥냐냥님 측정)
 
 **Muse Hifi** : Power (냥냐냥님 측정)
 
@@ -84,6 +86,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 **Sony** : IER-M7
 
 **Tanchjim** : Darling (이소양님 측정), Oxygen (냥냐냥님 측정), Oxygen Asano (이소양님 측정), PRISM (이소양님 측정)
+
+**TRN** : MT1 (냥냐냥님 측정)
 
 **Ucotech** : RE-1(샘플 1: 이소양님 측정, 샘플 2: NX7님 측정), RE-2 (샘플 1: THX™님 측정, 샘플 2: 이소양님 측정)
 

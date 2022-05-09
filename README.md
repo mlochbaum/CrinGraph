@@ -17,7 +17,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **AKG** : N5005 (샘플 1: 미드하이필터, 샘플 2: 전 필터 / 냥냐냥님 측정)
 
-**AME** : J2XR (샘플 1: 브라운 필터 / 냥냐냥님 측정, 샘플 2: 그린 필터, 샘플 3: 브라운 필터, 파이널 E팁 / THX™님 측정,)
+**AME** : J2XR (샘플 1: 브라운 필터 / 냥냐냥님 측정, 샘플 2: 그린 필터, 샘플 3: 브라운 필터, 파이널 E팁 / THX™님 측정)
 
 **ATOMIC FLOYD** : SuperDarts Titanium (냥냐냥님 측정)
 
@@ -30,6 +30,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 **BQEYZ** : K2 (냥냐냥님 측정)
 
 **CCA** : CRA (NX7님 측정)
+
+**ddHiFi** : Janus (냥냐냥님 측정)
 
 **Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™님 측정), mc5 (슈어 폼팁, 냥냐냥님 측정), mk5 (슈어 폼팁, 냥냐냥님 측정), ER4XR (전염님 제공 샘플)
 
@@ -81,15 +83,38 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Simgot** : EM5 (냥냐냥님 측정)
 
-**Sonicast** : Direm KASA, Direm E3-C (냥냐냥님 측정)
+**Sonicast** : Dirac MK2 (냥냐냥님 측정), Direm E3-C (냥냐냥님 측정), Direm HT1 (냥냐냥님 측정), Direm KASA, Direm Pro SL (냥냐냥님 측정), Direm W1 (냥냐냥님 측정)
 
 **Sony** : IER-M7
 
 **Tanchjim** : Darling (이소양님 측정), Oxygen (냥냐냥님 측정), Oxygen Asano (이소양님 측정), PRISM (이소양님 측정)
 
+**Thieaudio** : Legacy 4 (냥냐냥님 측정)
+
 **TRN** : MT1 (냥냐냥님 측정)
 
 **Ucotech** : RE-1(샘플 1: 이소양님 측정, 샘플 2: NX7님 측정), RE-2 (샘플 1: THX™님 측정, 샘플 2: 이소양님 측정)
+
+
+## 기여자 목록
+
+**EX이헤갤러** : Atomic Floyd SuperDarts Titanium, Refrig Audio Trecento 2020 Live, Simgot EM5 제공
+
+**JohnYang1997** : BQEYZ K2, Final E500, FiiO F3, Ostry KC06A, Etymotic Research mc5, mk5, Phonak PFE 022 제공
+
+**Ricopam** : Beyerdynamic DTX 41 iE, KZ AS10, TRN MT1, Moondrop SSR 제공
+
+**SilicaGel** : Direm Pro SL, Direm HT1, Direm W1, Thieaudio Legacy 4, ddHiFi Janus 제공
+
+**뉴비** : Etymotic Research mc5, mk5, Phonak PFE 022 제공
+
+**뎃데로게.** : Moondrop Aria (2018) 제공
+
+**돼지고닉해드** : Shouer S12, Muse Hifi Power, Seeaudio Bravery 제공
+
+**전염** : ER4XR 제공
+
+**피프틴유저** : 7Hz Eternal 제공
 
 
 ## 측정치 생성/업로드 방법

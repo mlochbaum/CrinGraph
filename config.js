@@ -19,7 +19,7 @@ const init_phones = [],                      // Optional. Which graphs to displa
       page_title = "dc 헤마갤 이어폰 측정 DB by ER4SR",   // Optional. Appended to the page title if share URLs are enabled
       page_description = "헤마갤 힘내세요 ㅋㅋㄷㄷ",
       accessories = true,                          // If true, displays specified HTML at the bottom of the page. Configure further below
-      externalLinksBar = false,                      // If true, displays row of pill-shaped links at the bottom of the page. Configure further below
+      externalLinksBar = true,                      // If true, displays row of pill-shaped links at the bottom of the page. Configure further below
       restricted = false,                           // Enables restricted mode. More restricted options below
       expandable = false,                           // Enables button to expand iframe over the top of the parent page
       expandableOnly = false,                       // Prevents iframe interactions unless the user has expanded it. Accepts "true" or "false" OR a pixel value; if pixel value, that is used as the maximum width at which expandableOnly is used
@@ -166,6 +166,15 @@ const
 
 // Configure external links to appear at the bottom of the page. Displayed only if externalLinksBar (above) is true
 const linkSets = [
+    {
+        label: "",
+        links: [
+            {
+                "name": "헤드폰 마이너 갤러리",
+                url: "https://gall.dcinside.com/mgallery/board/lists?id=newheadphone"
+            }
+        ]
+    },
     {
         label: "IEM graph databases",
         links: [

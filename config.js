@@ -42,7 +42,7 @@ const init_phones = [],                      // Optional. Which graphs to displa
 const targets = [
     { type:"Neutral",    files:["Diffuse Field","Etymotic","Free Field","Innerfidelity ID"] },
     { type:"Reviewer",   files:["Antdroid","Bad Guy","Banbeucmas","Crinacle","Precogvision","Super Review"] },
-    { type:"Preference", files:["Harman IE 2019 v2","Harman","Rtings","Sonarworks"] }
+    { type:"Preference", files:["Harman IE 2019 v2","Harman IE 2017","Rtings","Sonarworks"] }
 ];
 
 

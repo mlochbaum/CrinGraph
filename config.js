@@ -11,7 +11,7 @@ const init_phones = [],                      // Optional. Which graphs to displa
       alt_sticky_graph = true,                      // If active graphs overflows the viewport, does the graph scroll with the page or stick to the viewport?
       alt_animated = false,                         // Determines if new graphs are drawn with a 1-second animation, or appear instantly
       alt_header = false,                           // Display a configurable header at the top of the alt layout
-      alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
+      alt_tutorial = true,                         // Display a configurable frequency response guide below the graph
       site_url = 'graph.html',                      // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "",                 // Optional. Watermark appears behind graphs
@@ -262,22 +262,22 @@ let tutorialDefinitions = [
     {
         name: 'Sub bass',
         width: '20.1%',
-        description: 'Lorem ipsum.'
+        description: '극저역'
     },
     {
         name: 'Mid bass',
         width: '19.2%',
-        description: 'Lorem ipsum.'
+        description: '중저역'
     },
     {
         name: 'Lower midrange',
         width: '17.4%',
-        description: 'Lorem ipsum.'
+        description: '중음'
     },
     {
         name: 'Upper midrange',
         width: "20%",
-        description: 'Lorem ipsum.'
+        description: '중고음'
     },
     {
         name: 'Presence region',

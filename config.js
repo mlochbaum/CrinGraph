@@ -19,7 +19,7 @@ const init_phones = [],                      // Optional. Which graphs to displa
       page_title = "dc 헤마갤 이어폰 측정 DB by ER4SR",   // Optional. Appended to the page title if share URLs are enabled
       page_description = "헤마갤 힘내세요 ㅋㅋㄷㄷ",
       accessories = true,                          // If true, displays specified HTML at the bottom of the page. Configure further below
-      externalLinksBar = false,                      // If true, displays row of pill-shaped links at the bottom of the page. Configure further below
+      externalLinksBar = true,                      // If true, displays row of pill-shaped links at the bottom of the page. Configure further below
       restricted = false,                           // Enables restricted mode. More restricted options below
       expandable = false,                           // Enables button to expand iframe over the top of the parent page
       expandableOnly = false,                       // Prevents iframe interactions unless the user has expanded it. Accepts "true" or "false" OR a pixel value; if pixel value, that is used as the maximum width at which expandableOnly is used
@@ -140,8 +140,8 @@ const
     paragraphs = `
       <p style="text-align: center;"><strong class="center">기여자 목록</strong></p>
       <p class="center" style="text-align: center;">ER4SR, 냥냐냥, 이소양, 아소카, NX7</p>
-      <p class="center" style="text-align: center;">EX이헤갤러, JohnYang1997, Ricopam, SilicaGel, 뉴비,</p>
-      <p class="center" style="text-align: center;">뎃데로게., 돼지고닉해드, 전염, 피프틴유저</p>
+      <p class="center" style="text-align: center;">EX이헤갤러, JohnYang1997, Ricopam, SilicaGel,</p>
+      <p class="center" style="text-align: center;">뉴비, 뎃데로게., 돼지고닉해드, 전염, 피프틴유저</p>
     `,
     // Customize the count of widget divs, and customize the contents of them. As long as they're wrapped in the widget div, they should auto-wrap and maintain margins between themselves
     widgets = `
@@ -166,6 +166,15 @@ const
 
 // Configure external links to appear at the bottom of the page. Displayed only if externalLinksBar (above) is true
 const linkSets = [
+    {
+        label: "",
+        links: [
+            {
+                "name": "헤드폰 마이너 갤러리",
+                url: "https://gall.dcinside.com/mgallery/board/lists?id=newheadphone"
+            }
+        ]
+    },
     {
         label: "IEM graph databases",
         links: [

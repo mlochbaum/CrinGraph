@@ -139,7 +139,7 @@ const
     // Slightly different presentation to make more readable paragraphs. Useful for elaborated methodology, etc.
     paragraphs = `
        <b class="center">기여자 목록</b>
-       <p class="center">ER4SR, 냥냐냥, 이소양, 아소카</p>
+       <p class="center">ER4SR, 냥냐냥, 이소양, 아소카, NX7</p>
        <p class="center">EX이헤갤러, JohnYang1997, Ricopam, SilicaGel, 뉴비,</p>
        <p class="center">뎃데로게., 돼지고닉해드, 전염, 피프틴유저</p>
     `,

@@ -100,9 +100,9 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **EX이헤갤러** : Atomic Floyd SuperDarts Titanium, Refrig Audio Trecento 2020 Live, Simgot EM5 제공
 
-**JohnYang1997** : BQEYZ K2, Final E500, FiiO F3, Ostry KC06A, Etymotic Research mc5, mk5, Phonak PFE 022 제공
+**JohnYang1997** : BQEYZ K2, Final E500, FiiO F3, Ostry KC06A(Sample 2), Etymotic Research mc5, mk5, Phonak PFE 022 제공
 
-**Ricopam** : Beyerdynamic DTX 41 iE, KZ AS10, TRN MT1, Moondrop SSR 제공
+**Ricopam** : Beyerdynamic DTX 41 iE, KZ AS10, TRN MT1, Moondrop SSR(Sample 2) 제공
 
 **SilicaGel** : Direm Pro SL, Direm HT1, Direm W1, Thieaudio Legacy 4, ddHiFi Janus 제공
 

@@ -74,6 +74,13 @@
               ]
   },
   {
+    "name": "ddHiFi",
+    "phones" : [
+                {"name":["Janus"],"file":["Janus Sample 1 (by 냥냐냥, Bass Tips)",
+                  "Janus Sample 1 (by 냥냐냥, Treble Tips)"]}
+              ]
+  },
+  {
     "name": "Etymotic Research",
     "phones": [ 
                {"name":["ER2SE"],"file":["ER2SE Sample 1 (by 아소카, Clear Tri-flange)"]},
@@ -259,7 +266,11 @@
     "phones": [
                {"name":["Dirac mk2"],"file":["Dirac mk2 Sample 1 (by 냥냐냥)"]},
                {"name": ["Direm KASA"], "file":["Direm KASA Sample 1 (by ER4SR, Final E M)"]},
-               {"name": ["Direm E3-C"],"file":["Direm E3-C Sample 1 (by 냥냐냥)"]}
+               {"name": ["Direm E3-C"],"file":["Direm E3-C Sample 1 (by 냥냐냥)"]},
+               {"name":["Direm HT1"],"file":["Direm HT1 Sample 1 (by 냥냐냥, LG G8 SBC Codec)",
+                "Direm HT1 Sample 1 (by 냥냐냥, LG G8 AAC Codec)"]},
+                {"name":["Direm W1"],"file":["Direm W1 Sample 1 (by 냥냐냥, LG G8 SBC Codec)",
+                  "Direm W1 Sample 1 (by 냥냐냥, LG G8 AAC Codec)"]}
               ]
   },
   {
@@ -275,6 +286,15 @@
                 {"name":["Oxygen"],"file":["Oxygen Sample 1 (by 냥냐냥, Bass Tips)", "Oxygen Sample 1 (by 냥냐냥, Treble Tips)"]},
                 {"name":["Oxygen Asano"],"file":["Oxygen Asano Sample 1 (by 이소양)"]},
                 {"name":["PRISM"],"file":["PRISM Sample 1 (by 이소양)"]}
+              ]
+  },
+  {
+    "name": "Thieaudio",
+    "phones": [
+                {"name":["Legacy 4"],"file":["Legacy 4 Sample 1 (by 냥냐냥, 00 Settings)",
+                  "Legacy 4 Sample 1 (by 냥냐냥, 01 Settings)",
+                  "Legacy 4 Sample 1 (by 냥냐냥, 10 Settings)",
+                  "Legacy 4 Sample 1 (by 냥냐냥, 11 Settings)"]}
               ]
   },
   {

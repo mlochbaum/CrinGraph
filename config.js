@@ -167,7 +167,7 @@ const
 // Configure external links to appear at the bottom of the page. Displayed only if externalLinksBar (above) is true
 const linkSets = [
     {
-        label: "",
+        label: "갤러리로 이동",
         links: [
             {
                 "name": "헤드폰 마이너 갤러리",

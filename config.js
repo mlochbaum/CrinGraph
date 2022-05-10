@@ -267,31 +267,26 @@ let tutorialDefinitions = [
     {
         name: 'Mid bass',
         width: '19.2%',
-        description: '중저역'
+        description: '저역'
     },
     {
-        name: 'Lower midrange',
-        width: '17.4%',
+        name: 'midrange',
+        width: '30.4%',
         description: '중음'
     },
     {
         name: 'Upper midrange',
-        width: "20%",
+        width: "13%",
         description: '중고음'
-    },
-    {
-        name: 'Presence region',
-        width: '6%',
-        description: 'Lorem ipsum.'
     },
     {
         name: 'Mid treble',
         width: '7.3%',
-        description: 'Lorem ipsum.'
+        description: '고역, 8kHz 주변 피크부터 비신뢰구간'
     },
     {
         name: 'Air',
         width: '10%',
-        description: 'Lorem ipsum.'
+        description: '초고역, 비신뢰구간'
     }
 ]

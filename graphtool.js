@@ -2731,6 +2731,7 @@ function addExternalLinks() {
             
             linkHtml.textContent = linkName;
             linkHtml.setAttribute("href", linkUrl);
+            linkHtml.setAttribute("target", "_blank");
             externalLinksBar.append(linkHtml);
         });
     });

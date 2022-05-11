@@ -296,12 +296,12 @@ let tutorialDefinitions = [
     description: "악기들의 배음, 명료도에 관여",
   },
   {
-    name: "고역",
+    name: "고음",
     width: "7.4%",
     description: "치찰음, 심벌, 하이햇에 관여",
   },
   {
-    name: "초고역",
+    name: "초고음",
     width: "10%",
     description: "'에어리함', 금속성 느낌에 관여",
   },

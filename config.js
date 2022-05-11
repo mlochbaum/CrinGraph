@@ -283,11 +283,11 @@ let tutorialDefinitions = [
   {
     name: "저음",
     width: "23.3%",
-    description: "베이스 기타, 킥드럼 등 낮은 음역대 악기의 기음",
+    description: "베이스, 킥드럼 등 낮은 음역대 악기의 기음",
   },
   {
     name: "중음",
-    width: "27.5%",
+    width: "27.4%",
     description: "보컬, 기타, 피아노 등 대부분의 악기의 기음",
   },
   {
@@ -297,7 +297,7 @@ let tutorialDefinitions = [
   },
   {
     name: "고역",
-    width: "7.3%",
+    width: "7.4%",
     description: "치찰음, 심벌, 하이햇에 관여",
   },
   {
@@ -306,3 +306,11 @@ let tutorialDefinitions = [
     description: "'에어리함', 금속성 느낌에 관여",
   },
 ];
+
+let confidenceDefinitions = [
+  {
+    name: "비신뢰구간",
+    width: "14.2%",
+    description: "삽입깊이에 따라 FR이 달라져 신뢰할 수 없는 구간. 특히 8kHz 근처의 피크는 커플러 공진 피크로 실제보다 더 과장됨.",
+  },
+]

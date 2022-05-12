@@ -44,6 +44,10 @@ const targets = [
     files: ["Diffuse Field", "Etymotic", "Free Field", "Innerfidelity ID"],
   },
   {
+    type: "Preference",
+    files: ["Harman IE 2019 v2", "Harman IE 2017", "Rtings", "Sonarworks"],
+  },
+  {
     type: "Reviewer",
     files: [
       "Antdroid",
@@ -53,10 +57,6 @@ const targets = [
       "Precogvision",
       "Super Review",
     ],
-  },
-  {
-    type: "Preference",
-    files: ["Harman IE 2019 v2", "Harman IE 2017", "Rtings", "Sonarworks"],
   },
 ];
 

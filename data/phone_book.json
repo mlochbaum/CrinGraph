@@ -85,7 +85,7 @@
     "phones": [ 
                {"name":["ER2SE"],"file":["ER2SE Sample 1 (by 아소카, Clear Tri-flange)"]},
                {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange, by ER4SR)"]},
-               {"name":["ER4XR"],"file":["ER4XR Sample 1 (Sample by 전염, Ety Grey Tips)", "ER4XR Sample 1 (Sample by 전염, Ety Foam Tips)"]},
+               {"name":["ER4XR"],"file":["ER4XR Sample 1 (by ER4SR, Ety Grey Tips)", "ER4XR Sample 1 (by ER4SR, Ety Foam Tips)"]},
                {"name":["mc5"],"file":["mc5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]},
                {"name":["mk5"],"file":["mk5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]}
               ]

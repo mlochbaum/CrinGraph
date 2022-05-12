@@ -2541,7 +2541,7 @@ function addExtra() {
             p => p.fullName == phoneSelected && p.eq)[0] || { fullName: "Unnamed" };
         let filters = elemToFilters();
         if (!filters.length) {
-            alert("Please add atleast one filter before export.");
+            alert("Please add at least one filter before export.");
             return;
         }
         let graphicEQ = Equalizer.as_graphic_eq(filters);

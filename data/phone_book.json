@@ -85,7 +85,7 @@
     "phones": [ 
                {"name":["ER2SE"],"file":["ER2SE Sample 1 (by 아소카, Clear Tri-flange)"]},
                {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange, by ER4SR)"]},
-               {"name":["ER4XR"],"file":["ER4XR Sample 1 (Sample by 전염, Ety Grey Tips)", "ER4XR Sample 1 (Sample by 전염, Ety Foam Tips)"]},
+               {"name":["ER4XR"],"file":["ER4XR Sample 1 (by ER4SR, Ety Grey Tips)", "ER4XR Sample 1 (by ER4SR, Ety Foam Tips)"]},
                {"name":["mc5"],"file":["mc5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]},
                {"name":["mk5"],"file":["mk5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]}
               ]
@@ -162,7 +162,7 @@
               {"name":["Aria (2021)"],"file":["Aria (2021) Sample 1 (by ER4SR)"]},
               {"name":["Blessing"],"file":["Blessing Sample 1 (by 이소양)"]},
               {"name":["Blessing 2"],"file":["Blessing 2 Sample 1 (by 이소양)"]},
-              {"name":["Chu"],"file":["Chu Sample 1 (Final E Tips, by 아소카)", "Chu Sample 1 (Spring Tips, by 아소카)", "Chu Sample 1 (Softears UC Tips, by 아소카)"]},
+              {"name":["Chu"],"file":["Chu Sample 1 (Spring Tips, by 아소카)", "Chu Sample 1 (Final E Tips, by 아소카)", "Chu Sample 1 (Softears UC Tips, by 아소카)"]},
               {"name":["KXXS"],"file":["KXXS Sample 1 (by 이소양)"]},
               {"name": ["Nekocake"],"file":["Nekocake Sample 1 (by 냥냐냥, Balanced EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, Classic EQ)", 

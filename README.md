@@ -114,6 +114,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **전염** : ER4XR 제공
 
+**프리스트** : Tanchjim New Hana, Samsung EO-IG955, Samsung EO-IC500 제공
+
 **피프틴유저** : 7Hz Eternal 제공
 
 

@@ -91,6 +91,14 @@
               ]
   },
   {
+    "name": "FAudio",
+    "phones": [
+                {"name":["Minor"],"file":["Minor Sample 1 (by 냥냐냥, White Tips)",
+                  "Minor Sample 1 (by 냥냐냥, Black Tips)",
+                  "Minor Sample 1 (by 냥냐냥, Foam Tips)"]}
+              ]
+  },
+  {
     "name": "FiiO",
     "phones": [
                 {"name":["F3"],"file":["F3 Sample 1 (by 냥냐냥)"]},
@@ -231,6 +239,9 @@
   {
     "name": "Samsung",
     "phones": [
+                {"name":["EO-IC500"],"file":["EO-IC500 Sample 1 (by 냥냐냥)"]},
+                {"name":["EO-IG955"],"file":["EO-IG955 Sample 1 (by 냥냐냥, Unknown Tips, S9 Ver.)",
+                  "EO-IG955 Sample 1 (by 냥냐냥, Final E Tips, S9 Ver.)"]},
                 {"name":["Gear Icon X (2018)"],"file":["Gear Icon X(2018) Sample 1 (by 냥냐냥, Tanchjim Oxygen Filter, AT2000 Tips)"]}
               ]
   },
@@ -262,6 +273,13 @@
               ]
   },
   {
+    "name": "Softears",
+    "phones": [
+                {"name":["RSV"],"file":["RSV Sample 1 (by 냥냐냥)",
+                  "RSV Sample 1 (by 냥냐냥, Foam Tips)"]}
+              ]
+  },
+  {
     "name": "Sonicast",
     "phones": [
                {"name":["Dirac mk2"],"file":["Dirac mk2 Sample 1 (by 냥냐냥)"]},
@@ -284,6 +302,8 @@
     "name": "Tanchjim",
     "phones": [
                 {"name":["Darling"],"file":["Darling Sample 1 (by 이소양)"]},
+                {"name":["New Hana"],"file":["New Hana Sample 1 (by 냥냐냥, Bass Tips)",
+                  "New Hana Sample 1 (by 냥냐냥, Oxygen Treble Tips)"]},
                 {"name":["Oxygen"],"file":["Oxygen Sample 1 (by 냥냐냥, Bass Tips)", "Oxygen Sample 1 (by 냥냐냥, Treble Tips)"]},
                 {"name":["Oxygen Asano"],"file":["Oxygen Asano Sample 1 (by 이소양)"]},
                 {"name":["PRISM"],"file":["PRISM Sample 1 (by 이소양)"]}

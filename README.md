@@ -19,9 +19,13 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **AME** : J2XR (샘플 1: 브라운 필터 / 냥냐냥님 측정, 샘플 2: 그린 필터, 샘플 3: 브라운 필터, 파이널 E팁 / THX™님 측정)
 
+**Apple** : Airpods Pro (냥냐냥님 측정)
+
 **ATOMIC FLOYD** : SuperDarts Titanium (냥냐냥님 측정)
 
-**Apple** : Airpods Pro (냥냐냥님 측정)
+**Audio-Technica** : ATH-IM01 (냥냐냥님 측정), ATH-IM02 (냥냐냥님 측정)
+
+**Audiofly** : AF120 (냥냐냥님 측정)
 
 **AYA Audio** : SA-01 (NX7님 측정)
 
@@ -73,7 +77,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Sange** : 1+4 (THX™님 측정)
 
-**Samsung** : Gear Icon X (2018) (옥시즌 나노 필터, AT2000팁, 냥냐냥님 측정)
+**Samsung** : EO-IC500 (냥냐냥님 측정), EO-IG955 (냥냐냥님 측정), Gear Icon X (2018) (옥시즌 나노 필터, AT2000팁, 냥냐냥님 측정)
 
 **Seeaudio** : Yume(이소양님 측정), Bravery (냥냐냥님 측정)
 
@@ -87,13 +91,17 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Sony** : IER-M7
 
-**Tanchjim** : Darling (이소양님 측정), Oxygen (냥냐냥님 측정), Oxygen Asano (이소양님 측정), PRISM (이소양님 측정)
+**Tanchjim** : Darling (이소양님 측정), New Hana (냥냐냥님 측정), Oxygen (냥냐냥님 측정), Oxygen Asano (이소양님 측정), PRISM (이소양님 측정)
 
 **Thieaudio** : Legacy 4 (냥냐냥님 측정)
 
 **TRN** : MT1 (냥냐냥님 측정)
 
 **Ucotech** : RE-1(샘플 1: 이소양님 측정, 샘플 2: NX7님 측정), RE-2 (샘플 1: THX™님 측정, 샘플 2: 이소양님 측정)
+
+**Ultimate Ears** : UE700 rev.2 (냥냐냥님 측정)
+
+**Ultrasone** : Pyco (냥냐냥님 측정), Tio (냥냐냥님 측정)
 
 
 ## 기여자 목록
@@ -111,6 +119,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 **뎃데로게.** : Moondrop Aria (2018) 제공
 
 **돼지고닉해드** : Shouer S12, Muse Hifi Power, Seeaudio Bravery 제공
+
+**유키나유키농** : Audio-Technica ATM-IM01, Audio-Technica ATM-IM02, Audiofly AF120, Ultrasone Pyco, Ultrasone Tio, Ultimate Ears UE700 rev.2 제공
 
 **전염** : ER4XR 제공
 

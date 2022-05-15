@@ -49,6 +49,19 @@
               ]
   },
   {
+    "name": "Audio-Technica",
+    "phones": [
+                {"name":["ATH-IM01"], "file":["ATH-IM01 Sample 1 (by 냥냐냥)"]},
+                {"name":["ATH-IM02"], "file":["ATH-IM02 Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
+    "name": "Audiofly",
+    "phones": [
+                {"name":["AF120"], "file":["AF120 Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
     "name": "AYA Audio",
     "phones": [
                 {"name":["SA-01"],"file":["SA-01 Sample 1 (by NX7)"]}
@@ -329,6 +342,20 @@
     "phones": [
                 {"name":["RE-1"],"file":["RE-1 Sample 1 (by 이소양)", "RE-1 Sample 2 (by NX7)"]},
                 {"name":["RE-2"],"file":["RE-2 Sample 1 (by 아소카)", "RE-2 Sample 2 (by 이소양)"]}
+              ]
+  },
+  {
+    "name": "Ultimate Ears",
+    "phones": [
+                {"name":["UE700 rev.2"],"file":["UE700 rev.2 Sample 1 (by 냥냐냥)"]}
+              ]
+  },
+  {
+    "name": "Ultrasone",
+    "phones": [
+                {"name":["Pyco"],"file":["Pyco Sample 1 (by 냥냐냥)"]},
+                {"name":["Tio"],"file":["Tio Sample 1 (by 냥냐냥)",
+                  "Tio Sample 1 (by 냥냐냥, SpinFit Tips)"]}
               ]
   }
 ]

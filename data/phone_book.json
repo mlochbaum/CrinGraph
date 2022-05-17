@@ -28,9 +28,12 @@
   {
     "name": "AME",
     "phones": [
-                {"name":["J2XR"],"file":["J2XR Sample 1 (by 냥냐냥, Brown Damper, Spinfit)",
+                  {"name":["J1UX"],"file":["J1UX Sample 1 (by 아소카, Final E Tips)", "J1UX Sample 1 (by 아소카, Orza Tips)"]},
+                  {"name":["J2XR"],"file":["J2XR Sample 1 (by 냥냐냥, Brown Damper, Spinfit)",
                   "J2XR Sample 1 (by 냥냐냥, Brown Damper, Foam Tips)",
-                  "J2XR Sample 2 (Green Damper, Final E Tips, by ER4SR)"
+                  "J2XR Sample 2 (Green Damper, Final E Tips, by ER4SR)",
+                  "J2XR Sample 3 (by 아소카, Ety Green Dampers , Final E Tips)",
+                  "J2XR Sample 3 (by 아소카, Ety Green Dampers , Orza Tips)"
                   ]}
               ]
   },
@@ -95,7 +98,7 @@
   {
     "name": "Etymotic Research",
     "phones": [ 
-               {"name":["ER2SE"],"file":["ER2SE Sample 1 (by 아소카, Clear Tri-flange)"]},
+               {"name":["ER2SE"],"file":["ER2SE Sample 1 (by 아소카, Default Dampers, Clear Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Clear Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Frost Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Westone Star Tips)"]},
                {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange, by ER4SR)"]},
                {"name":["ER4XR"],"file":["ER4XR Sample 1 (by ER4SR, Ety Grey Tips)", "ER4XR Sample 1 (by ER4SR, Ety Foam Tips)"]},
                {"name":["mc5"],"file":["mc5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]},

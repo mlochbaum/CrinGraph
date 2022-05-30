@@ -2694,7 +2694,7 @@ function addHeader() {
             linkElem = document.createElement("a");
         
         linkElem.setAttribute("href", link.url);
-        linkElem.setAttribute("target", "_blank");
+        if ( alt_header_new_tab ) { linkElem.setAttribute("target", "_blank"); }
         linkElem.textContent = link.name;
         linkContainerElem.append(linkElem);
         linksList.append(linkContainerElem);

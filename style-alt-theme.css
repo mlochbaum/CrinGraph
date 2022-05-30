@@ -20,7 +20,11 @@
     
     --scrollbar-color: 255,255,255;
     --scrollbar-accent: 0,0,0;
-        
+    
+    --header-color: hsl(215, 20%, 10%);
+    --header-links-color: hsl(0, 0%, 100%);
+    --header-menu-icon-color: hsl(0, 0%, 100%);
+    
     --logo-filter: invert(1.0);
     --svg-filter: none;
 }
@@ -46,6 +50,10 @@ body.dark-mode {
     --scrollbar-color: 0,0,0;
     --scrollbar-accent: 255,255,255;
 
-    --logo-filter: none;
-    --svg-filter: invert(1.0);
+    --header-color: hsl(0, 0%, 0%);
+    --header-links-color: hsl(0, 0%, 100%);
+    --header-menu-icon-color: hsl(0, 0%, 100%);
+    
+    --logo-filter: invert(1.0);
+    --svg-filter: invert(1);
 }

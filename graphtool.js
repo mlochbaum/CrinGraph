@@ -2250,6 +2250,7 @@ function addExtra() {
         document.querySelector("div.select > div.selector-panel").style["display"] = "none";
         document.querySelector("div.select > div.extra-panel").style["display"] = "flex";
         document.querySelector("div.select").setAttribute("data-selected", "extra");
+        pushEventTag("clicked_equalizerTab", targetWindow);
     };
     window.hideExtraPanel = (selectedList) => {
         document.querySelector("div.select > div.selector-panel").style["display"] = "flex";

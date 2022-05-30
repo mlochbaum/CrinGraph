@@ -1534,6 +1534,9 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
             p.rawChannels = ch;
             showPhone(p, exclusive, suppressVariant, trigger);
             
+            // Scroll to selected
+            if (trigger) { scrollToActive(); }
+            
             // Analytics event
             if (analyticsEnabled) { pushPhoneTag("phone_displayed", p, trigger); }
         });
@@ -2124,6 +2127,15 @@ function focusedListSwipes() {
     });
 }
 focusedListSwipes();
+
+// Scroll list to active phone on init
+function scrollToActive() {
+    let phoneList = document.querySelector('div.scroll#phones'),
+        firstActivePhone = document.querySelector('div.phone-item[style*=border]'),
+        offset = firstActivePhone.offsetTop - 26;
+    
+    phoneList.scrollTop = offset;
+}
 
 // Set focused panel
 function setFocusedPanel() {

@@ -1972,6 +1972,8 @@ div.scroll {
     
     overflow-y: auto;
     overflow-x: hidden;
+    
+    scroll-behavior: smooth;
 }
 
 /* List selected styles */

@@ -1,4 +1,10 @@
-[
+[ 
+  {
+    "name": "TEST",
+    "phones": [
+                {"name":["Q150"],"file":["Q150 Sealed TEST"]}
+              ]
+  },
   {
     "name": "7Hz",
     "phones": [

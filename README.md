@@ -11,7 +11,8 @@ to share around the internet. Although it was designed for
 the code here can be used freely by anyone, with no restrictions.
 There are now many instances, including
 [Banbeucmas](https://banbeu.com/graph/tool/),
-[HypetheSonics](https://www.hypethesonics.com/iemdbc/), and
+[HypetheSonics](https://www.hypethesonics.com/iemdbc/),
+[Rohsa](https://rohsa.gitlab.io/graphtool/), and
 [Super\* Review](https://squig.link/), which has links to even more of
 them. If you're interested in using it for your own graphs, see
 [Configuring.md](Configuring.md) and ask me about any questions that

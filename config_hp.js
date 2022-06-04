@@ -1,7 +1,4 @@
 const DIR = "data_hp/";
-// Get data (as a list of [x,y] pairs) from an FR file
-const tsvParse = fr => d3.tsvParseRows(fr).slice(2,482)
-                       .map(r=>r.map(d=>+d));
 
 // Add a watermark to the graph.
 function watermark(svg) {
@@ -23,7 +20,7 @@ const scale_smoothing = 0.2;
 
 const targets = [
     { type:"Neutral"   , files:["IEF Neutral"] },
-    { type:"Preference", files:['IEF "Harman"'] }
+    { type:"Preference", files:["IEF Harman"] }
 ];
 
 // const init_phones = [ "HD650", "IEF Neutral Target" ];

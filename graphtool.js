@@ -179,7 +179,7 @@ doc.html(`
                 <button class="export-filters">Export</button>
                 <button class="autoeq">AutoEQ</button>
                 <button class="export-graphic-filters">Export Graphic EQ (For Wavelet)</button>
-                <button class="readme">Readme</button>
+                <button class="readme">Guide</button>
               </div>
               <a style="display: none" id="file-filters-export"></a>
               <form style="display:none"><input type="file" id="file-filters-import" accept=".txt" /></form>
@@ -2564,11 +2564,11 @@ function addExtra() {
     });
     // Readme
     document.querySelector("div.extra-eq button.readme").addEventListener("click", () => {
-        alert("1. If you want to AutoEQ model A to B, display A B and remove target\n" +
-            "2. Add/Remove bands before AutoEQ may give you a better result\n" +
-            "3. Curve of PK filter close to 20K is implementation dependent, avoid such filter if you're not sure how your DSP software works\n" +
-            "4. EQ treble require resonant peak matching and fine tune by ear, keep treble untouched if you're not sure how to do that\n" +
-            "5. Tone generator is useful to find actual location of peaks and dips, notice the web version may not work on some platform\n");
+        alert("1. If you want to AutoEQ model A to B, display A B and remove targets.\n" +
+            "2. Adding/Removing bands before AutoEQ may give you a better results.\n" +
+            "3. Using PK filters close to 20kHz is finnicky; avoid touching frequencies beyond 15kHz if you're not sure how your DSP software works.\n" +
+            "4. EQing treble frequencies require resonant peak matching and fine-tuning by ear. Keep the treble regions untouched if you're new to EQing.\n" +
+            "5. Use the Tone Generator to find the actual location of peaks and dips to your own ears. Do note that the web version may not work on some platforms.\n");
     });
     // AutoEQ
     let autoEQFromInput = document.querySelector("div.extra-eq input[name='autoeq-from']");

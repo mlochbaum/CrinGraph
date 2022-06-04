@@ -1548,6 +1548,8 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
         });
         return;
     }
+    // Show phone even it's hidden previously
+    p.hide = false;
     smoothPhone(p);
     if (p.id === undefined) { p.id = getPhoneNumber(); }
     normalizePhone(p); p.offset=p.offset||0;

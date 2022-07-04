@@ -57,7 +57,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **LG** : USB-C Earphones (LG Wing Bundle)
 
-**Moondrop** : Aria (2018) (냥냐냥님 측정), Aria (2021), Blessing (이소양님 측정), Blessing 2 (이소양님 측정), Chu (THX™님 측정), KXXS (이소양님 측정), Nekocake (냥냐냥님 측정), Quarks (샘플 1: THX™님 측정, 샘플 2: 냥냐냥님 측정), Starfield (이소양님 측정), SSR (샘플 1: 이소양님 측정, 샘플 2: 냥냐냥님 측정)
+**Moondrop** : Aria (2018) (냥냐냥님 측정), Aria (2021), Blessing (이소양님 측정), Blessing 2 (이소양님 측정), Chu (샘플 1: THX™님 측정, 샘플 2: Patria님 측정), KXXS (이소양님 측정), Nekocake (냥냐냥님 측정), Quarks (샘플 1: THX™님 측정, 샘플 2: 냥냐냥님 측정), Starfield (이소양님 측정), SSR (샘플 1: 이소양님 측정, 샘플 2: 냥냐냥님 측정)
 
 **Muse Hifi** : Power (냥냐냥님 측정)
 
@@ -89,7 +89,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Sonicast** : Dirac MK2 (냥냐냥님 측정), Direm E3-C (냥냐냥님 측정), Direm HT1 (냥냐냥님 측정), Direm KASA, Direm Pro SL (냥냐냥님 측정), Direm W1 (냥냐냥님 측정)
 
-**Sony** : IER-M7
+**Sony** : IER-M7, WF-1000XM4 (Patria님 측정)
 
 **Tanchjim** : Darling (이소양님 측정), New Hana (냥냐냥님 측정), Oxygen (냥냐냥님 측정), Oxygen Asano (이소양님 측정), PRISM (이소양님 측정)
 

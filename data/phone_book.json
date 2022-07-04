@@ -187,7 +187,10 @@
               {"name":["Aria Snow Edition"],"file":["Aria Snow Edition Sample 1 (by 이소양)"]},
               {"name":["Blessing"],"file":["Blessing Sample 1 (by 이소양)"]},
               {"name":["Blessing 2"],"file":["Blessing 2 Sample 1 (by 이소양)"]},
-              {"name":["Chu"],"file":["Chu Sample 1 (Spring Tips, by 아소카)", "Chu Sample 1 (Final E Tips, by 아소카)", "Chu Sample 1 (Softears UC Tips, by 아소카)"]},
+              {"name":["Chu"],"file":["Chu Sample 1 (Spring Tips, by 아소카)", 
+                "Chu Sample 1 (Final E Tips, by 아소카)", 
+                "Chu Sample 1 (Softears UC Tips, by 아소카)",
+                "Chu Sample 1 (by Patria, L Only)"]},
               {"name":["KXXS"],"file":["KXXS Sample 1 (by 이소양)"]},
               {"name": ["Nekocake"],"file":["Nekocake Sample 1 (by 냥냐냥, Balanced EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, Classic EQ)", 
@@ -321,7 +324,8 @@
   {
     "name": "Sony",
     "phones": [
-               {"name":["IER-M7"],"file":["IER-M7 Sample 1 (by ER4SR, Hybrid Silicone M)"]}
+               {"name":["IER-M7"],"file":["IER-M7 Sample 1 (by ER4SR, Hybrid Silicone M)"]},
+               {"name":["WF-1000XM4"],"file":["WF-1000XM4 Sample 1 (by Patria)"]}
               ]
   },
   {

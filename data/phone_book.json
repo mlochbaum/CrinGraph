@@ -1,11 +1,5 @@
 [ 
   {
-    "name": "TEST",
-    "phones": [
-                {"name":["Q150"],"file":["Q150 Sealed TEST"]}
-              ]
-  },
-  {
     "name": "7Hz",
     "phones": [
                 {"name":["Eternal"],"file":["Eternal Sample 1 (by 냥냐냥)"]},
@@ -184,7 +178,9 @@
     "phones": [ 
               {"name":["Aria (2018)"],"file":["Aria (2018) Sample 1 (by 냥냐냥)"]},
               {"name":["Aria (2021)"],"file":["Aria (2021) Sample 1 (by ER4SR)"]},
-              {"name":["Aria Snow Edition"],"file":["Aria Snow Edition Sample 1 (by 이소양)"]},
+              {"name":["Aria Snow Edition"],"file":["Aria Snow Edition Sample 1 (by 이소양)",
+                                                   "Aria Snow Edition Sample 2 (Spring Tips, by ER4SR)",
+                                                   "Aria Snow Edition Sample 2 (Grey Tips, by ER4SR)"]},
               {"name":["Blessing"],"file":["Blessing Sample 1 (by 이소양)"]},
               {"name":["Blessing 2"],"file":["Blessing 2 Sample 1 (by 이소양)"]},
               {"name":["Chu"],"file":["Chu Sample 1 (Spring Tips, by 아소카)", 

@@ -2605,8 +2605,8 @@ function addExtra() {
             let autoEQTo = Math.min(Math.max(parseInt(autoEQToInput.value) || 0, autoEQFrom), 20000);
             let qFrom = Math.min(Math.max(parseFloat(qFromInput.value) || 0, 0.5), 33.3333);
             let qTo = Math.min(Math.max(parseFloat(qToInput.value) || 0, qFrom), 33.3333);
-            let gainFrom = Math.min(Math.max(parseInt(gainFromInput.value) || 0, -12), 33.3333);
-            let gainTo = Math.min(Math.max(parseInt(gainToInput.value) || 0, gainFrom), 33.3333);
+            let gainFrom = Math.min(Math.max(parseInt(gainFromInput.value) || 0, -12), 12);
+            let gainTo = Math.min(Math.max(parseInt(gainToInput.value) || 0, gainFrom), 12);
 
             Equalizer.config.AutoEQRange = [autoEQFrom, autoEQTo];
             Equalizer.config.OptimizeQRange = [qFrom, qTo];

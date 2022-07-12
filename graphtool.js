@@ -2653,9 +2653,12 @@ function addExtra() {
             Equalizer.config.AutoEQRange = [autoEQFrom, autoEQTo];
             Equalizer.config.OptimizeQRange = [qFrom, qTo];
             Equalizer.config.OptimizeGainRange = [gainFrom, gainTo];
+            console.log(qStepInput);
+            /*
             for(let i = 0;i<3;i++) {
                 Equalizer.config.OptimizeDeltas[i] = [10, qTo, (Math.abs(gainTo) > Math.abs(gainFrom) ? Math.abs(gainTo) : Math.abs(gainFrom)), parseInt(5 / i), parseFloat(qStepInput), parseInt(5 / i) * 0.01];
             }
+            */
             let phoneCHs = (phoneObj.rawChannels.filter(c => c)
                 .map(ch => ch.map(([f, v]) => [f, v + phoneObj.norm])));
             let phoneCH = (phoneCHs.length > 1) ? avgCurves(phoneCHs) : phoneCHs[0];

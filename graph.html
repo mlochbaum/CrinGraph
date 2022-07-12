@@ -19,6 +19,18 @@
         
         <style type="text/css">body { opacity: 0.0; transition: opacity 0.1s ease-in; }</style>
         <base target="_parent">
+        <script>
+            function isCustom() {
+                selIdx = parseInt(document.getElementById("band-setting").selectedIndex);
+                console.log(selIdx);
+                if(selIdx == 3) {
+                    document.getElementById("custom-bands").style.display = "inline";
+                }
+                else {
+                    document.getElementById("custom-bands").style.display = "none";
+                }
+            }
+        </script>
     </head>
     
     <body>

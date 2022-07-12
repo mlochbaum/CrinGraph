@@ -35,7 +35,7 @@ const init_phones = [], // Optional. Which graphs to display on initial load. No
   (extraEQEnabled = true), // Enable parametic eq function
   (extraEQBands = 10), // Default EQ bands available
   (extraEQBandsMax = 20), // Max EQ bands available
-  (extraToneGeneratorEnabled = true); // Enable tone generator function
+  (extraToneGeneratorEnabled = false); // Enable tone generator function
 
 // Specify which targets to display
 const targets = [
@@ -163,8 +163,8 @@ const // Short text, center-aligned, useful for a little side info, credits, lin
   // Slightly different presentation to make more readable paragraphs. Useful for elaborated methodology, etc.
   paragraphs = `
       <p style="text-align: center;"><strong class="center">기여자 목록</strong></p>
-      <p class="center" style="text-align: center;">ER4SR, 냥냐냥, 이소양, 아소카, NX7</p>
-      <p class="center" style="text-align: center;">EX이헤갤러, JohnYang1997, Ricopam, Patria, SilicaGel</p>
+      <p class="center" style="text-align: center;">ER4SR, 냥냐냥, 이소양, 아소카, NX7, Patria</p>
+      <p class="center" style="text-align: center;">EX이헤갤러, JohnYang1997, Ricopam, SilicaGel</p>
       <p class="center" style="text-align: center;">뉴비, 뎃데로게., 돼지고닉해드, 유키나유키농, 전염, 프리스트, 피프틴유저</p>
     `,
   // Customize the count of widget divs, and customize the contents of them. As long as they're wrapped in the widget div, they should auto-wrap and maintain margins between themselves

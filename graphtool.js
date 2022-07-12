@@ -2566,27 +2566,27 @@ function addExtra() {
         let selIdx = document.getElementById("band-setting").selectedIndex;
         switch(selIdx) {
             case 0:
-                Equalizer.config.GraphicEQFrequencies = Array.from(new Set(
+                Equalizer.config.GraphicEQFrequences = Array.from(new Set(
                     new Array(10).fill(null)
                     .map((_, i) => Math.floor(20 * Math.pow(2, i))))).sort((a, b) => a - b);
                 break;
             case 1:
-                Equalizer.config.GraphicEQFrequencies = Array.from(new Set(
+                Equalizer.config.GraphicEQFrequences = Array.from(new Set(
                     new Array(15).fill(null)
                     .map((_, i) => Math.floor(20 * Math.pow(2, i * 2 / 3))))).sort((a, b) => a - b);
                 break;
             case 2:
-                Equalizer.config.GraphicEQFrequencies = Array.from(new Set(
+                Equalizer.config.GraphicEQFrequences = Array.from(new Set(
                     new Array(31).fill(null)
                     .map((_, i) => Math.floor(20 * Math.pow(2, i / 3))))).sort((a, b) => a - b);
                 break;
             case 3:
                 let bands = document.getElementById("custom-bands").value;
                 bands_arr = bands.split(", ");
-                Equalizer.config.GraphicEQFrequencies = bands_arr;
+                Equalizer.config.GraphicEQFrequences = bands_arr;
                 break;
             default:
-                Equalizer.config.GraphicEQFrequencies = Array.from(new Set(
+                Equalizer.config.GraphicEQFrequences = Array.from(new Set(
                     new Array(10).fill(null)
                     .map((_, i) => Math.floor(20 * Math.pow(2, i))))).sort((a, b) => a - b);
         }
@@ -2612,7 +2612,7 @@ function addExtra() {
     let autoEQToInput = document.querySelector("div.extra-eq input[name='autoeq-to']");
     let qFromInput = document.querySelector("div.extra-eq input[name='q-from']");
     let qToInput = document.querySelector("div.extra-eq input[name='q-to']");
-    let qStepInput = document.querySelector("div.extra-eq select[name='q-step'] option:checked");
+    let qStepInput = document.querySelector("div.extra-eq select[name='q-step'] option:checked").value;
     let gainFromInput = document.querySelector("div.extra-eq input[name='gain-from']");
     let gainToInput = document.querySelector("div.extra-eq input[name='gain-to']");
 
@@ -2654,11 +2654,9 @@ function addExtra() {
             Equalizer.config.OptimizeQRange = [qFrom, qTo];
             Equalizer.config.OptimizeGainRange = [gainFrom, gainTo];
             console.log(qStepInput);
-            /*
-            for(let i = 0;i<3;i++) {
+            for(let i = 1;i<4;i++) {
                 Equalizer.config.OptimizeDeltas[i] = [10, qTo, (Math.abs(gainTo) > Math.abs(gainFrom) ? Math.abs(gainTo) : Math.abs(gainFrom)), parseInt(5 / i), parseFloat(qStepInput), parseInt(5 / i) * 0.01];
             }
-            */
             let phoneCHs = (phoneObj.rawChannels.filter(c => c)
                 .map(ch => ch.map(([f, v]) => [f, v + phoneObj.norm])));
             let phoneCH = (phoneCHs.length > 1) ? avgCurves(phoneCHs) : phoneCHs[0];

@@ -163,7 +163,7 @@ doc.html(`
                     </span>
                     <span><input name="freq" type="number" min="20" max="20000" step="1" value="0"></input></span>
                     <span><input name="gain" type="number" min="-40" max="40" step="0.1" value="0"></input></span>
-                    <span><input name="q" type="number" min="0" max="10" step="0.1" value="0"></input></span>
+                    <span><input name="q" type="number" min="0.3333" max="33.3333" step="0.1" value="0"></input></span>
                 </div>
               </div>
               <div class="settings-row">
@@ -173,6 +173,9 @@ doc.html(`
                 <span>Q Range</span>
                 <span><input name="q-from" type="number" min="0.3333" max="33.3333" step="1" value="0.5"></input></span>
                 <span><input name="q-to" type="number" min="0.3333" max="33.3333" step="1" value="2"></input></span>
+                <span>Q Step</span>
+                <span><select name="q-step"><option value="0.1">0.1</option><option value="0.01">0.01</option><option value="0.001">0.001</option><option value="0.0001">0.0001</option></select></span>
+                <span></span>
                 <span>Gain Range</span>
                 <span><input name="gain-from" type="number" min="-12" max="12" step="-12" value="0.5"></input></span>
                 <span><input name="gain-to" type="number" min="-12" max="12" step="12" value="2"></input></span>
@@ -184,8 +187,18 @@ doc.html(`
                 <button class="import-filters">Import</button>
                 <button class="export-filters">Export</button>
                 <button class="autoeq">AutoEQ</button>
-                <button class="export-graphic-filters">Export Graphic EQ (For Wavelet)</button>
                 <button class="readme">Readme</button>
+                <div class="graphic-eq-settings">
+                    <span>Graphic EQ Band Settings</span>
+                    <select name="band-setting" id="band-setting" onchange="isCustom()">
+                        <option value="10-iso" selected>10 band(ISO)</option>
+                        <option value="15-iso">15 band(ISO)</option>
+                        <option value="31-iso">31 band(ISO)</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                    <input type="text" style="display:none; width:97%;" id="custom-bands" name="custom-bands" placeholder="Ex) 64, 250, 1000, 4000, 8000"></input>
+                </div>
+                <button class="export-graphic-filters">Export Graphic EQ</button>
               </div>
               <a style="display: none" id="file-filters-export"></a>
               <form style="display:none"><input type="file" id="file-filters-import" accept=".txt" /></form>
@@ -2550,6 +2563,33 @@ function addExtra() {
             alert("Please add at least one filter before export.");
             return;
         }
+        let selIdx = document.getElementById("band-setting").selectedIndex;
+        switch(selIdx) {
+            case 0:
+                Equalizer.config.GraphicEQFrequencies = Array.from(new Set(
+                    new Array(10).fill(null)
+                    .map((_, i) => Math.floor(20 * Math.pow(2, i))))).sort((a, b) => a - b);
+                break;
+            case 1:
+                Equalizer.config.GraphicEQFrequencies = Array.from(new Set(
+                    new Array(15).fill(null)
+                    .map((_, i) => Math.floor(20 * Math.pow(2, i * 2 / 3))))).sort((a, b) => a - b);
+                break;
+            case 2:
+                Equalizer.config.GraphicEQFrequencies = Array.from(new Set(
+                    new Array(31).fill(null)
+                    .map((_, i) => Math.floor(20 * Math.pow(2, i / 3))))).sort((a, b) => a - b);
+                break;
+            case 3:
+                let bands = document.getElementById("custom-bands").value;
+                bands_arr = bands.split(", ");
+                Equalizer.config.GraphicEQFrequencies = bands_arr;
+                break;
+            default:
+                Equalizer.config.GraphicEQFrequencies = Array.from(new Set(
+                    new Array(10).fill(null)
+                    .map((_, i) => Math.floor(20 * Math.pow(2, i))))).sort((a, b) => a - b);
+        }
         let graphicEQ = Equalizer.as_graphic_eq(filters);
         let settings = "GraphicEQ: " + graphicEQ.map(([f, gain]) =>
             f.toFixed(0) + " " + gain.toFixed(1)).join("; ");
@@ -2572,8 +2612,10 @@ function addExtra() {
     let autoEQToInput = document.querySelector("div.extra-eq input[name='autoeq-to']");
     let qFromInput = document.querySelector("div.extra-eq input[name='q-from']");
     let qToInput = document.querySelector("div.extra-eq input[name='q-to']");
+    let qStepInput = document.querySelector("div.extra-eq select[name='q-step'] option:checked");
     let gainFromInput = document.querySelector("div.extra-eq input[name='gain-from']");
     let gainToInput = document.querySelector("div.extra-eq input[name='gain-to']");
+
     autoEQFromInput.value = Equalizer.config.AutoEQRange[0].toFixed(0);
     autoEQToInput.value = Equalizer.config.AutoEQRange[1].toFixed(0);
     qFromInput.value = Equalizer.config.OptimizeQRange[0].toFixed(4);
@@ -2611,6 +2653,9 @@ function addExtra() {
             Equalizer.config.AutoEQRange = [autoEQFrom, autoEQTo];
             Equalizer.config.OptimizeQRange = [qFrom, qTo];
             Equalizer.config.OptimizeGainRange = [gainFrom, gainTo];
+            for(let i = 0;i<3;i++) {
+                Equalizer.config.OptimizeDeltas[i] = [10, qTo, (Math.abs(gainTo) > Math.abs(gainFrom) ? Math.abs(gainTo) : Math.abs(gainFrom)), parseInt(5 / i), parseFloat(qStepInput), parseInt(5 / i) * 0.01];
+            }
             let phoneCHs = (phoneObj.rawChannels.filter(c => c)
                 .map(ch => ch.map(([f, v]) => [f, v + phoneObj.norm])));
             let phoneCH = (phoneCHs.length > 1) ? avgCurves(phoneCHs) : phoneCHs[0];

@@ -2573,12 +2573,12 @@ function addExtra() {
             case 1:
                 Equalizer.config.GraphicEQFrequences = Array.from(new Set(
                     new Array(15).fill(null)
-                    .map((_, i) => Math.floor(32 * Math.pow(2, i * 2 / 3))))).sort((a, b) => a - b);
+                    .map((_, i) => Math.floor(25 * Math.pow(2, i * 2 / 3))))).sort((a, b) => a - b);
                 break;
             case 2:
                 Equalizer.config.GraphicEQFrequences = Array.from(new Set(
                     new Array(31).fill(null)
-                    .map((_, i) => Math.floor(32 * Math.pow(2, i / 3))))).sort((a, b) => a - b);
+                    .map((_, i) => Math.floor(16 * Math.pow(2, i / 3))))).sort((a, b) => a - b);
                 break;
             case 3:
                 let bands = document.getElementById("custom-bands").value;

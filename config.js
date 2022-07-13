@@ -56,7 +56,8 @@ const targets = [
       "Crinacle",
       "Precogvision",
       "Super Review",
-      "FLAT"
+      "FLAT",
+      "xBass"
     ],
   },
 ];

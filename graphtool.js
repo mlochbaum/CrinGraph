@@ -2650,13 +2650,13 @@ function addExtra() {
         updateFilterElements();
         let node = filtersContainer.querySelector("div.filter");
         eqBands = qFactors.length;
-        console.log(qFactors.length);
         node.querySelector("input[name='enabled']").value = "true";
         node.querySelector("select[name='type']").value = "PK";
         node.querySelector("input[name='freq']").value = graphicEQ[0][0];
         node.querySelector("input[name='q']").value = qFactors[0];
         node.querySelector("input[name='gain']").value = graphicEQ[1][0];
 
+        console.log(graphicEQ);
         for(let i=1;i<qFactors.length;i++) {
             let clone = node.cloneNode(true);
             clone.querySelector("input[name='enabled']").value = "true";

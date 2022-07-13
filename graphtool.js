@@ -2637,7 +2637,7 @@ function addExtra() {
                     y = bands_arr[i + 1];
                     qFactors[i] = Math.log2(y / x).toFixed(2);
                 };
-                qFactors[qFactors.length - 1] = qFactors[qFactors.length - 2];
+                qFactors[qFactors.length - 1] = Math.log2(20000 / bands_arr[bands_arr.length - 1]).toFixed(2);
                 break;
             default:
                 Equalizer.config.GraphicEQFrequences = Array.from(new Set(

@@ -193,7 +193,6 @@ doc.html(`
                     <select name="band-setting" id="band-setting" onchange="isCustom()">
                         <option value="10-iso" selected>10 band(ISO)</option>
                         <option value="15-iso">15 band(ISO)</option>
-                        <option value="31-iso">31 band(ISO)</option>
                         <option value="custom">Custom</option>
                     </select>
                     <input type="text" style="display:none; width:97%;" id="custom-bands" name="custom-bands" placeholder="Ex) 64, 250, 1000, 4000, 8000"></input>
@@ -2576,11 +2575,6 @@ function addExtra() {
                     .map((_, i) => Math.floor(25 * Math.pow(2, i * 2 / 3))))).sort((a, b) => a - b);
                 break;
             case 2:
-                Equalizer.config.GraphicEQFrequences = Array.from(new Set(
-                    new Array(31).fill(null)
-                    .map((_, i) => Math.floor(16 * Math.pow(2, i / 3))))).sort((a, b) => a - b);
-                break;
-            case 3:
                 let bands = document.getElementById("custom-bands").value;
                 bands_arr = bands.split(", ");
                 Equalizer.config.GraphicEQFrequences = bands_arr;

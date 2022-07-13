@@ -2616,13 +2616,13 @@ function addExtra() {
                 Equalizer.config.GraphicEQFrequences = Array.from(new Set(
                     new Array(15).fill(null)
                         .map((_, i) => Math.floor(25 * Math.pow(2, i * 2 / 3))))).sort((a, b) => a - b);
-                qFactors = new Array(10).fill(2.14);
+                qFactors = new Array(15).fill(2.14);
                 break;
             case 2:
                 Equalizer.config.GraphicEQFrequences = Array.from(new Set(
                     new Array(31).fill(null)
                         .map((_, i) => Math.floor(20 * Math.pow(2, i / 3))))).sort((a, b) => a - b);
-                qFactors = new Array(10).fill(4.32);
+                qFactors = new Array(31).fill(4.32);
                 break;
             case 3:
                 let bands = document.getElementById("custom-bands").value;
@@ -2650,6 +2650,7 @@ function addExtra() {
         updateFilterElements();
         let node = filtersContainer.querySelector("div.filter");
         eqBands = qFactors.length;
+        console.log(qFactors.length);
         for(let i=0;i<qFactors.length;i++) {
             let clone = node.cloneNode(true);
             clone.querySelector("input[name='enabled']").value = "true";

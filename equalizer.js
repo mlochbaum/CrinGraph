@@ -14,7 +14,7 @@ Equalizer = (function() {
         // Avoid filters close to nyquist frequency by default, because the behavior is implementation dependent
         // https://github.com/jaakkopasanen/AutoEq/issues/240
         // https://github.com/jaakkopasanen/AutoEq/issues/411
-        AutoEQRange: [20, 15000],
+        AutoEQRange: [20, 7000],
         // Minimum and maximum Q for AutoEQ feature
         OptimizeQRange: [0.5, 2],
         // Minimum and maximum Gain for AutoEQ feature
@@ -200,7 +200,7 @@ Equalizer = (function() {
                 if (rawFS[i] < freqTo) {
                     points.push(rawFR[i][1]);
                 } else {
-                    break
+                    break;
                 }
             }
             let avg = points.reduce((a, b) => a + b, 0) / points.length;

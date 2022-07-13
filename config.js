@@ -41,11 +41,15 @@ const init_phones = [], // Optional. Which graphs to display on initial load. No
 const targets = [
   {
     type: "Neutral",
-    files: ["Diffuse Field", "Etymotic", "Free Field", "Innerfidelity ID"],
+    files: ["Diffuse Field", "Etymotic", "Free Field", "Innerfidelity ID", "Harman In-Room"],
   },
   {
-    type: "Preference",
-    files: ["Harman IE 2019 v2", "Harman IE 2017", "Rtings", "Sonarworks"],
+    type: "Preference(IEM)",
+    files: ["Harman IE 2019 v2", "Harman IE 2017", "Rtings", "Sonarworks", "AutoEQ IE"],
+  },
+  {
+    type: "Preference(Headphones)",
+    files: ["Harman OE 2018", "Harman OE 2015"],
   },
   {
     type: "Reviewer",

@@ -187,7 +187,8 @@ doc.html(`
                 <button class="import-filters">Import</button>
                 <button class="export-filters">Export</button>
                 <button class="autoeq">AutoEQ</button>
-                <button class="readme">Readme</button>
+                <span>Additional Filters</span>
+                <button class="xbass">xBass</button>
                 <div class="graphic-eq-settings">
                     <span>Graphic EQ Band Settings</span>
                     <select name="band-setting" id="band-setting" onchange="isCustom()">
@@ -199,6 +200,8 @@ doc.html(`
                     <input type="text" style="display:none; width:97%;" id="custom-bands" name="custom-bands" placeholder="Ex) 64, 250, 1000, 4000, 8000"></input>
                 </div>
                 <button class="export-graphic-filters">Export Graphic EQ</button>
+                <br>
+                <button class="readme">Readme</button>
               </div>
               <a style="display: none" id="file-filters-export"></a>
               <form style="display:none"><input type="file" id="file-filters-import" accept=".txt" /></form>
@@ -2477,6 +2480,26 @@ function addExtra() {
     // Import filters
     document.querySelector("div.extra-eq button.import-filters").addEventListener("click", () => {
         fileFiltersImport.click();
+    });
+    document.querySelector("div.extra-eq button.xbass").addEventListener("click", () => {
+        if(eqBands > 17) alert("17개 이하의 필터가 존재할 때 사용 가능. 현재 "+eqBands+"개의 필터 사용중!");
+        else {
+            eqBands += 3;
+            let node = filtersContainer.querySelector("div.filter");
+            let freq = ["22", "37", "48"];
+            let gain = ["12.0", "1.0", "-1.5"];
+            let q = ["0.533", "2.000", "2.000"];
+            for(let i=0;i<3;i++) {
+                let clone = node.cloneNode(true);
+                clone.querySelector("input[name='enabled']").value = "true";
+                clone.querySelector("select[name='type']").value = "PK";
+                clone.querySelector("input[name='freq']").value = freq[i];
+                clone.querySelector("input[name='q']").value = q[i];
+                clone.querySelector("input[name='gain']").value = gain[i];
+                filtersContainer.appendChild(clone);
+            }
+            updateFilterElements();
+        }
     });
     fileFiltersImport.addEventListener("change", (e) => {
         // Import filters callback

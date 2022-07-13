@@ -2499,6 +2499,7 @@ function addExtra() {
                 filtersContainer.appendChild(clone);
             }
             updateFilterElements();
+            applyEQ();
         }
     });
     fileFiltersImport.addEventListener("change", (e) => {

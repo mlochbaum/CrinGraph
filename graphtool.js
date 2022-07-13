@@ -2654,7 +2654,7 @@ function addExtra() {
         node.querySelector("select[name='type']").value = "PK";
         node.querySelector("input[name='freq']").value = graphicEQ[0][0];
         node.querySelector("input[name='q']").value = qFactors[0];
-        node.querySelector("input[name='gain']").value = graphicEQ[1][0];
+        node.querySelector("input[name='gain']").value = graphicEQ[0][1].toFixed(1);
 
         for(let i=1;i<qFactors.length;i++) {
             let clone = node.cloneNode(true);

@@ -2583,7 +2583,9 @@ function addExtra() {
             case 3:
                 let bands = document.getElementById("custom-bands").value;
                 bands_arr = bands.split(", ");
-                console.log(bands_arr);
+                for(let i=0;i<bands_arr.length;i++) {
+                    bands_arr[i] = parseInt(bands_arr[i]);
+                }
                 Equalizer.config.GraphicEQFrequences = bands_arr;
                 break;
             default:

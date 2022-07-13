@@ -2656,14 +2656,13 @@ function addExtra() {
         node.querySelector("input[name='q']").value = qFactors[0];
         node.querySelector("input[name='gain']").value = graphicEQ[1][0];
 
-        console.log(graphicEQ);
         for(let i=1;i<qFactors.length;i++) {
             let clone = node.cloneNode(true);
             clone.querySelector("input[name='enabled']").value = "true";
             clone.querySelector("select[name='type']").value = "PK";
-            clone.querySelector("input[name='freq']").value = graphicEQ[0][i];
+            clone.querySelector("input[name='freq']").value = graphicEQ[i][0];
             clone.querySelector("input[name='q']").value = qFactors[i];
-            clone.querySelector("input[name='gain']").value = graphicEQ[1][i];
+            clone.querySelector("input[name='gain']").value = graphicEQ[i][1].toFixed(1);
             filtersContainer.appendChild(clone);
         }
         updateFilterElements();
@@ -2772,7 +2771,6 @@ function addExtra() {
             Equalizer.config.AutoEQRange = [autoEQFrom, autoEQTo];
             Equalizer.config.OptimizeQRange = [qFrom, qTo];
             Equalizer.config.OptimizeGainRange = [gainFrom, gainTo];
-            console.log(qStepInput);
             for (let i = 1; i < 4; i++) {
                 Equalizer.config.OptimizeDeltas[i] = [10, qTo, (Math.abs(gainTo) > Math.abs(gainFrom) ? Math.abs(gainTo) : Math.abs(gainFrom)), parseInt(5 / i), parseFloat(qStepInput), parseInt(5 / i) * 0.01];
             }

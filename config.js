@@ -41,7 +41,7 @@ const init_phones = [], // Optional. Which graphs to display on initial load. No
 const targets = [
   {
     type: "Neutral",
-    files: ["Diffuse Field", "Etymotic", "Free Field", "Innerfidelity ID", "Harman In-Room"],
+    files: ["Diffuse Field", "Etymotic", "Free Field", "Innerfidelity ID", "Harman In-Room", "Crinacle"],
   },
   {
     type: "Preference(IEM)",
@@ -57,7 +57,6 @@ const targets = [
       "Antdroid",
       "Bad Guy",
       "Banbeucmas",
-      "Crinacle",
       "Precogvision",
       "Super Review",
     ],

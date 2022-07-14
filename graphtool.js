@@ -2392,6 +2392,7 @@ function addExtra() {
         while (filtersContainer.childElementCount > eqBands) {
             if(filtersContainer.children[filtersContainer.childElementCount - 1].id == "xbass") {
                 if(eqBands == 2) {
+                    eqBands = 1;
                     for(let i=0;i<2;i++) {
                         filtersContainer.children[filtersContainer.childElementCount - 1].remove();
                     }
@@ -2404,6 +2405,7 @@ function addExtra() {
                     applyEQ();
                 }
                 else {
+                    eqBands -= 2;
                     for(let i=0;i<3;i++) {
                         filtersContainer.children[filtersContainer.childElementCount - 1].remove();
                     }

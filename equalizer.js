@@ -167,7 +167,7 @@ Equalizer = (function() {
                 return highshelf(f.freq, f.q, f.gain, sampleRate);
             } else if (f.type === "PK") {
                 return peaking(f.freq, f.q, f.gain, sampleRate);
-            } else if (f.type == "PK(xBass)") {
+            } else if (f.type == "PK-xBass") {
                 return peaking(f.freq, f.q, f.gain, sampleRate);
             }
             return null;

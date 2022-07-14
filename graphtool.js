@@ -2390,7 +2390,7 @@ function addExtra() {
             filtersContainer.appendChild(clone);
         }
         while (filtersContainer.childElementCount > eqBands) {
-            if(filtersContainer.children[filtersContainer.childElementCount - 1].id == "xbass") {
+            if(filtersContainer.children[filtersContainer.childElementCount - 1].querySelector("select[name='type']").value == "PK(xBass)") {
                 if(eqBands == 2) {
                     eqBands = 1;
                     for(let i=0;i<2;i++) {
@@ -2406,8 +2406,10 @@ function addExtra() {
                 }
                 else {
                     eqBands -= 2;
-                    for(let i=0;i<3;i++) {
-                        filtersContainer.children[filtersContainer.childElementCount - 1].remove();
+                    for(let i=0;i<filtersContainer.children.length;i++) {
+                        if(filtersContainer.children[i].querySelector("select[name='type']").value == "PK(xBass)") {
+                            filtersContainer.children[i].remove();
+                        }
                     }
                     applyEQ();
                 }
@@ -2543,6 +2545,12 @@ function addExtra() {
     document.querySelector("div.extra-eq button.xbass").addEventListener("click", () => {
         if (eqBands > 17) alert("17개 이하의 필터가 존재할 때 사용 가능. 현재 " + eqBands + "개의 필터 사용중!");
         else {
+            for(let i=0;i<eqBands.length;i++) {
+                if(filtersContainer.children[i].querySelector("select[name='type']").value == "PK(xBass)") {
+                    alert("xBass가 이미 적용되었습니다!");
+                    return;
+                }
+            }
             eqBands += 3;
             let node = filtersContainer.querySelector("div.filter");
             let freq = ["22", "37", "48"];
@@ -2551,7 +2559,7 @@ function addExtra() {
             for (let i = 0; i < 3; i++) {
                 let clone = node.cloneNode(true);
                 clone.querySelector("input[name='enabled']").value = "true";
-                clone.querySelector("select[name='type']").value = "PK";
+                clone.querySelector("select[name='type']").value = "PK(xBass)";
                 clone.querySelector("input[name='freq']").value = freq[i];
                 clone.querySelector("input[name='q']").value = q[i];
                 clone.querySelector("input[name='gain']").value = gain[i];

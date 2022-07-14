@@ -2524,6 +2524,7 @@ function addExtra() {
         node.querySelector("input[name='gain']").value = "0";
         eqBands = 10;
         updateFilterElements();
+        applyEQ();
     });
     // Add new filter
     document.querySelector("div.extra-eq button.add-filter").addEventListener("click", () => {

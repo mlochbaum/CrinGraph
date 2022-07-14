@@ -203,6 +203,7 @@ doc.html(`
                 <button class="convert-to-graphic-filters">Convert To Graphic EQ</button>
                 <button class="export-graphic-filters">Export To Graphic EQ</button>
                 <br>
+                <button class="reset">Reset Filters</button>
                 <button class="readme">Readme</button>
               </div>
               <a style="display: none" id="file-filters-export"></a>
@@ -2376,6 +2377,7 @@ function addExtra() {
     let filterEnabledInput, filterTypeSelect,
         filterFreqInput, filterQInput, filterGainInput;
     let eqBands = extraEQBands;
+    let isGraphicEQMode = false;
     let updateFilterElements = () => {
         let node = filtersContainer.querySelector("div.filter");
         while (filtersContainer.childElementCount < eqBands) {
@@ -2388,7 +2390,27 @@ function addExtra() {
             filtersContainer.appendChild(clone);
         }
         while (filtersContainer.childElementCount > eqBands) {
-            filtersContainer.children[filtersContainer.childElementCount - 1].remove();
+            if(filtersContainer.children[filtersContainer.childElementCount - 1].id == "xbass") {
+                if(eqBands == 2) {
+                    for(let i=0;i<2;i++) {
+                        filtersContainer.children[filtersContainer.childElementCount - 1].remove();
+                    }
+                    filtersContainer.children[0].querySelector("input[name='enabled']").value = "true";
+                    filtersContainer.children[0].querySelector("select[name='type']").value = "PK";
+                    filtersContainer.children[0].querySelector("input[name='freq']").value = "0";
+                    filtersContainer.children[0].querySelector("input[name='q']").value = "0";
+                    filtersContainer.children[0].querySelector("input[name='gain']").value = "0";
+                    filtersContainer.children[0].removeAttribute("id");
+                }
+                else {
+                    for(let i=0;i<3;i++) {
+                        filtersContainer.children[filtersContainer.childElementCount - 1].remove();
+                    }
+                }
+            }
+            else {
+                filtersContainer.children[filtersContainer.childElementCount - 1].remove();
+            }
         }
         filterEnabledInput = filtersContainer.querySelectorAll("input[name='enabled']");
         filterTypeSelect = filtersContainer.querySelectorAll("select[name='type']");
@@ -2479,13 +2501,28 @@ function addExtra() {
     };
     updateFilterElements();
     eqPhoneSelect.addEventListener("input", applyEQ);
+    document.querySelector("div.extra-eq button.reset").addEventListener("click", () => {
+        isGraphicEQMode = false;
+        eqBands = 1;
+        updateFilterElements();
+        let node = filtersContainer.querySelector("div.filter");
+        node.querySelector("input[name='enabled']").value = "true";
+        node.querySelector("select[name='type']").value = "PK";
+        node.querySelector("input[name='freq']").value = "0";
+        node.querySelector("input[name='q']").value = "0";
+        node.querySelector("input[name='gain']").value = "0";
+        eqBands = 10;
+        updateFilterElements();
+    });
     // Add new filter
     document.querySelector("div.extra-eq button.add-filter").addEventListener("click", () => {
+        isGraphicEQMode = false;
         eqBands = Math.min(eqBands + 1, extraEQBandsMax);
         updateFilterElements();
     });
     // Remove last filter
     document.querySelector("div.extra-eq button.remove-filter").addEventListener("click", () => {
+        isGraphicEQMode = false;
         eqBands = Math.max(eqBands - 1, 1);
         updateFilterElements();
         applyEQ(); // May removed effective filter
@@ -2514,6 +2551,7 @@ function addExtra() {
                 clone.querySelector("input[name='freq']").value = freq[i];
                 clone.querySelector("input[name='q']").value = q[i];
                 clone.querySelector("input[name='gain']").value = gain[i];
+                clone.setAttribute("id", "xbass");
                 filtersContainer.appendChild(clone);
             }
             updateFilterElements();
@@ -2596,6 +2634,11 @@ function addExtra() {
         exportElem.click();
     });
     document.querySelector("div.extra-eq button.convert-to-graphic-filters").addEventListener("click", () => {
+        if(isGraphicEQMode == true) {
+            alert("이미 그래픽 EQ로 변환됨! 그래픽 eq 초기화 버튼을 누르거나 다시 autoEQ를 돌리거나 파라메트릭 EQ값으로 모든 필터를 바꾼 후 다시 시도하세요.");
+            return;
+        }
+        isGraphicEQMode = true;
         let phoneSelected = eqPhoneSelect.value;
         let phoneObj = phoneSelected && activePhones.filter(
             p => p.fullName == phoneSelected && p.eq)[0] || { fullName: "Unnamed" };
@@ -2665,6 +2708,7 @@ function addExtra() {
             clone.querySelector("input[name='freq']").value = graphicEQ[i][0];
             clone.querySelector("input[name='q']").value = qFactors[i];
             clone.querySelector("input[name='gain']").value = graphicEQ[i][1].toFixed(1);
+            clone.setAttribute("id", "graphic-eq-filter");
             filtersContainer.appendChild(clone);
         }
         updateFilterElements();
@@ -2672,45 +2716,56 @@ function addExtra() {
     });
     // Export filters as graphic eq (for wavelet)
     document.querySelector("div.extra-eq button.export-graphic-filters").addEventListener("click", () => {
-        let phoneSelected = eqPhoneSelect.value;
-        let phoneObj = phoneSelected && activePhones.filter(
-            p => p.fullName == phoneSelected && p.eq)[0] || { fullName: "Unnamed" };
-        let filters = elemToFilters();
-        if (!filters.length) {
-            alert("Please add at least one filter before export.");
-            return;
+        let graphicEQ = new Array();
+        if(isGraphicEQMode == true) {
+            let startFilter = filtersContainer.querySelector("div.filter");
+            graphicEQ.push([startFilter.querySelector("input[name='freq']").value, startFilter.querySelector("input[name='gain']").value])
+            let filters = filtersContainer.querySelectorAll("#graphic-eq-filter");
+            for(let i=0;i<filters.length;i++) {
+                graphicEQ.push([filters[i].querySelector("input[name='freq']").value, filters[i].querySelector("input[name='gain']").value]);
+            }
         }
-        let selIdx = document.getElementById("band-setting").selectedIndex;
-        switch (selIdx) {
-            case 0:
-                Equalizer.config.GraphicEQFrequences = Array.from(new Set(
-                    new Array(10).fill(null)
-                        .map((_, i) => Math.floor(32 * Math.pow(2, i))))).sort((a, b) => a - b);
-                break;
-            case 1:
-                Equalizer.config.GraphicEQFrequences = Array.from(new Set(
-                    new Array(15).fill(null)
-                        .map((_, i) => Math.floor(25 * Math.pow(2, i * 2 / 3))))).sort((a, b) => a - b);
-                break;
-            case 2:
-                Equalizer.config.GraphicEQFrequences = Array.from(new Set(
-                    new Array(31).fill(null)
-                        .map((_, i) => Math.floor(20 * Math.pow(2, i / 3))))).sort((a, b) => a - b);
-                break;
-            case 3:
-                let bands = document.getElementById("custom-bands").value;
-                bands_arr = bands.split(", ");
-                for (let i = 0; i < bands_arr.length; i++) {
-                    bands_arr[i] = parseInt(bands_arr[i]);
-                }
-                Equalizer.config.GraphicEQFrequences = bands_arr;
-                break;
-            default:
-                Equalizer.config.GraphicEQFrequences = Array.from(new Set(
-                    new Array(10).fill(null)
-                        .map((_, i) => Math.floor(20 * Math.pow(2, i))))).sort((a, b) => a - b);
+        else {
+            let phoneSelected = eqPhoneSelect.value;
+            let phoneObj = phoneSelected && activePhones.filter(
+                p => p.fullName == phoneSelected && p.eq)[0] || { fullName: "Unnamed" };
+            let filters = elemToFilters();
+            if (!filters.length) {
+                alert("Please add at least one filter before export.");
+                return;
+            }
+            let selIdx = document.getElementById("band-setting").selectedIndex;
+            switch (selIdx) {
+                case 0:
+                    Equalizer.config.GraphicEQFrequences = Array.from(new Set(
+                        new Array(10).fill(null)
+                            .map((_, i) => Math.floor(32 * Math.pow(2, i))))).sort((a, b) => a - b);
+                    break;
+                case 1:
+                    Equalizer.config.GraphicEQFrequences = Array.from(new Set(
+                        new Array(15).fill(null)
+                            .map((_, i) => Math.floor(25 * Math.pow(2, i * 2 / 3))))).sort((a, b) => a - b);
+                    break;
+                case 2:
+                    Equalizer.config.GraphicEQFrequences = Array.from(new Set(
+                        new Array(31).fill(null)
+                            .map((_, i) => Math.floor(20 * Math.pow(2, i / 3))))).sort((a, b) => a - b);
+                    break;
+                case 3:
+                    let bands = document.getElementById("custom-bands").value;
+                    bands_arr = bands.split(", ");
+                    for (let i = 0; i < bands_arr.length; i++) {
+                        bands_arr[i] = parseInt(bands_arr[i]);
+                    }
+                    Equalizer.config.GraphicEQFrequences = bands_arr;
+                    break;
+                default:
+                    Equalizer.config.GraphicEQFrequences = Array.from(new Set(
+                        new Array(10).fill(null)
+                            .map((_, i) => Math.floor(20 * Math.pow(2, i))))).sort((a, b) => a - b);
+            }
+            graphicEQ = Equalizer.as_graphic_eq(filters);
         }
-        let graphicEQ = Equalizer.as_graphic_eq(filters);
         let settings = "GraphicEQ: " + graphicEQ.map(([f, gain]) =>
             f.toFixed(0) + " " + gain.toFixed(1)).join("; ");
         let exportElem = document.querySelector("#file-filters-export");
@@ -2744,6 +2799,7 @@ function addExtra() {
     gainToInput.value = Equalizer.config.OptimizeGainRange[1].toFixed(0);
 
     document.querySelector("div.extra-eq button.autoeq").addEventListener("click", () => {
+        isGraphicEQMode = false;
         // Generate filters automatically
         let phoneSelected = eqPhoneSelect.value;
         if (!phoneSelected) {

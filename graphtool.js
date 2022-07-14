@@ -159,6 +159,7 @@ doc.html(`
                         <option value="PK" selected>PK</option>
                         <option value="LSQ">LSQ</option>
                         <option value="HSQ">HSQ</option>
+                        <option value="PK(xBass)" hidden disabled></option>
                       </select>
                     </span>
                     <span><input name="freq" type="number" min="20" max="20000" step="1" value="0"></input></span>

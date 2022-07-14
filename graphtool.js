@@ -2391,10 +2391,7 @@ function addExtra() {
         }
         while (filtersContainer.childElementCount > eqBands) {
             if(filtersContainer.children[filtersContainer.childElementCount - 1].id == "xbass") {
-                if(eqBands == 2) {
-                    for(let i=0;i<2;i++) {
-                        filtersContainer.children[filtersContainer.childElementCount - 1].remove();
-                    }
+                if(eqBands == 1) {
                     filtersContainer.children[0].querySelector("input[name='enabled']").value = "true";
                     filtersContainer.children[0].querySelector("select[name='type']").value = "PK";
                     filtersContainer.children[0].querySelector("input[name='freq']").value = "0";
@@ -2403,9 +2400,18 @@ function addExtra() {
                     filtersContainer.children[0].removeAttribute("id");
                 }
                 else {
-                    for(let i=0;i<3;i++) {
-                        filtersContainer.children[filtersContainer.childElementCount - 1].remove();
-                    }
+                    eqBands--;
+                    filtersContainer.children[filtersContainer.childElementCount - 1].remove();
+                    filterEnabledInput = filtersContainer.querySelectorAll("input[name='enabled']");
+                    filterTypeSelect = filtersContainer.querySelectorAll("select[name='type']");
+                    filterFreqInput = filtersContainer.querySelectorAll("input[name='freq']");
+                    filterQInput = filtersContainer.querySelectorAll("input[name='q']");
+                    filterGainInput = filtersContainer.querySelectorAll("input[name='gain']");
+                    filtersContainer.querySelectorAll("input,select").forEach(el => {
+                        el.removeEventListener("input", applyEQ);
+                        el.addEventListener("input", applyEQ);
+                    });
+                    updateFilterElements();
                 }
             }
             else {

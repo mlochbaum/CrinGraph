@@ -2717,6 +2717,8 @@ function addExtra() {
     // Export filters as graphic eq (for wavelet)
     document.querySelector("div.extra-eq button.export-graphic-filters").addEventListener("click", () => {
         let graphicEQ = new Array();
+        let phoneObj = phoneSelected && activePhones.filter(
+            p => p.fullName == phoneSelected && p.eq)[0] || { fullName: "Unnamed" };
         if(isGraphicEQMode == true) {
             let startFilter = filtersContainer.querySelector("div.filter");
             graphicEQ.push([parseInt(startFilter.querySelector("input[name='freq']").value), parseFloat(startFilter.querySelector("input[name='gain']").value)])
@@ -2727,8 +2729,6 @@ function addExtra() {
         }
         else {
             let phoneSelected = eqPhoneSelect.value;
-            let phoneObj = phoneSelected && activePhones.filter(
-                p => p.fullName == phoneSelected && p.eq)[0] || { fullName: "Unnamed" };
             let filters = elemToFilters();
             if (!filters.length) {
                 alert("Please add at least one filter before export.");

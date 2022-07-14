@@ -2635,7 +2635,7 @@ function addExtra() {
     });
     document.querySelector("div.extra-eq button.convert-to-graphic-filters").addEventListener("click", () => {
         if(isGraphicEQMode == true) {
-            alert("이미 그래픽 EQ로 변환됨! 그래픽 eq 초기화 버튼을 누르거나 다시 autoEQ를 돌리거나 파라메트릭 EQ값으로 모든 필터를 바꾼 후 다시 시도하세요.");
+            alert("이미 그래픽 EQ로 변환됨! 초기화 버튼을 누르거나 다시 autoEQ를 돌리거나 필터를 하나 추가하거나 제거한 후 다시 시도하세요.");
             return;
         }
         isGraphicEQMode = true;
@@ -2719,10 +2719,10 @@ function addExtra() {
         let graphicEQ = new Array();
         if(isGraphicEQMode == true) {
             let startFilter = filtersContainer.querySelector("div.filter");
-            graphicEQ.push([startFilter.querySelector("input[name='freq']").value, startFilter.querySelector("input[name='gain']").value])
+            graphicEQ.push([parseInt(startFilter.querySelector("input[name='freq']").value), parseFloat(startFilter.querySelector("input[name='gain']").value)])
             let filters = filtersContainer.querySelectorAll("#graphic-eq-filter");
             for(let i=0;i<filters.length;i++) {
-                graphicEQ.push([filters[i].querySelector("input[name='freq']").value, filters[i].querySelector("input[name='gain']").value]);
+                graphicEQ.push([parseInt(filters[i].querySelector("input[name='freq']").value), parseFloat(filters[i].querySelector("input[name='gain']").value)]);
             }
         }
         else {

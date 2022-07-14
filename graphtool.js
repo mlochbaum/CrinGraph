@@ -2534,8 +2534,21 @@ function addExtra() {
     });
     // Remove last filter
     document.querySelector("div.extra-eq button.remove-filter").addEventListener("click", () => {
-        isGraphicEQMode = false;
-        eqBands = Math.max(eqBands - 1, 1);
+        if(isGraphicEQMode) {
+            isGraphicEQMode = false;
+            eqBands = 1;
+            updateFilterElements();
+            let node = filtersContainer.querySelector("div.filter");
+            node.querySelector("input[name='enabled']").value = "true";
+            node.querySelector("select[name='type']").value = "PK";
+            node.querySelector("input[name='freq']").value = "0";
+            node.querySelector("input[name='q']").value = "0";
+            node.querySelector("input[name='gain']").value = "0";
+            eqBands = 10;
+        } 
+        else{ 
+            eqBands = Math.max(eqBands - 1, 1);
+        }
         updateFilterElements();
         applyEQ(); // May removed effective filter
     });

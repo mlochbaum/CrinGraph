@@ -187,6 +187,7 @@ doc.html(`
                 <button class="import-filters">Import</button>
                 <button class="export-filters">Export</button>
                 <button class="autoeq">AutoEQ</button>
+                <br>
                 <span>Additional Filters</span>
                 <button class="xbass">xBass</button>
                 <div class="graphic-eq-settings">

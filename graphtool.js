@@ -2401,16 +2401,6 @@ function addExtra() {
                 }
                 else {
                     eqBands--;
-                    filtersContainer.children[filtersContainer.childElementCount - 1].remove();
-                    filterEnabledInput = filtersContainer.querySelectorAll("input[name='enabled']");
-                    filterTypeSelect = filtersContainer.querySelectorAll("select[name='type']");
-                    filterFreqInput = filtersContainer.querySelectorAll("input[name='freq']");
-                    filterQInput = filtersContainer.querySelectorAll("input[name='q']");
-                    filterGainInput = filtersContainer.querySelectorAll("input[name='gain']");
-                    filtersContainer.querySelectorAll("input,select").forEach(el => {
-                        el.removeEventListener("input", applyEQ);
-                        el.addEventListener("input", applyEQ);
-                    });
                     updateFilterElements();
                 }
             }

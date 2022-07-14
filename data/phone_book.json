@@ -1,12 +1,5 @@
 [ 
   {
-    "name": "TEST",
-    "phones": [
-                {"name":["ifi ZEN CAN XBASS"],"file":["ifi ZEN CAN xBass"]},
-                {"name":["FLAT"],"file":["FLAT"]}
-              ]
-  },
-  {
     "name": "7Hz",
     "phones": [
                 {"name":["Eternal"],"file":["Eternal Sample 1 (by 냥냐냥)"]},

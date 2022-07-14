@@ -2391,17 +2391,23 @@ function addExtra() {
         }
         while (filtersContainer.childElementCount > eqBands) {
             if(filtersContainer.children[filtersContainer.childElementCount - 1].id == "xbass") {
-                if(eqBands == 1) {
+                if(eqBands == 2) {
+                    for(let i=0;i<2;i++) {
+                        filtersContainer.children[filtersContainer.childElementCount - 1].remove();
+                    }
                     filtersContainer.children[0].querySelector("input[name='enabled']").value = "true";
                     filtersContainer.children[0].querySelector("select[name='type']").value = "PK";
                     filtersContainer.children[0].querySelector("input[name='freq']").value = "0";
                     filtersContainer.children[0].querySelector("input[name='q']").value = "0";
                     filtersContainer.children[0].querySelector("input[name='gain']").value = "0";
                     filtersContainer.children[0].removeAttribute("id");
+                    applyEQ();
                 }
                 else {
-                    eqBands--;
-                    updateFilterElements();
+                    for(let i=0;i<3;i++) {
+                        filtersContainer.children[filtersContainer.childElementCount - 1].remove();
+                    }
+                    applyEQ();
                 }
             }
             else {

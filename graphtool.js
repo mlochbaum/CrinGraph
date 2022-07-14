@@ -2633,11 +2633,12 @@ function addExtra() {
                 Equalizer.config.GraphicEQFrequences = bands_arr;
                 qFactors = new Array(bands_arr.length);
                 for (i = 0; i < bands_arr.length - 1; i++) {
-                    x = bands_arr[i];
-                    y = bands_arr[i + 1];
-                    qFactors[i] = Math.log2(y / x).toFixed(2);
+                    f1 = bands_arr[i];
+                    f2 = bands_arr[i + 1];
+                    bw = Math.log2(f2 / f1);
+                    qFactors[i] = parseFloat((Math.sqrt(Math.pow(2, bw))/(Math.pow(2, bw) - 1)).toFixed(2));
                 };
-                qFactors[qFactors.length - 1] = Math.log2(20000 / bands_arr[bands_arr.length - 1]).toFixed(2);
+                qFactors[qFactors.length - 1] = parseFloat(qFactors[qFactors.length - 2]);
                 break;
             default:
                 Equalizer.config.GraphicEQFrequences = Array.from(new Set(
@@ -2656,7 +2657,7 @@ function addExtra() {
         node.querySelector("input[name='q']").value = qFactors[0];
         node.querySelector("input[name='gain']").value = graphicEQ[0][1].toFixed(1);
 
-        for(let i=1;i<qFactors.length;i++) {
+        for (let i = 1; i < qFactors.length; i++) {
             let clone = node.cloneNode(true);
             clone.querySelector("input[name='enabled']").value = "true";
             clone.querySelector("select[name='type']").value = "PK";

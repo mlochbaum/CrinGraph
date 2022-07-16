@@ -54,6 +54,12 @@
               ]
   },
   {
+    "name": "Audeze",
+    "phones": [
+                {"name":["iSINE 20"], "file":["iSINE 20 (UC Tips, by 아소카)"]}
+              ]
+  },
+  {
     "name": "Audio-Technica",
     "phones": [
                 {"name":["ATH-IM01"], "file":["ATH-IM01 Sample 1 (by 냥냐냥)"]},
@@ -139,7 +145,8 @@
   {
     "name": "JBL",
     "phones": [
-                {"name":["Club Pro+"],"file":["Club Pro+ Sample 1 (by 냥냐냥)"]}
+                {"name":["Club Pro+"],"file":["Club Pro+ Sample 1 (by 냥냐냥)"]},
+                {"name":["E25BT"],"file":["E25BT (by 아소카)"]}
               ]
   },
   {

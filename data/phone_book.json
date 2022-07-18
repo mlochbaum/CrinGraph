@@ -105,6 +105,13 @@
               ]
   },
   {
+    "name": "Dynamic Motion (Lefrig Audio)",
+    "phones" : [
+                {"name":["DM008K"],"file":["DM008K Sample 1 (by 냥냐냥)"]},
+                {"name":["DM100"],"file":["DM100 Sample 1 (by 냥냐냥)", "DM100 Sample 1 (by 냥냐냥, Foam Tips)", "DM100 Sample 1 (by 냥냐냥, Comply Tips)"]}
+              ]
+  },
+  {
     "name": "Etymotic Research",
     "phones": [ 
                {"name":["ER2SE"],"file":["ER2SE Sample 1 (by 아소카, Default Dampers, Clear Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Clear Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Frost Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Westone Star Tips)"]},

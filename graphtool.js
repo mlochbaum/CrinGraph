@@ -2367,6 +2367,7 @@ function addExtra() {
                     isDynamic: true,
                     id: -brandTarget.phoneObjs.length
                 };
+                console.log(phoneObj);
                 showPhone(phoneObj, true);
             }
         };

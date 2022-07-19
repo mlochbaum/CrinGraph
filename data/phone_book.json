@@ -1,5 +1,11 @@
 [ 
   {
+    "name": "Test",
+    "phones": [
+                {"name":["FLAT"],"file":["FLAT"]}
+              ]
+  },
+  {
     "name": "7Hz",
     "phones": [
                 {"name":["Eternal"],"file":["Eternal Sample 1 (by 냥냐냥)"]},

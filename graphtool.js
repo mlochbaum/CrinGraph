@@ -189,9 +189,8 @@ doc.html(`
                 <button class="export-filters">Export</button>
                 <button class="autoeq">AutoEQ</button>
                 <br>
-                <span>Additional Features</span>
+                <span>Additional Filters</span>
                 <button class="xbass">xBass</button>
-                <button class="fr-to-target>EQ To Target</button>
                 <div class="graphic-eq-settings">
                     <span>Graphic EQ Band Settings</span>
                     <select name="band-setting" id="band-setting" onchange="isCustom()">
@@ -2379,7 +2378,6 @@ function addExtra() {
     let filterEnabledInput, filterTypeSelect,
         filterFreqInput, filterQInput, filterGainInput;
     let eqBands = extraEQBands;
-    let eqTarget;
     let isGraphicEQMode = false;
     let updateFilterElements = () => {
         let node = filtersContainer.querySelector("div.filter");
@@ -2562,29 +2560,6 @@ function addExtra() {
     // Import filters
     document.querySelector("div.extra-eq button.import-filters").addEventListener("click", () => {
         fileFiltersImport.click();
-    });
-    document.querySelector("div.extra-eq button.fr-to-target"),addEventListener("click", () => {
-        let targetObj = activePhones.filter(p => p.isTarget)[0];
-        if(!targetObj) {
-            let phoneObj = phoneSelected && activePhones.filter(
-                p => p.fullName == phoneSelected)[0];
-            eqTarget = phoneObj.eq;
-            targetObj = {
-                isTarget: true,
-                brand: brandTarget,
-                dispName: phoneObj.phone + "Target",
-                phone: phoneObj.phone + "Target",
-                fullName: phoneObj.phone + "Target",
-                fileName: phoneObj.phone + "Target",
-                rawChannels: ch,
-                isDynamic: true,
-                id: -brandTarget.phoneObjs.length
-            };
-            showPhone(targetObj, true);
-        }
-        else {
-            alert("이미 타겟이 있음! 모든 타겟을 지우고 다시 시도하세요.");
-        }
     });
     document.querySelector("div.extra-eq button.xbass").addEventListener("click", () => {
         if (eqBands > 17) alert("17개 이하의 필터가 존재할 때 사용 가능. 현재 " + eqBands + "개의 필터 사용중!");

@@ -2830,6 +2830,7 @@ function addExtra() {
                 return;
             }
             console.log(eqTarget);
+            console.log(phoneObj);
             targetName = phoneObj.phone + "Target";
             targetObj = {
                 isTarget: true,

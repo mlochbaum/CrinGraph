@@ -2829,6 +2829,8 @@ function addExtra() {
                 alert("파라메트릭 EQ가 적용된 측정치가 있나 확인하세요!");
                 return;
             }
+            console.log(eqTarget);
+            console.log(phoneObj);
             targetName = phoneObj.phone + "Target";
             targetObj = {
                 isTarget: true,

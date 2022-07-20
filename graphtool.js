@@ -2837,7 +2837,7 @@ function addExtra() {
                 phone: targetName,
                 fullName: targetName,
                 fileName: targetName,
-                rawChannels: avgCurves(eqTarget.channels),
+                rawChannels: new Array(avgCurves(eqTarget.channels)),
                 isDynamic: true,
                 id: -brandTarget.phoneObjs.length
             };

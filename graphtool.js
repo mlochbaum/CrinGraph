@@ -2879,6 +2879,7 @@ function addExtra() {
             p => p.fullName == phoneSelected)[0];
         let targetObj = (activePhones.filter(p => p.isTarget)[0] ||
             activePhones.filter(p => p !== phoneObj && !p.isTarget)[0]);
+        console.log(targetObj);
         if (!phoneObj || !targetObj) {
             alert("Please select model and target, if there are no target and multiple models are displayed then the second one will be selected as target.");
             return;

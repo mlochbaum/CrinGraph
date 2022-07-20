@@ -2829,9 +2829,7 @@ function addExtra() {
                 alert("파라메트릭 EQ가 적용된 측정치가 있나 확인하세요!");
                 return;
             }
-            targetName = phoneObj.phone + "Target";
-            console.log(avgCurves(eqTarget.channels));
-            console.log(eqTarget);
+            targetName = eqTarget.phone + "Target";
             targetObj = {
                 isTarget: true,
                 brand: brandTarget,
@@ -2843,6 +2841,7 @@ function addExtra() {
                 isDynamic: true,
                 id: -brandTarget.phoneObjs.length
             };
+            console.log(targetObj);
             showPhone(targetObj, true);
         }
         else {

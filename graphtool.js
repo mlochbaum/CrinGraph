@@ -2830,6 +2830,8 @@ function addExtra() {
                 return;
             }
             targetName = phoneObj.phone + "Target";
+            console.log(avgCurves(eqTarget.channels));
+            console.log(eqTarget);
             targetObj = {
                 isTarget: true,
                 brand: brandTarget,

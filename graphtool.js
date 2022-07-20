@@ -189,9 +189,8 @@ doc.html(`
                 <button class="export-filters">Export</button>
                 <button class="autoeq">AutoEQ</button>
                 <br>
-                <span>Additional Features</span>
+                <span>Additional Filters</span>
                 <button class="xbass">xBass</button>
-                <button class="fr-to-target">EQ To Target</button>
                 <div class="graphic-eq-settings">
                     <span>Graphic EQ Band Settings</span>
                     <select name="band-setting" id="band-setting" onchange="isCustom()">
@@ -2813,39 +2812,6 @@ function addExtra() {
             "3. Curve of PK filter close to 20K is implementation dependent, avoid such filter if you're not sure how your DSP software works\n" +
             "4. EQ treble require resonant peak matching and fine tune by ear, keep treble untouched if you're not sure how to do that\n" +
             "5. Tone generator is useful to find actual location of peaks and dips, notice the web version may not work on some platform\n");
-    });
-    document.querySelector("div.extra-eq button.fr-to-target").addEventListener("click", () => {
-        let targetObj = activePhones.filter(p => p.isTarget)[0];
-        if(!targetObj) {
-            let phoneSelected = eqPhoneSelect.value;
-            let phoneObj = phoneSelected && activePhones.filter(
-                p => p.fullName == phoneSelected)[0];
-            if(!phoneObj) {
-                alert("측정치를 선택하세요!");
-                return;
-            }
-            eqTarget = phoneObj.eq;
-            if(!eqTarget) {
-                alert("파라메트릭 EQ가 적용된 측정치가 있나 확인하세요!");
-                return;
-            }
-            targetName = phoneObj.phone + "Target";
-            targetObj = {
-                isTarget: true,
-                brand: brandTarget,
-                dispName: targetName,
-                phone: targetName,
-                fullName: targetName,
-                fileName: targetName,
-                rawChannels: ch,
-                isDynamic: true,
-                id: -brandTarget.phoneObjs.length
-            };
-            showPhone(targetObj, true);
-        }
-        else {
-            alert("이미 타겟이 있음! 모든 타겟을 지우고 다시 시도하세요.");
-        }
     });
     // AutoEQ
     let autoEQFromInput = document.querySelector("div.extra-eq input[name='autoeq-from']");

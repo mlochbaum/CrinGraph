@@ -114,6 +114,7 @@
     "name": "Etymotic Research",
     "phones": [ 
                {"name":["ER2SE"],"file":["ER2SE Sample 1 (by 아소카, Default Dampers, Clear Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Clear Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Frost Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Westone Star Tips)"]},
+               {"name":["ER3XR"],"file":["ER3XR Sample 1 by (by ER4SR, Grey Tri-flange)"]},
                {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange, by ER4SR)"]},
                {"name":["ER4XR"],"file":["ER4XR Sample 1 (by ER4SR, Ety Grey Tips)", "ER4XR Sample 1 (by ER4SR, Ety Foam Tips)"]},
                {"name":["mc5"],"file":["mc5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]},

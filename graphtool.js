@@ -1701,49 +1701,6 @@ function asPhoneObj(b, p, isInit, inits) {
     return r;
 }
 
-function loudness_equalizer(p, phon) {
-    if(phon < 30) {
-        phon = 30;
-    }
-    else if(phon > 85) {
-        phon = 85;
-    }
-    let Ln = p.loudness - phon;
-    let Af = new Array(29);
-    for(let i=0;i<29;i++) {
-        Af[i] = (4.47*Math.pow(10, -3)*(Math.pow(10, 0.025*Ln) - 1.15) + Math.pow((0.4*Math.pow(10, ((iso223_params.T_f[i] + iso223_params.L_U[i]) / 10) - 9)), iso223_params.a_f[i]));
-    }
-    let Lp = new Array(29);
-    for(let i=0;i<29;i++) {
-        Lp[i] = (10/iso223_params.a_f[i]*Math.log10(iso223_params.a_f[i]) - iso223_params.L_U[i] + 94);
-    }
-    Equalizer.config.GraphicEQFrequences = iso223_params.f;
-    qFactors = new Array(29);
-    for (i = 0; i < qFactors.length - 1; i++) {
-        f1 = iso223_params.f[i];
-        f2 = iso223_params.f[i + 1];
-        bw = Math.log2(f2 / f1);
-        qFactors[i] = parseFloat((Math.sqrt(Math.pow(2, bw))/(Math.pow(2, bw) - 1)).toFixed(2));
-    };
-    qFactors[qFactors.length - 1] = parseFloat(qFactors[qFactors.length - 2]);
-    let activeElem = document.activeElement;
-    let phoneSelected = p;
-    let filters = new Array();
-    for(let i=0;i<Lp.length;i++) {
-        let status = false;
-        let type = "PK";
-        let freq = iso223_params.f[i];
-        let q = qFactors[i];
-        let gain  = Lp[i];
-        filters.push({ status, type, freq, q, gain });
-    }
-    let phoneObj = addOrUpdatePhone(phoneSelected.brand, phoneSelected.phone,
-        phoneSelected.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null));
-    p.loudness = phon;
-    showPhone(phoneObj, false);
-    activeElem.focus();
-}
-
 d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     : DIR + "phone_book.json?" + new Date().getTime()).then(function (brands) {
         let brandMap = window.brandMap = {},
@@ -2420,6 +2377,48 @@ function addExtra() {
         };
         reader.readAsText(file);
     });
+    function loudness_equalizer(p, phon) {
+        if(phon < 30) {
+            phon = 30;
+        }
+        else if(phon > 85) {
+            phon = 85;
+        }
+        let Ln = p.loudness - phon;
+        let Af = new Array(29);
+        for(let i=0;i<29;i++) {
+            Af[i] = (4.47*Math.pow(10, -3)*(Math.pow(10, 0.025*Ln) - 1.15) + Math.pow((0.4*Math.pow(10, ((iso223_params.T_f[i] + iso223_params.L_U[i]) / 10) - 9)), iso223_params.a_f[i]));
+        }
+        let Lp = new Array(29);
+        for(let i=0;i<29;i++) {
+            Lp[i] = (10/iso223_params.a_f[i]*Math.log10(iso223_params.a_f[i]) - iso223_params.L_U[i] + 94);
+        }
+        Equalizer.config.GraphicEQFrequences = iso223_params.f;
+        qFactors = new Array(29);
+        for (i = 0; i < qFactors.length - 1; i++) {
+            f1 = iso223_params.f[i];
+            f2 = iso223_params.f[i + 1];
+            bw = Math.log2(f2 / f1);
+            qFactors[i] = parseFloat((Math.sqrt(Math.pow(2, bw))/(Math.pow(2, bw) - 1)).toFixed(2));
+        };
+        qFactors[qFactors.length - 1] = parseFloat(qFactors[qFactors.length - 2]);
+        let activeElem = document.activeElement;
+        let phoneSelected = p;
+        let filters = new Array();
+        for(let i=0;i<Lp.length;i++) {
+            let status = false;
+            let type = "PK";
+            let freq = iso223_params.f[i];
+            let q = qFactors[i];
+            let gain  = Lp[i];
+            filters.push({ status, type, freq, q, gain });
+        }
+        let phoneObj = addOrUpdatePhone(phoneSelected.brand, phoneSelected.phone,
+            phoneSelected.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null));
+        p.loudness = phon;
+        showPhone(phoneObj, false);
+        activeElem.focus();
+    }
     // EQ Function
     let eqPhoneSelect = document.querySelector("div.extra-eq select[name='phone']");
     let filtersContainer = document.querySelector("div.extra-eq > div.filters");

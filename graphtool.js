@@ -1192,10 +1192,6 @@ function updatePhoneTable() {
         .attrs({ type: "number", step: "any", value: 0 })
         .property("value", p => p.offset)
         .on("change input", function (p) { setOffset(p, +this.value); });
-    td().attr("class", "loudness").append("input")
-        .attrs({type: "number", step: 1, value: 85, min: 30, max: 85})
-        .property("value", p => p.loudness)
-        .on("change input", function(p) {loudness_equalizer(p, this.value)});
     td().attr("class", "button button-baseline")
         .html("<svg viewBox='-170 -120 340 240'><use xlink:href='#baseline-icon'></use></svg>")
         .on("click", p => setBaseline(p === baseline.p ? baseline0

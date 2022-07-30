@@ -1702,6 +1702,9 @@ function asPhoneObj(b, p, isInit, inits) {
 }
 
 let addOrUpdate = (brand, phone, ch) => {
+    console.log(brand);
+    console.log(phone);
+    console.log(ch);
     let phoneObj = asPhoneObj(brand, phone);
     phoneObj.rawChannels = ch;
     phoneObj.isDynamic = true;
@@ -1757,9 +1760,6 @@ function loudness_equalizer(p, phon) {
         let gain  = Lp[i];
         filters.push({ status, type, freq, q, gain });
     }
-    console.log(phoneSelected.brand);
-    console.log(phoneSelected.phone);
-    console.log(phoneSelected.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null));
     let phoneObj = addOrUpdate(phoneSelected.brand, phoneSelected.phone,
         phoneSelected.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null));
     p.loudness = phon;

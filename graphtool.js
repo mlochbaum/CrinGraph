@@ -1239,6 +1239,10 @@ function updatePhoneTable() {
                     d: "M265 110V25q0 -10 -10 -10H105q-24 0 -48 20l-24 20q-24 20 -2 40l18 15q24 20 42 20h100"
                 });
         });
+    td().attr("class", "loudness").append("input")
+        .attrs({type: "number", step: 1, value: 85, min: 30, max: 85})
+        .property("value", p => p.loudness)
+        .on("change input", function(p) {loudness_equalizer(p, this.value)});
 }
 
 function addKey(s) {
@@ -1697,35 +1701,15 @@ function asPhoneObj(b, p, isInit, inits) {
     return r;
 }
 
-let addOrUpdate = (brand, phone, ch) => {
-    console.log(brand);
-    console.log(phone);
-    console.log(ch);
-    let phoneObj = asPhoneObj(brand, phone);
-    phoneObj.rawChannels = ch;
-    phoneObj.isDynamic = true;
-    let phoneObjs = brand.phoneObjs;
-    let oldPhoneObj = phoneObjs.filter(p => p.phone == phone.name)[0]
-    if (oldPhoneObj) {
-        oldPhoneObj.active && removePhone(oldPhoneObj);
-        phoneObj.id = oldPhoneObj.id;
-        phoneObjs[phoneObjs.indexOf(oldPhoneObj)] = phoneObj;
-        allPhones[allPhones.indexOf(oldPhoneObj)] = phoneObj;
-    } else {
-        brand.phones.push(phone);
-        phoneObjs.push(phoneObj);
-        allPhones.push(phoneObj);
-    }
-    updatePhoneSelect();
-    return phoneObj;
-};
-
 function loudness_equalizer(p, phon) {
     if(phon < 30) {
         phon = 30;
     }
     else if(phon > 85) {
         phon = 85;
+    }
+    if(!p.loudness) {
+        p.loudness = 85;
     }
     let Ln = p.loudness - phon;
     let Af = new Array(29);
@@ -1756,10 +1740,9 @@ function loudness_equalizer(p, phon) {
         let gain  = Lp[i];
         filters.push({ status, type, freq, q, gain });
     }
-    let phoneObj = addOrUpdate(phoneSelected.brand, phoneSelected.phone[0],
-        phoneSelected.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null));
+    p.rawChannels = phoneSelected.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null);
     p.loudness = phon;
-    showPhone(phoneObj, false);
+    showPhone(p, false);
     activeElem.focus();
 };
 

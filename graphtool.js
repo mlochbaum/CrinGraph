@@ -1729,11 +1729,18 @@ function loudness_equalizer(p, phon) {
     for(let i=0;i<29;i++) {
         Lp2[i] = (10/iso223_params.a_f[i]*Math.log10(Af[i]) - iso223_params.L_U[i] + 94);
     }
-    for(let i=0;i<29;i++) {
-        Lp[i] = Lp2[i] - Lp1[i];
+    if(p.isTarget) {
+        for(let i=0;i<29;i++) {
+            Lp[i] = Lp2[i] - Lp1[i];
+        }
+    }
+    else {
+        for(let i=0;i<29;i++) {
+            Lp[i] = Lp1[i] - Lp2[i];
+        }
     }
     Equalizer.config.GraphicEQFrequences = iso223_params.f;
-    qFactors = new Array(29).fill(1);
+    qFactors = new Array(29).fill(3);
     /*
     for (i = 0; i < qFactors.length - 1; i++) {
         f1 = iso223_params.f[i];

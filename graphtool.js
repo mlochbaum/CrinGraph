@@ -1757,7 +1757,9 @@ function loudness_equalizer(p, phon) {
         let gain  = Lp[i];
         filters.push({ status, type, freq, q, gain });
     }
-    console.log(phoneSelected);
+    console.log(phoneSelected.brand);
+    console.log(phoneSelected.phone);
+    console.log(phoneSelected.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null));
     let phoneObj = addOrUpdate(phoneSelected.brand, phoneSelected.phone,
         phoneSelected.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null));
     p.loudness = phon;

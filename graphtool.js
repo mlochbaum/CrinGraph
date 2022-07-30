@@ -1766,7 +1766,7 @@ function loudness_equalizer(p, phon) {
             if(k == iso223_params.length - 1) {
                 continue;
             }
-            p.rawChannels[i][j][1] += linear_equation(iso223_params.f[k], iso223_params.f[k+1], Lp[k], Lp[k+1], p.rawChannels[i][j][0]);
+            p.rawChannels[i][j][1] += parseFloat(linear_equation(iso223_params.f[k], iso223_params.f[k+1], Lp[k], Lp[k+1], p.rawChannels[i][j][0]));
         }
     }
     p.loudness = phon;

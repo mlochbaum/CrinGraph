@@ -1701,6 +1701,10 @@ function asPhoneObj(b, p, isInit, inits) {
     return r;
 }
 
+function linear_equation(a, b, c, d, x) {
+    return (d - c) / (b - a) * (x - a) + c;
+}
+
 function loudness_equalizer(p, phon) {
     if(phon < 30) {
         phon = 30;
@@ -1751,17 +1755,14 @@ function loudness_equalizer(p, phon) {
     */
     qFactors[qFactors.length - 1] = parseFloat(qFactors[qFactors.length - 2]);
     let activeElem = document.activeElement;
-    let phoneSelected = p;
-    let filters = new Array();
-    for(let i=0;i<Lp.length;i++) {
-        let status = false;
-        let type = "PK";
-        let freq = iso223_params.f[i];
-        let q = qFactors[i];
-        let gain  = Lp[i];
-        filters.push({ status, type, freq, q, gain });
+    /*
+    for(let i=0;i<p.rawChannels;i++) {
+        for(let j=0;j<p.rawChannels[i].length;j++) {
+            p.rawChannels[i][j] += 
+        }
     }
-    p.rawChannels = phoneSelected.rawChannels.map(c => c ? Equalizer.apply(c, filters) : null);
+    */
+   console.log(p.rawChannels);
     p.loudness = phon;
     showPhone(p, false);
     activeElem.focus();

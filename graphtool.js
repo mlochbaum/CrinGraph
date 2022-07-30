@@ -1711,14 +1711,26 @@ function loudness_equalizer(p, phon) {
     if(!p.loudness) {
         p.loudness = 85;
     }
-    let Ln = p.loudness - phon;
+    let Lp = new Array(29);
+    let Ln = p.loudness;
     let Af = new Array(29);
     for(let i=0;i<29;i++) {
         Af[i] = (4.47*Math.pow(10, -3)*(Math.pow(10, 0.025*Ln) - 1.15) + Math.pow((0.4*Math.pow(10, ((iso223_params.T_f[i] + iso223_params.L_U[i]) / 10) - 9)), iso223_params.a_f[i]));
     }
-    let Lp = new Array(29);
+    let Lp1 = new Array(29);
     for(let i=0;i<29;i++) {
-        Lp[i] = (10/iso223_params.a_f[i]*Math.log10(iso223_params.a_f[i]) - iso223_params.L_U[i] + 94);
+        Lp1[i] = (10/iso223_params.a_f[i]*Math.log10(Af[i]) - iso223_params.L_U[i] + 94);
+    }
+    Ln = phon;
+    for(let i=0;i<29;i++) {
+        Af[i] = (4.47*Math.pow(10, -3)*(Math.pow(10, 0.025*Ln) - 1.15) + Math.pow((0.4*Math.pow(10, ((iso223_params.T_f[i] + iso223_params.L_U[i]) / 10) - 9)), iso223_params.a_f[i]));
+    }
+    let Lp2 = new Array(29);
+    for(let i=0;i<29;i++) {
+        Lp2[i] = (10/iso223_params.a_f[i]*Math.log10(Af[i]) - iso223_params.L_U[i] + 94);
+    }
+    for(let i=0;i<29;i++) {
+        Lp[i] = Lp2[i] - Lp1[i];
     }
     Equalizer.config.GraphicEQFrequences = iso223_params.f;
     qFactors = new Array(29);

@@ -1715,6 +1715,7 @@ function loudness_equalizer(p, phon) {
     if(!p.loudness) {
         p.loudness = 85;
     }
+    if(phon == p.loudness) return;
     let Lp = new Array(29);
     let Ln = p.loudness;
     let Af = new Array(29);
@@ -1769,6 +1770,7 @@ function loudness_equalizer(p, phon) {
         }
     }
    console.log(p.rawChannels);
+   console.log(p);
     p.loudness = phon;
     console.log(p.loudness);
     showPhone(p, false);

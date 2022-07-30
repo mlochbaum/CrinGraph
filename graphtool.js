@@ -1733,13 +1733,15 @@ function loudness_equalizer(p, phon) {
         Lp[i] = Lp2[i] - Lp1[i];
     }
     Equalizer.config.GraphicEQFrequences = iso223_params.f;
-    qFactors = new Array(29);
+    qFactors = new Array(29).fill(1);
+    /*
     for (i = 0; i < qFactors.length - 1; i++) {
         f1 = iso223_params.f[i];
         f2 = iso223_params.f[i + 1];
         bw = Math.log2(f2 / f1);
         qFactors[i] = parseFloat((Math.sqrt(Math.pow(2, bw))/(Math.pow(2, bw) - 1)).toFixed(2));
     };
+    */
     qFactors[qFactors.length - 1] = parseFloat(qFactors[qFactors.length - 2]);
     let activeElem = document.activeElement;
     let phoneSelected = p;

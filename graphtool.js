@@ -1702,7 +1702,7 @@ function asPhoneObj(b, p, isInit, inits) {
 }
 
 function linear_equation(a, b, c, d, x) {
-    return (d - c) / (b - a) * (x - a) + c;
+    return eval((d - c) / (b - a) * (x - a) + c);
 }
 
 function loudness_equalizer(p, phon) {
@@ -1768,9 +1768,9 @@ function loudness_equalizer(p, phon) {
             p.rawChannels[i][j][1] += linear_equation(iso223_params.f[k], iso223_params.f[k+1], Lp[k], Lp[k+1], p.rawChannels[i][j][0]);
         }
     }
-    
    console.log(p.rawChannels);
     p.loudness = phon;
+    console.log(p.loudness);
     showPhone(p, false);
     activeElem.focus();
 };

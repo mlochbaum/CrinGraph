@@ -1764,11 +1764,11 @@ function loudness_equalizer(p, phon) {
                 if(p.rawChannels[i][j][0] <= iso223_params.f[k]) break;
             }
             if(k == iso223_params.f.length - 1) {
-                break;
+                p.rawChannels[i][j][1] += parseFloat(1);
             }
-            console.log(p.rawChannels[i][j][1]);
-            p.rawChannels[i][j][1] += parseFloat(linear_equation(iso223_params.f[k], iso223_params.f[k+1], Lp[k], Lp[k+1], p.rawChannels[i][j][0]));
-            console.log(p.rawChannels[i][j][1]);
+            else {
+                p.rawChannels[i][j][1] += parseFloat(linear_equation(iso223_params.f[k], iso223_params.f[k+1], Lp[k], Lp[k+1], p.rawChannels[i][j][0]));
+            }
         }
     }
     p.loudness = phon;
@@ -2921,7 +2921,6 @@ function addExtra() {
                 isDynamic: true,
                 id: -brandTarget.phoneObjs.length
             };
-            console.log(targetObj);
             showPhone(targetObj, true);
         }
         else {
@@ -2958,7 +2957,6 @@ function addExtra() {
             p => p.fullName == phoneSelected)[0];
         let targetObj = (activePhones.filter(p => p.isTarget)[0] ||
             activePhones.filter(p => p !== phoneObj && !p.isTarget)[0]);
-        console.log(targetObj);
         if (!phoneObj || !targetObj) {
             alert("Please select model and target, if there are no target and multiple models are displayed then the second one will be selected as target.");
             return;

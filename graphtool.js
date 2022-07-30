@@ -1763,7 +1763,7 @@ function loudness_equalizer(p, phon) {
             for(;k<iso223_params.f.length;k++) {
                 if(p.rawChannels[i][j][0] <= iso223_params.f[k]) break;
             }
-            if(k == iso223_params.length - 1) {
+            if(k == iso223_params.f.length - 1) {
                 break;
             }
             console.log(p.rawChannels[i][j][1]);

@@ -1740,7 +1740,7 @@ function loudness_equalizer(p, phon) {
         }
     }
     Equalizer.config.GraphicEQFrequences = iso223_params.f;
-    qFactors = new Array(29).fill(3);
+    qFactors = new Array(29).fill(0);
     /*
     for (i = 0; i < qFactors.length - 1; i++) {
         f1 = iso223_params.f[i];

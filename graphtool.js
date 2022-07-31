@@ -1778,6 +1778,7 @@ function loudness_equalizer(p, phon) {
                 }
             }
         }
+        console.log(p);
         removePhone(p);
         showPhone(p, false);
     }

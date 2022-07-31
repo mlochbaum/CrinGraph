@@ -1744,17 +1744,6 @@ function loudness_equalizer(p, phon) {
             Lp[i] = Lp1[i] - Lp2[i];
         }
     }
-    Equalizer.config.GraphicEQFrequences = iso223_params.f;
-    qFactors = new Array(29).fill(0);
-    /*
-    for (i = 0; i < qFactors.length - 1; i++) {
-        f1 = iso223_params.f[i];
-        f2 = iso223_params.f[i + 1];
-        bw = Math.log2(f2 / f1);
-        qFactors[i] = parseFloat((Math.sqrt(Math.pow(2, bw))/(Math.pow(2, bw) - 1)).toFixed(2));
-    };
-    */
-    qFactors[qFactors.length - 1] = parseFloat(qFactors[qFactors.length - 2]);
     let activeElem = document.activeElement;
     
     if(!p.isTarget) {
@@ -1772,12 +1761,27 @@ function loudness_equalizer(p, phon) {
                 }
             }
         }
+        showPhone(p, false);
     }
     else {
-        console.log(p);
+        for(let i=0;i<p.rawChannels.length;i++) {
+            for(let j=0;j<p.rawChannels[i].length;j++) {
+                let k = 0;
+                for(;k<iso223_params.f.length;k++) {
+                    if(p.rawChannels[i][j][0] <= iso223_params.f[k]) break;
+                }
+                if(k == iso223_params.f.length || k == iso223_params.f.length - 1) {
+                    p.rawChannels[i][j][1] -= parseFloat(p.loudness - phon);
+                }
+                else {
+                    p.rawChannels[i][j][1] -= parseFloat(linear_equation(iso223_params.f[k], iso223_params.f[k+1], Lp[k], Lp[k+1], p.rawChannels[i][j][0]));
+                }
+            }
+        }
+        showPhone(p, false);
+        showPhone(p, false);
     }
     p.loudness = phon;
-    showPhone(p, false);
     activeElem.focus();
 };
 

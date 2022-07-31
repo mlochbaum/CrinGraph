@@ -1559,13 +1559,10 @@ doc.select(".addLock").on("click", function () {
     }
 });
 
-let isLoudness = false;
 function showPhone(p, exclusive, suppressVariant, trigger) {
     if (p.isTarget && activePhones.indexOf(p) !== -1) {
-        if(!isLoudness) {
-            removePhone(p);
-            return;
-        }
+        removePhone(p);
+        return;
     }
     if (addPhoneSet) {
         exclusive = false;
@@ -1767,7 +1764,6 @@ function loudness_equalizer(p, phon) {
         showPhone(p, false);
     }
     else {
-        isLoudness = true;
         for(let i=0;i<p.rawChannels.length;i++) {
             for(let j=0;j<p.rawChannels[i].length;j++) {
                 let k = 0;
@@ -1782,8 +1778,8 @@ function loudness_equalizer(p, phon) {
                 }
             }
         }
+        removePhone(p);
         showPhone(p, false);
-        isLoudness = false;
     }
     p.loudness = phon;
     activeElem.focus();

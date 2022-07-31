@@ -1778,7 +1778,7 @@ function loudness_equalizer(p, phon) {
                 }
             }
         }
-        showPhone(p, true);
+        showPhone(p, false);
     }
     p.loudness = phon;
     activeElem.focus();

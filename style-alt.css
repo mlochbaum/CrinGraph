@@ -329,7 +329,6 @@ header.header {
     align-items: center;
     
     box-sizing: border-box;
-    flex: 48px 0 0;
     
     background-color: var(--header-color);
 }
@@ -3093,29 +3092,10 @@ Responsive styles *****/
     /*****
     Alt header mobile *****/
 
-    header.header:before {
-        position: absolute;
-        top: 6px;
-        left: 6px;
-
-        content: '';
-        box-sizing: border-box;
-        display: block;
-        width: 36px;
-        height: 36px;
-
-        background-color: var(--background-color);
-        border: 1px solid var(--background-color-contrast-more);
-        border-radius: 6px;
-        cursor: pointer;
-        display: none;
-    }
-
     button.header-button {
-        content: '';
         box-sizing: border-box;
         display: block;
-        width: 36px;
+        flex: 36px 0 0;
         height: 36px;
         margin: 0 0 0 6px;
 

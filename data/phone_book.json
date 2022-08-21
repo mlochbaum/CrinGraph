@@ -116,7 +116,14 @@
                {"name":["ER2SE"],"file":["ER2SE Sample 1 (by 아소카, Default Dampers, Clear Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Clear Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Frost Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Westone Star Tips)"]},
                {"name":["ER3XR"],"file":["ER3XR Sample 1 by (by ER4SR, Grey Tri-flange)"]},
                {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange, by ER4SR)"]},
-               {"name":["ER4XR"],"file":["ER4XR Sample 1 (by ER4SR, Ety Grey Tips)", "ER4XR Sample 1 (by ER4SR, Ety Foam Tips)"]},
+               {"name":["ER4XR"],"file":[
+		"ER4XR Sample 1 (by ER4SR, Ety Grey Tips)",
+		"ER4XR Sample 1 (by ER4SR, Ety Clear Tri-flange Tips)",
+		"ER4XR Sample 1 (by ER4SR, Ety Dual Flange Tips)",
+		"ER4XR Sample 1 (by ER4SR, Ety Small Clear Tri-flange Tips)",
+		"ER4XR Sample 1 (by ER4SR, Ety Foam Tips)",
+		"ER4XR Sample 2 (Deprecated, by ER4SR, Ety Grey Tips)", 
+		"ER4XR Sample 2 (Deprecated, by ER4SR, Ety Foam Tips)"]},
                {"name":["mc5"],"file":["mc5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]},
                {"name":["mk5"],"file":["mk5 Sample 1 (by 냥냐냥, Shure Foam Tips)"]}
               ]
@@ -203,6 +210,13 @@
                 "Chu Sample 1 (Final E Tips, by 아소카)", 
                 "Chu Sample 1 (Softears UC Tips, by 아소카)",
                 "Chu Sample 2 (by Patria, L Only)"]},
+              {"name": ["KATO"],"file":["Kato Sample 1 (Brass Nozzle, Final E Tips, by ER4SR)", 
+                "Kato Sample 1 (Brass Nozzle, Spring Tips, by ER4SR)", 
+                "Kato Sample 1 (Brass Nozzle, Foam Tips, by ER4SR)",
+                "Kato Sample 1 (Steel Nozzle, Final E Tips, by ER4SR)",
+                "Kato Sample 1 (Steel Nozzle, Final E Tips, Deep Insertion, by ER4SR)",
+                "Kato Sample 1 (Steel Nozzle, Spring Tips, by ER4SR)",
+                "Kato Sample 1 (Steel Nozzle, Foam Tips, by ER4SR)"]},
               {"name":["KXXS"],"file":["KXXS Sample 1 (by 이소양)"]},
               {"name": ["Nekocake"],"file":["Nekocake Sample 1 (by 냥냐냥, Balanced EQ)", 
                 "Nekocake Sample 1 (by 냥냐냥, Classic EQ)", 
@@ -372,7 +386,7 @@
     "name": "Ucotech",
     "phones": [
                 {"name":["RE-1"],"file":["RE-1 Sample 1 (by 이소양)", "RE-1 Sample 2 (by NX7)"]},
-                {"name":["RE-2"],"file":["RE-2 Sample 1 (by 아소카)", "RE-2 Sample 2 (by 이소양)"]}
+                {"name":["RE-2"],"file":["RE-2 Sample 1 (by 아소카)", "RE-2 Sample 2 (by 이소양)", "RE-2 Sample 3 (by ER4SR, Small Silicone Tips)", "RE-2 Sample 4 (by ER4SR, Final E M)"]}
               ]
   },
   {

@@ -271,7 +271,7 @@
     "name": "QCY",
     "phones": [
                 {"name":["T1"], "file":["T1 Sample 1 (by 냥냐냥)"]},
-                {"name":["T5"], "file":["T5 Sample 1 (by 냥냐냥, LG G8 SBC Codec)","T5 Sample 1 (by 냥냐냥, LG G8 AAC Codec)"]},
+                {"name":["T5"], "file":["T5 Sample 1 (by 냥냐냥, LG G8 SBC Codec, L Only)","T5 Sample 1 (by 냥냐냥, LG G8 AAC Codec, L Only)"]},
                 {"name":["T17"],"file":["T17 Sample 1 (by 냥냐냥, LG G8 SBC Codec)", "T17 Sample 1 (by 냥냐냥, LG G8 AAC Codec)"]}
               ]
   },

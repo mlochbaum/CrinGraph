@@ -11,9 +11,11 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 ## 현재 업로드된 이어폰/IEM 목록
 
-**7Hz** : Eternal (냥냐냥님 측정), Timeless (냥냐냥님 측정)
+**7Hz(Salnotes)** : Dioko(냥냐냥님 측정), Eternal (냥냐냥님 측정), Timeless (냥냐냥님 측정)
 
 **AAW** : Halcyon (전 필터 / NX7님 측정, 왼쪽 측정치만 존재)
+
+**Acoustune** : HS1300SS (T-APB 저음팁, 냥냐냥님 측정)
 
 **AKG** : N5005 (샘플 1: 미드하이필터, 샘플 2: 전 필터 / 냥냐냥님 측정)
 
@@ -41,7 +43,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **FiiO** : F3 (냥냐냥님 측정), FD5 (샘플 1: 이소양님 측정, 샘플 2: NX7님 측정)
 
-**Final** : A4000 (NX7님 측정, 왼쪽 측정치만 존재), E500 (냥냐냥님 측정)
+**Final** : A3000 (냥냐냥님 측정), A4000 (NX7님 측정, 왼쪽 측정치만 존재), E500 (냥냐냥님 측정)
 
 **Iriver** : ICP-AT2000 (냥냐냥님 측정)
 
@@ -69,7 +71,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Project Refine** : P1AL (냥냐냥님 측정)
 
-**QCY** : T1 (냥냐냥님 측정)
+**QCY** : T1 (냥냐냥님 측정), T5 (냥냐냥님 측정), T17 (냥냐냥님 측정)
 
 **QDC** : Dmagic Solo (냥냐냥님 측정)
 
@@ -77,7 +79,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Sange** : 1+4 (THX™님 측정)
 
-**Samsung** : EO-IC500 (냥냐냥님 측정), EO-IG955 (냥냐냥님 측정), Gear Icon X (2018) (옥시즌 나노 필터, AT2000팁, 냥냐냥님 측정)
+**Samsung** : EHS64 (냥냐냥님 측정), EO-IC500 (냥냐냥님 측정), EO-IG955 (냥냐냥님 측정), Gear Icon X (2018) (옥시즌 나노 필터, AT2000팁, 냥냐냥님 측정)
 
 **Seeaudio** : Yume(이소양님 측정), Bravery (냥냐냥님 측정)
 
@@ -91,9 +93,13 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Sony** : IER-M7, WF-1000XM4 (Patria님 측정)
 
-**Tanchjim** : Darling (이소양님 측정), New Hana (냥냐냥님 측정), Oxygen (냥냐냥님 측정), Oxygen Asano (이소양님 측정), PRISM (이소양님 측정)
+**Tanchjim** : Darling (이소양님 측정), New Hana (냥냐냥님 측정), Oxygen (냥냐냥님 측정), Oxygen Asano (이소양님 측정), PRISM (이소양님 측정), Zero (냥냐냥님 측정)
+
+**Tangzu(TForce)** : Shimin Li (T-APB 저음팁, 냥냐냥님 측정)
 
 **Thieaudio** : Legacy 4 (냥냐냥님 측정)
+
+**Tripowin** : Cencibel (T-APB 저음팁, 냥냐냥님 측정), Rhombus (T-APB 저음팁, 냥냐냥님 측정)
 
 **TRN** : MT1 (냥냐냥님 측정)
 
@@ -120,6 +126,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **돼지고닉해드** : Shouer S12, Muse Hifi Power, Seeaudio Bravery 제공
 
+**보안폴더** : 7hz Dioko, Timeless(Sample 2), Final A3000, Tanchjim Zero 제공
+
 **유키나유키농** : Audio-Technica ATM-IM01, Audio-Technica ATM-IM02, Audiofly AF120, Ultrasone Pyco, Ultrasone Tio, Ultimate Ears UE700 rev.2 제공
 
 **전염** : ER4XR, Shouer S12 (Sample 2) 제공
@@ -127,6 +135,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 **프리스트** : Tanchjim New Hana, Samsung EO-IG955, Samsung EO-IC500 제공
 
 **피프틴유저** : 7Hz Eternal 제공
+
+**ㅓㅣ** : Acoustune HS1300SS, Samsung EHS 64, Tangzu Shimin Li, Tripowin Cencibel, Rhombus 제공
 
 
 ## 측정치 생성/업로드 방법

@@ -69,39 +69,39 @@
   {
     "name": "ATOMIC FLOYD",
     "phones": [
-                {"name":["SuperDarts Titanium"],"file":["SuperDarts Titanium Sample 1 (by 냥냐냥, Spiral Dots Tips)"]}
+                {"name":["SuperDarts Titanium"],"file":"SuperDarts Titanium Sample 1 (by 냥냐냥, Spiral Dots Tips)"}
               ]
   },
   {
     "name": "Audeze",
     "phones": [
-                {"name":["iSINE 20"], "file":["iSINE 20 (UC Tips, by 아소카)"]}
+                {"name":["iSINE 20"], "file":"iSINE 20 (UC Tips, by 아소카)"}
               ]
   },
   {
     "name": "Audio-Technica",
     "phones": [
-                {"name":["ATH-IM01"], "file":["ATH-IM01 Sample 1 (by 냥냐냥)"]},
-                {"name":["ATH-IM02"], "file":["ATH-IM02 Sample 1 (by 냥냐냥)"]}
+                {"name":["ATH-IM01"], "file":"ATH-IM01 Sample 1 (by 냥냐냥)"},
+                {"name":["ATH-IM02"], "file":"ATH-IM02 Sample 1 (by 냥냐냥)"}
               ]
   },
   {
     "name": "Audiofly",
     "phones": [
-                {"name":["AF120"], "file":["AF120 Sample 1 (by 냥냐냥)"]}
+                {"name":["AF120"], "file":"AF120 Sample 1 (by 냥냐냥)"}
               ]
   },
   {
     "name": "AYA Audio",
     "phones": [
-                {"name":["SA-01"],"file":["SA-01 Sample 1 (by NX7)"]}
+                {"name":["SA-01"],"file":"SA-01 Sample 1 (by NX7)"}
               ]
   },
   {
     "name": "Beyerdynamic",
     "phones": [
-                {"name":["Beat Byrd"],"file":["Beat Byrd Sample 1 (by 냥냐냥)"]},
-                {"name":["DTX 41 iE"],"file":["DTX 41 iE Sample 1 (by 냥냐냥)"]}
+                {"name":["Beat Byrd"],"file":"Beat Byrd Sample 1 (by 냥냐냥)"},
+                {"name":["DTX 41 iE"],"file":"DTX 41 iE Sample 1 (by 냥냐냥)"}
               ]
   },
   {

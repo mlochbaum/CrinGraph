@@ -6,10 +6,15 @@
               ]
   },
   {
-    "name": "7Hz",
+    "name": "7Hz(Salnotes)",
     "phones": [
+                {"name":["Dioko"],"file":["Dioko Sample 1 (by 냥냐냥)",
+                "Dioko Sample 1 (by 냥냐냥, Lightblue Tips)",
+                "Dioko Sample 1 (by 냥냐냥, Pink Tips)",
+                "Dioko Sample 1 (by 냥냐냥, Orange Tips)",
+                "Dioko Sample 1 (by 냥냐냥, Final E Tips)"]},
                 {"name":["Eternal"],"file":["Eternal Sample 1 (by 냥냐냥)"]},
-                {"name":["Timeless"],"file":["Timeless Sample 1 (by 냥냐냥)"]}
+                {"name":["Timeless"],"file":["Timeless Sample 1 (by 냥냐냥)","Timeless Sample 2 (by 냥냐냥)","Timeless Sample 2 (by 냥냐냥, Final E Tips)"]}
               ]
   },
   {
@@ -21,16 +26,24 @@
               ]
   },
   {
+    "name": "Acoustune",
+    "phones": [
+                {"name":["HS1300SS"],"file":["HS1300SS Sample 1 (by 냥냐냥, T-APB Bass Tips)"]}
+              ]
+  },
+  {
     "name": "AKG",
     "phones": [ 
                {"name":["N5005"],"file":["N5005 Sample 1 (Mid High Filter, by ER4SR)",
                 "N5005 Sample 2 (by 냥냐냥, Reference Filter)",
                 "N5005 Sample 2 (by 냥냐냥, Bass Filter)",
                 "N5005 Sample 2 (by 냥냐냥, Mid High Filter)",
+                "N5005 Sample 2 (by 냥냐냥, Mid High Filter, Spinfit Tips)",
                 "N5005 Sample 2 (by 냥냐냥, High Filter)",
                 "N5005 Sample 2 (by ER4SR, Mid High Filter)",
-                "N5005 Sample 2 (by ER4SR, Mid High Filter, 9k Peak)"
-
+                "N5005 Sample 2 (by ER4SR, Mid High Filter, 9k Peak)",
+                "N5005 Sample 3 (by 냥냐냥, Reference Filter)",
+                "N5005 Sample 3 (by 냥냐냥, Mid High Filter)"
                 ]}
               ]
   },
@@ -115,7 +128,11 @@
     "phones": [ 
                {"name":["ER2SE"],"file":["ER2SE Sample 1 (by 아소카, Default Dampers, Clear Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Clear Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Frost Tri-flange)", "ER2SE Sample 1 (by 아소카, Ety Red Dampers, Westone Star Tips)"]},
                {"name":["ER3XR"],"file":["ER3XR Sample 1 by (by ER4SR, Grey Tri-flange)"]},
-               {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange, by ER4SR)"]},
+               {"name":["ER4SR"],"file":["ER4SR Sample 1 (Grey Tri-flange, by ER4SR)",
+               "ER4SR Sample 2 (by 냥냐냥, Ety Clear Tri-Flange Tips)",
+               "ER4SR Sample 2 (by 냥냐냥, Ety Clear Dual Flange Tips)",
+               "ER4SR Sample 2 (by 냥냐냥, Ety Frost Tips)",
+               "ER4SR Sample 2 (by 냥냐냥, Ety Foam Tips)"]},
                {"name":["ER4XR"],"file":[
 		"ER4XR Sample 1 (by ER4SR, Ety Grey Tips)",
 		"ER4XR Sample 1 (by ER4SR, Ety Clear Tri-flange Tips)",
@@ -146,6 +163,7 @@
   {
     "name": "Final",
     "phones": [
+                {"name":["A3000"],"file":["A3000 Sample 1 (by 냥냐냥)"]},
                 {"name":["A4000"],"file":["A4000 Sample 1 (by NX7, L Only)"]},
                 {"name":["E500"],"file":["E500 Sample 1 (by 냥냐냥)"]}
               ]
@@ -187,7 +205,7 @@
     "phones": [
                 {"name":["DM008K"],"file":["DM008K Sample 1 (by 냥냐냥)"]},
                 {"name":["DM100"],"file":["DM100 Sample 1 (by 냥냐냥)", "DM100 Sample 1 (by 냥냐냥, Foam Tips)", "DM100 Sample 1 (by 냥냐냥, Comply Tips)"]},
-                {"name":["TRECENTO 2020 Live"],"file":["TRECENTO 2020 Live Sample 1 (by 냥냐냥)"]}
+                {"name":["TRECENTO 2020 Live"],"file":["TRECENTO 2020 Live Sample 1 (by 냥냐냥)","TRECENTO 2020 Live Sample 2 (by 냥냐냥)"]}
               ]
   },
   {
@@ -270,6 +288,7 @@
     "name": "QCY",
     "phones": [
                 {"name":["T1"], "file":["T1 Sample 1 (by 냥냐냥)"]},
+                {"name":["T5"], "file":["T5 Sample 1 (by 냥냐냥, LG G8 SBC Codec, L Only)","T5 Sample 1 (by 냥냐냥, LG G8 AAC Codec, L Only)"]},
                 {"name":["T17"],"file":["T17 Sample 1 (by 냥냐냥, LG G8 SBC Codec)", "T17 Sample 1 (by 냥냐냥, LG G8 AAC Codec)"]}
               ]
   },
@@ -294,6 +313,7 @@
   {
     "name": "Samsung",
     "phones": [
+                {"name":["EHS64"],"file":["EHS64 Sample 1 (by 냥냐냥)"]},
                 {"name":["EO-IC500"],"file":["EO-IC500 Sample 1 (by 냥냐냥)"]},
                 {"name":["EO-IG955"],"file":["EO-IG955 Sample 1 (by 냥냐냥, Unknown Tips, S9 Ver.)",
                   "EO-IG955 Sample 1 (by 냥냐냥, Final E Tips, S9 Ver.)"]},
@@ -303,8 +323,9 @@
   {
     "name": "SeeAudio",
     "phones": [ 
+               {"name":["Bravery"],"file":["Bravery Sample 1 (by 냥냐냥)"]},
                {"name":["Yume"],"file":["Yume Sample 1 (by 이소양)"]},
-               {"name":["Bravery"],"file":["Bravery Sample 1 (by 냥냐냥)"]}
+               {"name":["Yume Midnight"],"file":["Yume Midnight Sample 1 (by 냥냐냥)"]}
               ]
   },
   {
@@ -318,14 +339,19 @@
     "phones": [
                 {"name":["S12"],"file":["S12 Sample 1 (by 냥냐냥, White Tips)",
                   "S12 Sample 1 (by 냥냐냥, Black Tips)",
-                  "S12 Sample 2 (by ER4SR, Foam Tips)"]}
+                  "S12 Sample 2 (by ER4SR, Foam Tips)",
+                  "S12 Sample 3 (by 냥냐냥, White Tips)",
+                  "S12 Sample 3 (by 냥냐냥, Black Tips)"]}
               ]
   },
   {
     "name": "Simgot",
     "phones": [
-                {"name":["EM5"],"file":["EM5 Sample 1 (by 냥냐냥, Tip II, L Only)",
-                  "EM5 Sample 1 (by 냥냐냥, Tip I, L Only)"]}
+                {"name":["EM5"],"file":[
+                  "EM5 Sample 1 (by 냥냐냥, Bass Tips)",
+                  "EM5 Sample 1 (by 냥냐냥, Treble Tips)",
+                  "EM5 Sample 2 (by 냥냐냥, Tip II, L Only)",
+                  "EM5 Sample 2 (by 냥냐냥, Tip I, L Only)"]}
               ]
   },
   {
@@ -360,11 +386,19 @@
     "name": "Tanchjim",
     "phones": [
                 {"name":["Darling"],"file":["Darling Sample 1 (by 이소양)"]},
+                {"name":["Hana"],"file":["Hana Sample 1 (by 냥냐냥, Bass Tips)","Hana Sample 1 (by 냥냐냥, Treble Tips)"]},
                 {"name":["New Hana"],"file":["New Hana Sample 1 (by 냥냐냥, Bass Tips)",
                   "New Hana Sample 1 (by 냥냐냥, Oxygen Treble Tips)"]},
                 {"name":["Oxygen"],"file":["Oxygen Sample 1 (by 냥냐냥, Bass Tips)", "Oxygen Sample 1 (by 냥냐냥, Treble Tips)"]},
                 {"name":["Oxygen Asano"],"file":["Oxygen Asano Sample 1 (by 이소양)"]},
-                {"name":["PRISM"],"file":["PRISM Sample 1 (by 이소양)"]}
+                {"name":["PRISM"],"file":["PRISM Sample 1 (by 이소양)"]},
+                {"name":["Zero"],"file":["Zero Sample 1 (by 냥냐냥, Bass Tips)","Zero Sample 1 (by 냥냐냥, Treble Tips)","Zero Sample 1 (by 냥냐냥, Final E Tips)"]}
+              ]
+  },
+  {
+    "name": "Tangzu(TForce)",
+    "phones": [
+                {"name":["Shimin Li"],"file":["Shimin Li Sample 1 (by 냥냐냥, T-APB Bass Tips)"]}
               ]
   },
   {
@@ -377,6 +411,13 @@
               ]
   },
   {
+    "name": "Tripowin",
+    "phones": [
+                {"name":["Cencibel"],"file":["Cencibel Sample 1 (by 냥냐냥, T-APB Bass Tips)"]},
+                {"name":["Rhombus"],"file":["Rhombus Sample 1 (by 냥냐냥, T-APB Bass Tips)"]}
+              ]
+  },
+  {
     "name": "TRN",
     "phones": [
                 {"name":["MT1"],"file":["MT1 Sample 1 (by 냥냐냥)"]}
@@ -386,7 +427,7 @@
     "name": "Ucotech",
     "phones": [
                 {"name":["RE-1"],"file":["RE-1 Sample 1 (by 이소양)", "RE-1 Sample 2 (by NX7)"]},
-                {"name":["RE-2"],"file":["RE-2 Sample 1 (by 아소카)", "RE-2 Sample 2 (by 이소양)", "RE-2 Sample 3 (by ER4SR, Small Silicone Tips)"]}
+                {"name":["RE-2"],"file":["RE-2 Sample 1 (by 아소카)", "RE-2 Sample 2 (by 이소양)", "RE-2 Sample 3 (by ER4SR, Small Silicone Tips)", "RE-2 Sample 4 (by ER4SR, Final E M)"]}
               ]
   },
   {

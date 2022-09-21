@@ -190,7 +190,7 @@
   {
     "name": "KEF",
     "phones": [
-                {"name":["M100"],"file":["M100 Sample 1 (by 아소카, Bundle Tips)", "M100 Sample 1 (by 아소카, Spinfit CP145 Tips)"]}
+                {"name":"M100","file":["M100 Sample 1 (by 아소카, Bundle Tips)", "M100 Sample 1 (by 아소카, Spinfit CP145 Tips)"]}
               ]
   },
   {

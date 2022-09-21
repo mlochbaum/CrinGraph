@@ -133,7 +133,7 @@
                "ER4SR Sample 2 (by 냥냐냥, Ety Clear Dual Flange Tips)",
                "ER4SR Sample 2 (by 냥냐냥, Ety Frost Tips)",
                "ER4SR Sample 2 (by 냥냐냥, Ety Foam Tips)"]},
-               {"name":["ER4XR"],"file":[
+               {"name":"ER4XR","file":[
 		"ER4XR Sample 1 (by ER4SR, Ety Grey Tips)",
 		"ER4XR Sample 1 (by ER4SR, Ety Clear Tri-flange Tips)",
 		"ER4XR Sample 1 (by ER4SR, Ety Dual Flange Tips)",
@@ -190,7 +190,7 @@
   {
     "name": "KEF",
     "phones": [
-                {"name":["M100"],"file":["M100 Sample 1 (by 아소카, Bundle Tips)", "M100 Sample 1 (by 아소카, Spinfit CP145 Tips)"]}
+                {"name":"M100","file":["M100 Sample 1 (by 아소카, Bundle Tips)", "M100 Sample 1 (by 아소카, Spinfit CP145 Tips)"]}
               ]
   },
   {
@@ -241,7 +241,7 @@
                 "Nekocake Sample 1 (by 냥냐냥, XDynamic EQ)",
                 "Nekocake Sample 1 (by 냥냐냥, NoBass EQ)",
                 "Nekocake Sample 1 (by 냥냐냥, Wennebostel EQ)"]},
-              {"name":["Quarks"],"file":[
+              {"name":"Quarks","file":[
                 "Quarks Sample 1 (EO-IG955 Tips, by 아소카)",
                 "Quarks Sample 2 (by 냥냐냥)"]},
               {"name":"Starfield","file":"Starfield Sample 1 (by 이소양)"},

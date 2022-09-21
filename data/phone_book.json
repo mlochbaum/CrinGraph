@@ -14,7 +14,7 @@
                 "Dioko Sample 1 (by 냥냐냥, Orange Tips)",
                 "Dioko Sample 1 (by 냥냐냥, Final E Tips)"]},
                 {"name":"Eternal","file":"Eternal Sample 1 (by 냥냐냥)"},
-                {"name":["Timeless"],"file":["Timeless Sample 1 (by 냥냐냥)","Timeless Sample 2 (by 냥냐냥)","Timeless Sample 2 (by 냥냐냥, Final E Tips)"]}
+                {"name":"Timeless","file":["Timeless Sample 1 (by 냥냐냥)","Timeless Sample 2 (by 냥냐냥)","Timeless Sample 2 (by 냥냐냥, Final E Tips)"]}
               ]
   },
   {
@@ -245,7 +245,7 @@
                 "Quarks Sample 1 (EO-IG955 Tips, by 아소카)",
                 "Quarks Sample 2 (by 냥냐냥)"]},
               {"name":"Starfield","file":"Starfield Sample 1 (by 이소양)"},
-              {"name":"SSR","file":"SSR Sample 1 (by 이소양)","SSR Sample 2 (by 냥냐냥)"}
+              {"name":"SSR","file":["SSR Sample 1 (by 이소양)","SSR Sample 2 (by 냥냐냥)"]}
               ]
   },
   {

@@ -196,7 +196,7 @@
   {
     "name": "KZ",
     "phones": [
-                {"name":"AS10","file":["AS10 Sample 1 (by 냥냐냥, L Only)"]},
+                {"name":"AS10","file":"AS10 Sample 1 (by 냥냐냥, L Only)"},
                 {"name":"ZEX Pro (CRN)","file":"ZEX Pro Sample 1 (by 냥냐냥)"}
               ]
   },

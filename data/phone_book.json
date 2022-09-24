@@ -371,6 +371,14 @@
                     "Idun Golden Sample 1 (by 냥냐냥) (Foam Tips)",
                     "Idun Golden Sample 1 (by 냥냐냥) (White Tips)"
                 ]
+            },
+            {
+                "name": "TYR",
+                "file": [
+                        "TYR Sample 1 (by 냥냐냥)",
+                        "TYR Sample 1 (by 냥냐냥) (Final E Tips_6.5k Peak)",
+                        "TYR Sample 1 (by 냥냐냥) (Spring Tips)"
+                        ]
             }
         ]
     },
@@ -383,14 +391,6 @@
                     "M100 Sample 1 (by 아소카) (Bundle Tips)",
                     "M100 Sample 1 (by 아소카) (Spinfit CP145 Tips)"
                 ]
-            },
-            {
-                "name": "TYR",
-                "file": [
-                        "TYR Sample 1 (by 냥냐냥)",
-                        "TYR Sample 1 (by 냥냐냥) (Final E Tips_6.5k Peak)",
-                        "TYR Sample 1 (by 냥냐냥) (Spring Tips)"
-                        ]
             }
         ]
     },

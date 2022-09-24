@@ -6,13 +6,13 @@ const init_phones = ["Combo Variant 1"],            // Optional. Which graphs to
       default_norm_db = 60,                         // Sets default dB normalization point
       default_norm_hz = 500,                        // Sets default Hz normalization point (500Hz is recommended by IEC)
       max_channel_imbalance = 5,                    // Channel imbalance threshold to show ! in the channel selector
-      alt_layout = true,                           // Toggle between classic and alt layouts
+      alt_layout = false,                           // Toggle between classic and alt layouts
       alt_sticky_graph = true,                      // If active graphs overflows the viewport, does the graph scroll with the page or stick to the viewport?
       alt_animated = false,                         // Determines if new graphs are drawn with a 1-second animation, or appear instantly
-      alt_header = true,                           // Display a configurable header at the top of the alt layout
+      alt_header = false,                           // Display a configurable header at the top of the alt layout
       alt_header_new_tab = true,                    // Clicking alt_header links opens in new tab
       alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
-      alt_augment = true,                          // Display augment card in phone list, e.g. review sore, shop link
+      alt_augment = false,                          // Display augment card in phone list, e.g. review sore, shop link
       site_url = 'graph.html',                      // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs
@@ -236,8 +236,8 @@ setupGraphAnalytics();
 
 
 // If alt_header is enabled, these are the items added to the header
-let headerLogoText = null,
-    headerLogoImgUrl = "https://squig.link/squiglink-logo-w.png",
+let headerLogoText = "CrinGraph",
+    headerLogoImgUrl = "",
     headerLinks = [
     {
         name: "Sample",

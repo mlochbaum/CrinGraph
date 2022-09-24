@@ -1578,6 +1578,7 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
     if (extraEnabled && extraEQEnabled) {
         updateEQPhoneSelect();
     }
+    if (!p.isTarget && alt_augment ) { augmentList(p); }
 }
 
 function removeCopies(p) {
@@ -1655,6 +1656,12 @@ function asPhoneObj(b, p, isInit, inits) {
     }
     r.dispName = r.dispName || r.phone;
     r.fullName = r.dispBrand + " " + r.phone;
+    if (alt_augment) {
+        r.reviewScore = p.reviewScore;
+        r.reviewLink = p.reviewLink;
+        r.shopLink = p.shopLink;
+        r.price = p.price;
+    }
     return r;
 }
 

@@ -482,12 +482,12 @@
             },
             {
                 "name": "Blessing",
-                "file": "Blessing Sample 1 (by 이소양)",
-                "prefix": "Blessing Sample 1 (by 이소양)"
+                "file": "Blessing Sample 1 (by 이소양)",
+                "prefix": "Blessing Sample 1 (by 이소양)"
             },
             {
                 "name": "Blessing 2",
-                "file": "Blessing 2 Sample 1 (by 이소양)"
+                "file": "Blessing 2 Sample 1 (by 이소양)"
             },
             {
                 "name": "Chu",
@@ -514,7 +514,7 @@
             },
             {
                 "name": "KXXS",
-                "file": "KXXS Sample 1 (by 이소양)"
+                "file": "KXXS Sample 1 (by 이소양)"
             },
             {
                 "name": "Nekocake",
@@ -541,7 +541,7 @@
             {
                 "name": "SSR",
                 "file": [
-                    "SSR Sample 1 (by 이소양)",
+                    "SSR Sample 1 (by 이소양)",
                     "SSR Sample 2 (by 냥냐냥)"
                 ]
             }
@@ -660,8 +660,8 @@
         "phones": [
             {
                 "name": "Adonis",
-                "file": "Adonis Sample 1 (by 이소양)",
-                "prefix": "Adonis Sample 1 (by 이소양)"
+                "file": "Adonis Sample 1 (by 이소양)",
+                "prefix": "Adonis Sample 1 (by 이소양)"
             }
         ]
     },
@@ -712,8 +712,8 @@
             },
             {
                 "name": "Yume",
-                "file": "Yume Sample 1 (by 이소양)",
-                "prefix": "Yume Sample 1 (by 이소양)"
+                "file": "Yume Sample 1 (by 이소양)",
+                "prefix": "Yume Sample 1 (by 이소양)"
             },
             {
                 "name": "Yume Midnight",
@@ -837,8 +837,8 @@
         "phones": [
             {
                 "name": "Darling",
-                "file": "Darling Sample 1 (by 이소양)",
-                "prefix": "Darling Sample 1 (by 이소양)"
+                "file": "Darling Sample 1 (by 이소양)",
+                "prefix": "Darling Sample 1 (by 이소양)"
             },
             {
                 "name": "Hana",
@@ -863,13 +863,13 @@
             },
             {
                 "name": "Oxygen Asano",
-                "file": "Oxygen Asano Sample 1 (by 이소양)",
-                "prefix": "Oxygen Asano Sample 1 (by 이소양)"
+                "file": "Oxygen Asano Sample 1 (by 이소양)",
+                "prefix": "Oxygen Asano Sample 1 (by 이소양)"
             },
             {
                 "name": "PRISM",
-                "file": "PRISM Sample 1 (by 이소양)",
-                "prefix": "PRISM Sample 1 (by 이소양)"
+                "file": "PRISM Sample 1 (by 이소양)",
+                "prefix": "PRISM Sample 1 (by 이소양)"
             },
             {
                 "name": "Zero",
@@ -936,7 +936,7 @@
             {
                 "name": "RE-1",
                 "file": [
-                    "RE-1 Sample 1 (by 이소양)",
+                    "RE-1 Sample 1 (by 이소양)",
                     "RE-1 Sample 2 (by NX7)"
                 ]
             },
@@ -944,7 +944,7 @@
                 "name": "RE-2",
                 "file": [
                     "RE-2 Sample 1 (by 아소카)",
-                    "RE-2 Sample 2 (by 이소양)",
+                    "RE-2 Sample 2 (by 이소양)",
                     "RE-2 Sample 3 (by ER4SR) (Small Silicone Tips)",
                     "RE-2 Sample 4 (by ER4SR) (Final E M)"
                 ]

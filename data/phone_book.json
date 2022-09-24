@@ -109,6 +109,13 @@
                     "Airpods Pro Sample 1 (by 냥냐냥) (Noise Cancellation On)",
                     "Airpods Pro Sample 1 (by 냥냐냥) (Noise Cancellation Off)"
                 ]
+            },
+            {
+                "name": "In-Ear Headphones",
+                "file": ["In-Ear Headphones Sample 1 (by 냥냐냥)",
+                "In-Ear Headphones Sample 1 (by 냥냐냥) (Final E Tips)",
+                "In-Ear Headphones Sample 1 (by 냥냐냥) (Spring Tips)",
+                "In-Ear Headphones Sample 1 (by 냥냐냥) (Deep Insertion)"]
             }
         ]
     },
@@ -316,6 +323,20 @@
         ]
     },
     {
+        "name": "FloAudio",
+        "phones": [
+            {
+                "name": "CALLA",
+                "file": [
+                    "CALLA Sample 1 (by 냥냐냥)",
+                    "CALLA Sample 1 (by 냥냐냥) (Final E Tips)",
+                    "CALLA Sample 1 (by 냥냐냥) (Spring Tips)",
+                    "CALLA Sample 1 (by 냥냐냥) (Deep Insertion)"
+                ]
+            }
+        ]
+    },
+    {
         "name": "Iriver",
         "phones": [
             {
@@ -362,6 +383,14 @@
                     "M100 Sample 1 (by 아소카) (Bundle Tips)",
                     "M100 Sample 1 (by 아소카) (Spinfit CP145 Tips)"
                 ]
+            },
+            {
+                "name": "TYR",
+                "file": [
+                        "TYR Sample 1 (by 냥냐냥)",
+                        "TYR Sample 1 (by 냥냐냥) (Final E Tips_6.5k Peak)",
+                        "TYR Sample 1 (by 냥냐냥) (Spring Tips)"
+                        ]
             }
         ]
     },
@@ -372,6 +401,21 @@
                 "name": "AS10",
                 "file": "AS10 Sample 1 (by 냥냐냥) (L Only)",
                 "prefix": "AS10 Sample 1 (by 냥냐냥, L Only)"
+            },
+            {
+                "name": "AS16",
+                "file": ["AS16 Sample 1 (by 냥냐냥)",
+                         "AS16 Sample 1 (by 냥냐냥) (Final E Tips)",
+                         "AS16 Sample 1 (by 냥냐냥) (Spring Tips)",
+                         "AS16 Sample 1 (by 냥냐냥) (Deep Insertion)"
+                        ]
+            },
+            {
+                "name": "EDX",
+                "file": ["EDX Sample 1 (by 냥냐냥)",
+                         "EDX Sample 1 (by 냥냐냥) (Final E Tips)",
+                         "EDX Sample 1 (by 냥냐냥) (Spring Tips)"
+                        ]
             },
             {
                 "name": "ZEX Pro (CRN)",
@@ -451,7 +495,9 @@
                     "Chu Sample 1 (Spring Tips) (by 아소카)",
                     "Chu Sample 1 (Final E Tips) (by 아소카)",
                     "Chu Sample 1 (Softears UC Tips) (by 아소카)",
-                    "Chu Sample 2 (by Patria) (L Only)"
+                    "Chu Sample 2 (by Patria) (L Only)",
+                    "Chu Sample 3 (by 냥냐냥)",
+                    "Chu Sample 3 (by 냥냐냥) (Final E Tips)"
                 ]
             },
             {
@@ -596,6 +642,18 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "QKZ",
+        "phones": [
+            {
+                "name": "ZAX2",
+                "file": ["ZAX2 Sample 1 (by 냥냐냥)", 
+                         "ZAX2 Sample 1 (by 냥냐냥) (Final E Tips)",
+                         "ZAX2 Sample 1 (by 냥냐냥) (Spring Tips)"
+                        ]
+            }
+                  ]
     },
     {
         "name": "Queen of Audio (QOA)",

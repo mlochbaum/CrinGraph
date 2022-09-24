@@ -265,7 +265,7 @@ function augmentList(phone) {
     let phoneName = phone.fullName,
         phoneListItem = document.querySelector('div[name="'+ phoneName +'"]'),
         phoneListItemAugmented = phoneListItem.getAttribute('data-augment'),
-        reviewScore = phone.reviewScore ? phone.reviewScore.length === 1 && parseInt(phone.reviewScore) > 0 ? parseInt(phone.reviewScore) : phone.reviewScore : 0,
+        reviewScore = phone.reviewScore ? phone.reviewScore.length === 1 && parseInt(phone.reviewScore) > 0 ? parseInt(phone.reviewScore) : phone.reviewScore : null,
         reviewStars = !reviewScore.length && reviewScore > 0 && reviewScore <= 5 ? 1 : 0,
         reviewLink = phone.reviewLink,
         reviewLinkLabel = reviewLink ? reviewLink.split('www.').pop().split('/').shift() : 0,

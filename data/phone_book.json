@@ -315,6 +315,10 @@
                     "FD5 Sample 2 (by NX7)"
                 ],
                 "prefix": "FD5"
+            },
+            {
+                "name": "FW1",
+                "file" : "FW1 Sample 1 (by 냥냐냥) (LG G8 APT-X Codec)"
             }
         ]
     },
@@ -480,6 +484,24 @@
                 "name": "USB-C Earphones",
                 "file": "USB-C Earphones Sample 1 (by ER4SR) (Orza L Tips)",
                 "prefix": "USB-C Earphones"
+            }
+        ]
+    },
+    {
+        "name": "Lypertek",
+        "phones": [
+            {
+                "name": "Z3",
+                "file": ["Z3 Sample 1 (by 냥냐냥) (LG G8 APT-X Codec)",
+                         "Z3 Sample 1 (by 냥냐냥) (iPadOS 15.7)",
+                         "Z3 Sample 1 (by 냥냐냥) (iPadOS 15.7) (LDX Preset)",
+                         "Z3 Sample 1 (by 냥냐냥) (iPadOS 15.7) (Bass Boost Preset)",
+                         "Z3 Sample 1 (by 냥냐냥) (iPadOS 15.7) (Loudness Preset)",
+                         "Z3 Sample 1 (by 냥냐냥) (iPadOS 15.7) (Neutral Preset)",
+                         "Z3 Sample 1 (by 냥냐냥) (iPadOS 15.7) (Podcast Preset)",
+                         "Z3 Sample 1 (by 냥냐냥) (iPadOS 15.7) (Gaming Preset)",
+                         "Z3 Sample 1 (by 냥냐냥) (iPadOS 15.7) (Movies Preset)"
+                        ]
             }
         ]
     },
@@ -876,6 +898,27 @@
                 "prefix": "WF-1000XM4"
             }
         ]
+    },
+    {
+        "name": "Soundpeats",
+        "phones": [
+            {
+                "name": "Sonic Pro",
+                "file": ["Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec)",
+                         "Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec) (Foam Tips)",
+                         "Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec) (E Pro Tips)",
+                         "Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec) (Bass Boost Preset)",
+                         "Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec) (Bass Reduce Preset)",
+                         "Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec) (Electronic Preset)",
+                         "Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec) (RocknRoll Preset)",
+                         "Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec) (Folk Preset)",
+                         "Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec) (Treble Boost Preset)",
+                         "Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec) (Pop Preset)",
+                         "Sonic Pro Sample 1 (by 냥냐냥) (LG G8 APT-X Codec) (Classical Preset)"
+                        ]
+            }
+        ]
+
     },
     {
         "name": "Tanchjim",

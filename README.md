@@ -41,7 +41,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Etymotic Research** : ER4SR (회색팁), ER2SE (클리어팁, THX™님 측정), mc5 (슈어 폼팁, 냥냐냥님 측정), mk5 (슈어 폼팁, 냥냐냥님 측정), ER4XR (전염님 제공 샘플)
 
-**FiiO** : F3 (냥냐냥님 측정), FD5 (샘플 1: 이소양님 측정, 샘플 2: NX7님 측정)
+**FiiO** : F3 (냥냐냥님 측정), FD5 (샘플 1: 이소양님 측정, 샘플 2: NX7님 측정), FW1 (냥냐냥님 측정)
 
 **Final** : A3000 (냥냐냥님 측정), A4000 (NX7님 측정, 왼쪽 측정치만 존재), E500 (냥냐냥님 측정)
 
@@ -60,6 +60,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 **Lefrig Audio** : TRECENTO 2020 Live (냥냐냥님 측정)
 
 **LG** : USB-C Earphones (LG Wing Bundle)
+
+**Lypertek** : Z3 (냥냐냥님 측정)
 
 **Moondrop** : Aria (2018) (냥냐냥님 측정), Aria (2021), Blessing (이소양님 측정), Blessing 2 (이소양님 측정), Chu (샘플 1: THX™님 측정, 샘플 2: Patria님 측정, 샘플 3: 냥냐냥님 측정), KXXS (이소양님 측정), Nekocake (냥냐냥님 측정), Quarks (샘플 1: THX™님 측정, 샘플 2: 냥냐냥님 측정), Starfield (이소양님 측정), SSR (샘플 1: 이소양님 측정, 샘플 2: 냥냐냥님 측정)
 
@@ -97,6 +99,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Sony** : IER-M7, WF-1000XM4 (Patria님 측정)
 
+**Soundpeats** : Sonic Pro (냥냐냥님 측정)
+
 **Tanchjim** : Darling (이소양님 측정), New Hana (냥냐냥님 측정), Oxygen (냥냐냥님 측정), Oxygen Asano (이소양님 측정), PRISM (이소양님 측정), Zero (냥냐냥님 측정)
 
 **Tangzu(TForce)** : Shimin Li (T-APB 저음팁, 냥냐냥님 측정)
@@ -117,6 +121,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 ## 기여자 목록
 
 **EX이헤갤러** : AKG N5005(Sample 3), Atomic Floyd SuperDarts Titanium, Etymotic ER4SR Sample 2, Refrig Audio Trecento 2020 Live(Sample 1, 2), Simgot EM5(Sample 1, 2), SeeAudio Yume Midnight, Shouer S12(Sample 3), Tanchjim Hana제공
+
+**FH5S=오딘** : Fiio FW1, Lypertek Z3, Soundpeats Sonic Pro 제공
 
 **JohnYang1997** : BQEYZ K2, Final E500, FiiO F3, Ostry KC06A(Sample 2), Etymotic Research mc5, mk5, Phonak PFE 022 제공
 

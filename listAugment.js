@@ -265,13 +265,13 @@ function augmentList(phone) {
     let phoneName = phone.fullName,
         phoneListItem = document.querySelector('div[name="'+ phoneName +'"]'),
         phoneListItemAugmented = phoneListItem.getAttribute('data-augment'),
-        reviewScore = phone.reviewScore ? phone.reviewScore.length === 1 && parseInt(phone.reviewScore) > 0 ? parseInt(phone.reviewScore) : phone.reviewScore : null,
-        reviewStars = !reviewScore.length && reviewScore > 0 && reviewScore <= 5 ? 1 : 0,
+        reviewScore = phone.reviewScore ? phone.reviewScore.length === 1 && parseInt(phone.reviewScore) > 0 ? parseInt(phone.reviewScore) : phone.reviewScore : false,
+        reviewStars = !reviewScore.length && reviewScore > 0 && reviewScore <= 5 ? true : false,
         reviewLink = phone.reviewLink,
-        reviewLinkLabel = reviewLink ? reviewLink.split('www.').pop().split('/').shift() : 0,
+        reviewLinkLabel = reviewLink ? reviewLink.split('www.').pop().split('/').shift() : false,
         reviewLinkVideo = reviewLink ? reviewLink.includes('youtube') ? 1 : 0 : 0,
         shopLink = phone.shopLink,
-        shopLinkLabel = shopLink ? shopLink.split('www.').pop().split('/').shift() : 0,
+        shopLinkLabel = shopLink ? shopLink.split('www.').pop().split('/').shift() : false,
         price = phone.price;
     
     if (!phoneListItemAugmented) {
@@ -292,15 +292,16 @@ function augmentList(phone) {
         phoneListItem.setAttribute('data-augment', '1');
 
         agumentsContainer.className = "augment";
-        agumentsContainer.append(augmentsRow1);
-        augmentsRow1.className = "augment-rank";
         
         augmentsRow1.append(augmentsRow1Col1);
         augmentsRow1.append(augmentsRow1Col2);
         augmentsRow1Col2.textContent = price;
         augmentsRow1Col2.className = "augment-price";
         
-        if (reviewStars) {
+        if (reviewScore && reviewStars) {
+            agumentsContainer.append(augmentsRow1);
+            augmentsRow1.className = "augment-rank";
+            
             augmentsRow1Col1.setAttribute('data-score', reviewScore);
             augmentsRow1Col1.append(augmentsStar1);
             augmentsRow1Col1.append(augmentsStar2);
@@ -308,7 +309,10 @@ function augmentList(phone) {
             augmentsRow1Col1.append(augmentsStar4);
             augmentsRow1Col1.append(augmentsStar5);
             augmentsRow1Col1.className = "augment-stars";
-        } if (!reviewStars) {
+        } if (reviewScore && !reviewStars) {
+            agumentsContainer.append(augmentsRow1);
+            augmentsRow1.className = "augment-rank";
+            
             augmentsRow1Col1.className = "augment-score augment-score-unknown";
             augmentsRow1Col1.textContent = reviewScore;
         }

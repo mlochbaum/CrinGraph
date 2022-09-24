@@ -21,7 +21,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **AME** : J2XR (샘플 1: 브라운 필터 / 냥냐냥님 측정, 샘플 2: 그린 필터, 샘플 3: 브라운 필터, 파이널 E팁 / THX™님 측정)
 
-**Apple** : Airpods Pro (냥냐냥님 측정)
+**Apple** : Airpods Pro (냥냐냥님 측정), In-Ear Headphones (냥냐냥님 측정)
 
 **ATOMIC FLOYD** : SuperDarts Titanium (냥냐냥님 측정)
 
@@ -45,21 +45,23 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **Final** : A3000 (냥냐냥님 측정), A4000 (NX7님 측정, 왼쪽 측정치만 존재), E500 (냥냐냥님 측정)
 
+**FloAudio** : CALLA (냥냐냥님 측정)
+
 **Iriver** : ICP-AT2000 (냥냐냥님 측정)
 
 **JBL** : Club Pro+ (냥냐냥님 측정)
 
-**Kinera** : Idun Golden (냥냐냥님 측정)
+**Kinera** : Idun Golden (냥냐냥님 측정), TYR (냥냐냥님 측정)
 
 **KEF** : M100 (THX™님 측정)
 
-**KZ** : AS10 (냥냐냥님 측정), ZEX Pro (CRN) (냥냐냥님 측정)
+**KZ** : AS10 (냥냐냥님 측정), AS16 (냥냐냥님 측정), EDX (냥냐냥님 측정), ZEX Pro (CRN) (냥냐냥님 측정)
 
 **Lefrig Audio** : TRECENTO 2020 Live (냥냐냥님 측정)
 
 **LG** : USB-C Earphones (LG Wing Bundle)
 
-**Moondrop** : Aria (2018) (냥냐냥님 측정), Aria (2021), Blessing (이소양님 측정), Blessing 2 (이소양님 측정), Chu (샘플 1: THX™님 측정, 샘플 2: Patria님 측정), KXXS (이소양님 측정), Nekocake (냥냐냥님 측정), Quarks (샘플 1: THX™님 측정, 샘플 2: 냥냐냥님 측정), Starfield (이소양님 측정), SSR (샘플 1: 이소양님 측정, 샘플 2: 냥냐냥님 측정)
+**Moondrop** : Aria (2018) (냥냐냥님 측정), Aria (2021), Blessing (이소양님 측정), Blessing 2 (이소양님 측정), Chu (샘플 1: THX™님 측정, 샘플 2: Patria님 측정, 샘플 3: 냥냐냥님 측정), KXXS (이소양님 측정), Nekocake (냥냐냥님 측정), Quarks (샘플 1: THX™님 측정, 샘플 2: 냥냐냥님 측정), Starfield (이소양님 측정), SSR (샘플 1: 이소양님 측정, 샘플 2: 냥냐냥님 측정)
 
 **Muse Hifi** : Power (냥냐냥님 측정)
 
@@ -74,6 +76,8 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 **QCY** : T1 (냥냐냥님 측정), T5 (냥냐냥님 측정), T17 (냥냐냥님 측정)
 
 **QDC** : Dmagic Solo (냥냐냥님 측정)
+
+**QKZ** : ZAX2 (냥냐냥님 측정)
 
 **Queen Of Audio (QOA)**: Adonis (이소양님 측정)
 
@@ -112,9 +116,11 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 ## 기여자 목록
 
-**EX이헤갤러** : Atomic Floyd SuperDarts Titanium, Refrig Audio Trecento 2020 Live, Simgot EM5 제공
+**EX이헤갤러** : AKG N5005(Sample 3), Atomic Floyd SuperDarts Titanium, Etymotic ER4SR Sample 2, Refrig Audio Trecento 2020 Live(Sample 1, 2), Simgot EM5(Sample 1, 2), SeeAudio Yume Midnight, Shouer S12(Sample 3), Tanchjim Hana제공
 
 **JohnYang1997** : BQEYZ K2, Final E500, FiiO F3, Ostry KC06A(Sample 2), Etymotic Research mc5, mk5, Phonak PFE 022 제공
+
+**Lastwhitespace** : Apple In-Ear Headphones, FloAudio CALLA, Kinera TYR, KZ EDX, AS16, Moondrop Chu Sample 3, QKZ ZAX2 제공
 
 **Ricopam** : Beyerdynamic DTX 41 iE, KZ AS10, TRN MT1, Moondrop SSR(Sample 2) 제공
 

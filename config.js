@@ -1,5 +1,5 @@
 // Configuration options
-const init_phones = ["HTH67"],                      // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
+const init_phones = ["Combo Variant 1"],            // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
       DIR = "data/",                                // Directory where graph files are stored
       default_channels = ["L","R"],                 // Which channels to display. Avoid javascript errors if loading just one channel per phone
       default_normalization = "dB",                 // Sets default graph normalization mode. Accepts "dB" or "Hz"
@@ -12,6 +12,7 @@ const init_phones = ["HTH67"],                      // Optional. Which graphs to
       alt_header = true,                           // Display a configurable header at the top of the alt layout
       alt_header_new_tab = true,                    // Clicking alt_header links opens in new tab
       alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
+      alt_augment = true,                          // Display augment card in phone list, e.g. review sore, shop link
       site_url = 'graph.html',                      // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "CrinGraph",                 // Optional. Watermark appears behind graphs

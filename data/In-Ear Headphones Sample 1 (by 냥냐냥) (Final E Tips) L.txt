@@ -1,7 +1,7 @@
 * Measurement data measured by REW V5.20.9
-* Source: Mic in at rear panel (Pink)(Realtek(R) Audio), MICROPHONE (¸¶½º), L, volume: 0.500
+* Source: Mic in at rear panel (Pink)(Realtek(R) Audio), MICROPHONE (Â¸Â¶Â½Âº), L, volume: 0.500
 * Format: 256k Log Swept Sine, 1 sweep at -12.0 dBFS with no timing reference
-* Dated: 2022. 9. 24 ¿ÀÀü 11:19:20
+* Dated: 2022. 9. 24 Â¿Ã€Ã€Ã¼ 11:19:20
 * REW Settings:
 *  C-weighting compensation: Off
 *  Target level: 75.0 dB

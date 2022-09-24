@@ -112,7 +112,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 ## 기여자 목록
 
-**EX이헤갤러** : Atomic Floyd SuperDarts Titanium, Refrig Audio Trecento 2020 Live, Simgot EM5 제공
+**EX이헤갤러** : AKG N5005(Sample 3), Atomic Floyd SuperDarts Titanium, Etymotic ER4SR Sample 2, Refrig Audio Trecento 2020 Live(Sample 1, 2), Simgot EM5(Sample 1, 2), SeeAudio Yume Midnight, Shouer S12(Sample 3), Tanchjim Hana제공
 
 **JohnYang1997** : BQEYZ K2, Final E500, FiiO F3, Ostry KC06A(Sample 2), Etymotic Research mc5, mk5, Phonak PFE 022 제공
 

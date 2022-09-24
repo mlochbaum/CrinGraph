@@ -19,11 +19,13 @@
                     "Dioko Sample 1 (by 냥냐냥) (Pink Tips)",
                     "Dioko Sample 1 (by 냥냐냥) (Orange Tips)",
                     "Dioko Sample 1 (by 냥냐냥) (Final E Tips)"
-                ]
+                ],
+                "prefix": "Dioko"
             },
             {
                 "name": "Eternal",
-                "file": "Eternal Sample 1 (by 냥냐냥)"
+                "file": "Eternal Sample 1 (by 냥냐냥)",
+                "prefix": "Eternal"
             },
             {
                 "name": "Timeless",
@@ -31,7 +33,8 @@
                     "Timeless Sample 1 (by 냥냐냥)",
                     "Timeless Sample 2 (by 냥냐냥)",
                     "Timeless Sample 2 (by 냥냐냥) (Final E Tips)"
-                ]
+                ],
+                "prefix": "Timeless"
             }
         ]
     },
@@ -44,7 +47,8 @@
                     "Halcyon Sample 1 (by NX7) (NORM Filter) (L Only)",
                     "Halcyon Sample 1 (by NX7) (BASS Filter) (L Only)",
                     "Halcyon Sample 1 (by NX7) (VOKAL Filter) (L Only)"
-                ]
+                ],
+                "prefix": "Halcyon"
             }
         ]
     },
@@ -54,7 +58,7 @@
             {
                 "name": "HS1300SS",
                 "file": "HS1300SS Sample 1 (by 냥냐냥) (T-APB Bass Tips)",
-                "prefix": "HS1300SS Sample 1 (by 냥냐냥, T-APB Bass Tips)"
+                "prefix": "HS1300SS"
             }
         ]
     },
@@ -74,7 +78,8 @@
                     "N5005 Sample 2 (by ER4SR) (Mid High Filter) (9k Peak)",
                     "N5005 Sample 3 (by 냥냐냥) (Reference Filter)",
                     "N5005 Sample 3 (by 냥냐냥) (Mid High Filter)"
-                ]
+                ],
+                "prefix": "N5005"
             }
         ]
     },
@@ -86,7 +91,8 @@
                 "file": [
                     "J1UX Sample 1 (by 아소카) (Final E Tips)",
                     "J1UX Sample 1 (by 아소카) (Orza Tips)"
-                ]
+                ],
+                "prefix": "J1UX"
             },
             {
                 "name": "J2XR",
@@ -96,7 +102,8 @@
                     "J2XR Sample 2 (Green Damper) (Final E Tips) (by ER4SR)",
                     "J2XR Sample 3 (by 아소카) (Ety Green Dampers) (Final E Tips)",
                     "J2XR Sample 3 (by 아소카) (Ety Green Dampers) (Orza Tips)"
-                ]
+                ],
+                "prefix": "J2XR"
             }
         ]
     },
@@ -108,14 +115,17 @@
                 "file": [
                     "Airpods Pro Sample 1 (by 냥냐냥) (Noise Cancellation On)",
                     "Airpods Pro Sample 1 (by 냥냐냥) (Noise Cancellation Off)"
-                ]
+                ],
+                "prefix": "Airpods Pro"
             },
             {
                 "name": "In-Ear Headphones",
                 "file": ["In-Ear Headphones Sample 1 (by 냥냐냥)",
                 "In-Ear Headphones Sample 1 (by 냥냐냥) (Final E Tips)",
                 "In-Ear Headphones Sample 1 (by 냥냐냥) (Spring Tips)",
-                "In-Ear Headphones Sample 1 (by 냥냐냥) (Deep Insertion)"]
+                "In-Ear Headphones Sample 1 (by 냥냐냥) (Deep Insertion)"
+                ],
+                "prefix": "In-Ear Headphones"
             }
         ]
     },
@@ -125,7 +135,7 @@
             {
                 "name": "SuperDarts Titanium",
                 "file": "SuperDarts Titanium Sample 1 (by 냥냐냥) (Spiral Dots Tips)",
-                "prefix": "SuperDarts Titanium Sample 1 (by 냥냐냥, Spiral Dots Tips)"
+                "prefix": "SuperDarts Titanium"
             }
         ]
     },
@@ -135,7 +145,7 @@
             {
                 "name": "iSINE 20",
                 "file": "iSINE 20 (UC Tips) (by 아소카)",
-                "prefix": "iSINE 20 (UC Tips, by 아소카)"
+                "prefix": "iSINE 20"
             }
         ]
     },
@@ -145,12 +155,12 @@
             {
                 "name": "ATH-IM01",
                 "file": "ATH-IM01 Sample 1 (by 냥냐냥)",
-                "prefix": "ATH-IM01 Sample 1 (by 냥냐냥)"
+                "prefix": "ATH-IM01)"
             },
             {
                 "name": "ATH-IM02",
                 "file": "ATH-IM02 Sample 1 (by 냥냐냥)",
-                "prefix": "ATH-IM02 Sample 1 (by 냥냐냥)"
+                "prefix": "ATH-IM02"
             }
         ]
     },
@@ -160,7 +170,7 @@
             {
                 "name": "AF120",
                 "file": "AF120 Sample 1 (by 냥냐냥)",
-                "prefix": "AF120 Sample 1 (by 냥냐냥)"
+                "prefix": "AF120"
             }
         ]
     },
@@ -170,7 +180,7 @@
             {
                 "name": "SA-01",
                 "file": "SA-01 Sample 1 (by NX7)",
-                "prefix": "SA-01 Sample 1 (by NX7)"
+                "prefix": "SA-01"
             }
         ]
     },
@@ -180,12 +190,12 @@
             {
                 "name": "Beat Byrd",
                 "file": "Beat Byrd Sample 1 (by 냥냐냥)",
-                "prefix": "Beat Byrd Sample 1 (by 냥냐냥)"
+                "prefix": "Beat Byrd"
             },
             {
                 "name": "DTX 41 iE",
                 "file": "DTX 41 iE Sample 1 (by 냥냐냥)",
-                "prefix": "DTX 41 iE Sample 1 (by 냥냐냥)"
+                "prefix": "DTX 41 iE"
             }
         ]
     },
@@ -195,7 +205,7 @@
             {
                 "name": "K2",
                 "file": "K2 Sample 1 (by 냥냐냥)",
-                "prefix": "K2 Sample 1 (by 냥냐냥)"
+                "prefix": "K2"
             }
         ]
     },
@@ -205,7 +215,7 @@
             {
                 "name": "CRA",
                 "file": "CRA Sample 1 (by NX7)",
-                "prefix": "CRA Sample 1 (by NX7)"
+                "prefix": "CRA"
             }
         ]
     },
@@ -217,7 +227,8 @@
                 "file": [
                     "Janus Sample 1 (by 냥냐냥) (Bass Tips)",
                     "Janus Sample 1 (by 냥냐냥) (Treble Tips)"
-                ]
+                ],
+                "prefix": "Janus"
             }
         ]
     },
@@ -231,12 +242,13 @@
                     "ER2SE Sample 1 (by 아소카) (Ety Red Dampers) (Clear Tri-flange)",
                     "ER2SE Sample 1 (by 아소카) (Ety Red Dampers) (Frost Tri-flange)",
                     "ER2SE Sample 1 (by 아소카) (Ety Red Dampers) (Westone Star Tips)"
-                ]
+                ],
+                "prefix": "ER2SE"
             },
             {
                 "name": "ER3XR",
                 "file": "ER3XR Sample 1 by (by ER4SR) (Grey Tri-flange)",
-                "prefix": "ER3XR Sample 1 by (by ER4SR, Grey Tri-flange)"
+                "prefix": "ER3XR"
             },
             {
                 "name": "ER4SR",
@@ -246,7 +258,8 @@
                     "ER4SR Sample 2 (by 냥냐냥) (Ety Clear Dual Flange Tips)",
                     "ER4SR Sample 2 (by 냥냐냥) (Ety Frost Tips)",
                     "ER4SR Sample 2 (by 냥냐냥) (Ety Foam Tips)"
-                ]
+                ],
+                "prefix": "ER4SR"
             },
             {
                 "name": "ER4XR",
@@ -258,17 +271,18 @@
                     "ER4XR Sample 1 (by ER4SR) (Ety Foam Tips)",
                     "ER4XR Sample 2 (Deprecated) (by ER4SR) (Ety Grey Tips)",
                     "ER4XR Sample 2 (Deprecated) (by ER4SR) (Ety Foam Tips)"
-                ]
+                ],
+                "prefix": "ER4XR"
             },
             {
                 "name": "mc5",
                 "file": "mc5 Sample 1 (by 냥냐냥) (Shure Foam Tips)",
-                "prefix": "mc5 Sample 1 (by 냥냐냥, Shure Foam Tips)"
+                "prefix": "mc5"
             },
             {
                 "name": "mk5",
                 "file": "mk5 Sample 1 (by 냥냐냥) (Shure Foam Tips)",
-                "prefix": "mk5 Sample 1 (by 냥냐냥, Shure Foam Tips)"
+                "prefix": "mk5"
             }
         ]
     },
@@ -281,7 +295,8 @@
                     "Minor Sample 1 (by 냥냐냥) (White Tips)",
                     "Minor Sample 1 (by 냥냐냥) (Black Tips)",
                     "Minor Sample 1 (by 냥냐냥) (Foam Tips)"
-                ]
+                ],
+                "prefix": "Minor"
             }
         ]
     },
@@ -291,14 +306,15 @@
             {
                 "name": "F3",
                 "file": "F3 Sample 1 (by 냥냐냥)",
-                "prefix": "F3 Sample 1 (by 냥냐냥)"
+                "prefix": "F3"
             },
             {
                 "name": "FD5",
                 "file": [
                     "FD5 Sample 1 (by 이소양)",
                     "FD5 Sample 2 (by NX7)"
-                ]
+                ],
+                "prefix": "FD5"
             },
             {
                 "name": "FW1",
@@ -312,17 +328,17 @@
             {
                 "name": "A3000",
                 "file": "A3000 Sample 1 (by 냥냐냥)",
-                "prefix": "A3000 Sample 1 (by 냥냐냥)"
+                "prefix": "A3000"
             },
             {
                 "name": "A4000",
                 "file": "A4000 Sample 1 (by NX7) (L Only)",
-                "prefix": "A4000 Sample 1 (by NX7, L Only)"
+                "prefix": "A4000"
             },
             {
                 "name": "E500",
                 "file": "E500 Sample 1 (by 냥냐냥)",
-                "prefix": "E500 Sample 1 (by 냥냐냥)"
+                "prefix": "E500"
             }
         ]
     },
@@ -336,7 +352,8 @@
                     "CALLA Sample 1 (by 냥냐냥) (Final E Tips)",
                     "CALLA Sample 1 (by 냥냐냥) (Spring Tips)",
                     "CALLA Sample 1 (by 냥냐냥) (Deep Insertion)"
-                ]
+                ],
+                "prefix": "CALLA"
             }
         ]
     },
@@ -346,7 +363,7 @@
             {
                 "name": "ICP-AT2000",
                 "file": "AT2000 Sample 1 (by 냥냐냥)",
-                "prefix": "AT2000 Sample 1 (by 냥냐냥)"
+                "prefix": "AT2000"
             }
         ]
     },
@@ -356,12 +373,12 @@
             {
                 "name": "Club Pro+",
                 "file": "Club Pro+ Sample 1 (by 냥냐냥)",
-                "prefix": "Club Pro+ Sample 1 (by 냥냐냥)"
+                "prefix": "Club Pro+"
             },
             {
                 "name": "E25BT",
                 "file": "E25BT (by 아소카)",
-                "prefix": "E25BT (by 아소카)"
+                "prefix": "E25BT"
             }
         ]
     },
@@ -374,7 +391,8 @@
                     "Idun Golden Sample 1 (by 냥냐냥)",
                     "Idun Golden Sample 1 (by 냥냐냥) (Foam Tips)",
                     "Idun Golden Sample 1 (by 냥냐냥) (White Tips)"
-                ]
+                ],
+                "prefix": "Idun Golden"
             },
             {
                 "name": "TYR",
@@ -382,7 +400,8 @@
                         "TYR Sample 1 (by 냥냐냥)",
                         "TYR Sample 1 (by 냥냐냥) (Final E Tips_6.5k Peak)",
                         "TYR Sample 1 (by 냥냐냥) (Spring Tips)"
-                        ]
+                        ],
+                "prefix": "TYR"
             }
         ]
     },
@@ -394,7 +413,8 @@
                 "file": [
                     "M100 Sample 1 (by 아소카) (Bundle Tips)",
                     "M100 Sample 1 (by 아소카) (Spinfit CP145 Tips)"
-                ]
+                ],
+                "prefix": "M100"
             }
         ]
     },
@@ -404,7 +424,7 @@
             {
                 "name": "AS10",
                 "file": "AS10 Sample 1 (by 냥냐냥) (L Only)",
-                "prefix": "AS10 Sample 1 (by 냥냐냥, L Only)"
+                "prefix": "AS10"
             },
             {
                 "name": "AS16",
@@ -412,19 +432,21 @@
                          "AS16 Sample 1 (by 냥냐냥) (Final E Tips)",
                          "AS16 Sample 1 (by 냥냐냥) (Spring Tips)",
                          "AS16 Sample 1 (by 냥냐냥) (Deep Insertion)"
-                        ]
+                        ],
+                "prefix": "AS16"
             },
             {
                 "name": "EDX",
                 "file": ["EDX Sample 1 (by 냥냐냥)",
                          "EDX Sample 1 (by 냥냐냥) (Final E Tips)",
                          "EDX Sample 1 (by 냥냐냥) (Spring Tips)"
-                        ]
+                        ],
+                "prefix": "EDX"
             },
             {
                 "name": "ZEX Pro (CRN)",
                 "file": "ZEX Pro Sample 1 (by 냥냐냥)",
-                "prefix": "ZEX Pro Sample 1 (by 냥냐냥)"
+                "prefix": "ZEX Pro"
             }
         ]
     },
@@ -434,7 +456,7 @@
             {
                 "name": "DM008K",
                 "file": "DM008K Sample 1 (by 냥냐냥)",
-                "prefix": "DM008K Sample 1 (by 냥냐냥)"
+                "prefix": "DM008K"
             },
             {
                 "name": "DM100",
@@ -442,14 +464,16 @@
                     "DM100 Sample 1 (by 냥냐냥)",
                     "DM100 Sample 1 (by 냥냐냥) (Foam Tips)",
                     "DM100 Sample 1 (by 냥냐냥) (Comply Tips)"
-                ]
+                ],
+                "prefix": "DM100"
             },
             {
                 "name": "TRECENTO 2020 Live",
                 "file": [
                     "TRECENTO 2020 Live Sample 1 (by 냥냐냥)",
                     "TRECENTO 2020 Live Sample 2 (by 냥냐냥)"
-                ]
+                ],
+                "prefix": "TRECENTO 2020 Live"
             }
         ]
     },
@@ -459,7 +483,7 @@
             {
                 "name": "USB-C Earphones",
                 "file": "USB-C Earphones Sample 1 (by ER4SR) (Orza L Tips)",
-                "prefix": "USB-C Earphones Sample 1 (by ER4SR, Orza L Tips)"
+                "prefix": "USB-C Earphones"
             }
         ]
     },
@@ -487,12 +511,12 @@
             {
                 "name": "Aria (2018)",
                 "file": "Aria (2018) Sample 1 (by 냥냐냥)",
-                "prefix": "Aria (2018) Sample 1 (by 냥냐냥)"
+                "prefix": "Aria (2018)"
             },
             {
                 "name": "Aria (2021)",
                 "file": "Aria (2021) Sample 1 (by ER4SR)",
-                "prefix": "Aria (2021) Sample 1 (by ER4SR)"
+                    "prefix": "Aria (2021)"
             },
             {
                 "name": "Aria Snow Edition",
@@ -500,16 +524,18 @@
                     "Aria Snow Edition Sample 1 (by 이소양)",
                     "Aria Snow Edition Sample 2 (Spring Tips) (by ER4SR)",
                     "Aria Snow Edition Sample 2 (Grey Tips) (by ER4SR)"
-                ]
+                ],
+                "prefix": "Aria Snow Edition"
             },
             {
                 "name": "Blessing",
-                "file": "Blessing Sample 1 (by 이소양)",
-                "prefix": "Blessing Sample 1 (by 이소양)"
+                "file": "Blessing Sample 1 (by 이소양)",
+                "prefix": "Blessing"
             },
             {
                 "name": "Blessing 2",
-                "file": "Blessing 2 Sample 1 (by 이소양)"
+                "file": "Blessing 2 Sample 1 (by 이소양)",
+                "prefix": "Blessing 2"
             },
             {
                 "name": "Chu",
@@ -520,7 +546,8 @@
                     "Chu Sample 2 (by Patria) (L Only)",
                     "Chu Sample 3 (by 냥냐냥)",
                     "Chu Sample 3 (by 냥냐냥) (Final E Tips)"
-                ]
+                ],
+                "prefix": "Chu"
             },
             {
                 "name": "KATO",
@@ -532,11 +559,13 @@
                     "Kato Sample 1 (Steel Nozzle) (Final E Tips) (Deep Insertion) (by ER4SR)",
                     "Kato Sample 1 (Steel Nozzle) (Spring Tips) (by ER4SR)",
                     "Kato Sample 1 (Steel Nozzle) (Foam Tips) (by ER4SR)"
-                ]
+                ],
+                "prefix": "Kato"
             },
             {
                 "name": "KXXS",
-                "file": "KXXS Sample 1 (by 이소양)"
+                "file": "KXXS Sample 1 (by 이소양)",
+                "prefix": "KXXS"
             },
             {
                 "name": "Nekocake",
@@ -546,26 +575,29 @@
                     "Nekocake Sample 1 (by 냥냐냥) (XDynamic EQ)",
                     "Nekocake Sample 1 (by 냥냐냥) (NoBass EQ)",
                     "Nekocake Sample 1 (by 냥냐냥) (Wennebostel EQ)"
-                ]
+                ],
+                "prefix": "Nekocake"
             },
             {
                 "name": "Quarks",
                 "file": [
                     "Quarks Sample 1 (EO-IG955 Tips) (by 아소카)",
                     "Quarks Sample 2 (by 냥냐냥)"
-                ]
+                ],
+                "prefix": "Quarks"
             },
             {
                 "name": "Starfield",
                 "file": "Starfield Sample 1 (by 이소양)",
-                "prefix": "Starfield Sample 1 (by 이소양)"
+                "prefix": "Starfield"
             },
             {
                 "name": "SSR",
                 "file": [
-                    "SSR Sample 1 (by 이소양)",
+                    "SSR Sample 1 (by 이소양)",
                     "SSR Sample 2 (by 냥냐냥)"
-                ]
+                ],
+                "prefix": "SSR"
             }
         ]
     },
@@ -579,7 +611,8 @@
                     "Power Sample 1 (by 냥냐냥) (Black Core Tips)",
                     "Power Sample 1 (by 냥냐냥) (Red Core Tips)",
                     "Power Sample 1 (by 냥냐냥) (Green Core Tips)"
-                ]
+                ],
+                "prefix": "Power"
             }
         ]
     },
@@ -593,7 +626,8 @@
                     "True Sample 1 (by 냥냐냥) (LG G8 AAC Codec)",
                     "True Sample 1 (by 냥냐냥) (Foam Tips) (LG G8 APT-X Codec)",
                     "True Sample 1 (by 냥냐냥) (냥냐냥 맞춤 EQ) (LG G8 APT-X Codec)"
-                ]
+                ],
+                "prefix": "True"
             }
         ]
     },
@@ -605,7 +639,8 @@
                 "file": [
                     "KC06A Sample 1 (by 냥냐냥)",
                     "KC06A Sample 2 (by 냥냐냥) (L Only)"
-                ]
+                ],
+                "prefix": "KC06A"
             }
         ]
     },
@@ -615,7 +650,7 @@
             {
                 "name": "PFE 022",
                 "file": "PFE 022 Sample 1 (by 냥냐냥) (Shure Foam Tips)",
-                "prefix": "PFE 022 Sample 1 (by 냥냐냥, Shure Foam Tips)"
+                "prefix": "PFE 022"
             }
         ]
     },
@@ -625,7 +660,7 @@
             {
                 "name": "P1AL",
                 "file": "P1AL Sample 1 (by 냥냐냥)",
-                "prefix": "P1AL Sample 1 (by 냥냐냥)"
+                "prefix": "P1AL"
             }
         ]
     },
@@ -635,21 +670,23 @@
             {
                 "name": "T1",
                 "file": "T1 Sample 1 (by 냥냐냥)",
-                "prefix": "T1 Sample 1 (by 냥냐냥)"
+                "prefix": "T1"
             },
             {
                 "name": "T5",
                 "file": [
                     "T5 Sample 1 (by 냥냐냥) (LG G8 SBC Codec) (L Only)",
                     "T5 Sample 1 (by 냥냐냥) (LG G8 AAC Codec) (L Only)"
-                ]
+                ],
+                "prefix": "T5"
             },
             {
                 "name": "T17",
                 "file": [
                     "T17 Sample 1 (by 냥냐냥) (LG G8 SBC Codec)",
                     "T17 Sample 1 (by 냥냐냥) (LG G8 AAC Codec)"
-                ]
+                ],
+                "prefix": "T17"
             }
         ]
     },
@@ -661,7 +698,8 @@
                 "file": [
                     "Dmagic Solo Sample 1 (by 냥냐냥)",
                     "Dmagic Solo Sample 1 (by 냥냐냥) (2단팁)"
-                ]
+                ],
+                "prefix": "Dmagic Solo"
             }
         ]
     },
@@ -673,7 +711,8 @@
                 "file": ["ZAX2 Sample 1 (by 냥냐냥)", 
                          "ZAX2 Sample 1 (by 냥냐냥) (Final E Tips)",
                          "ZAX2 Sample 1 (by 냥냐냥) (Spring Tips)"
-                        ]
+                        ],
+                "prefix": "ZAX2"
             }
                   ]
     },
@@ -682,8 +721,8 @@
         "phones": [
             {
                 "name": "Adonis",
-                "file": "Adonis Sample 1 (by 이소양)",
-                "prefix": "Adonis Sample 1 (by 이소양)"
+                "file": "Adonis Sample 1 (by 이소양)",
+                "prefix": "Adonis"
             }
         ]
     },
@@ -693,7 +732,7 @@
             {
                 "name": "1+4",
                 "file": "1+4 Sample 1 (Unknown Tips) (by 아소카)",
-                "prefix": "1+4 Sample 1 (Unknown Tips, by 아소카)"
+                "prefix": "1+4"
             }
         ]
     },
@@ -703,24 +742,25 @@
             {
                 "name": "EHS64",
                 "file": "EHS64 Sample 1 (by 냥냐냥)",
-                "prefix": "EHS64 Sample 1 (by 냥냐냥)"
+                "prefix": "EHS64"
             },
             {
                 "name": "EO-IC500",
                 "file": "EO-IC500 Sample 1 (by 냥냐냥)",
-                "prefix": "EO-IC500 Sample 1 (by 냥냐냥)"
+                "prefix": "EO-IC500"
             },
             {
                 "name": "EO-IG955",
                 "file": [
                     "EO-IG955 Sample 1 (by 냥냐냥) (Unknown Tips) (S9 Ver.)",
                     "EO-IG955 Sample 1 (by 냥냐냥) (Final E Tips) (S9 Ver.)"
-                ]
+                ],
+                "prefix": "EO-IG955"
             },
             {
                 "name": "Gear Icon X (2018)",
                 "file": "Gear Icon X Sample 1 (by 냥냐냥, Tanchjim Oxygen Filter, AT2000 Tips)(2018))",
-                "prefix": "Gear Icon X(2018) Sample 1 (by 냥냐냥, Tanchjim Oxygen Filter, AT2000 Tips)"
+                "prefix": "Gear Icon X"
             }
         ]
     },
@@ -730,17 +770,17 @@
             {
                 "name": "Bravery",
                 "file": "Bravery Sample 1 (by 냥냐냥)",
-                "prefix": "Bravery Sample 1 (by 냥냐냥)"
+                "prefix": "Bravery"
             },
             {
                 "name": "Yume",
-                "file": "Yume Sample 1 (by 이소양)",
-                "prefix": "Yume Sample 1 (by 이소양)"
+                "file": "Yume Sample 1 (by 이소양)",
+                "prefix": "Yume"
             },
             {
                 "name": "Yume Midnight",
                 "file": "Yume Midnight Sample 1 (by 냥냐냥)",
-                "prefix": "Yume Midnight Sample 1 (by 냥냐냥)"
+                "prefix": "Yume Midnight"
             }
         ]
     },
@@ -750,7 +790,7 @@
             {
                 "name": "IE400 Pro",
                 "file": "IE400 Pro Sample 1 (by ER4SR) (Final E M)",
-                "prefix": "IE400 Pro Sample 1 (by ER4SR, Final E M)"
+                "prefix": "IE400 Pro"
             }
         ]
     },
@@ -765,7 +805,8 @@
                     "S12 Sample 2 (by ER4SR) (Foam Tips)",
                     "S12 Sample 3 (by 냥냐냥) (White Tips)",
                     "S12 Sample 3 (by 냥냐냥) (Black Tips)"
-                ]
+                ],
+                "prefix": "S12"
             }
         ]
     },
@@ -779,7 +820,8 @@
                     "EM5 Sample 1 (by 냥냐냥) (Treble Tips)",
                     "EM5 Sample 2 (by 냥냐냥) (Tip II) (L Only)",
                     "EM5 Sample 2 (by 냥냐냥) (Tip I) (L Only)"
-                ]
+                ],
+                "prefix": "EM5"
             }
         ]
     },
@@ -791,7 +833,8 @@
                 "file": [
                     "RSV Sample 1 (by 냥냐냥)",
                     "RSV Sample 1 (by 냥냐냥) (Foam Tips)"
-                ]
+                ],
+                "prefix": "RSV"
             }
         ]
     },
@@ -801,41 +844,43 @@
             {
                 "name": "Dirac mk2",
                 "file": "Dirac mk2 Sample 1 (by 냥냐냥)",
-                "prefix": "Dirac mk2 Sample 1 (by 냥냐냥)"
+                "prefix": "Dirac mk2"
             },
             {
                 "name": "Direm KASA",
                 "file": "Direm KASA Sample 1 (by ER4SR) (Final E M)",
-                "prefix": "Direm KASA Sample 1 (by ER4SR, Final E M)"
+                "prefix": "Direm KASA"
             },
             {
                 "name": "Direm E3-C",
                 "file": "Direm E3-C Sample 1 (by 냥냐냥)",
-                "prefix": "Direm E3-C Sample 1 (by 냥냐냥)"
+                "prefix": "Direm E3-C"
             },
             {
                 "name": "Direm HT1",
                 "file": [
                     "Direm HT1 Sample 1 (by 냥냐냥) (LG G8 SBC Codec)",
                     "Direm HT1 Sample 1 (by 냥냐냥) (LG G8 AAC Codec)"
-                ]
+                ],
+                "prefix": "Direm HT1"
             },
             {
                 "name": "Direm Pro Master",
                 "file": "Direm Pro Master Sample 1 (by 냥냐냥)",
-                "prefix": "Direm Pro Master Sample 1 (by 냥냐냥)"
+                "prefix": "Direm Pro Master"
             },
             {
                 "name": "Direm Pro SL",
                 "file": "Direm Pro SL Sample 1 (by 냥냐냥)",
-                "prefix": "Direm Pro SL Sample 1 (by 냥냐냥)"
+                "prefix": "Direm Pro SL"
             },
             {
                 "name": "Direm W1",
                 "file": [
                     "Direm W1 Sample 1 (by 냥냐냥) (LG G8 SBC Codec)",
                     "Direm W1 Sample 1 (by 냥냐냥) (LG G8 AAC Codec)"
-                ]
+                ],
+                "prefix": "Direm W1"
             }
         ]
     },
@@ -845,12 +890,12 @@
             {
                 "name": "IER-M7",
                 "file": "IER-M7 Sample 1 (by ER4SR) (Hybrid Silicone M)",
-                "prefix": "IER-M7 Sample 1 (by ER4SR, Hybrid Silicone M)"
+                "prefix": "IER-M7"
             },
             {
                 "name": "WF-1000XM4",
                 "file": "WF-1000XM4 Sample 1 (by Patria) (L Only)",
-                "prefix": "WF-1000XM4 Sample 1 (by Patria, L Only)"
+                "prefix": "WF-1000XM4"
             }
         ]
     },
@@ -880,39 +925,42 @@
         "phones": [
             {
                 "name": "Darling",
-                "file": "Darling Sample 1 (by 이소양)",
-                "prefix": "Darling Sample 1 (by 이소양)"
+                "file": "Darling Sample 1 (by 이소양)",
+                "prefix": "Darling"
             },
             {
                 "name": "Hana",
                 "file": [
                     "Hana Sample 1 (by 냥냐냥) (Bass Tips)",
                     "Hana Sample 1 (by 냥냐냥) (Treble Tips)"
-                ]
+                ],
+                "prefix": "Hana"
             },
             {
                 "name": "New Hana",
                 "file": [
                     "New Hana Sample 1 (by 냥냐냥) (Bass Tips)",
                     "New Hana Sample 1 (by 냥냐냥) (Oxygen Treble Tips)"
-                ]
+                ],
+                "prefix": "New Hana"
             },
             {
                 "name": "Oxygen",
                 "file": [
                     "Oxygen Sample 1 (by 냥냐냥) (Bass Tips)",
                     "Oxygen Sample 1 (by 냥냐냥) (Treble Tips)"
-                ]
+                ],
+                "prefix": "Oxygen"
             },
             {
                 "name": "Oxygen Asano",
-                "file": "Oxygen Asano Sample 1 (by 이소양)",
-                "prefix": "Oxygen Asano Sample 1 (by 이소양)"
+                "file": "Oxygen Asano Sample 1 (by 이소양)",
+                "prefix": "Oxygen Asano"
             },
             {
                 "name": "PRISM",
-                "file": "PRISM Sample 1 (by 이소양)",
-                "prefix": "PRISM Sample 1 (by 이소양)"
+                "file": "PRISM Sample 1 (by 이소양)",
+                "prefix": "PRISM"
             },
             {
                 "name": "Zero",
@@ -920,7 +968,8 @@
                     "Zero Sample 1 (by 냥냐냥) (Bass Tips)",
                     "Zero Sample 1 (by 냥냐냥) (Treble Tips)",
                     "Zero Sample 1 (by 냥냐냥) (Final E Tips)"
-                ]
+                ],
+                "prefix": "Zero"
             }
         ]
     },
@@ -930,7 +979,7 @@
             {
                 "name": "Shimin Li",
                 "file": "Shimin Li Sample 1 (by 냥냐냥) (T-APB Bass Tips)",
-                "prefix": "Shimin Li Sample 1 (by 냥냐냥, T-APB Bass Tips)"
+                "prefix": "Shimin Li"
             }
         ]
     },
@@ -944,7 +993,8 @@
                     "Legacy 4 Sample 1 (by 냥냐냥) (02 Settings)",
                     "Legacy 4 Sample 1 (by 냥냐냥) (10 Settings)",
                     "Legacy 4 Sample 1 (by 냥냐냥) (12 Settings)"
-                ]
+                ],
+                "prefix": "Legacy 4"
             }
         ]
     },
@@ -954,12 +1004,12 @@
             {
                 "name": "Cencibel",
                 "file": "Cencibel Sample 1 (by 냥냐냥) (T-APB Bass Tips)",
-                "prefix": "Cencibel Sample 1 (by 냥냐냥, T-APB Bass Tips)"
+                "prefix": "Cencibel"
             },
             {
                 "name": "Rhombus",
                 "file": "Rhombus Sample 1 (by 냥냐냥) (T-APB Bass Tips)",
-                "prefix": "Rhombus Sample 1 (by 냥냐냥, T-APB Bass Tips)"
+                "prefix": "Rhombus"
             }
         ]
     },
@@ -969,7 +1019,7 @@
             {
                 "name": "MT1",
                 "file": "MT1 Sample 1 (by 냥냐냥)",
-                "prefix": "MT1 Sample 1 (by 냥냐냥)"
+                "prefix": "MT1"
             }
         ]
     },
@@ -979,18 +1029,20 @@
             {
                 "name": "RE-1",
                 "file": [
-                    "RE-1 Sample 1 (by 이소양)",
+                    "RE-1 Sample 1 (by 이소양)",
                     "RE-1 Sample 2 (by NX7)"
-                ]
+                ],
+                "prefix": "RE-1"
             },
             {
                 "name": "RE-2",
                 "file": [
                     "RE-2 Sample 1 (by 아소카)",
-                    "RE-2 Sample 2 (by 이소양)",
+                    "RE-2 Sample 2 (by 이소양)",
                     "RE-2 Sample 3 (by ER4SR) (Small Silicone Tips)",
                     "RE-2 Sample 4 (by ER4SR) (Final E M)"
-                ]
+                ],
+                "prefix": "RE-2"
             }
         ]
     },
@@ -1000,7 +1052,7 @@
             {
                 "name": "UE700 rev.2",
                 "file": "UE700 rev.2 Sample 1 (by 냥냐냥)",
-                "prefix": "UE700 rev.2 Sample 1 (by 냥냐냥)"
+                "prefix": "UE700 rev.2"
             }
         ]
     },
@@ -1010,14 +1062,15 @@
             {
                 "name": "Pyco",
                 "file": "Pyco Sample 1 (by 냥냐냥)",
-                "prefix": "Pyco Sample 1 (by 냥냐냥)"
+                "prefix": "Pyco"
             },
             {
                 "name": "Tio",
                 "file": [
                     "Tio Sample 1 (by 냥냐냥)",
                     "Tio Sample 1 (by 냥냐냥) (Spinfit Tips)"
-                ]
+                ],
+                "prefix": "Tio"
             }
         ]
     }

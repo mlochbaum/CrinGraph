@@ -120,11 +120,11 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 ## 기여자 목록
 
-**EX이헤갤러** : AKG N5005(Sample 3), Atomic Floyd SuperDarts Titanium, Etymotic ER4SR Sample 2, Refrig Audio Trecento 2020 Live(Sample 1, 2), Simgot EM5(Sample 1, 2), SeeAudio Yume Midnight, Shouer S12(Sample 3), Tanchjim Hana제공
+**EX이헤갤러** : AKG N5005(Sample 3), Atomic Floyd SuperDarts Titanium, Etymotic ER4SR Sample 2, ER4XR Sample 2, mk5, Refrig Audio Trecento 2020 Live(Sample 1, 2), Simgot EM5(Sample 1, 2), SeeAudio Yume Midnight, Shouer S12(Sample 3), Tanchjim Hana, Tanchjim New Hana Sample 2 제공
 
 **FH5S=오딘** : Fiio FW1, Lypertek Z3, Soundpeats Sonic Pro 제공
 
-**JohnYang1997** : BQEYZ K2, Final E500, FiiO F3, Ostry KC06A(Sample 2), Etymotic Research mc5, mk5, Phonak PFE 022 제공
+**JohnYang1997** : BQEYZ K2, Final E500, FiiO F3, Ostry KC06A(Sample 2), Etymotic Research mc5, mk5 Sample 2, Phonak PFE 022 제공
 
 **Lastwhitespace** : Apple In-Ear Headphones, FloAudio CALLA, Kinera TYR, KZ EDX, AS16, Moondrop Chu Sample 3, QKZ ZAX2 제공
 
@@ -132,7 +132,7 @@ mlochbaum의 CrinGraph 레포지터리를 포크하여 Alt 레이아웃을 활�
 
 **SilicaGel** : Direm Pro SL, Direm HT1, Direm W1, Thieaudio Legacy 4, ddHiFi Janus 제공
 
-**뉴비** : Etymotic Research mc5, mk5, Phonak PFE 022 제공
+**뉴비** : Etymotic Research mc5, mk5 Sample 2, Phonak PFE 022 제공
 
 **뎃데로게.** : Moondrop Aria (2018) 제공
 

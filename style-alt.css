@@ -2020,7 +2020,7 @@ div.scroll > div {
     position: relative;
     
     box-sizing: border-box;
-    height: 36px;
+    min-height: 36px;
     padding: 11px 12px;
     overflow: hidden;
     

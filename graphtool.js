@@ -2137,11 +2137,14 @@ focusedListSwipes();
 
 // Scroll list to active phone on init
 function scrollToActive() {
-    let phoneList = document.querySelector('div.scroll#phones'),
-        firstActivePhone = document.querySelector('div.phone-item[style*=border]'),
-        offset = firstActivePhone.offsetTop - 26;
-    
-    phoneList.scrollTop = offset;
+    try {
+        let phoneList = document.querySelector('div.scroll#phones'),
+            firstActivePhone = document.querySelector('div.phone-item[style*=border]'),
+            offset = firstActivePhone.offsetTop - 26;
+
+        phoneList.scrollTop = offset;
+    }
+    catch {}
 }
 
 // Set focused panel

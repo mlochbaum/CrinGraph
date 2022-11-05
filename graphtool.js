@@ -1426,7 +1426,7 @@ function makeColorPicker(elt) {
 function colorPhones() {
     updatePaths();
     let c = p=>p.active?getDivColor(p.id,true):null;
-    doc.select("#phones").selectAll("div")
+    doc.select("#phones").selectAll("div.phone-item")
         .style("background",c).style("border-color",c);
     let t = table.selectAll("tr").filter(p=>!p.isTarget)
         .style("color", c);

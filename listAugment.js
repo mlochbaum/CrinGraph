@@ -271,8 +271,8 @@ function augmentList(phone) {
         reviewLinkLabel = reviewLink ? reviewLink.split('http.').pop().split('/').shift() : false,
         reviewLinkVideo = reviewLink ? reviewLink.includes('youtube') ? 1 : 0 : 0,
         shopLink = phone.shopLink,
-        shopLinkAmazon = shopLink.indexOf('amazon') > 0 ? true : shopLink.indexOf('amzn') > 0 ? true : false,
-        shopLinkAli = shopLink.indexOf('aliexpress') > 0 ? true : false,
+        shopLinkAmazon = shopLink ? shopLink.indexOf('amazon') > 0 ? true : shopLink.indexOf('amzn') > 0 ? true : false : false,
+        shopLinkAli = shopLink ? shopLink.indexOf('aliexpress') > 0 ? true : false : false,
         shopLinkLabel = shopLink ? shopLinkAmazon ? 'Amazon' : shopLinkAli ? 'AliExpress' : shopLink.replace('www.','').split('://').pop().split('/').shift() : false,
         price = phone.price;
     

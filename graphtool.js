@@ -2665,8 +2665,7 @@ function addExtra() {
             toneGeneratorPlayButton.innerText = "Stop";
         }
     });
- 
-    eqPlayer();
+    
 }
 addExtra();
 

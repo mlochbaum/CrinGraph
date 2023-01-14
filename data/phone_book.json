@@ -1,6 +1,6 @@
 [
   {
-    "name": "Demo Lorem Ipsum Dolor Sit Amet",
+    "name": "Demo",
     "phones": [
         {"name":["Variations"],
          "file":["Combo Variant 1",
@@ -11,8 +11,9 @@
                    "var2",
                    "var3",
                    "var4"],
-         "reviewScore":"5",
+         "reviewScore":"4",
          "reviewLink":"https://www.youtube.com/",
+         "shopLink":"https://www.amazon.com/",
          "price":"¥100"
         },
         {"name":["Variations 2"],
@@ -27,9 +28,6 @@
          "reviewScore":"A+",
          "reviewLink":"https://www.head-fi.org/forums/",
          "shopLink":"https://www.aliexpress.com/",
-         "shopLink":"https://amzn.to/3rqoIN9",
-         "shopLink":"https://s.click.aliexpress.com/e/_A0UQuh",
-         "shopLink":"https://mezeaudio.com/products/109-pro",
          "price":"$100"
         }
     ]

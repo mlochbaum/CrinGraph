@@ -175,11 +175,10 @@ doc.html(`
                 <button class="add-filter">＋</button>
                 <button class="remove-filter">－</button>
                 <button class="sort-filters">Sort</button>
-                <button class="autoeq">AutoEQ</button>
                 <button class="import-filters">Import</button>
                 <button class="export-filters">Export</button>
-                <button class="export-graphic-filters">Export: Graphic EQ / Wavelet</button>
-                <button class="export-filters-qudelix">Export: Qudelix</button>
+                <button class="autoeq">AutoEQ</button>
+                <button class="export-graphic-filters">Export Graphic EQ (For Wavelet)</button>
                 <button class="readme">Readme</button>
               </div>
               <a style="display: none" id="file-filters-export"></a>
@@ -2556,37 +2555,6 @@ function addExtra() {
         exportElem.href && URL.revokeObjectURL(exportElem.href);
         exportElem.href = URL.createObjectURL(new Blob([settings]));
         exportElem.download = phoneObj.fullName.replace(/^Uploaded /, "") + " Filters.txt";
-        exportElem.click();
-    });
-    // Export filters to Qudelix
-    document.querySelector("div.extra-eq button.export-filters-qudelix").addEventListener("click", () => {
-        let phoneSelected = eqPhoneSelect.value;
-        let phoneObj = phoneSelected && activePhones.filter(
-            p => p.fullName == phoneSelected && p.eq)[0];
-        let filters = elemToFilters(true);
-        if (!phoneObj || !filters.length) {
-            alert("Please select model and add atleast one filter before export.");
-            return;
-        }
-        let preamp = Equalizer.calc_preamp(
-            phoneObj.rawChannels.filter(c => c)[0],
-            phoneObj.eq.rawChannels.filter(c => c)[0]);
-        let settings = "" + preamp.toFixed(1) + " dB\r\n";
-        filters.forEach((f, i) => {
-            let on = (!f.disabled && f.type && f.freq && f.gain && f.q) ? "ON" : "OFF";
-            let type = f.type;
-            if (type === "LSQ" || type === "HSQ") {
-                // Equalizer APO use LSC/HSC instead of LSQ/HSQ
-                type = type.substr(0, 2) + "C";
-            }
-            settings += (type + " " +
-                f.freq.toFixed(0) + " " + f.gain.toFixed(1) + " " +
-                f.q.toFixed(3) + "\r\n");
-        });
-        let exportElem = document.querySelector("#file-filters-export");
-        exportElem.href && URL.revokeObjectURL(exportElem.href);
-        exportElem.href = URL.createObjectURL(new Blob([settings]));
-        exportElem.download = phoneObj.fullName.replace(/^Uploaded /, "") + " Qudelix Filters.q5k";
         exportElem.click();
     });
     // Export filters as graphic eq (for wavelet)

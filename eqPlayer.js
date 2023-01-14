@@ -1,5 +1,4 @@
-// Removing filters: https://stackoverflow.com/questions/47368206/web-audio-api-removing-filter-while-playing
-// Calculate gain: https://stackoverflow.com/questions/59913333/web-audio-api-calculate-cumulative-gain-of-filters
+// https://stackoverflow.com/questions/47368206/web-audio-api-removing-filter-while-playing
 
 function eqPlayer() {
     let eqPlayerStyle = document.createElement('style'),

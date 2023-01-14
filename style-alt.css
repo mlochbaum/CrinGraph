@@ -155,6 +155,10 @@ svg#fr-graph rect {
     pointer-events: all;
 }
 
+g.inspector rect {
+    pointer-events: none !important;
+}
+
 text.insp_dB {
     fill: var(--background-color-contrast-more);
 }
@@ -276,8 +280,6 @@ svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-
 svg#fr-graph[data-labels-position="bottom-right"] > rect + g.lineLabel:nth-last-child(5) {
     transform: translate(500px, 208px);
 }
-
-
 
 /*****
 Framing *****/

@@ -61,66 +61,34 @@ backdrop-filter: blur(3px);
     
     function initEq() {
         console.log('eq init');
+
+        const eqVals = getCurrenEqVals();
+        console.log('eq values', eqVals);
+        
+        const filters = eqVals.filters || [];
         
 //        let playerContext = new (window.AudioContext || window.webkitAudioContext)(),
         let playerContext = new window.AudioContext(),
-            playerSource = playerContext.createMediaElementSource(elemPlayer),
-            filterA = playerContext.createBiquadFilter(),
-            filterB = playerContext.createBiquadFilter();
+            playerSource = playerContext.createMediaElementSource(elemPlayer);
 
-        filterA.type = 'lowshelf';
-        filterA.frequency.value = 150;
-        filterA.gain.value = 10;
+        const equalizerNodes = filters.map(() => playerContext.createBiquadFilter());
+        playerSource.connect(equalizerNodes[0]);
+        equalizerNodes.forEach((node, index) => {
+            if (index === equalizerNodes.length - 1)  node.connect(playerContext.destination)
+            else node.connect(equalizerNodes[index + 1])
+        })
         
-        filterB.type = 'lowpass';
-        filterB.frequency.value = 1000;
-        filterB.Q.value = 1.0;
+        equalizerNodes.forEach((node, index) => {
+            const { freq, gain, q, type } = filters[index]
+            node.type = type
+            node.frequency.value = freq
+            node.gain.value = gain
+            node.Q.value = q
+        })
         
-        playerSource.connect(filterB);
-        filterB.connect(playerContext.destination);
-        
+        console.log('nodes', equalizerNodes)
         console.log(playerSource);
     }
-    
-    
-//    var context = new (window.AudioContext || window.webkitAudioContext)();
-//    var mediaElement = document.querySelector('audio');
-//    var source = context.createMediaElementSource(mediaElement);
-//    var highShelf = context.createBiquadFilter();
-//    var lowShelf = context.createBiquadFilter();
-//    var highPass = context.createBiquadFilter();
-//    var lowPass = context.createBiquadFilter();
-//
-//    source.connect(highShelf);
-//    highShelf.connect(lowShelf);
-//    lowShelf.connect(highPass);
-//    highPass.connect(lowPass);
-//    lowPass.connect(context.destination);
-//
-//    highShelf.type = "highshelf";
-//    highShelf.frequency.value = 4700;
-//    highShelf.gain.value = 50;
-//
-//    lowShelf.type = "lowshelf";
-//    lowShelf.frequency.value = 35;
-//    lowShelf.gain.value = 50;
-//
-//    highPass.type = "highpass";
-//    highPass.frequency.value = 800;
-//    highPass.Q.value = 0.7;
-//
-//    lowPass.type = "lowpass";
-//    lowPass.frequency.value = 880;
-//    lowPass.Q.value = 0.7;
-//
-//    var ranges = document.querySelectorAll('input[type=range]');
-//    ranges.forEach(function(range){
-//      range.addEventListener('input', function() {
-//        window[this.dataset.filter][this.dataset.param].value = this.value;
-//      });
-//    });
-
-    
 }
 
 function getCurrenEqVals() {
@@ -151,4 +119,5 @@ function getCurrenEqVals() {
     });
     console.log(filtersData);
     console.log('Got filters');
+    return filtersData
 }

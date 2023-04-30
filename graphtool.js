@@ -1159,6 +1159,27 @@ function updatePhoneTable() {
         .attrs({type:"number",step:"any",value:0})
         .property("value", p=>p.offset)
         .on("change input",function(p){ setOffset(p, +this.value); });
+    td().attr("class","button button-download")
+        .html("<svg viewBox='-170 -120 340 240'><use xlink:href='#baseline-icon'></use></svg>")
+        .on("click", function(p) {
+        let phoneName = p.fullName,
+            channels = p.rawChannels,
+            downloadContainer = document.querySelector('body');
+
+        channels.forEach(function(channel, i) {
+            let channelNum = i + 1,
+                text = channel.join('\n');
+                blob = new Blob([text], { type: 'text/plain' }),
+                url = URL.createObjectURL(blob),
+                downloadLink = document.createElement('a');
+
+            downloadLink.download = phoneName + ' [' + channelNum + ']' + '.txt';
+            downloadLink.href = url;
+            downloadContainer.appendChild(downloadLink);
+            downloadLink.click();
+            downloadLink.remove();
+        });
+    });
     td().attr("class","button button-baseline")
         .html("<svg viewBox='-170 -120 340 240'><use xlink:href='#baseline-icon'></use></svg>")
         .on("click", p => setBaseline(p===baseline.p ? baseline0

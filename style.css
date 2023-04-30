@@ -69,6 +69,7 @@ td.remove       { width:1.4em; font-size:120%; padding-left:0.08em; }
 .calibrate      { width:2.5em; }
 .baselineButton { width:2.5em; }
 .hideButton     { width:2em; }
+.button-download { display: none; }
 .lastColumn     { width:2.2em; }
 
 .addPhone { height:1.8em; }

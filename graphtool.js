@@ -1160,7 +1160,6 @@ function updatePhoneTable() {
         .property("value", p=>p.offset)
         .on("change input",function(p){ setOffset(p, +this.value); });
     td().attr("class","button button-download")
-        .html("<svg viewBox='-170 -120 340 240'><use xlink:href='#baseline-icon'></use></svg>")
         .on("click", function(p) {
         let phoneName = p.fullName,
             channels = p.rawChannels,

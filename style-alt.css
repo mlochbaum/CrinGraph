@@ -1270,7 +1270,7 @@ tbody.curves > tr > td.button.hideIcon:after {
     -webkit-mask-position: center;
 }
 
-tbody.curves > tr > td.button.button-download:after {
+tbody.curves > tr > td.button.button-export:after {
     mask: var(--icon-download);
     -webkit-mask: var(--icon-download);
     
@@ -1323,7 +1323,7 @@ tbody.curves > tr > td.button-baseline:after {
 }
 
 /* Download */
-tbody.curves > tr > td.button-download {
+tbody.curves > tr > td.button-export {
     position: relative;
     
     background-color: transparent;
@@ -1331,11 +1331,11 @@ tbody.curves > tr > td.button-download {
     order: 6;
 }
 
-tbody.curves > tr > td.button-download:before {
+tbody.curves > tr > td.button-export:before {
     background-color: var(--background-color);
 }
 
-tbody.curves > tr > td.button-download:after {
+tbody.curves > tr > td.button-export:after {
     background-color: var(--background-color-contrast-more);
 }
 
@@ -2919,7 +2919,7 @@ Responsive styles *****/
     
     tbody.curves > tr > td.hideIcon.selected:before,
     tbody.curves > tr > td.button-pin:before,
-    tbody.curves > tr > td.button-download:before,
+    tbody.curves > tr > td.button-export:before,
     tbody.curves > tr > td.remove:before {
         border: 1px solid var(--background-color);
         background-color: var(--background-color-contrast);

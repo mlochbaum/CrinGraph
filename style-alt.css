@@ -39,6 +39,7 @@ Icons *****/
     --icon-remove: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M95.36,24.64h0a5,5,0,0,0-7.08,0L60,52.93,31.72,24.64a5,5,0,0,0-7.08,0h0a5,5,0,0,0,0,7.08L52.93,60,24.64,88.28a5,5,0,0,0,0,7.08h0a5,5,0,0,0,7.08,0L60,67.07,88.28,95.36a5,5,0,0,0,7.08,0h0a5,5,0,0,0,0-7.08L67.07,60,95.36,31.72A5,5,0,0,0,95.36,24.64Z'/%3E%3C/svg%3E");
     --icon-baseline: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect x='10' y='55' width='100' height='10' rx='5'/%3E%3C/svg%3E");
     --icon-squiggle: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M80.37,85c-12.63,0-18.92-6.89-22-12.67A30.8,30.8,0,0,1,55,60.18V60a20.12,20.12,0,0,0-2.1-8c-2.46-4.7-6.68-7-12.9-7s-10.44,2.28-12.9,7A20.1,20.1,0,0,0,25,60a5,5,0,0,1-5,5h0a5,5,0,0,1-5-5c0-8.65,5.22-25,25-25S65,51.2,65,59.87C65.1,61.67,66.3,75,80.37,75c6,0,10.16-2.27,12.56-7A20.49,20.49,0,0,0,95,60a5,5,0,0,1,5-5h0a5,5,0,0,1,5,5,30,30,0,0,1-3,12.2C98,80.46,90.29,85,80.37,85Z'/%3E%3C/svg%3E");
+    --icon-download: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 14L11.2929 14.7071L12 15.4142L12.7071 14.7071L12 14ZM13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44771 11 5L13 5ZM6.29289 9.70711L11.2929 14.7071L12.7071 13.2929L7.70711 8.29289L6.29289 9.70711ZM12.7071 14.7071L17.7071 9.70711L16.2929 8.29289L11.2929 13.2929L12.7071 14.7071ZM13 14L13 5L11 5L11 14L13 14Z' fill='%23CCD2E3'/%3E%3Cpath d='M5 16L5 17C5 18.1046 5.89543 19 7 19L17 19C18.1046 19 19 18.1046 19 17V16' stroke='%23CCD2E3' stroke-width='2'/%3E%3C/svg%3E%0A");
     --icon-hide: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M60,30C32.39,30,10,43.43,10,60S32.39,90,60,90s50-13.43,50-30S87.61,30,60,30ZM90.21,72.64C82.41,77.32,71.4,80,60,80,37.11,80,20,69.44,20,60c0-4.3,3.57-8.91,9.79-12.64C37.59,42.68,48.6,40,60,40c22.89,0,40,10.56,40,20C100,64.3,96.43,68.91,90.21,72.64Z'/%3E%3Ccircle class='cls-1' cx='60' cy='60' r='10'/%3E%3C/svg%3E");
     --icon-pin: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M78.07,30.48A28.68,28.68,0,0,1,89.52,41.93l-2.33-.64L83.49,45,69.05,59.43l-4.78,4.78,3.27,5.93c2.61,4.74,2.9,7.76,2.79,8.93a3,3,0,0,1-.45,0c-2.64,0-7.89-1.7-14-6.48l-4.75-3.74-3.74-4.75c-5.55-7.09-6.65-12.6-6.48-14.45l.46,0c1,0,3.89.28,8.49,2.81l5.93,3.27L60.57,51,75,36.51l3.71-3.7-.64-2.33M74.41,20.27A6.34,6.34,0,0,0,69.77,22c-1.79,1.79-2.08,4.76-1.13,8.2L54.21,44.58C49.57,42,45.1,40.65,41.37,40.65a9.54,9.54,0,0,0-7,2.51c-5,5-2.27,16.09,5.9,26.51L23,95.58a1,1,0,0,0,.83,1.55,1,1,0,0,0,.55-.17L50.33,79.69c6.87,5.38,14,8.4,19.55,8.4a9.52,9.52,0,0,0,7-2.5c3.93-3.93,3.08-11.62-1.42-19.8L89.85,51.36a13.62,13.62,0,0,0,3.58.53,6.32,6.32,0,0,0,4.62-1.66C102,46.32,98.79,36.83,91,29c-5.54-5.54-11.93-8.75-16.57-8.75Z'/%3E%3C/svg%3E");
     --icon-plus: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23000000;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M110,60h0a5,5,0,0,0-5-5H65V15a5,5,0,0,0-5-5h0a5,5,0,0,0-5,5V55H15a5,5,0,0,0-5,5h0a5,5,0,0,0,5,5H55v40a5,5,0,0,0,5,5h0a5,5,0,0,0,5-5V65h40A5,5,0,0,0,110,60Z'/%3E%3C/svg%3E");
@@ -1222,7 +1223,7 @@ tbody.curves > tr > td.remove:after {
 
 /* Remove item */
 tbody.curves > tr > td.remove {
-    order: 6;
+    order: 7;
     
     margin: 0 16px 0 6px;
     
@@ -1260,6 +1261,18 @@ tbody.curves > tr > td.button-pin:after {
 tbody.curves > tr > td.button.hideIcon:after {
     mask: var(--icon-hide);
     -webkit-mask: var(--icon-hide);
+    
+    mask-size: 20px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: 20px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+}
+
+tbody.curves > tr > td.button.button-download:after {
+    mask: var(--icon-download);
+    -webkit-mask: var(--icon-download);
     
     mask-size: 20px;
     mask-repeat: no-repeat;
@@ -1307,6 +1320,23 @@ tbody.curves > tr > td.button-baseline:before {
 
 tbody.curves > tr > td.button-baseline:after {
     background-color: var(--font-color-primary);
+}
+
+/* Download */
+tbody.curves > tr > td.button-download {
+    position: relative;
+    
+    background-color: transparent;
+    
+    order: 6;
+}
+
+tbody.curves > tr > td.button-download:before {
+    background-color: var(--background-color);
+}
+
+tbody.curves > tr > td.button-download:after {
+    background-color: var(--background-color-contrast-more);
 }
 
 /* Hide */
@@ -2889,6 +2919,7 @@ Responsive styles *****/
     
     tbody.curves > tr > td.hideIcon.selected:before,
     tbody.curves > tr > td.button-pin:before,
+    tbody.curves > tr > td.button-download:before,
     tbody.curves > tr > td.remove:before {
         border: 1px solid var(--background-color);
         background-color: var(--background-color-contrast);

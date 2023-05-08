@@ -3257,6 +3257,7 @@ Responsive styles *****/
         display: flex;
         
         flex: 50% 1 1;
+        height: calc(100% - 52px);
     }
     
     div.scroll {
